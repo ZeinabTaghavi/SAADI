@@ -9,6 +9,7 @@ from .base import (
     LLMBackend,
     parse_chatml,
     render_prompt,
+    strip_reasoning_markup,
     truncate_at_stop,
 )
 from .callable_backend import CallableBackend
@@ -43,5 +44,6 @@ __all__ = [
     "parse_chatml",
     "render_prompt",
     "resolve_backend",
+    "strip_reasoning_markup",
     "truncate_at_stop",
 ]
