@@ -1,0 +1,32 @@
+datasets:
+- loogle
+- qasper
+- novelhopqa
+- musique
+retrievers:
+- bm25
+variants:
+- name: all
+  overrides:
+    cached_retrieval:
+      memory_name_weight: 1
+      memory_alias_weight: 1
+      memory_description_weight: 1
+- name: names
+  overrides:
+    cached_retrieval:
+      memory_name_weight: 1
+      memory_alias_weight: 0
+      memory_description_weight: 0
+- name: aliases
+  overrides:
+    cached_retrieval:
+      memory_name_weight: 0
+      memory_alias_weight: 1
+      memory_description_weight: 0
+- name: descriptions
+  overrides:
+    cached_retrieval:
+      memory_name_weight: 0
+      memory_alias_weight: 0
+      memory_description_weight: 1

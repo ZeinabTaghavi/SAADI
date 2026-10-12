@@ -1,0 +1,7 @@
+main_phase: Static Statistics / Cost / Structure
+sub_phase_id: 2_4_Hierarchical_Summary_Statistics
+sub_phase_name: Hierarchical Summary Statistics
+run_name: default
+experiment_config: null
+token_counting:
+  strategy: whitespace

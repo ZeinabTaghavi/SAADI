@@ -1,0 +1,9 @@
+{
+  "metric": "HR",
+  "study": "retrieval_depth",
+  "input_source": "reference",
+  "verified_cells": 8,
+  "recomputed_cells": 8,
+  "reported_cells": 0,
+  "paper_reported_cells": 0
+}

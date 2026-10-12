@@ -1,0 +1,20 @@
+extends: ../methods/sadi.yaml
+output_dir: ${SADI_OUTPUT_DIR}/qasper
+dataset:
+  name: qasper
+  display_name: QASPER
+  split: test
+  config_name: default
+  qa_n: all
+  qa_selection_method: first
+ingest:
+  chunk_size: 100
+model:
+  model_id: Qwen/Qwen3-30B-A3B-Instruct-2507
+  alias: Qwen3-30B-A3B-Instruct-2507
+  gpu_memory_utilization: 0.8
+preparation:
+  target_context_tokens: 64000
+  max_documents: all
+  seed: 42
+  tolerance_tokens: 4000

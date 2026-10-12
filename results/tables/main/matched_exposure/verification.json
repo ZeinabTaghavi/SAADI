@@ -1,0 +1,9 @@
+{
+  "table": "matched_exposure",
+  "input_source": "reference",
+  "rows": 20,
+  "sadi_input_rows": 24,
+  "other_method_input_rows": 20,
+  "comparison_methods_executed": false,
+  "input_hashes_verified": true
+}

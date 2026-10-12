@@ -1,0 +1,9 @@
+{
+  "metric": "HR",
+  "study": "llm_ablation",
+  "input_source": "reference",
+  "verified_cells": 32,
+  "recomputed_cells": 32,
+  "reported_cells": 0,
+  "paper_reported_cells": 0
+}

@@ -1,0 +1,14 @@
+extends: ../methods/sadi.yaml
+output_dir: ${SADI_OUTPUT_DIR}/quality
+dataset:
+  name: quality
+  split: validation
+  config_name: default
+  qa_n: all
+  qa_selection_method: first
+ingest:
+  chunk_size: 500
+model:
+  model_id: Qwen/Qwen3.5-27B
+  alias: Qwen3.5-27B
+  gpu_memory_utilization: 0.8

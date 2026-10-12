@@ -1,0 +1,18 @@
+[
+  {
+    "study": "active_entity_budget",
+    "source_id": "paper_table6a_18de544fd67c",
+    "path": "outputs/sadi/reference/summaries/table6_memory_budget.json",
+    "sha256": "ee4a74f05dad14487e5e9944a6df3e8cc58cf499154e757f87c064ef2cea9f7e",
+    "provenance": "paper_reported_summary",
+    "source_document": {
+      "filename": "SAADI_ICLR.pdf",
+      "sha256": "18de544fd67c768d2896056a145aa523207390ffa5f00552cce1409e03f07421",
+      "page": 31,
+      "table": "6",
+      "panel": "A",
+      "decimal_places": 1
+    },
+    "note": "Final-run values reported in the paper. Query-level outputs for this run are not included in the release."
+  }
+]

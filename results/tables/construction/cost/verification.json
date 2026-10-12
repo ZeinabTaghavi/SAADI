@@ -1,0 +1,9 @@
+{
+  "metric": "HR",
+  "study": "construction_cost",
+  "input_source": "reference",
+  "verified_cells": 0,
+  "recomputed_cells": 0,
+  "reported_cells": 0,
+  "paper_reported_cells": 0
+}

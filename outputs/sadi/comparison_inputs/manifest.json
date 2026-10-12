@@ -1,0 +1,319 @@
+{
+  "schema_version": 1,
+  "rankings": [
+    {
+      "source_id": "3bc660085660e245a5fa",
+      "dataset": "musique",
+      "condition": "no_expansion",
+      "retriever": "contriever",
+      "path": "rankings/3bc660085660e245a5fa.jsonl.gz",
+      "sha256": "31f07f9055ae6f3270e6532fcb9ca68542c094047632e579848d737f35e5cc7c",
+      "saved_depth": 10,
+      "original_source": "outputs/musique_ablation/no_expansion/100_tokens/llm_cache/musique/hierarchical/branching_factor_5/chunk_100/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/contriever/retrieval_reports/retrieval_results__contriever__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
+      "original_sha256": "5c154e9f07ee396af677542d3d80a04e8c241dd433bd72f09f6de5c70887dfb1",
+      "raw_queries": 900,
+      "selected_queries": 900,
+      "selection": "five_condition_query_intersection",
+      "expected_metrics": [
+        {
+          "cutoff": 5,
+          "queries": 900,
+          "eligible": 900,
+          "hits": 699,
+          "hr": 0.7766666666666666
+        },
+        {
+          "cutoff": 10,
+          "queries": 900,
+          "eligible": 900,
+          "hits": 843,
+          "hr": 0.9366666666666666
+        }
+      ]
+    },
+    {
+      "source_id": "afd46747a94a657d7d6e",
+      "dataset": "musique",
+      "condition": "32K_expansion",
+      "retriever": "contriever",
+      "path": "rankings/afd46747a94a657d7d6e.jsonl.gz",
+      "sha256": "ed778128698c491f6be31c308a75506de5ae08cd40d467afa69f4c81da9ec91d",
+      "saved_depth": 10,
+      "original_source": "outputs/musique_ablation/32K_expansion/100_tokens/llm_cache/musique/hierarchical/branching_factor_5/chunk_100/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/contriever/retrieval_reports/retrieval_results__contriever__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
+      "original_sha256": "04d481eb476b3b13ba7b89c17930bee1ca3d088354f89ea262a2577ec253a1cb",
+      "raw_queries": 900,
+      "selected_queries": 900,
+      "selection": "standard_full_population",
+      "expected_metrics": [
+        {
+          "cutoff": 5,
+          "queries": 900,
+          "eligible": 900,
+          "hits": 619,
+          "hr": 0.6877777777777778
+        },
+        {
+          "cutoff": 10,
+          "queries": 900,
+          "eligible": 900,
+          "hits": 753,
+          "hr": 0.8366666666666667
+        }
+      ]
+    },
+    {
+      "source_id": "7c71b79f5469f6874f27",
+      "dataset": "musique",
+      "condition": "64K_expansion",
+      "retriever": "contriever",
+      "path": "rankings/7c71b79f5469f6874f27.jsonl.gz",
+      "sha256": "49d9081a82dadacdc795a7b8c01052f36405306f32aa0b82b15b176518686a92",
+      "saved_depth": 10,
+      "original_source": "outputs/musique_ablation/64K_expansion/100_tokens/llm_cache/musique/hierarchical/branching_factor_5/chunk_100/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/contriever/retrieval_reports/retrieval_results__contriever__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
+      "original_sha256": "1f44b1cb876d30a19822580d046b28c3923c76631ec6af2cc441c9df6e4ffc61",
+      "raw_queries": 900,
+      "selected_queries": 900,
+      "selection": "five_condition_query_intersection",
+      "expected_metrics": [
+        {
+          "cutoff": 5,
+          "queries": 900,
+          "eligible": 900,
+          "hits": 548,
+          "hr": 0.6088888888888889
+        },
+        {
+          "cutoff": 10,
+          "queries": 900,
+          "eligible": 900,
+          "hits": 697,
+          "hr": 0.7744444444444445
+        }
+      ]
+    },
+    {
+      "source_id": "8513847e739b7be4acb3",
+      "dataset": "musique",
+      "condition": "128K_expansion",
+      "retriever": "contriever",
+      "path": "rankings/8513847e739b7be4acb3.jsonl.gz",
+      "sha256": "353400fcc5678f3d4a50b59f2aa5b7ea4c92ed46f2d7efa170f37f21fd322ba3",
+      "saved_depth": 10,
+      "original_source": "outputs/musique_ablation/128K_expansion/100_tokens/llm_cache/musique/hierarchical/branching_factor_5/chunk_100/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/contriever/retrieval_reports/retrieval_results__contriever__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
+      "original_sha256": "62d96f14053cb30230330f848f0e1661717d8bfea4501de582fd1e49834373ad",
+      "raw_queries": 900,
+      "selected_queries": 900,
+      "selection": "five_condition_query_intersection",
+      "expected_metrics": [
+        {
+          "cutoff": 5,
+          "queries": 900,
+          "eligible": 900,
+          "hits": 507,
+          "hr": 0.5633333333333334
+        },
+        {
+          "cutoff": 10,
+          "queries": 900,
+          "eligible": 900,
+          "hits": 616,
+          "hr": 0.6844444444444444
+        }
+      ]
+    },
+    {
+      "source_id": "361938a1401824508a17",
+      "dataset": "musique",
+      "condition": "256K_expansion",
+      "retriever": "contriever",
+      "path": "rankings/361938a1401824508a17.jsonl.gz",
+      "sha256": "ae170761efce1c5ad0e873596a3472b93932f356777675ff2e5e7e624e44da5b",
+      "saved_depth": 10,
+      "original_source": "outputs/musique_ablation/256K_expansion/100_tokens/llm_cache/musique/hierarchical/branching_factor_5/chunk_100/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/contriever/retrieval_reports/retrieval_results__contriever__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
+      "original_sha256": "df9652b94c15f03d3e3b09dcb326284d0292161893ecbd55acb029346e980b78",
+      "raw_queries": 900,
+      "selected_queries": 900,
+      "selection": "five_condition_query_intersection",
+      "expected_metrics": [
+        {
+          "cutoff": 5,
+          "queries": 900,
+          "eligible": 900,
+          "hits": 482,
+          "hr": 0.5355555555555556
+        },
+        {
+          "cutoff": 10,
+          "queries": 900,
+          "eligible": 900,
+          "hits": 576,
+          "hr": 0.64
+        }
+      ]
+    },
+    {
+      "source_id": "f5be053f09edb8bd5db0",
+      "dataset": "qasper",
+      "condition": "no_expansion",
+      "retriever": "contriever",
+      "path": "rankings/f5be053f09edb8bd5db0.jsonl.gz",
+      "sha256": "59b6170ffd92a3de5ea22f83d7f606b749aa99342a62ed35b9b36fc2d362ce2a",
+      "saved_depth": 10,
+      "original_source": "outputs/qasper_ablation/no_expansion/100_tokens/llm_cache/qasper/hierarchical/branching_factor_5/chunk_100/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/contriever/retrieval_reports/retrieval_results__contriever__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
+      "original_sha256": "fd3183014d8cc066ba67518f3358d27b42b8d65edbeedd4256ae7d47fdaa3931",
+      "raw_queries": 1321,
+      "selected_queries": 1321,
+      "selection": "five_condition_query_intersection",
+      "expected_metrics": [
+        {
+          "cutoff": 5,
+          "queries": 1321,
+          "eligible": 1321,
+          "hits": 490,
+          "hr": 0.3709311127933384
+        },
+        {
+          "cutoff": 10,
+          "queries": 1321,
+          "eligible": 1321,
+          "hits": 801,
+          "hr": 0.6063588190764573
+        }
+      ]
+    },
+    {
+      "source_id": "ad8333c30485e99a37db",
+      "dataset": "qasper",
+      "condition": "32K_expansion",
+      "retriever": "contriever",
+      "path": "rankings/ad8333c30485e99a37db.jsonl.gz",
+      "sha256": "6a73e3bc2bad417ce0071115d9245453dbf1a6b447b5352e63a0ed6097f27558",
+      "saved_depth": 10,
+      "original_source": "outputs/qasper_ablation/32K_expansion/100_tokens/llm_cache/qasper/hierarchical/branching_factor_5/chunk_100/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/contriever/retrieval_reports/retrieval_results__contriever__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
+      "original_sha256": "902ad555228ca78ca0507045f02579531fd0d9496cf53a4386ad0c2f3ed12a57",
+      "raw_queries": 1329,
+      "selected_queries": 1321,
+      "selection": "five_condition_query_intersection",
+      "expected_metrics": [
+        {
+          "cutoff": 5,
+          "queries": 1321,
+          "eligible": 1321,
+          "hits": 259,
+          "hr": 0.19606358819076458
+        },
+        {
+          "cutoff": 10,
+          "queries": 1321,
+          "eligible": 1321,
+          "hits": 420,
+          "hr": 0.31794095382286147
+        }
+      ]
+    },
+    {
+      "source_id": "bd7eb2fdb44a223b9655",
+      "dataset": "qasper",
+      "condition": "64K_expansion",
+      "retriever": "contriever",
+      "path": "rankings/bd7eb2fdb44a223b9655.jsonl.gz",
+      "sha256": "98d75cad5cfb216c6a0a1037959cdbf543f18702cdb775c16cc6a39f10ad1b86",
+      "saved_depth": 10,
+      "original_source": "outputs/qasper_ablation/64K_expansion/100_tokens/llm_cache/qasper/hierarchical/branching_factor_5/chunk_100/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/contriever/retrieval_reports/retrieval_results__contriever__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
+      "original_sha256": "d60708341fa0bcdd34177f4cb51b9bc74e27d820400fa0b667587bf9c92b1fdd",
+      "raw_queries": 1333,
+      "selected_queries": 1333,
+      "selection": "standard_full_population",
+      "expected_metrics": [
+        {
+          "cutoff": 5,
+          "queries": 1333,
+          "eligible": 1333,
+          "hits": 216,
+          "hr": 0.16204051012753187
+        },
+        {
+          "cutoff": 10,
+          "queries": 1333,
+          "eligible": 1333,
+          "hits": 344,
+          "hr": 0.25806451612903225
+        }
+      ]
+    },
+    {
+      "source_id": "e06f9c4458f72d47781f",
+      "dataset": "qasper",
+      "condition": "128K_expansion",
+      "retriever": "contriever",
+      "path": "rankings/e06f9c4458f72d47781f.jsonl.gz",
+      "sha256": "2bb8321a4db0a47f69d5f9d87b1ffdc46631399f9ba00257dcd3873d4ccd11ff",
+      "saved_depth": 10,
+      "original_source": "outputs/qasper_ablation/128K_expansion/100_tokens/llm_cache/qasper/hierarchical/branching_factor_5/chunk_100/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/contriever/retrieval_reports/retrieval_results__contriever__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
+      "original_sha256": "04cd1f1b80dd0cd8d67fba72dcd94c2cf5fcfb8df8303aacc62728b196b9a3c0",
+      "raw_queries": 1336,
+      "selected_queries": 1321,
+      "selection": "five_condition_query_intersection",
+      "expected_metrics": [
+        {
+          "cutoff": 5,
+          "queries": 1321,
+          "eligible": 1321,
+          "hits": 173,
+          "hr": 0.13096139288417866
+        },
+        {
+          "cutoff": 10,
+          "queries": 1321,
+          "eligible": 1321,
+          "hits": 284,
+          "hr": 0.2149886449659349
+        }
+      ]
+    },
+    {
+      "source_id": "d50f833db08333803c03",
+      "dataset": "qasper",
+      "condition": "256K_expansion",
+      "retriever": "contriever",
+      "path": "rankings/d50f833db08333803c03.jsonl.gz",
+      "sha256": "cc862e9fe794819ea9faa4043edf6c6673528c25309127b4c2c91a37722d3d62",
+      "saved_depth": 10,
+      "original_source": "outputs/qasper_ablation/256K_expansion/100_tokens/llm_cache/qasper/hierarchical/branching_factor_5/chunk_100/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/contriever/retrieval_reports/retrieval_results__contriever__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
+      "original_sha256": "2e69eaf3eeec6b7acdd70ee38b2eeb63d395a607e44d8d176cd284f05b562235",
+      "raw_queries": 1340,
+      "selected_queries": 1321,
+      "selection": "five_condition_query_intersection",
+      "expected_metrics": [
+        {
+          "cutoff": 5,
+          "queries": 1321,
+          "eligible": 1321,
+          "hits": 150,
+          "hr": 0.11355034065102196
+        },
+        {
+          "cutoff": 10,
+          "queries": 1321,
+          "eligible": 1321,
+          "hits": 223,
+          "hr": 0.1688115064345193
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "resource_use": {
+      "original_source": "outputs/Tables/main_results_computational_profile/main_computational_profile_values.csv",
+      "sha256": "b3fff342b81a7cc7c57546756d93965818fce64862a4a0b3da967d6e71565b5b"
+    },
+    "context_expansion": {
+      "original_source": "outputs/Tables/appendix_results_context_expansion/appendix_results_context_expansion.csv",
+      "sha256": "23e099814d33fb766420016fc304cc25f1d6a1054b8fc2d909f1637a6858de7c"
+    },
+    "multihop": {
+      "original_source": "outputs/Tables/appendix_results_multihop_retrieval/appendix_results_multihop_retrieval.csv",
+      "sha256": "35314086007de0cef5219bba84a6ddbaac5c1e1968017a35b89a1982dc4d0e48"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+[demo]
+root = "single_document_demo"
+
+[workflow]
+type = "therapy"
+prompt_profile = "therapy"
+
+[input]
+path = "single_document_demo/input/sample_conversation/conversation.csv"
+role_column = "role"
+text_column = "text"
+order_column = "turn_id"
+allowed_roles = ["therapist", "patient"]
+include_timestamps = false
+
+[output]
+root = "single_document_demo/output"
+
+[run]
+name = "therapy_conversations"
+query = ""
+questions_path = ""
+
+[model]
+backend = "vllm"
+model_id = "Qwen/Qwen3.5-27B"
+tensor_parallel_size = 4
+gpu_memory_utilization = 0.8
+max_model_len = 32768
+enforce_eager = true
+
+[saadi]
+chunk_size = 500
+chunk_overlap = 0
+branching_factor = 5
+max_entities = 8
+max_aliases = 3
+max_desc = 5
+separator_phrases = []
+document_summary_enabled = true
+document_summary_max_tokens = 384
+document_summary_temperature = 0.2

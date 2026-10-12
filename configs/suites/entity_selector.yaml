@@ -1,0 +1,18 @@
+datasets:
+- loogle
+- qasper
+- novelhopqa
+- musique
+retrievers:
+- bm25
+variants:
+- name: bm25
+  overrides:
+    ingest:
+      strategy_kwargs:
+        active_entity_selector: bm25
+- name: word
+  overrides:
+    ingest:
+      strategy_kwargs:
+        active_entity_selector: word

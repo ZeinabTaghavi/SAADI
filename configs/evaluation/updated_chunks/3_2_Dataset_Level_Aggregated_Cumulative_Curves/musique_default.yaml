@@ -1,0 +1,8 @@
+main_phase: Cumulative Growth Analysis
+sub_phase_id: 3_2_Dataset_Level_Aggregated_Cumulative_Curves
+sub_phase_name: Dataset-Level Aggregated Cumulative Curves
+run_name: default
+source_run_name: default
+experiment_config: null
+aggregation:
+  normalized_grid_size: 101

@@ -1,0 +1,16 @@
+[
+  {
+    "study": "active_entities_cumulative_growth",
+    "source_id": "c0518aa45e831fbca45b",
+    "path": "outputs/sadi/reference/summaries/c0518aa45e831fbca45b.json",
+    "sha256": "94fa964dd8bd9fb1ae2eb6e1e4931df16a04311cde22ebd95db3f67b239f8775",
+    "provenance": "reported_statistics"
+  },
+  {
+    "study": "active_entities_cumulative_growth",
+    "source_id": "bcf1ea66de2206ed48da",
+    "path": "outputs/sadi/reference/summaries/bcf1ea66de2206ed48da.json",
+    "sha256": "d23238e5646471a7efa220249f7318cf39b870a2f3ad4805867e77909b3e6bf8",
+    "provenance": "reported_statistics"
+  }
+]

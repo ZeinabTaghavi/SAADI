@@ -1,0 +1,9 @@
+[
+  {
+    "study": "active_entities_statistics",
+    "source_id": "5b7bf4454ab652ea5ff5",
+    "path": "outputs/sadi/reference/summaries/5b7bf4454ab652ea5ff5.json",
+    "sha256": "c5bec5974c8b412ad8e7bd09e7d85be9bf45778cdb69e16ea9f63c3cd0b8ceca",
+    "provenance": "reported_statistics"
+  }
+]

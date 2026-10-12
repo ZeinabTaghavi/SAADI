@@ -1,0 +1,5 @@
+main_phase: Cumulative Growth Analysis
+sub_phase_id: 3_1_Per_Document_Cumulative_Growth_Logging
+sub_phase_name: Per-Document Cumulative Growth Logging
+run_name: default
+experiment_config: null

@@ -1,0 +1,72 @@
+datasets:
+- loogle
+- qasper
+- novelhopqa
+- musique
+retrievers:
+- bm25
+- contriever
+variants:
+- name: weights_1_0_0
+  overrides:
+    cached_retrieval:
+      memory_name_weight: 1
+      memory_alias_weight: 0
+      memory_description_weight: 0
+      normalization_method: none
+- name: weights_1_0.3_0
+  overrides:
+    cached_retrieval:
+      memory_name_weight: 1
+      memory_alias_weight: 0.3
+      memory_description_weight: 0
+      normalization_method: none
+- name: weights_1_0.5_0
+  overrides:
+    cached_retrieval:
+      memory_name_weight: 1
+      memory_alias_weight: 0.5
+      memory_description_weight: 0
+      normalization_method: none
+- name: weights_1_0_0.3
+  overrides:
+    cached_retrieval:
+      memory_name_weight: 1
+      memory_alias_weight: 0
+      memory_description_weight: 0.3
+      normalization_method: none
+- name: weights_1_0_0.5
+  overrides:
+    cached_retrieval:
+      memory_name_weight: 1
+      memory_alias_weight: 0
+      memory_description_weight: 0.5
+      normalization_method: none
+- name: weights_1_0.3_0.3
+  overrides:
+    cached_retrieval:
+      memory_name_weight: 1
+      memory_alias_weight: 0.3
+      memory_description_weight: 0.3
+      normalization_method: none
+- name: weights_1_0.5_0.3
+  overrides:
+    cached_retrieval:
+      memory_name_weight: 1
+      memory_alias_weight: 0.5
+      memory_description_weight: 0.3
+      normalization_method: none
+- name: weights_1_1_1
+  overrides:
+    cached_retrieval:
+      memory_name_weight: 1
+      memory_alias_weight: 1
+      memory_description_weight: 1
+      normalization_method: none
+- name: weights_0_1_1
+  overrides:
+    cached_retrieval:
+      memory_name_weight: 0
+      memory_alias_weight: 1
+      memory_description_weight: 1
+      normalization_method: none

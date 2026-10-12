@@ -1,0 +1,28 @@
+datasets:
+- loogle
+- qasper
+- novelhopqa
+- musique
+retrievers:
+- bm25
+variants:
+- name: mbr
+  overrides:
+    cached_retrieval:
+      method: mbr
+- name: mbr_linear
+  overrides:
+    cached_retrieval:
+      method: mbr_linear
+- name: mbr_pool
+  overrides:
+    cached_retrieval:
+      method: mbr_pool
+- name: l0
+  overrides:
+    cached_retrieval:
+      method: l0
+- name: l0aj
+  overrides:
+    cached_retrieval:
+      method: l0aj

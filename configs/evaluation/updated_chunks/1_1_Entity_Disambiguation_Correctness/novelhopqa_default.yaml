@@ -1,0 +1,17 @@
+main_phase: Faithfulness
+sub_phase_id: 1_1_Entity_Disambiguation_Correctness
+sub_phase_name: Entity Disambiguation Correctness
+run_name: default
+experiment_config: null
+judge_model_config: configs/models/qwen_vllm.yaml
+sampling:
+  seed: 13
+  sample_size: 100
+judging:
+  batch_size: 16
+  max_tokens: 768
+  temperature: 0.0
+  stop:
+  - '[END_JSON]'
+  - <|im_end|>
+  - <|endoftext|>

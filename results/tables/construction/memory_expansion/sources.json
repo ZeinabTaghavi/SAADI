@@ -1,0 +1,9 @@
+[
+  {
+    "study": "active_entities_expansion_statistics",
+    "source_id": "cdba353d3a3ecf8fe420",
+    "path": "outputs/sadi/reference/summaries/cdba353d3a3ecf8fe420.json",
+    "sha256": "c7f5c28e3416a0ed9a014cef86f032fbe92dae10c97c31d9720bde03d4f7a8be",
+    "provenance": "reported_statistics"
+  }
+]

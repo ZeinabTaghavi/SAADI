@@ -1,0 +1,292 @@
+{
+  "sadi_inputs": [
+    {
+      "study": "context_expansion",
+      "source_id": "ad7c33ad9664ec6552d4",
+      "path": "outputs/sadi/reference/rankings/ad7c33ad9664ec6552d4.jsonl.gz",
+      "sha256": "e20b9ade5a26cd242e1a8a14c8c28cb6e7d4530e799e452ff294fe1cf2a8fecf",
+      "provenance": "per_query",
+      "dataset": "musique",
+      "retriever": "bm25",
+      "condition": "128K_expansion",
+      "memory_selector": null
+    },
+    {
+      "study": "context_expansion",
+      "source_id": "93eabe32c3dfe5e56a72",
+      "path": "outputs/sadi/reference/rankings/93eabe32c3dfe5e56a72.jsonl.gz",
+      "sha256": "a834e55e61d8a68196290d4fce9125650f047eb55af3e8e8c83d06544cb34f9f",
+      "provenance": "per_query",
+      "dataset": "musique",
+      "retriever": "bm25",
+      "condition": "256K_expansion",
+      "memory_selector": null
+    },
+    {
+      "study": "context_expansion",
+      "source_id": "1b10f597d576bca454cb",
+      "path": "outputs/sadi/reference/rankings/1b10f597d576bca454cb.jsonl.gz",
+      "sha256": "9fb1fb9e80961824330f81bf28ee5017f4915af4cc5ec3077581e30c399b141d",
+      "provenance": "per_query",
+      "dataset": "musique",
+      "retriever": "bm25",
+      "condition": "32K_expansion",
+      "memory_selector": null
+    },
+    {
+      "study": "context_expansion",
+      "source_id": "90bc9b3cd3cb8276c988",
+      "path": "outputs/sadi/reference/rankings/90bc9b3cd3cb8276c988.jsonl.gz",
+      "sha256": "889f5efe573128297b6e2a37e23eadec2096636f0bff01c076713d4b971a1523",
+      "provenance": "per_query",
+      "dataset": "musique",
+      "retriever": "bm25",
+      "condition": "64K_expansion",
+      "memory_selector": null
+    },
+    {
+      "study": "context_expansion",
+      "source_id": "bfd80f2fd1e13d1776b0",
+      "path": "outputs/sadi/reference/rankings/bfd80f2fd1e13d1776b0.jsonl.gz",
+      "sha256": "e70a3959190339afeb5c23514f69b2880f6f083d9cbf15304d904e045b779cd2",
+      "provenance": "per_query",
+      "dataset": "musique",
+      "retriever": "bm25",
+      "condition": "no_expansion",
+      "memory_selector": null
+    },
+    {
+      "study": "context_expansion",
+      "source_id": "5cb4b2567419a284e1de",
+      "path": "outputs/sadi/reference/rankings/5cb4b2567419a284e1de.jsonl.gz",
+      "sha256": "c120519b9b689002e646d8a418e6c06d4a76e70de17481d7e55abef6b4994506",
+      "provenance": "per_query",
+      "dataset": "qasper",
+      "retriever": "bm25",
+      "condition": "128K_expansion",
+      "memory_selector": null
+    },
+    {
+      "study": "context_expansion",
+      "source_id": "e2bb4f40b537d4b06e47",
+      "path": "outputs/sadi/reference/rankings/e2bb4f40b537d4b06e47.jsonl.gz",
+      "sha256": "c1f4dd3f3c64784679487595912647467c0311283adb8efbee3c3a47500197a4",
+      "provenance": "per_query",
+      "dataset": "qasper",
+      "retriever": "bm25",
+      "condition": "256K_expansion",
+      "memory_selector": null
+    },
+    {
+      "study": "context_expansion",
+      "source_id": "300a3066e255b6a45914",
+      "path": "outputs/sadi/reference/rankings/300a3066e255b6a45914.jsonl.gz",
+      "sha256": "ba92a78549cb3651a168a2d180a063d8fad95786f0a3eb18047abd8429b38d20",
+      "provenance": "per_query",
+      "dataset": "qasper",
+      "retriever": "bm25",
+      "condition": "32K_expansion",
+      "memory_selector": null
+    },
+    {
+      "study": "context_expansion",
+      "source_id": "4bdc8b93160113f063d6",
+      "path": "outputs/sadi/reference/rankings/4bdc8b93160113f063d6.jsonl.gz",
+      "sha256": "acb9f8fcb04bb61e3916016a70bda6df61b55b1ce282c2ae59d2a1202e4f1c0c",
+      "provenance": "per_query",
+      "dataset": "qasper",
+      "retriever": "bm25",
+      "condition": "64K_expansion",
+      "memory_selector": null
+    },
+    {
+      "study": "context_expansion",
+      "source_id": "82152eaf8a761fde057f",
+      "path": "outputs/sadi/reference/rankings/82152eaf8a761fde057f.jsonl.gz",
+      "sha256": "52f05a5331798a2bf014d23c907c9f88677294d27357568349a59ebe31ad7bda",
+      "provenance": "per_query",
+      "dataset": "qasper",
+      "retriever": "bm25",
+      "condition": "no_expansion",
+      "memory_selector": null
+    },
+    {
+      "path": "outputs/sadi/comparison_inputs/rankings/3bc660085660e245a5fa.jsonl.gz",
+      "sha256": "31f07f9055ae6f3270e6532fcb9ca68542c094047632e579848d737f35e5cc7c",
+      "source_id": "3bc660085660e245a5fa",
+      "provenance": "per_query",
+      "queries": 900,
+      "selection": "five_condition_query_intersection"
+    },
+    {
+      "path": "outputs/sadi/comparison_inputs/rankings/afd46747a94a657d7d6e.jsonl.gz",
+      "sha256": "ed778128698c491f6be31c308a75506de5ae08cd40d467afa69f4c81da9ec91d",
+      "source_id": "afd46747a94a657d7d6e",
+      "provenance": "per_query",
+      "queries": 900,
+      "selection": "standard_full_population"
+    },
+    {
+      "path": "outputs/sadi/comparison_inputs/rankings/7c71b79f5469f6874f27.jsonl.gz",
+      "sha256": "49d9081a82dadacdc795a7b8c01052f36405306f32aa0b82b15b176518686a92",
+      "source_id": "7c71b79f5469f6874f27",
+      "provenance": "per_query",
+      "queries": 900,
+      "selection": "five_condition_query_intersection"
+    },
+    {
+      "path": "outputs/sadi/comparison_inputs/rankings/8513847e739b7be4acb3.jsonl.gz",
+      "sha256": "353400fcc5678f3d4a50b59f2aa5b7ea4c92ed46f2d7efa170f37f21fd322ba3",
+      "source_id": "8513847e739b7be4acb3",
+      "provenance": "per_query",
+      "queries": 900,
+      "selection": "five_condition_query_intersection"
+    },
+    {
+      "path": "outputs/sadi/comparison_inputs/rankings/361938a1401824508a17.jsonl.gz",
+      "sha256": "ae170761efce1c5ad0e873596a3472b93932f356777675ff2e5e7e624e44da5b",
+      "source_id": "361938a1401824508a17",
+      "provenance": "per_query",
+      "queries": 900,
+      "selection": "five_condition_query_intersection"
+    },
+    {
+      "path": "outputs/sadi/comparison_inputs/rankings/f5be053f09edb8bd5db0.jsonl.gz",
+      "sha256": "59b6170ffd92a3de5ea22f83d7f606b749aa99342a62ed35b9b36fc2d362ce2a",
+      "source_id": "f5be053f09edb8bd5db0",
+      "provenance": "per_query",
+      "queries": 1321,
+      "selection": "five_condition_query_intersection"
+    },
+    {
+      "path": "outputs/sadi/comparison_inputs/rankings/ad8333c30485e99a37db.jsonl.gz",
+      "sha256": "6a73e3bc2bad417ce0071115d9245453dbf1a6b447b5352e63a0ed6097f27558",
+      "source_id": "ad8333c30485e99a37db",
+      "provenance": "per_query",
+      "queries": 1321,
+      "selection": "five_condition_query_intersection"
+    },
+    {
+      "path": "outputs/sadi/comparison_inputs/rankings/bd7eb2fdb44a223b9655.jsonl.gz",
+      "sha256": "98d75cad5cfb216c6a0a1037959cdbf543f18702cdb775c16cc6a39f10ad1b86",
+      "source_id": "bd7eb2fdb44a223b9655",
+      "provenance": "per_query",
+      "queries": 1333,
+      "selection": "standard_full_population"
+    },
+    {
+      "path": "outputs/sadi/comparison_inputs/rankings/e06f9c4458f72d47781f.jsonl.gz",
+      "sha256": "2bb8321a4db0a47f69d5f9d87b1ffdc46631399f9ba00257dcd3873d4ccd11ff",
+      "source_id": "e06f9c4458f72d47781f",
+      "provenance": "per_query",
+      "queries": 1321,
+      "selection": "five_condition_query_intersection"
+    },
+    {
+      "path": "outputs/sadi/comparison_inputs/rankings/d50f833db08333803c03.jsonl.gz",
+      "sha256": "cc862e9fe794819ea9faa4043edf6c6673528c25309127b4c2c91a37722d3d62",
+      "source_id": "d50f833db08333803c03",
+      "provenance": "per_query",
+      "queries": 1321,
+      "selection": "five_condition_query_intersection"
+    }
+  ],
+  "other_method_inputs": [
+    {
+      "path": "outputs/other_methods/a_rag/retrieval.csv",
+      "sha256": "8993debc4204f9c6e0f1b43db789c96e541ae94b0881920715fb699e7b66b098",
+      "rows": 23,
+      "source_ids": [
+        "context_expansion",
+        "fixed_and_agentic",
+        "multihop"
+      ]
+    },
+    {
+      "path": "outputs/other_methods/agentic_r/retrieval.csv",
+      "sha256": "b99c33ea5464d03faa3fd22a61e0dc4bcba8b136411e4e22183626ccf3431aae",
+      "rows": 23,
+      "source_ids": [
+        "context_expansion",
+        "fixed_and_agentic",
+        "multihop"
+      ]
+    },
+    {
+      "path": "outputs/other_methods/grip/retrieval.csv",
+      "sha256": "e437e76b99a0d2415f46e040532c142651b2f99f37894a7328c4d7b64f4d862a",
+      "rows": 23,
+      "source_ids": [
+        "context_expansion",
+        "fixed_and_agentic",
+        "multihop"
+      ]
+    },
+    {
+      "path": "outputs/other_methods/rag_r1/retrieval.csv",
+      "sha256": "8f0a61d08d0c819277c36741e72b3c142128007977c6f6e0b96b5bc8445f608e",
+      "rows": 23,
+      "source_ids": [
+        "context_expansion",
+        "fixed_and_agentic",
+        "multihop"
+      ]
+    },
+    {
+      "path": "outputs/other_methods/uma/retrieval.csv",
+      "sha256": "5e50dd533bd6adc5e927ce77f2c685bd9b11cd6b8141103a6bc8ac85877582fe",
+      "rows": 23,
+      "source_ids": [
+        "context_expansion",
+        "fixed_and_agentic",
+        "multihop"
+      ]
+    },
+    {
+      "path": "outputs/other_methods/vanilla/retrieval.csv",
+      "sha256": "b4ac4fc78e4656e76202ca17c7e7da5ca9a10e19c165268dde547be9791043c9",
+      "rows": 136,
+      "source_ids": [
+        "context_expansion",
+        "main_fixed_depth",
+        "multihop"
+      ]
+    }
+  ],
+  "archived_other_method_sources": {
+    "main_fixed_depth": {
+      "original_source": "outputs/Tables/Final_table.txt",
+      "sha256": "e76acc0811c4aec61775da6d31f294c901e4488d60f86177d8a72824fe09adac"
+    },
+    "fixed_and_agentic": {
+      "original_source": "outputs/Tables/appendix_results_fixed_vs_agentic_retrieval/appendix_results_fixed_vs_agentic_retrieval.csv",
+      "sha256": "319d15e82b123326255f985c9bdcfdeb1938ddf7791c78370365a8613ffd7eea"
+    },
+    "resource_use": {
+      "original_source": "outputs/Tables/main_results_computational_profile/main_computational_profile_values.csv",
+      "sha256": "b3fff342b81a7cc7c57546756d93965818fce64862a4a0b3da967d6e71565b5b"
+    },
+    "multihop": {
+      "original_source": "outputs/Tables/appendix_results_multihop_retrieval/appendix_results_multihop_retrieval.csv",
+      "sha256": "35314086007de0cef5219bba84a6ddbaac5c1e1968017a35b89a1982dc4d0e48"
+    },
+    "context_expansion": {
+      "original_source": "outputs/Tables/appendix_results_context_expansion/appendix_results_context_expansion.csv",
+      "sha256": "23e099814d33fb766420016fc304cc25f1d6a1054b8fc2d909f1637a6858de7c"
+    }
+  },
+  "archived_sadi_comparison_sources": {
+    "resource_use": {
+      "original_source": "outputs/Tables/main_results_computational_profile/main_computational_profile_values.csv",
+      "sha256": "b3fff342b81a7cc7c57546756d93965818fce64862a4a0b3da967d6e71565b5b"
+    },
+    "context_expansion": {
+      "original_source": "outputs/Tables/appendix_results_context_expansion/appendix_results_context_expansion.csv",
+      "sha256": "23e099814d33fb766420016fc304cc25f1d6a1054b8fc2d909f1637a6858de7c"
+    },
+    "multihop": {
+      "original_source": "outputs/Tables/appendix_results_multihop_retrieval/appendix_results_multihop_retrieval.csv",
+      "sha256": "35314086007de0cef5219bba84a6ddbaac5c1e1968017a35b89a1982dc4d0e48"
+    }
+  }
+}

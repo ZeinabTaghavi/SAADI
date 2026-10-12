@@ -1,0 +1,5 @@
+main_phase: Static Statistics / Cost / Structure
+sub_phase_id: 2_2_Active_Entity_Statistics
+sub_phase_name: Active Entity Statistics
+run_name: default
+experiment_config: null

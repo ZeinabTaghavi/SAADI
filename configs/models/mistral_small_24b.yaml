@@ -1,0 +1,31 @@
+backend: vllm
+model_id: mistralai/Mistral-Small-3.1-24B-Instruct-2503
+device: cuda
+alias: Mistral-Small-3.1-24B-Instruct-2503
+load_chat_tokenizer: true
+tensor_parallel_size: 4
+dtype: bfloat16
+gpu_memory_utilization: 0.88
+max_model_len: 32768
+enforce_eager: false
+vllm_kwargs:
+  disable_custom_all_reduce: true
+  max_num_batched_tokens: 16384
+  max_num_seqs: 8
+  tokenizer_mode: mistral
+  config_format: mistral
+  load_format: mistral
+generate:
+  max_tokens: 2048
+  temperature: 0.0
+  stop:
+  - '[END_JSON]'
+  - </s>
+sampling:
+  seed: 42
+  top_p: 1.0
+  top_k: -1
+  repetition_penalty: 1.0
+chat_formatter_loader: processor
+chat_formatter_kwargs:
+  fix_mistral_regex: true

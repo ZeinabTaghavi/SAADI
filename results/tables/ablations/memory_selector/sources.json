@@ -1,0 +1,18 @@
+[
+  {
+    "study": "active_entity_selector",
+    "source_id": "paper_table6b_18de544fd67c",
+    "path": "outputs/sadi/reference/summaries/table6_memory_selector.json",
+    "sha256": "4165fb16686adc64c377e5f8abaa995dfb47422e844def1c800e07445fc1cf60",
+    "provenance": "paper_reported_summary",
+    "source_document": {
+      "filename": "SAADI_ICLR.pdf",
+      "sha256": "18de544fd67c768d2896056a145aa523207390ffa5f00552cce1409e03f07421",
+      "page": 31,
+      "table": "6",
+      "panel": "B",
+      "decimal_places": 1
+    },
+    "note": "Final-run values reported in the paper. Query-level outputs for this run are not included in the release."
+  }
+]

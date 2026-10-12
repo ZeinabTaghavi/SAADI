@@ -1,0 +1,43 @@
+"""Deprecated import path for active-entity faithfulness evaluation."""
+
+from .active_entity import (
+    JUDGE_RESPONSE_SCHEMA,
+    JUDGE_SYSTEM_PROMPT,
+    MAIN_PHASE_NAME,
+    PROMPT_VERSION,
+    SUB_PHASE_ID,
+    SUB_PHASE_NAME,
+    aggregate_active_entity_statistics,
+    aggregate_active_object_statistics,
+    build_active_entity_items,
+    build_active_entity_judge_prompt,
+    build_active_object_items,
+    build_active_object_judge_prompt,
+    parse_active_entity_judgment,
+    parse_active_object_judgment,
+    run_active_entity_faithfulness_eval,
+    run_active_object_faithfulness_eval,
+    sample_active_entity_items,
+    sample_active_object_items,
+)
+
+__all__ = [
+    "JUDGE_RESPONSE_SCHEMA",
+    "JUDGE_SYSTEM_PROMPT",
+    "MAIN_PHASE_NAME",
+    "PROMPT_VERSION",
+    "SUB_PHASE_ID",
+    "SUB_PHASE_NAME",
+    "aggregate_active_entity_statistics",
+    "aggregate_active_object_statistics",
+    "build_active_entity_items",
+    "build_active_entity_judge_prompt",
+    "build_active_object_items",
+    "build_active_object_judge_prompt",
+    "parse_active_entity_judgment",
+    "parse_active_object_judgment",
+    "run_active_entity_faithfulness_eval",
+    "run_active_object_faithfulness_eval",
+    "sample_active_entity_items",
+    "sample_active_object_items",
+]

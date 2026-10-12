@@ -1,0 +1,102 @@
+{
+  "sadi_studies": {
+    "metric": "HR",
+    "verified_cells": 468,
+    "recomputed_cells": 276,
+    "reported_cells": 192,
+    "paper_reported_cells": 24,
+    "input_source": "reference",
+    "studies": [
+      "active_entities_cumulative_growth",
+      "active_entities_expansion_statistics",
+      "active_entities_statistics",
+      "active_entity_budget",
+      "active_entity_selector",
+      "branching_factor",
+      "construction_cost",
+      "context_expansion",
+      "hierarchical_summary_statistics",
+      "llm_ablation",
+      "main",
+      "multihop",
+      "retrieval_depth",
+      "saadi_score_formulation_and_normalization",
+      "saadi_score_fusion_weights",
+      "saadi_score_level_2_memory_weights",
+      "state_conditioning_ablation"
+    ],
+    "coverage": {
+      "main": "20 configurations: four datasets and five retrievers",
+      "construction_models": "Per-query sources cover LooGLE and NovelHopQA. QASPER and MuSiQue alternate-model results are not included because their final retrieval/evaluation files were unavailable locally.",
+      "reported_summaries": "Weight summaries preserve saved outputs. Table 6 budget and selector values are paper-reported summaries for the final run; matching them verifies transcription rather than an independent query-level recomputation.",
+      "new_bm25_memory_runs": "Published main snapshots use word memory selection; new BM25-selector experiments have separate run identities.",
+      "statistics": "Construction costs, multihop summaries, and structural statistics retain saved source values; these are not reconstructed from large construction caches.",
+      "paper_reported": "24 HR@5 cells from Table 6, page 31 (16 budget and 8 selector), covering LooGLE and NovelHopQA. The source PDF and panel are identified by hash and locator; per-query artifacts from this run are not included."
+    }
+  },
+  "final_tables": {
+    "retrieval_comparison": {
+      "table": "retrieval_comparison",
+      "input_source": "reference",
+      "rows": 23,
+      "sadi_input_rows": 40,
+      "other_method_input_rows": 144,
+      "comparison_methods_executed": false,
+      "input_hashes_verified": true
+    },
+    "matched_exposure": {
+      "table": "matched_exposure",
+      "input_source": "reference",
+      "rows": 20,
+      "sadi_input_rows": 24,
+      "other_method_input_rows": 20,
+      "comparison_methods_executed": false,
+      "input_hashes_verified": true
+    },
+    "fixed_and_agentic": {
+      "table": "fixed_and_agentic",
+      "input_source": "reference",
+      "rows": 15,
+      "sadi_input_rows": 24,
+      "other_method_input_rows": 36,
+      "comparison_methods_executed": false,
+      "input_hashes_verified": true
+    },
+    "multihop_comparison": {
+      "table": "multihop_comparison",
+      "input_source": "reference",
+      "rows": 21,
+      "sadi_input_rows": 40,
+      "other_method_input_rows": 54,
+      "comparison_methods_executed": false,
+      "input_hashes_verified": true
+    },
+    "context_comparison": {
+      "table": "context_comparison",
+      "input_source": "reference",
+      "rows": 34,
+      "sadi_input_rows": 60,
+      "other_method_input_rows": 110,
+      "comparison_methods_executed": false,
+      "input_hashes_verified": true
+    },
+    "resource_use": {
+      "table": "resource_use",
+      "input_source": "reference",
+      "rows": 20,
+      "sadi_input_rows": 0,
+      "other_method_input_rows": 20,
+      "comparison_methods_executed": false,
+      "input_hashes_verified": true
+    },
+    "calls_per_document": {
+      "table": "calls_per_document",
+      "input_source": "reference",
+      "rows": 4,
+      "sadi_input_rows": 4,
+      "other_method_input_rows": 0,
+      "comparison_methods_executed": false,
+      "input_hashes_verified": true
+    }
+  }
+}

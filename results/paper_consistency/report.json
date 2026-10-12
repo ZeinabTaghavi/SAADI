@@ -1,0 +1,103 @@
+{
+  "paper_sha256": "18de544fd67c768d2896056a145aa523207390ffa5f00552cce1409e03f07421",
+  "scope": "Numerical cells in Tables 1, 2, 6-12, 15-17, 21-26, and 27a. Tables 1, 2, 22, 24, and 25 include all numerical columns; Tables 21 and 26 currently certify Saadi HR cells only. Paper layout and tables outside this fixture are not certified.",
+  "all_checked_cells_match": false,
+  "checked_cells": 1310,
+  "counts": {
+    "match": 1307,
+    "mismatch": 3
+  },
+  "by_table": {
+    "1": {
+      "match": 184
+    },
+    "2": {
+      "match": 160
+    },
+    "6A": {
+      "match": 16
+    },
+    "6B": {
+      "match": 8
+    },
+    "7": {
+      "match": 32
+    },
+    "8": {
+      "match": 64
+    },
+    "9": {
+      "match": 60
+    },
+    "10": {
+      "match": 108
+    },
+    "11": {
+      "match": 48
+    },
+    "12": {
+      "match": 64
+    },
+    "15": {
+      "mismatch": 1,
+      "match": 19
+    },
+    "16": {
+      "match": 50
+    },
+    "17": {
+      "match": 24
+    },
+    "21": {
+      "match": 40
+    },
+    "22": {
+      "match": 120
+    },
+    "23": {
+      "match": 80
+    },
+    "24": {
+      "match": 140
+    },
+    "25": {
+      "mismatch": 2,
+      "match": 14
+    },
+    "26": {
+      "match": 60
+    },
+    "27a": {
+      "match": 16
+    }
+  },
+  "generated_table_sha256": {
+    "main/retrieval_comparison/table.csv": "3ca43df4721e3690992262c1271fbbcde45f3430cd5c4e37fd138b082cecad43",
+    "main/matched_exposure/table.csv": "4d79347e62be1acfc2de9693635bcea0f9faa81e87f33cdfe2c49b290467637c",
+    "ablations/memory_budget/table.csv": "ca06eb483e8320558b9cfbae46d694d0f607e20e1414df20b8bea323336d6c03",
+    "ablations/memory_selector/table.csv": "b460606ab6cf3dbbfeb63623f4b252206fa965550105913d356895f5d5193ae2",
+    "ablations/construction_model/table.csv": "00df64744d21cc450f815495defec9e8abb5656296f0688543768a7bdfbce112",
+    "ablations/hierarchy_branching/table.csv": "1754619c1f24f45c933a5949d752126f849c3742a912ffc83ed8c6213e1b03f4",
+    "ablations/score_fusion/table.csv": "b44bb973bfe9f30f2309b19464c0a2ae263a9fbe99fd981fb42e4832357a9084",
+    "ablations/memory_field_weights/table.csv": "9aa258b698fcd87d31d6e7d9f721faf675e689419d9e72c0efe8b270c29851c4",
+    "ablations/score_formulation/table.csv": "33385b484595cf05a7a33d35554cb1169685a11b1cb3ce8bc06aa4727a8b56c4",
+    "ablations/state_conditioning/table.csv": "c99fa03d00d47fca78b25d7f7f8d5658f7f22eb6783aae718890586d1b25dc6c",
+    "construction/memory_statistics/table.csv": "989734037ac37e77eab0195ddc0132c788f98045f3b1a4c7b8b3d7dc32c2023f",
+    "construction/memory_expansion/table.csv": "77dd52963efd45a223bdda6c81c8dc324dfa8b3eaa69115598264837439a067d",
+    "construction/hierarchy_statistics/table.csv": "13edebf3da5d2921020b5432c81eb7b9e822e8e8a75e97bd2782396bced3b63d",
+    "robustness/multihop/table.csv": "cc94e402d168e417fe68ee691a5dcc9892640c8ee7d9a8b1c044a63fc398af7e",
+    "comparisons/fixed_and_agentic/table.csv": "c38ce3ac07503a13c21d53a67035e949f729a632b34e65e6a23197e490f841a6",
+    "robustness/retrieval_depth/curve.csv": "ed6ca12c2bdda86c6763f89fe9dba03cad22e5bf575c42df74593a77b3530a34",
+    "comparisons/resource_use/table.csv": "b6d444164e2d7c6a35d06657cbd4e3aaea44854bd17931fcb83138cb27f0510f",
+    "construction/calls_per_document/table.csv": "105b185d5a235b4e47f4a1ac13a43ba99dea17c1f32c5cd5d2ca154e1d9d52c8",
+    "comparisons/context_expansion/metrics.csv": "51dbe4188b6dd5c02bc6246a61dd9611dc697791b16b7a505cd638b2ac00b2d7"
+  },
+  "limitations": [
+    "Tables 1, 2, 22, and 24 are checked in full: 184 Table 1 cells (40 Saadi cells recomputed from rankings, 144 saved comparison-method values), 160 Table 2 cells, 120 Table 22 cells, and 140 Table 24 cells.",
+    "Table 6: the 24 cells are transcribed from the paper (`paper_reported_summary`) because the summaries stored with the experiment archive came from a different construction run; agreement checks the transcription.",
+    "Table 26: the 60 Saadi HR cells are checked (BM25 at k=5/10/15/20, Contriever at k=5/10). The 64K condition uses the 1,333-query population; the other QASPER expansion snapshots contain the 1,321 queries common to all sizes. Comparison-method cells of Tables 21 and 26 come from saved CSVs and are not part of this check.",
+    "Tables 15 and 25: three cells differ in the second decimal. LooGLE has 3,346 chunks over 105 documents, 31.867 per document, printed as 31.86 in the paper.",
+    "Table 7 covers LooGLE and NovelHopQA, as in the paper.",
+    "Held-out selection, faithfulness, per-channel retrieval ablations, paired outcomes, and qualitative cases are outside this check."
+  ]
+}

@@ -1,0 +1,9 @@
+[
+  {
+    "study": "construction_cost",
+    "source_id": "1f4f480d47cd9610f0f2",
+    "path": "outputs/sadi/reference/summaries/1f4f480d47cd9610f0f2.json",
+    "sha256": "af9471ef1ac353e51defc7ea6434263a5b66109560a60dfcbe07615314bea913",
+    "provenance": "reported_statistics"
+  }
+]

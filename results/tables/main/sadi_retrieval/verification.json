@@ -1,0 +1,9 @@
+{
+  "metric": "HR",
+  "study": "main",
+  "input_source": "reference",
+  "verified_cells": 40,
+  "recomputed_cells": 40,
+  "reported_cells": 0,
+  "paper_reported_cells": 0
+}

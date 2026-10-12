@@ -1,0 +1,14 @@
+extends: ../methods/sadi.yaml
+output_dir: ${SADI_OUTPUT_DIR}/loogle
+dataset:
+  name: loogle
+  split: test
+  config_name: shortdep_qa
+  qa_n: all
+  qa_selection_method: first
+ingest:
+  chunk_size: 500
+model:
+  model_id: Qwen/Qwen3-30B-A3B-Instruct-2507
+  alias: Qwen3-30B-A3B-Instruct-2507
+  gpu_memory_utilization: 0.8

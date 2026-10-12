@@ -1,0 +1,24 @@
+datasets:
+- loogle
+- qasper
+- novelhopqa
+- musique
+retrievers:
+- bm25
+variants:
+- name: none
+  overrides:
+    cached_retrieval:
+      normalization_method: none
+- name: minmax
+  overrides:
+    cached_retrieval:
+      normalization_method: minmax
+- name: zscore
+  overrides:
+    cached_retrieval:
+      normalization_method: zscore
+- name: bert_rescoring
+  overrides:
+    cached_retrieval:
+      normalization_method: bert_rescoring

@@ -1,0 +1,42 @@
+# Shared Saadi settings. Dataset configs in ../experiments/ extend this file and
+# set the chunk size, dataset, and model; construction.yaml holds the model runtime.
+extends: ../models/construction.yaml
+ingest:
+  enabled: true
+  strategy: hierarchical
+  strategy_kwargs:
+    # Folding factor f of the hierarchical history (Section 3.1).
+    branching_factor: 5
+    # Memory recall: bm25 or word; recall budget E/A/D = 5 records, 2 aliases, 3 descriptions.
+    active_entity_selector: bm25
+    max_entities: 5
+    max_aliases: 2
+    max_desc: 3
+    # Text shown as recent history: raw (original chunks) or anchored (saved constructions).
+    # history_l0_text: raw
+  chunk_overlap: 0
+  schedule: wavefront
+  wavefront_batch_size: 32
+  cache_save_every_steps: 100
+  use_cache: true
+retrieval:
+  retriever: bm25
+  retrieve_k: 10
+  eval_k: 5
+  mode: canonicalized
+  scope: per_document
+evaluation:
+  compute_per_query: true
+cached_retrieval:
+  # Saadi query-time scoring, Equation (2): text, memory, and summary channels
+  # with weights (lambda_T, lambda_M, lambda_S) = (lambda_t, lambda_n, lambda_h), z-scored.
+  method: mbr
+  lambda_t: 1.0
+  lambda_n: 0.5
+  lambda_h: 0.3
+  normalization_method: zscore
+  # Field weights (mu_N, mu_A, mu_D) inside the memory channel.
+  memory_name_weight: 1.0
+  memory_alias_weight: 1.0
+  memory_description_weight: 1.0
+  memory_aggregation: max

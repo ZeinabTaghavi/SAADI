@@ -1,0 +1,27 @@
+datasets:
+- qasper
+- musique
+retrievers:
+- bm25
+- contriever
+variants:
+- name: context_0
+  overrides:
+    preparation:
+      target_context_tokens: 0
+- name: context_32000
+  overrides:
+    preparation:
+      target_context_tokens: 32000
+- name: context_64000
+  overrides:
+    preparation:
+      target_context_tokens: 64000
+- name: context_128000
+  overrides:
+    preparation:
+      target_context_tokens: 128000
+- name: context_256000
+  overrides:
+    preparation:
+      target_context_tokens: 256000

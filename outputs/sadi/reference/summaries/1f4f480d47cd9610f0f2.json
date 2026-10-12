@@ -1,0 +1,128 @@
+[
+  {
+    "metric": "evaluated_queries",
+    "LooGLE": "1832",
+    "MuSiQue-32K": "900",
+    "QASPER-64K": "1333",
+    "NovelHopQA": "908"
+  },
+  {
+    "metric": "actual_chunks",
+    "LooGLE": "3346",
+    "MuSiQue-32K": "17102",
+    "QASPER-64K": "17159",
+    "NovelHopQA": "7736"
+  },
+  {
+    "metric": "chunk_update_calls_total",
+    "LooGLE": "3346",
+    "MuSiQue-32K": "17102",
+    "QASPER-64K": "17159",
+    "NovelHopQA": "7736"
+  },
+  {
+    "metric": "chunk_update_calls_per_query",
+    "LooGLE": "1.8264192139737991",
+    "MuSiQue-32K": "19.002222222222223",
+    "QASPER-64K": "12.872468117029257",
+    "NovelHopQA": "8.519823788546255"
+  },
+  {
+    "metric": "chunk_update_calls_per_chunk",
+    "LooGLE": "1.0",
+    "MuSiQue-32K": "1.0",
+    "QASPER-64K": "1.0",
+    "NovelHopQA": "1.0"
+  },
+  {
+    "metric": "chunk_update_input_tokens_total",
+    "LooGLE": "13067781",
+    "MuSiQue-32K": "42730572",
+    "QASPER-64K": "40248195",
+    "NovelHopQA": "31585519"
+  },
+  {
+    "metric": "chunk_update_input_tokens_per_query",
+    "LooGLE": "7133.068231441048",
+    "MuSiQue-32K": "47478.41333333333",
+    "QASPER-64K": "30193.69467366842",
+    "NovelHopQA": "34785.813876651984"
+  },
+  {
+    "metric": "chunk_update_generated_tokens_total",
+    "LooGLE": "5825142",
+    "MuSiQue-32K": "11487519",
+    "QASPER-64K": "10623999",
+    "NovelHopQA": "9154129"
+  },
+  {
+    "metric": "chunk_update_generated_tokens_per_query",
+    "LooGLE": "3179.6626637554587",
+    "MuSiQue-32K": "12763.91",
+    "QASPER-64K": "7969.991747936984",
+    "NovelHopQA": "10081.63986784141"
+  },
+  {
+    "metric": "hierarchy_calls_total",
+    "LooGLE": "700",
+    "MuSiQue-32K": "4192",
+    "QASPER-64K": "4245",
+    "NovelHopQA": "1898"
+  },
+  {
+    "metric": "hierarchy_calls_per_query",
+    "LooGLE": "0.38209606986899564",
+    "MuSiQue-32K": "4.657777777777778",
+    "QASPER-64K": "3.1845461365341334",
+    "NovelHopQA": "2.090308370044053"
+  },
+  {
+    "metric": "hierarchy_input_tokens_total",
+    "LooGLE": "2349878",
+    "MuSiQue-32K": "3391411",
+    "QASPER-64K": "3158998",
+    "NovelHopQA": "5524474"
+  },
+  {
+    "metric": "hierarchy_input_tokens_per_query",
+    "LooGLE": "1282.6844978165939",
+    "MuSiQue-32K": "3768.2344444444443",
+    "QASPER-64K": "2369.84096024006",
+    "NovelHopQA": "6084.222466960352"
+  },
+  {
+    "metric": "hierarchy_generated_tokens_total",
+    "LooGLE": "49528",
+    "MuSiQue-32K": "436299",
+    "QASPER-64K": "244302",
+    "NovelHopQA": "121617"
+  },
+  {
+    "metric": "hierarchy_generated_tokens_per_query",
+    "LooGLE": "27.034934497816593",
+    "MuSiQue-32K": "484.77666666666664",
+    "QASPER-64K": "183.2723180795199",
+    "NovelHopQA": "133.93942731277534"
+  },
+  {
+    "metric": "chunk_update_call_share",
+    "LooGLE": "0.8269896193771626",
+    "MuSiQue-32K": "0.8031370339062647",
+    "QASPER-64K": "0.801672584563633",
+    "NovelHopQA": "0.8029894124974051"
+  },
+  {
+    "metric": "chunk_update_input_share",
+    "LooGLE": "0.8475852916451194",
+    "MuSiQue-32K": "0.9264686646278847",
+    "QASPER-64K": "0.927224089334687",
+    "NovelHopQA": "0.8511324429514174"
+  },
+  {
+    "metric": "chunk_update_generated_share",
+    "LooGLE": "0.9915692285694345",
+    "MuSiQue-32K": "0.9634094549245887",
+    "QASPER-64K": "0.9775216015824368",
+    "NovelHopQA": "0.9868887095442243"
+  }
+]

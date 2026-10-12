@@ -1,0 +1,39 @@
+{
+  "paper_filename": "SAADI_ICLR.pdf",
+  "paper_sha256": "18de544fd67c768d2896056a145aa523207390ffa5f00552cce1409e03f07421",
+  "paper_pages": 53,
+  "date": "2026-10-09",
+  "scope": "Numerical cells in Tables 1, 2, 6-12, 15-17, 21-26, and 27a. Tables 1, 2, 22, 24, and 25 include all numerical columns; Tables 21 and 26 currently certify Saadi HR cells only. Paper layout and tables outside this fixture are not certified.",
+  "extraction": "PDF text extraction plus visual verification; expected cells come from the paper independently of generated results.",
+  "counts_by_table": {
+    "1": 184,
+    "2": 160,
+    "6A": 16,
+    "6B": 8,
+    "7": 32,
+    "8": 64,
+    "9": 60,
+    "10": 108,
+    "11": 48,
+    "12": 64,
+    "15": 20,
+    "16": 50,
+    "17": 24,
+    "21": 40,
+    "22": 120,
+    "23": 80,
+    "24": 140,
+    "25": 16,
+    "26": 60,
+    "27a": 16
+  },
+  "expected_cells_sha256": "3e2a825b8009225d274a93628e86f21573b3714c297483e2f965390dd056f5d5",
+  "limitations": [
+    "Tables 1, 2, 22, and 24 are checked in full: 184 Table 1 cells (40 Saadi cells recomputed from rankings, 144 saved comparison-method values), 160 Table 2 cells, 120 Table 22 cells, and 140 Table 24 cells.",
+    "Table 6: the 24 cells are transcribed from the paper (`paper_reported_summary`) because the summaries stored with the experiment archive came from a different construction run; agreement checks the transcription.",
+    "Table 26: the 60 Saadi HR cells are checked (BM25 at k=5/10/15/20, Contriever at k=5/10). The 64K condition uses the 1,333-query population; the other QASPER expansion snapshots contain the 1,321 queries common to all sizes. Comparison-method cells of Tables 21 and 26 come from saved CSVs and are not part of this check.",
+    "Tables 15 and 25: three cells differ in the second decimal. LooGLE has 3,346 chunks over 105 documents, 31.867 per document, printed as 31.86 in the paper.",
+    "Table 7 covers LooGLE and NovelHopQA, as in the paper.",
+    "Held-out selection, faithfulness, per-channel retrieval ablations, paired outcomes, and qualitative cases are outside this check."
+  ]
+}

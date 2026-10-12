@@ -1,0 +1,178 @@
+[
+  {
+    "study": "llm_ablation",
+    "source_id": "98aefc1afdeeb9988e34",
+    "path": "outputs/sadi/reference/rankings/98aefc1afdeeb9988e34.jsonl.gz",
+    "sha256": "299f731ccc6bda5556e04fce38e06ec5abe383e29394d3dab40833f6ff5cc3d0",
+    "provenance": "per_query",
+    "dataset": "LooGLE",
+    "retriever": "BM25",
+    "condition": "model_key=qwen2_5_7b",
+    "memory_selector": "word"
+  },
+  {
+    "study": "llm_ablation",
+    "source_id": "daeb0f6b58af98a40131",
+    "path": "outputs/sadi/reference/rankings/daeb0f6b58af98a40131.jsonl.gz",
+    "sha256": "df848990475036d194700096cd9a1085c4d56a2054ce99975c1879690bf8731f",
+    "provenance": "per_query",
+    "dataset": "LooGLE",
+    "retriever": "BM25",
+    "condition": "model_key=mistral_small_24b",
+    "memory_selector": "word"
+  },
+  {
+    "study": "llm_ablation",
+    "source_id": "31b74c52fa1f23ce7fe4",
+    "path": "outputs/sadi/reference/rankings/31b74c52fa1f23ce7fe4.jsonl.gz",
+    "sha256": "851ad0499b26a83fe143e944740ff6f961015f6f81a02492445e2bf489c86b00",
+    "provenance": "per_query",
+    "dataset": "LooGLE",
+    "retriever": "BM25",
+    "condition": "model_key=saadi_default",
+    "memory_selector": "word"
+  },
+  {
+    "study": "llm_ablation",
+    "source_id": "d263dfaa932b14b385e7",
+    "path": "outputs/sadi/reference/rankings/d263dfaa932b14b385e7.jsonl.gz",
+    "sha256": "d3c8ef5e82d72ef0ca03bdc7cc48c657cd28149dc7fe6995473f2d21fbe0c075",
+    "provenance": "per_query",
+    "dataset": "LooGLE",
+    "retriever": "BM25",
+    "condition": "model_key=llama3_3_70b",
+    "memory_selector": "word"
+  },
+  {
+    "study": "llm_ablation",
+    "source_id": "8697dd668d1c676491ce",
+    "path": "outputs/sadi/reference/rankings/8697dd668d1c676491ce.jsonl.gz",
+    "sha256": "b0f608ca23cab5e1e483a1cdc477f6cae117c29cde41d2d44ebb7f87069e8568",
+    "provenance": "per_query",
+    "dataset": "LooGLE",
+    "retriever": "Contriever",
+    "condition": "model_key=qwen2_5_7b",
+    "memory_selector": "word"
+  },
+  {
+    "study": "llm_ablation",
+    "source_id": "23b6de3db23cabac9ca4",
+    "path": "outputs/sadi/reference/rankings/23b6de3db23cabac9ca4.jsonl.gz",
+    "sha256": "f3fd89642e1b865716bb6f2126a7024e0fe89b9d0834a27f3f8f9a409e8a5a7f",
+    "provenance": "per_query",
+    "dataset": "LooGLE",
+    "retriever": "Contriever",
+    "condition": "model_key=mistral_small_24b",
+    "memory_selector": "word"
+  },
+  {
+    "study": "llm_ablation",
+    "source_id": "9ece4150a07e6c832c72",
+    "path": "outputs/sadi/reference/rankings/9ece4150a07e6c832c72.jsonl.gz",
+    "sha256": "f2c80438c7f938a885264dbc914870bf2da19b6bb0871475ecbb7689d5f859b0",
+    "provenance": "per_query",
+    "dataset": "LooGLE",
+    "retriever": "Contriever",
+    "condition": "model_key=saadi_default",
+    "memory_selector": "word"
+  },
+  {
+    "study": "llm_ablation",
+    "source_id": "81377cfc2916364311ba",
+    "path": "outputs/sadi/reference/rankings/81377cfc2916364311ba.jsonl.gz",
+    "sha256": "81075c48fd75eb5b060a49605088db7f5bf65f9aa3f7e94b2fd85bbdcf029c6e",
+    "provenance": "per_query",
+    "dataset": "LooGLE",
+    "retriever": "Contriever",
+    "condition": "model_key=llama3_3_70b",
+    "memory_selector": "word"
+  },
+  {
+    "study": "llm_ablation",
+    "source_id": "b389119dde31ea5bb954",
+    "path": "outputs/sadi/reference/rankings/b389119dde31ea5bb954.jsonl.gz",
+    "sha256": "297909880275ca57d2dbe5a253b2eb70cd1d8164ecc52ec65af804419fb2a301",
+    "provenance": "per_query",
+    "dataset": "NovelHopQA",
+    "retriever": "BM25",
+    "condition": "model_key=qwen2_5_7b",
+    "memory_selector": "word"
+  },
+  {
+    "study": "llm_ablation",
+    "source_id": "6859b35c1641f6be669a",
+    "path": "outputs/sadi/reference/rankings/6859b35c1641f6be669a.jsonl.gz",
+    "sha256": "93b05d600100f0359e131c3ae78171569ebd38e377fd83f63138005726dcce42",
+    "provenance": "per_query",
+    "dataset": "NovelHopQA",
+    "retriever": "BM25",
+    "condition": "model_key=mistral_small_24b",
+    "memory_selector": "word"
+  },
+  {
+    "study": "llm_ablation",
+    "source_id": "c5e3be18d129243ec2b2",
+    "path": "outputs/sadi/reference/rankings/c5e3be18d129243ec2b2.jsonl.gz",
+    "sha256": "b185c737f108b2276891eba42a84ecdac083079feeb8003be420b143e7d471c2",
+    "provenance": "per_query",
+    "dataset": "NovelHopQA",
+    "retriever": "BM25",
+    "condition": "model_key=saadi_default",
+    "memory_selector": "word"
+  },
+  {
+    "study": "llm_ablation",
+    "source_id": "a32a18a5ca391388dfbf",
+    "path": "outputs/sadi/reference/rankings/a32a18a5ca391388dfbf.jsonl.gz",
+    "sha256": "4df4bbc04b511ff0a919078ff3e810a4d1cb7897255f79cec1915af8d1cb5e71",
+    "provenance": "per_query",
+    "dataset": "NovelHopQA",
+    "retriever": "BM25",
+    "condition": "model_key=llama3_3_70b",
+    "memory_selector": "word"
+  },
+  {
+    "study": "llm_ablation",
+    "source_id": "86698ef8bef7c821ca2e",
+    "path": "outputs/sadi/reference/rankings/86698ef8bef7c821ca2e.jsonl.gz",
+    "sha256": "4572f61c60e249418f1b48a675cad13f9a8fd1fc431201704c098fd83ff47ece",
+    "provenance": "per_query",
+    "dataset": "NovelHopQA",
+    "retriever": "Contriever",
+    "condition": "model_key=qwen2_5_7b",
+    "memory_selector": "word"
+  },
+  {
+    "study": "llm_ablation",
+    "source_id": "6ac2557f78eec9218edc",
+    "path": "outputs/sadi/reference/rankings/6ac2557f78eec9218edc.jsonl.gz",
+    "sha256": "0d7e3bc71df1b022ea6c697e848571faf0bd141ba525d9d6e85ab39b57d68fbd",
+    "provenance": "per_query",
+    "dataset": "NovelHopQA",
+    "retriever": "Contriever",
+    "condition": "model_key=mistral_small_24b",
+    "memory_selector": "word"
+  },
+  {
+    "study": "llm_ablation",
+    "source_id": "0f6c2fc9380c51fa24bd",
+    "path": "outputs/sadi/reference/rankings/0f6c2fc9380c51fa24bd.jsonl.gz",
+    "sha256": "f2b822b6039c1123fba11b0781c78533a86006e13ae7149ea6a174669e4caef5",
+    "provenance": "per_query",
+    "dataset": "NovelHopQA",
+    "retriever": "Contriever",
+    "condition": "model_key=saadi_default",
+    "memory_selector": "word"
+  },
+  {
+    "study": "llm_ablation",
+    "source_id": "4a8f792babdfc2fa272a",
+    "path": "outputs/sadi/reference/rankings/4a8f792babdfc2fa272a.jsonl.gz",
+    "sha256": "5492d1ce01b961c3ce978f4f2afb96ceeb1229925440f53a1f199fcd9efd51a8",
+    "provenance": "per_query",
+    "dataset": "NovelHopQA",
+    "retriever": "Contriever",
+    "condition": "model_key=llama3_3_70b",
+    "memory_selector": "word"
+  }
+]

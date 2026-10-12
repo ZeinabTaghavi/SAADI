@@ -1,0 +1,9 @@
+study,method,dataset,condition,retriever,variant,cutoff,hop,hr_percent,mean_chunks,queries,eligible_queries,hits,provenance,source_id
+agentic,hipporag_v2,loogle,standard,native,default,5,overall,84.9,5.0,,,,reported_summary,fixed_and_agentic
+agentic,hipporag_v2,loogle,standard,native,default,10,overall,91.8,10.0,,,,reported_summary,fixed_and_agentic
+agentic,hipporag_v2,musique,standard,native,default,5,overall,67.0,5.0,,,,reported_summary,fixed_and_agentic
+agentic,hipporag_v2,musique,standard,native,default,10,overall,78.3,10.0,,,,reported_summary,fixed_and_agentic
+agentic,hipporag_v2,qasper,standard,native,default,5,overall,15.8,5.0,,,,reported_summary,fixed_and_agentic
+agentic,hipporag_v2,qasper,standard,native,default,10,overall,24.3,10.0,,,,reported_summary,fixed_and_agentic
+agentic,hipporag_v2,novelhopqa,standard,native,default,5,overall,13.9,5.0,,,,reported_summary,fixed_and_agentic
+agentic,hipporag_v2,novelhopqa,standard,native,default,10,overall,18.1,10.0,,,,reported_summary,fixed_and_agentic

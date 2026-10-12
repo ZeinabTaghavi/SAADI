@@ -1,0 +1,9 @@
+study,dataset,retriever,condition,source_id,cutoff,queries,eligible,hits,hr,provenance
+active_entity_selector,LooGLE,BM25,selector=word,paper_table6b_18de544fd67c,5,,,,0.9109999999999999,paper_reported_summary
+active_entity_selector,LooGLE,BM25,selector=bm25,paper_table6b_18de544fd67c,5,,,,0.9229999999999999,paper_reported_summary
+active_entity_selector,LooGLE,Contriever,selector=word,paper_table6b_18de544fd67c,5,,,,0.752,paper_reported_summary
+active_entity_selector,LooGLE,Contriever,selector=bm25,paper_table6b_18de544fd67c,5,,,,0.754,paper_reported_summary
+active_entity_selector,NovelHopQA,BM25,selector=word,paper_table6b_18de544fd67c,5,,,,0.17800000000000002,paper_reported_summary
+active_entity_selector,NovelHopQA,BM25,selector=bm25,paper_table6b_18de544fd67c,5,,,,0.18100000000000002,paper_reported_summary
+active_entity_selector,NovelHopQA,Contriever,selector=word,paper_table6b_18de544fd67c,5,,,,0.131,paper_reported_summary
+active_entity_selector,NovelHopQA,Contriever,selector=bm25,paper_table6b_18de544fd67c,5,,,,0.135,paper_reported_summary

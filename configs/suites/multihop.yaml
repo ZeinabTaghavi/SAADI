@@ -1,0 +1,6 @@
+datasets:
+- novelhopqa
+- musique
+retrievers:
+- bm25
+- contriever

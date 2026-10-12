@@ -1,0 +1,46 @@
+[
+  {
+    "study": "retrieval_depth",
+    "source_id": "14e05ca8bff6ffb83962",
+    "path": "outputs/sadi/reference/rankings/14e05ca8bff6ffb83962.jsonl.gz",
+    "sha256": "5879b4c9ac4713f822910a98f8055f2e3f880f8c02c94a8fd06fc1dc87139ea1",
+    "provenance": "per_query",
+    "dataset": "loogle",
+    "retriever": "bm25",
+    "condition": "top20",
+    "memory_selector": null
+  },
+  {
+    "study": "retrieval_depth",
+    "source_id": "92c7ea2263a2bd4182b4",
+    "path": "outputs/sadi/reference/rankings/92c7ea2263a2bd4182b4.jsonl.gz",
+    "sha256": "9f525a4c5dbf2b40f9997626a40e4eb8507dcf10354ea65ded2a398e110c8775",
+    "provenance": "per_query",
+    "dataset": "musique",
+    "retriever": "bm25",
+    "condition": "top20",
+    "memory_selector": null
+  },
+  {
+    "study": "retrieval_depth",
+    "source_id": "dffd8dd7460da4b2fd6b",
+    "path": "outputs/sadi/reference/rankings/dffd8dd7460da4b2fd6b.jsonl.gz",
+    "sha256": "a36cfdd5c9b4889ad55d2d51c03cd418ddf35a15651cece4ad1cfa7172344fbe",
+    "provenance": "per_query",
+    "dataset": "novelhopqa",
+    "retriever": "bm25",
+    "condition": "top20",
+    "memory_selector": null
+  },
+  {
+    "study": "retrieval_depth",
+    "source_id": "32b66b26d0dfc35172cf",
+    "path": "outputs/sadi/reference/rankings/32b66b26d0dfc35172cf.jsonl.gz",
+    "sha256": "acb9f8fcb04bb61e3916016a70bda6df61b55b1ce282c2ae59d2a1202e4f1c0c",
+    "provenance": "per_query",
+    "dataset": "qasper",
+    "retriever": "bm25",
+    "condition": "top20",
+    "memory_selector": null
+  }
+]

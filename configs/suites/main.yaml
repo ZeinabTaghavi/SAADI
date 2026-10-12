@@ -1,0 +1,11 @@
+datasets:
+- loogle
+- qasper
+- novelhopqa
+- musique
+retrievers:
+- bm25
+- contriever
+- bge_m3
+- jina
+- qwen

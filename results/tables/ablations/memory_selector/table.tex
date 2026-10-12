@@ -1,0 +1,14 @@
+\begin{tabular}{llllll}
+\hline
+Dataset & Retriever & Condition & Eligible queries & Evidence & HR@5 (\%) \\
+\hline
+LooGLE & BM25 & selector=word & — & paper\_reported\_summary & 91.10 \\
+LooGLE & BM25 & selector=bm25 & — & paper\_reported\_summary & 92.30 \\
+LooGLE & Contriever & selector=word & — & paper\_reported\_summary & 75.20 \\
+LooGLE & Contriever & selector=bm25 & — & paper\_reported\_summary & 75.40 \\
+NovelHopQA & BM25 & selector=word & — & paper\_reported\_summary & 17.80 \\
+NovelHopQA & BM25 & selector=bm25 & — & paper\_reported\_summary & 18.10 \\
+NovelHopQA & Contriever & selector=word & — & paper\_reported\_summary & 13.10 \\
+NovelHopQA & Contriever & selector=bm25 & — & paper\_reported\_summary & 13.50 \\
+\hline
+\end{tabular}

@@ -1,0 +1,9 @@
+{
+  "table": "calls_per_document",
+  "input_source": "reference",
+  "rows": 4,
+  "sadi_input_rows": 4,
+  "other_method_input_rows": 0,
+  "comparison_methods_executed": false,
+  "input_hashes_verified": true
+}

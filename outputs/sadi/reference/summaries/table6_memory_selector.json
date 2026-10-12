@@ -1,0 +1,50 @@
+[
+  {
+    "dataset": "LooGLE",
+    "retriever": "BM25",
+    "selector": "word",
+    "hr_percent_at_5": "91.1"
+  },
+  {
+    "dataset": "LooGLE",
+    "retriever": "BM25",
+    "selector": "bm25",
+    "hr_percent_at_5": "92.3"
+  },
+  {
+    "dataset": "LooGLE",
+    "retriever": "Contriever",
+    "selector": "word",
+    "hr_percent_at_5": "75.2"
+  },
+  {
+    "dataset": "LooGLE",
+    "retriever": "Contriever",
+    "selector": "bm25",
+    "hr_percent_at_5": "75.4"
+  },
+  {
+    "dataset": "NovelHopQA",
+    "retriever": "BM25",
+    "selector": "word",
+    "hr_percent_at_5": "17.8"
+  },
+  {
+    "dataset": "NovelHopQA",
+    "retriever": "BM25",
+    "selector": "bm25",
+    "hr_percent_at_5": "18.1"
+  },
+  {
+    "dataset": "NovelHopQA",
+    "retriever": "Contriever",
+    "selector": "word",
+    "hr_percent_at_5": "13.1"
+  },
+  {
+    "dataset": "NovelHopQA",
+    "retriever": "Contriever",
+    "selector": "bm25",
+    "hr_percent_at_5": "13.5"
+  }
+]

@@ -1,0 +1,42 @@
+{
+  "python": "3.12.6",
+  "platform": "Darwin",
+  "machine": "arm64",
+  "packages": {
+    "numpy": "2.3.5",
+    "PyYAML": "6.0.3",
+    "tqdm": "4.67.3",
+    "pytest": "9.0.2",
+    "setuptools": "80.10.2",
+    "wheel": null,
+    "matplotlib": "3.10.8",
+    "datasets": "4.5.0",
+    "transformers": "5.0.0",
+    "vllm": null
+  },
+  "scope": "CPU validation: mock-model construction and retrieval, the single-document examples, the table rebuild from compact inputs, and the paper consistency check. GPU inference is not covered.",
+  "validation": {
+    "date": "2026-10-12",
+    "tests_passed": 78,
+    "smoke_test": "passed",
+    "single_document_examples": [
+      "text (mock)",
+      "conversation (mock)"
+    ],
+    "publication_files": "716 files, about 9.5 MB, largest file 450388 bytes; hidden Git configuration included.",
+    "tables": "All 468 Saadi HR cells rebuilt from the compact inputs and verified against the saved values: 276 recomputed from rankings, 168 saved summaries, 24 paper-reported Table 6 values. The reference and archive routes produce identical files.",
+    "paper_consistency": {
+      "checked_cells": 1310,
+      "matching_cells": 1307,
+      "different_cells": 3,
+      "missing_generated_cells": 0
+    },
+    "comparison_inputs": {
+      "other_method_retrieval_rows": 371,
+      "other_method_resource_rows": 20,
+      "additional_sadi_expansion_sources": 10
+    },
+    "preserved_sources": "102 source files identical to the code that produced the saved experiments; four construction files were modified to add the history_l0_text option.",
+    "ci": "GitHub Actions workflow for Python 3.11 and 3.12 (install, tests, table rebuild)."
+  }
+}

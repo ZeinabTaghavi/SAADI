@@ -1,0 +1,16 @@
+datasets:
+- loogle
+- qasper
+- novelhopqa
+- musique
+retrievers:
+- bm25
+generation:
+  experiments:
+  - folded_context_block
+  - folded_context_nested
+  - folded_context_local_bridge
+  - folded_context_generated_bridge
+  top_k:
+  - 5
+  - 10
