@@ -28,7 +28,7 @@ from ..indexing.retrieval_methods.mbr import (
 from ..io.artifact_paths import ArtifactPaths
 from ..io.jsonl import write_jsonl
 from ..io.manifests import build_reproducibility_metadata, git_provenance
-from ..llm.base import GenerateParams
+from ..llm.base import GenerateParams, render_prompt
 from ..llm.factory import build_backend_from_config
 from ..saadi_generation.context_builders.base import ContextBuilderConfig, QueryContextRequest, RetrievedContextItem
 from ..saadi_generation.context_builders.chunks_only import ChunksOnlyContextBuilder
@@ -897,14 +897,15 @@ def generate_answer(
         max_context_tokens=config.max_context_tokens,
         overflow_policy=str(config.overflow_policy),
     )
-    prompt, user_prompt = build_long_context_prompt(
+    chat_prompt, user_prompt = build_long_context_prompt(
         context=trimmed_context,
         question=question,
         qa_entry=qa_entry,
-        tokenizer=tokenizer,
         system_prompt=str(config.system_prompt),
         user_template=str(config.user_template),
     )
+    # The rendered text is what this backend sends; it is saved for inspection.
+    prompt = render_prompt(backend, chat_prompt)
 
     generate = config.answer_generate_params()
     generation_started = time.perf_counter()
@@ -913,8 +914,8 @@ def generate_answer(
         generated_answer = ""
         status = "skipped_context_overflow"
     else:
-        raw_output = backend.generate_batch(
-            [prompt],
+        raw_output = backend.generate_chat_batch(
+            [chat_prompt],
             max_tokens=generate.max_tokens,
             temperature=generate.temperature,
             stop=generate.stop,

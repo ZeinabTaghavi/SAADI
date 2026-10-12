@@ -1,7 +1,7 @@
 """Prompt and context helpers shared by Saadi answer generation."""
 from __future__ import annotations
 from typing import Any
-from ..core.prompts import format_chat_prompt
+from ..llm.base import ChatPrompt
 
 DEFAULT_SYSTEM_PROMPT = (
     "Answer the question using only the provided context. "
@@ -124,18 +124,13 @@ def build_long_context_prompt(
     context: str,
     question: str,
     qa_entry: dict[str, Any],
-    tokenizer: Any | None = None,
     system_prompt: str = DEFAULT_SYSTEM_PROMPT,
     user_template: str = DEFAULT_USER_TEMPLATE,
-) -> tuple[str, str]:
+) -> tuple[ChatPrompt, str]:
+    """Return the chat prompt for answer generation and its user message."""
     user_prompt = user_template.format(
         context=str(context or ""),
         question=str(question or "").strip(),
         choices_block=_choices_block(qa_entry),
     )
-    prompt = format_chat_prompt(
-        tokenizer=tokenizer,
-        system_prompt=system_prompt,
-        user_prompt=user_prompt,
-    )
-    return prompt, user_prompt
+    return ChatPrompt(system=system_prompt, user=user_prompt), user_prompt

@@ -5,6 +5,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
+from saadi.llm.factory import normalize_backend_name
 from saadi.pipelines.single_document_pipeline import SingleDocumentPipelineConfig
 
 
@@ -15,7 +16,25 @@ WORKFLOW_THERAPY = "therapy"
 SUPPORTED_WORKFLOWS = (WORKFLOW_TEXT, WORKFLOW_THERAPY)
 
 
+def resolve_model_config(model: dict[str, Any] | None) -> dict[str, Any]:
+    """Merge a ``[model]`` table with defaults. vLLM engine defaults apply to vLLM only."""
+
+    overrides = dict(model or {})
+    backend = normalize_backend_name(overrides.get("backend", "vllm"))
+    if backend == "mock":
+        return {"backend": "mock"}
+    if backend == "vllm":
+        merged = default_model_config()
+        merged.update(overrides)
+        merged["backend"] = "vllm"
+        return merged
+    overrides["backend"] = backend
+    return overrides
+
+
 def default_model_config() -> dict[str, Any]:
+    """Local vLLM defaults used when a config selects the vLLM backend."""
+
     return {
         "backend": "vllm",
         "model_id": "Qwen/Qwen3.5-27B",
@@ -131,10 +150,7 @@ def load_demo_config(path: str | Path) -> DemoConfig:
     default_profile = "therapy" if workflow == WORKFLOW_THERAPY else "default"
     default_run_name = "therapy_conversations" if workflow == WORKFLOW_THERAPY else "text_document"
 
-    model_config = default_model_config()
-    model_config.update(model)
-    if str(model_config.get("backend", "")).lower() == "mock":
-        model_config = {"backend": "mock"}
+    model_config = resolve_model_config(model)
 
     allowed_roles = tuple(
         str(role).strip().casefold()

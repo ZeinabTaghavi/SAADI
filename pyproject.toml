@@ -19,9 +19,12 @@ dependencies = ["tqdm>=4.67,<5", "PyYAML>=6.0,<7", "numpy>=1.26,<3"]
 
 [project.optional-dependencies]
 llm = ["transformers>=4.51,<6", "vllm>=0.8.5", "sentence-transformers>=3.0", "bert-score>=0.3.13", "sentencepiece>=0.2", "protobuf>=4"]
+openai = ["openai>=1.50,<4"]
+anthropic = ["anthropic>=1,<2"]
+api = ["openai>=1.50,<4", "anthropic>=1,<2"]
 datasets = ["datasets>=4,<5"]
 figures = ["matplotlib>=3.8"]
-dev = ["pytest>=8,<10"]
+dev = ["pytest>=8,<10", "openai>=1.50,<4", "anthropic>=1,<2"]
 
 [project.urls]
 Repository = "https://github.com/ZeinabTaghavi/SAADI"
