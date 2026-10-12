@@ -1,0 +1,561 @@
+"""Backend contract tests plus fake-server tests for the hosted-API backends.
+
+No real API keys or network access are used. The OpenAI and Anthropic SDKs are
+pointed at a local HTTP server that speaks just enough of each protocol.
+"""
+
+from __future__ import annotations
+
+import json
+import logging
+import threading
+import time
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from typing import Any, Callable
+
+import pytest
+
+from saadi.config.validation import validate_experiment
+from saadi.context_strategies.hierarchical_summary import HIER_SYSTEM_PROMPT, HierarchicalSummaryStrategy
+from saadi.core.prompts import chatml_wrap
+from saadi.core.state import init_discourse_state
+from saadi.core.types import ChunkRecord
+from saadi.llm import (
+    CallableBackend,
+    ChatPrompt,
+    LegacyStringBackend,
+    MockBackend,
+    build_backend_from_config,
+    model_config_from_spec,
+    render_prompt,
+    resolve_backend,
+    truncate_at_stop,
+)
+from saadi.llm.anthropic_backend import AnthropicBackend
+from saadi.llm.openai_backend import OpenAICompatibleBackend
+
+Response = tuple[int, dict[str, str], dict[str, Any]]
+Responder = Callable[[str, dict[str, Any]], "Response | None"]
+
+
+def last_user_text(body: dict[str, Any]) -> str:
+    for message in reversed(body.get("messages", [])):
+        if message.get("role") == "user":
+            content = message.get("content")
+            if isinstance(content, str):
+                return content
+            return "".join(part.get("text", "") for part in content or [])
+    return ""
+
+
+def openai_payload(body: dict[str, Any], text: str, *, finish_reason: str = "stop") -> dict[str, Any]:
+    return {
+        "id": "chatcmpl-test",
+        "object": "chat.completion",
+        "created": 0,
+        "model": body.get("model", "test-model"),
+        "choices": [
+            {
+                "index": 0,
+                "message": {"role": "assistant", "content": text},
+                "finish_reason": finish_reason,
+            }
+        ],
+        "usage": {"prompt_tokens": 1, "completion_tokens": 1, "total_tokens": 2},
+    }
+
+
+def anthropic_payload(
+    body: dict[str, Any],
+    text: str,
+    *,
+    stop_reason: str = "end_turn",
+    content: list[dict[str, Any]] | None = None,
+    stop_details: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    payload: dict[str, Any] = {
+        "id": "msg_test",
+        "type": "message",
+        "role": "assistant",
+        "model": body.get("model", "claude-test"),
+        "content": content if content is not None else [{"type": "text", "text": text}],
+        "stop_reason": stop_reason,
+        "stop_sequence": None,
+        "usage": {"input_tokens": 1, "output_tokens": 1},
+    }
+    if stop_details is not None:
+        payload["stop_details"] = stop_details
+    return payload
+
+
+class FakeAPIServer:
+    """Answers OpenAI chat-completion and Anthropic messages requests locally."""
+
+    def __init__(self) -> None:
+        self.requests: list[dict[str, Any]] = []
+        self.responder: Responder | None = None
+        self._lock = threading.Lock()
+        server = self
+
+        class Handler(BaseHTTPRequestHandler):
+            def do_POST(self) -> None:  # noqa: N802 - http.server naming
+                length = int(self.headers.get("content-length", "0") or 0)
+                body = json.loads(self.rfile.read(length) or b"{}")
+                with server._lock:
+                    server.requests.append(
+                        {
+                            "path": self.path,
+                            "body": body,
+                            "headers": {key.lower(): value for key, value in self.headers.items()},
+                        }
+                    )
+                status, headers, payload = server.respond(self.path, body)
+                data = json.dumps(payload).encode("utf-8")
+                self.send_response(status)
+                self.send_header("content-type", "application/json")
+                self.send_header("content-length", str(len(data)))
+                for key, value in headers.items():
+                    self.send_header(key, value)
+                self.end_headers()
+                self.wfile.write(data)
+
+            def log_message(self, *args: Any) -> None:  # silence the test output
+                return None
+
+        self.httpd = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+        self.httpd.daemon_threads = True
+        self.thread = threading.Thread(target=self.httpd.serve_forever, daemon=True)
+        self.thread.start()
+
+    @property
+    def url(self) -> str:
+        return f"http://127.0.0.1:{self.httpd.server_address[1]}"
+
+    def respond(self, path: str, body: dict[str, Any]) -> Response:
+        if self.responder is not None:
+            scripted = self.responder(path, body)
+            if scripted is not None:
+                return scripted
+        text = "echo:" + last_user_text(body)
+        if path.endswith("/chat/completions"):
+            return 200, {}, openai_payload(body, text)
+        if path.endswith("/messages"):
+            return 200, {}, anthropic_payload(body, text)
+        return 404, {}, {"error": {"message": f"unexpected path {path}"}}
+
+    def close(self) -> None:
+        self.httpd.shutdown()
+        self.httpd.server_close()
+
+
+@pytest.fixture
+def server():
+    fake = FakeAPIServer()
+    try:
+        yield fake
+    finally:
+        fake.close()
+
+
+def openai_backend(server: FakeAPIServer, **overrides: Any) -> OpenAICompatibleBackend:
+    pytest.importorskip("openai")
+    options: dict[str, Any] = {
+        "base_url": server.url + "/v1",
+        "api_key": "test-key",
+        "max_workers": 4,
+        "max_retries": 2,
+        "timeout": 10.0,
+    }
+    options.update(overrides)
+    return OpenAICompatibleBackend("test-model", **options)
+
+
+def anthropic_backend(server: FakeAPIServer, **overrides: Any) -> AnthropicBackend:
+    pytest.importorskip("anthropic")
+    options: dict[str, Any] = {
+        "base_url": server.url,
+        "api_key": "test-key",
+        "max_workers": 4,
+        "max_retries": 2,
+        "timeout": 10.0,
+    }
+    options.update(overrides)
+    return AnthropicBackend("claude-test", **options)
+
+
+# --- contract -----------------------------------------------------------------
+
+
+def test_chat_prompt_messages_and_text() -> None:
+    prompt = ChatPrompt(system="sys", user="usr")
+    assert prompt.messages() == [
+        {"role": "system", "content": "sys"},
+        {"role": "user", "content": "usr"},
+    ]
+    assert ChatPrompt(user="only").messages() == [{"role": "user", "content": "only"}]
+    assert prompt.as_text() == chatml_wrap("sys", "usr")
+    assert truncate_at_stop("abc[END_JSON]def<|im_end|>", ["<|im_end|>", "[END_JSON]"]) == "abc"
+    assert truncate_at_stop("abc", ["[END_JSON]"]) == "abc"
+
+
+def test_mock_backend_renders_chat_prompts_like_before() -> None:
+    backend = MockBackend()
+    prompt = ChatPrompt(system="sys", user="[CURRENT_CHUNK]\nhello world")
+    out = backend.generate_chat_batch([prompt], max_tokens=16, temperature=0.0, stop=["[END_JSON]"])
+    assert json.loads(out[0].split("[END_JSON]", 1)[0]) == {"active_entities": [], "insertions": []}
+    assert backend.calls == [chatml_wrap("sys", "[CURRENT_CHUNK]\nhello world")]
+    assert render_prompt(backend, prompt) == prompt.as_text()
+
+
+def test_strategy_builds_chat_prompts() -> None:
+    strategy = HierarchicalSummaryStrategy()
+    chunk = ChunkRecord(doc_id="d", chunk_id="d-0", chunk_index=0, raw_text="Mira Chen founded the Aurora team.")
+    prompt = strategy.build_prompt(chunk, init_discourse_state())
+    assert isinstance(prompt, ChatPrompt)
+    assert prompt.system == HIER_SYSTEM_PROMPT
+    assert "[CURRENT_CHUNK]\nMira Chen founded the Aurora team." in prompt.user
+    rollup = strategy.build_rollup_prompt(items=["a", "b"], lower_cycle=1, next_cycle=5, step=4)
+    assert isinstance(rollup, ChatPrompt)
+    assert "[ROLLUP_ITEMS_JSON]" in rollup.user
+
+
+def test_resolve_backend_accepts_functions_objects_and_legacy_backends() -> None:
+    def with_options(system: str, user: str, *, max_tokens: int, temperature: float, stop: list[str]) -> str:
+        return f"{system}|{user}|{max_tokens}|{temperature}|{stop}"
+
+    out = resolve_backend(with_options).generate_chat_batch(
+        [ChatPrompt(system="s", user="u")], max_tokens=3, temperature=0.5, stop=["x"]
+    )
+    assert out == ["s|u|3|0.5|['x']"]
+
+    def plain(system: str, user: str) -> str:
+        return user.upper()
+
+    assert resolve_backend(plain).generate_chat_batch([ChatPrompt(user="hi")], max_tokens=1, temperature=0.0, stop=[]) == ["HI"]
+
+    class Client:
+        def generate(self, system: str, user: str, **options: Any) -> str:
+            return f"client:{user}:{options['max_tokens']}"
+
+    client_backend = resolve_backend(Client())
+    assert isinstance(client_backend, CallableBackend)
+    assert client_backend.generate_chat_batch([ChatPrompt(user="q")], max_tokens=7, temperature=0.0, stop=[]) == ["client:q:7"]
+
+    class Legacy:
+        def generate_batch(self, prompts: list[str], *, max_tokens: int, temperature: float, stop: list[str]) -> list[str]:
+            return [f"legacy:{p}" for p in prompts]
+
+    legacy = resolve_backend(Legacy())
+    assert isinstance(legacy, LegacyStringBackend)
+    assert legacy.generate_chat_batch([ChatPrompt(system="s", user="u")], max_tokens=1, temperature=0.0, stop=[]) == [
+        "legacy:" + chatml_wrap("s", "u")
+    ]
+
+    mock = MockBackend()
+    assert resolve_backend(mock) is mock
+    assert isinstance(resolve_backend({"backend": "mock"}), MockBackend)
+    assert isinstance(resolve_backend("mock"), MockBackend)
+    with pytest.raises(TypeError):
+        resolve_backend(42)
+
+
+def test_model_config_from_spec() -> None:
+    assert model_config_from_spec("mock") == {"backend": "mock"}
+    assert model_config_from_spec("ollama:qwen3:8b") == {"backend": "ollama", "model_id": "qwen3:8b"}
+    assert model_config_from_spec("OpenAI:gpt-4.1-mini") == {"backend": "openai", "model_id": "gpt-4.1-mini"}
+    assert model_config_from_spec("anthropic") == {"backend": "anthropic", "model_id": "claude-opus-5-5"}
+    assert model_config_from_spec("vllm:Qwen/Qwen3.5-27B") == {"backend": "vllm", "model_id": "Qwen/Qwen3.5-27B"}
+    for bad in ("", "gpt-4.1-mini", "openai", "mock:x", "nope:model"):
+        with pytest.raises(ValueError):
+            model_config_from_spec(bad)
+
+
+def test_build_backend_from_config_reads_api_options(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.delenv("OPENAI_BASE_URL", raising=False)
+    monkeypatch.delenv("OLLAMA_BASE_URL", raising=False)
+
+    ollama = build_backend_from_config({"backend": "ollama", "model_id": "qwen3:8b"})
+    assert isinstance(ollama, OpenAICompatibleBackend)
+    assert ollama.effective_base_url == "http://localhost:11434/v1"
+    request = ollama.build_request(ChatPrompt(user="x"), max_tokens=5, temperature=0.0, stop=["[END_JSON]"])
+    assert request["max_tokens"] == 5
+    assert request["stop"] == ["[END_JSON]"]
+
+    hosted = build_backend_from_config(
+        {"backend": "openai-compatible", "model_id": "gpt-4.1-mini", "max_workers": 2, "sampling": {"seed": 7}}
+    )
+    request = hosted.build_request(ChatPrompt(user="x"), max_tokens=5, temperature=0.0, stop=[])
+    assert request["max_completion_tokens"] == 5
+    assert request["seed"] == 7
+    assert hosted.max_workers == 2
+    assert hosted.runtime_metadata["model_name"] == "gpt-4.1-mini"
+
+    claude = build_backend_from_config({"backend": "claude", "effort": "low"})
+    assert isinstance(claude, AnthropicBackend)
+    assert claude.model == "claude-opus-5-5"
+    assert claude.effort == "low"
+
+    with pytest.raises(ValueError, match="Unsupported model backend"):
+        build_backend_from_config({"backend": "nope"})
+    with pytest.raises(ValueError, match="model_id"):
+        build_backend_from_config({"backend": "openai"})
+
+
+def test_validate_experiment_accepts_api_backends() -> None:
+    config = {
+        "dataset": {"name": "x"},
+        "ingest": {"enabled": True},
+        "retrieval": {},
+        "model": {
+            "backend": "openai",
+            "model_id": "gpt-4.1-mini",
+            "base_url": "http://localhost:8000/v1",
+            "max_workers": 4,
+        },
+    }
+    validate_experiment(config)
+    with pytest.raises(ValueError, match="model.backend"):
+        validate_experiment({**config, "model": {"backend": "nope"}})
+
+
+# --- OpenAI-compatible backend ------------------------------------------------
+
+
+def test_openai_backend_sends_messages_and_keeps_batch_order(server: FakeAPIServer) -> None:
+    def slower_for_earlier_prompts(path: str, body: dict[str, Any]) -> Response | None:
+        index = int(last_user_text(body).rsplit("-", 1)[1])
+        time.sleep(0.02 * (6 - index))
+        return None
+
+    server.responder = slower_for_earlier_prompts
+    backend = openai_backend(server)
+    prompts = [ChatPrompt(system="sys", user=f"prompt-{i}") for i in range(6)]
+    outputs = backend.generate_chat_batch(prompts, max_tokens=64, temperature=0.0, stop=["[END_JSON]"])
+    assert outputs == [f"echo:prompt-{i}" for i in range(6)]
+    assert len(server.requests) == 6
+    body = server.requests[0]["body"]
+    assert body["model"] == "test-model"
+    assert body["messages"][0] == {"role": "system", "content": "sys"}
+    assert body["messages"][1]["role"] == "user"
+    assert body["max_tokens"] == 64
+    assert body["temperature"] == 0.0
+    assert body["stop"] == ["[END_JSON]"]
+    assert server.requests[0]["headers"]["authorization"] == "Bearer test-key"
+
+
+def test_openai_backend_switches_token_limit_param_when_rejected(server: FakeAPIServer) -> None:
+    def reject_max_tokens(path: str, body: dict[str, Any]) -> Response | None:
+        if "max_tokens" in body:
+            return 400, {}, {
+                "error": {
+                    "message": "Unsupported parameter: 'max_tokens' is not supported with this model. Use 'max_completion_tokens' instead.",
+                    "type": "invalid_request_error",
+                    "param": "max_tokens",
+                    "code": "unsupported_parameter",
+                }
+            }
+        return None
+
+    server.responder = reject_max_tokens
+    backend = openai_backend(server, max_workers=1)
+    assert backend.generate_chat_batch([ChatPrompt(user="a")], max_tokens=32, temperature=0.0, stop=[]) == ["echo:a"]
+    assert "max_tokens" in server.requests[0]["body"]
+    assert server.requests[1]["body"]["max_completion_tokens"] == 32
+    backend.generate_chat_batch([ChatPrompt(user="b")], max_tokens=32, temperature=0.0, stop=[])
+    assert len(server.requests) == 3
+    assert "max_tokens" not in server.requests[2]["body"]
+
+
+def test_openai_backend_drops_temperature_when_rejected(server: FakeAPIServer) -> None:
+    def reject_temperature(path: str, body: dict[str, Any]) -> Response | None:
+        if "temperature" in body:
+            return 400, {}, {
+                "error": {
+                    "message": "Unsupported value: 'temperature' does not support 0.0 with this model.",
+                    "type": "invalid_request_error",
+                }
+            }
+        return None
+
+    server.responder = reject_temperature
+    backend = openai_backend(server, max_workers=1)
+    assert backend.generate_chat_batch([ChatPrompt(user="a")], max_tokens=8, temperature=0.0, stop=[]) == ["echo:a"]
+    assert "temperature" in server.requests[0]["body"]
+    assert "temperature" not in server.requests[1]["body"]
+
+
+def test_openai_backend_truncates_at_stop_sequence(server: FakeAPIServer) -> None:
+    server.responder = lambda path, body: (200, {}, openai_payload(body, '{"a": 1}[END_JSON] trailing text'))
+    backend = openai_backend(server)
+    assert backend.generate_chat_batch([ChatPrompt(user="a")], max_tokens=8, temperature=0.0, stop=["[END_JSON]"]) == ['{"a": 1}']
+
+
+def test_openai_backend_retries_rate_limits(server: FakeAPIServer) -> None:
+    calls = {"count": 0}
+
+    def rate_limit_once(path: str, body: dict[str, Any]) -> Response | None:
+        calls["count"] += 1
+        if calls["count"] == 1:
+            return 429, {"retry-after-ms": "1"}, {"error": {"message": "slow down", "type": "rate_limit_error"}}
+        return None
+
+    server.responder = rate_limit_once
+    backend = openai_backend(server)
+    assert backend.generate_chat_batch([ChatPrompt(user="a")], max_tokens=8, temperature=0.0, stop=[]) == ["echo:a"]
+    assert len(server.requests) == 2
+
+
+def test_local_servers_need_no_api_key(server: FakeAPIServer, monkeypatch: pytest.MonkeyPatch) -> None:
+    pytest.importorskip("openai")
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    monkeypatch.delenv("OLLAMA_API_KEY", raising=False)
+    backend = build_backend_from_config(
+        {"backend": "ollama", "model_id": "qwen3:8b", "base_url": server.url + "/v1", "timeout": 10}
+    )
+    assert backend.generate_chat_batch([ChatPrompt(user="hi")], max_tokens=8, temperature=0.0, stop=[]) == ["echo:hi"]
+    assert server.requests[0]["headers"]["authorization"] == "Bearer not-needed"
+
+
+def test_remote_hosts_require_an_api_key(monkeypatch: pytest.MonkeyPatch) -> None:
+    pytest.importorskip("openai")
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    backend = OpenAICompatibleBackend("gpt-4.1-mini", base_url="https://api.example.com/v1")
+    with pytest.raises(RuntimeError, match="OPENAI_API_KEY"):
+        backend.generate_chat_batch([ChatPrompt(user="hi")], max_tokens=8, temperature=0.0, stop=[])
+
+
+# --- Anthropic backend --------------------------------------------------------
+
+
+def test_anthropic_backend_request_shape(server: FakeAPIServer) -> None:
+    backend = anthropic_backend(server)
+    prompts = [ChatPrompt(system="sys", user=f"prompt-{i}") for i in range(3)]
+    outputs = backend.generate_chat_batch(prompts, max_tokens=256, temperature=0.0, stop=["[END_JSON]"])
+    assert outputs == [f"echo:prompt-{i}" for i in range(3)]
+    body = server.requests[0]["body"]
+    assert body["model"] == "claude-test"
+    assert body["system"] == "sys"
+    assert body["messages"] == [{"role": "user", "content": last_user_text(body)}]
+    assert body["stop_sequences"] == ["[END_JSON]"]
+    assert body["max_tokens"] == 8192
+    assert "temperature" not in body
+    assert "output_config" not in body
+    assert server.requests[0]["headers"]["x-api-key"] == "test-key"
+
+
+def test_anthropic_backend_options(server: FakeAPIServer) -> None:
+    backend = anthropic_backend(server, effort="low", send_temperature=True, min_max_tokens=0)
+    backend.generate_chat_batch([ChatPrompt(user="a")], max_tokens=256, temperature=0.5, stop=["[END_JSON]", "   "])
+    body = server.requests[0]["body"]
+    assert body["output_config"] == {"effort": "low"}
+    assert body["temperature"] == 0.5
+    assert body["max_tokens"] == 256
+    assert body["stop_sequences"] == ["[END_JSON]"]
+
+
+def test_anthropic_backend_reads_text_blocks_only_and_truncates(server: FakeAPIServer) -> None:
+    server.responder = lambda path, body: (
+        200,
+        {},
+        anthropic_payload(
+            body,
+            "",
+            content=[
+                {"type": "thinking", "thinking": "", "signature": "sig"},
+                {"type": "text", "text": '{"a": 1}[END_JSON] junk'},
+            ],
+        ),
+    )
+    backend = anthropic_backend(server)
+    assert backend.generate_chat_batch([ChatPrompt(user="a")], max_tokens=8, temperature=0.0, stop=["[END_JSON]"]) == ['{"a": 1}']
+
+
+def test_anthropic_backend_refusal_returns_empty_output(server: FakeAPIServer, caplog: pytest.LogCaptureFixture) -> None:
+    server.responder = lambda path, body: (
+        200,
+        {},
+        anthropic_payload(
+            body,
+            "",
+            stop_reason="refusal",
+            content=[],
+            stop_details={"type": "refusal", "category": "cyber", "explanation": "declined"},
+        ),
+    )
+    backend = anthropic_backend(server)
+    with caplog.at_level(logging.WARNING, logger="saadi.llm.anthropic_backend"):
+        assert backend.generate_chat_batch([ChatPrompt(user="a")], max_tokens=8, temperature=0.0, stop=[]) == [""]
+    assert "declined" in caplog.text
+
+
+def test_anthropic_backend_drops_temperature_when_rejected(server: FakeAPIServer) -> None:
+    def reject_temperature(path: str, body: dict[str, Any]) -> Response | None:
+        if "temperature" in body:
+            return 400, {}, {
+                "type": "error",
+                "error": {"type": "invalid_request_error", "message": "temperature: Extra inputs are not permitted"},
+            }
+        return None
+
+    server.responder = reject_temperature
+    backend = anthropic_backend(server, send_temperature=True, max_workers=1)
+    assert backend.generate_chat_batch([ChatPrompt(user="a")], max_tokens=8, temperature=0.0, stop=[]) == ["echo:a"]
+    assert "temperature" in server.requests[0]["body"]
+    assert "temperature" not in server.requests[1]["body"]
+
+
+# --- vLLM rendering -----------------------------------------------------------
+
+
+def test_vllm_backend_renders_prompts_with_the_chat_template(monkeypatch: pytest.MonkeyPatch) -> None:
+    import sys
+    import types
+
+    from saadi.core.prompts import format_chat_prompt
+    from saadi.llm import VLLMBackend
+
+    class SamplingParams:
+        def __init__(self, **kwargs: Any) -> None:
+            self.kwargs = kwargs
+
+    monkeypatch.setitem(sys.modules, "vllm", types.SimpleNamespace(SamplingParams=SamplingParams))
+
+    class Tokenizer:
+        def apply_chat_template(self, messages, tokenize=False, add_generation_prompt=True, enable_thinking=False):
+            return "".join(f"<{m['role']}>{m['content']}</{m['role']}>" for m in messages) + "<assistant>"
+
+    class Model:
+        def __init__(self) -> None:
+            self.prompts: list[str] | None = None
+
+        def generate(self, prompts, params):
+            self.prompts = list(prompts)
+            return [types.SimpleNamespace(outputs=[types.SimpleNamespace(text=f"out:{i}")]) for i, _ in enumerate(prompts)]
+
+    model, tokenizer = Model(), Tokenizer()
+    backend = VLLMBackend(model=model, chat_tokenizer=tokenizer)
+    prompt = ChatPrompt(system="sys", user="usr")
+    assert backend.generate_chat_batch([prompt], max_tokens=4, temperature=0.0, stop=["[END_JSON]"]) == ["out:0"]
+    # The backend renders exactly what the strategies used to render themselves.
+    expected = format_chat_prompt(tokenizer=tokenizer, system_prompt="sys", user_prompt="usr")
+    assert model.prompts == [expected]
+    assert render_prompt(backend, prompt) == expected == "<system>sys</system><user>usr</user><assistant>"
+
+
+# --- legacy raw-string path ---------------------------------------------------
+
+
+def test_legacy_string_path_recovers_roles_for_hosted_backends(server: FakeAPIServer) -> None:
+    from saadi.llm import parse_chatml
+
+    assert parse_chatml(chatml_wrap("sys", "usr")) == ChatPrompt(system="sys", user="usr")
+    assert parse_chatml("plain text") == ChatPrompt(user="plain text")
+
+    backend = openai_backend(server, max_workers=1)
+    outputs = backend.generate_batch([chatml_wrap("sys", "usr"), "plain"], max_tokens=8, temperature=0.0, stop=[])
+    assert outputs == ["echo:usr", "echo:plain"]
+    assert server.requests[0]["body"]["messages"] == [
+        {"role": "system", "content": "sys"},
+        {"role": "user", "content": "usr"},
+    ]
+    assert server.requests[1]["body"]["messages"] == [{"role": "user", "content": "plain"}]

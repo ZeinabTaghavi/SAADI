@@ -324,24 +324,8 @@
     "sha256": "a2965169aadb6aaaee4197baeeb60d48cb83e0794a5ca2089017490046085d53"
   },
   {
-    "path": "src/saadi/llm/base.py",
-    "sha256": "5e0f2b30ae1e367e5f98fe46a4391f7ed3a3a08016fe00fe8dd558f50c3b4d30"
-  },
-  {
-    "path": "src/saadi/llm/factory.py",
-    "sha256": "833838d1d7dd45ce131b6e8db20ac8010dfe575b73f0835feeedd0e0a21542d8"
-  },
-  {
     "path": "src/saadi/llm/hf_tokenizers.py",
     "sha256": "4fa9466b394c6f1cd30acf442e0fdc5ccd4054034cc3a48885c2eda163548b82"
-  },
-  {
-    "path": "src/saadi/llm/mock_backend.py",
-    "sha256": "bc6cf1e65bdc83bf1becf77f22efd4037cbc7768023dcba729066e99e6c1f598"
-  },
-  {
-    "path": "src/saadi/llm/vllm_backend.py",
-    "sha256": "0878d909c6fd69a81debaaf95638ec5118608aeedaa28d5b879c41065051aff8"
   },
   {
     "path": "src/saadi/runtime/__init__.py",

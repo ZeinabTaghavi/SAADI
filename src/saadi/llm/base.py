@@ -1,10 +1,18 @@
-"""Defines the backend protocol and generation parameter object for LLM calls."""
+"""Backend contract shared by every language-model integration.
+
+Pipelines describe each request as a :class:`ChatPrompt` (a system instruction
+plus a user message). Each backend turns that into its provider's own format:
+the vLLM backend applies the model's chat template, hosted APIs send a messages
+array, and the mock backend renders a fixed text form for tests.
+"""
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass, field
-from typing import Protocol
+from typing import Any, Protocol, Sequence, runtime_checkable
 
+from ..core.prompts import chatml_wrap, format_chat_prompt
 
 # Deterministic indexing defaults. vLLM uses ``top_k=-1`` to disable top-k
 # sampling.  Keep these values in one place so both the backend and run
@@ -22,7 +30,67 @@ class GenerateParams:
     stop: list[str] = field(default_factory=lambda: ["[END_JSON]"])
 
 
+@dataclass(frozen=True, slots=True)
+class ChatPrompt:
+    """One chat request: a system instruction and a user message."""
+
+    system: str = ""
+    user: str = ""
+
+    def messages(self) -> list[dict[str, str]]:
+        """Return the request as a provider-neutral messages array."""
+
+        messages: list[dict[str, str]] = []
+        if self.system:
+            messages.append({"role": "system", "content": self.system})
+        messages.append({"role": "user", "content": self.user})
+        return messages
+
+    def as_text(self) -> str:
+        """Render the request as one string for logs, hashes, and the mock backend."""
+
+        return chatml_wrap(self.system, self.user)
+
+
+@runtime_checkable
 class LLMBackend(Protocol):
+    """What every pipeline requires from a backend."""
+
+    def generate_chat_batch(
+        self,
+        prompts: Sequence[ChatPrompt],
+        *,
+        max_tokens: int,
+        temperature: float,
+        stop: list[str],
+    ) -> list[str]:
+        ...
+
+
+class BaseLLMBackend:
+    """Shared behaviour for the built-in backends.
+
+    Subclasses implement :meth:`generate_chat_batch`. The other methods have
+    sensible defaults: :meth:`render_prompt` gives the text form a backend
+    would send, and :meth:`generate_batch` keeps the older raw-string path
+    working by treating each string as a user message.
+    """
+
+    chat_tokenizer: Any = None
+
+    def generate_chat_batch(
+        self,
+        prompts: Sequence[ChatPrompt],
+        *,
+        max_tokens: int,
+        temperature: float,
+        stop: list[str],
+    ) -> list[str]:
+        raise NotImplementedError
+
+    def render_prompt(self, prompt: ChatPrompt) -> str:
+        return prompt.as_text()
+
     def generate_batch(
         self,
         prompts: list[str],
@@ -31,4 +99,90 @@ class LLMBackend(Protocol):
         temperature: float,
         stop: list[str],
     ) -> list[str]:
-        ...
+        return self.generate_chat_batch(
+            [parse_chatml(str(prompt)) for prompt in prompts],
+            max_tokens=max_tokens,
+            temperature=temperature,
+            stop=stop,
+        )
+
+    def close(self) -> None:
+        """Release network or GPU resources. Safe to call more than once."""
+
+
+_CHATML_PATTERN = re.compile(
+    r"\A<\|system\|>\n(?P<system>.*?)\n<\|user\|>\n(?P<user>.*)\n<\|assistant\|>\n\Z",
+    re.DOTALL,
+)
+
+
+def parse_chatml(text: str) -> ChatPrompt:
+    """Invert :func:`chatml_wrap`; any other string becomes a plain user message.
+
+    Older callers hand backends pre-rendered strings. Recovering the two roles
+    lets hosted APIs receive a real system message instead of markup.
+    """
+
+    match = _CHATML_PATTERN.match(str(text or ""))
+    if match is None:
+        return ChatPrompt(user=str(text or ""))
+    return ChatPrompt(system=match.group("system"), user=match.group("user"))
+
+
+def render_prompt(backend: Any, prompt: ChatPrompt) -> str:
+    """Return the text a backend sends for ``prompt``, for artifacts and hashes."""
+
+    renderer = getattr(backend, "render_prompt", None)
+    if callable(renderer):
+        return str(renderer(prompt))
+    return prompt.as_text()
+
+
+def truncate_at_stop(text: str, stop: Sequence[str]) -> str:
+    """Cut ``text`` at the first stop sequence, for providers that echo it."""
+
+    out = str(text or "")
+    cut = len(out)
+    for marker in stop or []:
+        marker = str(marker or "")
+        if not marker:
+            continue
+        position = out.find(marker)
+        if position != -1 and position < cut:
+            cut = position
+    return out[:cut]
+
+
+class LegacyStringBackend(BaseLLMBackend):
+    """Adapt an object that only implements the old ``generate_batch(list[str])`` API."""
+
+    def __init__(self, inner: Any) -> None:
+        if not callable(getattr(inner, "generate_batch", None)):
+            raise TypeError("LegacyStringBackend needs an object with a generate_batch method")
+        self.inner = inner
+        self.chat_tokenizer = getattr(inner, "chat_tokenizer", None)
+        self.runtime_metadata = dict(getattr(inner, "runtime_metadata", {}) or {})
+
+    def render_prompt(self, prompt: ChatPrompt) -> str:
+        return format_chat_prompt(
+            tokenizer=self.chat_tokenizer,
+            system_prompt=prompt.system,
+            user_prompt=prompt.user,
+        )
+
+    def generate_chat_batch(
+        self,
+        prompts: Sequence[ChatPrompt],
+        *,
+        max_tokens: int,
+        temperature: float,
+        stop: list[str],
+    ) -> list[str]:
+        return list(
+            self.inner.generate_batch(
+                [self.render_prompt(prompt) for prompt in prompts],
+                max_tokens=max_tokens,
+                temperature=temperature,
+                stop=stop,
+            )
+        )

@@ -8,7 +8,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from saadi.core.prompts import format_chat_prompt, prompt_hash
+from saadi.core.prompts import prompt_hash
+from saadi.llm.base import ChatPrompt, render_prompt
 
 from .artifacts import sanitize_memory_summary, write_json
 from .config import PromptedPipelineConfig
@@ -225,14 +226,11 @@ def generate_document_summary(
         + "information from the final item. Output one plain-text paragraph of at most "
         + "120 words, then [END_SUMMARY]."
     )
-    prompt = format_chat_prompt(
-        tokenizer=getattr(backend, "chat_tokenizer", None),
-        system_prompt=profile.document_summary_prompt,
-        user_prompt=user_prompt,
-    )
+    chat_prompt = ChatPrompt(system=profile.document_summary_prompt, user=user_prompt)
+    prompt = render_prompt(backend, chat_prompt)
     started = time.perf_counter()
-    raw_output = backend.generate_batch(
-        [prompt],
+    raw_output = backend.generate_chat_batch(
+        [chat_prompt],
         max_tokens=int(config.document_summary_max_tokens),
         temperature=float(config.document_summary_temperature),
         stop=["[END_SUMMARY]", "<|im_end|>", "<|endoftext|>"],
