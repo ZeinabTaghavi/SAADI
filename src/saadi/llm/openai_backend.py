@@ -23,7 +23,7 @@ from typing import Any, Sequence
 from urllib.parse import urlparse
 
 from ._concurrency import map_concurrently
-from .base import BaseLLMBackend, ChatPrompt, truncate_at_stop
+from .base import BaseLLMBackend, ChatPrompt, strip_reasoning_markup, truncate_at_stop
 
 logger = logging.getLogger(__name__)
 
@@ -33,6 +33,7 @@ MAX_STOP_SEQUENCES = 4
 _LOCAL_HOSTS = {"localhost", "127.0.0.1", "::1", "0.0.0.0"}
 _TOKEN_LIMIT_PARAMS = ("max_tokens", "max_completion_tokens")
 _OPTIONAL_PARAMS = ("temperature", "stop", "seed")
+_SPECIAL_TOKEN = re.compile(r"^<\|.*\|>$")
 
 
 def is_local_url(url: str | None) -> bool:
@@ -112,7 +113,7 @@ class OpenAICompatibleBackend(BaseLLMBackend):
         api_key_env: str | None = "OPENAI_API_KEY",
         max_workers: int = 8,
         max_retries: int = 4,
-        timeout: float = 120.0,
+        timeout: float = 300.0,
         seed: int | None = None,
         token_limit_param: str = "auto",
         send_temperature: bool = True,
@@ -139,6 +140,7 @@ class OpenAICompatibleBackend(BaseLLMBackend):
         self._lock = threading.Lock()
         self._disabled: set[str] = set()
         self._token_param_switched = False
+        self._plain_stops_only = False
 
         normalized = str(token_limit_param or "auto").strip().lower()
         if normalized not in {"auto", *_TOKEN_LIMIT_PARAMS}:
@@ -209,7 +211,9 @@ class OpenAICompatibleBackend(BaseLLMBackend):
         if self.send_temperature and "temperature" not in self._disabled:
             params["temperature"] = float(temperature)
         if self.send_stop and stop and "stop" not in self._disabled:
-            params["stop"] = list(stop)[:MAX_STOP_SEQUENCES]
+            stops = [item for item in stop if not (self._plain_stops_only and _SPECIAL_TOKEN.match(item))]
+            if stops:
+                params["stop"] = stops[:MAX_STOP_SEQUENCES]
         if self.seed is not None and "seed" not in self._disabled:
             params["seed"] = int(self.seed)
         params.update(self.request_kwargs)
@@ -232,6 +236,18 @@ class OpenAICompatibleBackend(BaseLLMBackend):
                 self._token_param_switched = True
                 logger.warning("%s rejected %s; using %s for model=%s", self.provider_label, param, other, self.model)
                 return True
+            if param == "stop" and not self._plain_stops_only and any(
+                _SPECIAL_TOKEN.match(item) for item in params.get("stop", [])
+            ):
+                # Tokenizer special tokens such as <|im_end|> mean nothing to other
+                # providers; keep the plain markers before giving up on stop entirely.
+                self._plain_stops_only = True
+                logger.warning(
+                    "%s rejected special-token stop sequences; keeping plain ones for model=%s",
+                    self.provider_label,
+                    self.model,
+                )
+                return True
             if param in _OPTIONAL_PARAMS and param not in self._disabled:
                 self._disabled.add(param)
                 logger.warning("%s rejected %s; omitting it for model=%s", self.provider_label, param, self.model)
@@ -242,7 +258,7 @@ class OpenAICompatibleBackend(BaseLLMBackend):
         client = self.client()  # raises a clear install hint when the SDK is missing
         import openai  # type: ignore
 
-        attempts = len(_TOKEN_LIMIT_PARAMS) + len(_OPTIONAL_PARAMS) + 1
+        attempts = len(_TOKEN_LIMIT_PARAMS) + len(_OPTIONAL_PARAMS) + 2
         response = None
         for _ in range(attempts):
             params = self.build_request(prompt, max_tokens=max_tokens, temperature=temperature, stop=stop)
@@ -262,7 +278,7 @@ class OpenAICompatibleBackend(BaseLLMBackend):
             text = str(getattr(message, "content", None) or "")
             if getattr(choices[0], "finish_reason", None) == "length":
                 logger.warning("%s output hit the token limit (%d) for model=%s", self.provider_label, max_tokens, self.model)
-        return truncate_at_stop(text, stop)
+        return truncate_at_stop(strip_reasoning_markup(text), stop)
 
 
 def _sdk_version() -> str | None:

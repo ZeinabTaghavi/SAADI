@@ -7,10 +7,12 @@ pointed at a local HTTP server that speaks just enough of each protocol.
 from __future__ import annotations
 
 import json
+import re
 import logging
 import threading
 import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
 from typing import Any, Callable
 
 import pytest
@@ -559,3 +561,126 @@ def test_legacy_string_path_recovers_roles_for_hosted_backends(server: FakeAPISe
         {"role": "user", "content": "usr"},
     ]
     assert server.requests[1]["body"]["messages"] == [{"role": "user", "content": "plain"}]
+
+
+# --- whole pipeline through a hosted backend ----------------------------------
+
+
+def saadi_like_responder(path: str, body: dict[str, Any]) -> Response | None:
+    """Answer SAADI's three prompt kinds the way a cooperative model would."""
+
+    user = last_user_text(body)
+    if "[ROLLUP_ITEMS_JSON]" in user:
+        text = "The Aurora team measures alpine lake water quality.\n[END_SUMMARY]"
+    elif "[CURRENT_CHUNK]" in user:
+        chunk = user.split("[CURRENT_CHUNK]\n", 1)[1].split("\n[", 1)[0]
+        match = re.search(r"\b([A-Z][a-z]+ [A-Z][a-z]+)\b", chunk)
+        if match:
+            name = match.group(1)
+            payload = {
+                "active_entities": [{"name": name, "aliases": [], "description": ["mentioned in the document"]}],
+                "insertions": [{"name": name, "anchor_text": name, "left_context": "", "right_context": ""}],
+            }
+        else:
+            payload = {"active_entities": [], "insertions": []}
+        text = "<think>plan</think>" + json.dumps(payload) + "\n[END_JSON]"
+    else:
+        text = "Mira Chen leads the Aurora team."
+    if path.endswith("/chat/completions"):
+        return 200, {}, openai_payload(body, text)
+    return 200, {}, anthropic_payload(body, text)
+
+
+def _run_demo_through(server: FakeAPIServer, tmp_path, model_config: dict[str, Any]):
+    from single_document_demo.pipeline import load_demo_config, run_demo
+
+    server.responder = saadi_like_responder
+    config = load_demo_config("single_document_demo/configs/text_document.toml")
+    config.demo_root = tmp_path / "demo"
+    config.output_root = config.demo_root / "output"
+    config.prompt_profile = str(ROOT / "single_document_demo" / "memory_prompts" / "default")
+    config.run_name = "hosted"
+    config.query = "Who leads the Aurora team?"
+    config.model_config = model_config
+    config.saadi_options.update({"use_cache": False, "chunk_size": 20})
+    result = run_demo(config)
+    assert not result.failures, [record.error for record in result.failures]
+    run_dir = Path(result.records[0].run_dir)
+    answer = (run_dir / "generation" / "answer.txt").read_text(encoding="utf-8")
+    assert "Mira Chen" in answer
+    kinds = {"chunk": 0, "rollup": 0, "answer": 0}
+    for request in server.requests:
+        user = last_user_text(request["body"])
+        if "[ROLLUP_ITEMS_JSON]" in user:
+            kinds["rollup"] += 1
+        elif "[CURRENT_CHUNK]" in user:
+            kinds["chunk"] += 1
+        else:
+            kinds["answer"] += 1
+    assert kinds["chunk"] >= 5 and kinds["rollup"] >= 1 and kinds["answer"] == 1, kinds
+    memory_text = (run_dir / "cleaned_outputs" / "manifest.json").read_text(encoding="utf-8")
+    assert memory_text
+    return run_dir
+
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def test_single_document_pipeline_runs_through_openai_compatible_backend(server: FakeAPIServer, tmp_path) -> None:
+    pytest.importorskip("openai")
+    run_dir = _run_demo_through(
+        server,
+        tmp_path,
+        {"backend": "openai", "model_id": "fake-model", "base_url": server.url + "/v1", "api_key": "test-key", "timeout": 10},
+    )
+    assert "<|system|>" in (run_dir / "generation" / "prompt.txt").read_text(encoding="utf-8")
+    for request in server.requests:
+        assert request["path"] == "/v1/chat/completions"
+        assert request["body"]["messages"][0]["role"] == "system"
+
+
+def test_single_document_pipeline_runs_through_anthropic_backend(server: FakeAPIServer, tmp_path) -> None:
+    pytest.importorskip("anthropic")
+    _run_demo_through(
+        server,
+        tmp_path,
+        {"backend": "anthropic", "model_id": "claude-test", "base_url": server.url, "api_key": "test-key", "timeout": 10},
+    )
+    for request in server.requests:
+        assert request["path"] == "/v1/messages"
+        assert request["body"]["system"]
+        assert "temperature" not in request["body"]
+
+
+def test_hosted_backends_strip_closed_think_blocks(server: FakeAPIServer) -> None:
+    server.responder = lambda path, body: (200, {}, openai_payload(body, "<think>reasoning</think>\n{\"a\": 1}[END_JSON]"))
+    backend = openai_backend(server)
+    assert backend.generate_chat_batch([ChatPrompt(user="a")], max_tokens=8, temperature=0.0, stop=["[END_JSON]"]) == ['{"a": 1}']
+
+
+def test_openai_backend_keeps_plain_stops_before_dropping_stop(server: FakeAPIServer) -> None:
+    def reject_special_tokens(path: str, body: dict[str, Any]) -> Response | None:
+        if any(item.startswith("<|") for item in body.get("stop", [])):
+            return 400, {}, {"error": {"message": "Invalid 'stop': special tokens are not allowed.", "type": "invalid_request_error", "param": "stop"}}
+        return None
+
+    server.responder = reject_special_tokens
+    backend = openai_backend(server, max_workers=1)
+    stops = ["[END_JSON]", "<|im_end|>", "<|endoftext|>"]
+    assert backend.generate_chat_batch([ChatPrompt(user="a")], max_tokens=8, temperature=0.0, stop=stops) == ["echo:a"]
+    assert server.requests[0]["body"]["stop"] == stops
+    assert server.requests[1]["body"]["stop"] == ["[END_JSON]"]
+
+
+def test_openai_backend_drops_stop_entirely_when_still_rejected(server: FakeAPIServer) -> None:
+    def reject_any_stop(path: str, body: dict[str, Any]) -> Response | None:
+        if "stop" in body:
+            return 400, {}, {"error": {"message": "Unsupported parameter: 'stop' is not supported with this model.", "type": "invalid_request_error", "param": "stop"}}
+        return 200, {}, openai_payload(body, "answer[END_JSON] more")
+
+    server.responder = reject_any_stop
+    backend = openai_backend(server, max_workers=1)
+    stops = ["[END_JSON]", "<|im_end|>"]
+    assert backend.generate_chat_batch([ChatPrompt(user="a")], max_tokens=8, temperature=0.0, stop=stops) == ["answer"]
+    assert [("stop" in r["body"]) for r in server.requests] == [True, True, False]
+    assert server.requests[1]["body"]["stop"] == ["[END_JSON]"]

@@ -18,7 +18,7 @@ import threading
 from typing import Any, Sequence
 
 from ._concurrency import map_concurrently
-from .base import BaseLLMBackend, ChatPrompt, truncate_at_stop
+from .base import BaseLLMBackend, ChatPrompt, strip_reasoning_markup, truncate_at_stop
 
 logger = logging.getLogger(__name__)
 
@@ -206,7 +206,7 @@ class AnthropicBackend(BaseLLMBackend):
             for block in (getattr(response, "content", None) or [])
             if getattr(block, "type", None) == "text"
         )
-        return truncate_at_stop(text, stop)
+        return truncate_at_stop(strip_reasoning_markup(text), stop)
 
 
 def _sdk_version() -> str | None:

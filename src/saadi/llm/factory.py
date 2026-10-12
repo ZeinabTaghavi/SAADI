@@ -281,14 +281,16 @@ def _build_openai_compatible_backend(cfg: dict[str, Any], *, provider: str) -> O
         api_key_env = cfg.get("api_key_env", "OLLAMA_API_KEY")
     sampling = cfg.get("sampling") or {}
     seed = sampling.get("seed") if isinstance(sampling, dict) else None
+    # A local Ollama server answers one request at a time, so queue less and wait longer.
+    default_workers, default_timeout = (2, 600.0) if provider == "ollama" else (8, 300.0)
     return OpenAICompatibleBackend(
         model,
         base_url=base_url,
         api_key=cfg.get("api_key"),
         api_key_env=api_key_env,
-        max_workers=int(cfg.get("max_workers", 8)),
+        max_workers=int(cfg.get("max_workers", default_workers)),
         max_retries=int(cfg.get("max_retries", 4)),
-        timeout=float(cfg.get("timeout", 120.0)),
+        timeout=float(cfg.get("timeout", default_timeout)),
         seed=(int(seed) if seed is not None else None),
         token_limit_param=str(cfg.get("token_limit_param", "auto")),
         send_temperature=bool(cfg.get("send_temperature", True)),

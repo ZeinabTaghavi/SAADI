@@ -138,6 +138,15 @@ def render_prompt(backend: Any, prompt: ChatPrompt) -> str:
     return prompt.as_text()
 
 
+_THINK_BLOCK = re.compile(r"<think>.*?</think>\s*", re.DOTALL | re.IGNORECASE)
+
+
+def strip_reasoning_markup(text: str) -> str:
+    """Drop closed ``<think>...</think>`` blocks some chat models emit before the answer."""
+
+    return _THINK_BLOCK.sub("", str(text or ""))
+
+
 def truncate_at_stop(text: str, stop: Sequence[str]) -> str:
     """Cut ``text`` at the first stop sequence, for providers that echo it."""
 
