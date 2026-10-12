@@ -1,0 +1,9 @@
+{
+  "metric": "HR",
+  "study": "active_entity_budget",
+  "input_source": "reference",
+  "verified_cells": 16,
+  "recomputed_cells": 0,
+  "reported_cells": 16,
+  "paper_reported_cells": 16
+}

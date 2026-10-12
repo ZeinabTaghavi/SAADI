@@ -1,0 +1,7 @@
+# Exact versions used for the recorded Python 3.12 CPU validation.
+numpy==2.3.5
+PyYAML==6.0.3
+tqdm==4.67.3
+pytest==9.0.2
+matplotlib==3.10.8
+setuptools==80.10.2

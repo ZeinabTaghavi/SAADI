@@ -1,0 +1,45 @@
+datasets:
+- loogle
+- qasper
+- novelhopqa
+- musique
+retrievers:
+- bm25
+- contriever
+variants:
+- name: full
+  overrides:
+    cached_retrieval:
+      lambda_t: 1
+      lambda_n: 0.5
+      lambda_h: 0.3
+- name: text_memory
+  overrides:
+    cached_retrieval:
+      lambda_t: 1
+      lambda_n: 0.5
+      lambda_h: 0
+- name: text_hierarchy
+  overrides:
+    cached_retrieval:
+      lambda_t: 1
+      lambda_n: 0
+      lambda_h: 0.3
+- name: memory
+  overrides:
+    cached_retrieval:
+      lambda_t: 0
+      lambda_n: 1
+      lambda_h: 0
+- name: hierarchy
+  overrides:
+    cached_retrieval:
+      lambda_t: 0
+      lambda_n: 0
+      lambda_h: 1
+- name: memory_hierarchy
+  overrides:
+    cached_retrieval:
+      lambda_t: 0
+      lambda_n: 1
+      lambda_h: 1

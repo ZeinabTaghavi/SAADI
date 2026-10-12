@@ -1,0 +1,9 @@
+{
+  "metric": "HR",
+  "study": "branching_factor",
+  "input_source": "reference",
+  "verified_cells": 64,
+  "recomputed_cells": 64,
+  "reported_cells": 0,
+  "paper_reported_cells": 0
+}

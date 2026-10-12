@@ -1,0 +1,410 @@
+[
+  {
+    "path": "src/saadi/cli/__init__.py",
+    "sha256": "873436098394a9df089682caca5ab8223bfe892abe4b4cf1ee2cf11d075ab971"
+  },
+  {
+    "path": "src/saadi/cli/eval_cumulative_growth_aggregated_curves.py",
+    "sha256": "6a941331ac56ffe2de2d52e0a3e6174e05d9c5aba1ff97c9addd180173fd22e4"
+  },
+  {
+    "path": "src/saadi/cli/eval_cumulative_growth_comparative_plotting.py",
+    "sha256": "1696b0a4395835b54bc9bd52949ab517090f2fe0d2fa31f7b0873ad70b2ce20a"
+  },
+  {
+    "path": "src/saadi/cli/eval_cumulative_growth_per_document_logging.py",
+    "sha256": "748d57e845614bf9b6d6d6ddea405b9db11366f1a2b1e0f8b460848354279e89"
+  },
+  {
+    "path": "src/saadi/cli/eval_cumulative_growth_reporting_summaries.py",
+    "sha256": "fb5f17c72744df8a5596d8f137e47b76d126751bebf629b8cd66543cdfb956af"
+  },
+  {
+    "path": "src/saadi/cli/eval_faithfulness_active_entity.py",
+    "sha256": "d39ecc725882996d86b9cc5dad53c80ce1a243859bcfa50ced6be6d8771f2d70"
+  },
+  {
+    "path": "src/saadi/cli/eval_faithfulness_entity_disambiguation.py",
+    "sha256": "e7562876dc91c060479b9f612a47d86dcea8fa5b080e7f91bb1074ce3135ce4e"
+  },
+  {
+    "path": "src/saadi/cli/eval_faithfulness_hierarchical_summary.py",
+    "sha256": "ec1bb0f14bfff06c22caac35d95f76308e56bda777e3da04e134df87c96fcd48"
+  },
+  {
+    "path": "src/saadi/cli/eval_faithfulness_linking_sentence.py",
+    "sha256": "2d26c3c42ffe712179a7fd31713b389cae4a33c45e8d5ac0d7d8ed3180d624e8"
+  },
+  {
+    "path": "src/saadi/cli/eval_static_statistics_active_entity_statistics.py",
+    "sha256": "acd0905b783f2864f124066f1482c64dea124d855e277bb630a45940b181f93d"
+  },
+  {
+    "path": "src/saadi/cli/eval_static_statistics_chunk_level_changes.py",
+    "sha256": "c31afb7c8141737cb7b20f10ddc8913592450c6f283e3bf97318e0f31cd25b8a"
+  },
+  {
+    "path": "src/saadi/cli/eval_static_statistics_hierarchical_summary_statistics.py",
+    "sha256": "2a5efa84c79a761c9414f26fd77695c8ffe77a6c46d6fa7117ad221fc4c901b3"
+  },
+  {
+    "path": "src/saadi/cli/eval_static_statistics_index_expansion_statistics.py",
+    "sha256": "805ca3693d0eb868bab28d4fe895038ceb8d9cb9816f8e2dbb5e77771b3853ec"
+  },
+  {
+    "path": "src/saadi/cli/eval_static_statistics_memory_augmentation_statistics.py",
+    "sha256": "78f6529dcee5c16f424ef7b72029d20b534c2c0f5bb43a367ec3c924831d1bad"
+  },
+  {
+    "path": "src/saadi/config/__init__.py",
+    "sha256": "07dd9e5fc8a4c316fc358eb887d471ddf2ff8fa10cdcd89ce7ad9b9fce9e0339"
+  },
+  {
+    "path": "src/saadi/context_expansion.py",
+    "sha256": "3c67702a081ba72ec7cee9f65867c9d411ad4cb87b536012639261213c2c5467"
+  },
+  {
+    "path": "src/saadi/context_strategies/__init__.py",
+    "sha256": "7bbe9c01493a1ea4f591a5d5643e1fc16b782a0c9ed57db1416f1f4a0f839f19"
+  },
+  {
+    "path": "src/saadi/context_strategies/base.py",
+    "sha256": "358b2fe2508bc4407bb982f486be603c40c9325f1909df6cbfaf7f149400ba05"
+  },
+  {
+    "path": "src/saadi/core/__init__.py",
+    "sha256": "2c5e39bbfb10e597c41901f9d9199e3fbb36de1b1ece62ad7c59a8253e2b6c61"
+  },
+  {
+    "path": "src/saadi/core/canonicalization.py",
+    "sha256": "b9da2f28b1def73cde20f47160fc0be59c43a64b5aaf74c6ddd2b034182a3e99"
+  },
+  {
+    "path": "src/saadi/core/chunking.py",
+    "sha256": "2ffe09a4d74f0ff719c63e6056bc593eca168bce0a5342261c61d90d033f5ae2"
+  },
+  {
+    "path": "src/saadi/core/parsers.py",
+    "sha256": "be8e6dfc2b486c5cb07c06584df1ddef393901c1865b2edfce6bd694deeccf77"
+  },
+  {
+    "path": "src/saadi/core/prompts.py",
+    "sha256": "eea72abf72c5d955e6bb16c65122baf1f049c7244ff2e7e2fa72930a3257f81e"
+  },
+  {
+    "path": "src/saadi/core/text_edits.py",
+    "sha256": "ac514646c306ac3e33036d08c5db385e56ece63f66030fbd8d695afa375a1fb4"
+  },
+  {
+    "path": "src/saadi/core/validation.py",
+    "sha256": "0b5d4e6b89b53929a4b5b8d514137fc7e569318a50eef4a3fa3458d774ee9713"
+  },
+  {
+    "path": "src/saadi/entities/__init__.py",
+    "sha256": "7daed519403acbe01a91b0750c527c4e2ff02a3df9fd2b3bf28d418b2df6e247"
+  },
+  {
+    "path": "src/saadi/entities/active_entity_config.py",
+    "sha256": "ec63fcbfc6f67360c2215ad32d36a3b4a37b6488d6628775e3066d9ffd8dcf7c"
+  },
+  {
+    "path": "src/saadi/entities/active_object_config.py",
+    "sha256": "f102b327a897a31374590cfd1019694fb846fa56b0602be1700d3879d7871c2b"
+  },
+  {
+    "path": "src/saadi/entities/active_selection.py",
+    "sha256": "894264db391fe285cb221cfcd39b11a12ddd397cd0a5a246177e820c22736b38"
+  },
+  {
+    "path": "src/saadi/entities/merge.py",
+    "sha256": "ab8cbf9030a0ef73a54f48a02ed5440d4a0a9d750e687ebbe8cf7d989399e78f"
+  },
+  {
+    "path": "src/saadi/evaluation/__init__.py",
+    "sha256": "d87f5f4d2ac07cdc23082a76fedc31c7b1fec304d0bec0fe4ef6c028a0dc2d86"
+  },
+  {
+    "path": "src/saadi/evaluation/updated_chunks/__init__.py",
+    "sha256": "681b4c34651074b8c8530b0ea5a9309b33a80c28033159f38ca5f8dda7bffeba"
+  },
+  {
+    "path": "src/saadi/evaluation/updated_chunks/common.py",
+    "sha256": "e77a65f8e2075f29feff9c9a4b36a369a97de0e2c2466f6fc03c68d5fc96bc89"
+  },
+  {
+    "path": "src/saadi/evaluation/updated_chunks/cumulative_growth/__init__.py",
+    "sha256": "771278f67cde2413c70d8decd6245d1b2093ffbeebfcbda9e3b4b215797d9108"
+  },
+  {
+    "path": "src/saadi/evaluation/updated_chunks/cumulative_growth/aggregated_curves.py",
+    "sha256": "170cbfdef7f6488934effc6f5f8beffc04016d0575ebfb35d41c18b41377e5eb"
+  },
+  {
+    "path": "src/saadi/evaluation/updated_chunks/cumulative_growth/common.py",
+    "sha256": "b27ae4909102b44fc0cbefbf8a4a2749c99f5bc6534ebf7a70987b15416bae03"
+  },
+  {
+    "path": "src/saadi/evaluation/updated_chunks/cumulative_growth/comparative_plotting.py",
+    "sha256": "fc635028defaab635d63e2479c3b90c055197fb26b37c2e71b31ee69ac087998"
+  },
+  {
+    "path": "src/saadi/evaluation/updated_chunks/cumulative_growth/per_document_logging.py",
+    "sha256": "ab8f920c22c5d31acbb961bee13d591cade85be5fa654aee76e4ac62d2012475"
+  },
+  {
+    "path": "src/saadi/evaluation/updated_chunks/cumulative_growth/reporting_summaries.py",
+    "sha256": "914685fa4094e0bb591b4fc5f053abf9e90e1f42b3da55edb3a14264436d8dd7"
+  },
+  {
+    "path": "src/saadi/evaluation/updated_chunks/faithfulness/__init__.py",
+    "sha256": "19b1461264f98618fa60add81e2deaf8880d9d78f02cd10cf3c01f8c21f8c1a2"
+  },
+  {
+    "path": "src/saadi/evaluation/updated_chunks/faithfulness/active_entity.py",
+    "sha256": "f9ec17f4c5e64929dee0ec748dd6df24eace892635b070a3f9176b58a94049e4"
+  },
+  {
+    "path": "src/saadi/evaluation/updated_chunks/faithfulness/active_object.py",
+    "sha256": "a1e682d10da3593382c32d95dfbb6551c3c260efd19e8705bef5765c0c0dfba8"
+  },
+  {
+    "path": "src/saadi/evaluation/updated_chunks/faithfulness/entity_disambiguation.py",
+    "sha256": "9e5df2bb054326b59afd19dcc958e87e9acf457a25aa3cef8beea6ad06523504"
+  },
+  {
+    "path": "src/saadi/evaluation/updated_chunks/faithfulness/hierarchical_summary.py",
+    "sha256": "9699695b818f1c87c136b64fa0d8a2b114dba61b56550a7650da3777f04649d1"
+  },
+  {
+    "path": "src/saadi/evaluation/updated_chunks/faithfulness/linking_sentence.py",
+    "sha256": "381784a74a19eac18098cd34ba4d313220545da2f2a52fd2df2c4bd94868a745"
+  },
+  {
+    "path": "src/saadi/evaluation/updated_chunks/judging.py",
+    "sha256": "2ccf6270cba2447c024e8bfa2e2a985a8414fc15759ed0aad103735d8d23a42f"
+  },
+  {
+    "path": "src/saadi/evaluation/updated_chunks/static_statistics/__init__.py",
+    "sha256": "2631ffe7bf5806574ce9edd0800bef6d6858dba57eb9a057a98ca8ac66a3241c"
+  },
+  {
+    "path": "src/saadi/evaluation/updated_chunks/static_statistics/active_entity_statistics.py",
+    "sha256": "1ea4994a6c28fef815aeaf3b97a92c1f35f9c655add2685ff449b853da90f504"
+  },
+  {
+    "path": "src/saadi/evaluation/updated_chunks/static_statistics/chunk_level_changes.py",
+    "sha256": "5c1d58b764ec89c8bea565221bd36556f72296ea8011b4a4efc2d8c2d4fae017"
+  },
+  {
+    "path": "src/saadi/evaluation/updated_chunks/static_statistics/common.py",
+    "sha256": "bb68a3bd5f682d13425fc35dcdc89583b691b34d8243690484b11a5820d93262"
+  },
+  {
+    "path": "src/saadi/evaluation/updated_chunks/static_statistics/hierarchical_summary_statistics.py",
+    "sha256": "6642d6915e45cfdec9877ba3db0cc9cd3724694e39ee1c6f3bf1592f6e356b32"
+  },
+  {
+    "path": "src/saadi/evaluation/updated_chunks/static_statistics/index_expansion_statistics.py",
+    "sha256": "f9dc1c6c4441aef9e45afaa7caa65ca15f259fe0fff5078e0211703161d5de8d"
+  },
+  {
+    "path": "src/saadi/evaluation/updated_chunks/static_statistics/memory_augmentation_statistics.py",
+    "sha256": "ae2666246bd96ae3a6657426be2a1e4dae150b0f6cbdd48d1178895545b5f521"
+  },
+  {
+    "path": "src/saadi/indexing/__init__.py",
+    "sha256": "c8df2cf95635fb24a001bd848b3f4dccf9f6f8015bffa7ae3bbc641448fe51b2"
+  },
+  {
+    "path": "src/saadi/indexing/corpus_builder.py",
+    "sha256": "5e98d8d9fce9ef5ce9d1603c8a72d1d0846e4d69220e35ec6db7a29dd6dd729f"
+  },
+  {
+    "path": "src/saadi/indexing/dataset_loaders/__init__.py",
+    "sha256": "8b32a1e238cc4b04dd3934961812b080cae4aee3d51c5b9736bf5214b85da8c4"
+  },
+  {
+    "path": "src/saadi/indexing/dataset_loaders/loogle.py",
+    "sha256": "dd32bdd5264a61ec2aab9b4db7df523272c084df23c8dedbbdfe022124e62bb1"
+  },
+  {
+    "path": "src/saadi/indexing/dataset_loaders/musique.py",
+    "sha256": "cd716e5652d3f807fad8f38f517aeb5cb79028c681d7abba2d87db87043dda70"
+  },
+  {
+    "path": "src/saadi/indexing/dataset_loaders/narrativeqa.py",
+    "sha256": "df1d6b0421b3071a4bc82492bc8938f6611dbd94c324a9e0daafe1df9a848b48"
+  },
+  {
+    "path": "src/saadi/indexing/dataset_loaders/novelhopqa.py",
+    "sha256": "31d8391b944e8499505b845a9ca85af57deff5819a5dedd0552fd30d064adf31"
+  },
+  {
+    "path": "src/saadi/indexing/dataset_loaders/novelqa.py",
+    "sha256": "ef937f6478a3369fd5e8fd191a59365e62b42ab7ba5a5bf708fa7ac787325dce"
+  },
+  {
+    "path": "src/saadi/indexing/dataset_loaders/prepared.py",
+    "sha256": "6527570aa51d5d24ef399704a7bf518cfb68926bc5c7c8582f56b3501f684161"
+  },
+  {
+    "path": "src/saadi/indexing/dataset_loaders/qasper.py",
+    "sha256": "77b57e4c4a835ee4bb53f658ddd4bdfc5c69ceb55cc45ef5cf783d37257f4321"
+  },
+  {
+    "path": "src/saadi/indexing/dataset_loaders/quality.py",
+    "sha256": "1f2c89b283ea7e820723fa9904048962e39b2db8dd996422b62899e9d07f732f"
+  },
+  {
+    "path": "src/saadi/indexing/labeling.py",
+    "sha256": "803073aba0e47d1864b6b994f0b31a2d22d9aa5882f6e93e4c1f2162f125db85"
+  },
+  {
+    "path": "src/saadi/indexing/retrieval_methods/__init__.py",
+    "sha256": "e5d1e2445cb857a486c769db01162bc3f91f8caa3ebe5c4ebb412ba0894e3c68"
+  },
+  {
+    "path": "src/saadi/indexing/retrieval_methods/l0aj.py",
+    "sha256": "3e5c97b40e4b3f7fc5e0a000eeda0e610da7beb110d851d34a56ff4c7ac09b2c"
+  },
+  {
+    "path": "src/saadi/indexing/retrieval_methods/mbr.py",
+    "sha256": "6a925fe802b120adad41f50984d0ec6376f060b5d6286780ea9f479343bee90a"
+  },
+  {
+    "path": "src/saadi/indexing/retriever_adapters/__init__.py",
+    "sha256": "6a2d75ec4e9afbe458a873faa9cdbc28ff0a5791a06f9d649cac96dd1bfba977"
+  },
+  {
+    "path": "src/saadi/indexing/retriever_adapters/bge_m3.py",
+    "sha256": "a84a9f397538c7ac4201ceaf8b1234616481eefcafd7a5dffc21f74e15ad6653"
+  },
+  {
+    "path": "src/saadi/indexing/retriever_adapters/bm25.py",
+    "sha256": "439f0f51a6482bd17bc1584bb2d6f46ba6456cb79e91d2e603ae805c4c1b354d"
+  },
+  {
+    "path": "src/saadi/indexing/retriever_adapters/contriever.py",
+    "sha256": "35fb267dc6361794d6b3cab61028f2f19dd6e642d9a5622f72642b1e905d114b"
+  },
+  {
+    "path": "src/saadi/indexing/retriever_adapters/e5.py",
+    "sha256": "bd74ce28dc053193625d9c43826319cc73efa531c5791db4959bc7e41ff116fe"
+  },
+  {
+    "path": "src/saadi/indexing/retriever_adapters/hf_embedding.py",
+    "sha256": "5bf817001bd817ca24dd042e741ce628b0c6b344c0930d8f7c74af8f8f9f2846"
+  },
+  {
+    "path": "src/saadi/indexing/retriever_adapters/jina.py",
+    "sha256": "1b0fb0da620d8b3e1d21b64d017911df3c1c6925306a8d448fd3a324be548c66"
+  },
+  {
+    "path": "src/saadi/indexing/retriever_adapters/qwen.py",
+    "sha256": "980c9ee1d8fc2efe262a0669fcecdcb6deb480368e4f1d81cc29d4684d42fe34"
+  },
+  {
+    "path": "src/saadi/indexing/retriever_adapters/scoring.py",
+    "sha256": "1b949e8b6ac038aa1cc02761a584cc24f70257c73dd2e51dee04d3b6d004233d"
+  },
+  {
+    "path": "src/saadi/io/__init__.py",
+    "sha256": "fdd1d497ed07fba6fc4b9791fd41b636bf6216d19ed8b2b9ea0e18d35b9f521d"
+  },
+  {
+    "path": "src/saadi/io/artifact_paths.py",
+    "sha256": "78ad70449147b1d6ef181f9924ccee8cbb427d48bb2082d5b3b24b5c497e8000"
+  },
+  {
+    "path": "src/saadi/io/jsonl.py",
+    "sha256": "21d3359faa2526584b0db61352ceba642cc2ec6f2e1bb3f4b62efec2aa2de6ec"
+  },
+  {
+    "path": "src/saadi/io/manifests.py",
+    "sha256": "a2965169aadb6aaaee4197baeeb60d48cb83e0794a5ca2089017490046085d53"
+  },
+  {
+    "path": "src/saadi/llm/base.py",
+    "sha256": "5e0f2b30ae1e367e5f98fe46a4391f7ed3a3a08016fe00fe8dd558f50c3b4d30"
+  },
+  {
+    "path": "src/saadi/llm/factory.py",
+    "sha256": "833838d1d7dd45ce131b6e8db20ac8010dfe575b73f0835feeedd0e0a21542d8"
+  },
+  {
+    "path": "src/saadi/llm/hf_tokenizers.py",
+    "sha256": "4fa9466b394c6f1cd30acf442e0fdc5ccd4054034cc3a48885c2eda163548b82"
+  },
+  {
+    "path": "src/saadi/llm/mock_backend.py",
+    "sha256": "bc6cf1e65bdc83bf1becf77f22efd4037cbc7768023dcba729066e99e6c1f598"
+  },
+  {
+    "path": "src/saadi/llm/vllm_backend.py",
+    "sha256": "0878d909c6fd69a81debaaf95638ec5118608aeedaa28d5b879c41065051aff8"
+  },
+  {
+    "path": "src/saadi/runtime/__init__.py",
+    "sha256": "28e806fb9f87c8d23bba37ba030675c0846e6f7c450052fab3b0ef6da536e6d7"
+  },
+  {
+    "path": "src/saadi/runtime/progress.py",
+    "sha256": "58a977ee30341e9b432b00fdab359c475af1727b92780129d648e9bb7aed41c7"
+  },
+  {
+    "path": "src/saadi/saadi_generation/__init__.py",
+    "sha256": "f891ed3917393c8a3eec394c3fa441200fe7f8e7b13e35e1356274f8fb19627e"
+  },
+  {
+    "path": "src/saadi/saadi_generation/configs/__init__.py",
+    "sha256": "e54b411ec25f06f3516418b7886acf6f5f898f6461263c21411b6397334fc14f"
+  },
+  {
+    "path": "src/saadi/saadi_generation/context_builders/__init__.py",
+    "sha256": "9cfb79a96fca0358263b4645cb24571eb1de95abfa974e27bdf509066e092128"
+  },
+  {
+    "path": "src/saadi/saadi_generation/context_builders/base.py",
+    "sha256": "cf746648ae19a5fc3aac0b992564c7141f77a156a85bcf853dd4a4d3677f8ff7"
+  },
+  {
+    "path": "src/saadi/saadi_generation/context_builders/cross_document_folded.py",
+    "sha256": "72fdcc6b50fcfc69dca419306b2756868ac1aee8ff150555d3f17e73710f5822"
+  },
+  {
+    "path": "src/saadi/saadi_generation/generation/__init__.py",
+    "sha256": "ba40b96a9adc9edf06cc1315d45397b79ff619397285c5e031adda9950118358"
+  },
+  {
+    "path": "src/saadi/saadi_generation/generation/prompts.py",
+    "sha256": "61ddbb9d491b5a65282528b8175cc482f48ac108405dfdcf98f5705ef99286f8"
+  },
+  {
+    "path": "src/saadi/saadi_generation/retrieval/__init__.py",
+    "sha256": "410b8df2f898a0cf76ce5e5251e56066cbc8c3ccc3fd19a78c41c117b1c2aae7"
+  },
+  {
+    "path": "src/saadi/saadi_generation/retrieval/cross_document_mbr.py",
+    "sha256": "93662704b29f9df3110fc3119b0006816efcb79f1e87c2e402b9902ade652d41"
+  },
+  {
+    "path": "src/saadi/saadi_generation/utils/__init__.py",
+    "sha256": "71ad87cc5dce1faac3c1c74430b6bb63eedf9b65078fc7bd447bbe02d8584465"
+  },
+  {
+    "path": "src/saadi/saadi_generation/utils/io.py",
+    "sha256": "a78a6be0f465051cbd559d59a2b94ad919f2319b5785ca907479917836aa3e5e"
+  },
+  {
+    "path": "src/saadi/saadi_generation/utils/logging.py",
+    "sha256": "eca17aecf3e802d9be6251986c90e40877da7f11f95814f328c8b9455f74ed17"
+  },
+  {
+    "path": "src/saadi/saadi_generation/utils/paths.py",
+    "sha256": "e45b4c4af7f7f08158c311da9ec6b55d89e2b71ff47f7c68b296309dd7ff69aa"
+  },
+  {
+    "path": "scripts/ablations/retrieval/prepare_grouped_retrieval_dataset.py",
+    "sha256": "2bfac8c136f51383e3863072b40fbe2ec980661a5045141eb1b1f13fc8bcfd91"
+  }
+]

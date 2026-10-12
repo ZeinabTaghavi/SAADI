@@ -1,0 +1,6 @@
+| Dataset | Documents | Chunks/document | Memory calls/document | Hierarchy calls/document | Total calls/document |
+| --- | --- | --- | --- | --- | --- |
+| LooGLE | 105 | 31.87 | 31.87 | 6.67 | 38.53 |
+| MuSiQue-32K | 45 | 380.04 | 380.04 | 93.16 | 473.20 |
+| QASPER-64K | 23 | 746.04 | 746.04 | 184.57 | 930.61 |
+| NovelHopQA | 18 | 429.78 | 429.78 | 105.44 | 535.22 |

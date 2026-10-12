@@ -1,0 +1,117 @@
+{
+  "sadi_inputs": [
+    {
+      "study": "multihop",
+      "source_id": "35314086007de0cef521",
+      "path": "outputs/sadi/reference/summaries/35314086007de0cef521.json",
+      "sha256": "59036d1a686b876b57fccb87b241589a47c1c7a7d16c6e2afed20c1e2aaaa654",
+      "provenance": "reported_statistics"
+    },
+    {
+      "path": "outputs/sadi/comparison_inputs/multihop_exposure.csv",
+      "sha256": "7cc4aae398cd8d2cad1b371312a9d0275db21d9111271204af2779fd4ec9fe6c",
+      "provenance": "reported_summary",
+      "source_ids": [
+        "multihop"
+      ]
+    }
+  ],
+  "other_method_inputs": [
+    {
+      "path": "outputs/other_methods/a_rag/retrieval.csv",
+      "sha256": "8993debc4204f9c6e0f1b43db789c96e541ae94b0881920715fb699e7b66b098",
+      "rows": 23,
+      "source_ids": [
+        "context_expansion",
+        "fixed_and_agentic",
+        "multihop"
+      ]
+    },
+    {
+      "path": "outputs/other_methods/agentic_r/retrieval.csv",
+      "sha256": "b99c33ea5464d03faa3fd22a61e0dc4bcba8b136411e4e22183626ccf3431aae",
+      "rows": 23,
+      "source_ids": [
+        "context_expansion",
+        "fixed_and_agentic",
+        "multihop"
+      ]
+    },
+    {
+      "path": "outputs/other_methods/grip/retrieval.csv",
+      "sha256": "e437e76b99a0d2415f46e040532c142651b2f99f37894a7328c4d7b64f4d862a",
+      "rows": 23,
+      "source_ids": [
+        "context_expansion",
+        "fixed_and_agentic",
+        "multihop"
+      ]
+    },
+    {
+      "path": "outputs/other_methods/rag_r1/retrieval.csv",
+      "sha256": "8f0a61d08d0c819277c36741e72b3c142128007977c6f6e0b96b5bc8445f608e",
+      "rows": 23,
+      "source_ids": [
+        "context_expansion",
+        "fixed_and_agentic",
+        "multihop"
+      ]
+    },
+    {
+      "path": "outputs/other_methods/uma/retrieval.csv",
+      "sha256": "5e50dd533bd6adc5e927ce77f2c685bd9b11cd6b8141103a6bc8ac85877582fe",
+      "rows": 23,
+      "source_ids": [
+        "context_expansion",
+        "fixed_and_agentic",
+        "multihop"
+      ]
+    },
+    {
+      "path": "outputs/other_methods/vanilla/retrieval.csv",
+      "sha256": "b4ac4fc78e4656e76202ca17c7e7da5ca9a10e19c165268dde547be9791043c9",
+      "rows": 136,
+      "source_ids": [
+        "context_expansion",
+        "main_fixed_depth",
+        "multihop"
+      ]
+    }
+  ],
+  "archived_other_method_sources": {
+    "main_fixed_depth": {
+      "original_source": "outputs/Tables/Final_table.txt",
+      "sha256": "e76acc0811c4aec61775da6d31f294c901e4488d60f86177d8a72824fe09adac"
+    },
+    "fixed_and_agentic": {
+      "original_source": "outputs/Tables/appendix_results_fixed_vs_agentic_retrieval/appendix_results_fixed_vs_agentic_retrieval.csv",
+      "sha256": "319d15e82b123326255f985c9bdcfdeb1938ddf7791c78370365a8613ffd7eea"
+    },
+    "resource_use": {
+      "original_source": "outputs/Tables/main_results_computational_profile/main_computational_profile_values.csv",
+      "sha256": "b3fff342b81a7cc7c57546756d93965818fce64862a4a0b3da967d6e71565b5b"
+    },
+    "multihop": {
+      "original_source": "outputs/Tables/appendix_results_multihop_retrieval/appendix_results_multihop_retrieval.csv",
+      "sha256": "35314086007de0cef5219bba84a6ddbaac5c1e1968017a35b89a1982dc4d0e48"
+    },
+    "context_expansion": {
+      "original_source": "outputs/Tables/appendix_results_context_expansion/appendix_results_context_expansion.csv",
+      "sha256": "23e099814d33fb766420016fc304cc25f1d6a1054b8fc2d909f1637a6858de7c"
+    }
+  },
+  "archived_sadi_comparison_sources": {
+    "resource_use": {
+      "original_source": "outputs/Tables/main_results_computational_profile/main_computational_profile_values.csv",
+      "sha256": "b3fff342b81a7cc7c57546756d93965818fce64862a4a0b3da967d6e71565b5b"
+    },
+    "context_expansion": {
+      "original_source": "outputs/Tables/appendix_results_context_expansion/appendix_results_context_expansion.csv",
+      "sha256": "23e099814d33fb766420016fc304cc25f1d6a1054b8fc2d909f1637a6858de7c"
+    },
+    "multihop": {
+      "original_source": "outputs/Tables/appendix_results_multihop_retrieval/appendix_results_multihop_retrieval.csv",
+      "sha256": "35314086007de0cef5219bba84a6ddbaac5c1e1968017a35b89a1982dc4d0e48"
+    }
+  }
+}

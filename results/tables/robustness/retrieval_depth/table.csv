@@ -1,0 +1,5 @@
+Dataset,Retriever,Condition,Eligible queries,Evidence,HR@5 (%),HR@10 (%)
+loogle,bm25,top20,1832,per_query,92.30349344978166,96.4519650655022
+musique,bm25,top20,900,per_query,62.77777777777778,77.66666666666666
+novelhopqa,bm25,top20,908,per_query,18.06167400881057,22.026431718061673
+qasper,bm25,top20,1333,per_query,16.954238559639908,26.106526631657918

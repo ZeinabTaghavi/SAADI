@@ -1,0 +1,9 @@
+study,dataset,retriever,condition,source_id,cutoff,queries,eligible,hits,hr,provenance
+retrieval_depth,loogle,bm25,top20,14e05ca8bff6ffb83962,5,1832,1832,1691,0.9230349344978166,per_query
+retrieval_depth,loogle,bm25,top20,14e05ca8bff6ffb83962,10,1832,1832,1767,0.9645196506550219,per_query
+retrieval_depth,musique,bm25,top20,92c7ea2263a2bd4182b4,5,900,900,565,0.6277777777777778,per_query
+retrieval_depth,musique,bm25,top20,92c7ea2263a2bd4182b4,10,900,900,699,0.7766666666666666,per_query
+retrieval_depth,novelhopqa,bm25,top20,dffd8dd7460da4b2fd6b,5,908,908,164,0.18061674008810572,per_query
+retrieval_depth,novelhopqa,bm25,top20,dffd8dd7460da4b2fd6b,10,908,908,200,0.22026431718061673,per_query
+retrieval_depth,qasper,bm25,top20,32b66b26d0dfc35172cf,5,1333,1333,226,0.1695423855963991,per_query
+retrieval_depth,qasper,bm25,top20,32b66b26d0dfc35172cf,10,1333,1333,348,0.26106526631657917,per_query

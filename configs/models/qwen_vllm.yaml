@@ -1,0 +1,12 @@
+backend: vllm
+model_id: Qwen/Qwen3.5-27B
+alias: Qwen3.5-27B
+device: cuda
+generate:
+  max_tokens: 1024
+  temperature: 0.0
+sampling:
+  seed: 42
+  top_p: 1.0
+  top_k: -1
+  repetition_penalty: 1.0

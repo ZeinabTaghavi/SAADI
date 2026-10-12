@@ -1,0 +1,9 @@
+{
+  "metric": "HR",
+  "study": "active_entity_selector",
+  "input_source": "reference",
+  "verified_cells": 8,
+  "recomputed_cells": 0,
+  "reported_cells": 8,
+  "paper_reported_cells": 8
+}

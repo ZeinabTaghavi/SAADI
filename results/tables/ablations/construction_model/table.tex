@@ -1,0 +1,22 @@
+\begin{tabular}{lllllll}
+\hline
+Dataset & Retriever & Condition & Eligible queries & Evidence & HR@5 (\%) & HR@10 (\%) \\
+\hline
+LooGLE & BM25 & model\_key=qwen2\_5\_7b & 1832 & per\_query & 91.59 & 95.69 \\
+LooGLE & BM25 & model\_key=mistral\_small\_24b & 1832 & per\_query & 91.43 & 95.47 \\
+LooGLE & BM25 & model\_key=saadi\_default & 1832 & per\_query & 92.30 & 96.45 \\
+LooGLE & BM25 & model\_key=llama3\_3\_70b & 1832 & per\_query & 91.05 & 95.20 \\
+LooGLE & Contriever & model\_key=qwen2\_5\_7b & 1832 & per\_query & 72.33 & 84.77 \\
+LooGLE & Contriever & model\_key=mistral\_small\_24b & 1832 & per\_query & 73.14 & 84.33 \\
+LooGLE & Contriever & model\_key=saadi\_default & 1832 & per\_query & 75.44 & 85.70 \\
+LooGLE & Contriever & model\_key=llama3\_3\_70b & 1832 & per\_query & 72.22 & 84.28 \\
+NovelHopQA & BM25 & model\_key=qwen2\_5\_7b & 908 & per\_query & 17.95 & 21.48 \\
+NovelHopQA & BM25 & model\_key=mistral\_small\_24b & 908 & per\_query & 16.96 & 20.81 \\
+NovelHopQA & BM25 & model\_key=saadi\_default & 908 & per\_query & 18.06 & 22.03 \\
+NovelHopQA & BM25 & model\_key=llama3\_3\_70b & 908 & per\_query & 17.29 & 21.26 \\
+NovelHopQA & Contriever & model\_key=qwen2\_5\_7b & 908 & per\_query & 13.33 & 17.95 \\
+NovelHopQA & Contriever & model\_key=mistral\_small\_24b & 908 & per\_query & 11.34 & 18.28 \\
+NovelHopQA & Contriever & model\_key=saadi\_default & 908 & per\_query & 13.55 & 18.17 \\
+NovelHopQA & Contriever & model\_key=llama3\_3\_70b & 908 & per\_query & 11.78 & 17.40 \\
+\hline
+\end{tabular}

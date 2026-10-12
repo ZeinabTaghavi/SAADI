@@ -1,0 +1,9 @@
+{
+  "table": "multihop_comparison",
+  "input_source": "reference",
+  "rows": 21,
+  "sadi_input_rows": 40,
+  "other_method_input_rows": 54,
+  "comparison_methods_executed": false,
+  "input_hashes_verified": true
+}

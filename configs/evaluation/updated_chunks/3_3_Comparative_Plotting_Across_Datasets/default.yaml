@@ -1,0 +1,24 @@
+main_phase: Cumulative Growth Analysis
+sub_phase_id: 3_3_Comparative_Plotting_Across_Datasets
+sub_phase_name: Comparative Plotting Across Datasets
+run_name: default
+source_run_name: default
+output_root: ${SADI_OUTPUT_DIR}
+datasets:
+- name: loogle
+  label: LooGLE
+  experiment_config: ${SADI_LOOGLE_CONFIG}
+- name: qasper
+  label: QASPER
+  experiment_config: ${SADI_QASPER_CONFIG}
+- name: novelhopqa
+  label: NovelHopQA
+  experiment_config: ${SADI_NOVELHOPQA_CONFIG}
+- name: musique
+  label: MuSiQue
+  experiment_config: ${SADI_MUSIQUE_CONFIG}
+plotting:
+  formats:
+  - png
+  dpi: 200
+  use_sem_bands: true

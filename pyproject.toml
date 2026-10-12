@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=70"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "saadi"
+version = "0.1.0"
+description = "SAADI: index-time document state for single-pass long-document retrieval"
+readme = "README.md"
+authors = [
+  {name = "Zeinab Sadat Taghavi"},
+  {name = "Lars Klein"},
+  {name = "Mary-Anne Hartley"},
+  {name = "Andreas Marfurt"},
+]
+requires-python = ">=3.11"
+license = {text = "MIT"}
+dependencies = ["tqdm>=4.67,<5", "PyYAML>=6.0,<7", "numpy>=1.26,<3"]
+
+[project.optional-dependencies]
+llm = ["transformers>=4.51,<6", "vllm>=0.8.5", "sentence-transformers>=3.0", "bert-score>=0.3.13", "sentencepiece>=0.2", "protobuf>=4"]
+datasets = ["datasets>=4,<5"]
+figures = ["matplotlib>=3.8"]
+dev = ["pytest>=8,<10"]
+
+[project.urls]
+Repository = "https://github.com/ZeinabTaghavi/SAADI"
+
+[project.scripts]
+saadi = "saadi.cli.main:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "single_document_demo/tests"]
+pythonpath = ["src", "."]

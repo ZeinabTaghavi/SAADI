@@ -1,0 +1,51 @@
+datasets:
+- loogle
+- qasper
+- novelhopqa
+- musique
+retrievers:
+- bm25
+- contriever
+variants:
+- name: weights_1_0.3_0
+  overrides:
+    cached_retrieval:
+      lambda_t: 1
+      lambda_n: 0.3
+      lambda_h: 0
+      normalization_method: none
+- name: weights_1_0.5_0
+  overrides:
+    cached_retrieval:
+      lambda_t: 1
+      lambda_n: 0.5
+      lambda_h: 0
+      normalization_method: none
+- name: weights_1_1_0
+  overrides:
+    cached_retrieval:
+      lambda_t: 1
+      lambda_n: 1
+      lambda_h: 0
+      normalization_method: none
+- name: weights_1_0.5_0.3
+  overrides:
+    cached_retrieval:
+      lambda_t: 1
+      lambda_n: 0.5
+      lambda_h: 0.3
+      normalization_method: none
+- name: weights_1_1_1
+  overrides:
+    cached_retrieval:
+      lambda_t: 1
+      lambda_n: 1
+      lambda_h: 1
+      normalization_method: none
+- name: weights_1_0_0.5
+  overrides:
+    cached_retrieval:
+      lambda_t: 1
+      lambda_n: 0
+      lambda_h: 0.5
+      normalization_method: none

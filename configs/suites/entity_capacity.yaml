@@ -1,0 +1,36 @@
+datasets:
+- loogle
+- qasper
+- novelhopqa
+- musique
+retrievers:
+- bm25
+variants:
+- name: entities_5_aliases_2_descriptions_3
+  overrides:
+    ingest:
+      strategy_kwargs:
+        max_entities: 5
+        max_aliases: 2
+        max_desc: 3
+- name: entities_5_aliases_2_descriptions_5
+  overrides:
+    ingest:
+      strategy_kwargs:
+        max_entities: 5
+        max_aliases: 2
+        max_desc: 5
+- name: entities_3_aliases_2_descriptions_5
+  overrides:
+    ingest:
+      strategy_kwargs:
+        max_entities: 3
+        max_aliases: 2
+        max_desc: 5
+- name: entities_7_aliases_2_descriptions_5
+  overrides:
+    ingest:
+      strategy_kwargs:
+        max_entities: 7
+        max_aliases: 2
+        max_desc: 5

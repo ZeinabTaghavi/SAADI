@@ -1,0 +1,29 @@
+datasets:
+- loogle
+- qasper
+- novelhopqa
+- musique
+retrievers:
+- bm25
+- contriever
+variants:
+- name: branching_2
+  overrides:
+    ingest:
+      strategy_kwargs:
+        branching_factor: 2
+- name: branching_5
+  overrides:
+    ingest:
+      strategy_kwargs:
+        branching_factor: 5
+- name: branching_8
+  overrides:
+    ingest:
+      strategy_kwargs:
+        branching_factor: 8
+- name: branching_10
+  overrides:
+    ingest:
+      strategy_kwargs:
+        branching_factor: 10

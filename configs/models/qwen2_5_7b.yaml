@@ -1,0 +1,26 @@
+backend: vllm
+model_id: Qwen/Qwen2.5-7B-Instruct
+device: cuda
+alias: Qwen2.5-7B-Instruct
+load_chat_tokenizer: true
+tensor_parallel_size: 4
+dtype: bfloat16
+gpu_memory_utilization: 0.8
+max_model_len: 32768
+enforce_eager: false
+vllm_kwargs:
+  disable_custom_all_reduce: true
+  max_num_batched_tokens: 16384
+  max_num_seqs: 16
+generate:
+  max_tokens: 2048
+  temperature: 0.0
+  stop:
+  - '[END_JSON]'
+  - <|im_end|>
+  - <|endoftext|>
+sampling:
+  seed: 42
+  top_p: 1.0
+  top_k: -1
+  repetition_penalty: 1.0

@@ -1,0 +1,26 @@
+# Construction-model runtime shared by all datasets; the model ID is set per dataset config.
+model:
+  backend: vllm
+  device: cuda
+  load_chat_tokenizer: true
+  tensor_parallel_size: 4
+  dtype: bfloat16
+  max_model_len: 32768
+  enforce_eager: false
+  vllm_kwargs:
+    disable_custom_all_reduce: true
+    max_num_batched_tokens: 16384
+    max_num_seqs: 16
+  # Greedy decoding for the state-update and fold calls.
+  generate:
+    max_tokens: 2048
+    temperature: 0.0
+    stop:
+    - '[END_JSON]'
+    - <|im_end|>
+    - <|endoftext|>
+  sampling:
+    seed: 42
+    top_p: 1.0
+    top_k: -1
+    repetition_penalty: 1.0

@@ -1,0 +1,34 @@
+| Dataset | Retriever | Condition | Eligible queries | Evidence | HR@5 (%) | HR@10 (%) |
+| --- | --- | --- | --- | --- | --- | --- |
+| LooGLE | BM25 | conditioning=Text only | 1832 | per_query | 91.92 | 96.07 |
+| LooGLE | BM25 | conditioning=Text + History | 1832 | per_query | 92.47 | 96.18 |
+| LooGLE | BM25 | conditioning=Text + Previous Memory | 1832 | per_query | 91.32 | 95.96 |
+| LooGLE | BM25 | conditioning=Full SAADI | 1832 | per_query | 92.30 | 96.45 |
+| LooGLE | Contriever | conditioning=Text only | 1832 | per_query | 74.89 | 85.70 |
+| LooGLE | Contriever | conditioning=Text + History | 1832 | per_query | 74.24 | 85.37 |
+| LooGLE | Contriever | conditioning=Text + Previous Memory | 1832 | per_query | 74.89 | 85.97 |
+| LooGLE | Contriever | conditioning=Full SAADI | 1832 | per_query | 75.44 | 85.70 |
+| MuSiQue-32K | BM25 | conditioning=Text only | 900 | per_query | 60.11 | 75.56 |
+| MuSiQue-32K | BM25 | conditioning=Text + History | 900 | per_query | 64.11 | 78.56 |
+| MuSiQue-32K | BM25 | conditioning=Text + Previous Memory | 900 | per_query | 59.00 | 74.89 |
+| MuSiQue-32K | BM25 | conditioning=Full SAADI | 900 | per_query | 62.78 | 77.67 |
+| MuSiQue-32K | Contriever | conditioning=Text only | 900 | per_query | 65.22 | 80.22 |
+| MuSiQue-32K | Contriever | conditioning=Text + History | 900 | per_query | 69.44 | 83.56 |
+| MuSiQue-32K | Contriever | conditioning=Text + Previous Memory | 900 | per_query | 64.67 | 79.78 |
+| MuSiQue-32K | Contriever | conditioning=Full SAADI | 900 | per_query | 68.78 | 83.67 |
+| QASPER-64K | BM25 | conditioning=Text only | 1333 | per_query | 15.15 | 23.26 |
+| QASPER-64K | BM25 | conditioning=Text + History | 1333 | per_query | 16.95 | 25.81 |
+| QASPER-64K | BM25 | conditioning=Text + Previous Memory | 1333 | per_query | 15.15 | 23.71 |
+| QASPER-64K | BM25 | conditioning=Full SAADI | 1333 | per_query | 16.95 | 26.11 |
+| QASPER-64K | Contriever | conditioning=Text only | 1333 | per_query | 15.68 | 24.53 |
+| QASPER-64K | Contriever | conditioning=Text + History | 1333 | per_query | 16.20 | 26.03 |
+| QASPER-64K | Contriever | conditioning=Text + Previous Memory | 1333 | per_query | 14.70 | 23.63 |
+| QASPER-64K | Contriever | conditioning=Full SAADI | 1333 | per_query | 16.20 | 25.81 |
+| NovelHopQA | BM25 | conditioning=Text only | 908 | per_query | 17.51 | 21.37 |
+| NovelHopQA | BM25 | conditioning=Text + History | 908 | per_query | 17.84 | 22.03 |
+| NovelHopQA | BM25 | conditioning=Text + Previous Memory | 908 | per_query | 17.07 | 21.26 |
+| NovelHopQA | BM25 | conditioning=Full SAADI | 908 | per_query | 18.06 | 22.03 |
+| NovelHopQA | Contriever | conditioning=Text only | 908 | per_query | 12.22 | 17.73 |
+| NovelHopQA | Contriever | conditioning=Text + History | 908 | per_query | 12.89 | 18.83 |
+| NovelHopQA | Contriever | conditioning=Text + Previous Memory | 908 | per_query | 12.44 | 17.73 |
+| NovelHopQA | Contriever | conditioning=Full SAADI | 908 | per_query | 13.55 | 18.17 |

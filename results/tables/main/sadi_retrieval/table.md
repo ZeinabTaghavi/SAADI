@@ -1,0 +1,22 @@
+| Dataset | Retriever | Condition | Eligible queries | Evidence | HR@5 (%) | HR@10 (%) |
+| --- | --- | --- | --- | --- | --- | --- |
+| loogle | bm25 | default | 1832 | per_query | 92.30 | 96.45 |
+| loogle | contriever | default | 1832 | per_query | 75.44 | 85.70 |
+| loogle | bge_m3 | default | 1832 | per_query | 81.06 | 90.12 |
+| loogle | jina | default | 1832 | per_query | 70.14 | 81.99 |
+| loogle | qwen | default | 1832 | per_query | 77.02 | 86.68 |
+| qasper | bm25 | default | 1333 | per_query | 16.95 | 26.11 |
+| qasper | contriever | default | 1333 | per_query | 16.20 | 25.81 |
+| qasper | bge_m3 | default | 1333 | per_query | 20.93 | 30.91 |
+| qasper | jina | default | 1333 | per_query | 18.90 | 27.16 |
+| qasper | qwen | default | 1333 | per_query | 23.33 | 34.13 |
+| novelhopqa | bm25 | default | 908 | per_query | 18.06 | 22.03 |
+| novelhopqa | contriever | default | 908 | per_query | 13.55 | 18.17 |
+| novelhopqa | bge_m3 | default | 908 | per_query | 16.52 | 22.14 |
+| novelhopqa | jina | default | 908 | per_query | 14.76 | 21.15 |
+| novelhopqa | qwen | default | 908 | per_query | 15.20 | 20.59 |
+| musique | bm25 | default | 900 | per_query | 62.78 | 77.67 |
+| musique | contriever | default | 900 | per_query | 68.78 | 83.67 |
+| musique | bge_m3 | default | 900 | per_query | 76.89 | 88.33 |
+| musique | jina | default | 900 | per_query | 73.22 | 88.11 |
+| musique | qwen | default | 900 | per_query | 76.44 | 90.00 |

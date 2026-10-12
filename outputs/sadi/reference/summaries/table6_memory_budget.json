@@ -1,0 +1,98 @@
+[
+  {
+    "dataset": "LooGLE",
+    "retriever": "BM25",
+    "budget": "AE_3_2_5",
+    "hr_percent_at_5": "93.0"
+  },
+  {
+    "dataset": "LooGLE",
+    "retriever": "BM25",
+    "budget": "AE_5_2_3",
+    "hr_percent_at_5": "92.3"
+  },
+  {
+    "dataset": "LooGLE",
+    "retriever": "BM25",
+    "budget": "AE_5_2_5",
+    "hr_percent_at_5": "90.3"
+  },
+  {
+    "dataset": "LooGLE",
+    "retriever": "BM25",
+    "budget": "AE_7_2_5",
+    "hr_percent_at_5": "92.8"
+  },
+  {
+    "dataset": "LooGLE",
+    "retriever": "Contriever",
+    "budget": "AE_3_2_5",
+    "hr_percent_at_5": "74.4"
+  },
+  {
+    "dataset": "LooGLE",
+    "retriever": "Contriever",
+    "budget": "AE_5_2_3",
+    "hr_percent_at_5": "75.4"
+  },
+  {
+    "dataset": "LooGLE",
+    "retriever": "Contriever",
+    "budget": "AE_5_2_5",
+    "hr_percent_at_5": "74.9"
+  },
+  {
+    "dataset": "LooGLE",
+    "retriever": "Contriever",
+    "budget": "AE_7_2_5",
+    "hr_percent_at_5": "74.1"
+  },
+  {
+    "dataset": "NovelHopQA",
+    "retriever": "BM25",
+    "budget": "AE_3_2_5",
+    "hr_percent_at_5": "17.7"
+  },
+  {
+    "dataset": "NovelHopQA",
+    "retriever": "BM25",
+    "budget": "AE_5_2_3",
+    "hr_percent_at_5": "18.1"
+  },
+  {
+    "dataset": "NovelHopQA",
+    "retriever": "BM25",
+    "budget": "AE_5_2_5",
+    "hr_percent_at_5": "18.5"
+  },
+  {
+    "dataset": "NovelHopQA",
+    "retriever": "BM25",
+    "budget": "AE_7_2_5",
+    "hr_percent_at_5": "17.8"
+  },
+  {
+    "dataset": "NovelHopQA",
+    "retriever": "Contriever",
+    "budget": "AE_3_2_5",
+    "hr_percent_at_5": "13.7"
+  },
+  {
+    "dataset": "NovelHopQA",
+    "retriever": "Contriever",
+    "budget": "AE_5_2_3",
+    "hr_percent_at_5": "13.5"
+  },
+  {
+    "dataset": "NovelHopQA",
+    "retriever": "Contriever",
+    "budget": "AE_5_2_5",
+    "hr_percent_at_5": "12.9"
+  },
+  {
+    "dataset": "NovelHopQA",
+    "retriever": "Contriever",
+    "budget": "AE_7_2_5",
+    "hr_percent_at_5": "13.1"
+  }
+]

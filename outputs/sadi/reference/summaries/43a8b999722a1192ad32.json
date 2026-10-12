@@ -1,0 +1,212 @@
+[
+  {
+    "dataset": "LooGLE",
+    "retriever": "BM25",
+    "weights": "1.0/0.5/0.3",
+    "hr_percent_at_5": "92",
+    "hr_percent_at_10": "97"
+  },
+  {
+    "dataset": "LooGLE",
+    "retriever": "BM25",
+    "weights": "1.0/1.0/1.0",
+    "hr_percent_at_5": "87",
+    "hr_percent_at_10": "94"
+  },
+  {
+    "dataset": "LooGLE",
+    "retriever": "BM25",
+    "weights": "1.0/0.3/1.0",
+    "hr_percent_at_5": "89",
+    "hr_percent_at_10": "95"
+  },
+  {
+    "dataset": "LooGLE",
+    "retriever": "BM25",
+    "weights": "1.0/0.5/1.0",
+    "hr_percent_at_5": "90",
+    "hr_percent_at_10": "95"
+  },
+  {
+    "dataset": "LooGLE",
+    "retriever": "BM25",
+    "weights": "1.0/1.0/0.5",
+    "hr_percent_at_5": "87",
+    "hr_percent_at_10": "94"
+  },
+  {
+    "dataset": "LooGLE",
+    "retriever": "Contriever",
+    "weights": "1.0/0.5/0.3",
+    "hr_percent_at_5": "75",
+    "hr_percent_at_10": "86"
+  },
+  {
+    "dataset": "LooGLE",
+    "retriever": "Contriever",
+    "weights": "1.0/1.0/1.0",
+    "hr_percent_at_5": "62",
+    "hr_percent_at_10": "73"
+  },
+  {
+    "dataset": "LooGLE",
+    "retriever": "Contriever",
+    "weights": "1.0/0.3/1.0",
+    "hr_percent_at_5": "68",
+    "hr_percent_at_10": "82"
+  },
+  {
+    "dataset": "LooGLE",
+    "retriever": "Contriever",
+    "weights": "1.0/0.5/1.0",
+    "hr_percent_at_5": "67",
+    "hr_percent_at_10": "79"
+  },
+  {
+    "dataset": "LooGLE",
+    "retriever": "Contriever",
+    "weights": "1.0/1.0/0.5",
+    "hr_percent_at_5": "61",
+    "hr_percent_at_10": "73"
+  },
+  {
+    "dataset": "LooGLE",
+    "retriever": "Jina",
+    "weights": "1.0/0.5/0.3",
+    "hr_percent_at_5": "70",
+    "hr_percent_at_10": "82"
+  },
+  {
+    "dataset": "LooGLE",
+    "retriever": "Jina",
+    "weights": "1.0/1.0/1.0",
+    "hr_percent_at_5": "64",
+    "hr_percent_at_10": "78"
+  },
+  {
+    "dataset": "LooGLE",
+    "retriever": "Jina",
+    "weights": "1.0/0.3/1.0",
+    "hr_percent_at_5": "69",
+    "hr_percent_at_10": "82"
+  },
+  {
+    "dataset": "LooGLE",
+    "retriever": "Jina",
+    "weights": "1.0/0.5/1.0",
+    "hr_percent_at_5": "68",
+    "hr_percent_at_10": "81"
+  },
+  {
+    "dataset": "LooGLE",
+    "retriever": "Jina",
+    "weights": "1.0/1.0/0.5",
+    "hr_percent_at_5": "63",
+    "hr_percent_at_10": "79"
+  },
+  {
+    "dataset": "NovelHopQA",
+    "retriever": "BM25",
+    "weights": "1.0/0.5/0.3",
+    "hr_percent_at_5": "18",
+    "hr_percent_at_10": "22"
+  },
+  {
+    "dataset": "NovelHopQA",
+    "retriever": "BM25",
+    "weights": "1.0/1.0/1.0",
+    "hr_percent_at_5": "16",
+    "hr_percent_at_10": "19"
+  },
+  {
+    "dataset": "NovelHopQA",
+    "retriever": "BM25",
+    "weights": "1.0/0.3/1.0",
+    "hr_percent_at_5": "16",
+    "hr_percent_at_10": "21"
+  },
+  {
+    "dataset": "NovelHopQA",
+    "retriever": "BM25",
+    "weights": "1.0/0.5/1.0",
+    "hr_percent_at_5": "16",
+    "hr_percent_at_10": "21"
+  },
+  {
+    "dataset": "NovelHopQA",
+    "retriever": "BM25",
+    "weights": "1.0/1.0/0.5",
+    "hr_percent_at_5": "16",
+    "hr_percent_at_10": "20"
+  },
+  {
+    "dataset": "NovelHopQA",
+    "retriever": "Contriever",
+    "weights": "1.0/0.5/0.3",
+    "hr_percent_at_5": "14",
+    "hr_percent_at_10": "18"
+  },
+  {
+    "dataset": "NovelHopQA",
+    "retriever": "Contriever",
+    "weights": "1.0/1.0/1.0",
+    "hr_percent_at_5": "11",
+    "hr_percent_at_10": "16"
+  },
+  {
+    "dataset": "NovelHopQA",
+    "retriever": "Contriever",
+    "weights": "1.0/0.3/1.0",
+    "hr_percent_at_5": "11",
+    "hr_percent_at_10": "17"
+  },
+  {
+    "dataset": "NovelHopQA",
+    "retriever": "Contriever",
+    "weights": "1.0/0.5/1.0",
+    "hr_percent_at_5": "12",
+    "hr_percent_at_10": "16"
+  },
+  {
+    "dataset": "NovelHopQA",
+    "retriever": "Contriever",
+    "weights": "1.0/1.0/0.5",
+    "hr_percent_at_5": "11",
+    "hr_percent_at_10": "15"
+  },
+  {
+    "dataset": "NovelHopQA",
+    "retriever": "Jina",
+    "weights": "1.0/0.5/0.3",
+    "hr_percent_at_5": "15",
+    "hr_percent_at_10": "21"
+  },
+  {
+    "dataset": "NovelHopQA",
+    "retriever": "Jina",
+    "weights": "1.0/1.0/1.0",
+    "hr_percent_at_5": "12",
+    "hr_percent_at_10": "16"
+  },
+  {
+    "dataset": "NovelHopQA",
+    "retriever": "Jina",
+    "weights": "1.0/0.3/1.0",
+    "hr_percent_at_5": "13",
+    "hr_percent_at_10": "19"
+  },
+  {
+    "dataset": "NovelHopQA",
+    "retriever": "Jina",
+    "weights": "1.0/0.5/1.0",
+    "hr_percent_at_5": "12",
+    "hr_percent_at_10": "18"
+  },
+  {
+    "dataset": "NovelHopQA",
+    "retriever": "Jina",
+    "weights": "1.0/1.0/0.5",
+    "hr_percent_at_5": "13",
+    "hr_percent_at_10": "16"
+  }
+]

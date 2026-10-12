@@ -1,0 +1,16 @@
+datasets:
+- loogle
+- qasper
+- novelhopqa
+- musique
+retrievers:
+- bm25
+- contriever
+variants:
+- name: qwen3_30b
+- name: qwen2_5_7b
+  model_config: configs/models/qwen2_5_7b.yaml
+- name: mistral_small_24b
+  model_config: configs/models/mistral_small_24b.yaml
+- name: llama3_3_70b
+  model_config: configs/models/llama3_3_70b.yaml

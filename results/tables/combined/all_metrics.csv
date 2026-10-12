@@ -1,0 +1,469 @@
+study,dataset,retriever,condition,source_id,cutoff,queries,eligible,hits,hr,provenance
+main,loogle,bm25,default,31b74c52fa1f23ce7fe4,5,1832,1832,1691,0.9230349344978166,per_query
+main,loogle,bm25,default,31b74c52fa1f23ce7fe4,10,1832,1832,1767,0.9645196506550219,per_query
+main,loogle,contriever,default,9ece4150a07e6c832c72,5,1832,1832,1382,0.7543668122270742,per_query
+main,loogle,contriever,default,9ece4150a07e6c832c72,10,1832,1832,1570,0.8569868995633187,per_query
+main,loogle,bge_m3,default,1b5e66c4fe311c077499,5,1832,1832,1485,0.8105895196506551,per_query
+main,loogle,bge_m3,default,1b5e66c4fe311c077499,10,1832,1832,1651,0.9012008733624454,per_query
+main,loogle,jina,default,2085c2a07390a117a98e,5,1832,1832,1285,0.7014192139737991,per_query
+main,loogle,jina,default,2085c2a07390a117a98e,10,1832,1832,1502,0.8198689956331878,per_query
+main,loogle,qwen,default,9577c134c66633408106,5,1832,1832,1411,0.7701965065502183,per_query
+main,loogle,qwen,default,9577c134c66633408106,10,1832,1832,1588,0.8668122270742358,per_query
+main,qasper,bm25,default,83745de6d3513ad9e20b,5,1333,1333,226,0.1695423855963991,per_query
+main,qasper,bm25,default,83745de6d3513ad9e20b,10,1333,1333,348,0.26106526631657917,per_query
+main,qasper,contriever,default,4a14b0b08f0a23ebe198,5,1333,1333,216,0.16204051012753187,per_query
+main,qasper,contriever,default,4a14b0b08f0a23ebe198,10,1333,1333,344,0.25806451612903225,per_query
+main,qasper,bge_m3,default,71085a49ed160919ab81,5,1333,1333,279,0.20930232558139536,per_query
+main,qasper,bge_m3,default,71085a49ed160919ab81,10,1333,1333,412,0.3090772693173293,per_query
+main,qasper,jina,default,8e3d319b457a69e61bba,5,1333,1333,252,0.18904726181545387,per_query
+main,qasper,jina,default,8e3d319b457a69e61bba,10,1333,1333,362,0.27156789197299325,per_query
+main,qasper,qwen,default,b25e0f14653b1c8118cd,5,1333,1333,311,0.23330832708177043,per_query
+main,qasper,qwen,default,b25e0f14653b1c8118cd,10,1333,1333,455,0.3413353338334584,per_query
+main,novelhopqa,bm25,default,c5e3be18d129243ec2b2,5,908,908,164,0.18061674008810572,per_query
+main,novelhopqa,bm25,default,c5e3be18d129243ec2b2,10,908,908,200,0.22026431718061673,per_query
+main,novelhopqa,contriever,default,0f6c2fc9380c51fa24bd,5,908,908,123,0.1354625550660793,per_query
+main,novelhopqa,contriever,default,0f6c2fc9380c51fa24bd,10,908,908,165,0.1817180616740088,per_query
+main,novelhopqa,bge_m3,default,afbaee8c0b280b0f8d8c,5,908,908,150,0.16519823788546256,per_query
+main,novelhopqa,bge_m3,default,afbaee8c0b280b0f8d8c,10,908,908,201,0.22136563876651982,per_query
+main,novelhopqa,jina,default,899c7111e2f80a765844,5,908,908,134,0.14757709251101322,per_query
+main,novelhopqa,jina,default,899c7111e2f80a765844,10,908,908,192,0.21145374449339208,per_query
+main,novelhopqa,qwen,default,08c8381c254f76ec67e1,5,908,908,138,0.15198237885462554,per_query
+main,novelhopqa,qwen,default,08c8381c254f76ec67e1,10,908,908,187,0.20594713656387664,per_query
+main,musique,bm25,default,9c6fadcc25362ac17d44,5,900,900,565,0.6277777777777778,per_query
+main,musique,bm25,default,9c6fadcc25362ac17d44,10,900,900,699,0.7766666666666666,per_query
+main,musique,contriever,default,d9967926f0edf0159884,5,900,900,619,0.6877777777777778,per_query
+main,musique,contriever,default,d9967926f0edf0159884,10,900,900,753,0.8366666666666667,per_query
+main,musique,bge_m3,default,17f74abd47a68c7f17f2,5,900,900,692,0.7688888888888888,per_query
+main,musique,bge_m3,default,17f74abd47a68c7f17f2,10,900,900,795,0.8833333333333333,per_query
+main,musique,jina,default,2c68eb541a5a8031b816,5,900,900,659,0.7322222222222222,per_query
+main,musique,jina,default,2c68eb541a5a8031b816,10,900,900,793,0.8811111111111111,per_query
+main,musique,qwen,default,c5249addc28d10278db7,5,900,900,688,0.7644444444444445,per_query
+main,musique,qwen,default,c5249addc28d10278db7,10,900,900,810,0.9,per_query
+retrieval_depth,loogle,bm25,top20,14e05ca8bff6ffb83962,5,1832,1832,1691,0.9230349344978166,per_query
+retrieval_depth,loogle,bm25,top20,14e05ca8bff6ffb83962,10,1832,1832,1767,0.9645196506550219,per_query
+retrieval_depth,musique,bm25,top20,92c7ea2263a2bd4182b4,5,900,900,565,0.6277777777777778,per_query
+retrieval_depth,musique,bm25,top20,92c7ea2263a2bd4182b4,10,900,900,699,0.7766666666666666,per_query
+retrieval_depth,novelhopqa,bm25,top20,dffd8dd7460da4b2fd6b,5,908,908,164,0.18061674008810572,per_query
+retrieval_depth,novelhopqa,bm25,top20,dffd8dd7460da4b2fd6b,10,908,908,200,0.22026431718061673,per_query
+retrieval_depth,qasper,bm25,top20,32b66b26d0dfc35172cf,5,1333,1333,226,0.1695423855963991,per_query
+retrieval_depth,qasper,bm25,top20,32b66b26d0dfc35172cf,10,1333,1333,348,0.26106526631657917,per_query
+active_entity_budget,LooGLE,BM25,budget=AE_3_2_5,paper_table6a_18de544fd67c,5,,,,0.93,paper_reported_summary
+active_entity_budget,LooGLE,BM25,budget=AE_5_2_3,paper_table6a_18de544fd67c,5,,,,0.9229999999999999,paper_reported_summary
+active_entity_budget,LooGLE,BM25,budget=AE_5_2_5,paper_table6a_18de544fd67c,5,,,,0.903,paper_reported_summary
+active_entity_budget,LooGLE,BM25,budget=AE_7_2_5,paper_table6a_18de544fd67c,5,,,,0.9279999999999999,paper_reported_summary
+active_entity_budget,LooGLE,Contriever,budget=AE_3_2_5,paper_table6a_18de544fd67c,5,,,,0.7440000000000001,paper_reported_summary
+active_entity_budget,LooGLE,Contriever,budget=AE_5_2_3,paper_table6a_18de544fd67c,5,,,,0.754,paper_reported_summary
+active_entity_budget,LooGLE,Contriever,budget=AE_5_2_5,paper_table6a_18de544fd67c,5,,,,0.7490000000000001,paper_reported_summary
+active_entity_budget,LooGLE,Contriever,budget=AE_7_2_5,paper_table6a_18de544fd67c,5,,,,0.741,paper_reported_summary
+active_entity_budget,NovelHopQA,BM25,budget=AE_3_2_5,paper_table6a_18de544fd67c,5,,,,0.177,paper_reported_summary
+active_entity_budget,NovelHopQA,BM25,budget=AE_5_2_3,paper_table6a_18de544fd67c,5,,,,0.18100000000000002,paper_reported_summary
+active_entity_budget,NovelHopQA,BM25,budget=AE_5_2_5,paper_table6a_18de544fd67c,5,,,,0.185,paper_reported_summary
+active_entity_budget,NovelHopQA,BM25,budget=AE_7_2_5,paper_table6a_18de544fd67c,5,,,,0.17800000000000002,paper_reported_summary
+active_entity_budget,NovelHopQA,Contriever,budget=AE_3_2_5,paper_table6a_18de544fd67c,5,,,,0.13699999999999998,paper_reported_summary
+active_entity_budget,NovelHopQA,Contriever,budget=AE_5_2_3,paper_table6a_18de544fd67c,5,,,,0.135,paper_reported_summary
+active_entity_budget,NovelHopQA,Contriever,budget=AE_5_2_5,paper_table6a_18de544fd67c,5,,,,0.129,paper_reported_summary
+active_entity_budget,NovelHopQA,Contriever,budget=AE_7_2_5,paper_table6a_18de544fd67c,5,,,,0.131,paper_reported_summary
+active_entity_selector,LooGLE,BM25,selector=word,paper_table6b_18de544fd67c,5,,,,0.9109999999999999,paper_reported_summary
+active_entity_selector,LooGLE,BM25,selector=bm25,paper_table6b_18de544fd67c,5,,,,0.9229999999999999,paper_reported_summary
+active_entity_selector,LooGLE,Contriever,selector=word,paper_table6b_18de544fd67c,5,,,,0.752,paper_reported_summary
+active_entity_selector,LooGLE,Contriever,selector=bm25,paper_table6b_18de544fd67c,5,,,,0.754,paper_reported_summary
+active_entity_selector,NovelHopQA,BM25,selector=word,paper_table6b_18de544fd67c,5,,,,0.17800000000000002,paper_reported_summary
+active_entity_selector,NovelHopQA,BM25,selector=bm25,paper_table6b_18de544fd67c,5,,,,0.18100000000000002,paper_reported_summary
+active_entity_selector,NovelHopQA,Contriever,selector=word,paper_table6b_18de544fd67c,5,,,,0.131,paper_reported_summary
+active_entity_selector,NovelHopQA,Contriever,selector=bm25,paper_table6b_18de544fd67c,5,,,,0.135,paper_reported_summary
+branching_factor,LooGLE,BM25,branching_factor=2,f8a54f7db0c7571b4a95,5,1832,1832,1689,0.9219432314410481,per_query
+branching_factor,LooGLE,BM25,branching_factor=2,f8a54f7db0c7571b4a95,10,1832,1832,1761,0.9612445414847162,per_query
+branching_factor,LooGLE,BM25,branching_factor=5,31b74c52fa1f23ce7fe4,5,1832,1832,1691,0.9230349344978166,per_query
+branching_factor,LooGLE,BM25,branching_factor=5,31b74c52fa1f23ce7fe4,10,1832,1832,1767,0.9645196506550219,per_query
+branching_factor,LooGLE,BM25,branching_factor=8,928b433857d356bdbd2b,5,1832,1832,1663,0.9077510917030568,per_query
+branching_factor,LooGLE,BM25,branching_factor=8,928b433857d356bdbd2b,10,1832,1832,1759,0.9601528384279476,per_query
+branching_factor,LooGLE,BM25,branching_factor=10,a7f043f24e592f40c46b,5,1832,1832,1673,0.9132096069868996,per_query
+branching_factor,LooGLE,BM25,branching_factor=10,a7f043f24e592f40c46b,10,1832,1832,1769,0.9656113537117904,per_query
+branching_factor,LooGLE,Contriever,branching_factor=2,5efe5c7b38c24e0e4fc1,5,1832,1832,1360,0.74235807860262,per_query
+branching_factor,LooGLE,Contriever,branching_factor=2,5efe5c7b38c24e0e4fc1,10,1832,1832,1567,0.855349344978166,per_query
+branching_factor,LooGLE,Contriever,branching_factor=5,9ece4150a07e6c832c72,5,1832,1832,1382,0.7543668122270742,per_query
+branching_factor,LooGLE,Contriever,branching_factor=5,9ece4150a07e6c832c72,10,1832,1832,1570,0.8569868995633187,per_query
+branching_factor,LooGLE,Contriever,branching_factor=8,a4ba9e29f898fe958ca3,5,1832,1832,1322,0.7216157205240175,per_query
+branching_factor,LooGLE,Contriever,branching_factor=8,a4ba9e29f898fe958ca3,10,1832,1832,1552,0.8471615720524017,per_query
+branching_factor,LooGLE,Contriever,branching_factor=10,bc8f23960a5a923e285d,5,1832,1832,1352,0.7379912663755459,per_query
+branching_factor,LooGLE,Contriever,branching_factor=10,bc8f23960a5a923e285d,10,1832,1832,1556,0.8493449781659389,per_query
+branching_factor,MuSiQue-32K,BM25,branching_factor=2,aab765a64d578c2721fd,5,900,900,521,0.5788888888888889,per_query
+branching_factor,MuSiQue-32K,BM25,branching_factor=2,aab765a64d578c2721fd,10,900,900,673,0.7477777777777778,per_query
+branching_factor,MuSiQue-32K,BM25,branching_factor=5,9c6fadcc25362ac17d44,5,900,900,565,0.6277777777777778,per_query
+branching_factor,MuSiQue-32K,BM25,branching_factor=5,9c6fadcc25362ac17d44,10,900,900,699,0.7766666666666666,per_query
+branching_factor,MuSiQue-32K,BM25,branching_factor=8,177c83cbf82ca4be380b,5,900,900,521,0.5788888888888889,per_query
+branching_factor,MuSiQue-32K,BM25,branching_factor=8,177c83cbf82ca4be380b,10,900,900,664,0.7377777777777778,per_query
+branching_factor,MuSiQue-32K,BM25,branching_factor=10,8cf5cd7eba9d23978e04,5,900,900,490,0.5444444444444444,per_query
+branching_factor,MuSiQue-32K,BM25,branching_factor=10,8cf5cd7eba9d23978e04,10,900,900,676,0.7511111111111111,per_query
+branching_factor,MuSiQue-32K,Contriever,branching_factor=2,763e838765207e418ea9,5,900,900,561,0.6233333333333333,per_query
+branching_factor,MuSiQue-32K,Contriever,branching_factor=2,763e838765207e418ea9,10,900,900,710,0.7888888888888889,per_query
+branching_factor,MuSiQue-32K,Contriever,branching_factor=5,d9967926f0edf0159884,5,900,900,619,0.6877777777777778,per_query
+branching_factor,MuSiQue-32K,Contriever,branching_factor=5,d9967926f0edf0159884,10,900,900,753,0.8366666666666667,per_query
+branching_factor,MuSiQue-32K,Contriever,branching_factor=8,94c62d94a8ac7b870c33,5,900,900,555,0.6166666666666667,per_query
+branching_factor,MuSiQue-32K,Contriever,branching_factor=8,94c62d94a8ac7b870c33,10,900,900,709,0.7877777777777778,per_query
+branching_factor,MuSiQue-32K,Contriever,branching_factor=10,4b14826dc26c69aaea73,5,900,900,552,0.6133333333333333,per_query
+branching_factor,MuSiQue-32K,Contriever,branching_factor=10,4b14826dc26c69aaea73,10,900,900,712,0.7911111111111111,per_query
+branching_factor,QASPER-64K,BM25,branching_factor=2,df0d9cfe6b4801455828,5,1333,1333,214,0.16054013503375844,per_query
+branching_factor,QASPER-64K,BM25,branching_factor=2,df0d9cfe6b4801455828,10,1333,1333,347,0.2603150787696924,per_query
+branching_factor,QASPER-64K,BM25,branching_factor=5,83745de6d3513ad9e20b,5,1333,1333,226,0.1695423855963991,per_query
+branching_factor,QASPER-64K,BM25,branching_factor=5,83745de6d3513ad9e20b,10,1333,1333,348,0.26106526631657917,per_query
+branching_factor,QASPER-64K,BM25,branching_factor=8,8cafe93efeac92052918,5,1333,1333,210,0.15753938484621155,per_query
+branching_factor,QASPER-64K,BM25,branching_factor=8,8cafe93efeac92052918,10,1333,1333,335,0.25131282820705175,per_query
+branching_factor,QASPER-64K,BM25,branching_factor=10,8b8c463d94213ca05139,5,1333,1333,208,0.15603900975243812,per_query
+branching_factor,QASPER-64K,BM25,branching_factor=10,8b8c463d94213ca05139,10,1333,1333,336,0.25206301575393847,per_query
+branching_factor,QASPER-64K,Contriever,branching_factor=2,641c3920645e2be9f195,5,1333,1333,212,0.159039759939985,per_query
+branching_factor,QASPER-64K,Contriever,branching_factor=2,641c3920645e2be9f195,10,1333,1333,337,0.2528132033008252,per_query
+branching_factor,QASPER-64K,Contriever,branching_factor=5,4a14b0b08f0a23ebe198,5,1333,1333,216,0.16204051012753187,per_query
+branching_factor,QASPER-64K,Contriever,branching_factor=5,4a14b0b08f0a23ebe198,10,1333,1333,344,0.25806451612903225,per_query
+branching_factor,QASPER-64K,Contriever,branching_factor=8,50737ae171eb91367bb0,5,1333,1333,205,0.15378844711177794,per_query
+branching_factor,QASPER-64K,Contriever,branching_factor=8,50737ae171eb91367bb0,10,1333,1333,319,0.23930982745686422,per_query
+branching_factor,QASPER-64K,Contriever,branching_factor=10,db7284b6dcd1412ff1d5,5,1333,1333,212,0.159039759939985,per_query
+branching_factor,QASPER-64K,Contriever,branching_factor=10,db7284b6dcd1412ff1d5,10,1333,1333,327,0.245311327831958,per_query
+branching_factor,NovelHopQA,BM25,branching_factor=2,12fdb169860073beb632,5,908,908,149,0.16409691629955947,per_query
+branching_factor,NovelHopQA,BM25,branching_factor=2,12fdb169860073beb632,10,908,908,196,0.21585903083700442,per_query
+branching_factor,NovelHopQA,BM25,branching_factor=5,c5e3be18d129243ec2b2,5,908,908,164,0.18061674008810572,per_query
+branching_factor,NovelHopQA,BM25,branching_factor=5,c5e3be18d129243ec2b2,10,908,908,200,0.22026431718061673,per_query
+branching_factor,NovelHopQA,BM25,branching_factor=8,6696711ae1fb961154c7,5,908,908,156,0.17180616740088106,per_query
+branching_factor,NovelHopQA,BM25,branching_factor=8,6696711ae1fb961154c7,10,908,908,188,0.20704845814977973,per_query
+branching_factor,NovelHopQA,BM25,branching_factor=10,f95905d86f8ed4fc160a,5,908,908,153,0.1685022026431718,per_query
+branching_factor,NovelHopQA,BM25,branching_factor=10,f95905d86f8ed4fc160a,10,908,908,188,0.20704845814977973,per_query
+branching_factor,NovelHopQA,Contriever,branching_factor=2,c523c04fa9dd5d5d88a8,5,908,908,121,0.13325991189427314,per_query
+branching_factor,NovelHopQA,Contriever,branching_factor=2,c523c04fa9dd5d5d88a8,10,908,908,161,0.17731277533039647,per_query
+branching_factor,NovelHopQA,Contriever,branching_factor=5,0f6c2fc9380c51fa24bd,5,908,908,123,0.1354625550660793,per_query
+branching_factor,NovelHopQA,Contriever,branching_factor=5,0f6c2fc9380c51fa24bd,10,908,908,165,0.1817180616740088,per_query
+branching_factor,NovelHopQA,Contriever,branching_factor=8,7a700ddfadf333fb3cf0,5,908,908,123,0.1354625550660793,per_query
+branching_factor,NovelHopQA,Contriever,branching_factor=8,7a700ddfadf333fb3cf0,10,908,908,166,0.1828193832599119,per_query
+branching_factor,NovelHopQA,Contriever,branching_factor=10,3319894ff2bb987cd943,5,908,908,103,0.11343612334801761,per_query
+branching_factor,NovelHopQA,Contriever,branching_factor=10,3319894ff2bb987cd943,10,908,908,153,0.1685022026431718,per_query
+llm_ablation,LooGLE,BM25,model_key=qwen2_5_7b,98aefc1afdeeb9988e34,5,1832,1832,1678,0.915938864628821,per_query
+llm_ablation,LooGLE,BM25,model_key=qwen2_5_7b,98aefc1afdeeb9988e34,10,1832,1832,1753,0.9568777292576419,per_query
+llm_ablation,LooGLE,BM25,model_key=mistral_small_24b,daeb0f6b58af98a40131,5,1832,1832,1675,0.9143013100436681,per_query
+llm_ablation,LooGLE,BM25,model_key=mistral_small_24b,daeb0f6b58af98a40131,10,1832,1832,1749,0.9546943231441049,per_query
+llm_ablation,LooGLE,BM25,model_key=saadi_default,31b74c52fa1f23ce7fe4,5,1832,1832,1691,0.9230349344978166,per_query
+llm_ablation,LooGLE,BM25,model_key=saadi_default,31b74c52fa1f23ce7fe4,10,1832,1832,1767,0.9645196506550219,per_query
+llm_ablation,LooGLE,BM25,model_key=llama3_3_70b,d263dfaa932b14b385e7,5,1832,1832,1668,0.9104803493449781,per_query
+llm_ablation,LooGLE,BM25,model_key=llama3_3_70b,d263dfaa932b14b385e7,10,1832,1832,1744,0.9519650655021834,per_query
+llm_ablation,LooGLE,Contriever,model_key=qwen2_5_7b,8697dd668d1c676491ce,5,1832,1832,1325,0.7232532751091703,per_query
+llm_ablation,LooGLE,Contriever,model_key=qwen2_5_7b,8697dd668d1c676491ce,10,1832,1832,1553,0.847707423580786,per_query
+llm_ablation,LooGLE,Contriever,model_key=mistral_small_24b,23b6de3db23cabac9ca4,5,1832,1832,1340,0.7314410480349345,per_query
+llm_ablation,LooGLE,Contriever,model_key=mistral_small_24b,23b6de3db23cabac9ca4,10,1832,1832,1545,0.8433406113537117,per_query
+llm_ablation,LooGLE,Contriever,model_key=saadi_default,9ece4150a07e6c832c72,5,1832,1832,1382,0.7543668122270742,per_query
+llm_ablation,LooGLE,Contriever,model_key=saadi_default,9ece4150a07e6c832c72,10,1832,1832,1570,0.8569868995633187,per_query
+llm_ablation,LooGLE,Contriever,model_key=llama3_3_70b,81377cfc2916364311ba,5,1832,1832,1323,0.7221615720524017,per_query
+llm_ablation,LooGLE,Contriever,model_key=llama3_3_70b,81377cfc2916364311ba,10,1832,1832,1544,0.8427947598253275,per_query
+llm_ablation,NovelHopQA,BM25,model_key=qwen2_5_7b,b389119dde31ea5bb954,5,908,908,163,0.17951541850220265,per_query
+llm_ablation,NovelHopQA,BM25,model_key=qwen2_5_7b,b389119dde31ea5bb954,10,908,908,195,0.21475770925110133,per_query
+llm_ablation,NovelHopQA,BM25,model_key=mistral_small_24b,6859b35c1641f6be669a,5,908,908,154,0.1696035242290749,per_query
+llm_ablation,NovelHopQA,BM25,model_key=mistral_small_24b,6859b35c1641f6be669a,10,908,908,189,0.20814977973568283,per_query
+llm_ablation,NovelHopQA,BM25,model_key=saadi_default,c5e3be18d129243ec2b2,5,908,908,164,0.18061674008810572,per_query
+llm_ablation,NovelHopQA,BM25,model_key=saadi_default,c5e3be18d129243ec2b2,10,908,908,200,0.22026431718061673,per_query
+llm_ablation,NovelHopQA,BM25,model_key=llama3_3_70b,a32a18a5ca391388dfbf,5,908,908,157,0.17290748898678415,per_query
+llm_ablation,NovelHopQA,BM25,model_key=llama3_3_70b,a32a18a5ca391388dfbf,10,908,908,193,0.21255506607929514,per_query
+llm_ablation,NovelHopQA,Contriever,model_key=qwen2_5_7b,86698ef8bef7c821ca2e,5,908,908,121,0.13325991189427314,per_query
+llm_ablation,NovelHopQA,Contriever,model_key=qwen2_5_7b,86698ef8bef7c821ca2e,10,908,908,163,0.17951541850220265,per_query
+llm_ablation,NovelHopQA,Contriever,model_key=mistral_small_24b,6ac2557f78eec9218edc,5,908,908,103,0.11343612334801761,per_query
+llm_ablation,NovelHopQA,Contriever,model_key=mistral_small_24b,6ac2557f78eec9218edc,10,908,908,166,0.1828193832599119,per_query
+llm_ablation,NovelHopQA,Contriever,model_key=saadi_default,0f6c2fc9380c51fa24bd,5,908,908,123,0.1354625550660793,per_query
+llm_ablation,NovelHopQA,Contriever,model_key=saadi_default,0f6c2fc9380c51fa24bd,10,908,908,165,0.1817180616740088,per_query
+llm_ablation,NovelHopQA,Contriever,model_key=llama3_3_70b,4a8f792babdfc2fa272a,5,908,908,107,0.11784140969162996,per_query
+llm_ablation,NovelHopQA,Contriever,model_key=llama3_3_70b,4a8f792babdfc2fa272a,10,908,908,158,0.17400881057268722,per_query
+saadi_score_formulation_and_normalization,LooGLE,BM25,score_formulation=Component-wise fusion; normalization=Raw,4651b78551f9948c8217,5,1832,1832,1680,0.9170305676855895,per_query
+saadi_score_formulation_and_normalization,LooGLE,BM25,score_formulation=Component-wise fusion; normalization=Raw,4651b78551f9948c8217,10,1832,1832,1754,0.9574235807860262,per_query
+saadi_score_formulation_and_normalization,LooGLE,BM25,score_formulation=Component-wise fusion; normalization=Min-max,669c2cd7d9d6ea8c88b4,5,1832,1832,1682,0.9181222707423581,per_query
+saadi_score_formulation_and_normalization,LooGLE,BM25,score_formulation=Component-wise fusion; normalization=Min-max,669c2cd7d9d6ea8c88b4,10,1832,1832,1754,0.9574235807860262,per_query
+saadi_score_formulation_and_normalization,LooGLE,BM25,score_formulation=Component-wise fusion; normalization=Z-score,31b74c52fa1f23ce7fe4,5,1832,1832,1691,0.9230349344978166,per_query
+saadi_score_formulation_and_normalization,LooGLE,BM25,score_formulation=Component-wise fusion; normalization=Z-score,31b74c52fa1f23ce7fe4,10,1832,1832,1767,0.9645196506550219,per_query
+saadi_score_formulation_and_normalization,LooGLE,BM25,score_formulation=Linearized memory; normalization=Raw,3f7df3835868ae8d51c4,5,1832,1832,1670,0.9115720524017468,per_query
+saadi_score_formulation_and_normalization,LooGLE,BM25,score_formulation=Linearized memory; normalization=Raw,3f7df3835868ae8d51c4,10,1832,1832,1750,0.9552401746724891,per_query
+saadi_score_formulation_and_normalization,LooGLE,BM25,score_formulation=Linearized memory; normalization=Min-max,f6cc857c12382938d7c7,5,1832,1832,1682,0.9181222707423581,per_query
+saadi_score_formulation_and_normalization,LooGLE,BM25,score_formulation=Linearized memory; normalization=Min-max,f6cc857c12382938d7c7,10,1832,1832,1751,0.9557860262008734,per_query
+saadi_score_formulation_and_normalization,LooGLE,BM25,score_formulation=Linearized memory; normalization=Z-score,c636bd3159cfddedf86f,5,1832,1832,1687,0.9208515283842795,per_query
+saadi_score_formulation_and_normalization,LooGLE,BM25,score_formulation=Linearized memory; normalization=Z-score,c636bd3159cfddedf86f,10,1832,1832,1757,0.959061135371179,per_query
+saadi_score_formulation_and_normalization,LooGLE,Contriever,score_formulation=Component-wise fusion; normalization=Raw,698dbac459c90e388cdb,5,1832,1832,1334,0.7281659388646288,per_query
+saadi_score_formulation_and_normalization,LooGLE,Contriever,score_formulation=Component-wise fusion; normalization=Raw,698dbac459c90e388cdb,10,1832,1832,1542,0.8417030567685589,per_query
+saadi_score_formulation_and_normalization,LooGLE,Contriever,score_formulation=Component-wise fusion; normalization=Min-max,957c0db2019e4b34de9f,5,1832,1832,1353,0.7385371179039302,per_query
+saadi_score_formulation_and_normalization,LooGLE,Contriever,score_formulation=Component-wise fusion; normalization=Min-max,957c0db2019e4b34de9f,10,1832,1832,1564,0.8537117903930131,per_query
+saadi_score_formulation_and_normalization,LooGLE,Contriever,score_formulation=Component-wise fusion; normalization=Z-score,9ece4150a07e6c832c72,5,1832,1832,1382,0.7543668122270742,per_query
+saadi_score_formulation_and_normalization,LooGLE,Contriever,score_formulation=Component-wise fusion; normalization=Z-score,9ece4150a07e6c832c72,10,1832,1832,1570,0.8569868995633187,per_query
+saadi_score_formulation_and_normalization,LooGLE,Contriever,score_formulation=Linearized memory; normalization=Raw,6f782f69057f8f33aafe,5,1832,1832,1343,0.7330786026200873,per_query
+saadi_score_formulation_and_normalization,LooGLE,Contriever,score_formulation=Linearized memory; normalization=Raw,6f782f69057f8f33aafe,10,1832,1832,1567,0.855349344978166,per_query
+saadi_score_formulation_and_normalization,LooGLE,Contriever,score_formulation=Linearized memory; normalization=Min-max,05496ead345ae83e4107,5,1832,1832,1357,0.7407205240174672,per_query
+saadi_score_formulation_and_normalization,LooGLE,Contriever,score_formulation=Linearized memory; normalization=Min-max,05496ead345ae83e4107,10,1832,1832,1571,0.857532751091703,per_query
+saadi_score_formulation_and_normalization,LooGLE,Contriever,score_formulation=Linearized memory; normalization=Z-score,0ee26509d99d9ca500fb,5,1832,1832,1365,0.7450873362445415,per_query
+saadi_score_formulation_and_normalization,LooGLE,Contriever,score_formulation=Linearized memory; normalization=Z-score,0ee26509d99d9ca500fb,10,1832,1832,1578,0.861353711790393,per_query
+saadi_score_formulation_and_normalization,NovelHopQA,BM25,score_formulation=Component-wise fusion; normalization=Raw,e96f6714f6f4d5b7ee03,5,908,908,167,0.183920704845815,per_query
+saadi_score_formulation_and_normalization,NovelHopQA,BM25,score_formulation=Component-wise fusion; normalization=Raw,e96f6714f6f4d5b7ee03,10,908,908,200,0.22026431718061673,per_query
+saadi_score_formulation_and_normalization,NovelHopQA,BM25,score_formulation=Component-wise fusion; normalization=Min-max,53e88543e8237ed2513a,5,908,908,164,0.18061674008810572,per_query
+saadi_score_formulation_and_normalization,NovelHopQA,BM25,score_formulation=Component-wise fusion; normalization=Min-max,53e88543e8237ed2513a,10,908,908,201,0.22136563876651982,per_query
+saadi_score_formulation_and_normalization,NovelHopQA,BM25,score_formulation=Component-wise fusion; normalization=Z-score,c5e3be18d129243ec2b2,5,908,908,164,0.18061674008810572,per_query
+saadi_score_formulation_and_normalization,NovelHopQA,BM25,score_formulation=Component-wise fusion; normalization=Z-score,c5e3be18d129243ec2b2,10,908,908,200,0.22026431718061673,per_query
+saadi_score_formulation_and_normalization,NovelHopQA,BM25,score_formulation=Linearized memory; normalization=Raw,64b15a684d0b43b22aba,5,908,908,167,0.183920704845815,per_query
+saadi_score_formulation_and_normalization,NovelHopQA,BM25,score_formulation=Linearized memory; normalization=Raw,64b15a684d0b43b22aba,10,908,908,200,0.22026431718061673,per_query
+saadi_score_formulation_and_normalization,NovelHopQA,BM25,score_formulation=Linearized memory; normalization=Min-max,0685ee57a10da5970807,5,908,908,167,0.183920704845815,per_query
+saadi_score_formulation_and_normalization,NovelHopQA,BM25,score_formulation=Linearized memory; normalization=Min-max,0685ee57a10da5970807,10,908,908,196,0.21585903083700442,per_query
+saadi_score_formulation_and_normalization,NovelHopQA,BM25,score_formulation=Linearized memory; normalization=Z-score,a0bee92ca040884e113a,5,908,908,167,0.183920704845815,per_query
+saadi_score_formulation_and_normalization,NovelHopQA,BM25,score_formulation=Linearized memory; normalization=Z-score,a0bee92ca040884e113a,10,908,908,200,0.22026431718061673,per_query
+saadi_score_formulation_and_normalization,NovelHopQA,Contriever,score_formulation=Component-wise fusion; normalization=Raw,a2d210bd9ce959538061,5,908,908,127,0.13986784140969163,per_query
+saadi_score_formulation_and_normalization,NovelHopQA,Contriever,score_formulation=Component-wise fusion; normalization=Raw,a2d210bd9ce959538061,10,908,908,168,0.18502202643171806,per_query
+saadi_score_formulation_and_normalization,NovelHopQA,Contriever,score_formulation=Component-wise fusion; normalization=Min-max,4d35c5ccf21cf9fe949c,5,908,908,123,0.1354625550660793,per_query
+saadi_score_formulation_and_normalization,NovelHopQA,Contriever,score_formulation=Component-wise fusion; normalization=Min-max,4d35c5ccf21cf9fe949c,10,908,908,167,0.183920704845815,per_query
+saadi_score_formulation_and_normalization,NovelHopQA,Contriever,score_formulation=Component-wise fusion; normalization=Z-score,0f6c2fc9380c51fa24bd,5,908,908,123,0.1354625550660793,per_query
+saadi_score_formulation_and_normalization,NovelHopQA,Contriever,score_formulation=Component-wise fusion; normalization=Z-score,0f6c2fc9380c51fa24bd,10,908,908,165,0.1817180616740088,per_query
+saadi_score_formulation_and_normalization,NovelHopQA,Contriever,score_formulation=Linearized memory; normalization=Raw,a4770cc7d9cc642cf3a9,5,908,908,91,0.10022026431718062,per_query
+saadi_score_formulation_and_normalization,NovelHopQA,Contriever,score_formulation=Linearized memory; normalization=Raw,a4770cc7d9cc642cf3a9,10,908,908,143,0.15748898678414097,per_query
+saadi_score_formulation_and_normalization,NovelHopQA,Contriever,score_formulation=Linearized memory; normalization=Min-max,e4d2eb85e1bdd9fb435e,5,908,908,103,0.11343612334801761,per_query
+saadi_score_formulation_and_normalization,NovelHopQA,Contriever,score_formulation=Linearized memory; normalization=Min-max,e4d2eb85e1bdd9fb435e,10,908,908,147,0.1618942731277533,per_query
+saadi_score_formulation_and_normalization,NovelHopQA,Contriever,score_formulation=Linearized memory; normalization=Z-score,55156ccc68843236986a,5,908,908,101,0.11123348017621146,per_query
+saadi_score_formulation_and_normalization,NovelHopQA,Contriever,score_formulation=Linearized memory; normalization=Z-score,55156ccc68843236986a,10,908,908,139,0.15308370044052863,per_query
+saadi_score_fusion_weights,LooGLE,BM25,weights=1.0/0.5/0.3,43a8b999722a1192ad32,5,,,,0.92,reported_summary
+saadi_score_fusion_weights,LooGLE,BM25,weights=1.0/0.5/0.3,43a8b999722a1192ad32,10,,,,0.97,reported_summary
+saadi_score_fusion_weights,LooGLE,BM25,weights=1.0/1.0/1.0,43a8b999722a1192ad32,5,,,,0.87,reported_summary
+saadi_score_fusion_weights,LooGLE,BM25,weights=1.0/1.0/1.0,43a8b999722a1192ad32,10,,,,0.94,reported_summary
+saadi_score_fusion_weights,LooGLE,BM25,weights=1.0/0.3/1.0,43a8b999722a1192ad32,5,,,,0.89,reported_summary
+saadi_score_fusion_weights,LooGLE,BM25,weights=1.0/0.3/1.0,43a8b999722a1192ad32,10,,,,0.95,reported_summary
+saadi_score_fusion_weights,LooGLE,BM25,weights=1.0/0.5/1.0,43a8b999722a1192ad32,5,,,,0.9,reported_summary
+saadi_score_fusion_weights,LooGLE,BM25,weights=1.0/0.5/1.0,43a8b999722a1192ad32,10,,,,0.95,reported_summary
+saadi_score_fusion_weights,LooGLE,BM25,weights=1.0/1.0/0.5,43a8b999722a1192ad32,5,,,,0.87,reported_summary
+saadi_score_fusion_weights,LooGLE,BM25,weights=1.0/1.0/0.5,43a8b999722a1192ad32,10,,,,0.94,reported_summary
+saadi_score_fusion_weights,LooGLE,Contriever,weights=1.0/0.5/0.3,43a8b999722a1192ad32,5,,,,0.75,reported_summary
+saadi_score_fusion_weights,LooGLE,Contriever,weights=1.0/0.5/0.3,43a8b999722a1192ad32,10,,,,0.86,reported_summary
+saadi_score_fusion_weights,LooGLE,Contriever,weights=1.0/1.0/1.0,43a8b999722a1192ad32,5,,,,0.62,reported_summary
+saadi_score_fusion_weights,LooGLE,Contriever,weights=1.0/1.0/1.0,43a8b999722a1192ad32,10,,,,0.73,reported_summary
+saadi_score_fusion_weights,LooGLE,Contriever,weights=1.0/0.3/1.0,43a8b999722a1192ad32,5,,,,0.68,reported_summary
+saadi_score_fusion_weights,LooGLE,Contriever,weights=1.0/0.3/1.0,43a8b999722a1192ad32,10,,,,0.82,reported_summary
+saadi_score_fusion_weights,LooGLE,Contriever,weights=1.0/0.5/1.0,43a8b999722a1192ad32,5,,,,0.67,reported_summary
+saadi_score_fusion_weights,LooGLE,Contriever,weights=1.0/0.5/1.0,43a8b999722a1192ad32,10,,,,0.79,reported_summary
+saadi_score_fusion_weights,LooGLE,Contriever,weights=1.0/1.0/0.5,43a8b999722a1192ad32,5,,,,0.61,reported_summary
+saadi_score_fusion_weights,LooGLE,Contriever,weights=1.0/1.0/0.5,43a8b999722a1192ad32,10,,,,0.73,reported_summary
+saadi_score_fusion_weights,LooGLE,Jina,weights=1.0/0.5/0.3,43a8b999722a1192ad32,5,,,,0.7,reported_summary
+saadi_score_fusion_weights,LooGLE,Jina,weights=1.0/0.5/0.3,43a8b999722a1192ad32,10,,,,0.82,reported_summary
+saadi_score_fusion_weights,LooGLE,Jina,weights=1.0/1.0/1.0,43a8b999722a1192ad32,5,,,,0.64,reported_summary
+saadi_score_fusion_weights,LooGLE,Jina,weights=1.0/1.0/1.0,43a8b999722a1192ad32,10,,,,0.78,reported_summary
+saadi_score_fusion_weights,LooGLE,Jina,weights=1.0/0.3/1.0,43a8b999722a1192ad32,5,,,,0.69,reported_summary
+saadi_score_fusion_weights,LooGLE,Jina,weights=1.0/0.3/1.0,43a8b999722a1192ad32,10,,,,0.82,reported_summary
+saadi_score_fusion_weights,LooGLE,Jina,weights=1.0/0.5/1.0,43a8b999722a1192ad32,5,,,,0.68,reported_summary
+saadi_score_fusion_weights,LooGLE,Jina,weights=1.0/0.5/1.0,43a8b999722a1192ad32,10,,,,0.81,reported_summary
+saadi_score_fusion_weights,LooGLE,Jina,weights=1.0/1.0/0.5,43a8b999722a1192ad32,5,,,,0.63,reported_summary
+saadi_score_fusion_weights,LooGLE,Jina,weights=1.0/1.0/0.5,43a8b999722a1192ad32,10,,,,0.79,reported_summary
+saadi_score_fusion_weights,NovelHopQA,BM25,weights=1.0/0.5/0.3,43a8b999722a1192ad32,5,,,,0.18,reported_summary
+saadi_score_fusion_weights,NovelHopQA,BM25,weights=1.0/0.5/0.3,43a8b999722a1192ad32,10,,,,0.22,reported_summary
+saadi_score_fusion_weights,NovelHopQA,BM25,weights=1.0/1.0/1.0,43a8b999722a1192ad32,5,,,,0.16,reported_summary
+saadi_score_fusion_weights,NovelHopQA,BM25,weights=1.0/1.0/1.0,43a8b999722a1192ad32,10,,,,0.19,reported_summary
+saadi_score_fusion_weights,NovelHopQA,BM25,weights=1.0/0.3/1.0,43a8b999722a1192ad32,5,,,,0.16,reported_summary
+saadi_score_fusion_weights,NovelHopQA,BM25,weights=1.0/0.3/1.0,43a8b999722a1192ad32,10,,,,0.21,reported_summary
+saadi_score_fusion_weights,NovelHopQA,BM25,weights=1.0/0.5/1.0,43a8b999722a1192ad32,5,,,,0.16,reported_summary
+saadi_score_fusion_weights,NovelHopQA,BM25,weights=1.0/0.5/1.0,43a8b999722a1192ad32,10,,,,0.21,reported_summary
+saadi_score_fusion_weights,NovelHopQA,BM25,weights=1.0/1.0/0.5,43a8b999722a1192ad32,5,,,,0.16,reported_summary
+saadi_score_fusion_weights,NovelHopQA,BM25,weights=1.0/1.0/0.5,43a8b999722a1192ad32,10,,,,0.2,reported_summary
+saadi_score_fusion_weights,NovelHopQA,Contriever,weights=1.0/0.5/0.3,43a8b999722a1192ad32,5,,,,0.14,reported_summary
+saadi_score_fusion_weights,NovelHopQA,Contriever,weights=1.0/0.5/0.3,43a8b999722a1192ad32,10,,,,0.18,reported_summary
+saadi_score_fusion_weights,NovelHopQA,Contriever,weights=1.0/1.0/1.0,43a8b999722a1192ad32,5,,,,0.11,reported_summary
+saadi_score_fusion_weights,NovelHopQA,Contriever,weights=1.0/1.0/1.0,43a8b999722a1192ad32,10,,,,0.16,reported_summary
+saadi_score_fusion_weights,NovelHopQA,Contriever,weights=1.0/0.3/1.0,43a8b999722a1192ad32,5,,,,0.11,reported_summary
+saadi_score_fusion_weights,NovelHopQA,Contriever,weights=1.0/0.3/1.0,43a8b999722a1192ad32,10,,,,0.17,reported_summary
+saadi_score_fusion_weights,NovelHopQA,Contriever,weights=1.0/0.5/1.0,43a8b999722a1192ad32,5,,,,0.12,reported_summary
+saadi_score_fusion_weights,NovelHopQA,Contriever,weights=1.0/0.5/1.0,43a8b999722a1192ad32,10,,,,0.16,reported_summary
+saadi_score_fusion_weights,NovelHopQA,Contriever,weights=1.0/1.0/0.5,43a8b999722a1192ad32,5,,,,0.11,reported_summary
+saadi_score_fusion_weights,NovelHopQA,Contriever,weights=1.0/1.0/0.5,43a8b999722a1192ad32,10,,,,0.15,reported_summary
+saadi_score_fusion_weights,NovelHopQA,Jina,weights=1.0/0.5/0.3,43a8b999722a1192ad32,5,,,,0.15,reported_summary
+saadi_score_fusion_weights,NovelHopQA,Jina,weights=1.0/0.5/0.3,43a8b999722a1192ad32,10,,,,0.21,reported_summary
+saadi_score_fusion_weights,NovelHopQA,Jina,weights=1.0/1.0/1.0,43a8b999722a1192ad32,5,,,,0.12,reported_summary
+saadi_score_fusion_weights,NovelHopQA,Jina,weights=1.0/1.0/1.0,43a8b999722a1192ad32,10,,,,0.16,reported_summary
+saadi_score_fusion_weights,NovelHopQA,Jina,weights=1.0/0.3/1.0,43a8b999722a1192ad32,5,,,,0.13,reported_summary
+saadi_score_fusion_weights,NovelHopQA,Jina,weights=1.0/0.3/1.0,43a8b999722a1192ad32,10,,,,0.19,reported_summary
+saadi_score_fusion_weights,NovelHopQA,Jina,weights=1.0/0.5/1.0,43a8b999722a1192ad32,5,,,,0.12,reported_summary
+saadi_score_fusion_weights,NovelHopQA,Jina,weights=1.0/0.5/1.0,43a8b999722a1192ad32,10,,,,0.18,reported_summary
+saadi_score_fusion_weights,NovelHopQA,Jina,weights=1.0/1.0/0.5,43a8b999722a1192ad32,5,,,,0.13,reported_summary
+saadi_score_fusion_weights,NovelHopQA,Jina,weights=1.0/1.0/0.5,43a8b999722a1192ad32,10,,,,0.16,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,BM25,weights=1.0/0.0/0.0,1c86e2e6b82fcd354710,5,,,,0.9,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,BM25,weights=1.0/0.0/0.0,1c86e2e6b82fcd354710,10,,,,0.95,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,BM25,weights=1.0/0.3/0.0,1c86e2e6b82fcd354710,5,,,,0.9,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,BM25,weights=1.0/0.3/0.0,1c86e2e6b82fcd354710,10,,,,0.95,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,BM25,weights=1.0/0.5/0.0,1c86e2e6b82fcd354710,5,,,,0.9,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,BM25,weights=1.0/0.5/0.0,1c86e2e6b82fcd354710,10,,,,0.95,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,BM25,weights=1.0/0.0/0.3,1c86e2e6b82fcd354710,5,,,,0.9,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,BM25,weights=1.0/0.0/0.3,1c86e2e6b82fcd354710,10,,,,0.96,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,BM25,weights=1.0/0.0/0.5,1c86e2e6b82fcd354710,5,,,,0.9,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,BM25,weights=1.0/0.0/0.5,1c86e2e6b82fcd354710,10,,,,0.95,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,BM25,weights=1.0/0.3/0.3,1c86e2e6b82fcd354710,5,,,,0.89,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,BM25,weights=1.0/0.3/0.3,1c86e2e6b82fcd354710,10,,,,0.96,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,BM25,weights=1.0/0.5/0.3,1c86e2e6b82fcd354710,5,,,,0.89,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,BM25,weights=1.0/0.5/0.3,1c86e2e6b82fcd354710,10,,,,0.96,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,BM25,weights=1.0/1.0/1.0,1c86e2e6b82fcd354710,5,,,,0.92,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,BM25,weights=1.0/1.0/1.0,1c86e2e6b82fcd354710,10,,,,0.97,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,BM25,weights=0.0/1.0/1.0,1c86e2e6b82fcd354710,5,,,,0.9,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,BM25,weights=0.0/1.0/1.0,1c86e2e6b82fcd354710,10,,,,0.96,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Contriever,weights=1.0/0.0/0.0,1c86e2e6b82fcd354710,5,,,,0.69,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Contriever,weights=1.0/0.0/0.0,1c86e2e6b82fcd354710,10,,,,0.79,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Contriever,weights=1.0/0.3/0.0,1c86e2e6b82fcd354710,5,,,,0.69,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Contriever,weights=1.0/0.3/0.0,1c86e2e6b82fcd354710,10,,,,0.79,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Contriever,weights=1.0/0.5/0.0,1c86e2e6b82fcd354710,5,,,,0.68,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Contriever,weights=1.0/0.5/0.0,1c86e2e6b82fcd354710,10,,,,0.79,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Contriever,weights=1.0/0.0/0.3,1c86e2e6b82fcd354710,5,,,,0.7,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Contriever,weights=1.0/0.0/0.3,1c86e2e6b82fcd354710,10,,,,0.81,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Contriever,weights=1.0/0.0/0.5,1c86e2e6b82fcd354710,5,,,,0.71,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Contriever,weights=1.0/0.0/0.5,1c86e2e6b82fcd354710,10,,,,0.83,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Contriever,weights=1.0/0.3/0.3,1c86e2e6b82fcd354710,5,,,,0.69,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Contriever,weights=1.0/0.3/0.3,1c86e2e6b82fcd354710,10,,,,0.82,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Contriever,weights=1.0/0.5/0.3,1c86e2e6b82fcd354710,5,,,,0.69,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Contriever,weights=1.0/0.5/0.3,1c86e2e6b82fcd354710,10,,,,0.82,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Contriever,weights=1.0/1.0/1.0,1c86e2e6b82fcd354710,5,,,,0.75,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Contriever,weights=1.0/1.0/1.0,1c86e2e6b82fcd354710,10,,,,0.86,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Contriever,weights=0.0/1.0/1.0,1c86e2e6b82fcd354710,5,,,,0.7,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Contriever,weights=0.0/1.0/1.0,1c86e2e6b82fcd354710,10,,,,0.83,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Qwen,weights=1.0/0.0/0.0,1c86e2e6b82fcd354710,5,,,,0.69,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Qwen,weights=1.0/0.0/0.0,1c86e2e6b82fcd354710,10,,,,0.82,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Qwen,weights=1.0/0.3/0.0,1c86e2e6b82fcd354710,5,,,,0.69,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Qwen,weights=1.0/0.3/0.0,1c86e2e6b82fcd354710,10,,,,0.81,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Qwen,weights=1.0/0.5/0.0,1c86e2e6b82fcd354710,5,,,,0.68,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Qwen,weights=1.0/0.5/0.0,1c86e2e6b82fcd354710,10,,,,0.82,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Qwen,weights=1.0/0.0/0.3,1c86e2e6b82fcd354710,5,,,,0.72,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Qwen,weights=1.0/0.0/0.3,1c86e2e6b82fcd354710,10,,,,0.83,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Qwen,weights=1.0/0.0/0.5,1c86e2e6b82fcd354710,5,,,,0.72,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Qwen,weights=1.0/0.0/0.5,1c86e2e6b82fcd354710,10,,,,0.84,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Qwen,weights=1.0/0.3/0.3,1c86e2e6b82fcd354710,5,,,,0.72,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Qwen,weights=1.0/0.3/0.3,1c86e2e6b82fcd354710,10,,,,0.83,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Qwen,weights=1.0/0.5/0.3,1c86e2e6b82fcd354710,5,,,,0.71,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Qwen,weights=1.0/0.5/0.3,1c86e2e6b82fcd354710,10,,,,0.83,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Qwen,weights=1.0/1.0/1.0,1c86e2e6b82fcd354710,5,,,,0.77,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Qwen,weights=1.0/1.0/1.0,1c86e2e6b82fcd354710,10,,,,0.87,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Qwen,weights=0.0/1.0/1.0,1c86e2e6b82fcd354710,5,,,,0.74,reported_summary
+saadi_score_level_2_memory_weights,LooGLE,Qwen,weights=0.0/1.0/1.0,1c86e2e6b82fcd354710,10,,,,0.85,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,BM25,weights=1.0/0.0/0.0,1c86e2e6b82fcd354710,5,,,,0.18,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,BM25,weights=1.0/0.0/0.0,1c86e2e6b82fcd354710,10,,,,0.22,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,BM25,weights=1.0/0.3/0.0,1c86e2e6b82fcd354710,5,,,,0.17,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,BM25,weights=1.0/0.3/0.0,1c86e2e6b82fcd354710,10,,,,0.21,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,BM25,weights=1.0/0.5/0.0,1c86e2e6b82fcd354710,5,,,,0.17,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,BM25,weights=1.0/0.5/0.0,1c86e2e6b82fcd354710,10,,,,0.22,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,BM25,weights=1.0/0.0/0.3,1c86e2e6b82fcd354710,5,,,,0.18,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,BM25,weights=1.0/0.0/0.3,1c86e2e6b82fcd354710,10,,,,0.22,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,BM25,weights=1.0/0.0/0.5,1c86e2e6b82fcd354710,5,,,,0.17,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,BM25,weights=1.0/0.0/0.5,1c86e2e6b82fcd354710,10,,,,0.21,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,BM25,weights=1.0/0.3/0.3,1c86e2e6b82fcd354710,5,,,,0.17,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,BM25,weights=1.0/0.3/0.3,1c86e2e6b82fcd354710,10,,,,0.22,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,BM25,weights=1.0/0.5/0.3,1c86e2e6b82fcd354710,5,,,,0.17,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,BM25,weights=1.0/0.5/0.3,1c86e2e6b82fcd354710,10,,,,0.22,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,BM25,weights=1.0/1.0/1.0,1c86e2e6b82fcd354710,5,,,,0.18,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,BM25,weights=1.0/1.0/1.0,1c86e2e6b82fcd354710,10,,,,0.22,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,BM25,weights=0.0/1.0/1.0,1c86e2e6b82fcd354710,5,,,,0.18,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,BM25,weights=0.0/1.0/1.0,1c86e2e6b82fcd354710,10,,,,0.22,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Contriever,weights=1.0/0.0/0.0,1c86e2e6b82fcd354710,5,,,,0.13,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Contriever,weights=1.0/0.0/0.0,1c86e2e6b82fcd354710,10,,,,0.17,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Contriever,weights=1.0/0.3/0.0,1c86e2e6b82fcd354710,5,,,,0.13,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Contriever,weights=1.0/0.3/0.0,1c86e2e6b82fcd354710,10,,,,0.18,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Contriever,weights=1.0/0.5/0.0,1c86e2e6b82fcd354710,5,,,,0.13,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Contriever,weights=1.0/0.5/0.0,1c86e2e6b82fcd354710,10,,,,0.18,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Contriever,weights=1.0/0.0/0.3,1c86e2e6b82fcd354710,5,,,,0.13,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Contriever,weights=1.0/0.0/0.3,1c86e2e6b82fcd354710,10,,,,0.17,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Contriever,weights=1.0/0.0/0.5,1c86e2e6b82fcd354710,5,,,,0.13,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Contriever,weights=1.0/0.0/0.5,1c86e2e6b82fcd354710,10,,,,0.18,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Contriever,weights=1.0/0.3/0.3,1c86e2e6b82fcd354710,5,,,,0.13,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Contriever,weights=1.0/0.3/0.3,1c86e2e6b82fcd354710,10,,,,0.18,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Contriever,weights=1.0/0.5/0.3,1c86e2e6b82fcd354710,5,,,,0.13,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Contriever,weights=1.0/0.5/0.3,1c86e2e6b82fcd354710,10,,,,0.18,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Contriever,weights=1.0/1.0/1.0,1c86e2e6b82fcd354710,5,,,,0.14,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Contriever,weights=1.0/1.0/1.0,1c86e2e6b82fcd354710,10,,,,0.18,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Contriever,weights=0.0/1.0/1.0,1c86e2e6b82fcd354710,5,,,,0.13,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Contriever,weights=0.0/1.0/1.0,1c86e2e6b82fcd354710,10,,,,0.17,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Qwen,weights=1.0/0.0/0.0,1c86e2e6b82fcd354710,5,,,,0.16,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Qwen,weights=1.0/0.0/0.0,1c86e2e6b82fcd354710,10,,,,0.22,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Qwen,weights=1.0/0.3/0.0,1c86e2e6b82fcd354710,5,,,,0.16,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Qwen,weights=1.0/0.3/0.0,1c86e2e6b82fcd354710,10,,,,0.22,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Qwen,weights=1.0/0.5/0.0,1c86e2e6b82fcd354710,5,,,,0.15,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Qwen,weights=1.0/0.5/0.0,1c86e2e6b82fcd354710,10,,,,0.22,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Qwen,weights=1.0/0.0/0.3,1c86e2e6b82fcd354710,5,,,,0.16,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Qwen,weights=1.0/0.0/0.3,1c86e2e6b82fcd354710,10,,,,0.22,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Qwen,weights=1.0/0.0/0.5,1c86e2e6b82fcd354710,5,,,,0.16,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Qwen,weights=1.0/0.0/0.5,1c86e2e6b82fcd354710,10,,,,0.22,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Qwen,weights=1.0/0.3/0.3,1c86e2e6b82fcd354710,5,,,,0.16,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Qwen,weights=1.0/0.3/0.3,1c86e2e6b82fcd354710,10,,,,0.21,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Qwen,weights=1.0/0.5/0.3,1c86e2e6b82fcd354710,5,,,,0.16,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Qwen,weights=1.0/0.5/0.3,1c86e2e6b82fcd354710,10,,,,0.21,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Qwen,weights=1.0/1.0/1.0,1c86e2e6b82fcd354710,5,,,,0.15,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Qwen,weights=1.0/1.0/1.0,1c86e2e6b82fcd354710,10,,,,0.21,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Qwen,weights=0.0/1.0/1.0,1c86e2e6b82fcd354710,5,,,,0.16,reported_summary
+saadi_score_level_2_memory_weights,NovelHopQA,Qwen,weights=0.0/1.0/1.0,1c86e2e6b82fcd354710,10,,,,0.22,reported_summary
+state_conditioning_ablation,LooGLE,BM25,conditioning=Text only,d39513d1ce4688d603a5,5,1832,1832,1684,0.9192139737991266,per_query
+state_conditioning_ablation,LooGLE,BM25,conditioning=Text only,d39513d1ce4688d603a5,10,1832,1832,1760,0.9606986899563319,per_query
+state_conditioning_ablation,LooGLE,BM25,conditioning=Text + History,56cbee548864cc490ca1,5,1832,1832,1694,0.9246724890829694,per_query
+state_conditioning_ablation,LooGLE,BM25,conditioning=Text + History,56cbee548864cc490ca1,10,1832,1832,1762,0.9617903930131004,per_query
+state_conditioning_ablation,LooGLE,BM25,conditioning=Text + Previous Memory,5d2b613c8da57ebcc1e1,5,1832,1832,1673,0.9132096069868996,per_query
+state_conditioning_ablation,LooGLE,BM25,conditioning=Text + Previous Memory,5d2b613c8da57ebcc1e1,10,1832,1832,1758,0.9596069868995634,per_query
+state_conditioning_ablation,LooGLE,BM25,conditioning=Full SAADI,31b74c52fa1f23ce7fe4,5,1832,1832,1691,0.9230349344978166,per_query
+state_conditioning_ablation,LooGLE,BM25,conditioning=Full SAADI,31b74c52fa1f23ce7fe4,10,1832,1832,1767,0.9645196506550219,per_query
+state_conditioning_ablation,LooGLE,Contriever,conditioning=Text only,806978fb0d57140121b0,5,1832,1832,1372,0.7489082969432315,per_query
+state_conditioning_ablation,LooGLE,Contriever,conditioning=Text only,806978fb0d57140121b0,10,1832,1832,1570,0.8569868995633187,per_query
+state_conditioning_ablation,LooGLE,Contriever,conditioning=Text + History,1c63fd7d5ca28a0ccc0a,5,1832,1832,1360,0.74235807860262,per_query
+state_conditioning_ablation,LooGLE,Contriever,conditioning=Text + History,1c63fd7d5ca28a0ccc0a,10,1832,1832,1564,0.8537117903930131,per_query
+state_conditioning_ablation,LooGLE,Contriever,conditioning=Text + Previous Memory,8568824b748396c0f6d3,5,1832,1832,1372,0.7489082969432315,per_query
+state_conditioning_ablation,LooGLE,Contriever,conditioning=Text + Previous Memory,8568824b748396c0f6d3,10,1832,1832,1575,0.8597161572052402,per_query
+state_conditioning_ablation,LooGLE,Contriever,conditioning=Full SAADI,9ece4150a07e6c832c72,5,1832,1832,1382,0.7543668122270742,per_query
+state_conditioning_ablation,LooGLE,Contriever,conditioning=Full SAADI,9ece4150a07e6c832c72,10,1832,1832,1570,0.8569868995633187,per_query
+state_conditioning_ablation,MuSiQue-32K,BM25,conditioning=Text only,9b7efb62029577611901,5,900,900,541,0.6011111111111112,per_query
+state_conditioning_ablation,MuSiQue-32K,BM25,conditioning=Text only,9b7efb62029577611901,10,900,900,680,0.7555555555555555,per_query
+state_conditioning_ablation,MuSiQue-32K,BM25,conditioning=Text + History,189d399e0fa7b0536fda,5,900,900,577,0.6411111111111111,per_query
+state_conditioning_ablation,MuSiQue-32K,BM25,conditioning=Text + History,189d399e0fa7b0536fda,10,900,900,707,0.7855555555555556,per_query
+state_conditioning_ablation,MuSiQue-32K,BM25,conditioning=Text + Previous Memory,81e5b839179c0c441812,5,900,900,531,0.59,per_query
+state_conditioning_ablation,MuSiQue-32K,BM25,conditioning=Text + Previous Memory,81e5b839179c0c441812,10,900,900,674,0.7488888888888889,per_query
+state_conditioning_ablation,MuSiQue-32K,BM25,conditioning=Full SAADI,9c6fadcc25362ac17d44,5,900,900,565,0.6277777777777778,per_query
+state_conditioning_ablation,MuSiQue-32K,BM25,conditioning=Full SAADI,9c6fadcc25362ac17d44,10,900,900,699,0.7766666666666666,per_query
+state_conditioning_ablation,MuSiQue-32K,Contriever,conditioning=Text only,1ed691157e1d7fcac6f8,5,900,900,587,0.6522222222222223,per_query
+state_conditioning_ablation,MuSiQue-32K,Contriever,conditioning=Text only,1ed691157e1d7fcac6f8,10,900,900,722,0.8022222222222222,per_query
+state_conditioning_ablation,MuSiQue-32K,Contriever,conditioning=Text + History,21cf1740e5d0514a84f0,5,900,900,625,0.6944444444444444,per_query
+state_conditioning_ablation,MuSiQue-32K,Contriever,conditioning=Text + History,21cf1740e5d0514a84f0,10,900,900,752,0.8355555555555556,per_query
+state_conditioning_ablation,MuSiQue-32K,Contriever,conditioning=Text + Previous Memory,9816432c5d538b4b0993,5,900,900,582,0.6466666666666666,per_query
+state_conditioning_ablation,MuSiQue-32K,Contriever,conditioning=Text + Previous Memory,9816432c5d538b4b0993,10,900,900,718,0.7977777777777778,per_query
+state_conditioning_ablation,MuSiQue-32K,Contriever,conditioning=Full SAADI,d9967926f0edf0159884,5,900,900,619,0.6877777777777778,per_query
+state_conditioning_ablation,MuSiQue-32K,Contriever,conditioning=Full SAADI,d9967926f0edf0159884,10,900,900,753,0.8366666666666667,per_query
+state_conditioning_ablation,QASPER-64K,BM25,conditioning=Text only,73ac39de86d43d160b49,5,1333,1333,202,0.15153788447111777,per_query
+state_conditioning_ablation,QASPER-64K,BM25,conditioning=Text only,73ac39de86d43d160b49,10,1333,1333,310,0.23255813953488372,per_query
+state_conditioning_ablation,QASPER-64K,BM25,conditioning=Text + History,8e565294de6a0949ccd0,5,1333,1333,226,0.1695423855963991,per_query
+state_conditioning_ablation,QASPER-64K,BM25,conditioning=Text + History,8e565294de6a0949ccd0,10,1333,1333,344,0.25806451612903225,per_query
+state_conditioning_ablation,QASPER-64K,BM25,conditioning=Text + Previous Memory,ee1b7edfe5697e4b61df,5,1333,1333,202,0.15153788447111777,per_query
+state_conditioning_ablation,QASPER-64K,BM25,conditioning=Text + Previous Memory,ee1b7edfe5697e4b61df,10,1333,1333,316,0.23705926481620404,per_query
+state_conditioning_ablation,QASPER-64K,BM25,conditioning=Full SAADI,83745de6d3513ad9e20b,5,1333,1333,226,0.1695423855963991,per_query
+state_conditioning_ablation,QASPER-64K,BM25,conditioning=Full SAADI,83745de6d3513ad9e20b,10,1333,1333,348,0.26106526631657917,per_query
+state_conditioning_ablation,QASPER-64K,Contriever,conditioning=Text only,9ed83b554dfe5359748b,5,1333,1333,209,0.15678919729932483,per_query
+state_conditioning_ablation,QASPER-64K,Contriever,conditioning=Text only,9ed83b554dfe5359748b,10,1333,1333,327,0.245311327831958,per_query
+state_conditioning_ablation,QASPER-64K,Contriever,conditioning=Text + History,7d6e84d52d7496f54e8c,5,1333,1333,216,0.16204051012753187,per_query
+state_conditioning_ablation,QASPER-64K,Contriever,conditioning=Text + History,7d6e84d52d7496f54e8c,10,1333,1333,347,0.2603150787696924,per_query
+state_conditioning_ablation,QASPER-64K,Contriever,conditioning=Text + Previous Memory,5774ee389c43b7e7c356,5,1333,1333,196,0.14703675918979744,per_query
+state_conditioning_ablation,QASPER-64K,Contriever,conditioning=Text + Previous Memory,5774ee389c43b7e7c356,10,1333,1333,315,0.23630907726931732,per_query
+state_conditioning_ablation,QASPER-64K,Contriever,conditioning=Full SAADI,4a14b0b08f0a23ebe198,5,1333,1333,216,0.16204051012753187,per_query
+state_conditioning_ablation,QASPER-64K,Contriever,conditioning=Full SAADI,4a14b0b08f0a23ebe198,10,1333,1333,344,0.25806451612903225,per_query
+state_conditioning_ablation,NovelHopQA,BM25,conditioning=Text only,9ae0ef008be2a01a7136,5,908,908,159,0.1751101321585903,per_query
+state_conditioning_ablation,NovelHopQA,BM25,conditioning=Text only,9ae0ef008be2a01a7136,10,908,908,194,0.21365638766519823,per_query
+state_conditioning_ablation,NovelHopQA,BM25,conditioning=Text + History,de9354980b26766083bc,5,908,908,162,0.17841409691629956,per_query
+state_conditioning_ablation,NovelHopQA,BM25,conditioning=Text + History,de9354980b26766083bc,10,908,908,200,0.22026431718061673,per_query
+state_conditioning_ablation,NovelHopQA,BM25,conditioning=Text + Previous Memory,0c75aff4bd86e9634df4,5,908,908,155,0.17070484581497797,per_query
+state_conditioning_ablation,NovelHopQA,BM25,conditioning=Text + Previous Memory,0c75aff4bd86e9634df4,10,908,908,193,0.21255506607929514,per_query
+state_conditioning_ablation,NovelHopQA,BM25,conditioning=Full SAADI,c5e3be18d129243ec2b2,5,908,908,164,0.18061674008810572,per_query
+state_conditioning_ablation,NovelHopQA,BM25,conditioning=Full SAADI,c5e3be18d129243ec2b2,10,908,908,200,0.22026431718061673,per_query
+state_conditioning_ablation,NovelHopQA,Contriever,conditioning=Text only,cdcc469eb1382d54552e,5,908,908,111,0.1222466960352423,per_query
+state_conditioning_ablation,NovelHopQA,Contriever,conditioning=Text only,cdcc469eb1382d54552e,10,908,908,161,0.17731277533039647,per_query
+state_conditioning_ablation,NovelHopQA,Contriever,conditioning=Text + History,1bfa48de7258b5d259e1,5,908,908,117,0.1288546255506608,per_query
+state_conditioning_ablation,NovelHopQA,Contriever,conditioning=Text + History,1bfa48de7258b5d259e1,10,908,908,171,0.1883259911894273,per_query
+state_conditioning_ablation,NovelHopQA,Contriever,conditioning=Text + Previous Memory,3ecce56cef1def17b39e,5,908,908,113,0.12444933920704845,per_query
+state_conditioning_ablation,NovelHopQA,Contriever,conditioning=Text + Previous Memory,3ecce56cef1def17b39e,10,908,908,161,0.17731277533039647,per_query
+state_conditioning_ablation,NovelHopQA,Contriever,conditioning=Full SAADI,0f6c2fc9380c51fa24bd,5,908,908,123,0.1354625550660793,per_query
+state_conditioning_ablation,NovelHopQA,Contriever,conditioning=Full SAADI,0f6c2fc9380c51fa24bd,10,908,908,165,0.1817180616740088,per_query
+context_expansion,musique,bm25,128K_expansion,ad7c33ad9664ec6552d4,5,900,900,501,0.5566666666666666,per_query
+context_expansion,musique,bm25,128K_expansion,ad7c33ad9664ec6552d4,10,900,900,619,0.6877777777777778,per_query
+context_expansion,musique,bm25,256K_expansion,93eabe32c3dfe5e56a72,5,900,900,471,0.5233333333333333,per_query
+context_expansion,musique,bm25,256K_expansion,93eabe32c3dfe5e56a72,10,900,900,579,0.6433333333333333,per_query
+context_expansion,musique,bm25,32K_expansion,1b10f597d576bca454cb,5,900,900,565,0.6277777777777778,per_query
+context_expansion,musique,bm25,32K_expansion,1b10f597d576bca454cb,10,900,900,699,0.7766666666666666,per_query
+context_expansion,musique,bm25,64K_expansion,90bc9b3cd3cb8276c988,5,900,900,533,0.5922222222222222,per_query
+context_expansion,musique,bm25,64K_expansion,90bc9b3cd3cb8276c988,10,900,900,669,0.7433333333333333,per_query
+context_expansion,musique,bm25,no_expansion,bfd80f2fd1e13d1776b0,5,900,900,627,0.6966666666666667,per_query
+context_expansion,musique,bm25,no_expansion,bfd80f2fd1e13d1776b0,10,900,900,800,0.8888888888888888,per_query
+context_expansion,qasper,bm25,128K_expansion,5cb4b2567419a284e1de,5,1321,1321,198,0.14988644965934897,per_query
+context_expansion,qasper,bm25,128K_expansion,5cb4b2567419a284e1de,10,1321,1321,299,0.22634367903103708,per_query
+context_expansion,qasper,bm25,256K_expansion,e2bb4f40b537d4b06e47,5,1321,1321,161,0.12187736563209689,per_query
+context_expansion,qasper,bm25,256K_expansion,e2bb4f40b537d4b06e47,10,1321,1321,243,0.18395155185465556,per_query
+context_expansion,qasper,bm25,32K_expansion,300a3066e255b6a45914,5,1321,1321,259,0.19606358819076458,per_query
+context_expansion,qasper,bm25,32K_expansion,300a3066e255b6a45914,10,1321,1321,424,0.3209689629068887,per_query
+context_expansion,qasper,bm25,64K_expansion,4bdc8b93160113f063d6,5,1333,1333,226,0.1695423855963991,per_query
+context_expansion,qasper,bm25,64K_expansion,4bdc8b93160113f063d6,10,1333,1333,348,0.26106526631657917,per_query
+context_expansion,qasper,bm25,no_expansion,82152eaf8a761fde057f,5,1321,1321,487,0.36866010598031795,per_query
+context_expansion,qasper,bm25,no_expansion,82152eaf8a761fde057f,10,1321,1321,748,0.5662376987130961,per_query

@@ -1,0 +1,16 @@
+[
+  {
+    "study": "hierarchical_summary_statistics",
+    "source_id": "969a963b8017ba324a01",
+    "path": "outputs/sadi/reference/summaries/969a963b8017ba324a01.json",
+    "sha256": "8a74f80573d09ee006d05d6d4a87e5afba9c3ec96839555fde2d34a517bb4546",
+    "provenance": "reported_statistics"
+  },
+  {
+    "study": "hierarchical_summary_statistics",
+    "source_id": "2f6840bad8717d2b4610",
+    "path": "outputs/sadi/reference/summaries/2f6840bad8717d2b4610.json",
+    "sha256": "2eb3c2fac186f2dce5afd0996c0c0ce7610c8a6c4d1942963a57bb27e37c6adb",
+    "provenance": "reported_statistics"
+  }
+]

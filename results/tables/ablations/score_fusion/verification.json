@@ -1,0 +1,9 @@
+{
+  "metric": "HR",
+  "study": "saadi_score_fusion_weights",
+  "input_source": "reference",
+  "verified_cells": 60,
+  "recomputed_cells": 0,
+  "reported_cells": 60,
+  "paper_reported_cells": 0
+}

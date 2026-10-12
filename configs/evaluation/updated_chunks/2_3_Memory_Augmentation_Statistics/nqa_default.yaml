@@ -1,0 +1,12 @@
+main_phase: Static Statistics / Cost / Structure
+sub_phase_id: 2_3_Memory_Augmentation_Statistics
+sub_phase_name: Memory Augmentation Statistics
+run_name: default
+experiment_config: null
+memory_augmentation:
+  augmentation_j: auto
+  max_aliases: 2
+  max_desc: 1
+  active_entity_selector: auto
+token_counting:
+  strategy: whitespace

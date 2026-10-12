@@ -1,0 +1,9 @@
+{
+  "table": "fixed_and_agentic",
+  "input_source": "reference",
+  "rows": 15,
+  "sadi_input_rows": 24,
+  "other_method_input_rows": 36,
+  "comparison_methods_executed": false,
+  "input_hashes_verified": true
+}

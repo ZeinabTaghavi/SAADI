@@ -1,0 +1,9 @@
+{
+  "metric": "HR",
+  "study": "saadi_score_formulation_and_normalization",
+  "input_source": "reference",
+  "verified_cells": 48,
+  "recomputed_cells": 48,
+  "reported_cells": 0,
+  "paper_reported_cells": 0
+}

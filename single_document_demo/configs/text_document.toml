@@ -1,0 +1,34 @@
+[demo]
+root = "single_document_demo"
+
+[workflow]
+type = "text"
+prompt_profile = "default"
+
+[input]
+path = "single_document_demo/input/sample_text/document.txt"
+
+[output]
+root = "single_document_demo/output"
+
+[run]
+name = "sample_text"
+query = ""
+questions_path = ""
+
+[model]
+backend = "vllm"
+model_id = "Qwen/Qwen3.5-27B"
+tensor_parallel_size = 4
+gpu_memory_utilization = 0.8
+max_model_len = 32768
+
+[saadi]
+chunk_size = 500
+chunk_overlap = 0
+branching_factor = 5
+max_entities = 5
+max_aliases = 2
+max_desc = 3
+separator_phrases = []
+document_summary_enabled = false

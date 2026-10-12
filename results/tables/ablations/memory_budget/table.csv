@@ -1,0 +1,17 @@
+Dataset,Retriever,Condition,Eligible queries,Evidence,HR@5 (%)
+LooGLE,BM25,budget=AE_3_2_5,,paper_reported_summary,93.0
+LooGLE,BM25,budget=AE_5_2_3,,paper_reported_summary,92.3
+LooGLE,BM25,budget=AE_5_2_5,,paper_reported_summary,90.3
+LooGLE,BM25,budget=AE_7_2_5,,paper_reported_summary,92.8
+LooGLE,Contriever,budget=AE_3_2_5,,paper_reported_summary,74.4
+LooGLE,Contriever,budget=AE_5_2_3,,paper_reported_summary,75.4
+LooGLE,Contriever,budget=AE_5_2_5,,paper_reported_summary,74.9
+LooGLE,Contriever,budget=AE_7_2_5,,paper_reported_summary,74.1
+NovelHopQA,BM25,budget=AE_3_2_5,,paper_reported_summary,17.7
+NovelHopQA,BM25,budget=AE_5_2_3,,paper_reported_summary,18.1
+NovelHopQA,BM25,budget=AE_5_2_5,,paper_reported_summary,18.5
+NovelHopQA,BM25,budget=AE_7_2_5,,paper_reported_summary,17.8
+NovelHopQA,Contriever,budget=AE_3_2_5,,paper_reported_summary,13.699999999999998
+NovelHopQA,Contriever,budget=AE_5_2_3,,paper_reported_summary,13.5
+NovelHopQA,Contriever,budget=AE_5_2_5,,paper_reported_summary,12.9
+NovelHopQA,Contriever,budget=AE_7_2_5,,paper_reported_summary,13.100000000000001

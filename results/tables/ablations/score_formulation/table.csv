@@ -1,0 +1,25 @@
+Dataset,Retriever,Condition,Eligible queries,Evidence,HR@5 (%),HR@10 (%)
+LooGLE,BM25,score_formulation=Component-wise fusion; normalization=Raw,1832,per_query,91.70305676855895,95.74235807860262
+LooGLE,BM25,score_formulation=Component-wise fusion; normalization=Min-max,1832,per_query,91.8122270742358,95.74235807860262
+LooGLE,BM25,score_formulation=Component-wise fusion; normalization=Z-score,1832,per_query,92.30349344978166,96.4519650655022
+LooGLE,BM25,score_formulation=Linearized memory; normalization=Raw,1832,per_query,91.15720524017468,95.52401746724891
+LooGLE,BM25,score_formulation=Linearized memory; normalization=Min-max,1832,per_query,91.8122270742358,95.57860262008734
+LooGLE,BM25,score_formulation=Linearized memory; normalization=Z-score,1832,per_query,92.08515283842796,95.9061135371179
+LooGLE,Contriever,score_formulation=Component-wise fusion; normalization=Raw,1832,per_query,72.81659388646288,84.17030567685589
+LooGLE,Contriever,score_formulation=Component-wise fusion; normalization=Min-max,1832,per_query,73.85371179039302,85.37117903930131
+LooGLE,Contriever,score_formulation=Component-wise fusion; normalization=Z-score,1832,per_query,75.43668122270742,85.69868995633188
+LooGLE,Contriever,score_formulation=Linearized memory; normalization=Raw,1832,per_query,73.30786026200873,85.5349344978166
+LooGLE,Contriever,score_formulation=Linearized memory; normalization=Min-max,1832,per_query,74.07205240174673,85.7532751091703
+LooGLE,Contriever,score_formulation=Linearized memory; normalization=Z-score,1832,per_query,74.50873362445415,86.1353711790393
+NovelHopQA,BM25,score_formulation=Component-wise fusion; normalization=Raw,908,per_query,18.3920704845815,22.026431718061673
+NovelHopQA,BM25,score_formulation=Component-wise fusion; normalization=Min-max,908,per_query,18.06167400881057,22.136563876651984
+NovelHopQA,BM25,score_formulation=Component-wise fusion; normalization=Z-score,908,per_query,18.06167400881057,22.026431718061673
+NovelHopQA,BM25,score_formulation=Linearized memory; normalization=Raw,908,per_query,18.3920704845815,22.026431718061673
+NovelHopQA,BM25,score_formulation=Linearized memory; normalization=Min-max,908,per_query,18.3920704845815,21.58590308370044
+NovelHopQA,BM25,score_formulation=Linearized memory; normalization=Z-score,908,per_query,18.3920704845815,22.026431718061673
+NovelHopQA,Contriever,score_formulation=Component-wise fusion; normalization=Raw,908,per_query,13.986784140969164,18.502202643171806
+NovelHopQA,Contriever,score_formulation=Component-wise fusion; normalization=Min-max,908,per_query,13.54625550660793,18.3920704845815
+NovelHopQA,Contriever,score_formulation=Component-wise fusion; normalization=Z-score,908,per_query,13.54625550660793,18.17180616740088
+NovelHopQA,Contriever,score_formulation=Linearized memory; normalization=Raw,908,per_query,10.022026431718063,15.748898678414097
+NovelHopQA,Contriever,score_formulation=Linearized memory; normalization=Min-max,908,per_query,11.343612334801762,16.189427312775333
+NovelHopQA,Contriever,score_formulation=Linearized memory; normalization=Z-score,908,per_query,11.123348017621145,15.308370044052863

@@ -1,0 +1,17 @@
+Dataset,Retriever,Condition,Eligible queries,Evidence,HR@5 (%),HR@10 (%)
+LooGLE,BM25,model_key=qwen2_5_7b,1832,per_query,91.5938864628821,95.6877729257642
+LooGLE,BM25,model_key=mistral_small_24b,1832,per_query,91.43013100436681,95.46943231441048
+LooGLE,BM25,model_key=saadi_default,1832,per_query,92.30349344978166,96.4519650655022
+LooGLE,BM25,model_key=llama3_3_70b,1832,per_query,91.0480349344978,95.19650655021834
+LooGLE,Contriever,model_key=qwen2_5_7b,1832,per_query,72.32532751091702,84.77074235807859
+LooGLE,Contriever,model_key=mistral_small_24b,1832,per_query,73.14410480349345,84.33406113537117
+LooGLE,Contriever,model_key=saadi_default,1832,per_query,75.43668122270742,85.69868995633188
+LooGLE,Contriever,model_key=llama3_3_70b,1832,per_query,72.21615720524017,84.27947598253274
+NovelHopQA,BM25,model_key=qwen2_5_7b,908,per_query,17.951541850220266,21.475770925110133
+NovelHopQA,BM25,model_key=mistral_small_24b,908,per_query,16.96035242290749,20.814977973568283
+NovelHopQA,BM25,model_key=saadi_default,908,per_query,18.06167400881057,22.026431718061673
+NovelHopQA,BM25,model_key=llama3_3_70b,908,per_query,17.290748898678416,21.255506607929515
+NovelHopQA,Contriever,model_key=qwen2_5_7b,908,per_query,13.325991189427313,17.951541850220266
+NovelHopQA,Contriever,model_key=mistral_small_24b,908,per_query,11.343612334801762,18.28193832599119
+NovelHopQA,Contriever,model_key=saadi_default,908,per_query,13.54625550660793,18.17180616740088
+NovelHopQA,Contriever,model_key=llama3_3_70b,908,per_query,11.784140969162996,17.400881057268723

@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "files": {
+    "a_rag/retrieval.csv": "8993debc4204f9c6e0f1b43db789c96e541ae94b0881920715fb699e7b66b098",
+    "agentic_r/retrieval.csv": "b99c33ea5464d03faa3fd22a61e0dc4bcba8b136411e4e22183626ccf3431aae",
+    "grip/retrieval.csv": "e437e76b99a0d2415f46e040532c142651b2f99f37894a7328c4d7b64f4d862a",
+    "hipporag_v2/retrieval.csv": "aacc597385621bea1dae24c4a25cbc9afb2600f0ce66e73a5739413acfdc24bb",
+    "late_chunking/retrieval.csv": "ff827e51bb740065da7ff253a5edb2163267f597487c49421fcef5b62b370775",
+    "llamaindex/retrieval.csv": "0d207920239ffa7221548184854a720d46e2c25eb3949ec187c7631668687aef",
+    "lqca/retrieval.csv": "d34bbd59924d96f8a7fc8d9bab383a8e447406a191c10d9d575cfd7dd92587f5",
+    "rag_r1/retrieval.csv": "8f0a61d08d0c819277c36741e72b3c142128007977c6f6e0b96b5bc8445f608e",
+    "raptor/retrieval.csv": "87f122dea9af2f76bd523e848d7550a7be2811ba09915bae88cd025d8d0a384a",
+    "uma/retrieval.csv": "5e50dd533bd6adc5e927ce77f2c685bd9b11cd6b8141103a6bc8ac85877582fe",
+    "vanilla/retrieval.csv": "b4ac4fc78e4656e76202ca17c7e7da5ca9a10e19c165268dde547be9791043c9",
+    "a_rag/resources.csv": "25b3762c8996669bac11e49f66780a4657403c7f3986bbeb8b8e122dad243cbc",
+    "agentic_r/resources.csv": "06beda66cafea3a0438774929ff02c781f4b7f483d482abca9902f13d3cac18a",
+    "grip/resources.csv": "d06b0fbc9f3ebe4101263897cb89114faef7d7aa4dad9492adf7fb91d8871c81",
+    "rag_r1/resources.csv": "1bdb297d39af2f5da1d3bf81400b4c7dcd59548364a2d8cac2f485ae452d947a",
+    "uma/resources.csv": "124ba4a8200a012152e3863de88ad17f06d14f11511d17cb3b15850353dd4808"
+  },
+  "sources": {
+    "main_fixed_depth": {
+      "original_source": "outputs/Tables/Final_table.txt",
+      "sha256": "e76acc0811c4aec61775da6d31f294c901e4488d60f86177d8a72824fe09adac"
+    },
+    "fixed_and_agentic": {
+      "original_source": "outputs/Tables/appendix_results_fixed_vs_agentic_retrieval/appendix_results_fixed_vs_agentic_retrieval.csv",
+      "sha256": "319d15e82b123326255f985c9bdcfdeb1938ddf7791c78370365a8613ffd7eea"
+    },
+    "resource_use": {
+      "original_source": "outputs/Tables/main_results_computational_profile/main_computational_profile_values.csv",
+      "sha256": "b3fff342b81a7cc7c57546756d93965818fce64862a4a0b3da967d6e71565b5b"
+    },
+    "multihop": {
+      "original_source": "outputs/Tables/appendix_results_multihop_retrieval/appendix_results_multihop_retrieval.csv",
+      "sha256": "35314086007de0cef5219bba84a6ddbaac5c1e1968017a35b89a1982dc4d0e48"
+    },
+    "context_expansion": {
+      "original_source": "outputs/Tables/appendix_results_context_expansion/appendix_results_context_expansion.csv",
+      "sha256": "23e099814d33fb766420016fc304cc25f1d6a1054b8fc2d909f1637a6858de7c"
+    }
+  }
+}

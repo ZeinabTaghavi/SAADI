@@ -1,0 +1,9 @@
+{
+  "metric": "HR",
+  "study": "context_expansion",
+  "input_source": "reference",
+  "verified_cells": 20,
+  "recomputed_cells": 20,
+  "reported_cells": 0,
+  "paper_reported_cells": 0
+}

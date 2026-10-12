@@ -1,0 +1,15 @@
+extends: ../methods/sadi.yaml
+output_dir: ${SADI_OUTPUT_DIR}/novelhopqa
+dataset:
+  name: novelhopqa
+  split: test
+  config_name: all
+  qa_n: all
+  qa_selection_method: first
+  books_root: ${SADI_DATA_DIR}/novelhopqa/book-corpus-root
+ingest:
+  chunk_size: 500
+model:
+  model_id: Qwen/Qwen3-30B-A3B-Instruct-2507
+  alias: Qwen3-30B-A3B-Instruct-2507
+  gpu_memory_utilization: 0.85

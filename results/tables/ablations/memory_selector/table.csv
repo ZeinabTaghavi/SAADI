@@ -1,0 +1,9 @@
+Dataset,Retriever,Condition,Eligible queries,Evidence,HR@5 (%)
+LooGLE,BM25,selector=word,,paper_reported_summary,91.1
+LooGLE,BM25,selector=bm25,,paper_reported_summary,92.3
+LooGLE,Contriever,selector=word,,paper_reported_summary,75.2
+LooGLE,Contriever,selector=bm25,,paper_reported_summary,75.4
+NovelHopQA,BM25,selector=word,,paper_reported_summary,17.8
+NovelHopQA,BM25,selector=bm25,,paper_reported_summary,18.1
+NovelHopQA,Contriever,selector=word,,paper_reported_summary,13.100000000000001
+NovelHopQA,Contriever,selector=bm25,,paper_reported_summary,13.5

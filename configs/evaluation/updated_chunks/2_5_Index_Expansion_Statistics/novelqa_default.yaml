@@ -1,0 +1,14 @@
+main_phase: Static Statistics / Cost / Structure
+sub_phase_id: 2_5_Index_Expansion_Statistics
+sub_phase_name: Index Expansion Statistics
+run_name: default
+experiment_config: null
+index_expansion:
+  include_l0aj: true
+  memory_augmentation:
+    augmentation_j: auto
+    max_aliases: 2
+    max_desc: 1
+    active_entity_selector: auto
+token_counting:
+  strategy: whitespace

@@ -1,0 +1,57 @@
+datasets:
+- loogle
+- qasper
+- novelhopqa
+- musique
+retrievers:
+- bm25
+- contriever
+variants:
+- name: no_his_no_mem_run_1
+  overrides: &id001
+    ingest:
+      strategy_kwargs:
+        memory_update_mode: no_his_no_mem
+  run_number: 1
+- name: no_his_no_mem_run_2
+  overrides: *id001
+  run_number: 2
+- name: no_his_no_mem_run_3
+  overrides: *id001
+  run_number: 3
+- name: his_no_mem_run_1
+  overrides: &id002
+    ingest:
+      strategy_kwargs:
+        memory_update_mode: his_no_mem
+  run_number: 1
+- name: his_no_mem_run_2
+  overrides: *id002
+  run_number: 2
+- name: his_no_mem_run_3
+  overrides: *id002
+  run_number: 3
+- name: no_his_only_mem_run_1
+  overrides: &id003
+    ingest:
+      strategy_kwargs:
+        memory_update_mode: no_his_only_mem
+  run_number: 1
+- name: no_his_only_mem_run_2
+  overrides: *id003
+  run_number: 2
+- name: no_his_only_mem_run_3
+  overrides: *id003
+  run_number: 3
+- name: his_mem_run_1
+  overrides: &id004
+    ingest:
+      strategy_kwargs:
+        memory_update_mode: his_mem
+  run_number: 1
+- name: his_mem_run_2
+  overrides: *id004
+  run_number: 2
+- name: his_mem_run_3
+  overrides: *id004
+  run_number: 3

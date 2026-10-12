@@ -1,0 +1,9 @@
+{
+  "table": "retrieval_comparison",
+  "input_source": "reference",
+  "rows": 23,
+  "sadi_input_rows": 40,
+  "other_method_input_rows": 144,
+  "comparison_methods_executed": false,
+  "input_hashes_verified": true
+}

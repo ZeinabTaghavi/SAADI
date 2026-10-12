@@ -1,0 +1,17 @@
+main_phase: Faithfulness
+sub_phase_id: 1_4_Hierarchical_Summary_Faithfulness
+sub_phase_name: Hierarchical Summary Faithfulness
+run_name: default
+experiment_config: null
+judge_model_config: configs/models/qwen_vllm.yaml
+sampling:
+  seed: 13
+  sample_size: 100
+judging:
+  batch_size: 16
+  max_tokens: 1024
+  temperature: 0.0
+  stop:
+  - '[END_JSON]'
+  - <|im_end|>
+  - <|endoftext|>
