@@ -1,5 +1,7 @@
 turn_id,role,text
-1,therapist,What would you like to discuss today?
-2,patient,I am planning my study schedule.
-3,therapist,Which days are available?
-4,patient,Tuesday and Thursday evenings are available.
+1,therapist,Last time you mentioned the stomach pain has been keeping you home. How has the week been?
+2,patient,"Worse, honestly. I cancelled the hiking trip with Dana again and I have been checking my symptoms online every night. The gastroenterologist said the tests were normal, but I keep thinking they missed something."
+3,therapist,You said checking helps for a moment. What happens after?
+4,patient,"The worry comes straight back, usually stronger. Since my father died of cancer two years ago I cannot shake the feeling that a normal result means nothing."
+5,therapist,That loss sounds central to how you read your body now. Would you be willing to track the checking for a week before we meet again?
+6,patient,I can do that. Dana offered to help me keep a log.

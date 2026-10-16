@@ -7,8 +7,8 @@ from importlib import resources
 from pathlib import Path
 
 from ..document import Saadi
+from ._common import LLM_HELP, add_verbose_argument, configure_logging
 from ._render import format_answer, format_index_report, format_memory
-from .index import LLM_HELP
 
 DEFAULT_QUESTION = "Who keeps the Corvin station?"
 
@@ -28,11 +28,13 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--state", metavar="DIR", default="saadi_state/aurora_report", help="Where to keep the state (default saadi_state/aurora_report).")
     parser.add_argument("--query", default=DEFAULT_QUESTION)
     parser.add_argument("--chunk-size", type=int, default=100, help="Small chunks so the report folds into summaries (default 100).")
+    add_verbose_argument(parser)
     return parser
 
 
 def main(argv: list[str] | None = None) -> int:
     args = build_arg_parser().parse_args(argv)
+    configure_logging(args.verbose)
     try:
         doc = Saadi(args.llm, args.retriever, args.prompts, state_dir=Path(args.state), chunk_size=args.chunk_size)
         print("Indexing the bundled report (a synthetic account of a fictional research team)...")

@@ -157,12 +157,13 @@ def export_readable_state(
             )
             levels.append(level)
 
-    memory_path: Path | None = None
+    memory_path = state_dir / MEMORY_FILE
     aliases_removed = 0
     if memory_summary_path is not None and Path(memory_summary_path).is_file():
-        memory_path = state_dir / MEMORY_FILE
         shutil.copyfile(memory_summary_path, memory_path)
         aliases_removed = sanitize_memory_summary(memory_path)
+    else:  # the pipeline writes no summary for an empty memory; the documented file still exists
+        write_json(memory_path, {"total_entities": 0, "entities": []})
     summary_path: Path | None = None
     if document_summary_path is not None and Path(document_summary_path).is_file():
         summary_path = state_dir / SUMMARY_FILE

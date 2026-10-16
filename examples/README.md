@@ -2,7 +2,7 @@
 
 - `sample_text/document.txt`: a short synthetic paragraph; one chunk at the default size.
 - `aurora_report/document.txt`: a 900-word synthetic report about a fictional research team. With `--chunk-size 100` it becomes about ten chunks and two fold summaries, so the entity memory and the hierarchy are both exercised. `saadi demo` uses a bundled copy of it.
-- `sample_conversation/conversation.csv`: a tiny role-labelled transcript for the `conversation` prompt profile.
+- `sample_conversation/conversation.csv`: a six-turn synthetic therapy dialogue, the same one `saadi check-prompts conversation` uses. With `--prompts conversation` the model builds a compact case-level memory from it rather than a list of names.
 - `quickstart.ipynb`: the Python API end to end.
 
 ```bash
