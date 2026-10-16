@@ -16,6 +16,8 @@ from .scoring import (
     encode_query,
 )
 
+BUILTIN_RETRIEVERS = ("bm25", "contriever", "e5", "bge_m3", "qwen", "jina")
+
 
 def get_retriever(name: str):
     normalized = str(name or "").strip().lower()
@@ -31,10 +33,19 @@ def get_retriever(name: str):
         return QwenRetriever
     if normalized in {"jina", "jina_embedding", "jina-embedding"}:
         return JinaRetriever
-    raise ValueError(f"Unknown retriever: {name}")
+    # Retrievers registered at runtime through saadi.retrievers; imported lazily
+    # so this package stays import-light and free of cycles.
+    from ...retrievers.registry import lookup_retriever, registered_retrievers
+
+    registered = lookup_retriever(normalized)
+    if registered is not None:
+        return registered
+    known = ", ".join([*BUILTIN_RETRIEVERS, *registered_retrievers()])
+    raise ValueError(f"Unknown retriever: {name}. Known retrievers: {known}")
 
 
 __all__ = [
+    "BUILTIN_RETRIEVERS",
     "BM25Retriever",
     "BGEM3Retriever",
     "ContrieverRetriever",

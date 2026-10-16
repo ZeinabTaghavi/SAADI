@@ -70,6 +70,16 @@ def _is_embedding_retriever(retriever: Any) -> bool:
     )
 
 
+def _is_scoring_retriever(retriever: Any) -> bool:
+    """Retrievers registered through ``saadi.retrievers`` expose ``score(query) -> list[float]``."""
+
+    return (
+        not isinstance(retriever, BM25Retriever)
+        and not _is_embedding_retriever(retriever)
+        and callable(getattr(retriever, "score", None))
+    )
+
+
 def _encode_dense_texts(retriever: Any, texts: list[str], *, text_kind: str) -> Any:
     try:
         return retriever._encode_texts(list(texts), text_kind=text_kind)
@@ -138,6 +148,9 @@ def encode_documents(texts: list[str], retriever: Any) -> Any:
         return _encode_dense_texts(retriever, list(texts), text_kind="document")
     if isinstance(retriever, BM25Retriever):
         return [_tokenize(text) for text in texts]
+    if _is_scoring_retriever(retriever):
+        # The retriever keeps its own index of the pool; the texts stand in for it.
+        return list(texts)
     raise TypeError(f"Unsupported retriever type for document encoding: {type(retriever)!r}")
 
 
@@ -147,6 +160,8 @@ def encode_query(query: str, retriever: Any) -> Any:
     if _is_embedding_retriever(retriever):
         return _encode_dense_texts(retriever, [query], text_kind="query").squeeze(0)
     if isinstance(retriever, BM25Retriever):
+        return str(query or "")
+    if _is_scoring_retriever(retriever):
         return str(query or "")
     raise TypeError(f"Unsupported retriever type for query encoding: {type(retriever)!r}")
 
@@ -159,6 +174,8 @@ def compute_similarity(query_representation: Any, document_representations: Any,
         return [float(value) for value in scores.tolist()]
     if isinstance(retriever, BM25Retriever):
         return [float(value) for value in retriever._native_scores(str(query_representation or ""))]
+    if _is_scoring_retriever(retriever):
+        return [float(value) for value in retriever.score(str(query_representation or ""))]
     raise TypeError(f"Unsupported retriever type for similarity computation: {type(retriever)!r}")
 
 
