@@ -99,9 +99,26 @@ Use `--stage prepare`, `ingest`, `retrieve`, or `generate` to run a particular s
 
 ```bash
 python single_document_demo/run.py text --mock --query 'Who leads the Aurora team?'
+python single_document_demo/run.py text --llm openai:gpt-4.1-mini --query 'Who leads the Aurora team?'
 ```
 
-The [single-document example](single_document_demo/README.md) accepts plain text or a role-labeled conversation CSV. Both included inputs are synthetic. Remove `--mock` to use the configured language model.
+The [single-document example](single_document_demo/README.md) accepts plain text or a role-labeled conversation CSV. Both included inputs are synthetic. `--mock` checks the workflow on CPU without a model. `--llm provider:model` picks the language model; the providers are listed below.
+
+## Language model backends
+
+Every model call goes through one backend interface, so construction and answer generation work with any of these providers. The vLLM backend produced the paper's results.
+
+| `--llm` or `model.backend` | Example | Needs |
+|---|---|---|
+| `openai` | `openai:gpt-4.1-mini` | `pip install 'saadi[openai]'` and `OPENAI_API_KEY`. Any OpenAI-compatible server works through `OPENAI_BASE_URL` or `model.base_url`: LM Studio, llama.cpp, Groq, Together, `vllm serve`. |
+| `ollama` | `ollama:qwen3:8b` | `pip install 'saadi[openai]'` and a local Ollama server. No key. |
+| `anthropic` | `anthropic:claude-opus-5-5` | `pip install 'saadi[anthropic]'` and `ANTHROPIC_API_KEY`, or a profile from `ant auth login`. |
+| `vllm` | `vllm:Qwen/Qwen3.5-27B` | `pip install 'saadi[llm]'` and local GPUs. |
+| `mock` | `mock` | Nothing. Placeholder outputs for checking the workflow. |
+
+A single document is processed one chunk at a time by design, since each state update depends on the previous one, so the time for a document is the per-call latency times the number of chunks; concurrency speeds up the summary folds and multi-document runs. With Anthropic models, `effort: low` in the `model` section is the economical setting for the many short extraction calls. With Ollama, raise the server's context length if outputs are cut off.
+
+In experiment and demo configurations the same choice is the `model` section: `backend`, `model_id`, and for hosted APIs the optional `base_url`, `api_key_env`, `max_workers`, `max_retries`, and `timeout`. Hosted backends send the prompts of a batch concurrently and retry rate limits with backoff. From Python, `saadi.llm.resolve_backend` accepts the same `provider:model` string, a config mapping, a backend object, or a function `(system, user, **options) -> str`, so any other client can be plugged in.
 
 ## Repository contents
 

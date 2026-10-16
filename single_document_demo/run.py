@@ -13,6 +13,7 @@ for path in (REPO_ROOT, SRC_DIR):
     if str(path) not in sys.path:
         sys.path.insert(0, str(path))
 
+from saadi.llm import model_config_from_spec
 from single_document_demo.pipeline import load_demo_config, run_demo
 
 
@@ -53,7 +54,20 @@ def build_arg_parser() -> ArgumentParser:
         metavar="JSONL",
         help="Question JSONL for the text workflow.",
     )
-    parser.add_argument("--mock", action="store_true", help="Use the CPU-safe mock backend.")
+    parser.add_argument(
+        "--llm",
+        metavar="PROVIDER:MODEL",
+        help=(
+            "Language model, for example openai:gpt-4.1-mini, ollama:qwen3:8b, "
+            "anthropic:claude-opus-5-5, vllm:Qwen/Qwen3.5-27B, or mock. "
+            "Overrides the TOML [model] table."
+        ),
+    )
+    parser.add_argument(
+        "--mock",
+        action="store_true",
+        help="Use the CPU-safe mock backend; the same as --llm mock.",
+    )
     parser.add_argument(
         "--fail-fast",
         action="store_true",
@@ -86,7 +100,11 @@ def main(argv: list[str] | None = None) -> int:
     if args.questions is not None:
         config.questions_path = args.questions
         config.query = ""
+    if args.llm:
+        config.model_config = model_config_from_spec(args.llm)
     if args.mock:
+        if args.llm and config.model_config.get("backend") != "mock":
+            raise ValueError("--mock and --llm select different backends; pass only one of them")
         config.model_config = {"backend": "mock"}
 
     result = run_demo(config, continue_on_error=False if args.fail_fast else None)

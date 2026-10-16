@@ -21,6 +21,7 @@ from ..io.hierarchy_cache import (
 )
 from ..io.jsonl import write_jsonl
 from ..llm.base import GenerateParams, LLMBackend
+from ..llm.factory import resolve_backend
 
 logger = logging.getLogger(__name__)
 
@@ -98,21 +99,6 @@ def _snapshot_has_required_hierarchy_for_step(snapshot: dict | None, *, step: in
         level += 1
         cycle *= b
     return True
-
-
-def _attach_backend_chat_tokenizer_to_strategy(*, strategy: Any, backend: LLMBackend) -> None:
-    strategy_chat_tokenizer = getattr(strategy, "tokenizer_for_chat_template", None)
-    backend_chat_tokenizer = getattr(backend, "chat_tokenizer", None)
-    if strategy_chat_tokenizer is None and backend_chat_tokenizer is not None:
-        try:
-            setattr(strategy, "tokenizer_for_chat_template", backend_chat_tokenizer)
-            logger.info(
-                "Attached backend chat tokenizer to strategy=%s for chat-template prompt formatting",
-                getattr(strategy, "name", "unknown"),
-            )
-        except Exception:
-            # Strategy may not expose tokenizer_for_chat_template as a mutable field.
-            pass
 
 
 def _resolve_valid_cached_record(
@@ -284,8 +270,8 @@ def ingest_document(
     on_chunk_processed: Callable[[CanonicalizedChunkRecord, bool], None] | None = None,
     precomputed_raw_chunks: list[ChunkRecord] | None = None,
 ) -> tuple[list[ChunkRecord], list[CanonicalizedChunkRecord], dict[str, Any]]:
+    backend = resolve_backend(backend)
     generate = generate or GenerateParams()
-    _attach_backend_chat_tokenizer_to_strategy(strategy=strategy, backend=backend)
     if precomputed_raw_chunks is not None:
         raw_chunks = precomputed_raw_chunks
     else:
@@ -387,7 +373,7 @@ def ingest_document(
         cache_prefix_valid = False
 
         prompt = strategy.build_prompt(chunk, state)
-        raw_model_text = backend.generate_batch(
+        raw_model_text = backend.generate_chat_batch(
             [prompt],
             max_tokens=generate.max_tokens,
             temperature=generate.temperature,
@@ -460,7 +446,7 @@ def _drive_rollups_batched(
 
     All generators are at the same wavefront step, so the rollup requests they yield
     for a given cascade level are independent across documents. We collect one request
-    per active generator, issue the rollup prompts as a single ``generate_batch`` call,
+    per active generator, issue the rollup prompts as a single ``generate_chat_batch`` call,
     then send the summaries back and repeat for the next (higher) cascade level. This
     replaces the previous behaviour of one single-prompt LLM call per rollup per doc.
     """
@@ -505,7 +491,6 @@ def _ingest_documents_wavefront(
     precomputed_raw_chunks_by_doc_id: dict[str, list[ChunkRecord]] | None = None,
 ) -> tuple[list[ChunkRecord], list[CanonicalizedChunkRecord]]:
     generate = generate or GenerateParams()
-    _attach_backend_chat_tokenizer_to_strategy(strategy=strategy, backend=backend)
     debug_batching = str(os.getenv("SAADI_DEBUG_BATCHING", "0")).strip().lower() in {"1", "true", "yes", "on"}
 
     if not doc_items:
@@ -702,7 +687,7 @@ def _ingest_documents_wavefront(
                     batch_idx,
                     len(prompts),
                 )
-            raw_model_texts = backend.generate_batch(
+            raw_model_texts = backend.generate_chat_batch(
                 prompts,
                 max_tokens=generate.max_tokens,
                 temperature=generate.temperature,
@@ -809,6 +794,7 @@ def ingest_documents(
     wavefront_batch_size: int | None = None,
     precomputed_raw_chunks_by_doc_id: dict[str, list[ChunkRecord]] | None = None,
 ):
+    backend = resolve_backend(backend)
     logger.info(
         "Starting ingest for %d documents strategy=%s schedule=%s use_cache=%s cache_save_each_document=%s",
         len(documents_by_id),

@@ -6,9 +6,9 @@ import time
 from dataclasses import dataclass
 from typing import Any
 
-from ...core.prompts import format_chat_prompt, prompt_hash
-from ...llm.base import GenerateParams
-from ...llm.factory import build_backend_from_config
+from ...core.prompts import prompt_hash
+from ...llm.base import ChatPrompt, GenerateParams, render_prompt
+from ...llm.factory import build_backend_from_config, resolve_backend
 from .prompts import (
     DEFAULT_SAADI_GENERATION_SYSTEM_PROMPT,
     DEFAULT_SAADI_GENERATION_USER_TEMPLATE,
@@ -43,7 +43,7 @@ class SaadiAnswerGenerator:
 
     def __init__(self, config: GenerationConfig, *, backend: Any | None = None) -> None:
         self.config = config
-        self.backend = backend if backend is not None else build_backend_from_config({"backend": "vllm"})
+        self.backend = resolve_backend(backend) if backend is not None else build_backend_from_config({"backend": "vllm"})
         self.tokenizer = getattr(self.backend, "chat_tokenizer", None)
 
     @classmethod
@@ -94,7 +94,7 @@ class SaadiAnswerGenerator:
                 pass
         return len(str(text or "").split())
 
-    def build_prompt(self, request: GenerationRequest) -> tuple[str, str, dict[str, Any]]:
+    def build_prompt(self, request: GenerationRequest) -> tuple[ChatPrompt, str, dict[str, Any]]:
         context = str(request.context or "")
         context_tokens = self.count_tokens(context)
         if self.config.max_context_tokens is not None and context_tokens > self.config.max_context_tokens:
@@ -109,27 +109,23 @@ class SaadiAnswerGenerator:
             question=str(request.question or "").strip(),
             choices_block=format_choices_block(request.qa_entry),
         )
-        prompt = format_chat_prompt(
-            tokenizer=self.tokenizer,
-            system_prompt=self.config.system_prompt,
-            user_prompt=user_prompt,
-        )
+        prompt = ChatPrompt(system=self.config.system_prompt, user=user_prompt)
         return prompt, user_prompt, {
             "context_token_length": context_tokens,
             "context_tokens": context_tokens,
-            "prompt_tokens": self.count_tokens(prompt),
+            "prompt_tokens": self.count_tokens(render_prompt(self.backend, prompt)),
             "prompt_hash": prompt_hash(self.config.system_prompt, user_prompt),
         }
 
     def generate_batch(self, requests: list[GenerationRequest]) -> list[dict[str, Any]]:
-        prompts: list[str] = []
+        prompts: list[ChatPrompt] = []
         prompt_meta: list[dict[str, Any]] = []
         for request in requests:
             prompt, _user_prompt, meta = self.build_prompt(request)
             prompts.append(prompt)
             prompt_meta.append(meta)
         started = time.perf_counter()
-        outputs = self.backend.generate_batch(
+        outputs = self.backend.generate_chat_batch(
             prompts,
             max_tokens=int(self.config.max_output_tokens),
             temperature=float(self.config.temperature),
