@@ -14,10 +14,11 @@ and the hosted ``openai_embedding`` and ``ollama_embedding`` retrievers
             words = set(query.lower().split())
             return [len(words & set(text.lower().split())) for text in self.corpus]
 
-or wrap any embedding function with :func:`make_embedding_retriever`.
+or pass an object to :func:`resolve_retriever`: a reranker with
+``score(query, texts)``, or an embedding model with ``encode(texts)``.
 """
 
-from .base import BaseRetriever, EmbeddingRetriever, Retriever, make_embedding_retriever
+from .base import BaseRetriever, EmbeddingRetriever, Retriever, make_embedding_retriever, make_scorer_retriever
 from .openai_embeddings import OllamaEmbeddingRetriever, OpenAIEmbeddingRetriever
 from .registry import (
     lookup_retriever,
@@ -41,6 +42,7 @@ __all__ = [
     "Retriever",
     "lookup_retriever",
     "make_embedding_retriever",
+    "make_scorer_retriever",
     "normalize_retriever_name",
     "register_retriever",
     "registered_retrievers",

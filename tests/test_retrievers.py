@@ -191,3 +191,45 @@ def test_demo_cli_parses_retriever_option() -> None:
 
     args = build_arg_parser().parse_args(["text", "--retriever", "openai_embedding"])
     assert args.retriever == "openai_embedding"
+
+
+def test_resolve_retriever_accepts_scorer_and_embedding_model_instances() -> None:
+    import saadi
+
+    assert saadi.register_retriever is register_retriever
+    created: list[str] = []
+    try:
+        class Reranker:
+            def score(self, query: str, texts: list[str]) -> list[float]:
+                return [float(text.lower().count(query.lower())) for text in texts]
+
+        reranker = Reranker()
+        name = resolve_retriever(reranker)
+        created.append(name)
+        assert resolve_retriever(reranker) == name  # same object, same name
+        retriever = get_retriever(name)(["a a", "b", "a"], chunk_ids=["x", "y", "z"])
+        assert retriever.retrieve("a", k=2)[0] == ["x", "z"]
+
+        class Model:
+            def encode(self, sentences: list[str], batch_size: int = 32):
+                return np.array([[len(s), s.count("e")] for s in sentences], dtype=float)
+
+        name = resolve_retriever(Model())
+        created.append(name)
+        assert issubclass(get_retriever(name), EmbeddingRetriever)
+        assert "model" in name  # names are normalized to lower case
+
+        name = resolve_retriever(lambda query, texts: [float(query in text) for text in texts])
+        created.append(name)
+        assert get_retriever(name)(["q here", "no"]).score("q") == [1.0, 0.0]
+
+        first = resolve_retriever(lambda texts: np.ones((len(texts), 2)))
+        second = resolve_retriever(lambda texts: np.zeros((len(texts), 2)))
+        created.extend([first, second])
+        assert first != second  # same __name__, different objects
+
+        with pytest.raises(TypeError, match="pass the class"):
+            resolve_retriever(KeywordOverlap(["x"]))
+    finally:
+        for name in created:
+            unregister_retriever(name)
