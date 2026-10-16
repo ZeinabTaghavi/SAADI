@@ -4,7 +4,7 @@
 
     from saadi import Saadi
 
-    doc = Saadi(llm="openai:gpt-4.1-mini", state_dir="state/report")
+    doc = Saadi(llm="openai:gpt-4.1-mini", state_dir="saadi_state/report")
     doc.index("report.txt")                 # one state-update call per chunk
     doc.append(more_text)                   # extends the state; earlier chunks are reused
     hits = doc.retrieve("Who leads the team?", k=5)
@@ -12,8 +12,8 @@
     doc.memory, doc.history                 # entity records and the summary hierarchy
 
 Everything lives in a flat state directory (see :data:`STATE_LAYOUT`), so a
-state can be inspected with ordinary tools, copied, and loaded again with
-:meth:`Saadi.load`.
+state can be inspected with ordinary tools, copied with :meth:`Saadi.save`,
+moved, and loaded again with :meth:`Saadi.load`.
 """
 
 from __future__ import annotations
@@ -57,7 +57,7 @@ from .pipelines.single_document_pipeline import (
 from .prompts import PromptProfile, load_prompt_profile
 from .retrievers import resolve_retriever
 
-STATE_FORMAT_VERSION = 1
+STATE_FORMAT_VERSION = 2
 STATE_FILE = "saadi.json"
 DOCUMENT_FILE = "document.txt"
 CHUNKS_FILE = "chunks.jsonl"
@@ -66,26 +66,21 @@ CACHE_DIR = "cache"
 DEFAULT_STATE_ROOT = "saadi_state"
 
 STATE_LAYOUT = {
-    STATE_FILE: "this manifest: document id, settings, counts, and this layout",
+    STATE_FILE: "this manifest: document id, settings, counts, the location of the construction cache, and this layout",
     DOCUMENT_FILE: "the indexed text; append() extends it",
     CHUNKS_FILE: "one JSON object per chunk: chunk_id, chunk_index, text, token offsets",
-    MEMORY_FILE: "entity memory: name, aliases, descriptions, first_seen_chunk",
-    f"{HISTORY_DIR}/": "hierarchical history: L_0 chunks and L_n fold summaries, as .jsonl and .txt",
+    MEMORY_FILE: (
+        "entity memory as a readable view: name, aliases, descriptions, first_seen_chunk; "
+        "pronoun and role-label aliases are removed here, retrieval scores the raw memory in cache/"
+    ),
+    f"{HISTORY_DIR}/": "hierarchical history: L_0 holds the chunks as the model read them (with entity anchors), L_n the fold summaries; .jsonl and .txt",
     SUMMARY_FILE: "whole-document summary, present after summarize()",
     f"{QUERIES_DIR}/": "one folder per retrieve() or answer() call: retrieval, context, answer",
-    f"{CACHE_DIR}/": "the construction cache the pipeline resumes from; not meant for editing",
+    f"{CACHE_DIR}/": "the construction cache and the retrieval index, one folder per prompt profile; retrieve() and answer() need it, so keep it and do not edit it",
 }
 
-
-def _resolve_llm(llm: Any) -> Any:
-    """Resolve the backend; the mock answers questions with a readable placeholder."""
-
-    if isinstance(llm, str) and llm.strip().lower() in {"mock", "dummy"}:
-        from .llm.mock_backend import MockBackend
-        from .pipelines.single_document_pipeline import _single_document_mock_generator
-
-        return MockBackend(generator=_single_document_mock_generator)
-    return resolve_backend(llm)
+_SECRET_KEY = re.compile(r"api_?key|token|secret|password|authorization|header", re.IGNORECASE)
+_WINDOWS_RESERVED = {"con", "prn", "aux", "nul", *(f"com{i}" for i in range(1, 10)), *(f"lpt{i}" for i in range(1, 10))}
 
 
 class _SingleDocumentNoise(logging.Filter):
@@ -95,18 +90,122 @@ class _SingleDocumentNoise(logging.Filter):
         return not record.getMessage().startswith("Wavefront schedule requested with 1 document")
 
 
+def _resolve_llm(llm: Any) -> Any:
+    """Resolve the backend; the mock answers questions with a readable placeholder."""
+
+    name = llm if isinstance(llm, str) else (llm.get("backend", "") if isinstance(llm, dict) else "")
+    if str(name).strip().lower() in {"mock", "dummy"}:
+        from .llm.mock_backend import MockBackend
+        from .pipelines.single_document_pipeline import _single_document_mock_generator
+
+        return MockBackend(generator=_single_document_mock_generator)
+    return resolve_backend(llm)
+
+
+def _public_model_config(config: Any) -> dict[str, Any]:
+    """The model settings worth recording: everything except credentials and headers."""
+
+    public: dict[str, Any] = {}
+    for key, value in dict(config or {}).items():
+        name = str(key)
+        if _SECRET_KEY.search(name) and not name.endswith("_env"):
+            continue
+        public[name] = _public_model_config(value) if isinstance(value, dict) else value
+    return public
+
+
+def _model_label(config: dict[str, Any] | None) -> str:
+    config = config or {}
+    return f"{config.get('backend', '?')}:{config.get('model_id', '?')}"
+
+
 def _safe_id(value: str) -> str:
-    cleaned = re.sub(r"[^A-Za-z0-9._-]+", "_", str(value or "").strip()).strip("._-")
-    return cleaned or "document"
+    cleaned = re.sub(r"[^\w.-]+", "_", str(value or "").strip()).strip("._-")
+    if not cleaned:
+        return "document"
+    if cleaned.lower() in _WINDOWS_RESERVED:
+        cleaned += "_doc"
+    return cleaned
 
 
 def _slug(value: str, limit: int = 40) -> str:
-    cleaned = re.sub(r"[^a-z0-9]+", "-", str(value or "").lower()).strip("-")
+    cleaned = re.sub(r"[^\w]+", "-", str(value or "").lower()).strip("-")
     return cleaned[:limit].rstrip("-") or "query"
 
 
 def _now() -> str:
     return datetime.now(timezone.utc).isoformat()
+
+
+def _json_ready(value: Any) -> Any:
+    if isinstance(value, dict):
+        return {str(k): _json_ready(v) for k, v in value.items()}
+    if isinstance(value, (list, tuple, set)):
+        return [_json_ready(v) for v in value]
+    if isinstance(value, Path):
+        return str(value)
+    return value
+
+
+def _relative(path: Path | None, root: Path) -> str | None:
+    if path is None:
+        return None
+    try:
+        return str(Path(path).relative_to(root))
+    except ValueError:
+        return str(path)
+
+
+def _replace_prefix(value: Any, old: str, new: str) -> Any:
+    if isinstance(value, str):
+        if value == old:
+            return new
+        if value.startswith(old + "/"):
+            return new + value[len(old) :]
+        return value
+    if isinstance(value, list):
+        return [_replace_prefix(item, old, new) for item in value]
+    if isinstance(value, dict):
+        return {key: _replace_prefix(item, old, new) for key, item in value.items()}
+    return value
+
+
+def _relocate_state(root: Path, *, old_root: str, new_root: str) -> int:
+    """Rewrite the absolute paths the pipeline stored when a state directory was copied or moved."""
+
+    if not old_root or old_root == new_root:
+        return 0
+    rewritten = 0
+    cache_root = root / CACHE_DIR
+    for path in sorted(cache_root.rglob("*.json")) if cache_root.is_dir() else []:
+        text = path.read_text(encoding="utf-8")
+        if old_root not in text:
+            continue
+        try:
+            payload = json.loads(text)
+        except ValueError:
+            continue
+        write_json(path, _replace_prefix(payload, old_root, new_root))
+        rewritten += 1
+    manifest = root / STATE_FILE
+    if manifest.is_file():
+        payload = json.loads(manifest.read_text(encoding="utf-8"))
+        payload["location"] = new_root
+        write_json(manifest, payload)
+    return rewritten
+
+
+def _index_lists_document(index_path: Path, document_id: str) -> bool:
+    try:
+        payload = json.loads(index_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return False
+    docs = payload.get("docs") if isinstance(payload, dict) else None
+    if not isinstance(docs, list):
+        return True
+    ids = {str(doc.get("doc_id") or doc.get("document_id") or "") for doc in docs if isinstance(doc, dict)}
+    ids.discard("")
+    return not ids or document_id in ids
 
 
 @dataclass(slots=True)
@@ -196,7 +295,7 @@ class IndexReport:
     document_id: str
     state_dir: Path
     chunks: int
-    new_chunks: int
+    new_chunks: int  # chunks whose text was not in the state before this call
     entities: int
     history_levels: tuple[int, ...]
     model_calls: int
@@ -221,13 +320,15 @@ class Saadi:
         llm: Anything :func:`saadi.llm.resolve_backend` accepts: ``"openai:gpt-4.1-mini"``,
             ``"ollama:qwen3:8b"``, ``"anthropic:claude-opus-5-5"``, ``"mock"``, a config
             mapping, a backend object, or a function. Needed to index, append, answer,
-            and summarize; a loaded state can retrieve without one.
+            and summarize; a loaded state can retrieve without one. Credentials in a
+            config mapping are never written to the state directory.
         retriever: A name such as ``bm25`` (default) or ``openai_embedding``, a
             retriever class, a reranker or embedding-model object, or an embedding
             function; see :mod:`saadi.retrievers`.
         prompts: A prompt profile: ``default``, ``conversation``, a directory, or a
             :class:`saadi.prompts.PromptProfile`.
         state_dir: Where the state lives. Defaults to ``saadi_state/<document_id>``.
+            A state directory belongs to one document.
         chunk_size, chunk_overlap, branching_factor, max_entities, max_aliases,
         max_desc, active_entity_selector, separator_phrases: construction settings
             (the paper's defaults).
@@ -261,7 +362,7 @@ class Saadi:
         self.retriever: str = resolve_retriever(retriever)
         self.profile: PromptProfile = load_prompt_profile(prompts)
         self._prompts_spec = str(prompts.directory) if isinstance(prompts, PromptProfile) else str(prompts)
-        self.state_dir: Path | None = Path(state_dir).expanduser() if state_dir is not None else None
+        self.state_dir: Path | None = Path(state_dir).expanduser().resolve() if state_dir is not None else None
         self.chunk_size = int(chunk_size)
         self.chunk_overlap = int(chunk_overlap)
         self.branching_factor = int(branching_factor)
@@ -278,9 +379,14 @@ class Saadi:
         self.use_cache = bool(use_cache)
         self._document_id: str | None = None
         self._source: dict[str, Any] = {}
+        self._input_options: dict[str, Any] = {}
         self._config: DocumentPipelineConfig | None = None
         self._ingest: IngestStageResult | None = None
         self._created_at: str | None = None
+        self._construction_dir: Path | None = None  # the profile cache folder that holds the construction
+        self._cache_index: Path | None = None  # the pipeline's index.json for that construction
+        self._stored_llm: dict[str, Any] | None = None  # the model that built the construction
+        self._stored_prompts: dict[str, Any] | None = None  # the prompts that built the construction
 
     # ----------------------------------------------------------------- state --
 
@@ -296,6 +402,8 @@ class Saadi:
 
     @property
     def cache_dir(self) -> Path:
+        """Where the current prompt profile's construction lives (or will be built)."""
+
         self._require_state_dir()
         return self.state_dir / CACHE_DIR / f"prompts_{self.profile.content_hash[:10]}"
 
@@ -316,25 +424,34 @@ class Saadi:
         if self._ingest is None and self.state_dir is not None and self._document_id is not None:
             self._ingest = self._load_ingest_from_cache()
         if self._ingest is None:
+            if self.state_dir is not None and (self.state_dir / STATE_FILE).is_file():
+                raise RuntimeError(
+                    f"The construction cache under {self._construction_dir or self.cache_dir} is missing or incomplete; "
+                    "retrieve() and answer() need it. Index the document again."
+                )
             raise RuntimeError("No indexed document. Call index() first, or load() a state directory.")
         return self._ingest
 
     def _model_config(self) -> dict[str, Any]:
-        if isinstance(self._llm_spec, str):
-            return model_config_from_spec(self._llm_spec)
-        if isinstance(self._llm_spec, dict):
-            return dict(self._llm_spec)
-        if self._backend is None:
-            return {"backend": "none"}
-        runtime = self._backend.runtime_metadata
-        return {"backend": str(runtime.get("backend") or "custom"), "model_id": str(runtime.get("model_name") or "custom")}
+        """The model settings as recorded in the state: never credentials."""
 
-    def _pipeline_config(self) -> DocumentPipelineConfig:
+        if isinstance(self._llm_spec, str):
+            raw: dict[str, Any] = model_config_from_spec(self._llm_spec)
+        elif isinstance(self._llm_spec, dict):
+            raw = dict(self._llm_spec)
+        elif self._backend is None:
+            return {"backend": "none"}
+        else:
+            runtime = self._backend.runtime_metadata
+            raw = {"backend": str(runtime.get("backend") or "custom"), "model_id": str(runtime.get("model_name") or "custom")}
+        return _public_model_config(raw)
+
+    def _pipeline_config(self, document_id: str | None = None) -> DocumentPipelineConfig:
         state_dir = self._require_state_dir()
         return DocumentPipelineConfig(
             demo_root=str(state_dir),
             document_path=str(state_dir / DOCUMENT_FILE),
-            document_id=str(self._document_id),
+            document_id=str(document_id or self._document_id),
             run_name=CACHE_DIR,
             query="",
             model_config=self._model_config(),
@@ -363,64 +480,107 @@ class Saadi:
     def index(self, source: str | Path | PreparedDocument, *, document_id: str | None = None, **input_options: Any) -> IndexReport:
         """Build the state for ``source``: inline text, a .txt/.md file, or a conversation .csv.
 
-        Re-indexing the same document into the same state directory reuses the
-        construction cache for every unchanged chunk.
+        Keyword options go to the input adapter (for a conversation CSV:
+        ``allowed_roles``, ``role_aliases``, ``include_timestamps``, column names)
+        and are remembered for append(). Re-indexing the same document into the
+        same state directory reuses the construction cache for every unchanged
+        chunk; nothing is written unless the model run succeeds.
         """
 
+        backend = self._require_backend("index a document")
         document = prepare_document(source, document_id=document_id, **input_options)
         doc_id = _safe_id(document.document_id)
         if self.state_dir is None:
-            self.state_dir = Path(DEFAULT_STATE_ROOT) / doc_id
+            self.state_dir = (Path(DEFAULT_STATE_ROOT) / doc_id).resolve()
         self.state_dir.mkdir(parents=True, exist_ok=True)
-        previous = len(self._read_chunks_file()) if self._stored_document_id() == doc_id else 0
-        self._document_id = doc_id
-        self._source = {
+        stored = self._stored_document_id()
+        if stored is not None and stored != doc_id:
+            raise ValueError(
+                f"{self.state_dir} already holds the document {stored!r}; a state directory belongs to one document. "
+                f"Use another state_dir, or pass document_id={stored!r} to replace it."
+            )
+        previous = self._read_chunks_file() if stored == doc_id else []
+        if previous:
+            self._stored_llm = self._stored_llm or self._stored_setting("llm")
+            self._warn_if_model_changed()
+        source_info = {
             "path": str(document.source_path) if document.source_path else None,
             "input_format": document.input_format,
-            "metadata": dict(document.metadata),
+            "metadata": _json_ready(dict(document.metadata)),
         }
-        self._write_document(document.text)
-        return self._ingest_document(document.text, previous_chunks=previous)
+        return self._ingest_document(
+            document.text, document_id=doc_id, source=source_info, input_options=dict(input_options), previous_chunks=previous, backend=backend
+        )
 
     def append(self, source: str | Path | PreparedDocument, *, separator: str = "\n\n", **input_options: Any) -> IndexReport:
         """Extend the indexed document and update the state without rebuilding it.
 
         Chunks whose text is unchanged are served from the construction cache,
-        so only the chunks at the end of the document cost model calls.
+        so only the chunks at the end of the document cost model calls. A
+        conversation CSV is read with the options remembered from index().
         """
 
+        backend = self._require_backend("append to a document")
         self._require_indexed()
-        addition = prepare_document(source, document_id=self._document_id, **input_options).text
+        options = {**self._input_options, **input_options}
+        addition = prepare_document(source, document_id=self._document_id, **options).text
         combined = self.document_text.rstrip("\n") + separator + addition.strip() + "\n"
-        previous = len(self.chunks)
-        self._write_document(combined)
-        return self._ingest_document(combined, previous_chunks=previous)
+        self._warn_if_model_changed()
+        return self._ingest_document(
+            combined, document_id=str(self._document_id), source=self._source, input_options=options, previous_chunks=list(self.chunks), backend=backend
+        )
 
-    def _ingest_document(self, text: str, *, previous_chunks: int) -> IndexReport:
-        backend = self._require_backend("index a document")
-        config = self._pipeline_config()
-        self._config = config
+    def _warn_if_model_changed(self) -> None:
+        stored, current = self._stored_llm or {}, self._model_config()
+        if stored and (stored.get("backend"), stored.get("model_id")) != (current.get("backend"), current.get("model_id")):
+            warnings.warn(
+                f"The language model changed from {_model_label(stored)} to {_model_label(current)}; "
+                "the construction cache is kept per model, so the whole document will be read again.",
+                stacklevel=3,
+            )
+
+    def _ingest_document(
+        self,
+        text: str,
+        *,
+        document_id: str,
+        source: dict[str, Any],
+        input_options: dict[str, Any],
+        previous_chunks: Sequence[ChunkRecord],
+        backend: CountingBackend,
+    ) -> IndexReport:
+        config = self._pipeline_config(document_id)
         calls_before, prompts_before = backend.calls, backend.prompts
         noise = _SingleDocumentNoise()
         _ingest_logger.addFilter(noise)
         try:
-            ingest = build_or_update_chunks_and_memory(config, {str(self._document_id): text}, backend=backend)
+            ingest = build_or_update_chunks_and_memory(config, {document_id: text}, backend=backend)
         finally:
             _ingest_logger.removeFilter(noise)
+
+        # The model run succeeded: now commit the state.
+        self._document_id = document_id
+        self._source = dict(source)
+        self._input_options = dict(input_options)
+        self._config = config
         self._ingest = ingest
-        readable = export_readable_state(
-            self.state_dir, artifacts=ingest.artifacts, memory_summary_path=ingest.memory_summary_path
-        )
+        self._construction_dir = self.cache_dir
+        self._cache_index = find_cache_index(ingest.artifacts)
+        self._stored_llm = self._model_config()
+        self._stored_prompts = self._describe_prompts()
+        self._write_document(text)
+        readable = export_readable_state(self.state_dir, artifacts=ingest.artifacts, memory_summary_path=ingest.memory_summary_path)
         self._write_chunks(ingest.raw_chunks)
         stale_summary = self.state_dir / SUMMARY_FILE
         if stale_summary.exists():
             stale_summary.unlink()
         save_demo_artifacts(config, ingest=ingest, backend=backend)
+        known = {(chunk.chunk_index, chunk.raw_text) for chunk in previous_chunks}
         report = IndexReport(
-            document_id=str(self._document_id),
+            document_id=document_id,
             state_dir=self.state_dir,
             chunks=len(ingest.raw_chunks),
-            new_chunks=max(0, len(ingest.raw_chunks) - int(previous_chunks)),
+            new_chunks=sum(1 for chunk in ingest.raw_chunks if (chunk.chunk_index, chunk.raw_text) not in known),
             entities=len(self.memory),
             history_levels=readable.levels,
             model_calls=backend.calls - calls_before,
@@ -432,6 +592,12 @@ class Saadi:
 
     # ------------------------------------------------------------------ query --
 
+    def _top_k(self, k: int | None, default: int) -> int:
+        top_k = default if k is None else int(k)
+        if top_k < 1:
+            raise ValueError("k must be at least 1")
+        return top_k
+
     def retrieve(self, query: str, *, k: int | None = None) -> list[RetrievedChunk]:
         """Rank the original chunks for ``query`` with the fused text, memory, and summary scores."""
 
@@ -439,8 +605,8 @@ class Saadi:
         question = str(query or "").strip()
         if not question:
             raise ValueError("query must not be empty")
-        top_k = int(k or self.retrieve_k)
-        config = dataclasses.replace(self._config or self._pipeline_config(), retrieve_k=max(top_k, 1))
+        top_k = self._top_k(k, self.retrieve_k)
+        config = dataclasses.replace(self._config or self._pipeline_config(), retrieve_k=top_k)
         query_dir = self._new_query_dir(question)
         retrieval = retrieve_for_query(
             config, ingest.raw_chunks, ingest.canonicalized_chunks, artifacts=ingest.artifacts, query=question, out_dir=query_dir
@@ -457,7 +623,7 @@ class Saadi:
         question = str(query or "").strip()
         if not question:
             raise ValueError("query must not be empty")
-        top_k = int(k or self.answer_top_k)
+        top_k = self._top_k(k, self.answer_top_k)
         config = dataclasses.replace(
             self._config or self._pipeline_config(), retrieve_k=max(self.retrieve_k, top_k), generation_top_k=top_k
         )
@@ -486,7 +652,12 @@ class Saadi:
         return result
 
     def summarize(self, *, max_tokens: int = 384, temperature: float = 0.2) -> str:
-        """Write one whole-document summary with the profile's document-summary prompt."""
+        """Write one whole-document summary with the profile's document-summary prompt.
+
+        The summary prompt receives every chunk at once, so this suits documents
+        of up to a few thousand words; longer ones need a model with a large
+        context window.
+        """
 
         backend = self._require_backend("summarize the document")
         ingest = self._require_indexed()
@@ -519,7 +690,11 @@ class Saadi:
 
     @property
     def memory(self) -> list[MemoryEntity]:
-        """The entity memory, sanitized of role labels and pronouns."""
+        """The entity memory as a readable view: pronoun and role-label aliases are left out.
+
+        Retrieval scores the raw memory kept in the cache, so the alias pool it
+        uses can be slightly larger than what this view shows.
+        """
 
         if self.state_dir is None:
             return []
@@ -541,7 +716,7 @@ class Saadi:
 
     @property
     def history(self) -> dict[int, list[HistoryItem]]:
-        """The hierarchical history: level 0 holds the chunks, higher levels the fold summaries."""
+        """The hierarchical history: level 0 holds the chunks as the model read them, higher levels the fold summaries."""
 
         if self.state_dir is None:
             return {}
@@ -576,6 +751,19 @@ class Saadi:
         path = self.state_dir / SUMMARY_FILE
         return path.read_text(encoding="utf-8").strip() if path.is_file() else None
 
+    def _describe_prompts(self) -> dict[str, Any]:
+        """The profile in use, with its guidance texts so a state stays self-describing."""
+
+        return {
+            "spec": self._prompts_spec,
+            **self.profile.describe(),
+            "guidance": {
+                "entity_extraction": self.profile.entity_guidance,
+                "hierarchy_summary": self.profile.summary_guidance,
+                "document_summary": self.profile.document_summary_guidance,
+            },
+        }
+
     def describe(self) -> dict[str, Any]:
         return {
             "document_id": self._document_id,
@@ -598,14 +786,29 @@ class Saadi:
     # ------------------------------------------------------------ persistence --
 
     def save(self, target: str | Path | None = None) -> Path:
-        """Refresh the manifest; with ``target``, copy the whole state directory there."""
+        """Refresh the manifest; with ``target``, copy the whole state directory there.
+
+        The copy is self-contained and can be loaded from its new location. An
+        earlier copy at ``target`` is replaced; any other non-empty directory is
+        left alone.
+        """
 
         state_dir = self._require_state_dir()
         self._write_state_file()
         if target is None:
             return state_dir
-        destination = Path(target).expanduser()
-        shutil.copytree(state_dir, destination, dirs_exist_ok=True)
+        destination = Path(target).expanduser().resolve()
+        if destination == state_dir:
+            return state_dir
+        if destination.exists():
+            if (destination / STATE_FILE).is_file():
+                shutil.rmtree(destination)
+            elif destination.is_dir() and not any(destination.iterdir()):
+                destination.rmdir()
+            else:
+                raise FileExistsError(f"{destination} exists and is not a Saadi state directory")
+        shutil.copytree(state_dir, destination)
+        _relocate_state(destination, old_root=str(state_dir), new_root=str(destination))
         return destination
 
     @classmethod
@@ -618,20 +821,24 @@ class Saadi:
         prompts: Any = None,
         **overrides: Any,
     ) -> "Saadi":
-        """Open an existing state directory.
+        """Open an existing state directory, also after it was copied or moved.
 
-        Construction settings come from the manifest. ``llm`` is only needed for
-        append(), answer(), and summarize(); retrieve() works without one.
+        Construction settings, the retriever, and the prompt profile come from
+        the manifest unless given here. ``llm`` is only needed for append(),
+        answer(), and summarize(); retrieve() works without one.
         """
 
-        state_dir = Path(state_dir).expanduser()
+        state_dir = Path(state_dir).expanduser().resolve()
         manifest_path = state_dir / STATE_FILE
         if not manifest_path.is_file():
             raise FileNotFoundError(f"{state_dir} is not a Saadi state directory (no {STATE_FILE})")
         payload = json.loads(manifest_path.read_text(encoding="utf-8"))
+        location = str(payload.get("location") or "")
+        if location and location != str(state_dir):
+            _relocate_state(state_dir, old_root=location, new_root=str(state_dir))
         settings = dict(payload.get("settings", {}))
         stored_prompts = dict(settings.get("prompts", {}))
-        prompts_spec = prompts if prompts is not None else stored_prompts.get("spec", "default")
+        profile = cls._profile_for_load(stored_prompts, prompts)
         kwargs: dict[str, Any] = {
             key: settings[key]
             for key in (
@@ -642,24 +849,56 @@ class Saadi:
             if key in settings
         }
         kwargs.update(overrides)
-        doc = cls(llm, retriever if retriever is not None else settings.get("retriever", "bm25"), prompts_spec, state_dir=state_dir, **kwargs)
-        if prompts is None and stored_prompts.get("content_hash") and stored_prompts["content_hash"] != doc.profile.content_hash:
-            warnings.warn(
-                f"The prompt profile {doc.profile.name!r} changed since this state was built; "
-                "retrieval keeps using the stored construction, and append() will start a new cache.",
-                stacklevel=2,
-            )
+        doc = cls(llm, retriever if retriever is not None else settings.get("retriever", "bm25"), profile, state_dir=state_dir, **kwargs)
+        if prompts is None:
+            doc._prompts_spec = str(stored_prompts.get("spec") or doc._prompts_spec)
+            if stored_prompts.get("content_hash") and stored_prompts["content_hash"] != doc.profile.content_hash:
+                warnings.warn(
+                    f"The prompt profile {doc.profile.name!r} changed since this state was built; "
+                    "retrieval keeps using the stored construction, and append() will rebuild it with the new prompts.",
+                    stacklevel=2,
+                )
         doc._document_id = str(payload.get("document_id") or "document")
         doc._source = dict(payload.get("source", {}))
+        doc._input_options = dict(doc._source.pop("options", None) or {})
         doc._created_at = payload.get("created_at_utc")
+        doc._stored_llm = dict(settings.get("llm") or {}) or None
+        doc._stored_prompts = stored_prompts or None
+        construction = payload.get("cache_dir")
+        doc._construction_dir = (state_dir / construction) if construction else doc.cache_dir
+        cache_index = payload.get("cache_index")
+        doc._cache_index = (state_dir / cache_index) if cache_index else None
         doc._config = doc._pipeline_config()
         doc._ingest = doc._load_ingest_from_cache()
-        stored_cache = payload.get("cache_dir")
-        if doc._ingest is None and stored_cache and (state_dir / stored_cache).is_dir():
-            # The profile changed, so this profile's cache is empty: read the stored
-            # construction for retrieval; append() rebuilds under the new profile.
-            doc._ingest = doc._load_ingest_from_cache(state_dir / stored_cache)
         return doc
+
+    @staticmethod
+    def _profile_for_load(stored: dict[str, Any], prompts: Any) -> PromptProfile:
+        """The profile to open a state with; the recorded guidance stands in for a missing directory."""
+
+        if prompts is not None:
+            return load_prompt_profile(prompts)
+        spec = str(stored.get("spec") or stored.get("name") or "default")
+        try:
+            return load_prompt_profile(spec)
+        except (ValueError, OSError):
+            guidance = dict(stored.get("guidance") or {})
+            if not (guidance.get("entity_extraction") and guidance.get("hierarchy_summary")):
+                raise
+            warnings.warn(
+                f"The prompt profile {spec!r} is no longer available; using the guidance recorded in {STATE_FILE}.",
+                stacklevel=3,
+            )
+            fields: dict[str, Any] = {
+                "name": str(stored.get("name") or "recorded"),
+                "directory": Path(str(stored.get("directory") or spec)),
+                "entity_guidance": str(guidance["entity_extraction"]),
+                "summary_guidance": str(guidance["hierarchy_summary"]),
+                "document_summary_guidance": guidance.get("document_summary"),
+            }
+            if stored.get("contract_version"):
+                fields["contract_version"] = str(stored["contract_version"])
+            return PromptProfile(**fields)
 
     # ---------------------------------------------------------------- internals --
 
@@ -708,29 +947,38 @@ class Saadi:
                 )
         return chunks
 
-    def _stored_document_id(self) -> str | None:
+    def _read_manifest(self) -> dict[str, Any]:
         if self.state_dir is None:
-            return None
+            return {}
         path = self.state_dir / STATE_FILE
         if not path.is_file():
-            return None
+            return {}
         try:
-            return str(json.loads(path.read_text(encoding="utf-8")).get("document_id") or "") or None
+            payload = json.loads(path.read_text(encoding="utf-8"))
         except (OSError, ValueError):
-            return None
+            return {}
+        return payload if isinstance(payload, dict) else {}
+
+    def _stored_document_id(self) -> str | None:
+        return str(self._read_manifest().get("document_id") or "") or None
+
+    def _stored_setting(self, key: str) -> Any:
+        return dict(self._read_manifest().get("settings") or {}).get(key)
 
     def _write_state_file(self) -> Path:
         state_dir = self._require_state_dir()
         if self._created_at is None:
             self._created_at = _now()
         queries_dir = state_dir / QUERIES_DIR
+        construction_dir = self._construction_dir or self.cache_dir
         payload = {
             "format_version": STATE_FORMAT_VERSION,
             "saadi_version": __version__,
             "document_id": self._document_id,
             "created_at_utc": self._created_at,
             "updated_at_utc": _now(),
-            "source": self._source,
+            "location": str(state_dir),
+            "source": {**self._source, "options": _json_ready(self._input_options)},
             "settings": {
                 "chunk_size": self.chunk_size,
                 "chunk_overlap": self.chunk_overlap,
@@ -746,8 +994,8 @@ class Saadi:
                 "ingest_max_tokens": self.ingest_max_tokens,
                 "answer_max_tokens": self.answer_max_tokens,
                 "answer_temperature": self.answer_temperature,
-                "prompts": {"spec": self._prompts_spec, **self.profile.describe()},
-                "llm": self._model_config() if self._backend is not None else None,
+                "prompts": self._stored_prompts or self._describe_prompts(),
+                "llm": self._stored_llm or (self._model_config() if self._backend is not None else None),
             },
             "counts": {
                 "chunks": len(self.chunks),
@@ -756,13 +1004,14 @@ class Saadi:
                 "queries": sum(1 for p in queries_dir.iterdir() if p.is_dir()) if queries_dir.is_dir() else 0,
                 "has_summary": (state_dir / SUMMARY_FILE).is_file(),
             },
-            "cache_dir": str(self.cache_dir.relative_to(state_dir)),
+            "cache_dir": _relative(construction_dir, state_dir),
+            "cache_index": _relative(self._cache_index, state_dir),
             "layout": STATE_LAYOUT,
         }
         return write_json(state_dir / STATE_FILE, payload)
 
-    def _load_ingest_from_cache(self, cache_dir: Path | None = None) -> IngestStageResult | None:
-        cache_dir = self.cache_dir if cache_dir is None else Path(cache_dir)
+    def _load_ingest_from_cache(self) -> IngestStageResult | None:
+        cache_dir = self._construction_dir or self.cache_dir
         raw_path = cache_dir / "raw_chunks.jsonl"
         canonical_path = cache_dir / "canonicalized_chunks.jsonl"
         if not (raw_path.is_file() and canonical_path.is_file()):
@@ -770,9 +1019,14 @@ class Saadi:
         raw = [ChunkRecord(**_chunk_fields(json.loads(line))) for line in raw_path.read_text(encoding="utf-8").splitlines() if line.strip()]
         canonical = [_canonical_from_dict(json.loads(line)) for line in canonical_path.read_text(encoding="utf-8").splitlines() if line.strip()]
         artifacts = default_artifact_paths(cache_dir)
-        index_path = find_cache_index(artifacts)
+        index_path = self._cache_index if (self._cache_index is not None and self._cache_index.is_file()) else find_cache_index(artifacts)
         if index_path is not None:
+            if self._document_id and not _index_lists_document(index_path, self._document_id):
+                raise RuntimeError(
+                    f"The cache index {index_path} does not describe the document {self._document_id!r}; index the document again."
+                )
             artifacts.llm_cache_index_json = index_path
+            self._cache_index = index_path
         memory_path = cache_dir / "memory_summary.json"
         return IngestStageResult(
             raw_chunks=raw,

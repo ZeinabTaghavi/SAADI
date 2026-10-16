@@ -44,7 +44,9 @@ def main(argv: list[str] | None = None) -> int:
         print(format_memory(doc.memory, limit=8))
         print()
         result = doc.answer(args.query)
-    except (ValueError, FileNotFoundError, RuntimeError) as exc:
+    except Exception as exc:  # the command boundary: one line for the user, the traceback behind --verbose
+        if args.verbose:
+            raise
         print(f"error: {exc}")
         return 1
     print(format_answer(result))

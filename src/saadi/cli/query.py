@@ -38,7 +38,9 @@ def main(argv: list[str] | None = None) -> int:
             chunks = doc.retrieve(args.question, k=args.k)
             payload = {"question": args.question, "chunks": [dataclasses.asdict(c) for c in chunks]}
             text = f"Question: {args.question}\n" + format_chunks(chunks)
-    except (ValueError, FileNotFoundError, RuntimeError) as exc:
+    except Exception as exc:  # the command boundary: one line for the user, the traceback behind --verbose
+        if args.verbose:
+            raise
         print(f"error: {exc}")
         return 1
     if args.json:

@@ -106,9 +106,9 @@ saadi demo --llm openai:gpt-4.1-mini
 `saadi demo` indexes a bundled synthetic report, prints the entity memory it built, and answers a question whose evidence sits in the middle of the document. Your own documents work the same way:
 
 ```bash
-saadi index report.txt --llm openai:gpt-4.1-mini --state state/report
-saadi query "Who leads the team?" --state state/report --llm openai:gpt-4.1-mini
-saadi index more_pages.txt --append --state state/report --llm openai:gpt-4.1-mini
+saadi index report.txt --llm openai:gpt-4.1-mini --state saadi_state/report
+saadi query "Who leads the team?" --state saadi_state/report --llm openai:gpt-4.1-mini
+saadi index more_pages.txt --append --state saadi_state/report --llm openai:gpt-4.1-mini
 ```
 
 From Python:
@@ -116,17 +116,17 @@ From Python:
 ```python
 from saadi import Saadi
 
-doc = Saadi(llm="openai:gpt-4.1-mini", state_dir="state/report")
+doc = Saadi(llm="openai:gpt-4.1-mini", state_dir="saadi_state/report")
 doc.index("report.txt")                    # one state-update call per chunk
 hits = doc.retrieve("Who leads the team?", k=5)
 reply = doc.answer("Who leads the team?")  # retrieval, folded context, answer
 doc.memory                                 # entity records with aliases and descriptions
-doc.history[1]                             # fold summaries, each covering five chunks
+doc.history.get(1, [])                     # fold summaries, each covering five chunks
 doc.append("More pages ...")               # extends the state; unchanged chunks are reused
-again = Saadi.load("state/report")         # retrieval needs no model; pass llm= to answer
+again = Saadi.load("saadi_state/report")   # retrieval needs no model; pass llm= to answer
 ```
 
-A state is a flat directory: `saadi.json` holds the manifest and documents the layout, next to `document.txt`, `chunks.jsonl`, `memory.json`, `history/L_0.txt` and the fold levels above it, `summary.txt` after `summarize()`, one folder per query under `queries/`, and the construction cache under `cache/`. Conversation transcripts, a `.csv` with `role` and `text` columns, index the same way with `--prompts conversation`. The `examples/` folder has the sample inputs and a notebook. Without a model, `--llm mock` runs the whole path with placeholder outputs.
+A state is a flat directory: `saadi.json` holds the manifest and documents the layout, next to `document.txt`, `chunks.jsonl`, `memory.json`, `history/L_0.txt` and the fold levels above it, `summary.txt` after `summarize()`, one folder per query under `queries/`, and the construction cache under `cache/`. Conversation transcripts, a `.csv` with `role` and `text` columns and any speaker roles, index the same way with `--prompts conversation` (`--roles` and `--role-alias` restrict or rename the speakers). `saadi.json` records the model, the retriever, and the prompts that built a state, never credentials, and `Saadi.save(target)` makes a self-contained copy. The `examples/` folder has the sample inputs and a notebook. Without a model, `--llm mock` runs the whole path with placeholder outputs.
 
 ## Language model backends
 

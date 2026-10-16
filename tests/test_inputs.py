@@ -32,9 +32,9 @@ def test_csv_adapter_orders_turns_and_normalizes_multiline_text(tmp_path: Path) 
 def test_csv_adapter_roles_are_configurable(tmp_path: Path) -> None:
     source = tmp_path / "bad.csv"
     source.write_text("turn_id,role,text\n1,narrator,Hello\n", encoding="utf-8")
+    assert ConversationCsvAdapter().prepare(source).text == "narrator: Hello\n"  # any role by default
     with pytest.raises(ValueError, match="unsupported role"):
-        ConversationCsvAdapter().prepare(source)
-    assert ConversationCsvAdapter(allowed_roles=()).prepare(source).text == "narrator: Hello\n"
+        ConversationCsvAdapter(allowed_roles=("therapist", "patient")).prepare(source)
     assert ConversationCsvAdapter(role_aliases={"narrator": "therapist"}).prepare(source).text == "therapist: Hello\n"
 
 
@@ -50,9 +50,9 @@ def test_prepare_document_accepts_text_paths_and_prepared_documents(tmp_path: Pa
 
     transcript = tmp_path / "talk.csv"
     transcript.write_text("role,text\nhost,Welcome\nguest,Thanks\n", encoding="utf-8")
-    assert prepare_document(transcript, allowed_roles=("host", "guest")).input_format == "conversation_csv"
+    assert prepare_document(transcript).input_format == "conversation_csv"
     with pytest.raises(ValueError, match="unsupported role"):
-        prepare_document(transcript)
+        prepare_document(transcript, allowed_roles=("host",))
     with pytest.raises(FileNotFoundError):
         prepare_document(str(tmp_path / "missing.txt"))
     with pytest.raises(ValueError, match="empty"):
