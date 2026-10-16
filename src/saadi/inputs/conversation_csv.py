@@ -74,9 +74,7 @@ class ConversationCsvAdapter:
             if not role:
                 raise ValueError(f"CSV {source} has an empty role at row {row_number}")
             if allowed and role not in allowed:
-                raise ValueError(
-                    f"CSV {source} has unsupported role {role!r} at row {row_number}; allowed roles: {sorted(allowed)}"
-                )
+                raise ValueError(f"CSV {source} has unsupported role {role!r} at row {row_number}; allowed roles: {sorted(allowed)}")
             utterance = _normalize_utterance(row.get(self.text_column, ""))
             if not utterance:
                 skipped_empty += 1

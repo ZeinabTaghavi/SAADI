@@ -8,8 +8,9 @@ from __future__ import annotations
 import json
 import re
 import threading
+from collections.abc import Callable
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-from typing import Any, Callable
+from typing import Any
 
 Response = tuple[int, dict[str, str], dict[str, Any]]
 Responder = Callable[[str, dict[str, Any]], "Response | None"]
@@ -143,10 +144,7 @@ def embeddings_payload(body: dict[str, Any]) -> dict[str, Any]:
         inputs = [inputs]
     return {
         "object": "list",
-        "data": [
-            {"object": "embedding", "index": index, "embedding": fake_embedding(text)}
-            for index, text in enumerate(inputs or [])
-        ],
+        "data": [{"object": "embedding", "index": index, "embedding": fake_embedding(text)} for index, text in enumerate(inputs or [])],
         "model": body.get("model", "fake-embedding"),
         "usage": {"prompt_tokens": 1, "total_tokens": 1},
     }

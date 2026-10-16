@@ -32,7 +32,12 @@ def main(argv: list[str] | None = None) -> int:
         doc = Saadi.load(Path(args.state), llm=args.llm, retriever=args.retriever)
         if args.llm:
             result = doc.answer(args.question, k=args.k)
-            payload = {"question": result.question, "answer": result.text, "status": result.status, "chunks": [dataclasses.asdict(c) for c in result.chunks]}
+            payload = {
+                "question": result.question,
+                "answer": result.text,
+                "status": result.status,
+                "chunks": [dataclasses.asdict(c) for c in result.chunks],
+            }
             text = format_answer(result)
         else:
             chunks = doc.retrieve(args.question, k=args.k)

@@ -9,7 +9,7 @@ retriever name is configured.
 from __future__ import annotations
 
 import inspect
-from typing import Any, Callable
+from typing import Any
 
 from .base import EmbeddingRetriever, make_embedding_retriever, make_scorer_retriever
 
@@ -74,8 +74,7 @@ def _required_positional_count(fn: Any) -> int | None:
     return sum(
         1
         for p in parameters
-        if p.kind in (inspect.Parameter.POSITIONAL_ONLY, inspect.Parameter.POSITIONAL_OR_KEYWORD)
-        and p.default is inspect.Parameter.empty
+        if p.kind in (inspect.Parameter.POSITIONAL_ONLY, inspect.Parameter.POSITIONAL_OR_KEYWORD) and p.default is inspect.Parameter.empty
     )
 
 

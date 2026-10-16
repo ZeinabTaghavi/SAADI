@@ -1,11 +1,11 @@
 [build-system]
-requires = ["setuptools>=70"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "saadi"
-version = "0.1.0"
-description = "SAADI: index-time document state for single-pass long-document retrieval"
+dynamic = ["version"]
+description = "Understand a long document once, retrieve many times: an index-time entity memory and summary hierarchy for single-pass retrieval"
 readme = "README.md"
 authors = [
   {name = "Zeinab Sadat Taghavi"},
@@ -13,28 +13,74 @@ authors = [
   {name = "Mary-Anne Hartley"},
   {name = "Andreas Marfurt"},
 ]
+maintainers = [{name = "Zeinab Sadat Taghavi"}]
 requires-python = ">=3.11"
-license = {text = "MIT"}
+license = "MIT"
+license-files = ["LICENSE"]
+keywords = [
+  "retrieval",
+  "long documents",
+  "retrieval-augmented generation",
+  "entity memory",
+  "hierarchical summaries",
+  "information retrieval",
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Science/Research",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Topic :: Text Processing :: Indexing",
+]
 dependencies = ["tqdm>=4.67,<5", "PyYAML>=6.0,<7", "numpy>=1.26,<3"]
 
 [project.optional-dependencies]
-llm = ["transformers>=4.51,<6", "vllm>=0.8.5", "sentence-transformers>=3.0", "bert-score>=0.3.13", "sentencepiece>=0.2", "protobuf>=4"]
-dense = ["torch>=2.2", "transformers>=4.51,<6"]
+# Hosted language models and embeddings. The openai extra also covers every
+# OpenAI-compatible server (Ollama, LM Studio, Groq, vLLM serve).
 openai = ["openai>=1.50,<4"]
 anthropic = ["anthropic>=1,<2"]
-api = ["openai>=1.50,<4", "anthropic>=1,<2"]
-datasets = ["datasets>=4,<5"]
-figures = ["matplotlib>=3.8"]
-dev = ["pytest>=8,<10", "openai>=1.50,<4", "anthropic>=1,<2"]
+# The dense retrievers of the paper (Contriever, BGE-M3, E5, Jina, Qwen).
+dense = ["torch>=2.2", "transformers>=4.51,<6"]
+# Local inference with vLLM, as in the paper.
+vllm = ["vllm>=0.8.5", "transformers>=4.51,<6"]
+# Everything the reproduction scripts need: datasets, figures, judges, dense retrievers, vLLM.
+repro = [
+  "saadi[dense,vllm]",
+  "datasets>=4,<5",
+  "matplotlib>=3.8",
+  "sentence-transformers>=3.0",
+  "bert-score>=0.3.13",
+  "sentencepiece>=0.2",
+  "protobuf>=4",
+]
+# Tests, linting, packaging.
+dev = [
+  "pytest>=8,<10",
+  "openai>=1.50,<4",
+  "anthropic>=1,<2",
+  "ruff>=0.17,<1",
+  "pre-commit>=3.7",
+  "build>=1.2",
+  "twine>=5",
+]
 
 [project.urls]
+Homepage = "https://github.com/ZeinabTaghavi/SAADI"
 Repository = "https://github.com/ZeinabTaghavi/SAADI"
+Changelog = "https://github.com/ZeinabTaghavi/SAADI/blob/main/CHANGELOG.md"
+Issues = "https://github.com/ZeinabTaghavi/SAADI/issues"
 
 [project.scripts]
 saadi = "saadi.cli.main:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
+
+[tool.setuptools.dynamic]
+version = {attr = "saadi._version.__version__"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -46,3 +92,53 @@ where = ["src"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src", "."]
+
+[tool.ruff]
+line-length = 140
+target-version = "py311"
+# pre-commit passes file names explicitly; this makes it honor the exclusions below.
+force-exclude = true
+# Ruff covers the library layer (backends, retrievers, prompts, inputs, the Saadi class,
+# its CLI commands) and its tests. The paper's code, listed in docs/preserved_sources.json,
+# and the experiment code around it stay byte for byte as published;
+# tests/test_release_metadata.py checks that no preserved file is ever selected.
+extend-exclude = [
+  "venv.nosync",
+  "scripts",
+  "configs",
+  "outputs",
+  "results",
+  "src/saadi/context_expansion.py",
+  "src/saadi/config",
+  "src/saadi/context_strategies",
+  "src/saadi/core",
+  "src/saadi/entities",
+  "src/saadi/evaluation",
+  "src/saadi/indexing",
+  "src/saadi/io",
+  "src/saadi/pipelines",
+  "src/saadi/reporting",
+  "src/saadi/runtime",
+  "src/saadi/saadi_generation",
+  "src/saadi/llm/hf_tokenizers.py",
+  "src/saadi/cli/__init__.py",
+  "src/saadi/cli/eval*.py",
+  "src/saadi/cli/run_experiment.py",
+  "src/saadi/cli/retrieve_cached.py",
+  "tests/test_comparison_tables.py",
+  "tests/test_history_context.py",
+  "tests/test_labeling_disjoint_spans.py",
+  "tests/test_memory_selection_and_grounding.py",
+  "tests/test_output_tables.py",
+  "tests/test_paper_consistency.py",
+  "tests/test_publish_readiness.py",
+  "tests/test_release.py",
+  "tests/test_reproducibility_metadata.py",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]
+ignore = ["E501"]  # the formatter wraps code; long strings and comments may stay
+
+[tool.ruff.lint.isort]
+known-first-party = ["saadi"]

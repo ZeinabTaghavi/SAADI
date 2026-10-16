@@ -1,6 +1,16 @@
 name: Saadi CPU validation
 on: [push, pull_request]
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install ruff==0.17.1
+      - run: ruff check .
+      - run: ruff format --check .
   test:
     runs-on: ubuntu-latest
     strategy:
@@ -14,3 +24,25 @@ jobs:
       - run: python -m pip install -e '.[dev]'
       - run: python -m pytest -q
       - run: python scripts/build_tables.py
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install 'build>=1.2' 'twine>=5'
+      - run: python -m build
+      - run: python -m twine check dist/*
+      - name: Install the wheel in a clean environment and run the demo
+        run: |
+          python -m venv "$RUNNER_TEMP/clean"
+          "$RUNNER_TEMP/clean/bin/python" -m pip install --quiet dist/*.whl
+          cd "$RUNNER_TEMP"
+          clean/bin/python -c "import importlib.resources as r, saadi; print('saadi', saadi.__version__); assert r.files('saadi').joinpath('data/aurora_report.txt').is_file(); assert r.files('saadi.prompts').joinpath('profiles/conversation/sample.txt').is_file()"
+          clean/bin/saadi --version
+          clean/bin/saadi demo --llm mock --state "$RUNNER_TEMP/demo-state"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/

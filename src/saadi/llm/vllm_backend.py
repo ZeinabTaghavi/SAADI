@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+
 from ..core.prompts import format_chat_prompt
 from .base import (
     DEFAULT_GENERATION_SEED,

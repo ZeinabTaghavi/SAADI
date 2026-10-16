@@ -1,0 +1,44 @@
+# Citation metadata for Saadi. GitHub's "Cite this repository" button reads this file.
+# When the paper is on arXiv, fill in the two commented lines under preferred-citation
+# (identifiers and url) and change notes from "Preprint" to the arXiv entry; the test
+# tests/test_release_metadata.py keeps this file and the README's BibTeX in step.
+cff-version: 1.2.0
+message: "If you use Saadi, please cite the paper below and this software release."
+type: software
+title: "Saadi: understand a long document once, retrieve many times"
+abstract: >-
+  Saadi builds a query-agnostic document state at index time, an entity memory and
+  a hierarchical history, and uses it to improve single-pass top-k retrieval over
+  the original chunks of long documents.
+authors:
+  - family-names: Taghavi
+    given-names: Zeinab Sadat
+version: 0.1.0
+date-released: "2026-10-16"
+license: MIT
+repository-code: "https://github.com/ZeinabTaghavi/SAADI"
+url: "https://github.com/ZeinabTaghavi/SAADI"
+keywords:
+  - retrieval
+  - long documents
+  - entity memory
+  - hierarchical summaries
+  - single-pass retrieval
+preferred-citation:
+  type: unpublished
+  title: "Understand Once, Retrieve Many Times: SAADI for Single-Pass Retrieval of Distributed Evidence in Long Documents"
+  authors:
+    - family-names: Taghavi
+      given-names: Zeinab Sadat
+    - family-names: Klein
+      given-names: Lars
+    - family-names: Hartley
+      given-names: Mary-Anne
+    - family-names: Marfurt
+      given-names: Andreas
+  year: 2026
+  notes: "Preprint"
+  # identifiers:
+  #   - type: other
+  #     value: "arXiv:XXXX.XXXXX"
+  # url: "https://arxiv.org/abs/XXXX.XXXXX"

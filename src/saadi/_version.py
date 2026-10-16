@@ -1,10 +1,8 @@
-"""Package version, read from the installed metadata."""
+"""The single place where the package version is set.
 
-from __future__ import annotations
+``pyproject.toml`` reads it at build time (``[tool.setuptools.dynamic]``),
+``saadi --version`` prints it, and the release workflow checks that a tag
+``vX.Y.Z`` matches it.
+"""
 
-try:
-    from importlib.metadata import version as _installed_version
-
-    __version__ = _installed_version("saadi")
-except Exception:  # pragma: no cover - source checkout without metadata
-    __version__ = "0.1.0"
+__version__ = "0.1.0"

@@ -8,7 +8,8 @@ PyTorch, which makes it the natural partner of the hosted LLM backends.
 from __future__ import annotations
 
 import os
-from typing import Any, ClassVar, Sequence
+from collections.abc import Sequence
+from typing import Any, ClassVar
 
 import numpy as np
 
@@ -69,8 +70,7 @@ class OpenAIEmbeddingRetriever(EmbeddingRetriever):
             import openai  # type: ignore
         except ImportError as exc:  # pragma: no cover - depends on the environment
             raise RuntimeError(
-                "The OpenAI-compatible embedding retriever needs the `openai` package. "
-                "Install it with `pip install 'saadi[openai]'`."
+                "The OpenAI-compatible embedding retriever needs the `openai` package. Install it with `pip install 'saadi[openai]'`."
             ) from exc
         key = resolve_api_key(
             self.api_key, self.api_key_env, base_url=self.base_url, provider_label=f"{self.PROVIDER_LABEL} embedding retriever"
@@ -109,7 +109,9 @@ class OllamaEmbeddingRetriever(OpenAIEmbeddingRetriever):
     PROVIDER_LABEL = "ollama"
 
     def __init__(self, corpus: Sequence[str], chunk_ids: Sequence[str] | None = None, k: int = 10, **options: Any) -> None:
-        options.setdefault("base_url", os.environ.get("OLLAMA_BASE_URL") or os.environ.get(f"{self.ENV_PREFIX}_BASE_URL") or self.DEFAULT_BASE_URL)
+        options.setdefault(
+            "base_url", os.environ.get("OLLAMA_BASE_URL") or os.environ.get(f"{self.ENV_PREFIX}_BASE_URL") or self.DEFAULT_BASE_URL
+        )
         super().__init__(corpus, chunk_ids, k, **options)
 
 

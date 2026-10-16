@@ -7,8 +7,8 @@ from pathlib import Path
 
 import numpy as np
 import pytest
-
 from _fake_api_server import FakeAPIServer, fake_embedding
+
 from saadi.indexing.retriever_adapters import BM25Retriever, get_retriever
 from saadi.indexing.retriever_adapters.scoring import build_encoded_text_pool, compute_similarity, encode_query
 from saadi.retrievers import (
@@ -85,9 +85,7 @@ def test_fusion_scoring_dispatches_to_registered_retrievers(registered_overlap: 
 
 
 def test_embedding_retriever_runs_on_the_dense_fusion_path() -> None:
-    Toy = make_embedding_retriever(
-        lambda texts: np.array([[len(t), t.count("e")] for t in texts], dtype=float), name="toy_embedding"
-    )
+    Toy = make_embedding_retriever(lambda texts: np.array([[len(t), t.count("e")] for t in texts], dtype=float), name="toy_embedding")
     assert issubclass(Toy, EmbeddingRetriever)
     register_retriever("toy_embedding_test", Toy)
     try:
@@ -192,6 +190,7 @@ def test_resolve_retriever_accepts_scorer_and_embedding_model_instances() -> Non
     assert saadi.register_retriever is register_retriever
     created: list[str] = []
     try:
+
         class Reranker:
             def score(self, query: str, texts: list[str]) -> list[float]:
                 return [float(text.lower().count(query.lower())) for text in texts]
@@ -250,11 +249,13 @@ def _clear_pool_cache() -> None:
 
 def _run_demo(server: FakeAPIServer, tmp_path: Path, *, retriever: str, run_name: str, model_config: dict | None = None):
     from _fake_api_server import saadi_like_responder
+
     from saadi import Saadi
 
     server.responder = saadi_like_responder
     doc = Saadi(
-        llm=model_config or {"backend": "openai", "model_id": "fake-model", "base_url": server.url + "/v1", "api_key": "test-key", "timeout": 10},
+        llm=model_config
+        or {"backend": "openai", "model_id": "fake-model", "base_url": server.url + "/v1", "api_key": "test-key", "timeout": 10},
         retriever=retriever,
         state_dir=tmp_path / run_name,
         chunk_size=20,
@@ -388,7 +389,9 @@ def test_embedding_retriever_validates_vectors_and_handles_edge_cases() -> None:
     with pytest.raises(ValueError, match="shape"):
         Bad(["a", "b"])
 
-    Raw = make_embedding_retriever(lambda texts: np.array([[2.0, 0.0] if "a" in t else [0.0, 1.0] for t in texts]), name="raw", normalize=False)
+    Raw = make_embedding_retriever(
+        lambda texts: np.array([[2.0, 0.0] if "a" in t else [0.0, 1.0] for t in texts]), name="raw", normalize=False
+    )
     raw = Raw(["a", "b"], chunk_ids=["x", "y"])
     assert raw.score("a") == [4.0, 0.0]  # dot products, no normalization
     Cos = make_embedding_retriever(lambda texts: np.array([[2.0, 0.0] if "a" in t else [0.0, 1.0] for t in texts]), name="cos")

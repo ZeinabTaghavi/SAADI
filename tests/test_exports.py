@@ -53,7 +53,9 @@ def test_readable_state_copies_memory_and_summary_without_touching_the_cache(tmp
     assert result.levels == ()  # no cache index given, so no history levels
     assert result.aliases_removed == 2
     assert (state / "history").is_dir()
-    assert json.loads((state / "memory.json").read_text(encoding="utf-8"))["entities"][0]["aliases"] == [{"text": "Dr Brown", "first_seen_chunk": 0}]
+    assert json.loads((state / "memory.json").read_text(encoding="utf-8"))["entities"][0]["aliases"] == [
+        {"text": "Dr Brown", "first_seen_chunk": 0}
+    ]
     assert (state / "summary.txt").read_text(encoding="utf-8") == "A complete summary.\n"
     original = json.loads(memory_path.read_text(encoding="utf-8"))
     assert len(original["entities"][0]["aliases"]) == 3  # the cache copy is untouched

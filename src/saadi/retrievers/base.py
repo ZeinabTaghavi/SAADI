@@ -12,7 +12,8 @@ z-normalised per channel before fusion, so their scale does not matter.
 
 from __future__ import annotations
 
-from typing import Any, Callable, Protocol, Sequence, runtime_checkable
+from collections.abc import Callable, Sequence
+from typing import Any, Protocol, runtime_checkable
 
 import numpy as np
 

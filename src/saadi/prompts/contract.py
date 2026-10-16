@@ -16,15 +16,17 @@ from __future__ import annotations
 
 CONTRACT_VERSION = "1"
 
-ENTITY_CONTRACT_PREAMBLE = 'You extract active entities from one current text chunk.\n\nGoal:\n- Return `active_entities` and one placement `insertion` for every active entity in CURRENT_CHUNK.\n\nInputs:\n- HIERARCHY_CONTEXT_JSON is the already processed history before CURRENT_CHUNK. It is arranged from coarser summaries to finer L0 chunks, ending as close as possible to the immediate previous chunk.\n- PREVIOUS_ACTIVE_ENTITIES_JSON contains known entity names, aliases, and descriptions from memory that might help for clarification of the current chunk.\n- CURRENT_CHUNK is the only text you extract active entities from.\n\nOutput:\n- Return JSON only with keys `active_entities` and `insertions`.\n- Do not output CURRENT_CHUNK, rewritten chunk text, summaries, or any extra keys.'
+ENTITY_CONTRACT_PREAMBLE = "You extract active entities from one current text chunk.\n\nGoal:\n- Return `active_entities` and one placement `insertion` for every active entity in CURRENT_CHUNK.\n\nInputs:\n- HIERARCHY_CONTEXT_JSON is the already processed history before CURRENT_CHUNK. It is arranged from coarser summaries to finer L0 chunks, ending as close as possible to the immediate previous chunk.\n- PREVIOUS_ACTIVE_ENTITIES_JSON contains known entity names, aliases, and descriptions from memory that might help for clarification of the current chunk.\n- CURRENT_CHUNK is the only text you extract active entities from.\n\nOutput:\n- Return JSON only with keys `active_entities` and `insertions`.\n- Do not output CURRENT_CHUNK, rewritten chunk text, summaries, or any extra keys."
 
-ENTITY_CONTRACT_POSTAMBLE = 'Output contract:\n- `insertions` must be [] only when `active_entities` is [].\n- Each insertion must contain:\n  - `name`: exact active entity name from `active_entities`\n  - `anchor_text`: exact mention from CURRENT_CHUNK that receives the parenthetical\n  - `left_context`: exact text immediately before `anchor_text` copied from CURRENT_CHUNK\n  - `right_context`: exact text immediately after `anchor_text` copied from CURRENT_CHUNK'
+ENTITY_CONTRACT_POSTAMBLE = "Output contract:\n- `insertions` must be [] only when `active_entities` is [].\n- Each insertion must contain:\n  - `name`: exact active entity name from `active_entities`\n  - `anchor_text`: exact mention from CURRENT_CHUNK that receives the parenthetical\n  - `left_context`: exact text immediately before `anchor_text` copied from CURRENT_CHUNK\n  - `right_context`: exact text immediately after `anchor_text` copied from CURRENT_CHUNK"
 
-SUMMARY_CONTRACT_PREAMBLE = 'You summarize one branching-factor group into one concise, factual summary.'
+SUMMARY_CONTRACT_PREAMBLE = "You summarize one branching-factor group into one concise, factual summary."
 
-SUMMARY_CONTRACT_POSTAMBLE = 'Output plain text only, no bullets, no markdown, no JSON.\nTerminate with [END_SUMMARY].'
+SUMMARY_CONTRACT_POSTAMBLE = "Output plain text only, no bullets, no markdown, no JSON.\nTerminate with [END_SUMMARY]."
 
-DOCUMENT_SUMMARY_CONTRACT_POSTAMBLE = 'Output plain text only, with no heading, bullets, markdown, JSON, or prefatory language. Terminate with [END_SUMMARY].'
+DOCUMENT_SUMMARY_CONTRACT_POSTAMBLE = (
+    "Output plain text only, with no heading, bullets, markdown, JSON, or prefatory language. Terminate with [END_SUMMARY]."
+)
 
 # Phrases a profile must not supply: the contract owns them. Catching them at
 # load time keeps a profile from issuing a second, conflicting output format.

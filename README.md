@@ -1,5 +1,9 @@
 # Saadi
 
+[![CI](https://github.com/ZeinabTaghavi/SAADI/actions/workflows/ci.yml/badge.svg)](https://github.com/ZeinabTaghavi/SAADI/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/saadi.svg)](https://pypi.org/project/saadi/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 Saadi (SAADI in the paper, Stateful Accumulation of Document Information) builds a query-agnostic document state at index time, an entity memory and a hierarchical history, and uses it to improve single-pass top-k retrieval over the original chunks of long documents. This repository contains the dataset preparation, construction, retrieval, evaluation, and ablation code, together with compact saved results and a single-document example.
 
 ## Paper
@@ -15,18 +19,36 @@ Saadi (SAADI in the paper, Stateful Accumulation of Document Information) builds
 }
 ```
 
+GitHub's "Cite this repository" button uses `CITATION.cff`, which carries the same entry. Release notes are in [CHANGELOG.md](CHANGELOG.md).
+
 The project, Python package, and command are **Saadi**, `saadi`, and `saadi`, respectively. Historical artifact paths such as `outputs/sadi/`, method IDs such as `sadi`/`mbr`, and `SADI_*` environment variables are retained for compatibility with the saved experiments. Public tables and evaluation reports use **HR@5** and **HR@10**.
 
 See the [paper-to-code guide](docs/paper_to_code.md) for equations, notation, and table commands, and [datasets and artifacts](docs/data_and_artifacts.md) for data preparation, cache restoration, and the exact publication contents.
 
 ## Install
 
-Use Python 3.11 or 3.12 on Linux or macOS (the study runner uses POSIX file locks). Run these commands from this repository's root:
+The library installs from PyPI; pick the extras for the model providers you use:
+
+```bash
+python -m pip install 'saadi[openai]'
+```
+
+| Extra | Adds |
+|---|---|
+| `openai` | OpenAI, every OpenAI-compatible server (Ollama, LM Studio, Groq, vLLM serve), and OpenAI embeddings |
+| `anthropic` | Anthropic models |
+| `dense` | The dense retrievers of the paper (PyTorch and Transformers) |
+| `vllm` | Local inference with vLLM, as in the paper |
+| `repro` | Everything the reproduction scripts need: datasets, figures, judges, dense retrievers, vLLM |
+| `dev` | Tests, ruff, pre-commit, build, twine |
+
+To work on the code or reproduce the paper, clone the repository and use Python 3.11 or 3.12 on Linux or macOS (the study runner uses POSIX file locks). Run these commands from the repository's root:
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -e '.[dev]'
+pre-commit install
 python scripts/smoke_test.py
 python -m pytest -q
 ```
@@ -36,7 +58,7 @@ The smoke test constructs a synthetic document index, performs Saadi BM25 retrie
 For dataset downloads, plots, dense retrieval, and model inference:
 
 ```bash
-python -m pip install -e '.[datasets,figures,llm]'
+python -m pip install -e '.[repro]'
 ```
 
 Model inference uses vLLM on a supported GPU environment. The construction configuration defaults to four GPUs; set `--tensor-parallel-size` for your hardware. Exact GPU package versions and model revisions should be recorded with each new experiment. The CPU validation environment is recorded in `docs/validation_environment.json`.
@@ -117,13 +139,13 @@ From Python:
 from saadi import Saadi
 
 doc = Saadi(llm="openai:gpt-4.1-mini", state_dir="saadi_state/report")
-doc.index("report.txt")                    # one state-update call per chunk
+doc.index("report.txt")  # one state-update call per chunk
 hits = doc.retrieve("Who leads the team?", k=5)
 reply = doc.answer("Who leads the team?")  # retrieval, folded context, answer
-doc.memory                                 # entity records with aliases and descriptions
-doc.history.get(1, [])                     # fold summaries, each covering five chunks
-doc.append("More pages ...")               # extends the state; unchanged chunks are reused
-again = Saadi.load("saadi_state/report")   # retrieval needs no model; pass llm= to answer
+doc.memory  # entity records with aliases and descriptions
+doc.history.get(1, [])  # fold summaries, each covering five chunks
+doc.append("More pages ...")  # extends the state; unchanged chunks are reused
+again = Saadi.load("saadi_state/report")  # retrieval needs no model; pass llm= to answer
 ```
 
 A state is a flat directory: `saadi.json` holds the manifest and documents the layout, next to `document.txt`, `chunks.jsonl`, `memory.json`, `history/L_0.txt` and the fold levels above it, `summary.txt` after `summarize()`, one folder per query under `queries/`, and the construction cache under `cache/`. Conversation transcripts, a `.csv` with `role` and `text` columns and any speaker roles, index the same way with `--prompts conversation` (`--roles` and `--role-alias` restrict or rename the speakers). `saadi.json` records the model, the retriever, and the prompts that built a state, never credentials, and `Saadi.save(target)` makes a self-contained copy. The `examples/` folder has the sample inputs and a notebook. Without a model, `--llm mock` runs the whole path with placeholder outputs.
@@ -137,7 +159,7 @@ Every model call goes through one backend interface, so construction and answer 
 | `openai` | `openai:gpt-4.1-mini` | `pip install 'saadi[openai]'` and `OPENAI_API_KEY`. Any OpenAI-compatible server works through `OPENAI_BASE_URL` or `model.base_url`: LM Studio, llama.cpp, Groq, Together, `vllm serve`. |
 | `ollama` | `ollama:qwen3:8b` | `pip install 'saadi[openai]'` and a local Ollama server. No key. |
 | `anthropic` | `anthropic:claude-opus-5-5` | `pip install 'saadi[anthropic]'` and `ANTHROPIC_API_KEY`, or a profile from `ant auth login`. |
-| `vllm` | `vllm:Qwen/Qwen3.5-27B` | `pip install 'saadi[llm]'` and local GPUs. |
+| `vllm` | `vllm:Qwen/Qwen3.5-27B` | `pip install 'saadi[vllm]'` and local GPUs. |
 | `mock` | `mock` | Nothing. Placeholder outputs for checking the workflow. |
 
 A single document is processed one chunk at a time by design, since each state update depends on the previous one, so the time for a document is the per-call latency times the number of chunks; concurrency speeds up the summary folds and multi-document runs. With Anthropic models, `effort: low` in the `model` section is the economical setting for the many short extraction calls. With Ollama, raise the server's context length if outputs are cut off.
@@ -159,6 +181,7 @@ Your own retriever is a class with a `score(query)` method that returns one numb
 
 ```python
 from saadi.retrievers import BaseRetriever, register_retriever
+
 
 @register_retriever("keyword_overlap")
 class KeywordOverlap(BaseRetriever):

@@ -104,11 +104,7 @@ def _backend_runtime_metadata(
     return {
         "backend": "vllm",
         "model_name": str(getattr(model_config, "model", None) or model_id),
-        "hf_revision": str(
-            getattr(model_config, "revision", None)
-            or _configured_model_revision(cfg)
-            or "main"
-        ),
+        "hf_revision": str(getattr(model_config, "revision", None) or _configured_model_revision(cfg) or "main"),
         "hf_commit_hash": (str(resolved_commit) if resolved_commit else None),
         "dtype": resolved_dtype_text,
         "tensor_parallel_size": (int(resolved_tp) if resolved_tp is not None else None),
@@ -162,9 +158,7 @@ def normalize_backend_name(name: Any) -> str:
     try:
         return BACKEND_ALIASES[key]
     except KeyError:
-        raise ValueError(
-            f"Unsupported model backend: {name!r}. Expected one of {', '.join(SUPPORTED_BACKENDS)}."
-        ) from None
+        raise ValueError(f"Unsupported model backend: {name!r}. Expected one of {', '.join(SUPPORTED_BACKENDS)}.") from None
 
 
 def _mapping(value: Any, name: str) -> dict[str, Any]:
@@ -198,8 +192,7 @@ def model_config_from_spec(spec: str) -> dict[str, Any]:
     model = model.strip()
     if provider_key not in BACKEND_ALIASES:
         raise ValueError(
-            f"Unknown LLM provider {provider!r} in {spec!r}. "
-            f"Use one of {', '.join(SUPPORTED_BACKENDS)}, as in openai:gpt-4.1-mini."
+            f"Unknown LLM provider {provider!r} in {spec!r}. Use one of {', '.join(SUPPORTED_BACKENDS)}, as in openai:gpt-4.1-mini."
         )
     backend = BACKEND_ALIASES[provider_key]
     config: dict[str, Any] = {"backend": backend}
@@ -260,9 +253,7 @@ def build_backend_from_config(model_cfg: dict[str, Any] | None) -> LLMBackend:
     if cfg and "backend" not in cfg:
         # An empty mapping means "no model configured" and keeps the historical mock
         # default; a mapping that names a model but no backend is a mistake worth stopping.
-        raise ValueError(
-            "model.backend is missing; set it to one of " + ", ".join(SUPPORTED_BACKENDS) + "."
-        )
+        raise ValueError("model.backend is missing; set it to one of " + ", ".join(SUPPORTED_BACKENDS) + ".")
     backend = normalize_backend_name(cfg.get("backend", "mock"))
     if backend == "mock":
         return MockBackend()
@@ -349,16 +340,10 @@ def _build_vllm_backend(cfg: dict[str, Any]) -> VLLMBackend:
         sampling_defaults = {}
     else:
         # Runtime call overrides these fields.
-        sampling_defaults = {
-            k: v
-            for k, v in sampling_defaults.items()
-            if k not in {"max_tokens", "temperature", "stop"}
-        }
+        sampling_defaults = {k: v for k, v in sampling_defaults.items() if k not in {"max_tokens", "temperature", "stop"}}
     load_chat_tokenizer = bool(cfg.get("load_chat_tokenizer", True))
     tokenizer_cache_dir = cfg.get("tokenizer_cache_dir")
-    chat_formatter_loader = str(
-        cfg.get("chat_formatter_loader", "tokenizer") or "tokenizer"
-    ).strip().lower()
+    chat_formatter_loader = str(cfg.get("chat_formatter_loader", "tokenizer") or "tokenizer").strip().lower()
     chat_formatter_kwargs = cfg.get("chat_formatter_kwargs", {}) or {}
     if not isinstance(chat_formatter_kwargs, dict):
         raise ValueError("model.chat_formatter_kwargs must be a mapping")
