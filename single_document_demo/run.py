@@ -69,6 +69,15 @@ def build_arg_parser() -> ArgumentParser:
         help="Use the CPU-safe mock backend; the same as --llm mock.",
     )
     parser.add_argument(
+        "--retriever",
+        metavar="NAME",
+        help=(
+            "Query-time retriever: bm25 (default), contriever, bge_m3, e5, jina, qwen, "
+            "openai_embedding, ollama_embedding, or a name registered with "
+            "saadi.retrievers.register_retriever."
+        ),
+    )
+    parser.add_argument(
         "--fail-fast",
         action="store_true",
         help="Stop a directory run after its first failed document.",
@@ -94,6 +103,8 @@ def main(argv: list[str] | None = None) -> int:
         config.run_name = args.run_name
     if args.prompt_profile:
         config.prompt_profile = args.prompt_profile
+    if args.retriever:
+        config.saadi_options["retriever"] = args.retriever.strip()
     if args.query is not None:
         config.query = args.query.strip()
         config.questions_path = ""
