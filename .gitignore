@@ -10,7 +10,7 @@ dist/
 .DS_Store
 .env
 .env.*
-data/
+/data/
 outputs/*
 !outputs/sadi/
 outputs/sadi/*
