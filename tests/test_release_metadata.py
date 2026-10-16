@@ -8,6 +8,7 @@ import subprocess
 import sys
 import tomllib
 from pathlib import Path
+from urllib.parse import urlparse
 
 import pytest
 import yaml
@@ -104,3 +105,30 @@ def test_the_release_workflow_uses_trusted_publishing() -> None:
         assert "password" not in json.dumps(publish[0].get("with", {}))  # trusted publishing, no token
     assert jobs["publish-pypi"]["if"] == "github.ref_type == 'tag'"
     assert "verify-testpypi" in jobs and "github-release" in jobs
+
+
+RAW_PREFIX = "https://raw.githubusercontent.com/ZeinabTaghavi/SAADI/main/"
+
+
+def _markdown_targets(text: str) -> list[str]:
+    links = re.findall(r"\[[^\]]*\]\(([^)\s]+)\)", text)
+    html = re.findall(r"(?:src|href)=\"([^\"]+)\"", text)
+    return links + html
+
+
+@pytest.mark.parametrize(
+    "page", ["README.md", "examples/README.md", "docs/library_usage.md", "docs/customizing.md", "docs/experiments.md", "CONTRIBUTING.md"]
+)
+def test_every_local_link_and_image_resolves(page: str) -> None:
+    text = (ROOT / page).read_text(encoding="utf-8")
+    base = (ROOT / page).parent
+    for target in _markdown_targets(text):
+        if target.startswith(RAW_PREFIX):
+            target = target[len(RAW_PREFIX) :]
+            base = ROOT
+        elif urlparse(target).scheme:
+            continue  # external links are not checked offline
+        path, _, fragment = target.partition("#")
+        if not path:
+            continue
+        assert (base / path).exists(), f"{page}: {target} does not exist"

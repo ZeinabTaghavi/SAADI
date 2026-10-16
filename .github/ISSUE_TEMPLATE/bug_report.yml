@@ -1,0 +1,38 @@
+name: Bug report
+description: Something in the library or the command line does not behave as documented.
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what you expected, and what you got instead.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Command or code
+      description: The smallest command or Python snippet that shows it. The bundled report (`saadi demo`) or the files in `examples/` are ideal inputs.
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Output
+      description: The printed output or traceback. `--verbose` on the command line shows the full traceback.
+      render: text
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Output of `saadi --version`, plus your Python version and operating system.
+      placeholder: saadi 0.1.0, Python 3.12, macOS 15
+    validations:
+      required: true
+  - type: input
+    id: model
+    attributes:
+      label: Model and retriever
+      description: The `--llm` spec and the retriever, for example `openai:gpt-4.1-mini` and `bm25`.
