@@ -12,6 +12,7 @@ import re
 from dataclasses import dataclass, field
 from typing import Any, Protocol, Sequence, runtime_checkable
 
+from ..core.parsers import _strip_reasoning_markup as _strip_closed_reasoning_blocks
 from ..core.prompts import chatml_wrap, format_chat_prompt
 
 # Deterministic indexing defaults. vLLM uses ``top_k=-1`` to disable top-k
@@ -138,13 +139,35 @@ def render_prompt(backend: Any, prompt: ChatPrompt) -> str:
     return prompt.as_text()
 
 
-_THINK_BLOCK = re.compile(r"<think>.*?</think>\s*", re.DOTALL | re.IGNORECASE)
+_UNCLOSED_REASONING = re.compile(r"<think>|<\|begin_of_thought\|>", re.IGNORECASE)
 
 
 def strip_reasoning_markup(text: str) -> str:
-    """Drop closed ``<think>...</think>`` blocks some chat models emit before the answer."""
+    """Remove the reasoning markup some chat models emit before the answer.
 
-    return _THINK_BLOCK.sub("", str(text or ""))
+    Closed ``<think>...</think>`` and ``<|begin_of_thought|>...<|end_of_thought|>``
+    blocks are removed with the same helper the output parsers use. An opening
+    tag without a close means the output was cut off while still reasoning, so
+    everything from that tag on is dropped; callers then see an empty answer
+    and fall back instead of treating reasoning text as the result.
+    """
+
+    cleaned = _strip_closed_reasoning_blocks(str(text or ""))
+    unclosed = _UNCLOSED_REASONING.search(cleaned)
+    if unclosed is not None:
+        cleaned = cleaned[: unclosed.start()].rstrip()
+    return cleaned
+
+
+def package_version(name: str) -> str | None:
+    """Installed version of ``name``, or None when it is not installed."""
+
+    try:
+        from importlib import metadata
+
+        return metadata.version(name)
+    except Exception:
+        return None
 
 
 def truncate_at_stop(text: str, stop: Sequence[str]) -> str:
@@ -162,7 +185,43 @@ def truncate_at_stop(text: str, stop: Sequence[str]) -> str:
     return out[:cut]
 
 
-class LegacyStringBackend(BaseLLMBackend):
+class RenderedStringBackend(BaseLLMBackend):
+    """Base for backends whose engine takes rendered prompt strings.
+
+    Subclasses implement the raw :meth:`generate_batch`; chat prompts are
+    rendered with :meth:`render_prompt` first. The vLLM and mock backends and
+    the legacy adapter share this path.
+    """
+
+    def generate_chat_batch(
+        self,
+        prompts: Sequence[ChatPrompt],
+        *,
+        max_tokens: int,
+        temperature: float,
+        stop: list[str],
+    ) -> list[str]:
+        return list(
+            self.generate_batch(
+                [self.render_prompt(prompt) for prompt in prompts],
+                max_tokens=max_tokens,
+                temperature=temperature,
+                stop=stop,
+            )
+        )
+
+    def generate_batch(
+        self,
+        prompts: list[str],
+        *,
+        max_tokens: int,
+        temperature: float,
+        stop: list[str],
+    ) -> list[str]:
+        raise NotImplementedError
+
+
+class LegacyStringBackend(RenderedStringBackend):
     """Adapt an object that only implements the old ``generate_batch(list[str])`` API."""
 
     def __init__(self, inner: Any) -> None:
@@ -179,19 +238,36 @@ class LegacyStringBackend(BaseLLMBackend):
             user_prompt=prompt.user,
         )
 
-    def generate_chat_batch(
+    def generate_batch(
         self,
-        prompts: Sequence[ChatPrompt],
+        prompts: list[str],
         *,
         max_tokens: int,
         temperature: float,
         stop: list[str],
     ) -> list[str]:
-        return list(
-            self.inner.generate_batch(
-                [self.render_prompt(prompt) for prompt in prompts],
-                max_tokens=max_tokens,
-                temperature=temperature,
-                stop=stop,
-            )
-        )
+        return list(self.inner.generate_batch(prompts, max_tokens=max_tokens, temperature=temperature, stop=stop))
+
+
+def describe_llm_provenance(backend: Any, reproducibility: dict[str, Any]) -> dict[str, Any]:
+    """Make a run's reproducibility block truthful for non-vLLM backends.
+
+    ``build_reproducibility_metadata`` fills the sampling fields with the vLLM
+    engine defaults. Hosted and mock backends never send those, so for them the
+    sampling block keeps only the fields that were actually applied, and the
+    backend's own runtime description (provider, model, base URL, SDK version)
+    is attached as ``llm_backend``.
+    """
+
+    runtime = dict(getattr(backend, "runtime_metadata", {}) or {})
+    out = dict(reproducibility)
+    if runtime:
+        out["llm_backend"] = runtime
+    if runtime.get("backend") not in (None, "vllm"):
+        sampling = dict(out.get("sampling") or {})
+        applied: dict[str, Any] = {}
+        if "temperature" in sampling:
+            applied["temperature"] = sampling["temperature"]
+        applied.update(runtime.get("sampling") or {})
+        out["sampling"] = applied
+    return out

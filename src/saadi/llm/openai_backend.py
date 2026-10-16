@@ -23,7 +23,7 @@ from typing import Any, Sequence
 from urllib.parse import urlparse
 
 from ._concurrency import map_concurrently
-from .base import BaseLLMBackend, ChatPrompt, strip_reasoning_markup, truncate_at_stop
+from .base import BaseLLMBackend, ChatPrompt, package_version, strip_reasoning_markup, truncate_at_stop
 
 logger = logging.getLogger(__name__)
 
@@ -64,8 +64,29 @@ def resolve_api_key(
     raise RuntimeError(f"The {provider_label} backend needs an API key: {hint}.")
 
 
+_PARAMETER_REJECTION_PHRASES = (
+    "unsupported parameter",
+    "unsupported value",
+    "not supported",
+    "does not support",
+    "unknown parameter",
+    "unrecognized",
+    "unexpected keyword",
+    "extra inputs",
+    "additional properties",
+    "not allowed",
+    "invalid parameter",
+    "use 'max_completion_tokens'",
+)
+
+
 def _rejected_param(exc: Exception, params: dict[str, Any]) -> str | None:
-    """Name the request field a 400 response complained about, if we can tell."""
+    """Name the request field a 400 response complained about, if we can tell.
+
+    A structured ``param`` in the error body is trusted. Otherwise the message
+    is consulted only when it reads like a parameter rejection, so a context
+    length error that merely mentions ``max_tokens`` is left to propagate.
+    """
 
     body = getattr(exc, "body", None)
     if isinstance(body, dict):
@@ -75,6 +96,8 @@ def _rejected_param(exc: Exception, params: dict[str, Any]) -> str | None:
             if isinstance(param, str) and param in params:
                 return param
     message = str(getattr(exc, "message", None) or exc).lower()
+    if not any(phrase in message for phrase in _PARAMETER_REJECTION_PHRASES):
+        return None
     for candidate in (*_TOKEN_LIMIT_PARAMS, *_OPTIONAL_PARAMS):
         if candidate in params and re.search(rf"\b{re.escape(candidate)}\b", message):
             return candidate
@@ -153,8 +176,11 @@ class OpenAICompatibleBackend(BaseLLMBackend):
             "backend": self.provider_label,
             "model_name": self.model,
             "base_url": self.effective_base_url,
-            "openai_sdk_version": _sdk_version(),
+            "openai_sdk_version": package_version("openai"),
             "max_workers": self.max_workers,
+            "token_limit_param": self._token_limit_param,
+            "sends_temperature": self.send_temperature,
+            "sends_stop": self.send_stop,
             "sampling": {"seed": int(seed)} if seed is not None else {},
         }
 
@@ -222,37 +248,47 @@ class OpenAICompatibleBackend(BaseLLMBackend):
         return params
 
     def _adapt_to_rejection(self, exc: Exception, params: dict[str, Any]) -> bool:
-        """Drop or rename the field a server rejected. Returns True when a retry makes sense."""
+        """Drop or rename the field a server rejected. Returns True when a retry makes sense.
+
+        Several requests of one batch can fail together. Whichever thread gets
+        here first changes the shared settings; the others find the rejected
+        field already gone from the current settings and simply retry, so a
+        rejection only becomes an error when no further adjustment exists.
+        """
 
         param = _rejected_param(exc, params)
         if param is None:
             return False
         with self._lock:
             if param in _TOKEN_LIMIT_PARAMS:
+                if param != self._token_limit_param:
+                    return True  # another request already switched the field name
                 if self._token_param_switched:
-                    return False
+                    return False  # both names were rejected
                 other = "max_completion_tokens" if param == "max_tokens" else "max_tokens"
                 self._token_limit_param = other
                 self._token_param_switched = True
                 logger.warning("%s rejected %s; using %s for model=%s", self.provider_label, param, other, self.model)
                 return True
-            if param == "stop" and not self._plain_stops_only and any(
-                _SPECIAL_TOKEN.match(item) for item in params.get("stop", [])
-            ):
-                # Tokenizer special tokens such as <|im_end|> mean nothing to other
-                # providers; keep the plain markers before giving up on stop entirely.
-                self._plain_stops_only = True
-                logger.warning(
-                    "%s rejected special-token stop sequences; keeping plain ones for model=%s",
-                    self.provider_label,
-                    self.model,
-                )
-                return True
-            if param in _OPTIONAL_PARAMS and param not in self._disabled:
-                self._disabled.add(param)
-                logger.warning("%s rejected %s; omitting it for model=%s", self.provider_label, param, self.model)
-                return True
-        return False
+            if param in self._disabled:
+                return True  # another request already dropped it
+            if param == "stop":
+                has_specials = any(_SPECIAL_TOKEN.match(item) for item in params.get("stop", []))
+                if has_specials and not self._plain_stops_only:
+                    # Tokenizer special tokens such as <|im_end|> mean nothing to other
+                    # providers; keep the plain markers before giving up on stop entirely.
+                    self._plain_stops_only = True
+                    logger.warning(
+                        "%s rejected special-token stop sequences; keeping plain ones for model=%s",
+                        self.provider_label,
+                        self.model,
+                    )
+                    return True
+                if has_specials:
+                    return True  # this request predates the switch to plain stops; retry
+            self._disabled.add(param)
+            logger.warning("%s rejected %s; omitting it for model=%s", self.provider_label, param, self.model)
+            return True
 
     def _generate_one(self, prompt: ChatPrompt, *, max_tokens: int, temperature: float, stop: list[str]) -> str:
         client = self.client()  # raises a clear install hint when the SDK is missing
@@ -280,11 +316,3 @@ class OpenAICompatibleBackend(BaseLLMBackend):
                 logger.warning("%s output hit the token limit (%d) for model=%s", self.provider_label, max_tokens, self.model)
         return truncate_at_stop(strip_reasoning_markup(text), stop)
 
-
-def _sdk_version() -> str | None:
-    try:
-        from importlib import metadata
-
-        return metadata.version("openai")
-    except Exception:
-        return None

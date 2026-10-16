@@ -3,21 +3,19 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Sequence
-
 from ..core.prompts import format_chat_prompt
 from .base import (
     DEFAULT_GENERATION_SEED,
     DEFAULT_GENERATION_TOP_K,
     DEFAULT_GENERATION_TOP_P,
     DEFAULT_REPETITION_PENALTY,
-    BaseLLMBackend,
     ChatPrompt,
+    RenderedStringBackend,
 )
 
 
 @dataclass
-class VLLMBackend(BaseLLMBackend):
+class VLLMBackend(RenderedStringBackend):
     """Local vLLM engine. Chat prompts are rendered with the model's chat template."""
 
     model: object
@@ -30,21 +28,6 @@ class VLLMBackend(BaseLLMBackend):
             tokenizer=self.chat_tokenizer,
             system_prompt=prompt.system,
             user_prompt=prompt.user,
-        )
-
-    def generate_chat_batch(
-        self,
-        prompts: Sequence[ChatPrompt],
-        *,
-        max_tokens: int,
-        temperature: float,
-        stop: list[str],
-    ) -> list[str]:
-        return self.generate_batch(
-            [self.render_prompt(prompt) for prompt in prompts],
-            max_tokens=max_tokens,
-            temperature=temperature,
-            stop=stop,
         )
 
     def generate_batch(self, prompts: list[str], *, max_tokens: int, temperature: float, stop: list[str]) -> list[str]:
