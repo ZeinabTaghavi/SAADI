@@ -34,7 +34,7 @@ from saadi.llm import (
 from saadi.llm.anthropic_backend import AnthropicBackend
 from saadi.llm.openai_backend import OpenAICompatibleBackend
 
-from _fake_api_server import FakeAPIServer, Response, anthropic_payload, last_user_text, openai_payload
+from _fake_api_server import FakeAPIServer, Response, anthropic_payload, last_user_text, openai_payload, saadi_like_responder
 
 
 @pytest.fixture
@@ -451,31 +451,6 @@ def test_legacy_string_path_recovers_roles_for_hosted_backends(server: FakeAPISe
 
 
 # --- whole pipeline through a hosted backend ----------------------------------
-
-
-def saadi_like_responder(path: str, body: dict[str, Any]) -> Response | None:
-    """Answer SAADI's three prompt kinds the way a cooperative model would."""
-
-    user = last_user_text(body)
-    if "[ROLLUP_ITEMS_JSON]" in user:
-        text = "The Aurora team measures alpine lake water quality.\n[END_SUMMARY]"
-    elif "[CURRENT_CHUNK]" in user:
-        chunk = user.split("[CURRENT_CHUNK]\n", 1)[1].split("\n[", 1)[0]
-        match = re.search(r"\b([A-Z][a-z]+ [A-Z][a-z]+)\b", chunk)
-        if match:
-            name = match.group(1)
-            payload = {
-                "active_entities": [{"name": name, "aliases": [], "description": ["mentioned in the document"]}],
-                "insertions": [{"name": name, "anchor_text": name, "left_context": "", "right_context": ""}],
-            }
-        else:
-            payload = {"active_entities": [], "insertions": []}
-        text = "<think>plan</think>" + json.dumps(payload) + "\n[END_JSON]"
-    else:
-        text = "Mira Chen leads the Aurora team."
-    if path.endswith("/chat/completions"):
-        return 200, {}, openai_payload(body, text)
-    return 200, {}, anthropic_payload(body, text)
 
 
 def _run_demo_through(server: FakeAPIServer, tmp_path, model_config: dict[str, Any]):

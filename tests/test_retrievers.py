@@ -233,3 +233,257 @@ def test_resolve_retriever_accepts_scorer_and_embedding_model_instances() -> Non
     finally:
         for name in created:
             unregister_retriever(name)
+
+
+# --- correctness of the plug-in inside the fusion step ----------------------------
+
+
+class SpyRetriever(BaseRetriever):
+    """Records every (corpus, query) it scores so a test can see which pools used it."""
+
+    calls: list[tuple[tuple[str, ...], str]] = []
+
+    def score(self, query: str) -> list[float]:
+        type(self).calls.append((tuple(self.corpus), query))
+        words = set(query.lower().split())
+        return [float(len(words & set(text.lower().split()))) for text in self.corpus]
+
+
+def _clear_pool_cache() -> None:
+    from saadi.indexing.retriever_adapters.scoring import _ENCODED_POOL_CACHE
+
+    _ENCODED_POOL_CACHE.clear()
+
+
+def _run_demo(server: FakeAPIServer, tmp_path: Path, *, retriever: str, run_name: str, model_config: dict | None = None):
+    from _fake_api_server import saadi_like_responder
+    from single_document_demo.pipeline import load_demo_config, run_demo
+
+    server.responder = saadi_like_responder
+    config = load_demo_config("single_document_demo/configs/text_document.toml")
+    config.demo_root = tmp_path / "demo"
+    config.output_root = config.demo_root / "output"
+    config.prompt_profile = str(ROOT / "single_document_demo" / "memory_prompts" / "default")
+    config.run_name = run_name
+    config.query = "Who leads the Aurora team?"
+    config.model_config = model_config or {
+        "backend": "openai",
+        "model_id": "fake-model",
+        "base_url": server.url + "/v1",
+        "api_key": "test-key",
+        "timeout": 10,
+    }
+    config.saadi_options.update({"use_cache": False, "chunk_size": 20, "retriever": retriever})
+    result = run_demo(config)
+    assert not result.failures, [record.error for record in result.failures]
+    return Path(result.records[0].run_dir)
+
+
+def test_registered_retriever_scores_all_three_fusion_channels(server: FakeAPIServer, tmp_path: Path) -> None:
+    pytest.importorskip("openai")
+    _clear_pool_cache()
+    SpyRetriever.calls = []
+    register_retriever("spy_retriever_test", SpyRetriever)
+    try:
+        run_dir = _run_demo(server, tmp_path, retriever="spy_retriever_test", run_name="spy")
+    finally:
+        unregister_retriever("spy_retriever_test")
+
+    chunks = [json.loads(line)["raw_text"] for line in (run_dir / "raw_chunks.jsonl").read_text(encoding="utf-8").splitlines()]
+    memory = json.load((run_dir / "cleaned_outputs" / "memory_summary.json").open(encoding="utf-8"))
+    entity_names = {entity["name"] for entity in memory.get("entities", [])}
+    assert len(chunks) >= 5 and entity_names  # five chunks of twenty words; the fold happens at five
+
+    corpora = [set(corpus) for corpus, _query in SpyRetriever.calls]
+    assert all(query == "Who leads the Aurora team?" for _corpus, query in SpyRetriever.calls)
+    # Chunk channel: one pool holds exactly the document's chunks.
+    assert any(len(corpus) == len(chunks) and any("Aurora" in text for text in corpus) for corpus in corpora)
+    # Memory channel: one pool consists of entity names from the memory.
+    assert any(corpus and corpus <= entity_names for corpus in corpora)
+    # Summary channel: one pool consists of the fold summaries the fake model produced.
+    assert any(corpus and all("alpine lake water quality" in text for text in corpus) for corpus in corpora)
+
+    payload = json.loads((run_dir / "retrieval" / "retrieval_result.json").read_text(encoding="utf-8"))
+    assert payload["retriever"] == "spy_retriever_test"
+    ranked = payload["result"].get("ranked_chunk_ids") or payload["result"].get("retrieved_chunk_ids")
+    assert len(ranked) == len(set(ranked)) == min(len(chunks), 10)
+
+
+def test_full_hosted_stack_runs_llm_and_embeddings_on_the_same_server(
+    server: FakeAPIServer, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    pytest.importorskip("openai")
+    _clear_pool_cache()
+    monkeypatch.setenv("SAADI_OPENAI_EMBEDDING_BASE_URL", server.url + "/v1")
+    monkeypatch.setenv("OPENAI_API_KEY", "test-key")
+    run_dir = _run_demo(server, tmp_path, retriever="openai_embedding", run_name="hosted_stack")
+
+    paths = {request["path"] for request in server.requests}
+    assert paths == {"/v1/chat/completions", "/v1/embeddings"}
+    embedded_texts = {text for request in server.requests if request["path"] == "/v1/embeddings" for text in request["body"]["input"]}
+    chunks = [json.loads(line)["raw_text"] for line in (run_dir / "raw_chunks.jsonl").read_text(encoding="utf-8").splitlines()]
+    assert set(chunks) <= embedded_texts  # the chunk pool was embedded
+    assert "Who leads the Aurora team?" in embedded_texts  # and so was the query
+    memory = json.load((run_dir / "cleaned_outputs" / "memory_summary.json").open(encoding="utf-8"))
+    assert {entity["name"] for entity in memory["entities"]} <= embedded_texts  # entity names too
+
+    payload = json.loads((run_dir / "retrieval" / "retrieval_result.json").read_text(encoding="utf-8"))
+    assert payload["retriever"] == "openai_embedding"
+    assert "Mira Chen" in (run_dir / "generation" / "answer.txt").read_text(encoding="utf-8")
+    manifest = json.loads((run_dir / "run_manifest.json").read_text(encoding="utf-8"))
+    assert manifest["reproducibility"]["llm_backend"]["backend"] == "openai"
+
+
+def test_cli_runs_with_a_registered_retriever_and_rejects_unknown_names(tmp_path: Path) -> None:
+    from single_document_demo.run import main
+
+    register_retriever("cli_overlap_test", KeywordOverlap)
+    try:
+        exit_code = main(
+            ["text", "--llm", "mock", "--retriever", "cli_overlap_test", "--query", "Who leads the Aurora team?",
+             "--output-root", str(tmp_path), "--run-name", "cli_retriever"]
+        )
+        assert exit_code == 0
+        payload = json.loads((tmp_path / "sample_text" / "retrieval" / "retrieval_result.json").read_text(encoding="utf-8"))
+        assert payload["retriever"] == "cli_overlap_test"
+    finally:
+        unregister_retriever("cli_overlap_test")
+
+    with pytest.raises(ValueError, match="Unknown retriever: not_a_retriever. Known retrievers: bm25"):
+        main(["text", "--llm", "mock", "--retriever", "not_a_retriever", "--query", "Who?", "--output-root", str(tmp_path / "bad")])
+
+
+# --- registry and base-class edge cases ----------------------------------------
+
+
+def test_builtin_names_take_precedence_over_registered_ones() -> None:
+    register_retriever("bm25", KeywordOverlap)
+    try:
+        assert get_retriever("bm25") is BM25Retriever
+        assert get_retriever("BM25S") is BM25Retriever
+    finally:
+        unregister_retriever("bm25")
+    from saadi.indexing.retriever_adapters import BUILTIN_RETRIEVERS
+
+    for name in BUILTIN_RETRIEVERS:
+        assert isinstance(get_retriever(name), type)
+
+
+def test_register_retriever_works_as_a_decorator() -> None:
+    @register_retriever("decorated_test")
+    class Decorated(KeywordOverlap):
+        pass
+
+    try:
+        assert Decorated.__name__ == "Decorated"  # the decorator returns the class unchanged
+        assert get_retriever("decorated_test") is Decorated
+        assert resolve_retriever(Decorated) == "decorated_test"
+    finally:
+        unregister_retriever("decorated_test")
+    with pytest.raises(ValueError, match="must not be empty"):
+        register_retriever("   ", KeywordOverlap)
+    with pytest.raises(TypeError, match="expects a class"):
+        register_retriever("fn_test", lambda corpus: None)  # type: ignore[arg-type]
+
+
+def test_base_retriever_validates_score_output_and_k() -> None:
+    class Broken(BaseRetriever):
+        def score(self, query: str) -> list[float]:
+            return [1.0]
+
+    with pytest.raises(ValueError, match="returned 1 scores for 2 texts"):
+        Broken(["a", "b"]).retrieve("q")
+    retriever = KeywordOverlap(["a b", "b c", "c d"], k=2)
+    assert len(retriever.retrieve("b")[0]) == 2  # k from the constructor
+    assert len(retriever.retrieve("b", k=10)[0]) == 3  # capped at the corpus size
+    assert retriever.retrieve("b", k=0)[0] == retriever.retrieve("b")[0]  # k=0 means "use the default", like the built-ins
+    assert KeywordOverlap([]).retrieve("q") == ([], [], [])
+
+
+def test_embedding_retriever_validates_vectors_and_handles_edge_cases() -> None:
+    Bad = make_embedding_retriever(lambda texts: np.ones((len(texts) + 1, 3)), name="bad_shape")
+    with pytest.raises(ValueError, match="shape"):
+        Bad(["a", "b"])
+
+    Raw = make_embedding_retriever(lambda texts: np.array([[2.0, 0.0] if "a" in t else [0.0, 1.0] for t in texts]), name="raw", normalize=False)
+    raw = Raw(["a", "b"], chunk_ids=["x", "y"])
+    assert raw.score("a") == [4.0, 0.0]  # dot products, no normalization
+    Cos = make_embedding_retriever(lambda texts: np.array([[2.0, 0.0] if "a" in t else [0.0, 1.0] for t in texts]), name="cos")
+    assert Cos(["a", "b"]).score("a") == pytest.approx([1.0, 0.0])  # cosine
+
+    Single = make_embedding_retriever(lambda texts: np.array([1.0, 2.0]) if len(texts) == 1 else np.ones((len(texts), 2)), name="single")
+    assert Single(["only"]).score("q") == pytest.approx([1.0])  # a 1-D vector for one text is accepted
+
+    empty = Cos([])
+    assert empty.score("q") == []
+    assert empty.retrieve("q") == ([], [], [])
+
+    with pytest.raises(NotImplementedError):
+        EmbeddingRetriever(["a"])  # no embed_fn and no embed() override
+    with pytest.raises(TypeError):
+        make_embedding_retriever("not callable")  # type: ignore[arg-type]
+
+
+def test_make_scorer_retriever_requires_a_scorer() -> None:
+    from saadi.retrievers import make_scorer_retriever
+
+    with pytest.raises(TypeError, match="scorer"):
+        make_scorer_retriever(object())
+    Scorer = make_scorer_retriever(lambda query, texts: [len(t) for t in texts], name="length")
+    assert Scorer.__name__ == "length_scorer_retriever"
+    assert Scorer(["aa", "a"]).retrieve("q")[0] == ["0", "1"]
+
+
+# --- hosted embedding retrievers: options, errors, caching -----------------------
+
+
+def test_openai_embedding_retriever_reads_env_overrides_and_options(server: FakeAPIServer, monkeypatch: pytest.MonkeyPatch) -> None:
+    pytest.importorskip("openai")
+    monkeypatch.setenv("SAADI_OPENAI_EMBEDDING_MODEL", "env-model")
+    monkeypatch.setenv("SAADI_OPENAI_EMBEDDING_BASE_URL", server.url + "/v1")
+    monkeypatch.setenv("SAADI_OPENAI_EMBEDDING_BATCH_SIZE", "2")
+    monkeypatch.setenv("OPENAI_API_KEY", "env-key")
+    retriever = OpenAIEmbeddingRetriever(["one", "two", "three"], dimensions=16)
+    assert retriever.model == "env-model" and retriever.batch_size == 2
+    assert [len(r["body"]["input"]) for r in server.requests] == [2, 1]
+    assert all(r["body"]["model"] == "env-model" and r["body"]["dimensions"] == 16 for r in server.requests)
+    assert server.requests[0]["headers"]["authorization"] == "Bearer env-key"
+
+    explicit = OpenAIEmbeddingRetriever(["x"], model="explicit", base_url=server.url + "/v1", api_key="k", batch_size=50)
+    assert explicit.model == "explicit" and explicit.batch_size == 50  # keywords win over the environment
+
+
+def test_openai_embedding_retriever_blank_texts_and_bad_responses(server: FakeAPIServer) -> None:
+    pytest.importorskip("openai")
+    OpenAIEmbeddingRetriever(["", "   ", "text"], base_url=server.url + "/v1", api_key="k")
+    assert server.requests[0]["body"]["input"] == [" ", " ", "text"]  # blanks are sent as a space, never empty
+
+    one_vector = {"object": "list", "data": [{"object": "embedding", "index": 0, "embedding": [1.0, 0.0]}], "model": "m", "usage": {}}
+    server.responder = lambda path, body: (200, {}, one_vector)
+    with pytest.raises(RuntimeError, match="returned 1 vectors for 2 texts"):
+        OpenAIEmbeddingRetriever(["a", "b"], base_url=server.url + "/v1", api_key="k")
+
+
+def test_openai_embedding_retriever_requires_a_key_for_remote_hosts(monkeypatch: pytest.MonkeyPatch) -> None:
+    pytest.importorskip("openai")
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    monkeypatch.delenv("SAADI_OPENAI_EMBEDDING_BASE_URL", raising=False)
+    with pytest.raises(RuntimeError, match="openai embedding retriever needs an API key: set OPENAI_API_KEY"):
+        OpenAIEmbeddingRetriever(["a"], base_url="https://api.example.com/v1")
+
+
+def test_openai_embedding_retriever_shares_one_client_per_endpoint(server: FakeAPIServer) -> None:
+    pytest.importorskip("openai")
+    first = OpenAIEmbeddingRetriever(["a"], base_url=server.url + "/v1", api_key="shared")
+    second = OpenAIEmbeddingRetriever(["b", "c"], base_url=server.url + "/v1", api_key="shared")
+    other = OpenAIEmbeddingRetriever(["d"], base_url=server.url + "/v1", api_key="different")
+    assert first.client() is second.client()
+    assert first.client() is not other.client()
+
+
+def test_ollama_embedding_retriever_env_and_keyword_precedence(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setenv("OLLAMA_BASE_URL", "http://ollama-host:11434/v1")
+    assert OllamaEmbeddingRetriever([]).base_url == "http://ollama-host:11434/v1"
+    assert OllamaEmbeddingRetriever([], base_url="http://explicit:1/v1").base_url == "http://explicit:1/v1"
+    monkeypatch.setenv("SAADI_OLLAMA_EMBEDDING_MODEL", "mxbai-embed-large")
+    assert OllamaEmbeddingRetriever([]).model == "mxbai-embed-large"

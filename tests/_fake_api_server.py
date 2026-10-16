@@ -6,6 +6,7 @@ Shared by the backend and retriever tests. No network access, no API keys.
 from __future__ import annotations
 
 import json
+import re
 import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from typing import Any, Callable
@@ -149,3 +150,30 @@ def embeddings_payload(body: dict[str, Any]) -> dict[str, Any]:
         "model": body.get("model", "fake-embedding"),
         "usage": {"prompt_tokens": 1, "total_tokens": 1},
     }
+
+
+def saadi_like_responder(path: str, body: dict[str, Any]) -> Response | None:
+    """Answer SAADI's three prompt kinds the way a cooperative model would."""
+
+    user = last_user_text(body)
+    if "[ROLLUP_ITEMS_JSON]" in user:
+        text = "The Aurora team measures alpine lake water quality.\n[END_SUMMARY]"
+    elif "[CURRENT_CHUNK]" in user:
+        chunk = user.split("[CURRENT_CHUNK]\n", 1)[1].split("\n[", 1)[0]
+        match = re.search(r"\b([A-Z][a-z]+ [A-Z][a-z]+)\b", chunk)
+        if match:
+            name = match.group(1)
+            payload = {
+                "active_entities": [{"name": name, "aliases": [], "description": ["mentioned in the document"]}],
+                "insertions": [{"name": name, "anchor_text": name, "left_context": "", "right_context": ""}],
+            }
+        else:
+            payload = {"active_entities": [], "insertions": []}
+        text = "<think>plan</think>" + json.dumps(payload) + "\n[END_JSON]"
+    else:
+        text = "Mira Chen leads the Aurora team."
+    if path.endswith("/chat/completions"):
+        return 200, {}, openai_payload(body, text)
+    if path.endswith("/messages"):
+        return 200, {}, anthropic_payload(body, text)
+    return None  # embeddings and anything else: default handling
