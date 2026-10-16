@@ -61,7 +61,7 @@ def resolve_api_key(
     if is_local_url(base_url):
         return "not-needed"
     hint = f"set {env_name} or pass api_key" if env_name else "pass api_key"
-    raise RuntimeError(f"The {provider_label} backend needs an API key: {hint}.")
+    raise RuntimeError(f"The {provider_label} needs an API key: {hint}.")
 
 
 _PARAMETER_REJECTION_PHRASES = (
@@ -202,7 +202,7 @@ class OpenAICompatibleBackend(BaseLLMBackend):
                     self.api_key,
                     self.api_key_env,
                     base_url=self.effective_base_url,
-                    provider_label=self.provider_label,
+                    provider_label=f"{self.provider_label} backend",
                 ),
                 base_url=self.effective_base_url,
                 max_retries=self.max_retries,

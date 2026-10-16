@@ -272,10 +272,6 @@
     "sha256": "6a925fe802b120adad41f50984d0ec6376f060b5d6286780ea9f479343bee90a"
   },
   {
-    "path": "src/saadi/indexing/retriever_adapters/__init__.py",
-    "sha256": "6a2d75ec4e9afbe458a873faa9cdbc28ff0a5791a06f9d649cac96dd1bfba977"
-  },
-  {
     "path": "src/saadi/indexing/retriever_adapters/bge_m3.py",
     "sha256": "a84a9f397538c7ac4201ceaf8b1234616481eefcafd7a5dffc21f74e15ad6653"
   },
@@ -302,10 +298,6 @@
   {
     "path": "src/saadi/indexing/retriever_adapters/qwen.py",
     "sha256": "980c9ee1d8fc2efe262a0669fcecdcb6deb480368e4f1d81cc29d4684d42fe34"
-  },
-  {
-    "path": "src/saadi/indexing/retriever_adapters/scoring.py",
-    "sha256": "1b949e8b6ac038aa1cc02761a584cc24f70257c73dd2e51dee04d3b6d004233d"
   },
   {
     "path": "src/saadi/io/__init__.py",
