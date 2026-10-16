@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ZeinabTaghavi/SAADI/main/docs/assets/logo.png" alt="Saadi" width="260">
+  <img src="https://raw.githubusercontent.com/ZeinabTaghavi/SAADI/main/docs/assets/logo.png" alt="Saadi" width="320">
 </p>
 
 <p align="center">
