@@ -9,8 +9,9 @@ array, and the mock backend renders a fixed text form for tests.
 from __future__ import annotations
 
 import re
+from collections.abc import Sequence
 from dataclasses import dataclass, field
-from typing import Any, Protocol, Sequence, runtime_checkable
+from typing import Any, Protocol, runtime_checkable
 
 from ..core.parsers import _strip_reasoning_markup as _strip_closed_reasoning_blocks
 from ..core.prompts import chatml_wrap, format_chat_prompt
@@ -64,8 +65,7 @@ class LLMBackend(Protocol):
         max_tokens: int,
         temperature: float,
         stop: list[str],
-    ) -> list[str]:
-        ...
+    ) -> list[str]: ...
 
 
 class BaseLLMBackend:

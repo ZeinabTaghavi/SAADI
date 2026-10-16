@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
+from collections.abc import Callable, Sequence
 from concurrent.futures import ThreadPoolExecutor
-from typing import Callable, Sequence, TypeVar
+from typing import TypeVar
 
 T = TypeVar("T")
 R = TypeVar("R")

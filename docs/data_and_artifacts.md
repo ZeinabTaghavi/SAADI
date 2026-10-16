@@ -25,7 +25,7 @@ The source-of-truth configuration files are [LooGLE](../configs/experiments/loog
 ## Prepare and run
 
 ```bash
-python -m pip install -e '.[datasets]'
+python -m pip install -e '.[repro]'
 # Download and group MuSiQue and QASPER without model construction:
 python scripts/run_study.py --suite main --datasets musique,qasper --retrievers bm25 --stage prepare
 ```

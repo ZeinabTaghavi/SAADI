@@ -25,7 +25,9 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--llm", default="mock", metavar="PROVIDER:MODEL", help=LLM_HELP + " Default: mock (placeholder outputs).")
     parser.add_argument("--retriever", default="bm25", metavar="NAME")
     parser.add_argument("--prompts", default="default", metavar="PROFILE")
-    parser.add_argument("--state", metavar="DIR", default="saadi_state/aurora_report", help="Where to keep the state (default saadi_state/aurora_report).")
+    parser.add_argument(
+        "--state", metavar="DIR", default="saadi_state/aurora_report", help="Where to keep the state (default saadi_state/aurora_report)."
+    )
     parser.add_argument("--query", default=DEFAULT_QUESTION)
     parser.add_argument("--chunk-size", type=int, default=100, help="Small chunks so the report folds into summaries (default 100).")
     add_verbose_argument(parser)

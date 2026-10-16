@@ -8,8 +8,8 @@ import shutil
 from pathlib import Path
 
 import pytest
-
 from _fake_api_server import saadi_like_reply
+
 from saadi import Answer, IndexReport, MemoryEntity, RetrievedChunk, Saadi
 from saadi.document import STATE_LAYOUT
 from saadi.llm import CallableBackend
@@ -75,7 +75,9 @@ def test_append_extends_the_state_without_rebuilding(tmp_path: Path) -> None:
     update = doc.append(second)
 
     assert update.chunks > initial.chunks
-    assert update.chunks - initial.chunks <= update.new_chunks <= update.chunks - initial.chunks + 1  # the tail, maybe a changed boundary chunk
+    assert (
+        update.chunks - initial.chunks <= update.new_chunks <= update.chunks - initial.chunks + 1
+    )  # the tail, maybe a changed boundary chunk
     assert update.prompts_sent < initial.prompts_sent  # only the tail was processed
     assert update.prompts_sent <= update.new_chunks + 1 + update.chunks // 5 + 2  # new chunks, one boundary chunk, folds
     assert {e.name for e in doc.memory} > entities_before
@@ -208,7 +210,9 @@ def test_rejected_entity_proposals_are_counted_and_the_memory_file_still_exists(
         if "[CURRENT_CHUNK]" in user:
             payload = {
                 "active_entities": [{"name": "Ghost", "aliases": [], "description": ["never in the text"]}],
-                "insertions": [{"name": "Ghost", "anchor_text": "words that are not in this chunk", "left_context": "", "right_context": ""}],
+                "insertions": [
+                    {"name": "Ghost", "anchor_text": "words that are not in this chunk", "left_context": "", "right_context": ""}
+                ],
             }
             return json.dumps(payload) + "\n[END_JSON]"
         return "An answer."
@@ -268,7 +272,11 @@ def test_a_state_directory_belongs_to_one_document(tmp_path: Path) -> None:
 
 
 def test_credentials_never_reach_the_state_files(tmp_path: Path) -> None:
-    doc = Saadi(llm={"backend": "mock", "api_key": "sk-SECRET123", "extra_headers": {"Authorization": "Bearer SECRET456"}}, state_dir=tmp_path / "state", chunk_size=50)
+    doc = Saadi(
+        llm={"backend": "mock", "api_key": "sk-SECRET123", "extra_headers": {"Authorization": "Bearer SECRET456"}},
+        state_dir=tmp_path / "state",
+        chunk_size=50,
+    )
     doc.index(SAMPLE)
     written = "".join(path.read_text(encoding="utf-8", errors="ignore") for path in (tmp_path / "state").rglob("*.json"))
     assert "SECRET123" not in written and "SECRET456" not in written
@@ -359,7 +367,23 @@ def test_cli_accepts_any_conversation_roles(tmp_path: Path, capsys: pytest.Captu
     talk.write_text("role,text\nhost,Welcome to the show\nguest,Thanks for having me\n", encoding="utf-8")
     assert main(["index", str(talk), "--llm", "mock", "--state", str(tmp_path / "any")]) == 0
     assert Saadi.load(tmp_path / "any").document_text.startswith("host: ")
-    assert main(["index", str(talk), "--llm", "mock", "--state", str(tmp_path / "aliased"), "--role-alias", "host=therapist", "--role-alias", "guest=patient"]) == 0
+    assert (
+        main(
+            [
+                "index",
+                str(talk),
+                "--llm",
+                "mock",
+                "--state",
+                str(tmp_path / "aliased"),
+                "--role-alias",
+                "host=therapist",
+                "--role-alias",
+                "guest=patient",
+            ]
+        )
+        == 0
+    )
     assert Saadi.load(tmp_path / "aliased").document_text.startswith("therapist: ")
     capsys.readouterr()
     assert main(["index", str(talk), "--llm", "mock", "--state", str(tmp_path / "strict"), "--roles", "host"]) == 1

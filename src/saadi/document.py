@@ -24,10 +24,11 @@ import logging
 import re
 import shutil
 import warnings
+from collections.abc import Sequence
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, Sequence
+from typing import Any
 
 from ._version import __version__
 from .core.types import CanonicalizedChunkRecord, ChunkRecord, EntityRecord, TextInsertion
@@ -134,7 +135,7 @@ def _slug(value: str, limit: int = 40) -> str:
 
 
 def _now() -> str:
-    return datetime.now(timezone.utc).isoformat()
+    return datetime.now(UTC).isoformat()
 
 
 def _json_ready(value: Any) -> Any:
@@ -509,7 +510,12 @@ class Saadi:
             "metadata": _json_ready(dict(document.metadata)),
         }
         return self._ingest_document(
-            document.text, document_id=doc_id, source=source_info, input_options=dict(input_options), previous_chunks=previous, backend=backend
+            document.text,
+            document_id=doc_id,
+            source=source_info,
+            input_options=dict(input_options),
+            previous_chunks=previous,
+            backend=backend,
         )
 
     def append(self, source: str | Path | PreparedDocument, *, separator: str = "\n\n", **input_options: Any) -> IndexReport:
@@ -527,7 +533,12 @@ class Saadi:
         combined = self.document_text.rstrip("\n") + separator + addition.strip() + "\n"
         self._warn_if_model_changed()
         return self._ingest_document(
-            combined, document_id=str(self._document_id), source=self._source, input_options=options, previous_chunks=list(self.chunks), backend=backend
+            combined,
+            document_id=str(self._document_id),
+            source=self._source,
+            input_options=options,
+            previous_chunks=list(self.chunks),
+            backend=backend,
         )
 
     def _warn_if_model_changed(self) -> None:
@@ -612,7 +623,10 @@ class Saadi:
             config, ingest.raw_chunks, ingest.canonicalized_chunks, artifacts=ingest.artifacts, query=question, out_dir=query_dir
         )
         chunks = _retrieved_chunks(retrieval.retrieved_chunks, top_k)
-        write_json(query_dir / "query.json", {"question": question, "mode": "retrieve", "k": top_k, "chunks": [dataclasses.asdict(c) for c in chunks]})
+        write_json(
+            query_dir / "query.json",
+            {"question": question, "mode": "retrieve", "k": top_k, "chunks": [dataclasses.asdict(c) for c in chunks]},
+        )
         return list(chunks)
 
     def answer(self, query: str, *, k: int | None = None) -> Answer:
@@ -632,8 +646,13 @@ class Saadi:
             config, ingest.raw_chunks, ingest.canonicalized_chunks, artifacts=ingest.artifacts, query=question, out_dir=query_dir
         )
         context = prepare_context_for_generation(
-            config, retrieval.retrieval_result, ingest.raw_chunks, ingest.canonicalized_chunks,
-            artifacts=ingest.artifacts, query=question, out_dir=query_dir,
+            config,
+            retrieval.retrieval_result,
+            ingest.raw_chunks,
+            ingest.canonicalized_chunks,
+            artifacts=ingest.artifacts,
+            query=question,
+            out_dir=query_dir,
         )
         generation = generate_answer(config, context.context_text, query=question, backend=backend, out_dir=query_dir)
         chunks = _retrieved_chunks(retrieval.retrieved_chunks, top_k)
@@ -647,7 +666,14 @@ class Saadi:
         )
         write_json(
             query_dir / "query.json",
-            {"question": question, "mode": "answer", "k": top_k, "answer": result.text, "status": result.status, "chunks": [dataclasses.asdict(c) for c in chunks]},
+            {
+                "question": question,
+                "mode": "answer",
+                "k": top_k,
+                "answer": result.text,
+                "status": result.status,
+                "chunks": [dataclasses.asdict(c) for c in chunks],
+            },
         )
         return result
 
@@ -820,7 +846,7 @@ class Saadi:
         retriever: Any = None,
         prompts: Any = None,
         **overrides: Any,
-    ) -> "Saadi":
+    ) -> Saadi:
         """Open an existing state directory, also after it was copied or moved.
 
         Construction settings, the retriever, and the prompt profile come from
@@ -842,9 +868,19 @@ class Saadi:
         kwargs: dict[str, Any] = {
             key: settings[key]
             for key in (
-                "chunk_size", "chunk_overlap", "branching_factor", "max_entities", "max_aliases", "max_desc",
-                "active_entity_selector", "separator_phrases", "retrieve_k", "answer_top_k",
-                "ingest_max_tokens", "answer_max_tokens", "answer_temperature",
+                "chunk_size",
+                "chunk_overlap",
+                "branching_factor",
+                "max_entities",
+                "max_aliases",
+                "max_desc",
+                "active_entity_selector",
+                "separator_phrases",
+                "retrieve_k",
+                "answer_top_k",
+                "ingest_max_tokens",
+                "answer_max_tokens",
+                "answer_temperature",
             )
             if key in settings
         }
@@ -917,7 +953,13 @@ class Saadi:
 
     def _write_chunks(self, chunks: Sequence[ChunkRecord]) -> None:
         rows = [
-            {"chunk_id": c.chunk_id, "chunk_index": c.chunk_index, "text": c.raw_text, "token_start": c.token_start, "token_end": c.token_end}
+            {
+                "chunk_id": c.chunk_id,
+                "chunk_index": c.chunk_index,
+                "text": c.raw_text,
+                "token_start": c.token_start,
+                "token_end": c.token_end,
+            }
             for c in chunks
         ]
         (self._require_state_dir() / CHUNKS_FILE).write_text(
@@ -1017,7 +1059,9 @@ class Saadi:
         if not (raw_path.is_file() and canonical_path.is_file()):
             return None
         raw = [ChunkRecord(**_chunk_fields(json.loads(line))) for line in raw_path.read_text(encoding="utf-8").splitlines() if line.strip()]
-        canonical = [_canonical_from_dict(json.loads(line)) for line in canonical_path.read_text(encoding="utf-8").splitlines() if line.strip()]
+        canonical = [
+            _canonical_from_dict(json.loads(line)) for line in canonical_path.read_text(encoding="utf-8").splitlines() if line.strip()
+        ]
         artifacts = default_artifact_paths(cache_dir)
         index_path = self._cache_index if (self._cache_index is not None and self._cache_index.is_file()) else find_cache_index(artifacts)
         if index_path is not None:
@@ -1063,7 +1107,9 @@ def _canonical_from_dict(row: dict[str, Any]) -> CanonicalizedChunkRecord:
         if isinstance(item, dict)
     ]
     rejected = [
-        EntityRecord(name=str(e.get("name", "")), description=list(e.get("description", []) or []), aliases=list(e.get("aliases", []) or []))
+        EntityRecord(
+            name=str(e.get("name", "")), description=list(e.get("description", []) or []), aliases=list(e.get("aliases", []) or [])
+        )
         for e in row.get("rejected_entities", []) or []
         if isinstance(e, dict)
     ]

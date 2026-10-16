@@ -148,9 +148,7 @@ def check_prompt_profile(
             )
 
     rollup = strategy.build_rollup_prompt(items=[sample], lower_cycle=1, next_cycle=5, step=0)
-    summaries = strategy.run_rollup_prompts(
-        prompts=[rollup], backend=llm, generate=GenerateParams(max_tokens=256, temperature=0.0)
-    )
+    summaries = strategy.run_rollup_prompts(prompts=[rollup], backend=llm, generate=GenerateParams(max_tokens=256, temperature=0.0))
     summary = summaries[0] if summaries else None
     if summary:
         report.summary_status = "ok"

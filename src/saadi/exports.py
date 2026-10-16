@@ -6,9 +6,10 @@ import json
 import re
 import shutil
 import time
+from collections.abc import Iterable
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any
 
 from .core.prompts import prompt_hash
 from .llm.base import ChatPrompt, render_prompt
@@ -16,9 +17,31 @@ from .prompts import PromptProfile
 
 DEFAULT_FORBIDDEN_ALIASES = frozenset(
     {
-        "i", "me", "my", "mine", "we", "us", "our", "ours", "you", "your", "yours",
-        "he", "him", "his", "she", "her", "hers", "it", "its", "they", "them", "their", "theirs",
-        "patient", "therapist",
+        "i",
+        "me",
+        "my",
+        "mine",
+        "we",
+        "us",
+        "our",
+        "ours",
+        "you",
+        "your",
+        "yours",
+        "he",
+        "him",
+        "his",
+        "she",
+        "her",
+        "hers",
+        "it",
+        "its",
+        "they",
+        "them",
+        "their",
+        "theirs",
+        "patient",
+        "therapist",
     }
 )
 MEMORY_FILE = "memory.json"

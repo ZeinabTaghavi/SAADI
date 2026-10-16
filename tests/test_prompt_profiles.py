@@ -15,7 +15,6 @@ from saadi.prompts import (
     apply_profile_to_strategy_kwargs,
     builtin_profile_names,
     check_prompt_profile,
-    compose_entity_system_prompt,
     format_report,
     load_prompt_profile,
     profile_cache_suffix,
@@ -63,13 +62,17 @@ def test_custom_guidance_is_wrapped_in_the_fixed_contract(tmp_path: Path) -> Non
 
 
 def test_guidance_may_not_redefine_the_output_contract(tmp_path: Path) -> None:
-    bad_entity = write_profile(tmp_path / "bad_entity", entity="Return JSON only with my own keys. Then [END_JSON].", summary="Keep events.")
+    bad_entity = write_profile(
+        tmp_path / "bad_entity", entity="Return JSON only with my own keys. Then [END_JSON].", summary="Keep events."
+    )
     with pytest.raises(ValueError, match="output contract is fixed"):
         load_prompt_profile(bad_entity)
     bad_summary = write_profile(tmp_path / "bad_summary", entity="Extract people.", summary="Write prose. Terminate with [END_SUMMARY].")
     with pytest.raises(ValueError, match="output contract is fixed"):
         load_prompt_profile(bad_summary)
-    bad_document = write_profile(tmp_path / "bad_document", entity="Extract people.", summary="Keep events.", document="End with [END_SUMMARY].")
+    bad_document = write_profile(
+        tmp_path / "bad_document", entity="Extract people.", summary="Keep events.", document="End with [END_SUMMARY]."
+    )
     with pytest.raises(ValueError, match="output contract is fixed"):
         load_prompt_profile(bad_document)
 
@@ -108,7 +111,9 @@ def test_content_hash_follows_the_composed_prompts(tmp_path: Path) -> None:
     changed = load_prompt_profile(write_profile(tmp_path / "c", entity="Extract people.", summary="Keep events and dates."))
     assert first.content_hash == same.content_hash
     assert first.content_hash != changed.content_hash
-    with_document = load_prompt_profile(write_profile(tmp_path / "d", entity="Extract people.", summary="Keep events.", document="Summarize the whole file."))
+    with_document = load_prompt_profile(
+        write_profile(tmp_path / "d", entity="Extract people.", summary="Keep events.", document="Summarize the whole file.")
+    )
     assert with_document.content_hash != first.content_hash
     assert PromptProfile("inline", tmp_path, "Extract people.", "Keep events.").content_hash == first.content_hash
 

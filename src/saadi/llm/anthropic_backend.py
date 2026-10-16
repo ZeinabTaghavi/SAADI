@@ -15,7 +15,8 @@ from __future__ import annotations
 
 import logging
 import threading
-from typing import Any, Sequence
+from collections.abc import Sequence
+from typing import Any
 
 from ._concurrency import map_concurrently
 from .base import BaseLLMBackend, ChatPrompt, package_version, strip_reasoning_markup, truncate_at_stop
@@ -109,8 +110,7 @@ class AnthropicBackend(BaseLLMBackend):
                 import anthropic  # type: ignore
             except ImportError as exc:  # pragma: no cover - depends on the environment
                 raise RuntimeError(
-                    "The Anthropic backend needs the `anthropic` package. "
-                    "Install it with `pip install 'saadi[anthropic]'`."
+                    "The Anthropic backend needs the `anthropic` package. Install it with `pip install 'saadi[anthropic]'`."
                 ) from exc
             kwargs: dict[str, Any] = {"max_retries": self.max_retries, "timeout": self.timeout}
             if self.api_key:
@@ -223,4 +223,3 @@ class AnthropicBackend(BaseLLMBackend):
             if getattr(block, "type", None) == "text"
         )
         return truncate_at_stop(strip_reasoning_markup(text), stop)
-

@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 import json
+from collections.abc import Callable
 from dataclasses import dataclass, field
-from typing import Callable
 
 from ..core.parsers import extract_tagged_section
 from .base import RenderedStringBackend
@@ -26,7 +26,6 @@ def _default_mock_generator(prompt: str) -> str:
         summary = " ".join(words[:60]) if words else ""
         return summary + ("\n[END_SUMMARY]" if summary else "[END_SUMMARY]")
 
-    current_chunk = extract_tagged_section(prompt, "CURRENT_CHUNK")
     _ = extract_tagged_section(prompt, "HIERARCHY_CONTEXT_JSON")
     obj = {
         "active_entities": [],
@@ -45,9 +44,7 @@ class MockBackend(RenderedStringBackend):
 
     generator: MockGenerator = _default_mock_generator
     calls: list[str] = field(default_factory=list)
-    runtime_metadata: dict[str, object] = field(
-        default_factory=lambda: {"backend": "mock", "model_name": "mock"}
-    )
+    runtime_metadata: dict[str, object] = field(default_factory=lambda: {"backend": "mock", "model_name": "mock"})
 
     def generate_batch(
         self,

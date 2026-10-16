@@ -1,0 +1,122 @@
+name: Release
+
+# A tag push `vX.Y.Z` publishes to PyPI and creates the GitHub release (which Zenodo
+# archives). Running the workflow by hand publishes the current commit to TestPyPI and
+# installs it from there as a rehearsal. Both use trusted publishing: no tokens.
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      target:
+        description: "Rehearsal target"
+        type: choice
+        options: [testpypi]
+        default: testpypi
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install 'build>=1.2' 'twine>=5'
+      - id: version
+        run: echo "version=$(python -c 'import runpy; print(runpy.run_path("src/saadi/_version.py")["__version__"])')" >> "$GITHUB_OUTPUT"
+      - name: The tag must match the package version
+        if: github.ref_type == 'tag'
+        run: test "v${{ steps.version.outputs.version }}" = "$GITHUB_REF_NAME"
+      - run: python -m build
+      - run: python -m twine check dist/*
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish-testpypi:
+    needs: build
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    environment:
+      name: testpypi
+      url: https://test.pypi.org/project/saadi/${{ needs.build.outputs.version }}/
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+          skip-existing: true
+
+  verify-testpypi:
+    needs: [build, publish-testpypi]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install from TestPyPI in a fresh environment and run the demo
+        env:
+          VERSION: ${{ needs.build.outputs.version }}
+        run: |
+          python -m venv fresh
+          for attempt in 1 2 3 4 5 6; do
+            if fresh/bin/pip install --quiet --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ "saadi==$VERSION"; then
+              break
+            fi
+            echo "saadi==$VERSION is not on TestPyPI yet (attempt $attempt)"
+            sleep 30
+          done
+          fresh/bin/saadi --version
+          fresh/bin/saadi demo --llm mock --state demo-state
+
+  publish-pypi:
+    needs: build
+    if: github.ref_type == 'tag'
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/saadi/${{ needs.build.outputs.version }}/
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1
+
+  github-release:
+    needs: [build, publish-pypi]
+    if: github.ref_type == 'tag'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - name: Release notes from the changelog
+        env:
+          VERSION: ${{ needs.build.outputs.version }}
+        run: |
+          python - "$VERSION" > notes.md <<'PY'
+          import pathlib, re, sys
+          version = sys.argv[1]
+          text = pathlib.Path("CHANGELOG.md").read_text(encoding="utf-8")
+          match = re.search(rf"^## \[{re.escape(version)}\][^\n]*\n(.*?)(?=^## \[|^\[|\Z)", text, re.S | re.M)
+          print(match.group(1).strip() if match else f"Saadi {version}")
+          PY
+      - run: gh release create "$GITHUB_REF_NAME" dist/* --title "Saadi $GITHUB_REF_NAME" --notes-file notes.md
+        env:
+          GH_TOKEN: ${{ github.token }}

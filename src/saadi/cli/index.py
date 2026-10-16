@@ -27,18 +27,30 @@ def build_arg_parser() -> argparse.ArgumentParser:
         metavar="DIR",
         help=f"State directory (default {DEFAULT_STATE_ROOT}/<document_id>). For a directory source, the root under which one state per file is created.",
     )
-    parser.add_argument("--retriever", metavar="NAME", help="Query-time retriever (default bm25; with --append, the one stored in the state).")
-    parser.add_argument("--prompts", metavar="PROFILE", help="Prompt profile: default, conversation, or a directory (with --append, the stored one).")
+    parser.add_argument(
+        "--retriever", metavar="NAME", help="Query-time retriever (default bm25; with --append, the one stored in the state)."
+    )
+    parser.add_argument(
+        "--prompts", metavar="PROFILE", help="Prompt profile: default, conversation, or a directory (with --append, the stored one)."
+    )
     parser.add_argument("--append", action="store_true", help="Extend the state in --state with the source instead of building it.")
     parser.add_argument("--document-id", metavar="ID", help="Override the document id derived from the file name.")
     parser.add_argument("--kind", choices=["text", "conversation"], help="Force the input kind; by default .csv means conversation.")
     parser.add_argument("--roles", metavar="ROLE,ROLE", help="Accepted speaker roles of a conversation CSV (default: any role).")
-    parser.add_argument("--role-alias", action="append", default=[], metavar="OLD=NEW", help="Rename a speaker role, for example clinician=therapist; repeatable.")
+    parser.add_argument(
+        "--role-alias",
+        action="append",
+        default=[],
+        metavar="OLD=NEW",
+        help="Rename a speaker role, for example clinician=therapist; repeatable.",
+    )
     parser.add_argument("--timestamps", action="store_true", help="Keep the start column of a conversation CSV in each turn.")
     parser.add_argument("--chunk-size", type=int, help="Chunk size in tokens (default 500).")
     parser.add_argument("--branching-factor", type=int, help="Chunks per fold summary (default 5).")
     parser.add_argument("--max-entities", type=int, help="Entities recalled per state update (default 5).")
-    parser.add_argument("--summary", action="store_true", help="Also write a whole-document summary (needs a profile with document_summary.txt).")
+    parser.add_argument(
+        "--summary", action="store_true", help="Also write a whole-document summary (needs a profile with document_summary.txt)."
+    )
     parser.add_argument("--json", action="store_true", help="Print the reports as JSON.")
     add_verbose_argument(parser)
     return parser
@@ -84,7 +96,11 @@ def _input_options(args: argparse.Namespace) -> dict:
 def _construction_kwargs(args: argparse.Namespace) -> dict:
     return {
         key: value
-        for key, value in (("chunk_size", args.chunk_size), ("branching_factor", args.branching_factor), ("max_entities", args.max_entities))
+        for key, value in (
+            ("chunk_size", args.chunk_size),
+            ("branching_factor", args.branching_factor),
+            ("max_entities", args.max_entities),
+        )
         if value is not None
     }
 
@@ -94,7 +110,13 @@ def main(argv: list[str] | None = None) -> int:
     configure_logging(args.verbose)
     try:
         if args.append:
-            given = [flag for flag, value in zip(CONSTRUCTION_FLAGS, (args.chunk_size, args.branching_factor, args.max_entities, args.document_id)) if value is not None]
+            given = [
+                flag
+                for flag, value in zip(
+                    CONSTRUCTION_FLAGS, (args.chunk_size, args.branching_factor, args.max_entities, args.document_id), strict=True
+                )
+                if value is not None
+            ]
             if given:
                 raise ValueError(f"{', '.join(given)} cannot change on --append; the stored construction settings apply")
             if not args.state:
@@ -105,7 +127,7 @@ def main(argv: list[str] | None = None) -> int:
         reports = []
         if source.is_dir():
             root = Path(args.state) if args.state else Path(DEFAULT_STATE_ROOT)
-            targets = [(file, root / name, name) for file, name in zip(files, _state_names(files))]
+            targets = [(file, root / name, name) for file, name in zip(files, _state_names(files), strict=True)]
         else:
             targets = [(files[0], Path(args.state) if args.state else None, args.document_id)]
         for file, state_dir, document_id in targets:
@@ -113,7 +135,9 @@ def main(argv: list[str] | None = None) -> int:
                 doc = Saadi.load(state_dir, llm=args.llm, retriever=args.retriever, prompts=args.prompts)
                 report = doc.append(file, **options)
             else:
-                doc = Saadi(args.llm, args.retriever or "bm25", args.prompts or "default", state_dir=state_dir, **_construction_kwargs(args))
+                doc = Saadi(
+                    args.llm, args.retriever or "bm25", args.prompts or "default", state_dir=state_dir, **_construction_kwargs(args)
+                )
                 report = doc.index(file, document_id=document_id, **options)
             summary = doc.summarize() if args.summary else None
             reports.append({"report": report, "memory": doc.memory, "summary": summary})
@@ -123,7 +147,12 @@ def main(argv: list[str] | None = None) -> int:
         print(f"error: {exc}")
         return 1
     if args.json:
-        print(json.dumps([{**dataclasses.asdict(r["report"]), "state_dir": str(r["report"].state_dir), "summary": r["summary"]} for r in reports], indent=2))
+        print(
+            json.dumps(
+                [{**dataclasses.asdict(r["report"]), "state_dir": str(r["report"].state_dir), "summary": r["summary"]} for r in reports],
+                indent=2,
+            )
+        )
         return 0
     for item in reports:
         print(format_index_report(item["report"]))

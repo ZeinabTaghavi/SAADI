@@ -7,13 +7,13 @@ pointed at a local HTTP server that speaks just enough of each protocol.
 from __future__ import annotations
 
 import json
-import re
 import logging
 import time
 from pathlib import Path
 from typing import Any
 
 import pytest
+from _fake_api_server import FakeAPIServer, Response, anthropic_payload, last_user_text, openai_payload, saadi_like_responder
 
 from saadi.config.validation import validate_experiment
 from saadi.context_strategies.hierarchical_summary import HIER_SYSTEM_PROMPT, HierarchicalSummaryStrategy
@@ -33,8 +33,6 @@ from saadi.llm import (
 )
 from saadi.llm.anthropic_backend import AnthropicBackend
 from saadi.llm.openai_backend import OpenAICompatibleBackend
-
-from _fake_api_server import FakeAPIServer, Response, anthropic_payload, last_user_text, openai_payload, saadi_like_responder
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -114,9 +112,7 @@ def test_resolve_backend_accepts_functions_objects_and_legacy_backends() -> None
     def with_options(system: str, user: str, *, max_tokens: int, temperature: float, stop: list[str]) -> str:
         return f"{system}|{user}|{max_tokens}|{temperature}|{stop}"
 
-    out = resolve_backend(with_options).generate_chat_batch(
-        [ChatPrompt(system="s", user="u")], max_tokens=3, temperature=0.5, stop=["x"]
-    )
+    out = resolve_backend(with_options).generate_chat_batch([ChatPrompt(system="s", user="u")], max_tokens=3, temperature=0.5, stop=["x"])
     assert out == ["s|u|3|0.5|['x']"]
 
     def plain(system: str, user: str) -> str:
@@ -237,14 +233,18 @@ def test_openai_backend_sends_messages_and_keeps_batch_order(server: FakeAPIServ
 def test_openai_backend_switches_token_limit_param_when_rejected(server: FakeAPIServer) -> None:
     def reject_max_tokens(path: str, body: dict[str, Any]) -> Response | None:
         if "max_tokens" in body:
-            return 400, {}, {
-                "error": {
-                    "message": "Unsupported parameter: 'max_tokens' is not supported with this model. Use 'max_completion_tokens' instead.",
-                    "type": "invalid_request_error",
-                    "param": "max_tokens",
-                    "code": "unsupported_parameter",
-                }
-            }
+            return (
+                400,
+                {},
+                {
+                    "error": {
+                        "message": "Unsupported parameter: 'max_tokens' is not supported with this model. Use 'max_completion_tokens' instead.",
+                        "type": "invalid_request_error",
+                        "param": "max_tokens",
+                        "code": "unsupported_parameter",
+                    }
+                },
+            )
         return None
 
     server.responder = reject_max_tokens
@@ -260,12 +260,16 @@ def test_openai_backend_switches_token_limit_param_when_rejected(server: FakeAPI
 def test_openai_backend_drops_temperature_when_rejected(server: FakeAPIServer) -> None:
     def reject_temperature(path: str, body: dict[str, Any]) -> Response | None:
         if "temperature" in body:
-            return 400, {}, {
-                "error": {
-                    "message": "Unsupported value: 'temperature' does not support 0.0 with this model.",
-                    "type": "invalid_request_error",
-                }
-            }
+            return (
+                400,
+                {},
+                {
+                    "error": {
+                        "message": "Unsupported value: 'temperature' does not support 0.0 with this model.",
+                        "type": "invalid_request_error",
+                    }
+                },
+            )
         return None
 
     server.responder = reject_temperature
@@ -300,9 +304,7 @@ def test_local_servers_need_no_api_key(server: FakeAPIServer, monkeypatch: pytes
     pytest.importorskip("openai")
     monkeypatch.delenv("OPENAI_API_KEY", raising=False)
     monkeypatch.delenv("OLLAMA_API_KEY", raising=False)
-    backend = build_backend_from_config(
-        {"backend": "ollama", "model_id": "qwen3:8b", "base_url": server.url + "/v1", "timeout": 10}
-    )
+    backend = build_backend_from_config({"backend": "ollama", "model_id": "qwen3:8b", "base_url": server.url + "/v1", "timeout": 10})
     assert backend.generate_chat_batch([ChatPrompt(user="hi")], max_tokens=8, temperature=0.0, stop=[]) == ["echo:hi"]
     assert server.requests[0]["headers"]["authorization"] == "Bearer not-needed"
 
@@ -382,10 +384,14 @@ def test_anthropic_backend_refusal_returns_empty_output(server: FakeAPIServer, c
 def test_anthropic_backend_drops_temperature_when_rejected(server: FakeAPIServer) -> None:
     def reject_temperature(path: str, body: dict[str, Any]) -> Response | None:
         if "temperature" in body:
-            return 400, {}, {
-                "type": "error",
-                "error": {"type": "invalid_request_error", "message": "temperature: Extra inputs are not permitted"},
-            }
+            return (
+                400,
+                {},
+                {
+                    "type": "error",
+                    "error": {"type": "invalid_request_error", "message": "temperature: Extra inputs are not permitted"},
+                },
+            )
         return None
 
     server.responder = reject_temperature
@@ -504,7 +510,7 @@ def test_single_document_pipeline_runs_through_anthropic_backend(server: FakeAPI
 
 
 def test_hosted_backends_strip_closed_think_blocks(server: FakeAPIServer) -> None:
-    server.responder = lambda path, body: (200, {}, openai_payload(body, "<think>reasoning</think>\n{\"a\": 1}[END_JSON]"))
+    server.responder = lambda path, body: (200, {}, openai_payload(body, '<think>reasoning</think>\n{"a": 1}[END_JSON]'))
     backend = openai_backend(server)
     assert backend.generate_chat_batch([ChatPrompt(user="a")], max_tokens=8, temperature=0.0, stop=["[END_JSON]"]) == ['{"a": 1}']
 
@@ -512,7 +518,11 @@ def test_hosted_backends_strip_closed_think_blocks(server: FakeAPIServer) -> Non
 def test_openai_backend_keeps_plain_stops_before_dropping_stop(server: FakeAPIServer) -> None:
     def reject_special_tokens(path: str, body: dict[str, Any]) -> Response | None:
         if any(item.startswith("<|") for item in body.get("stop", [])):
-            return 400, {}, {"error": {"message": "Invalid 'stop': special tokens are not allowed.", "type": "invalid_request_error", "param": "stop"}}
+            return (
+                400,
+                {},
+                {"error": {"message": "Invalid 'stop': special tokens are not allowed.", "type": "invalid_request_error", "param": "stop"}},
+            )
         return None
 
     server.responder = reject_special_tokens
@@ -526,7 +536,17 @@ def test_openai_backend_keeps_plain_stops_before_dropping_stop(server: FakeAPISe
 def test_openai_backend_drops_stop_entirely_when_still_rejected(server: FakeAPIServer) -> None:
     def reject_any_stop(path: str, body: dict[str, Any]) -> Response | None:
         if "stop" in body:
-            return 400, {}, {"error": {"message": "Unsupported parameter: 'stop' is not supported with this model.", "type": "invalid_request_error", "param": "stop"}}
+            return (
+                400,
+                {},
+                {
+                    "error": {
+                        "message": "Unsupported parameter: 'stop' is not supported with this model.",
+                        "type": "invalid_request_error",
+                        "param": "stop",
+                    }
+                },
+            )
         return 200, {}, openai_payload(body, "answer[END_JSON] more")
 
     server.responder = reject_any_stop
@@ -546,9 +566,11 @@ def test_concurrent_requests_all_recover_when_a_param_is_rejected(server: FakeAP
     def reject_temperature_slowly(path: str, body: dict[str, Any]) -> Response | None:
         if "temperature" in body:
             time.sleep(0.05)  # keep every first-wave request in flight before any adaptation
-            return 400, {}, {
-                "error": {"message": "Unsupported parameter: 'temperature'", "type": "invalid_request_error", "param": "temperature"}
-            }
+            return (
+                400,
+                {},
+                {"error": {"message": "Unsupported parameter: 'temperature'", "type": "invalid_request_error", "param": "temperature"}},
+            )
         return None
 
     server.responder = reject_temperature_slowly
@@ -566,7 +588,12 @@ def test_unrelated_400_errors_are_not_misread_as_parameter_rejections(server: Fa
     server.responder = lambda path, body: (
         400,
         {},
-        {"error": {"message": "This model's maximum context length is 4096 tokens; max_tokens=2000 plus the prompt exceed it.", "type": "invalid_request_error"}},
+        {
+            "error": {
+                "message": "This model's maximum context length is 4096 tokens; max_tokens=2000 plus the prompt exceed it.",
+                "type": "invalid_request_error",
+            }
+        },
     )
     backend = openai_backend(server, max_workers=1)
     with pytest.raises(openai.BadRequestError):
@@ -586,10 +613,17 @@ def test_build_backend_from_config_requires_backend_for_non_empty_configs() -> N
 def test_anthropic_backend_drops_the_token_floor_when_the_model_caps_lower(server: FakeAPIServer) -> None:
     def reject_large_max_tokens(path: str, body: dict[str, Any]) -> Response | None:
         if body.get("max_tokens", 0) > 4096:
-            return 400, {}, {
-                "type": "error",
-                "error": {"type": "invalid_request_error", "message": "max_tokens: 8192 > 4096, which is the maximum allowed number of output tokens for claude-test"},
-            }
+            return (
+                400,
+                {},
+                {
+                    "type": "error",
+                    "error": {
+                        "type": "invalid_request_error",
+                        "message": "max_tokens: 8192 > 4096, which is the maximum allowed number of output tokens for claude-test",
+                    },
+                },
+            )
         return None
 
     server.responder = reject_large_max_tokens
@@ -609,7 +643,7 @@ def test_configured_api_key_env_must_be_set(monkeypatch: pytest.MonkeyPatch) -> 
 def test_strip_reasoning_markup_handles_both_tag_styles_and_truncation() -> None:
     from saadi.llm import strip_reasoning_markup
 
-    assert strip_reasoning_markup("<think>plan</think>\n{\"a\": 1}") == '{"a": 1}'
+    assert strip_reasoning_markup('<think>plan</think>\n{"a": 1}') == '{"a": 1}'
     assert strip_reasoning_markup("x <|begin_of_thought|>y<|end_of_thought|> z").split() == ["x", "z"]
     assert strip_reasoning_markup("<think>still reasoning when cut off") == ""
     assert strip_reasoning_markup("answer <think>partial") == "answer"
@@ -668,5 +702,3 @@ def test_run_manifest_describes_non_vllm_backends_truthfully(tmp_path) -> None:
     reproducibility = manifest["reproducibility"]
     assert reproducibility["llm_backend"]["backend"] == "mock"
     assert set(reproducibility["sampling"]) == {"temperature"}  # no vLLM-only defaults for a backend that never applied them
-
-

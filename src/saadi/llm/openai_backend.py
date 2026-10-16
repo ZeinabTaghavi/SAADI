@@ -19,7 +19,8 @@ import logging
 import os
 import re
 import threading
-from typing import Any, Sequence
+from collections.abc import Sequence
+from typing import Any
 from urllib.parse import urlparse
 
 from ._concurrency import map_concurrently
@@ -194,8 +195,7 @@ class OpenAICompatibleBackend(BaseLLMBackend):
                 import openai  # type: ignore
             except ImportError as exc:  # pragma: no cover - depends on the environment
                 raise RuntimeError(
-                    "The OpenAI-compatible backend needs the `openai` package. "
-                    "Install it with `pip install 'saadi[openai]'`."
+                    "The OpenAI-compatible backend needs the `openai` package. Install it with `pip install 'saadi[openai]'`."
                 ) from exc
             self._client = openai.OpenAI(
                 api_key=resolve_api_key(
@@ -315,4 +315,3 @@ class OpenAICompatibleBackend(BaseLLMBackend):
             if getattr(choices[0], "finish_reason", None) == "length":
                 logger.warning("%s output hit the token limit (%d) for model=%s", self.provider_label, max_tokens, self.model)
         return truncate_at_stop(strip_reasoning_markup(text), stop)
-

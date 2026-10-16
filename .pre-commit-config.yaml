@@ -1,0 +1,10 @@
+# Formatting and linting for the library layer; [tool.ruff] in pyproject.toml sets the scope
+# so the paper's code is never touched. Install once with `pre-commit install`;
+# run on everything with `pre-commit run --all-files`.
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.17.1
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
