@@ -90,21 +90,21 @@ def _single_document_mock_generator(prompt: str) -> str:
         ) + "\n[END_JSON]"
 
     return (
-        "Mock answer: the retrieved context highlights the main themes and evidence "
-        "that are most relevant to the query. Switch MODEL_CONFIG to vLLM/Qwen for "
-        "a real generated answer."
+        "Mock answer: no language model was used, so this is a placeholder. "
+        "Pass a real model (for example openai:gpt-4.1-mini or ollama:qwen3:8b) "
+        "to generate an answer from the retrieved context."
     )
 
 
 @dataclass(slots=True)
 class SingleDocumentPipelineConfig:
-    """User-facing configuration for the single-document demo."""
+    """Configuration of the single-document pipeline; :class:`saadi.Saadi` builds it for you."""
 
-    demo_root: str = "single_document_demo"
-    document_path: str = "single_document_demo/input/therapy_sample.txt"
-    document_id: str = "therapy_sample"
-    run_name: str = "therapy_sample_current_saadi"
-    query: str = "What are the main themes discussed in this therapy text?"
+    demo_root: str = "saadi_state"
+    document_path: str = "document.txt"
+    document_id: str = "document"
+    run_name: str = "run"
+    query: str = ""
     run_mode: str = "auto"
 
     model_config: dict[str, Any] = field(default_factory=_default_model_config)

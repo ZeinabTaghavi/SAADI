@@ -36,6 +36,8 @@ from saadi.llm.openai_backend import OpenAICompatibleBackend
 
 from _fake_api_server import FakeAPIServer, Response, anthropic_payload, last_user_text, openai_payload, saadi_like_responder
 
+ROOT = Path(__file__).resolve().parents[1]
+
 
 @pytest.fixture
 def server():
@@ -454,22 +456,13 @@ def test_legacy_string_path_recovers_roles_for_hosted_backends(server: FakeAPISe
 
 
 def _run_demo_through(server: FakeAPIServer, tmp_path, model_config: dict[str, Any]):
-    from single_document_demo.pipeline import load_demo_config, run_demo
+    from saadi import Saadi
 
     server.responder = saadi_like_responder
-    config = load_demo_config("single_document_demo/configs/text_document.toml")
-    config.demo_root = tmp_path / "demo"
-    config.output_root = config.demo_root / "output"
-    config.prompt_profile = "default"
-    config.run_name = "hosted"
-    config.query = "Who leads the Aurora team?"
-    config.model_config = model_config
-    config.saadi_options.update({"use_cache": False, "chunk_size": 20})
-    result = run_demo(config)
-    assert not result.failures, [record.error for record in result.failures]
-    run_dir = Path(result.records[0].run_dir)
-    answer = (run_dir / "generation" / "answer.txt").read_text(encoding="utf-8")
-    assert "Mira Chen" in answer
+    doc = Saadi(llm=model_config, state_dir=tmp_path / "state", chunk_size=20)
+    doc.index(ROOT / "examples" / "sample_text" / "document.txt")
+    reply = doc.answer("Who leads the Aurora team?")
+    assert "Mira Chen" in reply.text
     kinds = {"chunk": 0, "rollup": 0, "answer": 0}
     for request in server.requests:
         user = last_user_text(request["body"])
@@ -480,22 +473,18 @@ def _run_demo_through(server: FakeAPIServer, tmp_path, model_config: dict[str, A
         else:
             kinds["answer"] += 1
     assert kinds["chunk"] >= 5 and kinds["rollup"] >= 1 and kinds["answer"] == 1, kinds
-    memory_text = (run_dir / "cleaned_outputs" / "manifest.json").read_text(encoding="utf-8")
-    assert memory_text
-    return run_dir
-
-
-ROOT = Path(__file__).resolve().parents[1]
+    assert doc.memory
+    return doc, reply
 
 
 def test_single_document_pipeline_runs_through_openai_compatible_backend(server: FakeAPIServer, tmp_path) -> None:
     pytest.importorskip("openai")
-    run_dir = _run_demo_through(
+    _doc, reply = _run_demo_through(
         server,
         tmp_path,
         {"backend": "openai", "model_id": "fake-model", "base_url": server.url + "/v1", "api_key": "test-key", "timeout": 10},
     )
-    assert "<|system|>" in (run_dir / "generation" / "prompt.txt").read_text(encoding="utf-8")
+    assert "<|system|>" in (reply.directory / "generation" / "prompt.txt").read_text(encoding="utf-8")
     for request in server.requests:
         assert request["path"] == "/v1/chat/completions"
         assert request["body"]["messages"][0]["role"] == "system"
@@ -671,18 +660,13 @@ def test_empty_model_output_is_not_recorded_as_ok(tmp_path) -> None:
 
 
 def test_run_manifest_describes_non_vllm_backends_truthfully(tmp_path) -> None:
-    from single_document_demo.pipeline import load_demo_config, run_demo
+    from saadi import Saadi
 
-    config = load_demo_config("single_document_demo/configs/text_document.toml")
-    config.demo_root = tmp_path / "demo"
-    config.output_root = config.demo_root / "output"
-    config.prompt_profile = "default"
-    config.run_name = "provenance"
-    config.model_config = {"backend": "mock"}
-    config.saadi_options.update({"use_cache": False, "chunk_size": 50})
-    result = run_demo(config)
-    assert not result.failures
-    manifest = json.loads((Path(result.records[0].run_dir) / "run_manifest.json").read_text(encoding="utf-8"))
+    doc = Saadi(llm="mock", state_dir=tmp_path / "state", chunk_size=50)
+    doc.index(ROOT / "examples" / "sample_text" / "document.txt")
+    manifest = json.loads((doc.cache_dir / "run_manifest.json").read_text(encoding="utf-8"))
     reproducibility = manifest["reproducibility"]
     assert reproducibility["llm_backend"]["backend"] == "mock"
     assert set(reproducibility["sampling"]) == {"temperature"}  # no vLLM-only defaults for a backend that never applied them
+
+
