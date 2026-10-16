@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import logging
 import os
-from importlib import metadata as importlib_metadata
 from pathlib import Path
 from typing import Any
 
@@ -16,6 +15,7 @@ from .base import (
     DEFAULT_REPETITION_PENALTY,
     LegacyStringBackend,
     LLMBackend,
+    package_version,
 )
 from .callable_backend import CallableBackend
 from .hf_tokenizers import load_hf_tokenizer
@@ -26,11 +26,8 @@ from .vllm_backend import VLLMBackend
 logger = logging.getLogger(__name__)
 
 
-def _package_version(name: str) -> str | None:
-    try:
-        return importlib_metadata.version(name)
-    except Exception:
-        return None
+# Module-level alias so tests can patch the lookup used for the vLLM runtime metadata.
+_package_version = package_version
 
 
 def _configured_model_revision(cfg: dict[str, Any]) -> str | None:
@@ -260,6 +257,12 @@ def build_backend_from_config(model_cfg: dict[str, Any] | None) -> LLMBackend:
     """
 
     cfg = dict(model_cfg or {})
+    if cfg and "backend" not in cfg:
+        # An empty mapping means "no model configured" and keeps the historical mock
+        # default; a mapping that names a model but no backend is a mistake worth stopping.
+        raise ValueError(
+            "model.backend is missing; set it to one of " + ", ".join(SUPPORTED_BACKENDS) + "."
+        )
     backend = normalize_backend_name(cfg.get("backend", "mock"))
     if backend == "mock":
         return MockBackend()
@@ -307,6 +310,11 @@ def _build_anthropic_backend(cfg: dict[str, Any]) -> AnthropicBackend:
     api_key_env = cfg.get("api_key_env")
     if not api_key and api_key_env:
         api_key = os.environ.get(str(api_key_env)) or None
+        if not api_key:
+            raise RuntimeError(
+                f"model.api_key_env names {api_key_env!r}, but that variable is not set. "
+                "Export it, or remove api_key_env to let the Anthropic SDK find credentials itself."
+            )
     return AnthropicBackend(
         model,
         api_key=api_key,

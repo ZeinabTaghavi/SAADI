@@ -8,7 +8,7 @@ from typing import Any
 
 from ...core.prompts import prompt_hash
 from ...llm.base import ChatPrompt, GenerateParams, render_prompt
-from ...llm.factory import build_backend_from_config
+from ...llm.factory import build_backend_from_config, resolve_backend
 from .prompts import (
     DEFAULT_SAADI_GENERATION_SYSTEM_PROMPT,
     DEFAULT_SAADI_GENERATION_USER_TEMPLATE,
@@ -43,7 +43,7 @@ class SaadiAnswerGenerator:
 
     def __init__(self, config: GenerationConfig, *, backend: Any | None = None) -> None:
         self.config = config
-        self.backend = backend if backend is not None else build_backend_from_config({"backend": "vllm"})
+        self.backend = resolve_backend(backend) if backend is not None else build_backend_from_config({"backend": "vllm"})
         self.tokenizer = getattr(self.backend, "chat_tokenizer", None)
 
     @classmethod

@@ -18,7 +18,7 @@ import threading
 from typing import Any, Sequence
 
 from ._concurrency import map_concurrently
-from .base import BaseLLMBackend, ChatPrompt, strip_reasoning_markup, truncate_at_stop
+from .base import BaseLLMBackend, ChatPrompt, package_version, strip_reasoning_markup, truncate_at_stop
 
 logger = logging.getLogger(__name__)
 
@@ -90,13 +90,16 @@ class AnthropicBackend(BaseLLMBackend):
         self._client = client
         self._lock = threading.Lock()
         self._disabled: set[str] = set()
+        self._floor_disabled = False
         self.runtime_metadata: dict[str, Any] = {
             "backend": "anthropic",
             "model_name": self.model,
             "base_url": self.base_url,
-            "anthropic_sdk_version": _sdk_version(),
+            "anthropic_sdk_version": package_version("anthropic"),
             "effort": self.effort,
             "max_workers": self.max_workers,
+            "min_max_tokens": self.min_max_tokens,
+            "sends_temperature": self.send_temperature,
             "sampling": {},
         }
 
@@ -142,7 +145,7 @@ class AnthropicBackend(BaseLLMBackend):
     def build_request(self, prompt: ChatPrompt, *, max_tokens: int, temperature: float, stop: list[str]) -> dict[str, Any]:
         params: dict[str, Any] = {
             "model": self.model,
-            "max_tokens": max(int(max_tokens), self.min_max_tokens),
+            "max_tokens": int(max_tokens) if self._floor_disabled else max(int(max_tokens), self.min_max_tokens),
             "messages": [{"role": "user", "content": prompt.user}],
         }
         if prompt.system:
@@ -176,8 +179,9 @@ class AnthropicBackend(BaseLLMBackend):
         try:
             response = self._create(client, params)
         except anthropic.BadRequestError as exc:
+            message = str(exc).lower()
             extra_body = dict(params.get("extra_body") or {})
-            if "temperature" in extra_body and "temperature" in str(exc).lower():
+            if "temperature" in extra_body and "temperature" in message:
                 with self._lock:
                     self._disabled.add("temperature")
                 logger.warning("Anthropic rejected temperature for model=%s; omitting it", self.model)
@@ -186,6 +190,18 @@ class AnthropicBackend(BaseLLMBackend):
                     params["extra_body"] = extra_body
                 else:
                     params.pop("extra_body", None)
+                response = self._create(client, params)
+            elif "max_tokens" in message and params["max_tokens"] > int(max_tokens):
+                # The model's output cap is below the reasoning floor; use the requested cap.
+                with self._lock:
+                    self._floor_disabled = True
+                logger.warning(
+                    "Anthropic rejected max_tokens=%d for model=%s; using the requested %d from now on",
+                    params["max_tokens"],
+                    self.model,
+                    int(max_tokens),
+                )
+                params["max_tokens"] = int(max_tokens)
                 response = self._create(client, params)
             else:
                 raise
@@ -208,11 +224,3 @@ class AnthropicBackend(BaseLLMBackend):
         )
         return truncate_at_stop(strip_reasoning_markup(text), stop)
 
-
-def _sdk_version() -> str | None:
-    try:
-        from importlib import metadata
-
-        return metadata.version("anthropic")
-    except Exception:
-        return None

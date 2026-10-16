@@ -21,6 +21,7 @@ from ..io.hierarchy_cache import (
 )
 from ..io.jsonl import write_jsonl
 from ..llm.base import GenerateParams, LLMBackend
+from ..llm.factory import resolve_backend
 
 logger = logging.getLogger(__name__)
 
@@ -269,6 +270,7 @@ def ingest_document(
     on_chunk_processed: Callable[[CanonicalizedChunkRecord, bool], None] | None = None,
     precomputed_raw_chunks: list[ChunkRecord] | None = None,
 ) -> tuple[list[ChunkRecord], list[CanonicalizedChunkRecord], dict[str, Any]]:
+    backend = resolve_backend(backend)
     generate = generate or GenerateParams()
     if precomputed_raw_chunks is not None:
         raw_chunks = precomputed_raw_chunks
@@ -792,6 +794,7 @@ def ingest_documents(
     wavefront_batch_size: int | None = None,
     precomputed_raw_chunks_by_doc_id: dict[str, list[ChunkRecord]] | None = None,
 ):
+    backend = resolve_backend(backend)
     logger.info(
         "Starting ingest for %d documents strategy=%s schedule=%s use_cache=%s cache_save_each_document=%s",
         len(documents_by_id),

@@ -4,10 +4,10 @@ from __future__ import annotations
 
 import json
 from dataclasses import dataclass, field
-from typing import Callable, Sequence
+from typing import Callable
 
 from ..core.parsers import extract_tagged_section
-from .base import BaseLLMBackend, ChatPrompt
+from .base import RenderedStringBackend
 
 MockGenerator = Callable[[str], str]
 
@@ -36,7 +36,7 @@ def _default_mock_generator(prompt: str) -> str:
 
 
 @dataclass
-class MockBackend(BaseLLMBackend):
+class MockBackend(RenderedStringBackend):
     """CPU-only stand-in that answers from the prompt text alone.
 
     ``generator`` receives the rendered prompt (see :meth:`ChatPrompt.as_text`)
@@ -48,21 +48,6 @@ class MockBackend(BaseLLMBackend):
     runtime_metadata: dict[str, object] = field(
         default_factory=lambda: {"backend": "mock", "model_name": "mock"}
     )
-
-    def generate_chat_batch(
-        self,
-        prompts: Sequence[ChatPrompt],
-        *,
-        max_tokens: int,
-        temperature: float,
-        stop: list[str],
-    ) -> list[str]:
-        return self.generate_batch(
-            [self.render_prompt(prompt) for prompt in prompts],
-            max_tokens=max_tokens,
-            temperature=temperature,
-            stop=stop,
-        )
 
     def generate_batch(
         self,

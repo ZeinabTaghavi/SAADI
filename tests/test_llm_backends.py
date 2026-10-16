@@ -684,3 +684,143 @@ def test_openai_backend_drops_stop_entirely_when_still_rejected(server: FakeAPIS
     assert backend.generate_chat_batch([ChatPrompt(user="a")], max_tokens=8, temperature=0.0, stop=stops) == ["answer"]
     assert [("stop" in r["body"]) for r in server.requests] == [True, True, False]
     assert server.requests[1]["body"]["stop"] == ["[END_JSON]"]
+
+
+# --- review fixes ---------------------------------------------------------------
+
+
+def test_concurrent_requests_all_recover_when_a_param_is_rejected(server: FakeAPIServer) -> None:
+    """Siblings in flight must retry with the adapted request instead of raising."""
+
+    def reject_temperature_slowly(path: str, body: dict[str, Any]) -> Response | None:
+        if "temperature" in body:
+            time.sleep(0.05)  # keep every first-wave request in flight before any adaptation
+            return 400, {}, {
+                "error": {"message": "Unsupported parameter: 'temperature'", "type": "invalid_request_error", "param": "temperature"}
+            }
+        return None
+
+    server.responder = reject_temperature_slowly
+    backend = openai_backend(server, max_workers=4)
+    prompts = [ChatPrompt(user=f"p{i}") for i in range(6)]
+    outputs = backend.generate_chat_batch(prompts, max_tokens=8, temperature=0.0, stop=[])
+    assert outputs == [f"echo:p{i}" for i in range(6)]
+    rejected = [r for r in server.requests if "temperature" in r["body"]]
+    assert 4 <= len(rejected) <= 6
+    assert "temperature" not in server.requests[-1]["body"]
+
+
+def test_unrelated_400_errors_are_not_misread_as_parameter_rejections(server: FakeAPIServer) -> None:
+    openai = pytest.importorskip("openai")
+    server.responder = lambda path, body: (
+        400,
+        {},
+        {"error": {"message": "This model's maximum context length is 4096 tokens; max_tokens=2000 plus the prompt exceed it.", "type": "invalid_request_error"}},
+    )
+    backend = openai_backend(server, max_workers=1)
+    with pytest.raises(openai.BadRequestError):
+        backend.generate_chat_batch([ChatPrompt(user="a")], max_tokens=2000, temperature=0.0, stop=[])
+    assert len(server.requests) == 1  # no rename, no retry; the real error surfaces
+
+
+def test_build_backend_from_config_requires_backend_for_non_empty_configs() -> None:
+    with pytest.raises(ValueError, match="model.backend is missing"):
+        build_backend_from_config({"model_id": "gpt-4.1-mini"})
+    with pytest.raises(ValueError, match="model.backend is missing"):
+        resolve_backend({"model_id": "gpt-4.1-mini", "base_url": "http://localhost:8000/v1"})
+    assert isinstance(build_backend_from_config({}), MockBackend)
+    assert isinstance(build_backend_from_config(None), MockBackend)
+
+
+def test_anthropic_backend_drops_the_token_floor_when_the_model_caps_lower(server: FakeAPIServer) -> None:
+    def reject_large_max_tokens(path: str, body: dict[str, Any]) -> Response | None:
+        if body.get("max_tokens", 0) > 4096:
+            return 400, {}, {
+                "type": "error",
+                "error": {"type": "invalid_request_error", "message": "max_tokens: 8192 > 4096, which is the maximum allowed number of output tokens for claude-test"},
+            }
+        return None
+
+    server.responder = reject_large_max_tokens
+    backend = anthropic_backend(server, max_workers=1)
+    assert backend.generate_chat_batch([ChatPrompt(user="a")], max_tokens=256, temperature=0.0, stop=[]) == ["echo:a"]
+    assert [r["body"]["max_tokens"] for r in server.requests] == [8192, 256]
+    backend.generate_chat_batch([ChatPrompt(user="b")], max_tokens=256, temperature=0.0, stop=[])
+    assert server.requests[-1]["body"]["max_tokens"] == 256 and len(server.requests) == 3
+
+
+def test_configured_api_key_env_must_be_set(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.delenv("SAADI_TEST_MISSING_KEY", raising=False)
+    with pytest.raises(RuntimeError, match="SAADI_TEST_MISSING_KEY"):
+        build_backend_from_config({"backend": "anthropic", "api_key_env": "SAADI_TEST_MISSING_KEY"})
+
+
+def test_strip_reasoning_markup_handles_both_tag_styles_and_truncation() -> None:
+    from saadi.llm import strip_reasoning_markup
+
+    assert strip_reasoning_markup("<think>plan</think>\n{\"a\": 1}") == '{"a": 1}'
+    assert strip_reasoning_markup("x <|begin_of_thought|>y<|end_of_thought|> z").split() == ["x", "z"]
+    assert strip_reasoning_markup("<think>still reasoning when cut off") == ""
+    assert strip_reasoning_markup("answer <think>partial") == "answer"
+
+
+def test_map_concurrently_cancels_pending_items_after_a_failure() -> None:
+    from saadi.llm._concurrency import map_concurrently
+
+    started: list[int] = []
+
+    def work(item: int) -> int:
+        started.append(item)
+        if item == 0:
+            raise RuntimeError("boom")
+        time.sleep(0.2)
+        return item
+
+    with pytest.raises(RuntimeError, match="boom"):
+        map_concurrently(work, [0, 1, 2, 3, 4, 5], max_workers=2)
+    assert len(started) <= 3  # the first wave only; later items were cancelled
+
+
+def test_legacy_backends_are_accepted_at_pipeline_entry_points(tmp_path) -> None:
+    from saadi.pipelines.single_document_pipeline import SingleDocumentPipelineConfig, generate_answer
+    from saadi.saadi_generation.generation.generator import GenerationConfig, GenerationRequest, SaadiAnswerGenerator
+
+    class Legacy:
+        def generate_batch(self, prompts: list[str], *, max_tokens: int, temperature: float, stop: list[str]) -> list[str]:
+            return ["legacy answer" for _ in prompts]
+
+    generator = SaadiAnswerGenerator(GenerationConfig(), backend=Legacy())
+    rows = generator.generate_batch([GenerationRequest(example_id="q1", question="Who?", qa_entry={}, context="ctx", metadata={})])
+    assert rows[0]["generated_answer"] == "legacy answer"
+
+    config = SingleDocumentPipelineConfig(demo_root=str(tmp_path), document_id="doc", run_name="legacy", query="Who leads?")
+    result = generate_answer(config, "Mira leads the team.", backend=Legacy(), out_dir=tmp_path / "out")
+    assert result.generated_answer == "legacy answer"
+    assert result.generation_record["status"] == "ok"
+
+
+def test_empty_model_output_is_not_recorded_as_ok(tmp_path) -> None:
+    from saadi.pipelines.single_document_pipeline import SingleDocumentPipelineConfig, generate_answer
+
+    config = SingleDocumentPipelineConfig(demo_root=str(tmp_path), document_id="doc", run_name="empty", query="Who leads?")
+    result = generate_answer(config, "context", backend=CallableBackend(lambda system, user: ""), out_dir=tmp_path / "out")
+    assert result.generated_answer == ""
+    assert result.generation_record["status"] == "empty_output"
+
+
+def test_run_manifest_describes_non_vllm_backends_truthfully(tmp_path) -> None:
+    from single_document_demo.pipeline import load_demo_config, run_demo
+
+    config = load_demo_config("single_document_demo/configs/text_document.toml")
+    config.demo_root = tmp_path / "demo"
+    config.output_root = config.demo_root / "output"
+    config.prompt_profile = str(ROOT / "single_document_demo" / "memory_prompts" / "default")
+    config.run_name = "provenance"
+    config.model_config = {"backend": "mock"}
+    config.saadi_options.update({"use_cache": False, "chunk_size": 50})
+    result = run_demo(config)
+    assert not result.failures
+    manifest = json.loads((Path(result.records[0].run_dir) / "run_manifest.json").read_text(encoding="utf-8"))
+    reproducibility = manifest["reproducibility"]
+    assert reproducibility["llm_backend"]["backend"] == "mock"
+    assert set(reproducibility["sampling"]) == {"temperature"}  # no vLLM-only defaults for a backend that never applied them

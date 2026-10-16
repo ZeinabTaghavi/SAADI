@@ -16,6 +16,7 @@ from ..entities.active_selection import active_entity_selector_label, normalize_
 from ..io.artifact_paths import default_artifact_paths
 from ..io.manifests import build_manifest, git_provenance, write_manifest
 from ..llm.base import GenerateParams
+from ..llm.base import describe_llm_provenance
 from ..llm.factory import build_backend_from_config
 from .ingest_pipeline import ingest_documents
 
@@ -378,6 +379,9 @@ def run_experiment(
         backend=backend,
         generate=generate,
         provenance=run_provenance,
+    )
+    manifest.metadata["reproducibility"] = describe_llm_provenance(
+        backend, manifest.metadata.get("reproducibility", {})
     )
     write_manifest(paths.run_manifest_json, manifest)
     logger.info("Ingest-only experiment complete; retrieval was not started")
