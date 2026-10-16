@@ -41,7 +41,8 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 "saadi.prompts" = ["profiles/*/*.txt"]
+"saadi" = ["data/*.txt"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests", "single_document_demo/tests"]
+testpaths = ["tests"]
 pythonpath = ["src", "."]

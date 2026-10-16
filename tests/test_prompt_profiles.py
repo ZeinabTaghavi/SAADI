@@ -181,8 +181,8 @@ def test_check_prompts_cli(tmp_path: Path, capsys: pytest.CaptureFixture[str]) -
 # --- wiring into the pipelines ---------------------------------------------------
 
 
-def test_demo_runs_with_a_custom_profile_and_records_its_hash(tmp_path: Path) -> None:
-    from single_document_demo.pipeline import load_demo_config, run_demo
+def test_documents_index_with_a_custom_profile_and_record_its_hash(tmp_path: Path) -> None:
+    from saadi import Saadi
 
     legal = write_profile(
         tmp_path / "legal",
@@ -190,29 +190,20 @@ def test_demo_runs_with_a_custom_profile_and_records_its_hash(tmp_path: Path) ->
         summary="Keep the parties and the claims.",
     )
     profile = load_prompt_profile(legal)
-    config = load_demo_config("single_document_demo/configs/text_document.toml")
-    config.demo_root = tmp_path / "demo"
-    config.output_root = config.demo_root / "output"
-    config.prompt_profile = str(legal)
-    config.run_name = "legal"
-    config.model_config = {"backend": "mock"}
-    config.saadi_options.update({"use_cache": False, "chunk_size": 50})
-    result = run_demo(config)
-    assert not result.failures, [record.error for record in result.failures]
-    source_manifest = json.loads((Path(result.records[0].run_dir) / "source" / "source_manifest.json").read_text(encoding="utf-8"))
-    assert source_manifest["prompt_profile"] == "legal"
-    assert source_manifest["prompt_content_hash"] == profile.content_hash
-    batch = json.loads(result.batch_manifest_path.read_text(encoding="utf-8"))
-    assert batch["prompt_content_hash"] == profile.content_hash
+    doc = Saadi(llm="mock", prompts=legal, state_dir=tmp_path / "state", chunk_size=50)
+    doc.index(ROOT / "examples" / "sample_text" / "document.txt")
+    manifest = json.loads((tmp_path / "state" / "saadi.json").read_text(encoding="utf-8"))
+    assert manifest["settings"]["prompts"]["name"] == "legal"
+    assert manifest["settings"]["prompts"]["content_hash"] == profile.content_hash
+    assert doc.cache_dir.name == f"prompts_{profile.content_hash[:10]}"  # a profile gets its own cache
 
 
-def test_demo_defaults_and_aliases_for_profiles() -> None:
-    from single_document_demo.pipeline import load_demo_config
-    from single_document_demo.run import build_arg_parser
+def test_profile_aliases_in_the_api_and_the_cli() -> None:
+    from saadi import Saadi
+    from saadi.cli.index import build_arg_parser
 
-    assert load_demo_config("single_document_demo/configs/text_document.toml").prompt_profile == "default"
-    assert load_demo_config("single_document_demo/configs/therapy_conversation.toml").prompt_profile == "conversation"
-    assert build_arg_parser().parse_args(["therapy", "--prompt-profile", "therapy"]).prompt_profile == "therapy"
+    assert Saadi(llm="mock", prompts="therapy").profile.name == "conversation"
+    assert build_arg_parser().parse_args(["session.csv", "--llm", "mock", "--prompts", "therapy"]).prompts == "therapy"
     assert load_prompt_profile("therapy").name == "conversation"
 
 
