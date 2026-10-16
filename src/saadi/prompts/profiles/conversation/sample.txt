@@ -1,0 +1,6 @@
+therapist: Last time you mentioned the stomach pain has been keeping you home. How has the week been?
+patient: Worse, honestly. I cancelled the hiking trip with Dana again and I have been checking my symptoms online every night. The gastroenterologist said the tests were normal, but I keep thinking they missed something.
+therapist: You said checking helps for a moment. What happens after?
+patient: The worry comes straight back, usually stronger. Since my father died of cancer two years ago I cannot shake the feeling that a normal result means nothing.
+therapist: That loss sounds central to how you read your body now. Would you be willing to track the checking for a week before we meet again?
+patient: I can do that. Dana offered to help me keep a log.

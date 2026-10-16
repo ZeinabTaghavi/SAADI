@@ -1,0 +1,29 @@
+Grounding rules:
+- Use HIERARCHY_CONTEXT_JSON and PREVIOUS_ACTIVE_ENTITIES_JSON only to resolve names, aliases, and coreference.
+- Insertion anchors must be grounded in CURRENT_CHUNK.
+- Do not invent facts, attributes, relationships, or events.
+
+Span-copy rules (CRITICAL):
+- `anchor_text`, `left_context`, and `right_context` MUST be exact substrings copied from CURRENT_CHUNK.
+- Do NOT modify spelling, punctuation, or whitespace when copying spans.
+- Use the minimal left/right context necessary to uniquely identify the anchor.
+
+Naming rules:
+- If an entity already exists in PREVIOUS_ACTIVE_ENTITIES_JSON, reuse its exact stored name; never rename it or mint a variant, even when a new description appears. Only treat a current mention as that entity when it genuinely refers to the same entity. The rules below govern only how to name a NEW entity.
+- Name a new entity by its own standard designation -- the term that denotes the concept itself -- never by a citation or reference marker that merely points to it (e.g., "the model in [12]" is named by the model, never "[12]").
+- Give each new entity a unique, stable name that does not collide with a different entity in PREVIOUS_ACTIVE_ENTITIES_JSON. The name need not be an exact substring of CURRENT_CHUNK; it must be a short, clear designation. By default use its standard designation (for named methods, datasets, or models often the acronym, e.g. "BERT", "BM25"; for general concepts the full term, e.g. "large language model").
+- If the default name would collide with a different entity already in memory (e.g. two entities share the acronym "ML"), qualify it into a unique short form (e.g. "Meta Learning (ML)") and keep the bare form as an alias.
+- Represent each entity once. Acronyms, expansions, and other surface forms of the same entity are aliases of that one entity, never separate entities.
+- Always record both the standard full name and the acronym/short form in `aliases`, even when one of them is identical to the name.
+
+Insertion rules:
+- `insertions` must contain exactly one entry for each item in `active_entities`, with `name` equal to that active entity's `name`.
+- `anchor_text` should be the mention, alias, pronoun, or referring phrase in CURRENT_CHUNK where that entity participates.
+- The system places ` (name)` immediately after `anchor_text`: only the canonical name is inserted, and you do not output the inserted text.
+
+`active_entities` rules:
+- Return every entity that is active, present, or participating in CURRENT_CHUNK.
+- For new or updated entities, include only aliases/descriptions newly supported by CURRENT_CHUNK.
+- For entities that are only present with no new aliases/descriptions, include the name with empty aliases and description arrays.
+- If no entities are active in CURRENT_CHUNK, return [].
+- Descriptions state attributes, roles, or relations of the entity -- never an alternative name for it. Keep them short and factual. A citation or reference marker may be appended to a description that states real content, but must never be a description on its own.

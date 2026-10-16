@@ -75,10 +75,6 @@ class DemoConfig:
     saadi_options: dict[str, Any] = field(default_factory=dict)
 
     @property
-    def prompt_root(self) -> Path:
-        return self.demo_root / "memory_prompts"
-
-    @property
     def input_format(self) -> str:
         return "conversation_csv" if self.workflow == WORKFLOW_THERAPY else "text"
 
@@ -147,7 +143,7 @@ def load_demo_config(path: str | Path) -> DemoConfig:
         if workflow == WORKFLOW_THERAPY
         else demo_root / "input" / "sample_text" / "document.txt"
     )
-    default_profile = "therapy" if workflow == WORKFLOW_THERAPY else "default"
+    default_profile = "conversation" if workflow == WORKFLOW_THERAPY else "default"
     default_run_name = "therapy_conversations" if workflow == WORKFLOW_THERAPY else "text_document"
 
     model_config = resolve_model_config(model)

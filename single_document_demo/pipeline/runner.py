@@ -36,7 +36,7 @@ from .config import (
     REPO_ROOT,
     WORKFLOW_THERAPY,
 )
-from .prompts import MemoryPromptProfile, load_prompt_profile
+from saadi.prompts import PromptProfile, load_prompt_profile
 from .summaries import export_cleaned_outputs, generate_document_summary
 
 
@@ -199,7 +199,7 @@ def resolve_run_mode(config: DemoConfig) -> tuple[str, list[str]]:
 def _pipeline_config(
     demo: DemoConfig,
     document: PreparedDocument,
-    profile: MemoryPromptProfile,
+    profile: PromptProfile,
     *,
     normalized_path: Path,
     run_name: str,
@@ -223,8 +223,8 @@ def _pipeline_config(
         "model_config": dict(demo.model_config),
         "memory_prompt_profile": profile.name,
         "memory_prompt_hash": profile.content_hash,
-        "memory_entity_system_prompt": profile.entity_extraction_prompt,
-        "memory_rollup_system_prompt": profile.hierarchy_summary_prompt,
+        "memory_entity_system_prompt": profile.entity_system_prompt,
+        "memory_rollup_system_prompt": profile.summary_system_prompt,
     }
     saadi_options = dict(demo.saadi_options)
     aliases = {
@@ -251,7 +251,7 @@ def _pipeline_config(
 def _run_document(
     demo: DemoConfig,
     document: PreparedDocument,
-    profile: MemoryPromptProfile,
+    profile: PromptProfile,
     *,
     run_name: str,
     output_dir: Path,
@@ -400,7 +400,7 @@ def _run_document(
 
 
 def run_demo(config: DemoConfig, *, continue_on_error: bool | None = None) -> DemoRunResult:
-    profile = load_prompt_profile(config.prompt_root, config.prompt_profile)
+    profile = load_prompt_profile(config.prompt_profile)
     run_mode, questions = resolve_run_mode(config)
     documents = prepare_documents(config)
     if continue_on_error is None:
