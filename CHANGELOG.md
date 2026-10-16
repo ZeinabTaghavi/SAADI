@@ -6,6 +6,17 @@ All notable changes to Saadi are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- Documentation pages for library usage and customization, a page for the
+  paper's experiments, and three notebooks: the quickstart on an API key, the
+  same on Colab's free GPU with an open model through Ollama, and a rebuild of
+  the paper's tables from the saved results.
+- A README that starts with the library (install, a sixty-second example with
+  real output, what the state contains) and moves the experiment instructions
+  to the docs; the logo, an overview figure, issue templates, and a
+  contributing guide.
+
 ## [0.1.0] - 2026-10-16
 
 First release of Saadi as a library. The reproduction code of the paper

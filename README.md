@@ -1,12 +1,143 @@
-# Saadi
+<p align="center">
+  <img src="https://raw.githubusercontent.com/ZeinabTaghavi/SAADI/main/docs/assets/logo.png" alt="Saadi" width="260">
+</p>
 
-[![CI](https://github.com/ZeinabTaghavi/SAADI/actions/workflows/ci.yml/badge.svg)](https://github.com/ZeinabTaghavi/SAADI/actions/workflows/ci.yml)
-[![PyPI](https://img.shields.io/pypi/v/saadi.svg)](https://pypi.org/project/saadi/)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+<p align="center">
+  <a href="https://github.com/ZeinabTaghavi/SAADI/actions/workflows/ci.yml"><img src="https://github.com/ZeinabTaghavi/SAADI/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://pypi.org/project/saadi/"><img src="https://img.shields.io/pypi/v/saadi.svg" alt="PyPI"></a>
+  <a href="https://colab.research.google.com/github/ZeinabTaghavi/SAADI/blob/main/examples/quickstart.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
+</p>
 
-Saadi (SAADI in the paper, Stateful Accumulation of Document Information) builds a query-agnostic document state at index time, an entity memory and a hierarchical history, and uses it to improve single-pass top-k retrieval over the original chunks of long documents. This repository contains the dataset preparation, construction, retrieval, evaluation, and ablation code, together with compact saved results and a single-document example.
+Index a long document once, then answer questions about it many times. Saadi reads the document with a language model one chunk at a time, keeps an entity memory and a summary hierarchy, and uses them to find the right passages for each question. It is the code of the paper *Understand Once, Retrieve Many Times*, packaged as a library.
 
-## Paper
+## Install
+
+```bash
+pip install 'saadi[openai]'
+```
+
+Other providers (Anthropic, Ollama, local vLLM) and the paper's dense retrievers are listed under [Models, retrievers, prompts](#models-retrievers-prompts).
+
+## Sixty seconds
+
+```python
+from saadi import Saadi
+
+doc = Saadi(llm="openai:gpt-4.1-mini", state_dir="saadi_state/report")
+doc.index("report.txt")  # any .txt, .md, or conversation .csv
+reply = doc.answer("Who keeps the Corvin station?")
+print(reply.text)
+```
+
+No document at hand? `saadi demo --llm openai:gpt-4.1-mini` runs the same thing on a bundled synthetic report about a fictional research team. This is what it printed, with `OPENAI_API_KEY` set:
+
+```text
+Indexed aurora_report: 10 chunks (10 new), 13 entities, history levels L0, L1
+Model calls: 12 (12 prompts)
+
+Question: Who keeps the Corvin station?
+Answer: Tomas Egger keeps the Corvin station.
+
+Top chunks:
+1. chunk 4 (score 2.103): The Corvin station was built in May 2025 by Leon and a new technician, Tomas Egger, who grew up in the valley and knows which paths are safe in early spring. Tomas keeps the Corvin station, and Leon keeps the Alder station, but each covers…
+2. chunk 7 (score 0.220): Tomas wrote the field guide that explains how to reach each station and what to check first when a reading looks wrong. Mira insists that every correction be reversible, so the archive keeps the raw readings next to the corrected ones. Fun…
+```
+
+Ten chunks cost ten model calls plus two for the summary folds. Every question after that costs one.
+
+## What you get back
+
+The index-time pass leaves behind more than a vector store would. All of it is readable, and all of it is used at query time.
+
+**An entity memory**, one record per entity with aliases and accumulated descriptions:
+
+```python
+>>> [entity for entity in doc.memory if entity.name == "Tomas Egger"][0]
+MemoryEntity(name='Tomas Egger', aliases=('Tomas',), descriptions=('new technician who maintains the Corvin station', 'grew up in the valley and knows safe paths in early spring', 'wrote the field guide explaining station access and troubleshooting', ...), first_seen_chunk=4)
+```
+
+On the command line the same memory prints as one line per entity, as in `saadi demo`:
+
+```text
+Entity memory (13 entities, showing 8):
+- Mira Chen [Mira]: limnologist who founded the Aurora research team; appointed Leon Park to maintain the station; installed a second sensor at Lake Alder in June 2024; wanted a l…
+- Leon Park [Leon]: electrical engineer appointed to maintain the station; records water temperature, checks solar panel, cleans turbidity sensor; installed radio link to Aurora l…
+- Lake Corvin: second lake introduced in the second field season; lies two valleys to the east of Lake Alder; at a slightly higher altitude; morning temperature difference wi…
+```
+
+**A summary hierarchy**, level 0 holding the chunks as the model read them and each level above folding five items of the one below:
+
+```python
+>>> doc.history[1][0].text
+'The Aurora research team, founded in 2024 by limnologist Mira Chen, established monitoring stations at Lake Alder and Lake Corvin …'
+```
+
+**A state that grows without being rebuilt.** Appending text reuses every unchanged chunk from the cache, so only the new tail costs model calls:
+
+```python
+>>> update = doc.append(open("more_pages.txt").read())
+>>> update.chunks, update.new_chunks, update.model_calls
+(11, 2, 3)
+```
+
+**Retrieval that needs no model.** The state is a plain directory, and a loaded state answers `retrieve` from the chunk text, the memory, and the summaries at once:
+
+```python
+>>> again = Saadi.load("saadi_state/report")
+>>> again.retrieve("Who keeps the Corvin station?", k=3)[0].chunk_index
+4
+```
+
+## Command line
+
+The three commands mirror the Python calls. A state directory is created by `index` and read by `query`.
+
+```bash
+saadi demo  --llm openai:gpt-4.1-mini
+saadi index report.txt --llm openai:gpt-4.1-mini --state saadi_state/report
+saadi query "Who keeps the Corvin station?" --state saadi_state/report --llm openai:gpt-4.1-mini
+saadi index more_pages.txt --append --state saadi_state/report --llm openai:gpt-4.1-mini
+```
+
+`saadi query` without `--llm` prints the retrieved chunks only, `--memory` adds the entity records, and `--json` gives everything as JSON. Conversation transcripts, a `.csv` with `role` and `text` columns, index the same way with `--prompts conversation`.
+
+## Models, retrievers, prompts
+
+Three choices, each one argument. Details and the Python forms of each are in [customizing Saadi](docs/customizing.md).
+
+| Language model (`llm=` or `--llm`) | Needs |
+|---|---|
+| `openai:gpt-4.1-mini` | `pip install 'saadi[openai]'` and `OPENAI_API_KEY`. Any OpenAI-compatible server (LM Studio, llama.cpp, Groq, Together, `vllm serve`) works through `OPENAI_BASE_URL`. |
+| `ollama:qwen3:8b` | `pip install 'saadi[openai]'` and a local Ollama server. No key. |
+| `anthropic:claude-opus-5-5` | `pip install 'saadi[anthropic]'` and `ANTHROPIC_API_KEY`. |
+| `vllm:Qwen/Qwen3.5-27B` | `pip install 'saadi[vllm]'` and local GPUs. The backend that produced the paper's results. |
+| `mock` | Nothing. Placeholder outputs for checking a pipeline. |
+
+| Retriever (`retriever=` or `--retriever`) | Needs |
+|---|---|
+| `bm25` (default) | Nothing. |
+| `contriever`, `bge_m3`, `e5`, `jina`, `qwen` | `pip install 'saadi[dense]'`. The dense retrievers of the paper. |
+| `openai_embedding`, `ollama_embedding` | The matching server; uses `text-embedding-3-small` or `nomic-embed-text`. |
+| your own | A class with `score(query)`, an embedding function, or a reranker object, registered under a name. |
+
+| Prompt profile (`prompts=` or `--prompts`) | Use |
+|---|---|
+| `default` | The paper's prompts, byte for byte. |
+| `conversation` | Role-labelled transcripts; a case-level memory instead of a list of names. |
+| a directory | Your own guidance for what counts as an entity. Validate it with `saadi check-prompts my_profile/ --llm …`. |
+
+## Try it in Colab
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ZeinabTaghavi/SAADI/blob/main/examples/quickstart.ipynb) runs the sixty-second example end to end on an API key. [A second notebook](examples/colab_local_model.ipynb) does the same on Colab's free GPU with an open 8B model through Ollama, and [a third](examples/paper_results.ipynb) rebuilds every table of the paper from the saved results on a plain CPU runtime.
+
+## The paper
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/ZeinabTaghavi/SAADI/main/docs/assets/overview.svg" alt="Overview: the document is read once into an entity memory and a summary hierarchy; each question is answered by fusing three scores over the saved state" width="900">
+</p>
+
+A long document rarely keeps the evidence for a question in one place. Saadi (SAADI in the paper: Stateful Accumulation of Document Information) reads the document once in order, and at each chunk a language model updates a small entity memory and emits a summary that folds into a hierarchy. At query time the question is scored against the original chunk text, the memory, and the summaries, and the three scores are fused, so a chunk is found through the entities and the summaries that explain it, not only through its own words. The document state is built once and serves every later question.
 
 *Understand Once, Retrieve Many Times: SAADI for Single-Pass Retrieval of Distributed Evidence in Long Documents.* Zeinab Sadat Taghavi, Lars Klein, Mary-Anne Hartley, and Andreas Marfurt. Preprint, 2026.
 
@@ -19,211 +150,17 @@ Saadi (SAADI in the paper, Stateful Accumulation of Document Information) builds
 }
 ```
 
-GitHub's "Cite this repository" button uses `CITATION.cff`, which carries the same entry. Release notes are in [CHANGELOG.md](CHANGELOG.md).
+GitHub's "Cite this repository" button uses [CITATION.cff](CITATION.cff), which carries the same entry.
 
-The project, Python package, and command are **Saadi**, `saadi`, and `saadi`, respectively. Historical artifact paths such as `outputs/sadi/`, method IDs such as `sadi`/`mbr`, and `SADI_*` environment variables are retained for compatibility with the saved experiments. Public tables and evaluation reports use **HR@5** and **HR@10**.
+## Reproducing the paper
 
-See the [paper-to-code guide](docs/paper_to_code.md) for equations, notation, and table commands, and [datasets and artifacts](docs/data_and_artifacts.md) for data preparation, cache restoration, and the exact publication contents.
+Every table of the paper rebuilds from the saved, hash-verified study values in this repository, without datasets, GPUs, or a model: `python scripts/build_tables.py`, or the [results notebook](examples/paper_results.ipynb). The [paper consistency check](results/paper_consistency/README.md) matches 1,307 of 1,310 cells. Rerunning the study itself needs the datasets and GPUs; [running the experiments](docs/experiments.md) covers the study runner, the configuration suites, and the archived outputs, and the [paper-to-code guide](docs/paper_to_code.md) maps every equation to the code. The code that produced the saved results is kept byte for byte, listed in [docs/preserved_sources.json](docs/preserved_sources.json) and checked by a test.
 
-## Install
+## Documentation
 
-The library installs from PyPI; pick the extras for the model providers you use:
+- [Library usage](docs/library_usage.md): the `Saadi` object, inputs, the state directory, and the command line.
+- [Customizing Saadi](docs/customizing.md): your own language model, retriever, prompt profile, or input format.
+- [Running the experiments](docs/experiments.md), [datasets and artifacts](docs/data_and_artifacts.md), [saved results](docs/results.md), [releasing](docs/release.md).
+- [Changelog](CHANGELOG.md), [contributing](CONTRIBUTING.md), and [discussions](https://github.com/ZeinabTaghavi/SAADI/discussions) for questions.
 
-```bash
-python -m pip install 'saadi[openai]'
-```
-
-| Extra | Adds |
-|---|---|
-| `openai` | OpenAI, every OpenAI-compatible server (Ollama, LM Studio, Groq, vLLM serve), and OpenAI embeddings |
-| `anthropic` | Anthropic models |
-| `dense` | The dense retrievers of the paper (PyTorch and Transformers) |
-| `vllm` | Local inference with vLLM, as in the paper |
-| `repro` | Everything the reproduction scripts need: datasets, figures, judges, dense retrievers, vLLM |
-| `dev` | Tests, ruff, pre-commit, build, twine |
-
-To work on the code or reproduce the paper, clone the repository and use Python 3.11 or 3.12 on Linux or macOS (the study runner uses POSIX file locks). Run these commands from the repository's root:
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install -e '.[dev]'
-pre-commit install
-python scripts/smoke_test.py
-python -m pytest -q
-```
-
-The smoke test constructs a synthetic document index, performs Saadi BM25 retrieval, and checks HR on CPU using a mock model. Its scores are software checks, not experimental results.
-
-For dataset downloads, plots, dense retrieval, and model inference:
-
-```bash
-python -m pip install -e '.[repro]'
-```
-
-Model inference uses vLLM on a supported GPU environment. The construction configuration defaults to four GPUs; set `--tensor-parallel-size` for your hardware. Exact GPU package versions and model revisions should be recorded with each new experiment. The CPU validation environment is recorded in `docs/validation_environment.json`.
-
-## View the saved results
-
-```bash
-python scripts/build_tables.py
-# Optional retrieval-depth curve (PNG, PDF, SVG):
-python scripts/build_tables.py --figures
-# Generate just the final main comparison:
-python results/tables/main/retrieval_comparison/generate.py
-# Optional local mirror:
-python scripts/build_tables.py --output-dir outputs/tables
-```
-
-This rebuilds `results/tables/` without downloading data or running a language model. A fresh checkout uses the compact `outputs/sadi/reference/` and `outputs/sadi/comparison_inputs/` bundles. When the optional full output archive has been restored and catalogued in `outputs/output_sources.json` (see [datasets and artifacts](docs/data_and_artifacts.md#large-output-archives)), the generators read those archived files instead. Saved CSVs under `outputs/other_methods/<method>/` supply the other methods without rerunning them. Both routes verify input hashes and check the same saved study values. Use `--input-source outputs` or `--input-source reference` to require a particular route. Missing or changed inputs in an existing output catalog cause an error.
-
-Table directories use `main/`, `comparisons/`, `ablations/`, `robustness/`, and `construction/` categories, with a separate folder for each study. Each folder contains its `generate.py`, tables, source paths and hashes, and verification results. Tables are available as CSV, Markdown, and LaTeX; presentation HR values are percentages. `combined/all_metrics.csv` collects all available HR configurations.
-
-[Final main comparison](results/tables/main/retrieval_comparison/table.md), [Saadi-only results](results/tables/main/sadi_retrieval/table.md), and the [table index](results/tables/README.md) can be browsed directly. [Saved results and provenance](docs/results.md) lists the evidence level of every table and the provenance notes.
-
-The [paper consistency check](results/paper_consistency/README.md) compares the generated tables with the paper: 1,307 of 1,310 checked cells match, including all 184 values of Table 1. The three differences are second-decimal rounding of construction statistics.
-
-## Run Saadi
-
-```bash
-# Inspect the commands and resolved scope without writing files:
-python scripts/run_study.py --suite main --datasets loogle --retrievers bm25 --dry-run
-
-# Construct the index, retrieve, and evaluate:
-python scripts/run_study.py --suite main --datasets loogle --retrievers bm25
-```
-
-The full `main` suite covers LooGLE, QASPER, NovelHopQA, and MuSiQue with BM25, Contriever, BGE-M3, Jina, and Qwen retrieval. Comparison methods are not run; their saved results are in `outputs/other_methods/`. Dataset preparation and evidence labeling are the same code that produced the saved results.
-
-New runs use BM25 memory selection and show the model the original text of recent chunks as history. The saved results were produced with word-overlap selection and the anchored chunk copies; see the [provenance notes](docs/results.md#provenance-notes). To construct with the saved settings:
-
-```bash
-python scripts/run_study.py --suite main --profile published --datasets loogle --retrievers bm25
-```
-
-This profile restores the recorded selector, history text, model configuration, temperature, and sampling settings. Model revisions and runtime versions of the original runs are not pinned, so regenerated model text can differ. The table rebuild checks the saved results exactly.
-
-The default directories are `data/`, `.cache/`, and `outputs/`. Override them with `SADI_DATA_DIR`, `SADI_CACHE_DIR`, and `SADI_OUTPUT_DIR`. New run data, caches, and large outputs are excluded from Git; the small saved table-input bundles are included. NovelHopQA requires the book files described in [the dataset guide](docs/data_and_artifacts.md#novelhopqa-book-corpus).
-
-## Configuration and ablations
-
-Dataset overrides in `configs/experiments/` extend `configs/methods/sadi.yaml`, which extends the construction settings in `configs/models/construction.yaml`. Suites in `configs/suites/` define experimental variations. Configuration keys are validated before loading data or models.
-
-```bash
-python scripts/run_study.py --suite hierarchy --datasets loogle --retrievers bm25
-python scripts/run_study.py --suite memory_conditioning --datasets loogle --retrievers bm25
-python scripts/run_study.py --suite construction_models --datasets loogle --retrievers bm25
-```
-
-Use `--stage prepare`, `ingest`, `retrieve`, or `generate` to run a particular stage. `--max-documents 2` creates a separate small-run identity. See [reproduction instructions](docs/reproduction.md) for other suites, configuration fields, stage reuse, and generation.
-
-## Quickstart
-
-```bash
-python -m pip install -e '.[openai]'      # or '.[anthropic]'; see the backend table below
-export OPENAI_API_KEY=...
-saadi demo --llm openai:gpt-4.1-mini
-```
-
-`saadi demo` indexes a bundled synthetic report, prints the entity memory it built, and answers a question whose evidence sits in the middle of the document. Your own documents work the same way:
-
-```bash
-saadi index report.txt --llm openai:gpt-4.1-mini --state saadi_state/report
-saadi query "Who leads the team?" --state saadi_state/report --llm openai:gpt-4.1-mini
-saadi index more_pages.txt --append --state saadi_state/report --llm openai:gpt-4.1-mini
-```
-
-From Python:
-
-```python
-from saadi import Saadi
-
-doc = Saadi(llm="openai:gpt-4.1-mini", state_dir="saadi_state/report")
-doc.index("report.txt")  # one state-update call per chunk
-hits = doc.retrieve("Who leads the team?", k=5)
-reply = doc.answer("Who leads the team?")  # retrieval, folded context, answer
-doc.memory  # entity records with aliases and descriptions
-doc.history.get(1, [])  # fold summaries, each covering five chunks
-doc.append("More pages ...")  # extends the state; unchanged chunks are reused
-again = Saadi.load("saadi_state/report")  # retrieval needs no model; pass llm= to answer
-```
-
-A state is a flat directory: `saadi.json` holds the manifest and documents the layout, next to `document.txt`, `chunks.jsonl`, `memory.json`, `history/L_0.txt` and the fold levels above it, `summary.txt` after `summarize()`, one folder per query under `queries/`, and the construction cache under `cache/`. Conversation transcripts, a `.csv` with `role` and `text` columns and any speaker roles, index the same way with `--prompts conversation` (`--roles` and `--role-alias` restrict or rename the speakers). `saadi.json` records the model, the retriever, and the prompts that built a state, never credentials, and `Saadi.save(target)` makes a self-contained copy. The `examples/` folder has the sample inputs and a notebook. Without a model, `--llm mock` runs the whole path with placeholder outputs.
-
-## Language model backends
-
-Every model call goes through one backend interface, so construction and answer generation work with any of these providers. The vLLM backend produced the paper's results.
-
-| `--llm` or `model.backend` | Example | Needs |
-|---|---|---|
-| `openai` | `openai:gpt-4.1-mini` | `pip install 'saadi[openai]'` and `OPENAI_API_KEY`. Any OpenAI-compatible server works through `OPENAI_BASE_URL` or `model.base_url`: LM Studio, llama.cpp, Groq, Together, `vllm serve`. |
-| `ollama` | `ollama:qwen3:8b` | `pip install 'saadi[openai]'` and a local Ollama server. No key. |
-| `anthropic` | `anthropic:claude-opus-5-5` | `pip install 'saadi[anthropic]'` and `ANTHROPIC_API_KEY`, or a profile from `ant auth login`. |
-| `vllm` | `vllm:Qwen/Qwen3.5-27B` | `pip install 'saadi[vllm]'` and local GPUs. |
-| `mock` | `mock` | Nothing. Placeholder outputs for checking the workflow. |
-
-A single document is processed one chunk at a time by design, since each state update depends on the previous one, so the time for a document is the per-call latency times the number of chunks; concurrency speeds up the summary folds and multi-document runs. With Anthropic models, `effort: low` in the `model` section is the economical setting for the many short extraction calls. With Ollama, raise the server's context length if outputs are cut off.
-
-In experiment and demo configurations the same choice is the `model` section: `backend`, `model_id`, and for hosted APIs the optional `base_url`, `api_key_env`, `max_workers`, `max_retries`, and `timeout`. Hosted backends send the prompts of a batch concurrently and retry rate limits with backoff. From Python, `saadi.llm.resolve_backend` accepts the same `provider:model` string, a config mapping, a backend object, or a function `(system, user, **options) -> str`, so any other client can be plugged in.
-
-## Retrievers
-
-The base retriever scores the query against the original chunks, the entity memory, and the summaries, and Saadi fuses the three scores. Select it with `--retriever` on `saadi index`, with `retriever=` on `Saadi`, or with `retriever` in a configuration. Scores are z-normalized per channel, so any scorer whose higher value means more relevant works.
-
-| Name | Needs |
-|---|---|
-| `bm25` (default) | Nothing. |
-| `contriever`, `bge_m3`, `e5`, `jina`, `qwen` | `pip install 'saadi[dense]'`. The dense retrievers of the paper. |
-| `openai_embedding` | `pip install 'saadi[openai]'` and `OPENAI_API_KEY`. Uses `text-embedding-3-small`; set `SAADI_OPENAI_EMBEDDING_MODEL` to change it, and `OPENAI_BASE_URL` for any other OpenAI-compatible embeddings endpoint. |
-| `ollama_embedding` | A local Ollama server with an embedding model such as `nomic-embed-text`. No key. |
-
-Your own retriever is a class with a `score(query)` method that returns one number per text, registered under a name:
-
-```python
-from saadi.retrievers import BaseRetriever, register_retriever
-
-
-@register_retriever("keyword_overlap")
-class KeywordOverlap(BaseRetriever):
-    def score(self, query):
-        words = set(query.lower().split())
-        return [len(words & set(text.lower().split())) for text in self.corpus]
-```
-
-Instances work too. `resolve_retriever` accepts a name, a class, a reranker object with `score(query, texts)`, an embedding model object with `encode(texts)` such as a sentence-transformers model, or a plain function of either shape, and registers it under a name. `saadi.register_retriever` and `saadi.resolve_retriever` are the same entry points at the package top level.
-
-## Prompt profiles
-
-The index-time model calls use two prompts: entity extraction for each chunk and a fold summary for each group of chunks. A prompt profile is a folder with `entity_extraction.txt`, `hierarchy_summary.txt`, and optionally `document_summary.txt`. The files hold domain guidance only, such as what counts as an entity and how to name and describe it. The library wraps that guidance in a fixed contract that states the inputs and the output format the parsers expect, so a profile can change the extraction policy but cannot break parsing.
-
-| Profile | Use |
-|---|---|
-| `default` | The paper's prompts, byte for byte. |
-| `conversation` | Role-labeled transcripts; the therapy prompts are the example. `therapy` is an alias. |
-| a directory | Your own guidance. Start by copying the `default` files and editing the rules. |
-
-Select a profile with `--prompts` on `saadi index`, with `prompts=` on `Saadi`, with `ingest.prompt_profile` in an experiment configuration, or with `saadi.load_prompt_profile` from Python. Each run manifest records the profile name and a hash of the composed prompts, and a profile gets its own construction cache namespace. Validate a profile before a long run:
-
-```bash
-saadi check-prompts my_profile/ --llm openai:gpt-4.1-mini
-```
-
-It sends one extraction prompt and one fold prompt built from the profile and reports whether the answers follow the contract, which entities came back, and why an insertion was dropped. Without `--llm` it uses the mock model and only proves the plumbing.
-
-## Repository contents
-
-| Directory | Purpose |
-|---|---|
-| `src/saadi/` | Construction, memory selection, retrieval, generation, and evaluation |
-| `configs/` | Shared settings, dataset overrides, and study suites |
-| `scripts/` | Study runner, grouped-data preparation, evaluation, and result export tools |
-| `outputs/sadi/reference/` | Checksummed Saadi rankings and saved summary values |
-| `outputs/sadi/comparison_inputs/` | Additional Saadi expansion rankings and comparison-specific cost/exposure inputs |
-| `outputs/other_methods/` | Structured saved retrieval/resource CSVs and provenance for comparison methods |
-| `results/tables/` | Final comparisons and Saadi study tables, each with its generator and provenance |
-| `results/paper_consistency/` | Cell-by-cell comparison of the generated tables with the paper |
-| `docs/` | Paper-to-code guide, dataset and artifact guide, reproduction guide, result coverage |
-| `examples/` | Sample inputs and a quickstart notebook |
-| `tests/` | Scientific behavior, provenance, standalone workflow, and result regression checks |
-
-This repository is self-contained: everything needed to run the code, the tests, and the table rebuild is in Git. Not in Git are the full construction caches and archived per-run outputs of the saved experiments (about 9.6 GB). They are distributed as a separate archive; when restored they occupy `outputs/<dataset>_ablation/` and `outputs/study_sources/` and are catalogued in `outputs/output_sources.json`. `outputs/tables/` is an optional local mirror of regenerated tables. Model checkpoints are not bundled. See [the archive procedure](docs/data_and_artifacts.md#large-output-archives) for packaging, verification, and restoration. Dataset content remains subject to its original terms. Source licensing is in [LICENSE](LICENSE).
+Licensed under [MIT](LICENSE). Dataset content remains subject to its original terms.

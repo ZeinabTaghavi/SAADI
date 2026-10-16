@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400" width="960" height="400" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0b2a6f"/>
+    </marker>
+  </defs>
+  <rect width="960" height="400" fill="#ffffff"/>
+
+  <!-- Stage labels -->
+  <text x="110" y="34" font-size="16" font-weight="bold" fill="#0b2a6f" text-anchor="middle">1. Document</text>
+  <text x="430" y="34" font-size="16" font-weight="bold" fill="#0b2a6f" text-anchor="middle">2. Index once: one model call per chunk</text>
+  <text x="810" y="34" font-size="16" font-weight="bold" fill="#0b2a6f" text-anchor="middle">3. Retrieve many times</text>
+
+  <!-- Chunks -->
+  <g fill="#e8eef9" stroke="#0b2a6f" stroke-width="1.5">
+    <rect x="50" y="60" width="120" height="34" rx="4"/>
+    <rect x="50" y="104" width="120" height="34" rx="4"/>
+    <rect x="50" y="148" width="120" height="34" rx="4"/>
+    <rect x="50" y="236" width="120" height="34" rx="4"/>
+  </g>
+  <g font-size="13" fill="#0b2a6f" text-anchor="middle">
+    <text x="110" y="82">chunk 1</text>
+    <text x="110" y="126">chunk 2</text>
+    <text x="110" y="170">chunk 3</text>
+    <text x="110" y="214" font-size="18">…</text>
+    <text x="110" y="258">chunk n</text>
+  </g>
+  <text x="110" y="300" font-size="12" fill="#444" text-anchor="middle">read in order,</text>
+  <text x="110" y="316" font-size="12" fill="#444" text-anchor="middle">state carried forward</text>
+
+  <!-- Arrow document -> state -->
+  <line x1="178" y1="165" x2="238" y2="165" stroke="#0b2a6f" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Entity memory -->
+  <rect x="248" y="56" width="180" height="128" rx="6" fill="#ffffff" stroke="#0b2a6f" stroke-width="1.5"/>
+  <text x="338" y="78" font-size="14" font-weight="bold" fill="#0b2a6f" text-anchor="middle">Entity memory</text>
+  <g font-size="12" fill="#333">
+    <text x="262" y="102">Mira Chen [Mira]</text>
+    <text x="262" y="118">  founded the team; …</text>
+    <text x="262" y="138">Corvin station [Corvin]</text>
+    <text x="262" y="154">  built May 2025; kept by …</text>
+    <text x="262" y="174">Tomas Egger [Tomas] …</text>
+  </g>
+
+  <!-- Summary hierarchy -->
+  <rect x="248" y="200" width="180" height="150" rx="6" fill="#ffffff" stroke="#0b2a6f" stroke-width="1.5"/>
+  <text x="338" y="222" font-size="14" font-weight="bold" fill="#0b2a6f" text-anchor="middle">Summary hierarchy</text>
+  <g fill="#0b2a6f">
+    <rect x="328" y="236" width="20" height="14" rx="2"/>
+    <rect x="288" y="266" width="20" height="14" rx="2" opacity="0.75"/>
+    <rect x="328" y="266" width="20" height="14" rx="2" opacity="0.75"/>
+    <rect x="368" y="266" width="20" height="14" rx="2" opacity="0.75"/>
+    <rect x="266" y="298" width="12" height="12" rx="2" opacity="0.45"/>
+    <rect x="284" y="298" width="12" height="12" rx="2" opacity="0.45"/>
+    <rect x="302" y="298" width="12" height="12" rx="2" opacity="0.45"/>
+    <rect x="320" y="298" width="12" height="12" rx="2" opacity="0.45"/>
+    <rect x="338" y="298" width="12" height="12" rx="2" opacity="0.45"/>
+    <rect x="356" y="298" width="12" height="12" rx="2" opacity="0.45"/>
+    <rect x="374" y="298" width="12" height="12" rx="2" opacity="0.45"/>
+    <rect x="392" y="298" width="12" height="12" rx="2" opacity="0.45"/>
+  </g>
+  <g stroke="#0b2a6f" stroke-width="1" opacity="0.6">
+    <line x1="338" y1="250" x2="298" y2="266"/><line x1="338" y1="250" x2="338" y2="266"/><line x1="338" y1="250" x2="378" y2="266"/>
+    <line x1="298" y1="280" x2="272" y2="298"/><line x1="298" y1="280" x2="290" y2="298"/><line x1="298" y1="280" x2="308" y2="298"/>
+    <line x1="338" y1="280" x2="326" y2="298"/><line x1="338" y1="280" x2="344" y2="298"/>
+    <line x1="378" y1="280" x2="362" y2="298"/><line x1="378" y1="280" x2="380" y2="298"/><line x1="378" y1="280" x2="398" y2="298"/>
+  </g>
+  <text x="338" y="334" font-size="11" fill="#444" text-anchor="middle">L0 chunks → L1 folds → L2 …</text>
+
+  <!-- State saved -->
+  <rect x="450" y="56" width="150" height="294" rx="6" fill="#f4f7fc" stroke="#0b2a6f" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="525" y="80" font-size="13" font-weight="bold" fill="#0b2a6f" text-anchor="middle">Saved state</text>
+  <g font-size="12" fill="#333" font-family="Menlo, Consolas, monospace">
+    <text x="462" y="106">saadi.json</text>
+    <text x="462" y="124">document.txt</text>
+    <text x="462" y="142">chunks.jsonl</text>
+    <text x="462" y="160">memory.json</text>
+    <text x="462" y="178">history/</text>
+    <text x="462" y="196">queries/</text>
+    <text x="462" y="214">cache/</text>
+  </g>
+  <text x="525" y="258" font-size="12" fill="#444" text-anchor="middle">append() reuses</text>
+  <text x="525" y="274" font-size="12" fill="#444" text-anchor="middle">unchanged chunks;</text>
+  <text x="525" y="290" font-size="12" fill="#444" text-anchor="middle">no model needed</text>
+  <text x="525" y="306" font-size="12" fill="#444" text-anchor="middle">to retrieve</text>
+  <line x1="436" y1="120" x2="448" y2="120" stroke="#0b2a6f" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="436" y1="275" x2="448" y2="275" stroke="#0b2a6f" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Query side -->
+  <rect x="640" y="56" width="280" height="40" rx="6" fill="#0b2a6f"/>
+  <text x="780" y="81" font-size="14" fill="#ffffff" text-anchor="middle">“Who keeps the Corvin station?”</text>
+
+  <g fill="#e8eef9" stroke="#0b2a6f" stroke-width="1.5">
+    <rect x="640" y="128" width="84" height="46" rx="4"/>
+    <rect x="738" y="128" width="84" height="46" rx="4"/>
+    <rect x="836" y="128" width="84" height="46" rx="4"/>
+  </g>
+  <g font-size="12" fill="#0b2a6f" text-anchor="middle">
+    <text x="682" y="147">chunk</text><text x="682" y="163">text</text>
+    <text x="780" y="147">entity</text><text x="780" y="163">memory</text>
+    <text x="878" y="147">fold</text><text x="878" y="163">summaries</text>
+  </g>
+  <g stroke="#0b2a6f" stroke-width="1.5">
+    <line x1="780" y1="96" x2="682" y2="126" marker-end="url(#arrow)"/>
+    <line x1="780" y1="96" x2="780" y2="126" marker-end="url(#arrow)"/>
+    <line x1="780" y1="96" x2="878" y2="126" marker-end="url(#arrow)"/>
+    <line x1="682" y1="176" x2="770" y2="212" marker-end="url(#arrow)"/>
+    <line x1="780" y1="176" x2="780" y2="212" marker-end="url(#arrow)"/>
+    <line x1="878" y1="176" x2="790" y2="212" marker-end="url(#arrow)"/>
+  </g>
+  <text x="780" y="200" font-size="11" fill="#444" text-anchor="middle">three scores, fused per chunk</text>
+
+  <rect x="690" y="216" width="180" height="40" rx="6" fill="#ffffff" stroke="#0b2a6f" stroke-width="1.5"/>
+  <text x="780" y="241" font-size="13" fill="#0b2a6f" text-anchor="middle">top-k original chunks</text>
+  <line x1="780" y1="258" x2="780" y2="284" stroke="#0b2a6f" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="650" y="288" width="260" height="62" rx="6" fill="#f4f7fc" stroke="#0b2a6f" stroke-width="1.5"/>
+  <text x="780" y="312" font-size="12" fill="#444" text-anchor="middle">one generation call over the folded context</text>
+  <text x="780" y="336" font-size="14" font-weight="bold" fill="#0b2a6f" text-anchor="middle">“Tomas Egger keeps the Corvin station.”</text>
+
+  <line x1="608" y1="203" x2="634" y2="203" stroke="#0b2a6f" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="620" y="192" font-size="11" fill="#444" text-anchor="middle">state</text>
+
+  <text x="480" y="384" font-size="12" fill="#666" text-anchor="middle">The document is read once. Every later question costs retrieval over the saved state plus one model call for the answer.</text>
+</svg>

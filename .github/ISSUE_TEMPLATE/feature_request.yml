@@ -1,0 +1,18 @@
+name: Feature request
+description: A provider, input format, retriever, prompt profile, or behavior you would like to see.
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What you are trying to do
+      description: The document, the questions, and where the current library falls short.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What you would like
+      description: The call or command you wish existed. Pointers to the provider's API or a similar library help.
+    validations:
+      required: true
