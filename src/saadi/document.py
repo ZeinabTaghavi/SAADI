@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import dataclasses
 import json
+import logging
 import re
 import shutil
 import warnings
@@ -43,6 +44,7 @@ from .inputs import PreparedDocument, prepare_document
 from .io.artifact_paths import default_artifact_paths
 from .llm.base import render_prompt
 from .llm.factory import model_config_from_spec, resolve_backend
+from .pipelines.ingest_pipeline import logger as _ingest_logger
 from .pipelines.single_document_pipeline import (
     IngestStageResult,
     SingleDocumentPipelineConfig,
@@ -84,6 +86,13 @@ def _resolve_llm(llm: Any) -> Any:
 
         return MockBackend(generator=_single_document_mock_generator)
     return resolve_backend(llm)
+
+
+class _SingleDocumentNoise(logging.Filter):
+    """Drop the ingest pipeline's cross-document batching warning; it is moot for one document."""
+
+    def filter(self, record: logging.LogRecord) -> bool:
+        return not record.getMessage().startswith("Wavefront schedule requested with 1 document")
 
 
 def _safe_id(value: str) -> str:
@@ -192,6 +201,7 @@ class IndexReport:
     history_levels: tuple[int, ...]
     model_calls: int
     prompts_sent: int
+    rejected_entities: int = 0  # proposals whose anchor text was not found verbatim in the chunk
 
 
 @dataclass(frozen=True)
@@ -391,7 +401,12 @@ class Saadi:
         config = self._pipeline_config()
         self._config = config
         calls_before, prompts_before = backend.calls, backend.prompts
-        ingest = build_or_update_chunks_and_memory(config, {str(self._document_id): text}, backend=backend)
+        noise = _SingleDocumentNoise()
+        _ingest_logger.addFilter(noise)
+        try:
+            ingest = build_or_update_chunks_and_memory(config, {str(self._document_id): text}, backend=backend)
+        finally:
+            _ingest_logger.removeFilter(noise)
         self._ingest = ingest
         readable = export_readable_state(
             self.state_dir, artifacts=ingest.artifacts, memory_summary_path=ingest.memory_summary_path
@@ -410,6 +425,7 @@ class Saadi:
             history_levels=readable.levels,
             model_calls=backend.calls - calls_before,
             prompts_sent=backend.prompts - prompts_before,
+            rejected_entities=sum(len(chunk.rejected_entities or []) for chunk in ingest.canonicalized_chunks),
         )
         self._write_state_file()
         return report

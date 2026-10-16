@@ -34,6 +34,13 @@ def test_memory_export_removes_role_labels_and_pronouns(tmp_path: Path) -> None:
     assert sanitize_memory_summary(None) == 0
 
 
+def test_readable_state_always_writes_a_memory_file(tmp_path: Path) -> None:
+    state = tmp_path / "state"
+    result = export_readable_state(state, artifacts=None, memory_summary_path=None)
+    assert result.memory_path == state / "memory.json"
+    assert json.loads((state / "memory.json").read_text(encoding="utf-8")) == {"total_entities": 0, "entities": []}
+
+
 def test_readable_state_copies_memory_and_summary_without_touching_the_cache(tmp_path: Path) -> None:
     memory_path = tmp_path / "cache" / "memory_summary.json"
     memory_path.parent.mkdir()

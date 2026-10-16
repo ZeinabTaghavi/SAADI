@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import logging
 from pathlib import Path
 
 import pytest
@@ -180,6 +181,52 @@ def test_query_folders_never_collide(tmp_path: Path) -> None:
     doc.retrieve("third question")
     names = sorted(p.name for p in (tmp_path / "state" / "queries").iterdir())
     assert names == ["002_second-question", "003_third-question"]
+
+
+def test_rejected_entity_proposals_are_counted_and_the_memory_file_still_exists(tmp_path: Path) -> None:
+    def ungrounded(system: str, user: str) -> str:
+        if "[ROLLUP_ITEMS_JSON]" in user:
+            return "A summary.\n[END_SUMMARY]"
+        if "[CURRENT_CHUNK]" in user:
+            payload = {
+                "active_entities": [{"name": "Ghost", "aliases": [], "description": ["never in the text"]}],
+                "insertions": [{"name": "Ghost", "anchor_text": "words that are not in this chunk", "left_context": "", "right_context": ""}],
+            }
+            return json.dumps(payload) + "\n[END_JSON]"
+        return "An answer."
+
+    doc = Saadi(llm=CallableBackend(ungrounded), state_dir=tmp_path / "state", chunk_size=50)
+    report = doc.index(SAMPLE)
+    assert report.entities == 0
+    assert report.rejected_entities >= 1  # the grounding check dropped the proposal
+    assert doc.memory == []
+    assert json.loads((tmp_path / "state" / "memory.json").read_text(encoding="utf-8"))["entities"] == []
+    from saadi.cli._render import format_index_report
+
+    assert f"Rejected entity proposals: {report.rejected_entities}" in format_index_report(report)
+
+
+def test_cli_is_quiet_unless_verbose(tmp_path: Path, caplog: pytest.LogCaptureFixture) -> None:
+    from saadi.cli.main import main
+
+    with caplog.at_level(logging.INFO):
+        assert main(["index", str(SAMPLE), "--llm", "mock", "--state", str(tmp_path / "quiet"), "--chunk-size", "50"]) == 0
+        quiet = [r for r in caplog.records if r.name.startswith("saadi.pipelines")]
+        caplog.clear()
+        assert main(["index", str(SAMPLE), "--llm", "mock", "--state", str(tmp_path / "loud"), "--chunk-size", "50", "--verbose"]) == 0
+        loud = [r for r in caplog.records if r.name.startswith("saadi.pipelines")]
+    assert quiet == []
+    assert any(r.levelno == logging.INFO for r in loud)
+    assert not any("Wavefront schedule" in r.getMessage() for r in loud)  # moot for one document, even when verbose
+
+
+def test_example_conversation_is_the_profiles_own_sample() -> None:
+    from saadi.inputs import prepare_document
+    from saadi.prompts import load_prompt_profile
+
+    sample = load_prompt_profile("conversation").directory / "sample.txt"
+    expected = [line for line in sample.read_text(encoding="utf-8").splitlines() if line.strip()]
+    assert prepare_document(TRANSCRIPT).text.splitlines() == expected
 
 
 def test_errors_are_clear(tmp_path: Path) -> None:

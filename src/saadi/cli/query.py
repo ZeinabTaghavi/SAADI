@@ -8,8 +8,8 @@ import json
 from pathlib import Path
 
 from ..document import Saadi
+from ._common import LLM_HELP, add_verbose_argument, configure_logging
 from ._render import format_answer, format_chunks, format_memory
-from .index import LLM_HELP
 
 
 def build_arg_parser() -> argparse.ArgumentParser:
@@ -21,11 +21,13 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--retriever", metavar="NAME", help="Override the retriever stored in the state.")
     parser.add_argument("--memory", action="store_true", help="Also print the entity memory.")
     parser.add_argument("--json", action="store_true", help="Print the result as JSON.")
+    add_verbose_argument(parser)
     return parser
 
 
 def main(argv: list[str] | None = None) -> int:
     args = build_arg_parser().parse_args(argv)
+    configure_logging(args.verbose)
     try:
         doc = Saadi.load(Path(args.state), llm=args.llm, retriever=args.retriever)
         if args.llm:

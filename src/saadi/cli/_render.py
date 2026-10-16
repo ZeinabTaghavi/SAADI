@@ -21,6 +21,11 @@ def format_index_report(report: IndexReport) -> str:
             f"Model calls: {report.model_calls} ({report.prompts_sent} prompts)",
             f"State: {report.state_dir}",
         ]
+        + (
+            [f"Rejected entity proposals: {report.rejected_entities} (anchor text not found verbatim in the chunk)"]
+            if report.rejected_entities
+            else []
+        )
     )
 
 

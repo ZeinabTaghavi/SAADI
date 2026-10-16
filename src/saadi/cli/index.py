@@ -8,9 +8,8 @@ from pathlib import Path
 
 from ..document import Saadi
 from ..inputs import KNOWN_SUFFIXES
+from ._common import LLM_HELP, add_verbose_argument, configure_logging
 from ._render import format_index_report, format_memory
-
-LLM_HELP = "Language model, for example openai:gpt-4.1-mini, ollama:qwen3:8b, anthropic:claude-opus-5-5, or mock."
 
 
 def build_arg_parser() -> argparse.ArgumentParser:
@@ -35,6 +34,7 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--max-entities", type=int, default=5, help="Entities recalled per state update (default 5).")
     parser.add_argument("--summary", action="store_true", help="Also write a whole-document summary (needs a profile with document_summary.txt).")
     parser.add_argument("--json", action="store_true", help="Print the reports as JSON.")
+    add_verbose_argument(parser)
     return parser
 
 
@@ -49,6 +49,7 @@ def _sources(path: Path) -> list[Path]:
 
 def main(argv: list[str] | None = None) -> int:
     args = build_arg_parser().parse_args(argv)
+    configure_logging(args.verbose)
     source = Path(args.source).expanduser()
     try:
         files = _sources(source)
