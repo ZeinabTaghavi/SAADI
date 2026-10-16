@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import logging
 from pathlib import Path
 
 from ..prompts import builtin_profile_names, check_prompt_profile, format_report
@@ -36,6 +37,8 @@ def build_arg_parser() -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> int:
     args = build_arg_parser().parse_args(argv)
+    for noisy in ("httpx", "httpx2", "openai", "anthropic"):
+        logging.getLogger(noisy).setLevel(logging.WARNING)  # keep the report readable
     text = None
     if args.text:
         words = Path(args.text).expanduser().read_text(encoding="utf-8").split()
