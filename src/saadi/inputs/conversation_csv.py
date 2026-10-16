@@ -22,12 +22,18 @@ def _order_key(value: str, fallback: int) -> tuple[int, float | str, int]:
 
 @dataclass(slots=True)
 class ConversationCsvAdapter:
-    """Normalize ordered therapy turns into ``role: utterance`` plain text."""
+    """Normalize ordered conversation turns into ``role: utterance`` plain text.
+
+    Any speaker role is accepted unless ``allowed_roles`` restricts them;
+    ``role_aliases`` renames roles (for example ``{"clinician": "therapist"}``).
+    The ``conversation`` prompt profile is written for ``therapist:`` and
+    ``patient:`` labels but works with other role names.
+    """
 
     role_column: str = "role"
     text_column: str = "text"
     order_column: str = "turn_id"
-    allowed_roles: tuple[str, ...] = ("therapist", "patient")
+    allowed_roles: tuple[str, ...] = ()
     role_aliases: dict[str, str] = field(default_factory=dict)
     include_timestamps: bool = False
     start_column: str = "start"
@@ -37,7 +43,7 @@ class ConversationCsvAdapter:
         if not source.is_file():
             raise FileNotFoundError(f"Conversation CSV does not exist: {source}")
         if source.suffix.lower() != ".csv":
-            raise ValueError(f"Therapy workflow requires a .csv file: {source}")
+            raise ValueError(f"Conversation input must be a .csv file: {source}")
 
         with source.open("r", encoding="utf-8-sig", newline="") as handle:
             reader = csv.DictReader(handle)
@@ -45,9 +51,7 @@ class ConversationCsvAdapter:
             required = {self.role_column, self.text_column}
             missing = sorted(required - columns)
             if missing:
-                raise ValueError(
-                    f"CSV {source} is missing required columns: {', '.join(missing)}"
-                )
+                raise ValueError(f"CSV {source} is missing required columns: {', '.join(missing)}")
             rows = list(reader)
 
         if self.order_column in columns:
@@ -55,25 +59,23 @@ class ConversationCsvAdapter:
                 row
                 for _, row in sorted(
                     enumerate(rows),
-                    key=lambda pair: _order_key(
-                        pair[1].get(self.order_column, ""), pair[0]
-                    ),
+                    key=lambda pair: _order_key(pair[1].get(self.order_column, ""), pair[0]),
                 )
             ]
 
         allowed = {role.casefold() for role in self.allowed_roles}
+        aliases = {str(k).casefold(): str(v).casefold() for k, v in (self.role_aliases or {}).items()}
         lines: list[str] = []
         skipped_empty = 0
         role_counts: dict[str, int] = {}
         for row_number, row in enumerate(rows, start=2):
             raw_role = _normalize_utterance(row.get(self.role_column, "")).casefold()
-            role = self.role_aliases.get(raw_role, raw_role)
+            role = aliases.get(raw_role, raw_role)
             if not role:
                 raise ValueError(f"CSV {source} has an empty role at row {row_number}")
-            if allowed and role.casefold() not in allowed:
+            if allowed and role not in allowed:
                 raise ValueError(
-                    f"CSV {source} has unsupported role {role!r} at row {row_number}; "
-                    f"allowed roles: {sorted(allowed)}"
+                    f"CSV {source} has unsupported role {role!r} at row {row_number}; allowed roles: {sorted(allowed)}"
                 )
             utterance = _normalize_utterance(row.get(self.text_column, ""))
             if not utterance:

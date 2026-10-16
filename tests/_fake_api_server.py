@@ -152,26 +152,39 @@ def embeddings_payload(body: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def saadi_like_responder(path: str, body: dict[str, Any]) -> Response | None:
+# Sentence-initial words that would otherwise look like the first half of a name.
+_FUNCTION_WORDS = frozenset(
+    "A An And At After Before But By Each Every For From He His Her In It Its On One Over She So That The Then They This To Under When With".split()
+)
+
+
+def saadi_like_reply(user: str) -> str:
     """Answer SAADI's three prompt kinds the way a cooperative model would."""
 
-    user = last_user_text(body)
     if "[ROLLUP_ITEMS_JSON]" in user:
         text = "The Aurora team measures alpine lake water quality.\n[END_SUMMARY]"
     elif "[CURRENT_CHUNK]" in user:
         chunk = user.split("[CURRENT_CHUNK]\n", 1)[1].split("\n[", 1)[0]
-        match = re.search(r"\b([A-Z][a-z]+ [A-Z][a-z]+)\b", chunk)
-        if match:
+        names: list[str] = []
+        for match in re.finditer(r"\b([A-Z][a-z]+ [A-Z][a-z]+)\b", chunk):
             name = match.group(1)
-            payload = {
-                "active_entities": [{"name": name, "aliases": [], "description": ["mentioned in the document"]}],
-                "insertions": [{"name": name, "anchor_text": name, "left_context": "", "right_context": ""}],
-            }
-        else:
-            payload = {"active_entities": [], "insertions": []}
+            if name.split()[0] in _FUNCTION_WORDS or name in names:
+                continue
+            names.append(name)
+        payload = {
+            "active_entities": [{"name": name, "aliases": [], "description": ["mentioned in the document"]} for name in names],
+            "insertions": [{"name": name, "anchor_text": name, "left_context": "", "right_context": ""} for name in names],
+        }
         text = "<think>plan</think>" + json.dumps(payload) + "\n[END_JSON]"
     else:
         text = "Mira Chen leads the Aurora team."
+    return text
+
+
+def saadi_like_responder(path: str, body: dict[str, Any]) -> Response | None:
+    """HTTP form of :func:`saadi_like_reply` for the fake OpenAI and Anthropic endpoints."""
+
+    text = saadi_like_reply(last_user_text(body))
     if path.endswith("/chat/completions"):
         return 200, {}, openai_payload(body, text)
     if path.endswith("/messages"):

@@ -1,0 +1,14 @@
+# Examples
+
+- `sample_text/document.txt`: a short synthetic paragraph; one chunk at the default size.
+- `aurora_report/document.txt`: a 900-word synthetic report about a fictional research team. With `--chunk-size 100` it becomes about ten chunks and two fold summaries, so the entity memory and the hierarchy are both exercised. `saadi demo` uses a bundled copy of it.
+- `sample_conversation/conversation.csv`: a six-turn synthetic therapy dialogue, the same one `saadi check-prompts conversation` uses. With `--prompts conversation` the model builds a compact case-level memory from it rather than a list of names.
+- `quickstart.ipynb`: the Python API end to end.
+
+```bash
+saadi index examples/aurora_report/document.txt --llm openai:gpt-4.1-mini --state saadi_state/aurora --chunk-size 100
+saadi query "Who keeps the Corvin station?" --state saadi_state/aurora --llm openai:gpt-4.1-mini
+saadi index examples/sample_conversation/conversation.csv --llm openai:gpt-4.1-mini --prompts conversation --state saadi_state/session --summary
+```
+
+All inputs are synthetic; no real people or records appear in them.
