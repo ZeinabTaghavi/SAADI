@@ -98,13 +98,13 @@ def _single_document_mock_generator(prompt: str) -> str:
 
 @dataclass(slots=True)
 class SingleDocumentPipelineConfig:
-    """User-facing configuration for the single-document demo."""
+    """Configuration of the single-document pipeline; :class:`saadi.Saadi` builds it for you."""
 
-    demo_root: str = "single_document_demo"
-    document_path: str = "single_document_demo/input/therapy_sample.txt"
-    document_id: str = "therapy_sample"
-    run_name: str = "therapy_sample_current_saadi"
-    query: str = "What are the main themes discussed in this therapy text?"
+    demo_root: str = "saadi_state"
+    document_path: str = "document.txt"
+    document_id: str = "document"
+    run_name: str = "run"
+    query: str = ""
     run_mode: str = "auto"
 
     model_config: dict[str, Any] = field(default_factory=_default_model_config)

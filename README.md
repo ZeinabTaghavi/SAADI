@@ -95,14 +95,38 @@ python scripts/run_study.py --suite construction_models --datasets loogle --retr
 
 Use `--stage prepare`, `ingest`, `retrieve`, or `generate` to run a particular stage. `--max-documents 2` creates a separate small-run identity. See [reproduction instructions](docs/reproduction.md) for other suites, configuration fields, stage reuse, and generation.
 
-## Single-document example
+## Quickstart
 
 ```bash
-python single_document_demo/run.py text --mock --query 'Who leads the Aurora team?'
-python single_document_demo/run.py text --llm openai:gpt-4.1-mini --query 'Who leads the Aurora team?'
+python -m pip install -e '.[openai]'      # or '.[anthropic]'; see the backend table below
+export OPENAI_API_KEY=...
+saadi demo --llm openai:gpt-4.1-mini
 ```
 
-The [single-document example](single_document_demo/README.md) accepts plain text or a role-labeled conversation CSV. Both included inputs are synthetic. `--mock` checks the workflow on CPU without a model. `--llm provider:model` picks the language model; the providers are listed below.
+`saadi demo` indexes a bundled synthetic report, prints the entity memory it built, and answers a question whose evidence sits in the middle of the document. Your own documents work the same way:
+
+```bash
+saadi index report.txt --llm openai:gpt-4.1-mini --state state/report
+saadi query "Who leads the team?" --state state/report --llm openai:gpt-4.1-mini
+saadi index more_pages.txt --append --state state/report --llm openai:gpt-4.1-mini
+```
+
+From Python:
+
+```python
+from saadi import Saadi
+
+doc = Saadi(llm="openai:gpt-4.1-mini", state_dir="state/report")
+doc.index("report.txt")                    # one state-update call per chunk
+hits = doc.retrieve("Who leads the team?", k=5)
+reply = doc.answer("Who leads the team?")  # retrieval, folded context, answer
+doc.memory                                 # entity records with aliases and descriptions
+doc.history[1]                             # fold summaries, each covering five chunks
+doc.append("More pages ...")               # extends the state; unchanged chunks are reused
+again = Saadi.load("state/report")         # retrieval needs no model; pass llm= to answer
+```
+
+A state is a flat directory: `saadi.json` holds the manifest and documents the layout, next to `document.txt`, `chunks.jsonl`, `memory.json`, `history/L_0.txt` and the fold levels above it, `summary.txt` after `summarize()`, one folder per query under `queries/`, and the construction cache under `cache/`. Conversation transcripts, a `.csv` with `role` and `text` columns, index the same way with `--prompts conversation`. The `examples/` folder has the sample inputs and a notebook. Without a model, `--llm mock` runs the whole path with placeholder outputs.
 
 ## Language model backends
 
@@ -122,7 +146,7 @@ In experiment and demo configurations the same choice is the `model` section: `b
 
 ## Retrievers
 
-The base retriever scores the query against the original chunks, the entity memory, and the summaries, and Saadi fuses the three scores. Select it with `--retriever` in the example or with `retriever` in a configuration. Scores are z-normalized per channel, so any scorer whose higher value means more relevant works.
+The base retriever scores the query against the original chunks, the entity memory, and the summaries, and Saadi fuses the three scores. Select it with `--retriever` on `saadi index`, with `retriever=` on `Saadi`, or with `retriever` in a configuration. Scores are z-normalized per channel, so any scorer whose higher value means more relevant works.
 
 | Name | Needs |
 |---|---|
@@ -155,7 +179,7 @@ The index-time model calls use two prompts: entity extraction for each chunk and
 | `conversation` | Role-labeled transcripts; the therapy prompts are the example. `therapy` is an alias. |
 | a directory | Your own guidance. Start by copying the `default` files and editing the rules. |
 
-Select a profile with `--prompt-profile` in the example, with `ingest.prompt_profile` in an experiment configuration, or with `saadi.load_prompt_profile` from Python. Each run manifest records the profile name and a hash of the composed prompts, and a profile gets its own construction cache namespace. Validate a profile before a long run:
+Select a profile with `--prompts` on `saadi index`, with `prompts=` on `Saadi`, with `ingest.prompt_profile` in an experiment configuration, or with `saadi.load_prompt_profile` from Python. Each run manifest records the profile name and a hash of the composed prompts, and a profile gets its own construction cache namespace. Validate a profile before a long run:
 
 ```bash
 saadi check-prompts my_profile/ --llm openai:gpt-4.1-mini
@@ -176,7 +200,7 @@ It sends one extraction prompt and one fold prompt built from the profile and re
 | `results/tables/` | Final comparisons and Saadi study tables, each with its generator and provenance |
 | `results/paper_consistency/` | Cell-by-cell comparison of the generated tables with the paper |
 | `docs/` | Paper-to-code guide, dataset and artifact guide, reproduction guide, result coverage |
-| `single_document_demo/` | Self-contained examples using the same Saadi implementation |
+| `examples/` | Sample inputs and a quickstart notebook |
 | `tests/` | Scientific behavior, provenance, standalone workflow, and result regression checks |
 
 This repository is self-contained: everything needed to run the code, the tests, and the table rebuild is in Git. Not in Git are the full construction caches and archived per-run outputs of the saved experiments (about 9.6 GB). They are distributed as a separate archive; when restored they occupy `outputs/<dataset>_ablation/` and `outputs/study_sources/` and are catalogued in `outputs/output_sources.json`. `outputs/tables/` is an optional local mirror of regenerated tables. Model checkpoints are not bundled. See [the archive procedure](docs/data_and_artifacts.md#large-output-archives) for packaging, verification, and restoration. Dataset content remains subject to its original terms. Source licensing is in [LICENSE](LICENSE).

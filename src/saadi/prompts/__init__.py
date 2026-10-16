@@ -1,8 +1,8 @@
 """Pluggable prompt profiles.
 
-Select a profile wherever prompts are configured: ``--prompt-profile`` in the
-example, ``ingest.prompt_profile`` in an experiment configuration, or
-:func:`load_prompt_profile` from Python. A profile is a folder of guidance
+Select a profile wherever prompts are configured: ``prompts=`` on
+:class:`saadi.Saadi`, ``--prompts`` on ``saadi index``, ``ingest.prompt_profile``
+in an experiment configuration, or :func:`load_prompt_profile` from Python. A profile is a folder of guidance
 files; the library adds the fixed output contract, so a custom profile changes
 what counts as an entity without being able to break parsing. Validate one
 with ``saadi check-prompts my_profile/``.

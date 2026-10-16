@@ -25,6 +25,6 @@ outputs/other_methods/*
 outputs/other_methods/*/*
 !outputs/other_methods/*/retrieval.csv
 !outputs/other_methods/*/resources.csv
-single_document_demo/output/
+saadi_state/
 *.log
 *.tar.gz

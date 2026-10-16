@@ -168,28 +168,21 @@ def test_ollama_embedding_retriever_defaults(monkeypatch: pytest.MonkeyPatch) ->
 
 
 def test_single_document_pipeline_uses_a_registered_retriever(registered_overlap: str, tmp_path: Path) -> None:
-    from single_document_demo.pipeline import load_demo_config, run_demo
+    from saadi import Saadi
 
-    config = load_demo_config("single_document_demo/configs/text_document.toml")
-    config.demo_root = tmp_path / "demo"
-    config.output_root = config.demo_root / "output"
-    config.prompt_profile = "default"
-    config.run_name = "overlap"
-    config.query = "Who leads the Aurora team?"
-    config.model_config = {"backend": "mock"}
-    config.saadi_options.update({"use_cache": False, "chunk_size": 20, "retriever": registered_overlap})
-    result = run_demo(config)
-    assert not result.failures, [record.error for record in result.failures]
-    payload = json.loads((Path(result.records[0].run_dir) / "retrieval" / "retrieval_result.json").read_text(encoding="utf-8"))
+    doc = Saadi(llm="mock", retriever=registered_overlap, state_dir=tmp_path / "state", chunk_size=20)
+    doc.index(ROOT / "examples" / "sample_text" / "document.txt")
+    reply = doc.answer("Who leads the Aurora team?")
+    payload = json.loads((reply.directory / "retrieval" / "retrieval_result.json").read_text(encoding="utf-8"))
     assert payload["retriever"] == registered_overlap
     ranked = payload["result"].get("ranked_chunk_ids") or payload["result"].get("retrieved_chunk_ids")
     assert ranked and ranked[0].endswith(":0")  # the chunk naming the Aurora team
 
 
-def test_demo_cli_parses_retriever_option() -> None:
-    from single_document_demo.run import build_arg_parser
+def test_cli_parses_retriever_option() -> None:
+    from saadi.cli.index import build_arg_parser
 
-    args = build_arg_parser().parse_args(["text", "--retriever", "openai_embedding"])
+    args = build_arg_parser().parse_args(["doc.txt", "--llm", "mock", "--retriever", "openai_embedding"])
     assert args.retriever == "openai_embedding"
 
 
@@ -257,26 +250,18 @@ def _clear_pool_cache() -> None:
 
 def _run_demo(server: FakeAPIServer, tmp_path: Path, *, retriever: str, run_name: str, model_config: dict | None = None):
     from _fake_api_server import saadi_like_responder
-    from single_document_demo.pipeline import load_demo_config, run_demo
+    from saadi import Saadi
 
     server.responder = saadi_like_responder
-    config = load_demo_config("single_document_demo/configs/text_document.toml")
-    config.demo_root = tmp_path / "demo"
-    config.output_root = config.demo_root / "output"
-    config.prompt_profile = "default"
-    config.run_name = run_name
-    config.query = "Who leads the Aurora team?"
-    config.model_config = model_config or {
-        "backend": "openai",
-        "model_id": "fake-model",
-        "base_url": server.url + "/v1",
-        "api_key": "test-key",
-        "timeout": 10,
-    }
-    config.saadi_options.update({"use_cache": False, "chunk_size": 20, "retriever": retriever})
-    result = run_demo(config)
-    assert not result.failures, [record.error for record in result.failures]
-    return Path(result.records[0].run_dir)
+    doc = Saadi(
+        llm=model_config or {"backend": "openai", "model_id": "fake-model", "base_url": server.url + "/v1", "api_key": "test-key", "timeout": 10},
+        retriever=retriever,
+        state_dir=tmp_path / run_name,
+        chunk_size=20,
+    )
+    doc.index(ROOT / "examples" / "sample_text" / "document.txt")
+    reply = doc.answer("Who leads the Aurora team?")
+    return doc, reply
 
 
 def test_registered_retriever_scores_all_three_fusion_channels(server: FakeAPIServer, tmp_path: Path) -> None:
@@ -285,13 +270,12 @@ def test_registered_retriever_scores_all_three_fusion_channels(server: FakeAPISe
     SpyRetriever.calls = []
     register_retriever("spy_retriever_test", SpyRetriever)
     try:
-        run_dir = _run_demo(server, tmp_path, retriever="spy_retriever_test", run_name="spy")
+        doc, reply = _run_demo(server, tmp_path, retriever="spy_retriever_test", run_name="spy")
     finally:
         unregister_retriever("spy_retriever_test")
 
-    chunks = [json.loads(line)["raw_text"] for line in (run_dir / "raw_chunks.jsonl").read_text(encoding="utf-8").splitlines()]
-    memory = json.load((run_dir / "cleaned_outputs" / "memory_summary.json").open(encoding="utf-8"))
-    entity_names = {entity["name"] for entity in memory.get("entities", [])}
+    chunks = [chunk.raw_text for chunk in doc.chunks]
+    entity_names = {entity.name for entity in doc.memory}
     assert len(chunks) >= 5 and entity_names  # five chunks of twenty words; the fold happens at five
 
     corpora = [set(corpus) for corpus, _query in SpyRetriever.calls]
@@ -303,7 +287,7 @@ def test_registered_retriever_scores_all_three_fusion_channels(server: FakeAPISe
     # Summary channel: one pool consists of the fold summaries the fake model produced.
     assert any(corpus and all("alpine lake water quality" in text for text in corpus) for corpus in corpora)
 
-    payload = json.loads((run_dir / "retrieval" / "retrieval_result.json").read_text(encoding="utf-8"))
+    payload = json.loads((reply.directory / "retrieval" / "retrieval_result.json").read_text(encoding="utf-8"))
     assert payload["retriever"] == "spy_retriever_test"
     ranked = payload["result"].get("ranked_chunk_ids") or payload["result"].get("retrieved_chunk_ids")
     assert len(ranked) == len(set(ranked)) == min(len(chunks), 10)
@@ -316,41 +300,40 @@ def test_full_hosted_stack_runs_llm_and_embeddings_on_the_same_server(
     _clear_pool_cache()
     monkeypatch.setenv("SAADI_OPENAI_EMBEDDING_BASE_URL", server.url + "/v1")
     monkeypatch.setenv("OPENAI_API_KEY", "test-key")
-    run_dir = _run_demo(server, tmp_path, retriever="openai_embedding", run_name="hosted_stack")
+    doc, reply = _run_demo(server, tmp_path, retriever="openai_embedding", run_name="hosted_stack")
 
     paths = {request["path"] for request in server.requests}
     assert paths == {"/v1/chat/completions", "/v1/embeddings"}
     embedded_texts = {text for request in server.requests if request["path"] == "/v1/embeddings" for text in request["body"]["input"]}
-    chunks = [json.loads(line)["raw_text"] for line in (run_dir / "raw_chunks.jsonl").read_text(encoding="utf-8").splitlines()]
-    assert set(chunks) <= embedded_texts  # the chunk pool was embedded
+    assert {chunk.raw_text for chunk in doc.chunks} <= embedded_texts  # the chunk pool was embedded
     assert "Who leads the Aurora team?" in embedded_texts  # and so was the query
-    memory = json.load((run_dir / "cleaned_outputs" / "memory_summary.json").open(encoding="utf-8"))
-    assert {entity["name"] for entity in memory["entities"]} <= embedded_texts  # entity names too
+    assert {entity.name for entity in doc.memory} <= embedded_texts  # entity names too
 
-    payload = json.loads((run_dir / "retrieval" / "retrieval_result.json").read_text(encoding="utf-8"))
+    payload = json.loads((reply.directory / "retrieval" / "retrieval_result.json").read_text(encoding="utf-8"))
     assert payload["retriever"] == "openai_embedding"
-    assert "Mira Chen" in (run_dir / "generation" / "answer.txt").read_text(encoding="utf-8")
-    manifest = json.loads((run_dir / "run_manifest.json").read_text(encoding="utf-8"))
+    assert "Mira Chen" in reply.text
+    manifest = json.loads((doc.cache_dir / "run_manifest.json").read_text(encoding="utf-8"))
     assert manifest["reproducibility"]["llm_backend"]["backend"] == "openai"
 
 
-def test_cli_runs_with_a_registered_retriever_and_rejects_unknown_names(tmp_path: Path) -> None:
-    from single_document_demo.run import main
+def test_cli_runs_with_a_registered_retriever_and_rejects_unknown_names(tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> None:
+    from saadi.cli.main import main
 
+    sample = str(ROOT / "examples" / "sample_text" / "document.txt")
+    state = tmp_path / "state"
     register_retriever("cli_overlap_test", KeywordOverlap)
     try:
-        exit_code = main(
-            ["text", "--llm", "mock", "--retriever", "cli_overlap_test", "--query", "Who leads the Aurora team?",
-             "--output-root", str(tmp_path), "--run-name", "cli_retriever"]
-        )
-        assert exit_code == 0
-        payload = json.loads((tmp_path / "sample_text" / "retrieval" / "retrieval_result.json").read_text(encoding="utf-8"))
+        assert main(["index", sample, "--llm", "mock", "--retriever", "cli_overlap_test", "--state", str(state), "--chunk-size", "20"]) == 0
+        assert main(["query", "Who leads the Aurora team?", "--state", str(state), "--llm", "mock"]) == 0
+        results = sorted(state.glob("queries/*/retrieval/retrieval_result.json"))
+        payload = json.loads(results[-1].read_text(encoding="utf-8"))
         assert payload["retriever"] == "cli_overlap_test"
     finally:
         unregister_retriever("cli_overlap_test")
 
-    with pytest.raises(ValueError, match="Unknown retriever: not_a_retriever. Known retrievers: bm25"):
-        main(["text", "--llm", "mock", "--retriever", "not_a_retriever", "--query", "Who?", "--output-root", str(tmp_path / "bad")])
+    capsys.readouterr()
+    assert main(["index", sample, "--llm", "mock", "--retriever", "not_a_retriever", "--state", str(tmp_path / "bad")]) == 1
+    assert "Unknown retriever: not_a_retriever. Known retrievers: bm25" in capsys.readouterr().out
 
 
 # --- registry and base-class edge cases ----------------------------------------

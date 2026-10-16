@@ -1,3 +1,5 @@
+"""Input adapters turn a source file into the plain text that SAADI indexes."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -7,11 +9,11 @@ from typing import Any, Protocol
 
 @dataclass(slots=True)
 class PreparedDocument:
-    """A source file normalized into the plain-text form consumed by SAADI."""
+    """A source normalized into the plain-text form consumed by the pipeline."""
 
     document_id: str
     text: str
-    source_path: Path
+    source_path: Path | None
     input_format: str
     metadata: dict[str, Any] = field(default_factory=dict)
 

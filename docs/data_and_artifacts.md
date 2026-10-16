@@ -92,7 +92,7 @@ This repository is self-contained. A clone contains the README, license, package
 
 | Material | In a normal Git checkout? | Purpose |
 |---|---|---|
-| `src/`, `configs/`, `scripts/`, `tests/`, `single_document_demo/`, docs and metadata | Yes | Standalone Saadi implementation, validation, and examples |
+| `src/`, `configs/`, `scripts/`, `tests/`, `examples/`, docs and metadata | Yes | Standalone Saadi implementation, validation, and examples |
 | `outputs/sadi/reference/` | Yes | Checksummed saved rankings and aggregate values for Saadi study tables |
 | `outputs/sadi/comparison_inputs/` | Yes | Additional Saadi rankings and comparison-specific exposure/cost data |
 | `outputs/other_methods/` | Yes | Checksummed saved comparison CSVs; no baseline execution |
