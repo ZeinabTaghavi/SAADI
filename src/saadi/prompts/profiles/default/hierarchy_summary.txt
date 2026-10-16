@@ -1,0 +1,1 @@
+Keep core entities and events. Do not add speculation.

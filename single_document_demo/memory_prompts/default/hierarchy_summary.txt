@@ -1,5 +1,0 @@
-You summarize one branching-factor group into one concise, factual summary.
-Preserve the core entities, relationships, and events needed to understand later chunks.
-Do not add speculation or information not present in the supplied items.
-Output plain text only, with no bullets, markdown, or JSON.
-Terminate with [END_SUMMARY].

@@ -18,6 +18,7 @@ from ..io.manifests import build_manifest, git_provenance, write_manifest
 from ..llm.base import GenerateParams
 from ..llm.base import describe_llm_provenance
 from ..llm.factory import build_backend_from_config
+from ..prompts import apply_profile_to_strategy_kwargs, load_prompt_profile, profile_cache_suffix
 from .ingest_pipeline import ingest_documents
 
 logger = logging.getLogger(__name__)
@@ -306,7 +307,14 @@ def run_experiment(
     logger.info("Starting ingest pipeline")
     strategy_name = str(ingest_cfg.get("strategy", "hierarchical"))
     strategy_kwargs = ingest_cfg.get("strategy_kwargs", {}) or {}
+    prompt_profile = load_prompt_profile(ingest_cfg["prompt_profile"]) if ingest_cfg.get("prompt_profile") else None
+    if prompt_profile is not None:
+        strategy_kwargs = apply_profile_to_strategy_kwargs(prompt_profile, strategy_kwargs)
+        logger.info("Using prompt profile=%s hash=%s", prompt_profile.name, prompt_profile.content_hash[:10])
     cache_method_label = strategy_cache_label(strategy_name, strategy_kwargs)
+    if prompt_profile is not None:
+        # Different prompts build a different state, so a profile gets its own cache namespace.
+        cache_method_label = f"{cache_method_label}_{profile_cache_suffix(prompt_profile)}"
     raw_chunks, canonicalized_chunks, ingest_artifacts = ingest_documents(
         documents_by_id=documents_by_id,
         backend=backend,
@@ -361,6 +369,7 @@ def run_experiment(
         artifacts=artifacts,
         metadata={
             "runner": "saadi.pipelines.experiment_runner",
+            "prompt_profile": prompt_profile.describe() if prompt_profile is not None else None,
             "retrieval_enabled": False,
             "ingest_enabled": True,
             "sample_stats": sample_stats,

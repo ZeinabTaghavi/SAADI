@@ -5,7 +5,7 @@ import math
 FIELDS = {
     "": "output_dir dataset ingest retrieval cached_retrieval model evaluation sample preparation",
     "dataset": "name source display_name split config_name docs_config_name qa_config_name qa_n qa_selection_method books_root documents_json qa_json allowed_doc_ids table_methods",
-    "ingest": "enabled use_cache strategy strategy_kwargs chunk_size chunk_overlap schedule wavefront_batch_size cache_save_every_steps cache_save_each_document write_raw_chunks",
+    "ingest": "enabled use_cache strategy strategy_kwargs prompt_profile chunk_size chunk_overlap schedule wavefront_batch_size cache_save_every_steps cache_save_each_document write_raw_chunks",
     "ingest.strategy_kwargs": "active_entity_selector active_entity_min_relevance branching_factor max_entities max_aliases max_desc max_hierarchy_level memory_update_mode history_l0_text system_prompt rollup_system_prompt",
     "model": "backend model_id alias device dtype enforce_eager generate sampling load_chat_tokenizer gpu_memory_utilization max_model_len tensor_parallel_size vllm_kwargs revision tokenizer_cache_dir trust_remote_code chat_formatter_loader chat_formatter_kwargs cache_root base_url api_key api_key_env max_workers max_retries timeout token_limit_param send_temperature send_stop request_kwargs extra_body effort thinking min_max_tokens fallbacks",
     "model.generate": "max_tokens temperature stop",
