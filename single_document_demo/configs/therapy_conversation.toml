@@ -3,7 +3,7 @@ root = "single_document_demo"
 
 [workflow]
 type = "therapy"
-prompt_profile = "therapy"
+prompt_profile = "conversation"
 
 [input]
 path = "single_document_demo/input/sample_conversation/conversation.csv"

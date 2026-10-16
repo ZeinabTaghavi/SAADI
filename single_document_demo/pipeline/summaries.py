@@ -13,7 +13,7 @@ from saadi.llm.base import ChatPrompt, render_prompt
 
 from .artifacts import sanitize_memory_summary, write_json
 from .config import PromptedPipelineConfig
-from .prompts import MemoryPromptProfile
+from saadi.prompts import PromptProfile
 
 
 @dataclass(frozen=True, slots=True)
@@ -189,7 +189,7 @@ def export_cleaned_outputs(
 
 def generate_document_summary(
     config: PromptedPipelineConfig,
-    profile: MemoryPromptProfile,
+    profile: PromptProfile,
     canonicalized_chunks: list[Any],
     *,
     backend: Any,

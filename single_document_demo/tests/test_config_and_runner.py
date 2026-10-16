@@ -19,7 +19,7 @@ def test_conversation_config_settings() -> None:
     )
     assert config.workflow == "therapy"
     assert config.input_format == "conversation_csv"
-    assert config.prompt_profile == "therapy"
+    assert config.prompt_profile == "conversation"
     assert config.saadi_options["max_entities"] == 8
     assert config.saadi_options["document_summary_enabled"] is True
     assert config.model_config["enforce_eager"] is True
@@ -71,9 +71,7 @@ def test_mock_single_text_run_uses_consistent_document_nesting(tmp_path: Path) -
     config.demo_root = tmp_path / "demo"
     config.output_root = config.demo_root / "output"
     config.input_path = source
-    config.prompt_profile = str(
-        REPO_ROOT / "single_document_demo" / "memory_prompts" / "default"
-    )
+    config.prompt_profile = "default"
     config.run_name = "mock_text"
     config.model_config = {"backend": "mock"}
     config.saadi_options.update({"use_cache": False, "chunk_size": 100})

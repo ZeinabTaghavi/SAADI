@@ -460,7 +460,7 @@ def _run_demo_through(server: FakeAPIServer, tmp_path, model_config: dict[str, A
     config = load_demo_config("single_document_demo/configs/text_document.toml")
     config.demo_root = tmp_path / "demo"
     config.output_root = config.demo_root / "output"
-    config.prompt_profile = str(ROOT / "single_document_demo" / "memory_prompts" / "default")
+    config.prompt_profile = "default"
     config.run_name = "hosted"
     config.query = "Who leads the Aurora team?"
     config.model_config = model_config
@@ -676,7 +676,7 @@ def test_run_manifest_describes_non_vllm_backends_truthfully(tmp_path) -> None:
     config = load_demo_config("single_document_demo/configs/text_document.toml")
     config.demo_root = tmp_path / "demo"
     config.output_root = config.demo_root / "output"
-    config.prompt_profile = str(ROOT / "single_document_demo" / "memory_prompts" / "default")
+    config.prompt_profile = "default"
     config.run_name = "provenance"
     config.model_config = {"backend": "mock"}
     config.saadi_options.update({"use_cache": False, "chunk_size": 50})

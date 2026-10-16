@@ -145,6 +145,24 @@ class KeywordOverlap(BaseRetriever):
 
 Instances work too. `resolve_retriever` accepts a name, a class, a reranker object with `score(query, texts)`, an embedding model object with `encode(texts)` such as a sentence-transformers model, or a plain function of either shape, and registers it under a name. `saadi.register_retriever` and `saadi.resolve_retriever` are the same entry points at the package top level.
 
+## Prompt profiles
+
+The index-time model calls use two prompts: entity extraction for each chunk and a fold summary for each group of chunks. A prompt profile is a folder with `entity_extraction.txt`, `hierarchy_summary.txt`, and optionally `document_summary.txt`. The files hold domain guidance only, such as what counts as an entity and how to name and describe it. The library wraps that guidance in a fixed contract that states the inputs and the output format the parsers expect, so a profile can change the extraction policy but cannot break parsing.
+
+| Profile | Use |
+|---|---|
+| `default` | The paper's prompts, byte for byte. |
+| `conversation` | Role-labeled transcripts; the therapy prompts are the example. `therapy` is an alias. |
+| a directory | Your own guidance. Start by copying the `default` files and editing the rules. |
+
+Select a profile with `--prompt-profile` in the example, with `ingest.prompt_profile` in an experiment configuration, or with `saadi.load_prompt_profile` from Python. Each run manifest records the profile name and a hash of the composed prompts, and a profile gets its own construction cache namespace. Validate a profile before a long run:
+
+```bash
+saadi check-prompts my_profile/ --llm openai:gpt-4.1-mini
+```
+
+It sends one extraction prompt and one fold prompt built from the profile and reports whether the answers follow the contract, which entities came back, and why an insertion was dropped. Without `--llm` it uses the mock model and only proves the plumbing.
+
 ## Repository contents
 
 | Directory | Purpose |

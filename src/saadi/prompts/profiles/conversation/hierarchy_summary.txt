@@ -1,0 +1,5 @@
+The items are consecutive therapy-session or clinically oriented transcript passages; produce one case-level summary.
+Preserve, in priority order: the patient and central presenting problems; major adverse or potentially traumatic experiences and the current fears, beliefs, or behaviors they help explain; major triggers, maintaining patterns, coping patterns, and functional consequences; important relationships that materially affect the case; therapeutic interpretations, goals, interventions, commitments, monitoring, and agreed next steps.
+Consolidate related symptoms, activities, tests, medications, and feared diagnoses into broader case-level patterns. Omit incidental medicines, routine activities, organizations, administrative details, and conversational filler unless they are central to the case.
+Distinguish patient reports and fears from therapist questions, interpretations, and hypothetical examples. Use neutral attribution. Do not diagnose, speculate, or add clinical facts.
+Write one compact paragraph of at most 90 words.
