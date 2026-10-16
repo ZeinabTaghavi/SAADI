@@ -24,15 +24,16 @@ def _order_key(value: str, fallback: int) -> tuple[int, float | str, int]:
 class ConversationCsvAdapter:
     """Normalize ordered conversation turns into ``role: utterance`` plain text.
 
-    The defaults match a therapist/patient transcript; ``allowed_roles`` and
-    ``role_aliases`` adapt it to other speaker sets. An empty ``allowed_roles``
-    accepts every role.
+    Any speaker role is accepted unless ``allowed_roles`` restricts them;
+    ``role_aliases`` renames roles (for example ``{"clinician": "therapist"}``).
+    The ``conversation`` prompt profile is written for ``therapist:`` and
+    ``patient:`` labels but works with other role names.
     """
 
     role_column: str = "role"
     text_column: str = "text"
     order_column: str = "turn_id"
-    allowed_roles: tuple[str, ...] = ("therapist", "patient")
+    allowed_roles: tuple[str, ...] = ()
     role_aliases: dict[str, str] = field(default_factory=dict)
     include_timestamps: bool = False
     start_column: str = "start"

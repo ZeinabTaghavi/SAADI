@@ -90,9 +90,9 @@ def _single_document_mock_generator(prompt: str) -> str:
         ) + "\n[END_JSON]"
 
     return (
-        "Mock answer: the retrieved context highlights the main themes and evidence "
-        "that are most relevant to the query. Switch MODEL_CONFIG to vLLM/Qwen for "
-        "a real generated answer."
+        "Mock answer: no language model was used, so this is a placeholder. "
+        "Pass a real model (for example openai:gpt-4.1-mini or ollama:qwen3:8b) "
+        "to generate an answer from the retrieved context."
     )
 
 

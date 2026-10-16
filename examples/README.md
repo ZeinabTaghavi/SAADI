@@ -6,9 +6,9 @@
 - `quickstart.ipynb`: the Python API end to end.
 
 ```bash
-saadi index examples/aurora_report/document.txt --llm openai:gpt-4.1-mini --state state/aurora --chunk-size 100
-saadi query "Who keeps the Corvin station?" --state state/aurora --llm openai:gpt-4.1-mini
-saadi index examples/sample_conversation/conversation.csv --llm openai:gpt-4.1-mini --prompts conversation --state state/session --summary
+saadi index examples/aurora_report/document.txt --llm openai:gpt-4.1-mini --state saadi_state/aurora --chunk-size 100
+saadi query "Who keeps the Corvin station?" --state saadi_state/aurora --llm openai:gpt-4.1-mini
+saadi index examples/sample_conversation/conversation.csv --llm openai:gpt-4.1-mini --prompts conversation --state saadi_state/session --summary
 ```
 
 All inputs are synthetic; no real people or records appear in them.

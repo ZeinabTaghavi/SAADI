@@ -48,7 +48,8 @@ def prepare_document(
     ``source`` is inline text, a path to a ``.txt``/``.md`` file, a path to a
     conversation ``.csv`` (keyword options go to
     :class:`ConversationCsvAdapter`), or a prepared document. ``document_id``
-    overrides the id derived from the file name.
+    overrides the id derived from the file name. Inline text is taken as is:
+    ``kind`` and adapter options only apply to files.
     """
 
     if isinstance(source, PreparedDocument):
