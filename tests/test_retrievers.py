@@ -173,7 +173,7 @@ def test_single_document_pipeline_uses_a_registered_retriever(registered_overlap
     config = load_demo_config("single_document_demo/configs/text_document.toml")
     config.demo_root = tmp_path / "demo"
     config.output_root = config.demo_root / "output"
-    config.prompt_profile = str(ROOT / "single_document_demo" / "memory_prompts" / "default")
+    config.prompt_profile = "default"
     config.run_name = "overlap"
     config.query = "Who leads the Aurora team?"
     config.model_config = {"backend": "mock"}
@@ -263,7 +263,7 @@ def _run_demo(server: FakeAPIServer, tmp_path: Path, *, retriever: str, run_name
     config = load_demo_config("single_document_demo/configs/text_document.toml")
     config.demo_root = tmp_path / "demo"
     config.output_root = config.demo_root / "output"
-    config.prompt_profile = str(ROOT / "single_document_demo" / "memory_prompts" / "default")
+    config.prompt_profile = "default"
     config.run_name = run_name
     config.query = "Who leads the Aurora team?"
     config.model_config = model_config or {

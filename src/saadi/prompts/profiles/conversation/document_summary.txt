@@ -13,4 +13,4 @@ Consolidate supporting details. Do not list every symptom, medicine, test, activ
 
 Distinguish patient reports and fears from clinician interpretations. Do not diagnose, speculate, or add information. Do not call an experience trauma unless the transcript supports that characterization.
 
-Write one fluent paragraph of at most 120 words. Use plain text only, with no heading, bullets, markdown, JSON, or prefatory language. Terminate with [END_SUMMARY].
+Write one fluent paragraph of at most 120 words.

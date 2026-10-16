@@ -39,6 +39,9 @@ package-dir = {"" = "src"}
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.setuptools.package-data]
+"saadi.prompts" = ["profiles/*/*.txt"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests", "single_document_demo/tests"]
 pythonpath = ["src", "."]
