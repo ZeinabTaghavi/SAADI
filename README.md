@@ -120,6 +120,31 @@ A single document is processed one chunk at a time by design, since each state u
 
 In experiment and demo configurations the same choice is the `model` section: `backend`, `model_id`, and for hosted APIs the optional `base_url`, `api_key_env`, `max_workers`, `max_retries`, and `timeout`. Hosted backends send the prompts of a batch concurrently and retry rate limits with backoff. From Python, `saadi.llm.resolve_backend` accepts the same `provider:model` string, a config mapping, a backend object, or a function `(system, user, **options) -> str`, so any other client can be plugged in.
 
+## Retrievers
+
+The base retriever scores the query against the original chunks, the entity memory, and the summaries, and Saadi fuses the three scores. Select it with `--retriever` in the example or with `retriever` in a configuration. Scores are z-normalized per channel, so any scorer whose higher value means more relevant works.
+
+| Name | Needs |
+|---|---|
+| `bm25` (default) | Nothing. |
+| `contriever`, `bge_m3`, `e5`, `jina`, `qwen` | `pip install 'saadi[dense]'`. The dense retrievers of the paper. |
+| `openai_embedding` | `pip install 'saadi[openai]'` and `OPENAI_API_KEY`. Uses `text-embedding-3-small`; set `SAADI_OPENAI_EMBEDDING_MODEL` to change it, and `OPENAI_BASE_URL` for any other OpenAI-compatible embeddings endpoint. |
+| `ollama_embedding` | A local Ollama server with an embedding model such as `nomic-embed-text`. No key. |
+
+Your own retriever is a class with a `score(query)` method that returns one number per text, registered under a name:
+
+```python
+from saadi.retrievers import BaseRetriever, register_retriever
+
+@register_retriever("keyword_overlap")
+class KeywordOverlap(BaseRetriever):
+    def score(self, query):
+        words = set(query.lower().split())
+        return [len(words & set(text.lower().split())) for text in self.corpus]
+```
+
+An embedding function works too: `make_embedding_retriever(embed)` turns `embed(texts) -> vectors` into a retriever class, and `resolve_retriever` accepts a name, a class, or such a function.
+
 ## Repository contents
 
 | Directory | Purpose |
