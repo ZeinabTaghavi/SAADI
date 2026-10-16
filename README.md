@@ -143,7 +143,7 @@ class KeywordOverlap(BaseRetriever):
         return [len(words & set(text.lower().split())) for text in self.corpus]
 ```
 
-An embedding function works too: `make_embedding_retriever(embed)` turns `embed(texts) -> vectors` into a retriever class, and `resolve_retriever` accepts a name, a class, or such a function.
+Instances work too. `resolve_retriever` accepts a name, a class, a reranker object with `score(query, texts)`, an embedding model object with `encode(texts)` such as a sentence-transformers model, or a plain function of either shape, and registers it under a name. `saadi.register_retriever` and `saadi.resolve_retriever` are the same entry points at the package top level.
 
 ## Repository contents
 

@@ -75,8 +75,6 @@ EmbedFunction = Callable[[list[str]], Any]
 
 def _as_matrix(vectors: Any, *, count: int) -> np.ndarray:
     matrix = np.asarray(vectors, dtype=np.float32)
-    if count == 0:
-        return matrix.reshape(0, matrix.shape[-1] if matrix.ndim == 2 else 1)
     if matrix.ndim == 1 and count == 1:
         matrix = matrix.reshape(1, -1)
     if matrix.ndim != 2 or matrix.shape[0] != count:
@@ -129,11 +127,40 @@ class EmbeddingRetriever(BaseRetriever):
         return [float(value) for value in (self._corpus_embeddings @ query_vector).tolist()]
 
 
+def _class_name(text: str, default: str) -> str:
+    safe = "".join(ch if ch.isalnum() or ch == "_" else "_" for ch in str(text or "")).strip("_")
+    return safe or default
+
+
 def make_embedding_retriever(embed: EmbedFunction, *, name: str | None = None, normalize: bool = True) -> type[EmbeddingRetriever]:
     """Turn ``embed(texts) -> vectors`` into a retriever class ready for registration."""
 
     if not callable(embed):
         raise TypeError("make_embedding_retriever needs a callable that maps texts to vectors")
-    class_name = name or f"{getattr(embed, '__name__', 'custom')}_embedding_retriever"
-    safe = "".join(ch if ch.isalnum() or ch == "_" else "_" for ch in class_name) or "custom_embedding_retriever"
-    return type(safe, (EmbeddingRetriever,), {"embed_fn": staticmethod(embed), "normalize": bool(normalize)})
+    class_name = _class_name(name or f"{getattr(embed, '__name__', 'custom')}_embedding_retriever", "custom_embedding_retriever")
+    return type(class_name, (EmbeddingRetriever,), {"embed_fn": staticmethod(embed), "normalize": bool(normalize)})
+
+
+ScoreFunction = Callable[[str, list[str]], Any]
+
+
+def make_scorer_retriever(scorer: Any, *, name: str | None = None) -> type[BaseRetriever]:
+    """Turn a stateless scorer into a retriever class ready for registration.
+
+    ``scorer`` is either a function ``(query, texts) -> scores`` or an object
+    with such a ``score`` method, for example a cross-encoder reranker. Higher
+    scores must mean more relevant; the scale does not matter.
+    """
+
+    score_fn = getattr(scorer, "score", None)
+    if not callable(score_fn):
+        score_fn = scorer
+    if not callable(score_fn):
+        raise TypeError("make_scorer_retriever needs a function (query, texts) -> scores or an object with score()")
+    label = name or getattr(scorer, "name", None) or getattr(scorer, "__name__", None) or type(scorer).__name__
+    class_name = _class_name(f"{label}_scorer_retriever", "custom_scorer_retriever")
+
+    def score(self: BaseRetriever, query: str) -> list[float]:
+        return [float(value) for value in score_fn(str(query or ""), list(self.corpus))]
+
+    return type(class_name, (BaseRetriever,), {"score": score})
