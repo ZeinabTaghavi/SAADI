@@ -62,6 +62,19 @@ class PromptCheckReport:
         }
 
 
+SAMPLE_FILE = "sample.txt"
+
+
+def _profile_sample(profile: PromptProfile) -> str | None:
+    """A profile may ship ``sample.txt`` so the check uses text from its own domain."""
+
+    path = profile.directory / SAMPLE_FILE
+    if path.is_file():
+        content = path.read_text(encoding="utf-8").strip()
+        return content or None
+    return None
+
+
 def check_prompt_profile(
     profile: str | PromptProfile,
     *,
@@ -76,6 +89,8 @@ def check_prompt_profile(
     ``backend`` takes anything :func:`saadi.llm.resolve_backend` accepts. The
     mock backend proves the prompt and parser plumbing; a real model shows
     whether the guidance yields entities and a summary that follow the contract.
+    The sample chunk is ``text``, else the profile's own ``sample.txt``, else a
+    generic paragraph.
     """
 
     loaded = load_prompt_profile(profile)
@@ -92,7 +107,7 @@ def check_prompt_profile(
     for marker in validate_summary_guidance(loaded.summary_guidance):
         report.problems.append(f"summary guidance contains the contract phrase {marker!r}")
 
-    sample = str(text or SAMPLE_TEXT).strip()
+    sample = str(text or _profile_sample(loaded) or SAMPLE_TEXT).strip()
     strategy = HierarchicalSummaryStrategy(
         system_prompt=loaded.entity_system_prompt,
         rollup_system_prompt=loaded.summary_system_prompt,
@@ -166,4 +181,4 @@ def format_report(report: PromptCheckReport) -> str:
     return "\n".join(lines)
 
 
-__all__ = ["PromptCheckReport", "SAMPLE_TEXT", "check_prompt_profile", "format_report"]
+__all__ = ["PromptCheckReport", "SAMPLE_FILE", "SAMPLE_TEXT", "check_prompt_profile", "format_report"]

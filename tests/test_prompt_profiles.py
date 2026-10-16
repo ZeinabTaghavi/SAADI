@@ -258,3 +258,24 @@ def test_experiment_runner_uses_the_profile_and_isolates_its_cache(tmp_path: Pat
     assert seen["strategy_kwargs"]["system_prompt"] == profile.entity_system_prompt
     assert seen["strategy_kwargs"]["branching_factor"] == 3
     assert seen["cache_namespace"]["method"].endswith(profile_cache_suffix(profile))
+
+
+def test_check_uses_the_profile_sample_when_present(tmp_path: Path) -> None:
+    seen: list[str] = []
+
+    def recording_model(system: str, user: str, **options) -> str:
+        seen.append(user)
+        if "[ROLLUP_ITEMS_JSON]" in user:
+            return "Summary.\n[END_SUMMARY]"
+        return '{"active_entities": [], "insertions": []}\n[END_JSON]'
+
+    check_prompt_profile("conversation", backend=CallableBackend(recording_model))
+    assert any("therapist:" in user for user in seen)  # the conversation profile ships a transcript sample
+    seen.clear()
+    custom = write_profile(tmp_path / "custom", entity="Extract people.", summary="Keep events.")
+    (custom / "sample.txt").write_text("Custom sample about Zorblax.", encoding="utf-8")
+    check_prompt_profile(custom, backend=CallableBackend(recording_model))
+    assert any("Zorblax" in user for user in seen)
+    seen.clear()
+    check_prompt_profile(custom, backend=CallableBackend(recording_model), text="Explicit text wins.")
+    assert any("Explicit text wins." in user for user in seen)
