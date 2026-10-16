@@ -7,12 +7,12 @@ from dataclasses import dataclass
 from typing import Any
 
 from ..core.canonicalization import parse_canonicalization_response
-from ..core.prompts import format_chat_prompt, json_schema_string
+from ..core.prompts import json_schema_string
 from ..core.state import apply_canonicalization_to_state, begin_canonicalization_update
 from ..core.types import ChunkRecord, DiscourseState
 from ..entities.active_selection import select_active_entities
 from ..entities.active_entity_config import normalize_active_entity_min_relevance
-from ..llm.base import GenerateParams, LLMBackend
+from ..llm.base import ChatPrompt, GenerateParams, LLMBackend
 from .base import StrategyCommonConfig
 
 HIER_SCHEMA = {
@@ -321,6 +321,8 @@ class HierarchicalSummaryStrategy(StrategyCommonConfig):
     branching_factor: int = 5
     # Backward-compatible alias for older configs/tests. New configs should use branching_factor.
     k: int | None = None
+    # Deprecated and unused: backends render chat templates themselves now.
+    # Kept so older strategy_kwargs that pass it still load.
     tokenizer_for_chat_template: object | None = None
     system_prompt: str = HIER_SYSTEM_PROMPT
     rollup_system_prompt: str = ROLLUP_SYSTEM_PROMPT
@@ -561,7 +563,7 @@ class HierarchicalSummaryStrategy(StrategyCommonConfig):
         }
         return ctx
 
-    def build_prompt(self, chunk: ChunkRecord, state: DiscourseState) -> str:
+    def build_prompt(self, chunk: ChunkRecord, state: DiscourseState) -> ChatPrompt:
         # Keep the legacy/default branch byte-for-byte compatible with the
         # existing MBR2 memory-construction prompt.
         if self.memory_update_mode == MEMORY_UPDATE_MODE_HIS_MEM:
@@ -587,11 +589,7 @@ class HierarchicalSummaryStrategy(StrategyCommonConfig):
                 chunk_text=chunk.raw_text,
                 schema=HIER_SCHEMA,
             )
-        return format_chat_prompt(
-            tokenizer=self.tokenizer_for_chat_template,
-            system_prompt=self.effective_system_prompt(),
-            user_prompt=user_prompt,
-        )
+        return ChatPrompt(system=self.effective_system_prompt(), user=user_prompt)
 
     def _fallback_rollup(self, items: list[str], *, max_words: int = 120) -> str:
         joined = " ".join(i.strip() for i in items if isinstance(i, str) and i.strip())
@@ -623,13 +621,9 @@ class HierarchicalSummaryStrategy(StrategyCommonConfig):
             return None
         g = generate or GenerateParams()
         user_prompt = self._rollup_user_prompt(lower_cycle=lower_cycle, next_cycle=next_cycle, step=step, items=items)
-        prompt = format_chat_prompt(
-            tokenizer=self.tokenizer_for_chat_template,
-            system_prompt=self.rollup_system_prompt,
-            user_prompt=user_prompt,
-        )
+        prompt = ChatPrompt(system=self.rollup_system_prompt, user=user_prompt)
         try:
-            raw = backend.generate_batch(
+            raw = backend.generate_chat_batch(
                 [prompt],
                 max_tokens=min(int(g.max_tokens), 256),
                 temperature=float(g.temperature),
@@ -644,20 +638,16 @@ class HierarchicalSummaryStrategy(StrategyCommonConfig):
             text = text.split("[END_SUMMARY]", 1)[0].strip()
         return text or None
 
-    def build_rollup_prompt(self, *, items: list[str], lower_cycle: int, next_cycle: int, step: int) -> str:
+    def build_rollup_prompt(self, *, items: list[str], lower_cycle: int, next_cycle: int, step: int) -> ChatPrompt:
         user_prompt = self._rollup_user_prompt(
             lower_cycle=lower_cycle, next_cycle=next_cycle, step=step, items=items
         )
-        return format_chat_prompt(
-            tokenizer=self.tokenizer_for_chat_template,
-            system_prompt=self.rollup_system_prompt,
-            user_prompt=user_prompt,
-        )
+        return ChatPrompt(system=self.rollup_system_prompt, user=user_prompt)
 
     def run_rollup_prompts(
         self,
         *,
-        prompts: list[str],
+        prompts: list[ChatPrompt],
         backend: LLMBackend | None,
         generate: GenerateParams | None,
     ) -> list[str | None]:
@@ -666,7 +656,7 @@ class HierarchicalSummaryStrategy(StrategyCommonConfig):
             return [None] * len(prompts)
         g = generate or GenerateParams()
         try:
-            raws = backend.generate_batch(
+            raws = backend.generate_chat_batch(
                 prompts,
                 max_tokens=min(int(g.max_tokens), 256),
                 temperature=float(g.temperature),

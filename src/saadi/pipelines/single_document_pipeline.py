@@ -28,8 +28,8 @@ from ..indexing.retrieval_methods.mbr import (
 from ..io.artifact_paths import ArtifactPaths
 from ..io.jsonl import write_jsonl
 from ..io.manifests import build_reproducibility_metadata, git_provenance
-from ..llm.base import GenerateParams
-from ..llm.factory import build_backend_from_config
+from ..llm.base import GenerateParams, describe_llm_provenance, render_prompt
+from ..llm.factory import build_backend_from_config, resolve_backend
 from ..saadi_generation.context_builders.base import ContextBuilderConfig, QueryContextRequest, RetrievedContextItem
 from ..saadi_generation.context_builders.chunks_only import ChunksOnlyContextBuilder
 from ..saadi_generation.context_builders.folded_context import FoldedContextBuilder, load_summary_blocks_by_doc
@@ -589,7 +589,7 @@ def build_or_update_chunks_and_memory(
 ) -> IngestStageResult:
     """Run SAADI ingest for the single document and write inspectable artifacts."""
 
-    backend = backend or build_backend(config)
+    backend = resolve_backend(backend) if backend is not None else build_backend(config)
     run_dir = config.run_dir()
     run_dir.mkdir(parents=True, exist_ok=True)
 
@@ -887,7 +887,7 @@ def generate_answer(
 ) -> GenerationStageResult:
     """Generate the final answer from the prepared context."""
 
-    backend = backend or build_backend(config)
+    backend = resolve_backend(backend) if backend is not None else build_backend(config)
     qa_entry = _qa_entry(config, query=query)
     question = str(qa_entry["question"])
     tokenizer = getattr(backend, "chat_tokenizer", None)
@@ -897,14 +897,15 @@ def generate_answer(
         max_context_tokens=config.max_context_tokens,
         overflow_policy=str(config.overflow_policy),
     )
-    prompt, user_prompt = build_long_context_prompt(
+    chat_prompt, user_prompt = build_long_context_prompt(
         context=trimmed_context,
         question=question,
         qa_entry=qa_entry,
-        tokenizer=tokenizer,
         system_prompt=str(config.system_prompt),
         user_template=str(config.user_template),
     )
+    # The rendered text is what this backend sends; it is saved for inspection.
+    prompt = render_prompt(backend, chat_prompt)
 
     generate = config.answer_generate_params()
     generation_started = time.perf_counter()
@@ -913,14 +914,14 @@ def generate_answer(
         generated_answer = ""
         status = "skipped_context_overflow"
     else:
-        raw_output = backend.generate_batch(
-            [prompt],
+        raw_output = backend.generate_chat_batch(
+            [chat_prompt],
             max_tokens=generate.max_tokens,
             temperature=generate.temperature,
             stop=generate.stop,
         )[0]
         generated_answer = str(raw_output).strip()
-        status = "ok"
+        status = "ok" if generated_answer else "empty_output"
     generation_latency_ms = (time.perf_counter() - generation_started) * 1000.0
 
     generation_record = {
@@ -986,6 +987,7 @@ def save_demo_artifacts(
         cwd=str(REPOSITORY_ROOT),
         provenance=run_provenance,
     )
+    reproducibility = describe_llm_provenance(backend, reproducibility)
     manifest = {
         **run_provenance,
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
@@ -1088,7 +1090,7 @@ def run_multi_question_pipeline(
         raise ValueError("questions list must not be empty")
     if loaded is None:
         loaded = load_single_document(config)
-    backend = backend or build_backend(config)
+    backend = resolve_backend(backend) if backend is not None else build_backend(config)
     if ingest is None:
         ingest = build_or_update_chunks_and_memory(config, loaded.documents_by_id, backend=backend)
 
@@ -1146,7 +1148,7 @@ def run_memory_only_pipeline(
     """Run only the SAADI ingest/memory construction stages for one document."""
 
     loaded = load_single_document(config)
-    backend = backend or build_backend(config)
+    backend = resolve_backend(backend) if backend is not None else build_backend(config)
     ingest = build_or_update_chunks_and_memory(config, loaded.documents_by_id, backend=backend)
     manifest_path = save_demo_artifacts(
         config,
@@ -1169,7 +1171,7 @@ def run_single_document_pipeline(
     """Run the complete single-document demo pipeline."""
 
     loaded = load_single_document(config)
-    backend = backend or build_backend(config)
+    backend = resolve_backend(backend) if backend is not None else build_backend(config)
     ingest = build_or_update_chunks_and_memory(config, loaded.documents_by_id, backend=backend)
     retrieval = retrieve_for_query(
         config,
