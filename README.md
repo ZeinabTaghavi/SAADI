@@ -129,7 +129,7 @@ Three choices, each one argument. Details and the Python forms of each are in [c
 
 ## Try it in Colab
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ZeinabTaghavi/SAADI/blob/main/examples/quickstart.ipynb) runs the sixty-second example end to end on an API key. [A second notebook](examples/colab_local_model.ipynb) does the same on Colab's free GPU with an open 8B model through Ollama, and [a third](examples/paper_results.ipynb) rebuilds every table of the paper from the saved results on a plain CPU runtime.
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ZeinabTaghavi/SAADI/blob/main/examples/quickstart.ipynb) runs the sixty-second example end to end on an API key. [A second notebook](examples/colab_local_model.ipynb) does the same on Colab's free GPU with an open 8B model through Ollama, and [a third](examples/paper_results.ipynb) rebuilds every table of the paper from the saved results on a plain CPU runtime. [A fourth](examples/release_check.ipynb) is the pre-release check: it installs a candidate build on a GPU runtime, prints the resolved library versions, loads a Qwen model through vLLM, and runs the whole path with assertions. [A fifth](examples/model_family_check.ipynb) runs light models from several families (Qwen, Llama, Gemma, SmolLM, Phi) and several retrievers over one small document and tabulates entities, call counts, and retrieval hits per model and retriever.
 
 ## The paper
 
