@@ -6,6 +6,24 @@ All notable changes to Saadi are documented here. The format follows
 
 ## [Unreleased]
 
+### Fixed
+
+- Open models lost every entity during indexing. They copy the anchor text
+  verbatim but often trim the spaces around its left and right context or
+  repeat the anchor inside it, and the context was matched character for
+  character, so every proposal was dropped and the memory stayed empty
+  (seen with Qwen3-4B through vLLM on Colab: 34 of 34 proposals dropped).
+  Anchors are now matched with `anchor_matching: tolerant` by default: the
+  context is compared after trimming whitespace and removing a repeated
+  anchor, and an anchor that occurs exactly once in the chunk is accepted on
+  its own. Anchors absent from the chunk are still rejected. `strict` keeps
+  the previous behavior and is set by `--profile published`. States indexed
+  with 0.1.0 are reused on `append`; index a fresh state to apply the new
+  matching to every chunk.
+- `saadi check-prompts` passed even when the model kept no entities. It now
+  reports how many proposals were dropped and fails when a real model keeps
+  none from its sample text.
+
 ### Added
 
 - Documentation pages for library usage and customization, a page for the

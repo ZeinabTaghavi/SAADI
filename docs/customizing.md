@@ -48,7 +48,7 @@ doc = Saadi(llm=my_model)
 
 The function receives the system prompt and the user prompt of each call and returns the model's text. It is the simplest way to use a provider that has no backend yet.
 
-What the model must do: for each chunk it returns a JSON object with the active entities and the text spans that anchor them, ending with `[END_JSON]`; for each fold it returns a summary ending with `[END_SUMMARY]`. The fixed part of the prompts explains this contract; `saadi check-prompts default --llm your:model` sends one of each and reports whether the answers follow it. Small models often propose anchors that do not match the chunk verbatim; those proposals are dropped and counted in `IndexReport.rejected_entities`.
+What the model must do: for each chunk it returns a JSON object with the active entities and the text spans that anchor them, ending with `[END_JSON]`; for each fold it returns a summary ending with `[END_SUMMARY]`. The fixed part of the prompts explains this contract; `saadi check-prompts default --llm your:model` sends one of each and reports whether the answers follow it. An anchor must appear verbatim in the chunk; a proposal whose anchor does not is dropped and counted in `IndexReport.rejected_entities`. The context words around the anchor only locate it, so small differences in spacing are accepted when the anchor occurs once. The check fails when the model keeps no entities from its sample text.
 
 ## Retrievers
 

@@ -853,6 +853,22 @@ def ingest_documents(
                     strategy_history_mode,
                 )
                 cache_store = {}
+        # Records built under an explicitly different anchor-matching setting
+        # carry a different memory, so they are not reused either. Indexes
+        # without the field predate it and are reused as they are.
+        strategy_anchor_matching = getattr(strategy, "anchor_matching", None)
+        if cache_store and strategy_anchor_matching is not None:
+            cache_index_payload = load_llm_history_cache_index(**namespace_kwargs) or {}
+            cached_anchor_matching = cache_index_payload.get("anchor_matching")
+            if cached_anchor_matching and str(cached_anchor_matching) != str(strategy_anchor_matching):
+                logger.warning(
+                    "Ignoring canonicalization cache records=%d: cache anchor_matching=%s differs from the "
+                    "configured anchor_matching=%s",
+                    len(cache_store),
+                    cached_anchor_matching,
+                    strategy_anchor_matching,
+                )
+                cache_store = {}
 
     def flush_namespace_cache() -> dict | None:
         nonlocal dirty_steps_since_flush
@@ -879,6 +895,7 @@ def ingest_documents(
             ),
             memory_update_mode=getattr(strategy, "memory_update_mode", None),
             history_l0_text=getattr(strategy, "history_l0_text", None),
+            anchor_matching=getattr(strategy, "anchor_matching", None),
             stores_hierarchy=bool(getattr(strategy, "stores_hierarchy", True)),
         )
         dirty_steps_since_flush = 0

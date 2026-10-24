@@ -76,10 +76,6 @@
     "sha256": "2c5e39bbfb10e597c41901f9d9199e3fbb36de1b1ece62ad7c59a8253e2b6c61"
   },
   {
-    "path": "src/saadi/core/canonicalization.py",
-    "sha256": "b9da2f28b1def73cde20f47160fc0be59c43a64b5aaf74c6ddd2b034182a3e99"
-  },
-  {
     "path": "src/saadi/core/chunking.py",
     "sha256": "2ffe09a4d74f0ff719c63e6056bc593eca168bce0a5342261c61d90d033f5ae2"
   },
@@ -90,14 +86,6 @@
   {
     "path": "src/saadi/core/prompts.py",
     "sha256": "eea72abf72c5d955e6bb16c65122baf1f049c7244ff2e7e2fa72930a3257f81e"
-  },
-  {
-    "path": "src/saadi/core/text_edits.py",
-    "sha256": "ac514646c306ac3e33036d08c5db385e56ece63f66030fbd8d695afa375a1fb4"
-  },
-  {
-    "path": "src/saadi/core/validation.py",
-    "sha256": "0b5d4e6b89b53929a4b5b8d514137fc7e569318a50eef4a3fa3458d774ee9713"
   },
   {
     "path": "src/saadi/entities/__init__.py",
