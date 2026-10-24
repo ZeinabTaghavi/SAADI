@@ -34,7 +34,21 @@ reaches PyPI.
    `saadi demo --llm mock`. TestPyPI never accepts the same version twice, so a
    rehearsal that must be repeated needs a pre-release version such as
    `X.Y.Zrc1` on a branch.
-4. **Publish.** Tag the merged commit and push the tag:
+4. **Check the GPU path.** Open
+   [examples/release_check.ipynb](../examples/release_check.ipynb) on a GPU
+   runtime (Colab T4 is enough), set `SAADI_INSTALL` to the TestPyPI line with
+   the version under test, and run it top to bottom. It prints the resolved
+   library versions, checks the files bundled in the wheel, loads a Qwen model
+   through the vLLM backend, checks the prompt contract, and runs indexing,
+   retrieval, answering, appending, and reloading with assertions. CI covers
+   the same steps with the mock model only. When a change touches the
+   backends, the prompts, or the retrievers, also run
+   [examples/model_family_check.ipynb](../examples/model_family_check.ipynb):
+   several light instruct models from different families index the same
+   document in subprocesses, and every saved state is queried with each
+   retriever; it reports extraction and fold call counts per model and a
+   hit table per retriever.
+5. **Publish.** Tag the merged commit and push the tag:
 
    ```bash
    git tag v0.1.0
@@ -44,7 +58,7 @@ reaches PyPI.
    The workflow checks that the tag matches the package version, publishes to
    PyPI, and creates the GitHub release with the changelog section as notes.
    Zenodo archives that release and mints the DOI.
-5. After the first release, add the Zenodo concept DOI to `CITATION.cff` under
+6. After the first release, add the Zenodo concept DOI to `CITATION.cff` under
    `identifiers` and the DOI badge to the README.
 
 ## When the paper is on arXiv

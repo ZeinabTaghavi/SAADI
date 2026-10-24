@@ -12,6 +12,16 @@ All notable changes to Saadi are documented here. The format follows
   paper's experiments, and three notebooks: the quickstart on an API key, the
   same on Colab's free GPU with an open model through Ollama, and a rebuild of
   the paper's tables from the saved results.
+- `examples/release_check.ipynb`, a pre-release check for a GPU runtime: it
+  installs a candidate build, prints the resolved library versions, verifies
+  the files bundled in the wheel, loads a Qwen model through the vLLM backend,
+  checks the prompt contract, and runs indexing, retrieval, answering,
+  appending, and reloading with assertions. Referenced from the release guide.
+- `examples/model_family_check.ipynb`, a matrix over light instruct models
+  from several families, each loaded through vLLM in its own subprocess, and
+  over several retrievers on one small document: per model it records loading,
+  chat template, prompt contract, entities, dropped proposals, and extraction
+  versus fold call counts; per retriever a hit table.
 - A README that starts with the library (install, a sixty-second example with
   real output, what the state contains) and moves the experiment instructions
   to the docs; the logo, an overview figure, issue templates, and a
