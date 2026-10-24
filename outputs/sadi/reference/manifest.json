@@ -7322,10 +7322,10 @@
   ],
   "coverage": {
     "main": "20 configurations: four datasets and five retrievers",
-    "construction_models": "Per-query sources cover LooGLE and NovelHopQA. QASPER and MuSiQue alternate-model results are not included because their final retrieval/evaluation files were unavailable locally.",
-    "reported_summaries": "Weight summaries preserve saved outputs. Table 6 budget and selector values are paper-reported summaries for the final run; matching them verifies transcription rather than an independent query-level recomputation.",
-    "new_bm25_memory_runs": "Published main snapshots use word memory selection; new BM25-selector experiments have separate run identities.",
-    "statistics": "Construction costs, multihop summaries, and structural statistics retain saved source values; these are not reconstructed from large construction caches.",
-    "paper_reported": "24 HR@5 cells from Table 6, page 31 (16 budget and 8 selector), covering LooGLE and NovelHopQA. The source PDF and panel are identified by hash and locator; per-query artifacts from this run are not included."
+    "construction_models": "Per-query sources cover LooGLE and NovelHopQA, the two datasets of the paper's construction-model ablation (Table 7).",
+    "reported_summaries": "The fusion-weight studies are saved aggregate values. The Table 6 budget and selector values are transcribed from the paper.",
+    "new_bm25_memory_runs": "The saved main constructions used word-overlap memory selection; new runs default to BM25 selection and have their own run identities.",
+    "statistics": "Construction costs, multihop summaries, and structural statistics are saved aggregate values with their source hashes.",
+    "paper_reported": "24 HR@5 cells from Table 6 of the paper, page 31 (16 budget and 8 selector), for LooGLE and NovelHopQA; the PDF is identified by its hash. The query-level outputs of that run are not included."
   }
 }

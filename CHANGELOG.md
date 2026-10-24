@@ -23,6 +23,14 @@ All notable changes to Saadi are documented here. The format follows
 - `saadi check-prompts` passed even when the model kept no entities. It now
   reports how many proposals were dropped and fails when a real model keeps
   none from its sample text.
+- Notebooks, after running each on Colab: the Ollama notebook installs `zstd`
+  and `pciutils` before the Ollama installer, starts the server with an
+  8192-token context and a log file, and installs Saadi from `main`; the
+  quickstart reads the API key from the Colab secret `OPENAI_API_KEY` and stops
+  with a clear message when it is empty; the model-family check installs from
+  `main` with an 8192-token context; the paper-results notebook checks that
+  the rebuilt tables are byte-identical to the committed ones and reruns the
+  paper consistency check.
 
 ### Added
 
