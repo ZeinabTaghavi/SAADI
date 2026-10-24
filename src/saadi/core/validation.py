@@ -177,6 +177,7 @@ def build_canonicalization_output(
     max_aliases: int = DEFAULT_MAX_ALIASES,
     max_desc: int = DEFAULT_MAX_DESC,
     max_objects: int | None = None,
+    anchor_matching: str = "strict",
 ) -> CanonicalizationOutput:
     if max_objects is not None:
         max_entities = int(max_objects)
@@ -222,6 +223,7 @@ def build_canonicalization_output(
             fallback_chunk_text,
             linking_sentence=linking_sentence,
             insertions=insertions,
+            anchor_matching=anchor_matching,
         )
         updated_chunk = materialized.text
         linking_sentence = materialized.linking_sentence

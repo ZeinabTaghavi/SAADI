@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from typing import Any
 
 from ..core.canonicalization import parse_canonicalization_response
+from ..core.text_edits import ANCHOR_MATCHING_TOLERANT, normalize_anchor_matching
 from ..core.prompts import json_schema_string
 from ..core.state import apply_canonicalization_to_state, begin_canonicalization_update
 from ..core.types import ChunkRecord, DiscourseState
@@ -328,6 +329,10 @@ class HierarchicalSummaryStrategy(StrategyCommonConfig):
     rollup_system_prompt: str = ROLLUP_SYSTEM_PROMPT
     memory_update_mode: str = MEMORY_UPDATE_MODE_HIS_MEM
     history_l0_text: str = HISTORY_L0_TEXT_RAW
+    # How proposed anchors are located in the chunk; see saadi.core.text_edits.
+    # "tolerant" (default) accepts a unique verbatim anchor even when the model's
+    # context words differ in spacing; "strict" reproduces the saved constructions.
+    anchor_matching: str = ANCHOR_MATCHING_TOLERANT
 
     def __post_init__(self) -> None:
         raw_b = self.k if self.k is not None else self.branching_factor
@@ -341,6 +346,7 @@ class HierarchicalSummaryStrategy(StrategyCommonConfig):
         self.k = b
         self.memory_update_mode = normalize_memory_update_mode(self.memory_update_mode)
         self.history_l0_text = normalize_history_l0_text(self.history_l0_text)
+        self.anchor_matching = normalize_anchor_matching(self.anchor_matching)
         self.active_entity_min_relevance = normalize_active_entity_min_relevance(
             self.active_entity_min_relevance
         )
@@ -688,6 +694,7 @@ class HierarchicalSummaryStrategy(StrategyCommonConfig):
             max_entities=self.max_entities,
             max_aliases=self.max_aliases,
             max_desc=self.max_desc,
+            anchor_matching=self.anchor_matching,
         )
         output = self._postprocess_output(chunk=chunk, output=output)
 
@@ -736,6 +743,7 @@ class HierarchicalSummaryStrategy(StrategyCommonConfig):
             max_entities=self.max_entities,
             max_aliases=self.max_aliases,
             max_desc=self.max_desc,
+            anchor_matching=self.anchor_matching,
         )
         output = self._postprocess_output(chunk=chunk, output=output)
         new_state, gen = begin_canonicalization_update(
@@ -774,6 +782,7 @@ class LimitedHierarchicalSummaryStrategy(HierarchicalSummaryStrategy):
             max_entities=self.max_entities,
             max_aliases=self.max_aliases,
             max_desc=self.max_desc,
+            anchor_matching=self.anchor_matching,
         )
         output = self._postprocess_output(chunk=chunk, output=output)
 

@@ -68,6 +68,8 @@ def published_config(config):
     # The saved constructions showed the model the anchored chunk copies as L0
     # history; new runs default to the original chunk text.
     strategy.setdefault("history_l0_text", "anchored")
+    # They also located anchors with strict context matching.
+    strategy.setdefault("anchor_matching", "strict")
     result = merge(config, {"ingest": saved["ingest"]})
     # Replace the model mapping: absent historical sampling fields must not inherit new defaults.
     result["model"] = saved["model"]

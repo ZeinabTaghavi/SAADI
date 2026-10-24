@@ -33,6 +33,7 @@ class PromptCheckReport:
     entity_status: str = "failed"  # ok | fallback | failed
     entity_count: int = 0
     insertion_count: int = 0
+    rejected_count: int = 0  # proposed entities dropped because their anchor was not found in the chunk
     entity_names: list[str] = field(default_factory=list)
     summary_status: str = "failed"  # ok | failed
     summary_text: str = ""
@@ -53,6 +54,7 @@ class PromptCheckReport:
             "entity_status": self.entity_status,
             "entity_count": self.entity_count,
             "insertion_count": self.insertion_count,
+            "rejected_count": self.rejected_count,
             "entity_names": list(self.entity_names),
             "summary_status": self.summary_status,
             "summary_text": self.summary_text,
@@ -131,21 +133,23 @@ def check_prompt_profile(
             max_entities=int(max_entities),
             max_aliases=int(max_aliases),
             max_desc=int(max_desc),
+            anchor_matching=strategy.anchor_matching,
         )
         report.entity_count = len(output.active_entities)
         report.insertion_count = len(output.insertions)
         report.entity_names = [str(entity.name) for entity in output.active_entities]
+        report.rejected_count = len(output.rejected_entities)
         if status == "fallback":
             report.notes.append("the JSON needed the lenient parser; the model added text around it")
+        if report.rejected_count:
+            report.notes.append(
+                f"{report.rejected_count} proposed entit{'y was' if report.rejected_count == 1 else 'ies were'} dropped "
+                "because the anchor text was not found in the chunk"
+            )
         if report.entity_count == 0 and backend_label == "mock":
             report.notes.append("the mock backend returns no entities; pass --llm to test a real model")
         elif report.entity_count == 0:
-            report.notes.append("no entities were extracted from the sample text")
-        elif report.insertion_count < report.entity_count:
-            report.notes.append(
-                f"{report.entity_count - report.insertion_count} insertion(s) were dropped because their anchors "
-                "were not exact substrings of the chunk"
-            )
+            report.problems.append("no entities were kept from the sample text, so the entity memory would stay empty")
 
     rollup = strategy.build_rollup_prompt(items=[sample], lower_cycle=1, next_cycle=5, step=0)
     summaries = strategy.run_rollup_prompts(prompts=[rollup], backend=llm, generate=GenerateParams(max_tokens=256, temperature=0.0))
@@ -164,7 +168,7 @@ def format_report(report: PromptCheckReport) -> str:
         f"directory: {report.directory}",
         f"content hash: {report.content_hash}",
         f"backend: {report.backend}",
-        f"entity extraction parse: {report.entity_status} ({report.entity_count} entities, {report.insertion_count} insertions)",
+        f"entity extraction parse: {report.entity_status} ({report.entity_count} entities kept, {report.rejected_count} dropped)",
     ]
     if report.entity_names:
         lines.append("entities: " + ", ".join(report.entity_names))

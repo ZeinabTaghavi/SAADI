@@ -15,6 +15,7 @@ The default construction model is `Qwen/Qwen3-30B-A3B-Instruct-2507`. Shared set
 | Configuration field | Meaning |
 |---|---|
 | `active_entity_selector` | Selector used to choose active memory for construction |
+| `anchor_matching` | How a proposed anchor is located in the chunk: `tolerant` (default) also accepts an anchor that occurs verbatim and exactly once when the model's context words differ in spacing; `strict` requires the context to match exactly, as in the saved constructions. |
 | `history_l0_text` | Text shown to the model for recent chunks in the hierarchical history: `raw` (original chunk text, default) or `anchored` (the copy with canonical names placed after span anchors, as in the saved constructions). The folds always summarize the anchored copies. |
 | `max_entities`, `max_aliases`, `max_desc` | Memory/prompt budgets |
 | `branching_factor` | Hierarchical summary branching factor |

@@ -819,6 +819,7 @@ def export_llm_history_cache(
     memory_update_mode: str | None = None,
     stores_hierarchy: bool = True,
     history_l0_text: str | None = None,
+    anchor_matching: str | None = None,
 ) -> dict[str, Any]:
     root = Path(output_dir) / "llm_cache"
     branching_factor = _coerce_branching_factor(hierarchy_branching_factor, hierarchy_k)
@@ -967,6 +968,9 @@ def export_llm_history_cache(
         # "anchored" (copies with the canonical name placed after each anchor).
         # Caches written before this field existed were built with "anchored".
         "history_l0_text": history_l0_text,
+        # How proposed anchors were located: "strict" or "tolerant". Caches
+        # written before this field existed used strict matching.
+        "anchor_matching": anchor_matching,
         "stores_hierarchy": bool(stores_hierarchy),
         "hierarchy_branching_factor": branching_factor,
         "rejected_entity_count": sum(
