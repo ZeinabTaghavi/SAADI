@@ -49,7 +49,7 @@ Table directories use `main/`, `comparisons/`, `ablations/`, `robustness/`, and 
 
 The [paper consistency check](../results/paper_consistency/README.md) compares the generated tables with the paper: 1,307 of 1,310 checked cells match, including all 184 values of Table 1. The three differences are second-decimal rounding of construction statistics.
 
-The notebook [examples/paper_results.ipynb](../examples/paper_results.ipynb) performs this rebuild on a plain CPU runtime and displays the tables.
+The notebook [examples/paper_results.ipynb](../examples/paper_results.ipynb) performs this rebuild on a plain CPU runtime, checks that the rebuilt tables are byte-identical to the committed ones, reruns the paper consistency check, and displays the tables.
 
 ## Run Saadi
 
