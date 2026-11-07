@@ -200,11 +200,18 @@ def main(report: StepReport, argv: list[str]) -> None:
     report.add("Gate", verdict)
     report.numbers.update({"gate_rate": gate_rate, "gate_n": len(gate_group), "gate_bridged": len(bridged)})
 
-    parser_bad = [
-        (p["persona_id"], k) for p in personas for k in ("gold_parser_status", "reveal_parser_status") if p.get(k) not in (None, "ok")
-    ]
+    # "fallback" means the reply was parsed but an edit whose anchor did not match
+    # exactly was dropped; the paper's saved Qwen run on these books is ~99% fallback.
+    status_keys = ("gold_parser_status", "reveal_parser_status")
+    status_counts: dict[str, int] = {}
+    for p in personas:
+        for k in status_keys:
+            if p.get(k) is not None:
+                status_counts[p[k]] = status_counts.get(p[k], 0) + 1
+    report.add("Parser status of chunks holding inserted sentences", str(dict(sorted(status_counts.items()))))
+    parser_bad = [(p["persona_id"], k) for p in personas for k in status_keys if p.get(k) not in (None, "ok", "fallback")]
     if parser_bad:
-        report.unexpected.append(f"Parser status not ok for inserted chunks: {parser_bad[:10]} ({len(parser_bad)} total).")
+        report.unexpected.append(f"Parser failed or chunk record missing for inserted chunks: {parser_bad[:10]} ({len(parser_bad)} total).")
     report.table("Chunk records per book (growth check is in step 4's table)", ["book", "chunk records"], growth_rows)
 
     rng = np.random.default_rng(SEED)

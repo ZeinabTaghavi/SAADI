@@ -94,7 +94,7 @@ def scan_cache(report: StepReport) -> tuple[int, list[list]]:
         done = Path(memory_path).exists()
         finished += int(done)
         rows.append([doc_id, n_steps, parser_failures, "finished" if done else "in progress"])
-    report.table("Books", ["book", "chunk records", "parser failures", "state"], rows)
+    report.table("Books", ["book", "chunk records", "parser status not ok (fallback or failed)", "state"], rows)
     report.add("Location of the construction records", f"`{index_path}`")
     report.numbers["cache_index"] = str(index_path)
     report.numbers["books_finished"] = finished
