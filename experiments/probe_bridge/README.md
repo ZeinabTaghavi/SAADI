@@ -71,8 +71,12 @@ results/probe_bridge/   README.md, table.md, table.csv, figures (step 8)
    note's family D defines only the Home-shaped gold.
 5. **Inserted sentences are padded to 8-18 words** (the note's own example
    phrasings are shorter than its style rule).
-6. **Short books are a design limit.** 24 sentences anchored to the gold window
-   [0.10N, 0.30N], three chunks apart, need roughly N >= 450 chunks. Step 1
-   flags each selected book; infeasible books stop step 3 for a decision.
-   In tight-but-feasible books, cell-4 golds fall back to the upper part of
-   the note's own window (recorded per persona as `banded_cell4`).
+6. **Geometry v2 (decided at the step-1 hand-off).** The 10 shortest books
+   (213-383 chunks) cannot hold the note's gold window [0.10N, 0.30N] with 24
+   sentences three chunks apart. The gold window is therefore [0.05N, 0.45N];
+   middle-reveal cells (2/6/7/8) keep their gold above 0.20N so the reveal
+   clears the window, cell 3 stays at or below 0.35N so the far reveal stays
+   under 0.95N, and cell-4 reveals take slots in (0.25N, 0.35N] so their golds
+   land in (0.45N, 0.55N] - all inside the note's cell-4 windows. Books under
+   240 chunks are skipped for the next-shortest feasible ones (B24 -> B44).
+   Placement verified by simulation at the real book sizes over five seeds.

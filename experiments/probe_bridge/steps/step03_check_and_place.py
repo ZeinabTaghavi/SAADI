@@ -232,13 +232,17 @@ def _min_gap_layout(rng, start: int, end: int, widths: list[int], gap: int) -> l
     return positions
 
 
-def _assign(p: dict, g: int, r, n: int, note=None) -> list[int]:
-    for pos in [g] + ([r] if r is not None else []):
-        if pos < int(0.02 * n) or pos > int(0.95 * n):
-            raise RuntimeError(f"{p['persona_id']}: position {pos} outside [0.02N, 0.95N] (N={n})")
-    p["target_gold_pos"], p["target_reveal_pos"] = g, r
-    p["placement_note"] = note
-    return [g] + ([r] if r is not None else [])
+# Geometry v2, decided at the step-1 hand-off (the 10 shortest books are
+# 213-383 chunks, far below the ~450 the note's windows need):
+# - gold window widened to [0.05N, 0.45N];
+# - cells 2/6/7/8 (middle reveals, g + 0.25N) keep g > 0.20N so the reveal
+#   lands above the window;
+# - cell 3 (far, g + 0.55N) keeps g <= 0.35N so the reveal stays under 0.95N;
+# - cell-4 reveals occupy layout slots in (0.25N, 0.35N] (inside the note's
+#   [0.15N, 0.35N]), so their golds land in (0.45N, 0.55N] - inside the note's
+#   cell-4 gold window and above the packed region.
+GOLD_WINDOW = (0.05, 0.45)
+SEG_EDGES = (0.05, 0.20, 0.35, 0.45)  # three segments S1, S2, S3
 
 
 def _reveal_for(p: dict, g: int, n: int):
@@ -254,103 +258,129 @@ def _reveal_for(p: dict, g: int, n: int):
     return None
 
 
-def _place_book_plain(main_group, cell4, n, rng) -> list[int]:
-    """The note's draws: golds laid in [0.10N, 0.30N], cell-4 golds uniform in
-    [0.35N, 0.55N] by rejection. Works when the book is long enough."""
-    order = [main_group[i] for i in rng.permutation(len(main_group))]
-    widths = [MIN_SEPARATION if p["placement"] == "near" else 0 for p in order]
-    golds = _min_gap_layout(rng, int(0.10 * n) + 1, int(0.30 * n), widths, MIN_SEPARATION)
-    taken: list[int] = []
-    for p, g in zip(order, golds, strict=True):
-        r = _reveal_for(p, g, n)
-        p["rng_draws"] = [float(g)]
-        taken += _assign(p, g, r, n)
-    for p in cell4:
-        draws: list[float] = []
-        for _ in range(5000):
-            u = float(rng.uniform(0.35 * n, 0.55 * n))
-            draws.append(u)
-            g = int(u)
-            r = g - int(0.20 * n)
-            if r < int(0.02 * n) or g > int(0.95 * n):
-                continue
-            if any(abs(g - t) < MIN_SEPARATION for t in taken) or any(abs(r - t) < MIN_SEPARATION for t in taken):
-                continue
-            if abs(g - r) < MIN_SEPARATION:
-                continue
-            p["rng_draws"] = draws
-            taken += _assign(p, g, r, n)
-            break
+def _segment_domains(p: dict) -> tuple[int, ...]:
+    """Allowed segments (0=S1, 1=S2, 2=S3) per persona kind."""
+    if p["cell"] == 4:
+        return (1,)  # reveal slot in (0.25N, 0.35N] (upper S2)
+    if p["placement"] == "middle":
+        return (1, 2)  # g > 0.20N
+    if p["placement"] == "far":
+        return (0, 1)  # g <= 0.35N
+    return (0, 1, 2)  # near pairs and cell 5
+
+
+def _width(p: dict) -> int:
+    return MIN_SEPARATION if p["placement"] == "near" else 0
+
+
+def _try_book_layout(group: list[dict], n: int, rng):
+    edges = [int(frac * n) for frac in SEG_EDGES]
+    seg_bounds = [(edges[0] + 1, edges[1]), (edges[1] + 1, edges[2]), (edges[2] + 1, edges[3])]
+
+    # Assign personas to allowed segments, most constrained first (cell-4 slots,
+    # then middle-golds, then the rest), choosing randomly among segments that
+    # still have capacity.
+    def fits(seg: int, extra: dict) -> bool:
+        lo, hi = seg_bounds[seg]
+        candidate = seg_items[seg] + [extra]
+        total = sum(_width(q) for q in candidate) + MIN_SEPARATION * (len(candidate) - 1)
+        return total <= hi - lo
+
+    seg_items: list[list[dict]] = [[], [], []]
+    items = [group[i] for i in rng.permutation(len(group))]
+    items.sort(key=lambda q: len(_segment_domains(q)))
+    for p in items:
+        domains = [seg for seg in _segment_domains(p) if fits(seg, p)]
+        if not domains:
+            return None
+        seg = domains[int(rng.integers(0, len(domains)))]
+        seg_items[seg].append(p)
+
+    # Lay each segment. In S2 the order is forced: middle-golds at the bottom,
+    # everything else in the middle, cell-4 slots at the top, and the lowest
+    # cell-4 slot must clear the highest S2 middle-gold by 15 chunks - that
+    # keeps the cell-4 golds (slot + 0.20N) off the middle reveals (gold +
+    # 0.25N), whose images otherwise interleave at a -0.05N offset.
+    band_lo = int(0.25 * n)
+    clearance = int(0.05 * n) + MIN_SEPARATION
+    positions: dict[str, tuple[int, int | None]] = {}
+    prev_end = 0
+    for seg, members in enumerate(seg_items):
+        if not members:
+            continue
+        if seg == 1:
+
+            def tier(q: dict) -> int:
+                if q["placement"] == "middle":
+                    return 0
+                return 2 if q["cell"] == 4 else 1
+
+            members = sorted(members, key=tier)
         else:
-            raise RuntimeError(f"cell-4 rejection failed for {p['persona_id']} (N={n})")
+            members = [members[i] for i in rng.permutation(len(members))]
+        lo, hi = seg_bounds[seg]
+        lo = max(lo, prev_end + MIN_SEPARATION)
+        widths = [_width(q) for q in members]
+        try:
+            laid = _min_gap_layout(rng, lo, hi, widths, MIN_SEPARATION)
+        except RuntimeError:
+            return None
+        s2_mid_top = None
+        for q, pos in zip(members, laid, strict=True):
+            if seg == 1 and q["placement"] == "middle":
+                s2_mid_top = pos
+            if q["cell"] == 4:
+                if pos <= band_lo:
+                    return None
+                if s2_mid_top is not None and pos - s2_mid_top < clearance:
+                    return None
+                r = pos
+                g = r + int(0.20 * n)
+            else:
+                g = pos
+                r = _reveal_for(q, g, n)
+            positions[q["persona_id"]] = (g, r)
+        prev_end = laid[-1] + widths[-1]
+
+    # Global verification: bounds, windows, and pairwise separation.
+    taken: list[int] = []
+    for q in group:
+        g, r = positions[q["persona_id"]]
+        lo_f, hi_f = (0.35, 0.55) if q["cell"] == 4 else GOLD_WINDOW
+        if not (int(lo_f * n) <= g <= int(hi_f * n) + 1):
+            return None
+        for pos in [g] + ([r] if r is not None else []):
+            if pos < int(0.02 * n) or pos > int(0.95 * n):
+                return None
+        taken += [g] + ([r] if r is not None else [])
+    ordered = sorted(taken)
+    if any(b - a < MIN_SEPARATION for a, b in zip(ordered, ordered[1:], strict=False)):
+        return None
+    for q in group:
+        g, r = positions[q["persona_id"]]
+        q["target_gold_pos"], q["target_reveal_pos"] = g, r
+        q["rng_draws"] = [float(g)] + ([float(r)] if r is not None else [])
     return taken
 
 
-def _place_book_pinned(main_group, cell4, n, rng) -> list[int]:
-    """Fallback for tight books: one layout of all 24 items in the gold window,
-    with the cell-4 items pinned to its top quarter [0.25N, 0.30N]. Their gold
-    then lands at q + 0.25N (inside the note's [0.35N, 0.55N]) and their reveal
-    at q + 0.25N - 0.20N, in the empty band just above the gold window; every
-    pairwise separation is inherited from the layout."""
-    # The pinned band: low enough that the derived reveal stays MIN_SEPARATION
-    # below the lowest possible middle reveal, high enough that it stays above
-    # the gold window (the layout's own gaps cover the rest).
-    q_lo = int(0.25 * n) + 1
-    q_hi = int(0.10 * n) + int(0.20 * n) - MIN_SEPARATION + 1
-    if q_hi < q_lo + MIN_SEPARATION * (len(cell4) - 1):
-        raise RuntimeError(f"pinned band [{q_lo}, {q_hi}] too small for {len(cell4)} cell-4 items (N={n})")
-    for _ in range(400):
-        order = [main_group[i] for i in rng.permutation(len(main_group))]
-        items = order + [cell4[i] for i in rng.permutation(len(cell4))]
-        widths = [MIN_SEPARATION if p["placement"] == "near" else 0 for p in items]
-        laid = _min_gap_layout(rng, int(0.10 * n) + 1, int(0.30 * n), widths, MIN_SEPARATION)
-        qs = laid[len(order) :]
-        if any(q < q_lo or q > q_hi for q in qs):
-            continue
-        taken: list[int] = []
-        for p, pos in zip(items, laid, strict=True):
-            if p["cell"] == 4:
-                g = pos + int(0.25 * n)
-                r = g - int(0.20 * n)
-                p["rng_draws"] = [float(pos)]
-                taken += _assign(p, g, r, n, note="banded_cell4")
-            else:
-                r = _reveal_for(p, pos, n)
-                p["rng_draws"] = [float(pos)]
-                taken += _assign(p, pos, r, n)
-        return taken
-    raise RuntimeError(f"pinned layout failed after 400 rounds (N={n})")
-
-
 def draw_positions(personas: list[dict], n_chunks: dict[str, int], rng) -> None:
-    """Draw every target position, honouring the note's windows and check 7.
+    """Draw every target position under geometry v2 (see the comment above).
 
-    The gold window is a packing problem (21 golds plus the cell-1 reveals at
-    g+3, all >= 3 apart), so golds are laid out with a sorted-uniform
-    minimum-gap draw. Cell 4 uses the note's uniform draw when the book has
-    room, and the pinned fallback otherwise (recorded and reported)."""
+    Positions are laid with sorted-uniform minimum-gap draws inside three
+    segments of the gold window, reveals are the note's fixed offsets, and a
+    global check enforces every bound and the 3-chunk separation; a failing
+    round is redrawn in full.
+    """
     for book, n in sorted(n_chunks.items()):
         group = [q for q in personas if q["book_id"] == book]
-        main_group = [p for p in group if p["cell"] != 4]
-        cell4 = [p for p in group if p["cell"] == 4]
-        taken = None
-        errors = []
-        for strategy in (_place_book_plain, _place_book_pinned):
-            try:
-                taken = strategy(main_group, cell4, n, rng)
+        for _ in range(2000):
+            if _try_book_layout(group, n, rng) is not None:
                 break
-            except RuntimeError as exc:
-                errors.append(str(exc))
-        if taken is None:
+        else:
             raise RuntimeError(
-                f"Could not place the {len(group)} personas of book {book} (N={n}): "
-                + " | ".join(errors)
-                + " - stop and decide at the hand-off (see step 1's feasibility column)."
+                f"Could not place the {len(group)} personas of book {book} (N={n}) after 2000 rounds "
+                f"under geometry v2; stop and decide at the hand-off (see step 1's feasibility column)."
             )
-        ordered = sorted(taken)
-        bad = [(a, b) for a, b in zip(ordered, ordered[1:], strict=False) if b - a < MIN_SEPARATION]
-        if bad:
-            raise RuntimeError(f"Internal error: separation violated in {book}: {bad[:5]}")
 
 
 # ---------------------------------------------------------------------------

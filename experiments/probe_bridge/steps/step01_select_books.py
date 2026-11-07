@@ -13,13 +13,12 @@ from common import BOOKS_JSON, ROOT, SPEC_DIR, StepReport, chunk_book, run_step,
 
 QUESTION_SET_TXT = SPEC_DIR / "question_set.txt"
 
-# Position feasibility: in a tight book all 24 sentences anchored to the gold
-# window (21 golds, 3 cell-1 reveal slots, 3 pinned cell-4 slots) must fit
-# [0.10N, 0.30N] at least 3 chunks apart: 0.20N >= 78 plus layout headroom, so
-# books under about 450 chunks fail at step 3. This is a design limit of the
-# note's windows with 24 personas per book - decide at this hand-off whether to
-# widen the windows, reduce personas per short book, or pick longer books.
-MIN_FEASIBLE_CHUNKS = 450
+# Position feasibility under geometry v2 (gold window [0.05N, 0.45N], decided
+# at the step-1 hand-off): the window holds 27 anchored positions 3 chunks
+# apart plus the cell-4 clearance, which needs about N >= 240 (verified by
+# simulation at the real book sizes; 213 is provably too small). Selection
+# takes the 10 shortest books at or above this floor and reports any skipped.
+MIN_FEASIBLE_CHUNKS = 240
 
 
 def main(report: StepReport, argv: list[str]) -> None:
@@ -50,9 +49,14 @@ def main(report: StepReport, argv: list[str]) -> None:
             }
         )
     rows.sort(key=lambda r: (r["n_chunks"], r["doc_id"]))
-    selected = rows[: common.N_BOOKS]
-    for row in selected:
+    for row in rows:
         row["feasible_positions"] = row["n_chunks"] >= MIN_FEASIBLE_CHUNKS
+    skipped = [r["doc_id"] for r in rows if not r["feasible_positions"]]
+    selected = [r for r in rows if r["feasible_positions"]][: common.N_BOOKS]
+    if len(selected) < common.N_BOOKS:
+        raise RuntimeError(
+            f"Only {len(selected)} books have at least {MIN_FEASIBLE_CHUNKS} chunks; the probe needs 10. Stop and decide at the hand-off."
+        )
 
     # Cross-check against the paper's construction cache when it is present
     # (reported only; a different book edition would show up here).
@@ -105,19 +109,18 @@ def main(report: StepReport, argv: list[str]) -> None:
         f"Books loaded: {len(rows)}. Selected: {len(selected)}. "
         f"Total chunks to index: **{total}**. QA entries in the question set: {len(qa)}.",
     )
-    infeasible = [r["doc_id"] for r in selected if not r["feasible_positions"]]
-    if infeasible:
-        report.unexpected.append(
-            f"These books have fewer than {MIN_FEASIBLE_CHUNKS} chunks: {infeasible}. "
-            "The note's position windows (21 golds in [0.10N, 0.30N], 3 chunks apart) cannot all fit there. "
-            "STOP: decide at this hand-off whether to widen the windows or relax the spacing before step 2."
+    if skipped:
+        report.add(
+            "Skipped books",
+            f"Too short for geometry v2 (under {MIN_FEASIBLE_CHUNKS} chunks): {skipped}. "
+            "The next-shortest feasible books take their places.",
         )
     report.numbers.update(
         {
             "selected": selected,
             "total_chunks": total,
             "qa_entries": len(qa),
-            "infeasible_books": infeasible,
+            "skipped_books": skipped,
         }
     )
 
