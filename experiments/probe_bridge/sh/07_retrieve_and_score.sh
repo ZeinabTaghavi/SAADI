@@ -10,6 +10,9 @@ cd "${ROOT_DIR}"
 source scripts/env.sh
 # Keep the NovelHopQA loader's match reports inside the probe folder.
 export NOVELHOPQA_REPORT_DIR="${ROOT_DIR}/experiments/probe_bridge/logs/dataset_reports"
+# The corpus has texts for a subset of the QA titles; the paper's saved run
+# used the same subset, so missing titles are skipped, not fatal.
+export NOVELHOPQA_SUBSET_MODE="${NOVELHOPQA_SUBSET_MODE:-1}"
 # The same virtual environment as the main study, when present.
 if [[ -f .venv/bin/activate ]]; then
   # shellcheck disable=SC1091
