@@ -1,0 +1,138 @@
+{
+  "fact_types": {
+    "home": {
+      "gold": "{X} had lived in {P} for many years.",
+      "query": "Where was {Y}'s home?"
+    },
+    "vessel": {
+      "gold": "{X} kept a small wooden boat called {P}.",
+      "query": "What was the name of {Y}'s vessel?"
+    },
+    "horse": {
+      "gold": "{X} rode a grey mare known as {P}.",
+      "query": "What was {Y}'s horse called?"
+    },
+    "origin": {
+      "gold": "{X} was born in the town of {P}.",
+      "query": "Where did {Y} come from?"
+    },
+    "lodging": {
+      "gold": "{X} took lodgings at an inn called {P}.",
+      "query": "Where did {Y} stay?"
+    }
+  },
+  "object_facts": {
+    "boat": {
+      "gold": "{X} was kept in the harbour at {P} all year.",
+      "query": "Where was {Y}'s boat?"
+    },
+    "mill": {
+      "gold": "{X} stood beside the stream at {P} from spring to autumn.",
+      "query": "Where was {Y}'s mill?"
+    },
+    "inn": {
+      "gold": "{X} stood along the high road at {P} back then.",
+      "query": "Where was {Y}'s inn?"
+    },
+    "horse": {
+      "gold": "{X} was stabled behind the smithy at {P} each winter.",
+      "query": "Where was {Y}'s horse?"
+    },
+    "carriage": {
+      "gold": "{X} was housed in the coach yard at {P} every season.",
+      "query": "Where was {Y}'s carriage?"
+    },
+    "lighthouse": {
+      "gold": "{X} stood upon the headland at {P} above the rocks.",
+      "query": "Where was {Y}'s lighthouse?"
+    }
+  },
+  "reveal_phrasings": {
+    "A": [
+      "In those days, {Y}'s family name was {X}.",
+      "{X}, whose given name was {Y}, was well known in those parts.",
+      "{Y} was the given name of {X} in the church register.",
+      "The surname of {Y} was {X}, or so the parish books said."
+    ],
+    "B": [
+      "Everyone in the village knew {Y} as {X}.",
+      "{Y} went by {X} among the parish folk thereabouts.",
+      "People of the district spoke of {Y} as {X}.",
+      "{X} was none other than {Y}, as the neighbours often said."
+    ],
+    "C": [
+      "{X} worked as a {OCC} in the district.",
+      "{X} practised the trade of a {OCC} back then.",
+      "By profession, {X} was a {OCC} of some repute.",
+      "{X} served the whole parish as its {OCC}."
+    ],
+    "D": [
+      "{Y} owned {X} and prized it dearly.",
+      "{X} belonged to {Y}, as the whole district understood.",
+      "{Y} was the owner of {X} in former days.",
+      "{X} was {Y}'s own property, bought long before."
+    ]
+  },
+  "cells": [
+    {
+      "cell": 1,
+      "family": "A",
+      "placement": "near",
+      "label": "A, reveal 3 chunks after the gold"
+    },
+    {
+      "cell": 2,
+      "family": "A",
+      "placement": "middle",
+      "label": "A, reveal 25% of the book after"
+    },
+    {
+      "cell": 3,
+      "family": "A",
+      "placement": "far",
+      "label": "A, reveal 55% of the book after"
+    },
+    {
+      "cell": 4,
+      "family": "A",
+      "placement": "before",
+      "label": "A, reveal 20% before the gold (control)"
+    },
+    {
+      "cell": 5,
+      "family": "A",
+      "placement": "none",
+      "label": "A, no reveal (control)"
+    },
+    {
+      "cell": 6,
+      "family": "B",
+      "placement": "middle",
+      "label": "B, nickname, reveal 25% after"
+    },
+    {
+      "cell": 7,
+      "family": "C",
+      "placement": "middle",
+      "label": "C, description, reveal 25% after"
+    },
+    {
+      "cell": 8,
+      "family": "D",
+      "placement": "middle",
+      "label": "D, object, reveal 25% after"
+    }
+  ],
+  "titles": [
+    "Dr.",
+    "Captain",
+    "Mrs.",
+    "Professor",
+    "Father",
+    "Judge",
+    "Madame",
+    "Sergeant"
+  ],
+  "seed": 42,
+  "notes": "Fixed name banks, templates and phrasings for the bridge probe.\n\nEverything here is written in advance and never edited after indexing starts\n(the frozen spec records what was actually used). The absence and overlap\nchecks in step 3 decide what survives; the banks only supply candidates, with\ngenerous reserves. Spellings are rare or lightly altered on purpose so the\nabsence check passes more often.\n\nInterpretations of the note, recorded here and in the step reports:\n- The note's family-D example reveal (\"Mitra owned a fishing boat called the\n  Blue Heron\") contains the query's kind word (\"boat\") and would fail the\n  note's own check 5, so the D reveals below are kind-free (\"Mitra owned the\n  Blue Heron.\"). The query still uses the kind word; it matches nothing and is\n  decorative.\n- The note's family-C example reveal (\"earned her living as a cartographer\")\n  shares the stem \"liv\" with the Home gold sentence and would fail check 4;\n  the C phrasings below avoid it.\n- Cell 8 (family D) uses the note's \"Home shape adapted to an object\" for all\n  its personas, rotating the six object kinds instead of the five fact types\n  (a vessel/horse/origin/lodging fact has no natural object form).\n- Inserted sentences are kept at 8-18 words, so the shorter example phrasings\n  of the note are padded.\n"
+}

@@ -1,0 +1,52 @@
+{
+  "step": 3,
+  "title": "Check and place",
+  "status": "ok",
+  "commands": [
+    "bash experiments/probe_bridge/sh/03_*.sh",
+    "checks 1-6 over the 10 originals + question set; positions with default_rng(42)"
+  ],
+  "numbers": {
+    "regenerations": 59,
+    "reasons": {
+      "check5": 36,
+      "check1": 18,
+      "check6": 12,
+      "check4": 4,
+      "check2": 1
+    },
+    "n_chunks": {
+      "B31": 244,
+      "B43": 245,
+      "B37": 261,
+      "B18": 311,
+      "B04": 320,
+      "B34": 334,
+      "B27": 337,
+      "B61": 355,
+      "B26": 383,
+      "B44": 384
+    },
+    "pass_counts": {
+      "check1": 240,
+      "check2": 240,
+      "check3": 240,
+      "check4": 240,
+      "check5": 240,
+      "check6": 240
+    }
+  },
+  "files_written": [
+    "/mnt/data/zeinab/SAADI/experiments/probe_bridge/spec/personas.jsonl"
+  ],
+  "unexpected": [],
+  "versions": {
+    "python": "3.12.3",
+    "platform": "Linux-6.17.0-23-generic-x86_64-with-glibc2.39",
+    "numpy": "2.3.5",
+    "pandas": "3.0.1",
+    "yaml": "6.0.3",
+    "saadi": "0.1.0",
+    "git_commit": "60cc1286d242b67608b6cadf3678c24856da74df"
+  }
+}

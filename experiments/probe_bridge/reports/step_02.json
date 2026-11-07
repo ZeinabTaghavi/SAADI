@@ -1,0 +1,71 @@
+{
+  "step": 2,
+  "title": "Generate personas",
+  "status": "ok",
+  "commands": [
+    "bash experiments/probe_bridge/sh/02_*.sh",
+    "numpy.random.default_rng(42); 240 personas, banks from experiments/probe_bridge/banks.py"
+  ],
+  "numbers": {
+    "count_by_cell": {
+      "1": 30,
+      "2": 30,
+      "3": 30,
+      "4": 30,
+      "5": 30,
+      "6": 30,
+      "7": 30,
+      "8": 30
+    },
+    "count_by_family": {
+      "A": 150,
+      "B": 30,
+      "C": 30,
+      "D": 30
+    },
+    "count_by_fact_type": {
+      "home": 42,
+      "home_object:boat": 5,
+      "home_object:carriage": 5,
+      "home_object:horse": 5,
+      "home_object:inn": 5,
+      "home_object:lighthouse": 5,
+      "home_object:mill": 5,
+      "horse": 42,
+      "lodging": 42,
+      "origin": 42,
+      "vessel": 42
+    },
+    "count_by_gender": {
+      "f": 120,
+      "m": 120
+    },
+    "count_by_language_background": {
+      "arabic": 24,
+      "finnish": 24,
+      "hindi": 24,
+      "japanese": 24,
+      "persian": 24,
+      "portuguese": 24,
+      "quechua": 24,
+      "turkish": 24,
+      "welsh": 24,
+      "yoruba": 24
+    },
+    "n_personas": 240
+  },
+  "files_written": [
+    "/mnt/data/zeinab/SAADI/experiments/probe_bridge/spec/templates.json",
+    "/mnt/data/zeinab/SAADI/experiments/probe_bridge/spec/personas.jsonl"
+  ],
+  "unexpected": [],
+  "versions": {
+    "python": "3.12.3",
+    "platform": "Linux-6.17.0-23-generic-x86_64-with-glibc2.39",
+    "numpy": "2.3.5",
+    "pandas": "3.0.1",
+    "yaml": "6.0.3",
+    "saadi": "0.1.0",
+    "git_commit": "60cc1286d242b67608b6cadf3678c24856da74df"
+  }
+}

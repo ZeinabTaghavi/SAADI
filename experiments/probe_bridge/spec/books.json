@@ -1,19 +1,11 @@
 {
   "selected": [
     {
-      "doc_id": "B24",
-      "n_chunks": 213,
-      "n_words": 102908,
-      "n_chars": 560288,
-      "feasible_positions": false,
-      "paper_cache_chunks": null
-    },
-    {
       "doc_id": "B31",
       "n_chunks": 244,
       "n_words": 117186,
       "n_chars": 589303,
-      "feasible_positions": false,
+      "feasible_positions": true,
       "paper_cache_chunks": null
     },
     {
@@ -21,7 +13,7 @@
       "n_chunks": 245,
       "n_words": 118850,
       "n_chars": 664020,
-      "feasible_positions": false,
+      "feasible_positions": true,
       "paper_cache_chunks": null
     },
     {
@@ -29,7 +21,7 @@
       "n_chunks": 261,
       "n_words": 126007,
       "n_chars": 713424,
-      "feasible_positions": false,
+      "feasible_positions": true,
       "paper_cache_chunks": null
     },
     {
@@ -37,7 +29,7 @@
       "n_chunks": 311,
       "n_words": 149887,
       "n_chars": 835922,
-      "feasible_positions": false,
+      "feasible_positions": true,
       "paper_cache_chunks": null
     },
     {
@@ -45,7 +37,7 @@
       "n_chunks": 320,
       "n_words": 156676,
       "n_chars": 880158,
-      "feasible_positions": false,
+      "feasible_positions": true,
       "paper_cache_chunks": null
     },
     {
@@ -53,7 +45,7 @@
       "n_chunks": 334,
       "n_words": 160345,
       "n_chars": 895687,
-      "feasible_positions": false,
+      "feasible_positions": true,
       "paper_cache_chunks": null
     },
     {
@@ -61,7 +53,7 @@
       "n_chunks": 337,
       "n_words": 162438,
       "n_chars": 899415,
-      "feasible_positions": false,
+      "feasible_positions": true,
       "paper_cache_chunks": null
     },
     {
@@ -69,7 +61,7 @@
       "n_chunks": 355,
       "n_words": 170013,
       "n_chars": 953984,
-      "feasible_positions": false,
+      "feasible_positions": true,
       "paper_cache_chunks": null
     },
     {
@@ -77,7 +69,15 @@
       "n_chunks": 383,
       "n_words": 183955,
       "n_chars": 1025006,
-      "feasible_positions": false,
+      "feasible_positions": true,
+      "paper_cache_chunks": null
+    },
+    {
+      "doc_id": "B44",
+      "n_chunks": 384,
+      "n_words": 185356,
+      "n_chars": 1028697,
+      "feasible_positions": true,
       "paper_cache_chunks": null
     }
   ],
@@ -87,15 +87,14 @@
       "n_chunks": 213,
       "n_words": 102908,
       "n_chars": 560288,
-      "feasible_positions": false,
-      "paper_cache_chunks": null
+      "feasible_positions": false
     },
     {
       "doc_id": "B31",
       "n_chunks": 244,
       "n_words": 117186,
       "n_chars": 589303,
-      "feasible_positions": false,
+      "feasible_positions": true,
       "paper_cache_chunks": null
     },
     {
@@ -103,7 +102,7 @@
       "n_chunks": 245,
       "n_words": 118850,
       "n_chars": 664020,
-      "feasible_positions": false,
+      "feasible_positions": true,
       "paper_cache_chunks": null
     },
     {
@@ -111,7 +110,7 @@
       "n_chunks": 261,
       "n_words": 126007,
       "n_chars": 713424,
-      "feasible_positions": false,
+      "feasible_positions": true,
       "paper_cache_chunks": null
     },
     {
@@ -119,7 +118,7 @@
       "n_chunks": 311,
       "n_words": 149887,
       "n_chars": 835922,
-      "feasible_positions": false,
+      "feasible_positions": true,
       "paper_cache_chunks": null
     },
     {
@@ -127,7 +126,7 @@
       "n_chunks": 320,
       "n_words": 156676,
       "n_chars": 880158,
-      "feasible_positions": false,
+      "feasible_positions": true,
       "paper_cache_chunks": null
     },
     {
@@ -135,7 +134,7 @@
       "n_chunks": 334,
       "n_words": 160345,
       "n_chars": 895687,
-      "feasible_positions": false,
+      "feasible_positions": true,
       "paper_cache_chunks": null
     },
     {
@@ -143,7 +142,7 @@
       "n_chunks": 337,
       "n_words": 162438,
       "n_chars": 899415,
-      "feasible_positions": false,
+      "feasible_positions": true,
       "paper_cache_chunks": null
     },
     {
@@ -151,7 +150,7 @@
       "n_chunks": 355,
       "n_words": 170013,
       "n_chars": 953984,
-      "feasible_positions": false,
+      "feasible_positions": true,
       "paper_cache_chunks": null
     },
     {
@@ -159,56 +158,65 @@
       "n_chunks": 383,
       "n_words": 183955,
       "n_chars": 1025006,
-      "feasible_positions": false,
+      "feasible_positions": true,
       "paper_cache_chunks": null
     },
     {
       "doc_id": "B44",
       "n_chunks": 384,
       "n_words": 185356,
-      "n_chars": 1028697
+      "n_chars": 1028697,
+      "feasible_positions": true,
+      "paper_cache_chunks": null
     },
     {
       "doc_id": "B12",
       "n_chunks": 385,
       "n_words": 184355,
-      "n_chars": 989507
+      "n_chars": 989507,
+      "feasible_positions": true
     },
     {
       "doc_id": "B15",
       "n_chunks": 421,
       "n_words": 203679,
-      "n_chars": 1130973
+      "n_chars": 1130973,
+      "feasible_positions": true
     },
     {
       "doc_id": "B40",
       "n_chunks": 481,
       "n_words": 232127,
-      "n_chars": 1202570
+      "n_chars": 1202570,
+      "feasible_positions": true
     },
     {
       "doc_id": "B05",
       "n_chunks": 508,
       "n_words": 244441,
-      "n_chars": 1360735
+      "n_chars": 1360735,
+      "feasible_positions": true
     },
     {
       "doc_id": "B54",
       "n_chunks": 660,
       "n_words": 319045,
-      "n_chars": 1792122
+      "n_chars": 1792122,
+      "feasible_positions": true
     },
     {
       "doc_id": "B62",
       "n_chunks": 729,
       "n_words": 349762,
-      "n_chars": 1956749
+      "n_chars": 1956749,
+      "feasible_positions": true
     },
     {
       "doc_id": "B42",
       "n_chunks": 1165,
       "n_words": 562862,
-      "n_chars": 3191953
+      "n_chars": 3191953,
+      "feasible_positions": true
     }
   ],
   "chunk_size": 500
