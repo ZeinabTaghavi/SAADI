@@ -1,0 +1,4502 @@
+[
+  {
+    "persona_id": "c1_B31_000",
+    "kind": "gold",
+    "target_chunk": 37,
+    "char_pos": 89889,
+    "boundary": "paragraph",
+    "sentence": "Doctor Sinchipuma had lived in Gavelhall for many years.",
+    "chunk_index": 37,
+    "chunk_id": "B31:37"
+  },
+  {
+    "persona_id": "c1_B31_000",
+    "kind": "reveal",
+    "target_chunk": 40,
+    "char_pos": 96915,
+    "boundary": "sentence",
+    "sentence": "In those days, Maysunah's family name was Sinchipuma.",
+    "chunk_index": 40,
+    "chunk_id": "B31:40"
+  },
+  {
+    "persona_id": "c1_B31_001",
+    "kind": "gold",
+    "target_chunk": 14,
+    "char_pos": 34662,
+    "boundary": "sentence",
+    "sentence": "Captain Kulkarnile kept a small wooden boat called Rivelbourne.",
+    "chunk_index": 14,
+    "chunk_id": "B31:14"
+  },
+  {
+    "persona_id": "c1_B31_001",
+    "kind": "reveal",
+    "target_chunk": 17,
+    "char_pos": 41909,
+    "boundary": "paragraph",
+    "sentence": "The surname of Ruwayfid was Kulkarnile, or so the parish books said.",
+    "chunk_index": 17,
+    "chunk_id": "B31:17"
+  },
+  {
+    "persona_id": "c1_B31_002",
+    "kind": "gold",
+    "target_chunk": 22,
+    "char_pos": 53864,
+    "boundary": "paragraph",
+    "sentence": "Professor Yildirimlar rode a grey mare known as Elvanmoor.",
+    "chunk_index": 22,
+    "chunk_id": "B31:22"
+  },
+  {
+    "persona_id": "c1_B31_002",
+    "kind": "reveal",
+    "target_chunk": 25,
+    "char_pos": 60703,
+    "boundary": "paragraph",
+    "sentence": "Ilmataren was the given name of Yildirimlar in the church register.",
+    "chunk_index": 25,
+    "chunk_id": "B31:25"
+  },
+  {
+    "persona_id": "c2_B31_000",
+    "kind": "gold",
+    "target_chunk": 50,
+    "char_pos": 120859,
+    "boundary": "sentence",
+    "sentence": "Doctor Albustanji had lived in Kelmcombe for many years.",
+    "chunk_index": 50,
+    "chunk_id": "B31:50"
+  },
+  {
+    "persona_id": "c2_B31_000",
+    "kind": "reveal",
+    "target_chunk": 111,
+    "char_pos": 270828,
+    "boundary": "paragraph",
+    "sentence": "In those days, Taunolint's family name was Albustanji.",
+    "chunk_index": 112,
+    "chunk_id": "B31:112"
+  },
+  {
+    "persona_id": "c2_B31_001",
+    "kind": "gold",
+    "target_chunk": 62,
+    "char_pos": 150508,
+    "boundary": "paragraph",
+    "sentence": "Captain Quillovane kept a small wooden boat called Wendelholt.",
+    "chunk_index": 62,
+    "chunk_id": "B31:62"
+  },
+  {
+    "persona_id": "c2_B31_001",
+    "kind": "reveal",
+    "target_chunk": 123,
+    "char_pos": 301006,
+    "boundary": "paragraph",
+    "sentence": "The surname of Padminira was Quillovane, or so the parish books said.",
+    "chunk_index": 124,
+    "chunk_id": "B31:124"
+  },
+  {
+    "persona_id": "c2_B31_002",
+    "kind": "gold",
+    "target_chunk": 104,
+    "char_pos": 252761,
+    "boundary": "sentence",
+    "sentence": "Professor Masjudi rode a grey mare known as Rivelworth.",
+    "chunk_index": 105,
+    "chunk_id": "B31:105"
+  },
+  {
+    "persona_id": "c2_B31_002",
+    "kind": "reveal",
+    "target_chunk": 165,
+    "char_pos": 405232,
+    "boundary": "sentence",
+    "sentence": "Harivansham was the given name of Masjudi in the church register.",
+    "chunk_index": 167,
+    "chunk_id": "B31:167"
+  },
+  {
+    "persona_id": "c3_B31_000",
+    "kind": "gold",
+    "target_chunk": 43,
+    "char_pos": 104278,
+    "boundary": "paragraph",
+    "sentence": "Doctor Bettencourtl had lived in Lornshaw for many years.",
+    "chunk_index": 43,
+    "chunk_id": "B31:43"
+  },
+  {
+    "persona_id": "c3_B31_000",
+    "kind": "reveal",
+    "target_chunk": 177,
+    "char_pos": 434658,
+    "boundary": "paragraph",
+    "sentence": "In those days, Yasukoe's family name was Bettencourtl.",
+    "chunk_index": 179,
+    "chunk_id": "B31:179"
+  },
+  {
+    "persona_id": "c3_B31_001",
+    "kind": "gold",
+    "target_chunk": 65,
+    "char_pos": 157747,
+    "boundary": "paragraph",
+    "sentence": "Captain Kusipaukar kept a small wooden boat called Faldermoor.",
+    "chunk_index": 65,
+    "chunk_id": "B31:65"
+  },
+  {
+    "persona_id": "c3_B31_001",
+    "kind": "reveal",
+    "target_chunk": 199,
+    "char_pos": 488736,
+    "boundary": "sentence",
+    "sentence": "The surname of Yasunorik was Kusipaukar, or so the parish books said.",
+    "chunk_index": 201,
+    "chunk_id": "B31:201"
+  },
+  {
+    "persona_id": "c3_B31_002",
+    "kind": "gold",
+    "target_chunk": 47,
+    "char_pos": 114041,
+    "boundary": "paragraph",
+    "sentence": "Professor Kallioinen rode a grey mare known as Faldergarth.",
+    "chunk_index": 47,
+    "chunk_id": "B31:47"
+  },
+  {
+    "persona_id": "c3_B31_002",
+    "kind": "reveal",
+    "target_chunk": 181,
+    "char_pos": 444279,
+    "boundary": "sentence",
+    "sentence": "Zarrindokht was the given name of Kallioinen in the church register.",
+    "chunk_index": 183,
+    "chunk_id": "B31:183"
+  },
+  {
+    "persona_id": "c4_B31_000",
+    "kind": "gold",
+    "target_chunk": 126,
+    "char_pos": 308438,
+    "boundary": "sentence",
+    "sentence": "Doctor Hollenbeckr had lived in Ilberstead for many years.",
+    "chunk_index": 127,
+    "chunk_id": "B31:127"
+  },
+  {
+    "persona_id": "c4_B31_000",
+    "kind": "reveal",
+    "target_chunk": 78,
+    "char_pos": 188786,
+    "boundary": "sentence",
+    "sentence": "In those days, Rostamin's family name was Hollenbeckr.",
+    "chunk_index": 78,
+    "chunk_id": "B31:78"
+  },
+  {
+    "persona_id": "c4_B31_001",
+    "kind": "gold",
+    "target_chunk": 132,
+    "char_pos": 323131,
+    "boundary": "paragraph",
+    "sentence": "Captain Glyndwrred kept a small wooden boat called Yarrowmoor.",
+    "chunk_index": 133,
+    "chunk_id": "B31:133"
+  },
+  {
+    "persona_id": "c4_B31_001",
+    "kind": "reveal",
+    "target_chunk": 84,
+    "char_pos": 203231,
+    "boundary": "paragraph",
+    "sentence": "The surname of Nazarethal was Glyndwrred, or so the parish books said.",
+    "chunk_index": 84,
+    "chunk_id": "B31:84"
+  },
+  {
+    "persona_id": "c4_B31_002",
+    "kind": "gold",
+    "target_chunk": 129,
+    "char_pos": 315846,
+    "boundary": "sentence",
+    "sentence": "Professor Osgoodworth rode a grey mare known as Oldstead.",
+    "chunk_index": 130,
+    "chunk_id": "B31:130"
+  },
+  {
+    "persona_id": "c4_B31_002",
+    "kind": "reveal",
+    "target_chunk": 81,
+    "char_pos": 195899,
+    "boundary": "paragraph",
+    "sentence": "Norbertoval was the given name of Osgoodworth in the church register.",
+    "chunk_index": 81,
+    "chunk_id": "B31:81"
+  },
+  {
+    "persona_id": "c5_B31_000",
+    "kind": "gold",
+    "target_chunk": 75,
+    "char_pos": 181423,
+    "boundary": "sentence",
+    "sentence": "Doctor Thorvaldsenn had lived in Gavelfold for many years.",
+    "chunk_index": 75,
+    "chunk_id": "B31:75"
+  },
+  {
+    "persona_id": "c5_B31_001",
+    "kind": "gold",
+    "target_chunk": 72,
+    "char_pos": 174415,
+    "boundary": "paragraph",
+    "sentence": "Captain Wagleshwar kept a small wooden boat called Rivelgate.",
+    "chunk_index": 72,
+    "chunk_id": "B31:72"
+  },
+  {
+    "persona_id": "c5_B31_002",
+    "kind": "gold",
+    "target_chunk": 69,
+    "char_pos": 167198,
+    "boundary": "paragraph",
+    "sentence": "Professor Mustikkamaa rode a grey mare known as Pellamhall.",
+    "chunk_index": 69,
+    "chunk_id": "B31:69"
+  },
+  {
+    "persona_id": "c6_B31_000",
+    "kind": "gold",
+    "target_chunk": 108,
+    "char_pos": 262818,
+    "boundary": "paragraph",
+    "sentence": "The Firkin Cooper had lived in Tavelcombe for many years.",
+    "chunk_index": 109,
+    "chunk_id": "B31:109"
+  },
+  {
+    "persona_id": "c6_B31_000",
+    "kind": "reveal",
+    "target_chunk": 169,
+    "char_pos": 415240,
+    "boundary": "paragraph",
+    "sentence": "Everyone in the village knew Yalcinkar as the Firkin Cooper.",
+    "chunk_index": 171,
+    "chunk_id": "B31:171"
+  },
+  {
+    "persona_id": "c6_B31_001",
+    "kind": "gold",
+    "target_chunk": 90,
+    "char_pos": 218437,
+    "boundary": "sentence",
+    "sentence": "The Gaiter Stitcher kept a small wooden boat called Thorndale.",
+    "chunk_index": 91,
+    "chunk_id": "B31:91"
+  },
+  {
+    "persona_id": "c6_B31_001",
+    "kind": "reveal",
+    "target_chunk": 151,
+    "char_pos": 370484,
+    "boundary": "sentence",
+    "sentence": "Heulwenna went by the Gaiter Stitcher among the parish folk thereabouts.",
+    "chunk_index": 153,
+    "chunk_id": "B31:153"
+  },
+  {
+    "persona_id": "c6_B31_002",
+    "kind": "gold",
+    "target_chunk": 94,
+    "char_pos": 228271,
+    "boundary": "paragraph",
+    "sentence": "The Marrow Piper rode a grey mare known as Zelmstead.",
+    "chunk_index": 95,
+    "chunk_id": "B31:95"
+  },
+  {
+    "persona_id": "c6_B31_002",
+    "kind": "reveal",
+    "target_chunk": 155,
+    "char_pos": 380464,
+    "boundary": "sentence",
+    "sentence": "People of the district spoke of Gruffyddan as the Marrow Piper.",
+    "chunk_index": 157,
+    "chunk_id": "B31:157"
+  },
+  {
+    "persona_id": "c7_B31_000",
+    "kind": "gold",
+    "target_chunk": 56,
+    "char_pos": 135478,
+    "boundary": "sentence",
+    "sentence": "Olamideju had lived in Nyddmoor for many years.",
+    "chunk_index": 56,
+    "chunk_id": "B31:56"
+  },
+  {
+    "persona_id": "c7_B31_000",
+    "kind": "reveal",
+    "target_chunk": 117,
+    "char_pos": 285688,
+    "boundary": "sentence",
+    "sentence": "Olamideju worked as a stargazer in the district.",
+    "chunk_index": 118,
+    "chunk_id": "B31:118"
+  },
+  {
+    "persona_id": "c7_B31_001",
+    "kind": "gold",
+    "target_chunk": 59,
+    "char_pos": 143158,
+    "boundary": "sentence",
+    "sentence": "Idowulana kept a small wooden boat called Nyddthwaite.",
+    "chunk_index": 59,
+    "chunk_id": "B31:59"
+  },
+  {
+    "persona_id": "c7_B31_001",
+    "kind": "reveal",
+    "target_chunk": 120,
+    "char_pos": 293036,
+    "boundary": "paragraph",
+    "sentence": "Idowulana practised the trade of a potter back then.",
+    "chunk_index": 121,
+    "chunk_id": "B31:121"
+  },
+  {
+    "persona_id": "c7_B31_002",
+    "kind": "gold",
+    "target_chunk": 100,
+    "char_pos": 242481,
+    "boundary": "paragraph",
+    "sentence": "Wijdanah rode a grey mare known as Olddale.",
+    "chunk_index": 101,
+    "chunk_id": "B31:101"
+  },
+  {
+    "persona_id": "c7_B31_002",
+    "kind": "reveal",
+    "target_chunk": 161,
+    "char_pos": 395326,
+    "boundary": "paragraph",
+    "sentence": "By profession, Wijdanah was a cartographer of some repute.",
+    "chunk_index": 163,
+    "chunk_id": "B31:163"
+  },
+  {
+    "persona_id": "c8_B31_000",
+    "kind": "gold",
+    "target_chunk": 97,
+    "char_pos": 235233,
+    "boundary": "sentence",
+    "sentence": "The Sable Curlew was kept in the harbour at Elvanshaw all year.",
+    "chunk_index": 98,
+    "chunk_id": "B31:98"
+  },
+  {
+    "persona_id": "c8_B31_000",
+    "kind": "reveal",
+    "target_chunk": 158,
+    "char_pos": 387621,
+    "boundary": "sentence",
+    "sentence": "Zubayrid owned the Sable Curlew and prized it dearly.",
+    "chunk_index": 160,
+    "chunk_id": "B31:160"
+  },
+  {
+    "persona_id": "c8_B31_001",
+    "kind": "gold",
+    "target_chunk": 53,
+    "char_pos": 128175,
+    "boundary": "sentence",
+    "sentence": "The Swallowtail was housed in the coach yard at Fennworth every season.",
+    "chunk_index": 53,
+    "chunk_id": "B31:53"
+  },
+  {
+    "persona_id": "c8_B31_001",
+    "kind": "reveal",
+    "target_chunk": 114,
+    "char_pos": 278128,
+    "boundary": "paragraph",
+    "sentence": "The Swallowtail belonged to Aamunkukka, as the whole district understood.",
+    "chunk_index": 115,
+    "chunk_id": "B31:115"
+  },
+  {
+    "persona_id": "c8_B31_002",
+    "kind": "gold",
+    "target_chunk": 87,
+    "char_pos": 210697,
+    "boundary": "paragraph",
+    "sentence": "The Ashen Comet was stabled behind the smithy at Orvelholt each winter.",
+    "chunk_index": 87,
+    "chunk_id": "B31:87"
+  },
+  {
+    "persona_id": "c8_B31_002",
+    "kind": "reveal",
+    "target_chunk": 148,
+    "char_pos": 363131,
+    "boundary": "paragraph",
+    "sentence": "Jyrkivain was the owner of the Ashen Comet in former days.",
+    "chunk_index": 150,
+    "chunk_id": "B31:150"
+  },
+  {
+    "persona_id": "c1_B43_003",
+    "kind": "gold",
+    "target_chunk": 25,
+    "char_pos": 69669,
+    "boundary": "sentence",
+    "sentence": "Father Ystadvollen was born in the town of Gavelmoor.",
+    "chunk_index": 25,
+    "chunk_id": "B43:25"
+  },
+  {
+    "persona_id": "c1_B43_003",
+    "kind": "reveal",
+    "target_chunk": 28,
+    "char_pos": 77647,
+    "boundary": "sentence",
+    "sentence": "The surname of Hemlatika was Ystadvollen, or so the parish books said.",
+    "chunk_index": 28,
+    "chunk_id": "B43:28"
+  },
+  {
+    "persona_id": "c1_B43_004",
+    "kind": "gold",
+    "target_chunk": 18,
+    "char_pos": 50770,
+    "boundary": "paragraph",
+    "sentence": "Judge Jasperfield took lodgings at an inn called Quarngarth.",
+    "chunk_index": 18,
+    "chunk_id": "B43:18"
+  },
+  {
+    "persona_id": "c1_B43_004",
+    "kind": "reveal",
+    "target_chunk": 21,
+    "char_pos": 59313,
+    "boundary": "paragraph",
+    "sentence": "In those days, Ishwarilal's family name was Jasperfield.",
+    "chunk_index": 21,
+    "chunk_id": "B43:21"
+  },
+  {
+    "persona_id": "c1_B43_005",
+    "kind": "gold",
+    "target_chunk": 40,
+    "char_pos": 110941,
+    "boundary": "sentence",
+    "sentence": "Madame Dremmelgar had lived in Gavelshaw for many years.",
+    "chunk_index": 40,
+    "chunk_id": "B43:40"
+  },
+  {
+    "persona_id": "c1_B43_005",
+    "kind": "reveal",
+    "target_chunk": 43,
+    "char_pos": 118906,
+    "boundary": "paragraph",
+    "sentence": "Dremmelgar, whose given name was Natsumiye, was well known in those parts.",
+    "chunk_index": 43,
+    "chunk_id": "B43:43"
+  },
+  {
+    "persona_id": "c2_B43_003",
+    "kind": "gold",
+    "target_chunk": 87,
+    "char_pos": 240992,
+    "boundary": "paragraph",
+    "sentence": "Father Huancavill was born in the town of Thorngarth.",
+    "chunk_index": 88,
+    "chunk_id": "B43:88"
+  },
+  {
+    "persona_id": "c2_B43_003",
+    "kind": "reveal",
+    "target_chunk": 148,
+    "char_pos": 407427,
+    "boundary": "paragraph",
+    "sentence": "The surname of Takehikon was Huancavill, or so the parish books said.",
+    "chunk_index": 151,
+    "chunk_id": "B43:151"
+  },
+  {
+    "persona_id": "c2_B43_004",
+    "kind": "gold",
+    "target_chunk": 90,
+    "char_pos": 249214,
+    "boundary": "paragraph",
+    "sentence": "Judge Aberfforda took lodgings at an inn called Ilbercombe.",
+    "chunk_index": 91,
+    "chunk_id": "B43:91"
+  },
+  {
+    "persona_id": "c2_B43_004",
+    "kind": "reveal",
+    "target_chunk": 151,
+    "char_pos": 415886,
+    "boundary": "paragraph",
+    "sentence": "In those days, Golrokh's family name was Aberfforda.",
+    "chunk_index": 154,
+    "chunk_id": "B43:154"
+  },
+  {
+    "persona_id": "c2_B43_005",
+    "kind": "gold",
+    "target_chunk": 96,
+    "char_pos": 265597,
+    "boundary": "paragraph",
+    "sentence": "Madame Westgavell had lived in Marrenmoor for many years.",
+    "chunk_index": 98,
+    "chunk_id": "B43:98"
+  },
+  {
+    "persona_id": "c2_B43_005",
+    "kind": "reveal",
+    "target_chunk": 157,
+    "char_pos": 432446,
+    "boundary": "sentence",
+    "sentence": "Westgavell, whose given name was Sohrabin, was well known in those parts.",
+    "chunk_index": 160,
+    "chunk_id": "B43:160"
+  },
+  {
+    "persona_id": "c3_B43_003",
+    "kind": "gold",
+    "target_chunk": 69,
+    "char_pos": 191210,
+    "boundary": "paragraph",
+    "sentence": "Father Shittulara was born in the town of Fennhall.",
+    "chunk_index": 70,
+    "chunk_id": "B43:70"
+  },
+  {
+    "persona_id": "c3_B43_003",
+    "kind": "reveal",
+    "target_chunk": 203,
+    "char_pos": 557577,
+    "boundary": "paragraph",
+    "sentence": "The surname of Olindinara was Shittulara, or so the parish books said.",
+    "chunk_index": 207,
+    "chunk_id": "B43:207"
+  },
+  {
+    "persona_id": "c3_B43_004",
+    "kind": "gold",
+    "target_chunk": 48,
+    "char_pos": 133148,
+    "boundary": "sentence",
+    "sentence": "Judge Ravensgarth took lodgings at an inn called Ilberhythe.",
+    "chunk_index": 48,
+    "chunk_id": "B43:48"
+  },
+  {
+    "persona_id": "c3_B43_004",
+    "kind": "reveal",
+    "target_chunk": 182,
+    "char_pos": 500444,
+    "boundary": "paragraph",
+    "sentence": "In those days, Cristovaol's family name was Ravensgarth.",
+    "chunk_index": 185,
+    "chunk_id": "B43:185"
+  },
+  {
+    "persona_id": "c3_B43_005",
+    "kind": "gold",
+    "target_chunk": 64,
+    "char_pos": 176867,
+    "boundary": "paragraph",
+    "sentence": "Madame Saarijarvi had lived in Yarrowgarth for many years.",
+    "chunk_index": 65,
+    "chunk_id": "B43:65"
+  },
+  {
+    "persona_id": "c3_B43_005",
+    "kind": "reveal",
+    "target_chunk": 198,
+    "char_pos": 544346,
+    "boundary": "paragraph",
+    "sentence": "Saarijarvi, whose given name was Qurikilla, was well known in those parts.",
+    "chunk_index": 201,
+    "chunk_id": "B43:201"
+  },
+  {
+    "persona_id": "c4_B43_003",
+    "kind": "gold",
+    "target_chunk": 126,
+    "char_pos": 347104,
+    "boundary": "paragraph",
+    "sentence": "Father Inglethorpe was born in the town of Pellamgate.",
+    "chunk_index": 128,
+    "chunk_id": "B43:128"
+  },
+  {
+    "persona_id": "c4_B43_003",
+    "kind": "reveal",
+    "target_chunk": 77,
+    "char_pos": 213179,
+    "boundary": "sentence",
+    "sentence": "The surname of Yupanquil was Inglethorpe, or so the parish books said.",
+    "chunk_index": 78,
+    "chunk_id": "B43:78"
+  },
+  {
+    "persona_id": "c4_B43_004",
+    "kind": "gold",
+    "target_chunk": 133,
+    "char_pos": 366371,
+    "boundary": "sentence",
+    "sentence": "Judge Balogunlere took lodgings at an inn called Kelmmoor.",
+    "chunk_index": 135,
+    "chunk_id": "B43:135"
+  },
+  {
+    "persona_id": "c4_B43_004",
+    "kind": "reveal",
+    "target_chunk": 84,
+    "char_pos": 232995,
+    "boundary": "paragraph",
+    "sentence": "In those days, Selvihan's family name was Balogunlere.",
+    "chunk_index": 85,
+    "chunk_id": "B43:85"
+  },
+  {
+    "persona_id": "c4_B43_005",
+    "kind": "gold",
+    "target_chunk": 129,
+    "char_pos": 355582,
+    "boundary": "paragraph",
+    "sentence": "Madame Ellsworthen had lived in Harrowcragg for many years.",
+    "chunk_index": 131,
+    "chunk_id": "B43:131"
+  },
+  {
+    "persona_id": "c4_B43_005",
+    "kind": "reveal",
+    "target_chunk": 80,
+    "char_pos": 221755,
+    "boundary": "paragraph",
+    "sentence": "Ellsworthen, whose given name was Savasan, was well known in those parts.",
+    "chunk_index": 81,
+    "chunk_id": "B43:81"
+  },
+  {
+    "persona_id": "c5_B43_003",
+    "kind": "gold",
+    "target_chunk": 74,
+    "char_pos": 205015,
+    "boundary": "paragraph",
+    "sentence": "Father Agnihotril was born in the town of Falderwick.",
+    "chunk_index": 75,
+    "chunk_id": "B43:75"
+  },
+  {
+    "persona_id": "c5_B43_004",
+    "kind": "gold",
+    "target_chunk": 35,
+    "char_pos": 97244,
+    "boundary": "paragraph",
+    "sentence": "Judge Nadkarnila took lodgings at an inn called Josserridge.",
+    "chunk_index": 35,
+    "chunk_id": "B43:35"
+  },
+  {
+    "persona_id": "c5_B43_005",
+    "kind": "gold",
+    "target_chunk": 14,
+    "char_pos": 39550,
+    "boundary": "sentence",
+    "sentence": "Madame Hartvigsen had lived in Ulversmoor for many years.",
+    "chunk_index": 14,
+    "chunk_id": "B43:14"
+  },
+  {
+    "persona_id": "c6_B43_003",
+    "kind": "gold",
+    "target_chunk": 106,
+    "char_pos": 292840,
+    "boundary": "sentence",
+    "sentence": "The Jerkin Tanner was born in the town of Varnridge.",
+    "chunk_index": 108,
+    "chunk_id": "B43:108"
+  },
+  {
+    "persona_id": "c6_B43_003",
+    "kind": "reveal",
+    "target_chunk": 167,
+    "char_pos": 459944,
+    "boundary": "paragraph",
+    "sentence": "The Jerkin Tanner was none other than Adebamidel, as the neighbours often said.",
+    "chunk_index": 170,
+    "chunk_id": "B43:170"
+  },
+  {
+    "persona_id": "c6_B43_004",
+    "kind": "gold",
+    "target_chunk": 52,
+    "char_pos": 144088,
+    "boundary": "paragraph",
+    "sentence": "The Ballast Heaver took lodgings at an inn called Taveldale.",
+    "chunk_index": 52,
+    "chunk_id": "B43:52"
+  },
+  {
+    "persona_id": "c6_B43_004",
+    "kind": "reveal",
+    "target_chunk": 113,
+    "char_pos": 311650,
+    "boundary": "paragraph",
+    "sentence": "Everyone in the village knew Thurayyah as the Ballast Heaver.",
+    "chunk_index": 115,
+    "chunk_id": "B43:115"
+  },
+  {
+    "persona_id": "c6_B43_005",
+    "kind": "gold",
+    "target_chunk": 55,
+    "char_pos": 152267,
+    "boundary": "sentence",
+    "sentence": "The Barley Winnower had lived in Sarnholt for many years.",
+    "chunk_index": 55,
+    "chunk_id": "B43:55"
+  },
+  {
+    "persona_id": "c6_B43_005",
+    "kind": "reveal",
+    "target_chunk": 116,
+    "char_pos": 319815,
+    "boundary": "paragraph",
+    "sentence": "Thabitel went by the Barley Winnower among the parish folk thereabouts.",
+    "chunk_index": 118,
+    "chunk_id": "B43:118"
+  },
+  {
+    "persona_id": "c7_B43_003",
+    "kind": "gold",
+    "target_chunk": 109,
+    "char_pos": 301030,
+    "boundary": "paragraph",
+    "sentence": "Virpileen was born in the town of Jossergarth.",
+    "chunk_index": 111,
+    "chunk_id": "B43:111"
+  },
+  {
+    "persona_id": "c7_B43_003",
+    "kind": "reveal",
+    "target_chunk": 170,
+    "char_pos": 468077,
+    "boundary": "paragraph",
+    "sentence": "Virpileen served the whole parish as its glazier.",
+    "chunk_index": 173,
+    "chunk_id": "B43:173"
+  },
+  {
+    "persona_id": "c7_B43_004",
+    "kind": "gold",
+    "target_chunk": 99,
+    "char_pos": 273870,
+    "boundary": "paragraph",
+    "sentence": "Kalevaist took lodgings at an inn called Pellammoor.",
+    "chunk_index": 101,
+    "chunk_id": "B43:101"
+  },
+  {
+    "persona_id": "c7_B43_004",
+    "kind": "reveal",
+    "target_chunk": 160,
+    "char_pos": 441305,
+    "boundary": "paragraph",
+    "sentence": "Kalevaist worked as a farrier in the district.",
+    "chunk_index": 163,
+    "chunk_id": "B43:163"
+  },
+  {
+    "persona_id": "c7_B43_005",
+    "kind": "gold",
+    "target_chunk": 93,
+    "char_pos": 257178,
+    "boundary": "paragraph",
+    "sentence": "Lavanyika had lived in Ilbergate for many years.",
+    "chunk_index": 94,
+    "chunk_id": "B43:94"
+  },
+  {
+    "persona_id": "c7_B43_005",
+    "kind": "reveal",
+    "target_chunk": 154,
+    "char_pos": 424474,
+    "boundary": "paragraph",
+    "sentence": "Lavanyika practised the trade of a harpist back then.",
+    "chunk_index": 157,
+    "chunk_id": "B43:157"
+  },
+  {
+    "persona_id": "c8_B43_003",
+    "kind": "gold",
+    "target_chunk": 58,
+    "char_pos": 160332,
+    "boundary": "sentence",
+    "sentence": "The Copper Thistle stood along the high road at Oldhall back then.",
+    "chunk_index": 58,
+    "chunk_id": "B43:58"
+  },
+  {
+    "persona_id": "c8_B43_003",
+    "kind": "reveal",
+    "target_chunk": 119,
+    "char_pos": 328103,
+    "boundary": "sentence",
+    "sentence": "The Copper Thistle was Abhinandar's own property, bought long before.",
+    "chunk_index": 121,
+    "chunk_id": "B43:121"
+  },
+  {
+    "persona_id": "c8_B43_004",
+    "kind": "gold",
+    "target_chunk": 103,
+    "char_pos": 284768,
+    "boundary": "paragraph",
+    "sentence": "The Shoalguard stood upon the headland at Varnshaw above the rocks.",
+    "chunk_index": 105,
+    "chunk_id": "B43:105"
+  },
+  {
+    "persona_id": "c8_B43_004",
+    "kind": "reveal",
+    "target_chunk": 164,
+    "char_pos": 451377,
+    "boundary": "paragraph",
+    "sentence": "Kiyomisa owned the Shoalguard and prized it dearly.",
+    "chunk_index": 167,
+    "chunk_id": "B43:167"
+  },
+  {
+    "persona_id": "c8_B43_005",
+    "kind": "gold",
+    "target_chunk": 61,
+    "char_pos": 168775,
+    "boundary": "paragraph",
+    "sentence": "The Dustwhirl stood beside the stream at Thornhall from spring to autumn.",
+    "chunk_index": 62,
+    "chunk_id": "B43:62"
+  },
+  {
+    "persona_id": "c8_B43_005",
+    "kind": "reveal",
+    "target_chunk": 122,
+    "char_pos": 336255,
+    "boundary": "paragraph",
+    "sentence": "The Dustwhirl belonged to Hidetoshin, as the whole district understood.",
+    "chunk_index": 124,
+    "chunk_id": "B43:124"
+  },
+  {
+    "persona_id": "c1_B37_006",
+    "kind": "gold",
+    "target_chunk": 77,
+    "char_pos": 214511,
+    "boundary": "sentence",
+    "sentence": "Sergeant Nethercotte kept a small wooden boat called Ashenmere.",
+    "chunk_index": 78,
+    "chunk_id": "B37:78"
+  },
+  {
+    "persona_id": "c1_B37_006",
+    "kind": "reveal",
+    "target_chunk": 80,
+    "char_pos": 222793,
+    "boundary": "sentence",
+    "sentence": "The surname of Shahrbanou was Nethercotte, or so the parish books said.",
+    "chunk_index": 81,
+    "chunk_id": "B37:81"
+  },
+  {
+    "persona_id": "c1_B37_007",
+    "kind": "gold",
+    "target_chunk": 32,
+    "char_pos": 88626,
+    "boundary": "sentence",
+    "sentence": "Colonel Corvandish rode a grey mare known as Falderridge.",
+    "chunk_index": 32,
+    "chunk_id": "B37:32"
+  },
+  {
+    "persona_id": "c1_B37_007",
+    "kind": "reveal",
+    "target_chunk": 35,
+    "char_pos": 97249,
+    "boundary": "sentence",
+    "sentence": "The surname of Farrokhzad was Corvandish, or so the parish books said.",
+    "chunk_index": 35,
+    "chunk_id": "B37:35"
+  },
+  {
+    "persona_id": "c1_B37_008",
+    "kind": "gold",
+    "target_chunk": 93,
+    "char_pos": 259155,
+    "boundary": "sentence",
+    "sentence": "Doctor Farrowdale was born in the town of Zelmmoor.",
+    "chunk_index": 94,
+    "chunk_id": "B37:94"
+  },
+  {
+    "persona_id": "c1_B37_008",
+    "kind": "reveal",
+    "target_chunk": 96,
+    "char_pos": 267371,
+    "boundary": "sentence",
+    "sentence": "In those days, Graciosal's family name was Farrowdale.",
+    "chunk_index": 97,
+    "chunk_id": "B37:97"
+  },
+  {
+    "persona_id": "c2_B37_006",
+    "kind": "gold",
+    "target_chunk": 99,
+    "char_pos": 275585,
+    "boundary": "sentence",
+    "sentence": "Sergeant Oliveiros kept a small wooden boat called Brackbourne.",
+    "chunk_index": 100,
+    "chunk_id": "B37:100"
+  },
+  {
+    "persona_id": "c2_B37_006",
+    "kind": "reveal",
+    "target_chunk": 164,
+    "char_pos": 456908,
+    "boundary": "sentence",
+    "sentence": "The surname of Bartolomeur was Oliveiros, or so the parish books said.",
+    "chunk_index": 166,
+    "chunk_id": "B37:166"
+  },
+  {
+    "persona_id": "c2_B37_007",
+    "kind": "gold",
+    "target_chunk": 102,
+    "char_pos": 284024,
+    "boundary": "sentence",
+    "sentence": "Colonel Demirbaslar rode a grey mare known as Fennmoor.",
+    "chunk_index": 103,
+    "chunk_id": "B37:103"
+  },
+  {
+    "persona_id": "c2_B37_007",
+    "kind": "reveal",
+    "target_chunk": 167,
+    "char_pos": 465464,
+    "boundary": "sentence",
+    "sentence": "The surname of Yachaykill was Demirbaslar, or so the parish books said.",
+    "chunk_index": 169,
+    "chunk_id": "B37:169"
+  },
+  {
+    "persona_id": "c2_B37_008",
+    "kind": "gold",
+    "target_chunk": 105,
+    "char_pos": 291783,
+    "boundary": "sentence",
+    "sentence": "Doctor Matsudaira was born in the town of Lornhall.",
+    "chunk_index": 106,
+    "chunk_id": "B37:106"
+  },
+  {
+    "persona_id": "c2_B37_008",
+    "kind": "reveal",
+    "target_chunk": 170,
+    "char_pos": 473765,
+    "boundary": "sentence",
+    "sentence": "In those days, Qhapaqyupa's family name was Matsudaira.",
+    "chunk_index": 172,
+    "chunk_id": "B37:172"
+  },
+  {
+    "persona_id": "c3_B37_006",
+    "kind": "gold",
+    "target_chunk": 71,
+    "char_pos": 197843,
+    "boundary": "sentence",
+    "sentence": "Sergeant Lindqvistr kept a small wooden boat called Nyddfirth.",
+    "chunk_index": 72,
+    "chunk_id": "B37:72"
+  },
+  {
+    "persona_id": "c3_B37_006",
+    "kind": "reveal",
+    "target_chunk": 214,
+    "char_pos": 594090,
+    "boundary": "sentence",
+    "sentence": "The surname of Gulsevin was Lindqvistr, or so the parish books said.",
+    "chunk_index": 217,
+    "chunk_id": "B37:217"
+  },
+  {
+    "persona_id": "c3_B37_007",
+    "kind": "gold",
+    "target_chunk": 74,
+    "char_pos": 206156,
+    "boundary": "sentence",
+    "sentence": "Colonel Carvalhosa rode a grey mare known as Elvanworth.",
+    "chunk_index": 75,
+    "chunk_id": "B37:75"
+  },
+  {
+    "persona_id": "c3_B37_007",
+    "kind": "reveal",
+    "target_chunk": 217,
+    "char_pos": 602126,
+    "boundary": "sentence",
+    "sentence": "The surname of Metehanli was Carvalhosa, or so the parish books said.",
+    "chunk_index": 220,
+    "chunk_id": "B37:220"
+  },
+  {
+    "persona_id": "c3_B37_008",
+    "kind": "gold",
+    "target_chunk": 51,
+    "char_pos": 142015,
+    "boundary": "sentence",
+    "sentence": "Doctor Tupayachil was born in the town of Girthdale.",
+    "chunk_index": 51,
+    "chunk_id": "B37:51"
+  },
+  {
+    "persona_id": "c3_B37_008",
+    "kind": "reveal",
+    "target_chunk": 194,
+    "char_pos": 539994,
+    "boundary": "sentence",
+    "sentence": "In those days, Lowriwena's family name was Tupayachil.",
+    "chunk_index": 197,
+    "chunk_id": "B37:197"
+  },
+  {
+    "persona_id": "c4_B37_006",
+    "kind": "gold",
+    "target_chunk": 135,
+    "char_pos": 376304,
+    "boundary": "sentence",
+    "sentence": "Sergeant Ostrander kept a small wooden boat called Wendelmere.",
+    "chunk_index": 137,
+    "chunk_id": "B37:137"
+  },
+  {
+    "persona_id": "c4_B37_006",
+    "kind": "reveal",
+    "target_chunk": 83,
+    "char_pos": 231255,
+    "boundary": "sentence",
+    "sentence": "The surname of Rhyddercha was Ostrander, or so the parish books said.",
+    "chunk_index": 84,
+    "chunk_id": "B37:84"
+  },
+  {
+    "persona_id": "c4_B37_007",
+    "kind": "gold",
+    "target_chunk": 142,
+    "char_pos": 396265,
+    "boundary": "sentence",
+    "sentence": "Colonel Deshpandey rode a grey mare known as Harrowfenwick.",
+    "chunk_index": 144,
+    "chunk_id": "B37:144"
+  },
+  {
+    "persona_id": "c4_B37_007",
+    "kind": "reveal",
+    "target_chunk": 90,
+    "char_pos": 250884,
+    "boundary": "sentence",
+    "sentence": "The surname of Ronkeadeb was Deshpandey, or so the parish books said.",
+    "chunk_index": 91,
+    "chunk_id": "B37:91"
+  },
+  {
+    "persona_id": "c4_B37_008",
+    "kind": "gold",
+    "target_chunk": 139,
+    "char_pos": 387725,
+    "boundary": "paragraph",
+    "sentence": "Doctor Jaziralli was born in the town of Falderholt.",
+    "chunk_index": 141,
+    "chunk_id": "B37:141"
+  },
+  {
+    "persona_id": "c4_B37_008",
+    "kind": "reveal",
+    "target_chunk": 87,
+    "char_pos": 242193,
+    "boundary": "sentence",
+    "sentence": "In those days, Rotimilad's family name was Jaziralli.",
+    "chunk_index": 88,
+    "chunk_id": "B37:88"
+  },
+  {
+    "persona_id": "c5_B37_006",
+    "kind": "gold",
+    "target_chunk": 28,
+    "char_pos": 77465,
+    "boundary": "sentence",
+    "sentence": "Sergeant Tillgarven kept a small wooden boat called Marrenholt.",
+    "chunk_index": 28,
+    "chunk_id": "B37:28"
+  },
+  {
+    "persona_id": "c5_B37_007",
+    "kind": "gold",
+    "target_chunk": 15,
+    "char_pos": 41720,
+    "boundary": "sentence",
+    "sentence": "Colonel Umbrandell rode a grey mare known as Lorndale.",
+    "chunk_index": 15,
+    "chunk_id": "B37:15"
+  },
+  {
+    "persona_id": "c5_B37_008",
+    "kind": "gold",
+    "target_chunk": 21,
+    "char_pos": 58250,
+    "boundary": "sentence",
+    "sentence": "Doctor Kobayashir was born in the town of Kelmhall.",
+    "chunk_index": 21,
+    "chunk_id": "B37:21"
+  },
+  {
+    "persona_id": "c6_B37_006",
+    "kind": "gold",
+    "target_chunk": 55,
+    "char_pos": 153875,
+    "boundary": "paragraph",
+    "sentence": "The Gorse Spinner kept a small wooden boat called Harrowstead.",
+    "chunk_index": 56,
+    "chunk_id": "B37:56"
+  },
+  {
+    "persona_id": "c6_B37_006",
+    "kind": "reveal",
+    "target_chunk": 120,
+    "char_pos": 334247,
+    "boundary": "sentence",
+    "sentence": "People of the district spoke of Yrjovaine as the Gorse Spinner.",
+    "chunk_index": 122,
+    "chunk_id": "B37:122"
+  },
+  {
+    "persona_id": "c6_B37_007",
+    "kind": "gold",
+    "target_chunk": 64,
+    "char_pos": 178496,
+    "boundary": "sentence",
+    "sentence": "The Heather Besomer rode a grey mare known as Harrowthwaite.",
+    "chunk_index": 65,
+    "chunk_id": "B37:65"
+  },
+  {
+    "persona_id": "c6_B37_007",
+    "kind": "reveal",
+    "target_chunk": 129,
+    "char_pos": 359475,
+    "boundary": "sentence",
+    "sentence": "The Heather Besomer was none other than Jyotsnali, as the neighbours often said.",
+    "chunk_index": 131,
+    "chunk_id": "B37:131"
+  },
+  {
+    "persona_id": "c6_B37_008",
+    "kind": "gold",
+    "target_chunk": 114,
+    "char_pos": 317372,
+    "boundary": "sentence",
+    "sentence": "The Clover Scyther was born in the town of Elvangarth.",
+    "chunk_index": 115,
+    "chunk_id": "B37:115"
+  },
+  {
+    "persona_id": "c6_B37_008",
+    "kind": "reveal",
+    "target_chunk": 179,
+    "char_pos": 498993,
+    "boundary": "sentence",
+    "sentence": "Everyone in the village knew Bhupendrar as the Clover Scyther.",
+    "chunk_index": 181,
+    "chunk_id": "B37:181"
+  },
+  {
+    "persona_id": "c7_B37_006",
+    "kind": "gold",
+    "target_chunk": 67,
+    "char_pos": 186783,
+    "boundary": "sentence",
+    "sentence": "Yurieko kept a small wooden boat called Lornmoor.",
+    "chunk_index": 68,
+    "chunk_id": "B37:68"
+  },
+  {
+    "persona_id": "c7_B37_006",
+    "kind": "reveal",
+    "target_chunk": 132,
+    "char_pos": 367890,
+    "boundary": "sentence",
+    "sentence": "By profession, Yurieko was a beadmaker of some repute.",
+    "chunk_index": 134,
+    "chunk_id": "B37:134"
+  },
+  {
+    "persona_id": "c7_B37_007",
+    "kind": "gold",
+    "target_chunk": 61,
+    "char_pos": 170190,
+    "boundary": "sentence",
+    "sentence": "Shigehiru rode a grey mare known as Thorncombe.",
+    "chunk_index": 62,
+    "chunk_id": "B37:62"
+  },
+  {
+    "persona_id": "c7_B37_007",
+    "kind": "reveal",
+    "target_chunk": 126,
+    "char_pos": 350947,
+    "boundary": "sentence",
+    "sentence": "Shigehiru served the whole parish as its ironmonger.",
+    "chunk_index": 128,
+    "chunk_id": "B37:128"
+  },
+  {
+    "persona_id": "c7_B37_008",
+    "kind": "gold",
+    "target_chunk": 108,
+    "char_pos": 300372,
+    "boundary": "sentence",
+    "sentence": "Mitrassa was born in the town of Nyddhythe.",
+    "chunk_index": 109,
+    "chunk_id": "B37:109"
+  },
+  {
+    "persona_id": "c7_B37_008",
+    "kind": "reveal",
+    "target_chunk": 173,
+    "char_pos": 482034,
+    "boundary": "sentence",
+    "sentence": "Mitrassa worked as a herbalist in the district.",
+    "chunk_index": 175,
+    "chunk_id": "B37:175"
+  },
+  {
+    "persona_id": "c8_B37_006",
+    "kind": "gold",
+    "target_chunk": 117,
+    "char_pos": 325790,
+    "boundary": "sentence",
+    "sentence": "The Dappled Skua was kept in the harbour at Ashenworth all year.",
+    "chunk_index": 118,
+    "chunk_id": "B37:118"
+  },
+  {
+    "persona_id": "c8_B37_006",
+    "kind": "reveal",
+    "target_chunk": 182,
+    "char_pos": 507395,
+    "boundary": "sentence",
+    "sentence": "Ardeshiran was the owner of the Dappled Skua in former days.",
+    "chunk_index": 184,
+    "chunk_id": "B37:184"
+  },
+  {
+    "persona_id": "c8_B37_007",
+    "kind": "gold",
+    "target_chunk": 111,
+    "char_pos": 309075,
+    "boundary": "sentence",
+    "sentence": "The Dunnock Wing was housed in the coach yard at Fennthwaite every season.",
+    "chunk_index": 112,
+    "chunk_id": "B37:112"
+  },
+  {
+    "persona_id": "c8_B37_007",
+    "kind": "reveal",
+    "target_chunk": 176,
+    "char_pos": 490316,
+    "boundary": "sentence",
+    "sentence": "The Dunnock Wing was Madalenira's own property, bought long before.",
+    "chunk_index": 178,
+    "chunk_id": "B37:178"
+  },
+  {
+    "persona_id": "c8_B37_008",
+    "kind": "gold",
+    "target_chunk": 58,
+    "char_pos": 161680,
+    "boundary": "sentence",
+    "sentence": "The Roan Tempest was stabled behind the smithy at Ilbergarth each winter.",
+    "chunk_index": 59,
+    "chunk_id": "B37:59"
+  },
+  {
+    "persona_id": "c8_B37_008",
+    "kind": "reveal",
+    "target_chunk": 123,
+    "char_pos": 342605,
+    "boundary": "sentence",
+    "sentence": "Deodatoral owned the Roan Tempest and prized it dearly.",
+    "chunk_index": 125,
+    "chunk_id": "B37:125"
+  },
+  {
+    "persona_id": "c1_B18_009",
+    "kind": "gold",
+    "target_chunk": 95,
+    "char_pos": 262153,
+    "boundary": "sentence",
+    "sentence": "Captain Fujiwarano took lodgings at an inn called Kelmthwaite.",
+    "chunk_index": 96,
+    "chunk_id": "B18:96"
+  },
+  {
+    "persona_id": "c1_B18_009",
+    "kind": "reveal",
+    "target_chunk": 98,
+    "char_pos": 270399,
+    "boundary": "sentence",
+    "sentence": "Fujiwarano, whose given name was Tamyakilla, was well known in those parts.",
+    "chunk_index": 99,
+    "chunk_id": "B18:99"
+  },
+  {
+    "persona_id": "c1_B18_010",
+    "kind": "gold",
+    "target_chunk": 37,
+    "char_pos": 103043,
+    "boundary": "sentence",
+    "sentence": "Professor Llanfairll had lived in Elvanholt for many years.",
+    "chunk_index": 37,
+    "chunk_id": "B18:37"
+  },
+  {
+    "persona_id": "c1_B18_010",
+    "kind": "reveal",
+    "target_chunk": 40,
+    "char_pos": 111353,
+    "boundary": "sentence",
+    "sentence": "Waskarinka was the given name of Llanfairll in the church register.",
+    "chunk_index": 40,
+    "chunk_id": "B18:40"
+  },
+  {
+    "persona_id": "c1_B18_011",
+    "kind": "gold",
+    "target_chunk": 89,
+    "char_pos": 245469,
+    "boundary": "sentence",
+    "sentence": "Father Gillenwall kept a small wooden boat called Harrowmoor.",
+    "chunk_index": 90,
+    "chunk_id": "B18:90"
+  },
+  {
+    "persona_id": "c1_B18_011",
+    "kind": "reveal",
+    "target_chunk": 92,
+    "char_pos": 253654,
+    "boundary": "sentence",
+    "sentence": "The surname of Ozgenur was Gillenwall, or so the parish books said.",
+    "chunk_index": 93,
+    "chunk_id": "B18:93"
+  },
+  {
+    "persona_id": "c2_B18_009",
+    "kind": "gold",
+    "target_chunk": 73,
+    "char_pos": 201626,
+    "boundary": "sentence",
+    "sentence": "Captain Wintermarsh took lodgings at an inn called Pellamwick.",
+    "chunk_index": 74,
+    "chunk_id": "B18:74"
+  },
+  {
+    "persona_id": "c2_B18_009",
+    "kind": "reveal",
+    "target_chunk": 150,
+    "char_pos": 413024,
+    "boundary": "sentence",
+    "sentence": "Wintermarsh, whose given name was Ertugral, was well known in those parts.",
+    "chunk_index": 152,
+    "chunk_id": "B18:152"
+  },
+  {
+    "persona_id": "c2_B18_010",
+    "kind": "gold",
+    "target_chunk": 114,
+    "char_pos": 314713,
+    "boundary": "sentence",
+    "sentence": "Professor Caernafonl had lived in Quarnhythe for many years.",
+    "chunk_index": 115,
+    "chunk_id": "B18:115"
+  },
+  {
+    "persona_id": "c2_B18_010",
+    "kind": "reveal",
+    "target_chunk": 191,
+    "char_pos": 523589,
+    "boundary": "sentence",
+    "sentence": "Tegwenna was the given name of Caernafonl in the church register.",
+    "chunk_index": 194,
+    "chunk_id": "B18:194"
+  },
+  {
+    "persona_id": "c2_B18_011",
+    "kind": "gold",
+    "target_chunk": 67,
+    "char_pos": 184866,
+    "boundary": "sentence",
+    "sentence": "Father Gokhalekar kept a small wooden boat called Quarncombe.",
+    "chunk_index": 68,
+    "chunk_id": "B18:68"
+  },
+  {
+    "persona_id": "c2_B18_011",
+    "kind": "reveal",
+    "target_chunk": 144,
+    "char_pos": 397322,
+    "boundary": "sentence",
+    "sentence": "The surname of Gethinor was Gokhalekar, or so the parish books said.",
+    "chunk_index": 146,
+    "chunk_id": "B18:146"
+  },
+  {
+    "persona_id": "c3_B18_009",
+    "kind": "gold",
+    "target_chunk": 61,
+    "char_pos": 168628,
+    "boundary": "sentence",
+    "sentence": "Captain Vasconcelar took lodgings at an inn called Rivelshaw.",
+    "chunk_index": 62,
+    "chunk_id": "B18:62"
+  },
+  {
+    "persona_id": "c3_B18_009",
+    "kind": "reveal",
+    "target_chunk": 232,
+    "char_pos": 634645,
+    "boundary": "sentence",
+    "sentence": "Vasconcelar, whose given name was Modupeola, was well known in those parts.",
+    "chunk_index": 236,
+    "chunk_id": "B18:236"
+  },
+  {
+    "persona_id": "c3_B18_010",
+    "kind": "gold",
+    "target_chunk": 82,
+    "char_pos": 226557,
+    "boundary": "sentence",
+    "sentence": "Professor Quispellan had lived in Pellamcombe for many years.",
+    "chunk_index": 83,
+    "chunk_id": "B18:83"
+  },
+  {
+    "persona_id": "c3_B18_010",
+    "kind": "reveal",
+    "target_chunk": 253,
+    "char_pos": 691639,
+    "boundary": "sentence",
+    "sentence": "Mayowasen was the given name of Quispellan in the church register.",
+    "chunk_index": 257,
+    "chunk_id": "B18:257"
+  },
+  {
+    "persona_id": "c3_B18_011",
+    "kind": "gold",
+    "target_chunk": 85,
+    "char_pos": 234389,
+    "boundary": "sentence",
+    "sentence": "Father Erdoganli kept a small wooden boat called Ulvershythe.",
+    "chunk_index": 86,
+    "chunk_id": "B18:86"
+  },
+  {
+    "persona_id": "c3_B18_011",
+    "kind": "reveal",
+    "target_chunk": 256,
+    "char_pos": 699467,
+    "boundary": "sentence",
+    "sentence": "The surname of Bushrana was Erdoganli, or so the parish books said.",
+    "chunk_index": 260,
+    "chunk_id": "B18:260"
+  },
+  {
+    "persona_id": "c4_B18_009",
+    "kind": "gold",
+    "target_chunk": 163,
+    "char_pos": 448066,
+    "boundary": "sentence",
+    "sentence": "Captain Sakuragiya took lodgings at an inn called Pellamfenwick.",
+    "chunk_index": 165,
+    "chunk_id": "B18:165"
+  },
+  {
+    "persona_id": "c4_B18_009",
+    "kind": "reveal",
+    "target_chunk": 101,
+    "char_pos": 278720,
+    "boundary": "sentence",
+    "sentence": "Sakuragiya, whose given name was Ubaydallan, was well known in those parts.",
+    "chunk_index": 102,
+    "chunk_id": "B18:102"
+  },
+  {
+    "persona_id": "c4_B18_010",
+    "kind": "gold",
+    "target_chunk": 169,
+    "char_pos": 464435,
+    "boundary": "sentence",
+    "sentence": "Professor Rendlavish had lived in Oldshaw for many years.",
+    "chunk_index": 172,
+    "chunk_id": "B18:172"
+  },
+  {
+    "persona_id": "c4_B18_010",
+    "kind": "reveal",
+    "target_chunk": 107,
+    "char_pos": 295115,
+    "boundary": "sentence",
+    "sentence": "Lumikukka was the given name of Rendlavish in the church register.",
+    "chunk_index": 108,
+    "chunk_id": "B18:108"
+  },
+  {
+    "persona_id": "c4_B18_011",
+    "kind": "gold",
+    "target_chunk": 166,
+    "char_pos": 456362,
+    "boundary": "sentence",
+    "sentence": "Father Quennevill kept a small wooden boat called Josserthwaite.",
+    "chunk_index": 169,
+    "chunk_id": "B18:169"
+  },
+  {
+    "persona_id": "c4_B18_011",
+    "kind": "reveal",
+    "target_chunk": 104,
+    "char_pos": 286963,
+    "boundary": "sentence",
+    "sentence": "The surname of Vainamolt was Quennevill, or so the parish books said.",
+    "chunk_index": 105,
+    "chunk_id": "B18:105"
+  },
+  {
+    "persona_id": "c5_B18_009",
+    "kind": "gold",
+    "target_chunk": 58,
+    "char_pos": 160615,
+    "boundary": "sentence",
+    "sentence": "Captain Raghunathan took lodgings at an inn called Kelmmere.",
+    "chunk_index": 58,
+    "chunk_id": "B18:58"
+  },
+  {
+    "persona_id": "c5_B18_010",
+    "kind": "gold",
+    "target_chunk": 34,
+    "char_pos": 94697,
+    "boundary": "sentence",
+    "sentence": "Professor Cetinkayal had lived in Josserhythe for many years.",
+    "chunk_index": 34,
+    "chunk_id": "B18:34"
+  },
+  {
+    "persona_id": "c5_B18_011",
+    "kind": "gold",
+    "target_chunk": 27,
+    "char_pos": 75486,
+    "boundary": "sentence",
+    "sentence": "Father Grevandish kept a small wooden boat called Elvanstead.",
+    "chunk_index": 27,
+    "chunk_id": "B18:27"
+  },
+  {
+    "persona_id": "c6_B18_009",
+    "kind": "gold",
+    "target_chunk": 119,
+    "char_pos": 328566,
+    "boundary": "sentence",
+    "sentence": "The Halyard Splicer took lodgings at an inn called Yarrowthwaite.",
+    "chunk_index": 120,
+    "chunk_id": "B18:120"
+  },
+  {
+    "persona_id": "c6_B18_009",
+    "kind": "reveal",
+    "target_chunk": 196,
+    "char_pos": 537055,
+    "boundary": "sentence",
+    "sentence": "Fumihikaru went by the Halyard Splicer among the parish folk thereabouts.",
+    "chunk_index": 199,
+    "chunk_id": "B18:199"
+  },
+  {
+    "persona_id": "c6_B18_010",
+    "kind": "gold",
+    "target_chunk": 70,
+    "char_pos": 193041,
+    "boundary": "sentence",
+    "sentence": "The Mistle Thatcher had lived in Nyddgate for many years.",
+    "chunk_index": 71,
+    "chunk_id": "B18:71"
+  },
+  {
+    "persona_id": "c6_B18_010",
+    "kind": "reveal",
+    "target_chunk": 147,
+    "char_pos": 404985,
+    "boundary": "sentence",
+    "sentence": "People of the district spoke of Golnessa as the Mistle Thatcher.",
+    "chunk_index": 149,
+    "chunk_id": "B18:149"
+  },
+  {
+    "persona_id": "c6_B18_011",
+    "kind": "gold",
+    "target_chunk": 134,
+    "char_pos": 369623,
+    "boundary": "sentence",
+    "sentence": "The Sedge Mower kept a small wooden boat called Josserbourne.",
+    "chunk_index": 136,
+    "chunk_id": "B18:136"
+  },
+  {
+    "persona_id": "c6_B18_011",
+    "kind": "reveal",
+    "target_chunk": 211,
+    "char_pos": 577926,
+    "boundary": "sentence",
+    "sentence": "The Sedge Mower was none other than Faramarzin, as the neighbours often said.",
+    "chunk_index": 214,
+    "chunk_id": "B18:214"
+  },
+  {
+    "persona_id": "c7_B18_009",
+    "kind": "gold",
+    "target_chunk": 129,
+    "char_pos": 356243,
+    "boundary": "sentence",
+    "sentence": "Esmeraldin took lodgings at an inn called Fennholt.",
+    "chunk_index": 131,
+    "chunk_id": "B18:131"
+  },
+  {
+    "persona_id": "c7_B18_009",
+    "kind": "reveal",
+    "target_chunk": 206,
+    "char_pos": 564215,
+    "boundary": "sentence",
+    "sentence": "Esmeraldin practised the trade of a beekeeper back then.",
+    "chunk_index": 209,
+    "chunk_id": "B18:209"
+  },
+  {
+    "persona_id": "c7_B18_010",
+    "kind": "gold",
+    "target_chunk": 76,
+    "char_pos": 209616,
+    "boundary": "sentence",
+    "sentence": "Joaquimlar had lived in Sarndale for many years.",
+    "chunk_index": 77,
+    "chunk_id": "B18:77"
+  },
+  {
+    "persona_id": "c7_B18_010",
+    "kind": "reveal",
+    "target_chunk": 153,
+    "char_pos": 421015,
+    "boundary": "sentence",
+    "sentence": "By profession, Joaquimlar was a basketweaver of some repute.",
+    "chunk_index": 155,
+    "chunk_id": "B18:155"
+  },
+  {
+    "persona_id": "c7_B18_011",
+    "kind": "gold",
+    "target_chunk": 79,
+    "char_pos": 218041,
+    "boundary": "sentence",
+    "sentence": "Nustakilla kept a small wooden boat called Oldmere.",
+    "chunk_index": 80,
+    "chunk_id": "B18:80"
+  },
+  {
+    "persona_id": "c7_B18_011",
+    "kind": "reveal",
+    "target_chunk": 156,
+    "char_pos": 429194,
+    "boundary": "sentence",
+    "sentence": "Nustakilla served the whole parish as its sailmaker.",
+    "chunk_index": 158,
+    "chunk_id": "B18:158"
+  },
+  {
+    "persona_id": "c8_B18_009",
+    "kind": "gold",
+    "target_chunk": 64,
+    "char_pos": 176760,
+    "boundary": "sentence",
+    "sentence": "The Gilded Antler stood along the high road at Kelmgate back then.",
+    "chunk_index": 65,
+    "chunk_id": "B18:65"
+  },
+  {
+    "persona_id": "c8_B18_009",
+    "kind": "reveal",
+    "target_chunk": 141,
+    "char_pos": 388947,
+    "boundary": "sentence",
+    "sentence": "The Gilded Antler belonged to Wamanpuma, as the whole district understood.",
+    "chunk_index": 143,
+    "chunk_id": "B18:143"
+  },
+  {
+    "persona_id": "c8_B18_010",
+    "kind": "gold",
+    "target_chunk": 126,
+    "char_pos": 347843,
+    "boundary": "sentence",
+    "sentence": "The Emberwatch stood upon the headland at Elvanwick above the rocks.",
+    "chunk_index": 127,
+    "chunk_id": "B18:127"
+  },
+  {
+    "persona_id": "c8_B18_010",
+    "kind": "reveal",
+    "target_chunk": 203,
+    "char_pos": 556067,
+    "boundary": "sentence",
+    "sentence": "Dilrubah was the owner of the Emberwatch in former days.",
+    "chunk_index": 206,
+    "chunk_id": "B18:206"
+  },
+  {
+    "persona_id": "c8_B18_011",
+    "kind": "gold",
+    "target_chunk": 122,
+    "char_pos": 337056,
+    "boundary": "sentence",
+    "sentence": "The Chaffwind stood beside the stream at Yarrowhall from spring to autumn.",
+    "chunk_index": 123,
+    "chunk_id": "B18:123"
+  },
+  {
+    "persona_id": "c8_B18_011",
+    "kind": "reveal",
+    "target_chunk": 199,
+    "char_pos": 545165,
+    "boundary": "sentence",
+    "sentence": "The Chaffwind was Tankutay's own property, bought long before.",
+    "chunk_index": 202,
+    "chunk_id": "B18:202"
+  },
+  {
+    "persona_id": "c1_B04_012",
+    "kind": "gold",
+    "target_chunk": 46,
+    "char_pos": 128128,
+    "boundary": "sentence",
+    "sentence": "Judge Samarqandli rode a grey mare known as Girthworth.",
+    "chunk_index": 46,
+    "chunk_id": "B04:46"
+  },
+  {
+    "persona_id": "c1_B04_012",
+    "kind": "reveal",
+    "target_chunk": 49,
+    "char_pos": 136306,
+    "boundary": "sentence",
+    "sentence": "In those days, Olwenydd's family name was Samarqandli.",
+    "chunk_index": 49,
+    "chunk_id": "B04:49"
+  },
+  {
+    "persona_id": "c1_B04_013",
+    "kind": "gold",
+    "target_chunk": 98,
+    "char_pos": 271955,
+    "boundary": "paragraph",
+    "sentence": "Madame Boztepelli was born in the town of Brackshaw.",
+    "chunk_index": 98,
+    "chunk_id": "B04:98"
+  },
+  {
+    "persona_id": "c1_B04_013",
+    "kind": "reveal",
+    "target_chunk": 101,
+    "char_pos": 280428,
+    "boundary": "sentence",
+    "sentence": "Boztepelli, whose given name was Taliesinor, was well known in those parts.",
+    "chunk_index": 101,
+    "chunk_id": "B04:101"
+  },
+  {
+    "persona_id": "c1_B04_014",
+    "kind": "gold",
+    "target_chunk": 17,
+    "char_pos": 47473,
+    "boundary": "sentence",
+    "sentence": "Sergeant Hasegawari took lodgings at an inn called Ulvershall.",
+    "chunk_index": 16,
+    "chunk_id": "B04:16"
+  },
+  {
+    "persona_id": "c1_B04_014",
+    "kind": "reveal",
+    "target_chunk": 20,
+    "char_pos": 55851,
+    "boundary": "paragraph",
+    "sentence": "Ifedayolar was the given name of Hasegawari in the church register.",
+    "chunk_index": 20,
+    "chunk_id": "B04:20"
+  },
+  {
+    "persona_id": "c2_B04_012",
+    "kind": "gold",
+    "target_chunk": 66,
+    "char_pos": 183673,
+    "boundary": "sentence",
+    "sentence": "Judge Chukiwanka rode a grey mare known as Sarnhall.",
+    "chunk_index": 66,
+    "chunk_id": "B04:66"
+  },
+  {
+    "persona_id": "c2_B04_012",
+    "kind": "reveal",
+    "target_chunk": 146,
+    "char_pos": 404617,
+    "boundary": "sentence",
+    "sentence": "In those days, Olumidera's family name was Chukiwanka.",
+    "chunk_index": 146,
+    "chunk_id": "B04:146"
+  },
+  {
+    "persona_id": "c2_B04_013",
+    "kind": "gold",
+    "target_chunk": 143,
+    "char_pos": 396437,
+    "boundary": "sentence",
+    "sentence": "Madame Ilvesjoki was born in the town of Ulversworth.",
+    "chunk_index": 143,
+    "chunk_id": "B04:143"
+  },
+  {
+    "persona_id": "c2_B04_013",
+    "kind": "reveal",
+    "target_chunk": 223,
+    "char_pos": 618112,
+    "boundary": "paragraph",
+    "sentence": "Ilvesjoki, whose given name was Widadina, was well known in those parts.",
+    "chunk_index": 223,
+    "chunk_id": "B04:223"
+  },
+  {
+    "persona_id": "c2_B04_014",
+    "kind": "gold",
+    "target_chunk": 69,
+    "char_pos": 191893,
+    "boundary": "sentence",
+    "sentence": "Sergeant Ishikawano took lodgings at an inn called Lornbourne.",
+    "chunk_index": 69,
+    "chunk_id": "B04:69"
+  },
+  {
+    "persona_id": "c2_B04_014",
+    "kind": "reveal",
+    "target_chunk": 149,
+    "char_pos": 412902,
+    "boundary": "paragraph",
+    "sentence": "Hudhayfan was the given name of Ishikawano in the church register.",
+    "chunk_index": 149,
+    "chunk_id": "B04:149"
+  },
+  {
+    "persona_id": "c3_B04_012",
+    "kind": "gold",
+    "target_chunk": 88,
+    "char_pos": 243884,
+    "boundary": "sentence",
+    "sentence": "Judge Larkspurrow rode a grey mare known as Harrowcombe.",
+    "chunk_index": 88,
+    "chunk_id": "B04:88"
+  },
+  {
+    "persona_id": "c3_B04_012",
+    "kind": "reveal",
+    "target_chunk": 264,
+    "char_pos": 729600,
+    "boundary": "sentence",
+    "sentence": "In those days, Yrttitar's family name was Larkspurrow.",
+    "chunk_index": 265,
+    "chunk_id": "B04:265"
+  },
+  {
+    "persona_id": "c3_B04_013",
+    "kind": "gold",
+    "target_chunk": 85,
+    "char_pos": 235738,
+    "boundary": "sentence",
+    "sentence": "Madame Mehrparvar was born in the town of Orvelfenwick.",
+    "chunk_index": 85,
+    "chunk_id": "B04:85"
+  },
+  {
+    "persona_id": "c3_B04_013",
+    "kind": "reveal",
+    "target_chunk": 261,
+    "char_pos": 721525,
+    "boundary": "sentence",
+    "sentence": "Mehrparvar, whose given name was Ilmarinen, was well known in those parts.",
+    "chunk_index": 261,
+    "chunk_id": "B04:261"
+  },
+  {
+    "persona_id": "c3_B04_014",
+    "kind": "gold",
+    "target_chunk": 92,
+    "char_pos": 255038,
+    "boundary": "sentence",
+    "sentence": "Sergeant Nieminenka took lodgings at an inn called Ulversfold.",
+    "chunk_index": 92,
+    "chunk_id": "B04:92"
+  },
+  {
+    "persona_id": "c3_B04_014",
+    "kind": "reveal",
+    "target_chunk": 268,
+    "char_pos": 740708,
+    "boundary": "sentence",
+    "sentence": "Madhulikha was the given name of Nieminenka in the church register.",
+    "chunk_index": 269,
+    "chunk_id": "B04:269"
+  },
+  {
+    "persona_id": "c4_B04_012",
+    "kind": "gold",
+    "target_chunk": 172,
+    "char_pos": 477280,
+    "boundary": "sentence",
+    "sentence": "Judge Sobralinho rode a grey mare known as Hollinholt.",
+    "chunk_index": 172,
+    "chunk_id": "B04:172"
+  },
+  {
+    "persona_id": "c4_B04_012",
+    "kind": "reveal",
+    "target_chunk": 108,
+    "char_pos": 299563,
+    "boundary": "sentence",
+    "sentence": "In those days, Shantanuvir's family name was Sobralinho.",
+    "chunk_index": 108,
+    "chunk_id": "B04:108"
+  },
+  {
+    "persona_id": "c4_B04_013",
+    "kind": "gold",
+    "target_chunk": 168,
+    "char_pos": 466130,
+    "boundary": "sentence",
+    "sentence": "Madame Ynysmorell was born in the town of Sarngate.",
+    "chunk_index": 168,
+    "chunk_id": "B04:168"
+  },
+  {
+    "persona_id": "c4_B04_013",
+    "kind": "reveal",
+    "target_chunk": 104,
+    "char_pos": 288701,
+    "boundary": "sentence",
+    "sentence": "Ynysmorell, whose given name was Izumieko, was well known in those parts.",
+    "chunk_index": 104,
+    "chunk_id": "B04:104"
+  },
+  {
+    "persona_id": "c4_B04_014",
+    "kind": "gold",
+    "target_chunk": 175,
+    "char_pos": 485822,
+    "boundary": "paragraph",
+    "sentence": "Sergeant Moravandel took lodgings at an inn called Hollinmoor.",
+    "chunk_index": 175,
+    "chunk_id": "B04:175"
+  },
+  {
+    "persona_id": "c4_B04_014",
+    "kind": "reveal",
+    "target_chunk": 111,
+    "char_pos": 308044,
+    "boundary": "paragraph",
+    "sentence": "Noburotak was the given name of Moravandel in the church register.",
+    "chunk_index": 111,
+    "chunk_id": "B04:111"
+  },
+  {
+    "persona_id": "c5_B04_012",
+    "kind": "gold",
+    "target_chunk": 58,
+    "char_pos": 161220,
+    "boundary": "sentence",
+    "sentence": "Judge Brockenhurst rode a grey mare known as Girthstead.",
+    "chunk_index": 58,
+    "chunk_id": "B04:58"
+  },
+  {
+    "persona_id": "c5_B04_013",
+    "kind": "gold",
+    "target_chunk": 134,
+    "char_pos": 371400,
+    "boundary": "sentence",
+    "sentence": "Madame Durmazlari was born in the town of Sarncragg.",
+    "chunk_index": 134,
+    "chunk_id": "B04:134"
+  },
+  {
+    "persona_id": "c5_B04_014",
+    "kind": "gold",
+    "target_chunk": 95,
+    "char_pos": 263165,
+    "boundary": "paragraph",
+    "sentence": "Sergeant Yardleighan took lodgings at an inn called Marrenhall.",
+    "chunk_index": 95,
+    "chunk_id": "B04:95"
+  },
+  {
+    "persona_id": "c6_B04_012",
+    "kind": "gold",
+    "target_chunk": 118,
+    "char_pos": 327063,
+    "boundary": "sentence",
+    "sentence": "The Teasel Comber rode a grey mare known as Rivelfold.",
+    "chunk_index": 118,
+    "chunk_id": "B04:118"
+  },
+  {
+    "persona_id": "c6_B04_012",
+    "kind": "reveal",
+    "target_chunk": 198,
+    "char_pos": 548603,
+    "boundary": "sentence",
+    "sentence": "Everyone in the village knew Anacletor as the Teasel Comber.",
+    "chunk_index": 198,
+    "chunk_id": "B04:198"
+  },
+  {
+    "persona_id": "c6_B04_013",
+    "kind": "gold",
+    "target_chunk": 139,
+    "char_pos": 385320,
+    "boundary": "sentence",
+    "sentence": "The Spigot Fitter was born in the town of Hollinbourne.",
+    "chunk_index": 139,
+    "chunk_id": "B04:139"
+  },
+  {
+    "persona_id": "c6_B04_013",
+    "kind": "reveal",
+    "target_chunk": 219,
+    "char_pos": 606737,
+    "boundary": "paragraph",
+    "sentence": "Killasisa went by the Spigot Fitter among the parish folk thereabouts.",
+    "chunk_index": 219,
+    "chunk_id": "B04:219"
+  },
+  {
+    "persona_id": "c6_B04_014",
+    "kind": "gold",
+    "target_chunk": 115,
+    "char_pos": 318598,
+    "boundary": "sentence",
+    "sentence": "The Quern Grinder took lodgings at an inn called Nyddmere.",
+    "chunk_index": 115,
+    "chunk_id": "B04:115"
+  },
+  {
+    "persona_id": "c6_B04_014",
+    "kind": "reveal",
+    "target_chunk": 195,
+    "char_pos": 540424,
+    "boundary": "sentence",
+    "sentence": "People of the district spoke of Kuntursum as the Quern Grinder.",
+    "chunk_index": 195,
+    "chunk_id": "B04:195"
+  },
+  {
+    "persona_id": "c7_B04_012",
+    "kind": "gold",
+    "target_chunk": 127,
+    "char_pos": 351937,
+    "boundary": "sentence",
+    "sentence": "Ulkunaz rode a grey mare known as Oldworth.",
+    "chunk_index": 127,
+    "chunk_id": "B04:127"
+  },
+  {
+    "persona_id": "c7_B04_012",
+    "kind": "reveal",
+    "target_chunk": 207,
+    "char_pos": 573502,
+    "boundary": "sentence",
+    "sentence": "Ulkunaz worked as a dyemaker in the district.",
+    "chunk_index": 207,
+    "chunk_id": "B04:207"
+  },
+  {
+    "persona_id": "c7_B04_013",
+    "kind": "gold",
+    "target_chunk": 76,
+    "char_pos": 210860,
+    "boundary": "sentence",
+    "sentence": "Alpertun was born in the town of Wendelfold.",
+    "chunk_index": 76,
+    "chunk_id": "B04:76"
+  },
+  {
+    "persona_id": "c7_B04_013",
+    "kind": "reveal",
+    "target_chunk": 156,
+    "char_pos": 432964,
+    "boundary": "sentence",
+    "sentence": "Alpertun practised the trade of a cordwainer back then.",
+    "chunk_index": 156,
+    "chunk_id": "B04:156"
+  },
+  {
+    "persona_id": "c7_B04_014",
+    "kind": "gold",
+    "target_chunk": 72,
+    "char_pos": 199966,
+    "boundary": "sentence",
+    "sentence": "Caryswen took lodgings at an inn called Corvelmere.",
+    "chunk_index": 72,
+    "chunk_id": "B04:72"
+  },
+  {
+    "persona_id": "c7_B04_014",
+    "kind": "reveal",
+    "target_chunk": 152,
+    "char_pos": 421750,
+    "boundary": "sentence",
+    "sentence": "By profession, Caryswen was a lamplighter of some repute.",
+    "chunk_index": 152,
+    "chunk_id": "B04:152"
+  },
+  {
+    "persona_id": "c8_B04_012",
+    "kind": "gold",
+    "target_chunk": 122,
+    "char_pos": 338053,
+    "boundary": "sentence",
+    "sentence": "The Harrowed Gull was kept in the harbour at Fenngarth all year.",
+    "chunk_index": 122,
+    "chunk_id": "B04:122"
+  },
+  {
+    "persona_id": "c8_B04_012",
+    "kind": "reveal",
+    "target_chunk": 202,
+    "char_pos": 559559,
+    "boundary": "sentence",
+    "sentence": "Owaingwyn owned the Harrowed Gull and prized it dearly.",
+    "chunk_index": 202,
+    "chunk_id": "B04:202"
+  },
+  {
+    "persona_id": "c8_B04_013",
+    "kind": "gold",
+    "target_chunk": 82,
+    "char_pos": 227395,
+    "boundary": "sentence",
+    "sentence": "The Magpie Flyer was housed in the coach yard at Drosselmoor every season.",
+    "chunk_index": 82,
+    "chunk_id": "B04:82"
+  },
+  {
+    "persona_id": "c8_B04_013",
+    "kind": "reveal",
+    "target_chunk": 162,
+    "char_pos": 449815,
+    "boundary": "sentence",
+    "sentence": "The Magpie Flyer belonged to Eniolaraj, as the whole district understood.",
+    "chunk_index": 162,
+    "chunk_id": "B04:162"
+  },
+  {
+    "persona_id": "c8_B04_014",
+    "kind": "gold",
+    "target_chunk": 79,
+    "char_pos": 219115,
+    "boundary": "sentence",
+    "sentence": "The Frosted Arrow was stabled behind the smithy at Ashengarth each winter.",
+    "chunk_index": 79,
+    "chunk_id": "B04:79"
+  },
+  {
+    "persona_id": "c8_B04_014",
+    "kind": "reveal",
+    "target_chunk": 159,
+    "char_pos": 441322,
+    "boundary": "sentence",
+    "sentence": "Babajider was the owner of the Frosted Arrow in former days.",
+    "chunk_index": 159,
+    "chunk_id": "B04:159"
+  },
+  {
+    "persona_id": "c1_B34_015",
+    "kind": "gold",
+    "target_chunk": 142,
+    "char_pos": 384002,
+    "boundary": "sentence",
+    "sentence": "Colonel Starnforth had lived in Wendelgarth for many years.",
+    "chunk_index": 144,
+    "chunk_id": "B34:144"
+  },
+  {
+    "persona_id": "c1_B34_015",
+    "kind": "reveal",
+    "target_chunk": 145,
+    "char_pos": 392137,
+    "boundary": "sentence",
+    "sentence": "The surname of Itidalia was Starnforth, or so the parish books said.",
+    "chunk_index": 147,
+    "chunk_id": "B34:147"
+  },
+  {
+    "persona_id": "c1_B34_016",
+    "kind": "gold",
+    "target_chunk": 103,
+    "char_pos": 277822,
+    "boundary": "sentence",
+    "sentence": "Doctor Nylandsett kept a small wooden boat called Quarnmoor.",
+    "chunk_index": 104,
+    "chunk_id": "B34:104"
+  },
+  {
+    "persona_id": "c1_B34_016",
+    "kind": "reveal",
+    "target_chunk": 106,
+    "char_pos": 285502,
+    "boundary": "sentence",
+    "sentence": "The surname of Suhaybani was Nylandsett, or so the parish books said.",
+    "chunk_index": 107,
+    "chunk_id": "B34:107"
+  },
+  {
+    "persona_id": "c1_B34_017",
+    "kind": "gold",
+    "target_chunk": 97,
+    "char_pos": 262149,
+    "boundary": "sentence",
+    "sentence": "Captain Gumuskayal rode a grey mare known as Marrenfenwick.",
+    "chunk_index": 98,
+    "chunk_id": "B34:98"
+  },
+  {
+    "persona_id": "c1_B34_017",
+    "kind": "reveal",
+    "target_chunk": 100,
+    "char_pos": 270235,
+    "boundary": "sentence",
+    "sentence": "Paivikken was the given name of Gumuskayal in the church register.",
+    "chunk_index": 101,
+    "chunk_id": "B34:101"
+  },
+  {
+    "persona_id": "c2_B34_015",
+    "kind": "gold",
+    "target_chunk": 85,
+    "char_pos": 229177,
+    "boundary": "sentence",
+    "sentence": "Colonel Tabariyya had lived in Ilberfenwick for many years.",
+    "chunk_index": 86,
+    "chunk_id": "B34:86"
+  },
+  {
+    "persona_id": "c2_B34_015",
+    "kind": "reveal",
+    "target_chunk": 168,
+    "char_pos": 454135,
+    "boundary": "sentence",
+    "sentence": "The surname of Reijovain was Tabariyya, or so the parish books said.",
+    "chunk_index": 170,
+    "chunk_id": "B34:170"
+  },
+  {
+    "persona_id": "c2_B34_016",
+    "kind": "gold",
+    "target_chunk": 79,
+    "char_pos": 213066,
+    "boundary": "sentence",
+    "sentence": "Doctor Pellandrin kept a small wooden boat called Wendelhythe.",
+    "chunk_index": 80,
+    "chunk_id": "B34:80"
+  },
+  {
+    "persona_id": "c2_B34_016",
+    "kind": "reveal",
+    "target_chunk": 162,
+    "char_pos": 438046,
+    "boundary": "sentence",
+    "sentence": "The surname of Gaytriben was Pellandrin, or so the parish books said.",
+    "chunk_index": 164,
+    "chunk_id": "B34:164"
+  },
+  {
+    "persona_id": "c2_B34_017",
+    "kind": "gold",
+    "target_chunk": 88,
+    "char_pos": 237604,
+    "boundary": "sentence",
+    "sentence": "Captain Golbahari rode a grey mare known as Hollinfenwick.",
+    "chunk_index": 89,
+    "chunk_id": "B34:89"
+  },
+  {
+    "persona_id": "c2_B34_017",
+    "kind": "reveal",
+    "target_chunk": 171,
+    "char_pos": 462568,
+    "boundary": "sentence",
+    "sentence": "Jagmohand was the given name of Golbahari in the church register.",
+    "chunk_index": 173,
+    "chunk_id": "B34:173"
+  },
+  {
+    "persona_id": "c3_B34_015",
+    "kind": "gold",
+    "target_chunk": 94,
+    "char_pos": 254220,
+    "boundary": "paragraph",
+    "sentence": "Colonel Dravenmire had lived in Quarndale for many years.",
+    "chunk_index": 95,
+    "chunk_id": "B34:95"
+  },
+  {
+    "persona_id": "c3_B34_015",
+    "kind": "reveal",
+    "target_chunk": 277,
+    "char_pos": 754412,
+    "boundary": "sentence",
+    "sentence": "The surname of Orinoeka was Dravenmire, or so the parish books said.",
+    "chunk_index": 282,
+    "chunk_id": "B34:282"
+  },
+  {
+    "persona_id": "c3_B34_016",
+    "kind": "gold",
+    "target_chunk": 91,
+    "char_pos": 245794,
+    "boundary": "sentence",
+    "sentence": "Doctor Fenwickdale kept a small wooden boat called Josserfold.",
+    "chunk_index": 92,
+    "chunk_id": "B34:92"
+  },
+  {
+    "persona_id": "c3_B34_016",
+    "kind": "reveal",
+    "target_chunk": 274,
+    "char_pos": 746069,
+    "boundary": "sentence",
+    "sentence": "The surname of Osamutaka was Fenwickdale, or so the parish books said.",
+    "chunk_index": 279,
+    "chunk_id": "B34:279"
+  },
+  {
+    "persona_id": "c3_B34_017",
+    "kind": "gold",
+    "target_chunk": 35,
+    "char_pos": 94159,
+    "boundary": "sentence",
+    "sentence": "Captain Zetterlundh rode a grey mare known as Jossercragg.",
+    "chunk_index": 35,
+    "chunk_id": "B34:35"
+  },
+  {
+    "persona_id": "c3_B34_017",
+    "kind": "reveal",
+    "target_chunk": 218,
+    "char_pos": 591420,
+    "boundary": "sentence",
+    "sentence": "Golandam was the given name of Zetterlundh in the church register.",
+    "chunk_index": 221,
+    "chunk_id": "B34:221"
+  },
+  {
+    "persona_id": "c4_B34_015",
+    "kind": "gold",
+    "target_chunk": 181,
+    "char_pos": 489973,
+    "boundary": "sentence",
+    "sentence": "Colonel Trefriwell had lived in Ilberworth for many years.",
+    "chunk_index": 184,
+    "chunk_id": "B34:184"
+  },
+  {
+    "persona_id": "c4_B34_015",
+    "kind": "reveal",
+    "target_chunk": 115,
+    "char_pos": 310426,
+    "boundary": "sentence",
+    "sentence": "The surname of Mehrzad was Trefriwell, or so the parish books said.",
+    "chunk_index": 116,
+    "chunk_id": "B34:116"
+  },
+  {
+    "persona_id": "c4_B34_016",
+    "kind": "gold",
+    "target_chunk": 178,
+    "char_pos": 481808,
+    "boundary": "sentence",
+    "sentence": "Doctor Vaidyanath kept a small wooden boat called Brackmoor.",
+    "chunk_index": 180,
+    "chunk_id": "B34:180"
+  },
+  {
+    "persona_id": "c4_B34_016",
+    "kind": "reveal",
+    "target_chunk": 112,
+    "char_pos": 302521,
+    "boundary": "sentence",
+    "sentence": "The surname of Iracemina was Vaidyanath, or so the parish books said.",
+    "chunk_index": 113,
+    "chunk_id": "B34:113"
+  },
+  {
+    "persona_id": "c4_B34_017",
+    "kind": "gold",
+    "target_chunk": 175,
+    "char_pos": 473387,
+    "boundary": "sentence",
+    "sentence": "Captain Adeyinkala rode a grey mare known as Brackcombe.",
+    "chunk_index": 177,
+    "chunk_id": "B34:177"
+  },
+  {
+    "persona_id": "c4_B34_017",
+    "kind": "reveal",
+    "target_chunk": 109,
+    "char_pos": 294106,
+    "boundary": "sentence",
+    "sentence": "Inocenciol was the given name of Adeyinkala in the church register.",
+    "chunk_index": 110,
+    "chunk_id": "B34:110"
+  },
+  {
+    "persona_id": "c5_B34_015",
+    "kind": "gold",
+    "target_chunk": 119,
+    "char_pos": 321302,
+    "boundary": "sentence",
+    "sentence": "Colonel Madureiral had lived in Ulverscombe for many years.",
+    "chunk_index": 120,
+    "chunk_id": "B34:120"
+  },
+  {
+    "persona_id": "c5_B34_016",
+    "kind": "gold",
+    "target_chunk": 135,
+    "char_pos": 365348,
+    "boundary": "sentence",
+    "sentence": "Doctor Navidifar kept a small wooden boat called Zelmcombe.",
+    "chunk_index": 137,
+    "chunk_id": "B34:137"
+  },
+  {
+    "persona_id": "c5_B34_017",
+    "kind": "gold",
+    "target_chunk": 50,
+    "char_pos": 134588,
+    "boundary": "sentence",
+    "sentence": "Captain Halvorsenn rode a grey mare known as Gaveldale.",
+    "chunk_index": 50,
+    "chunk_id": "B34:50"
+  },
+  {
+    "persona_id": "c6_B34_015",
+    "kind": "gold",
+    "target_chunk": 73,
+    "char_pos": 196812,
+    "boundary": "sentence",
+    "sentence": "The Bracken Carder had lived in Marrendale for many years.",
+    "chunk_index": 74,
+    "chunk_id": "B34:74"
+  },
+  {
+    "persona_id": "c6_B34_015",
+    "kind": "reveal",
+    "target_chunk": 156,
+    "char_pos": 422104,
+    "boundary": "sentence",
+    "sentence": "The Bracken Carder was none other than Baturhan, as the neighbours often said.",
+    "chunk_index": 158,
+    "chunk_id": "B34:158"
+  },
+  {
+    "persona_id": "c6_B34_016",
+    "kind": "gold",
+    "target_chunk": 82,
+    "char_pos": 221010,
+    "boundary": "sentence",
+    "sentence": "The Furze Faggoter kept a small wooden boat called Tavelcragg.",
+    "chunk_index": 83,
+    "chunk_id": "B34:83"
+  },
+  {
+    "persona_id": "c6_B34_016",
+    "kind": "reveal",
+    "target_chunk": 165,
+    "char_pos": 446159,
+    "boundary": "sentence",
+    "sentence": "Everyone in the village knew Angharade as the Furze Faggoter.",
+    "chunk_index": 167,
+    "chunk_id": "B34:167"
+  },
+  {
+    "persona_id": "c6_B34_017",
+    "kind": "gold",
+    "target_chunk": 76,
+    "char_pos": 205270,
+    "boundary": "paragraph",
+    "sentence": "The Sloe Gleaner rode a grey mare known as Ilberdale.",
+    "chunk_index": 77,
+    "chunk_id": "B34:77"
+  },
+  {
+    "persona_id": "c6_B34_017",
+    "kind": "reveal",
+    "target_chunk": 159,
+    "char_pos": 429969,
+    "boundary": "sentence",
+    "sentence": "Bleddynor went by the Sloe Gleaner among the parish folk thereabouts.",
+    "chunk_index": 161,
+    "chunk_id": "B34:161"
+  },
+  {
+    "persona_id": "c7_B34_015",
+    "kind": "gold",
+    "target_chunk": 127,
+    "char_pos": 343565,
+    "boundary": "sentence",
+    "sentence": "Nikeadeol had lived in Pellammere for many years.",
+    "chunk_index": 128,
+    "chunk_id": "B34:128"
+  },
+  {
+    "persona_id": "c7_B34_015",
+    "kind": "reveal",
+    "target_chunk": 210,
+    "char_pos": 569166,
+    "boundary": "sentence",
+    "sentence": "Nikeadeol served the whole parish as its scrivener.",
+    "chunk_index": 213,
+    "chunk_id": "B34:213"
+  },
+  {
+    "persona_id": "c7_B34_016",
+    "kind": "gold",
+    "target_chunk": 123,
+    "char_pos": 332327,
+    "boundary": "sentence",
+    "sentence": "Ladipojul kept a small wooden boat called Kelmgarth.",
+    "chunk_index": 124,
+    "chunk_id": "B34:124"
+  },
+  {
+    "persona_id": "c7_B34_016",
+    "kind": "reveal",
+    "target_chunk": 206,
+    "char_pos": 558220,
+    "boundary": "sentence",
+    "sentence": "Ladipojul worked as a shinglewright in the district.",
+    "chunk_index": 209,
+    "chunk_id": "B34:209"
+  },
+  {
+    "persona_id": "c7_B34_017",
+    "kind": "gold",
+    "target_chunk": 67,
+    "char_pos": 180520,
+    "boundary": "sentence",
+    "sentence": "Rafifah rode a grey mare known as Faldergate.",
+    "chunk_index": 68,
+    "chunk_id": "B34:68"
+  },
+  {
+    "persona_id": "c7_B34_017",
+    "kind": "reveal",
+    "target_chunk": 150,
+    "char_pos": 405575,
+    "boundary": "sentence",
+    "sentence": "Rafifah practised the trade of a soapboiler back then.",
+    "chunk_index": 152,
+    "chunk_id": "B34:152"
+  },
+  {
+    "persona_id": "c8_B34_015",
+    "kind": "gold",
+    "target_chunk": 131,
+    "char_pos": 354457,
+    "boundary": "sentence",
+    "sentence": "The Weary Pilgrim stood along the high road at Orvelmere back then.",
+    "chunk_index": 132,
+    "chunk_id": "B34:132"
+  },
+  {
+    "persona_id": "c8_B34_015",
+    "kind": "reveal",
+    "target_chunk": 214,
+    "char_pos": 580230,
+    "boundary": "sentence",
+    "sentence": "The Weary Pilgrim was Luqmanil's own property, bought long before.",
+    "chunk_index": 217,
+    "chunk_id": "B34:217"
+  },
+  {
+    "persona_id": "c8_B34_016",
+    "kind": "gold",
+    "target_chunk": 70,
+    "char_pos": 188775,
+    "boundary": "paragraph",
+    "sentence": "The Wavebeacon stood upon the headland at Tavelmoor above the rocks.",
+    "chunk_index": 71,
+    "chunk_id": "B34:71"
+  },
+  {
+    "persona_id": "c8_B34_016",
+    "kind": "reveal",
+    "target_chunk": 153,
+    "char_pos": 414006,
+    "boundary": "sentence",
+    "sentence": "Vellamoin owned the Wavebeacon and prized it dearly.",
+    "chunk_index": 155,
+    "chunk_id": "B34:155"
+  },
+  {
+    "persona_id": "c8_B34_017",
+    "kind": "gold",
+    "target_chunk": 139,
+    "char_pos": 375928,
+    "boundary": "sentence",
+    "sentence": "The Spelthollow stood beside the stream at Brackfirth from spring to autumn.",
+    "chunk_index": 140,
+    "chunk_id": "B34:140"
+  },
+  {
+    "persona_id": "c8_B34_017",
+    "kind": "reveal",
+    "target_chunk": 222,
+    "char_pos": 602226,
+    "boundary": "paragraph",
+    "sentence": "The Spelthollow belonged to Eerikalev, as the whole district understood.",
+    "chunk_index": 225,
+    "chunk_id": "B34:225"
+  },
+  {
+    "persona_id": "c1_B27_018",
+    "kind": "gold",
+    "target_chunk": 93,
+    "char_pos": 249727,
+    "boundary": "sentence",
+    "sentence": "Professor Farahvashi was born in the town of Drosselworth.",
+    "chunk_index": 94,
+    "chunk_id": "B27:94"
+  },
+  {
+    "persona_id": "c1_B27_018",
+    "kind": "reveal",
+    "target_chunk": 96,
+    "char_pos": 257571,
+    "boundary": "sentence",
+    "sentence": "Nandinira was the given name of Farahvashi in the church register.",
+    "chunk_index": 97,
+    "chunk_id": "B27:97"
+  },
+  {
+    "persona_id": "c1_B27_019",
+    "kind": "gold",
+    "target_chunk": 47,
+    "char_pos": 125923,
+    "boundary": "sentence",
+    "sentence": "Father Aydinlikel took lodgings at an inn called Tavelmere.",
+    "chunk_index": 47,
+    "chunk_id": "B27:47"
+  },
+  {
+    "persona_id": "c1_B27_019",
+    "kind": "reveal",
+    "target_chunk": 50,
+    "char_pos": 133630,
+    "boundary": "sentence",
+    "sentence": "The surname of Kripalsing was Aydinlikel, or so the parish books said.",
+    "chunk_index": 50,
+    "chunk_id": "B27:50"
+  },
+  {
+    "persona_id": "c1_B27_020",
+    "kind": "gold",
+    "target_chunk": 105,
+    "char_pos": 281724,
+    "boundary": "sentence",
+    "sentence": "Judge Ozdemirkan had lived in Sarnmoor for many years.",
+    "chunk_index": 106,
+    "chunk_id": "B27:106"
+  },
+  {
+    "persona_id": "c1_B27_020",
+    "kind": "reveal",
+    "target_chunk": 108,
+    "char_pos": 289991,
+    "boundary": "sentence",
+    "sentence": "In those days, Masayoko's family name was Ozdemirkan.",
+    "chunk_index": 109,
+    "chunk_id": "B27:109"
+  },
+  {
+    "persona_id": "c2_B27_018",
+    "kind": "gold",
+    "target_chunk": 141,
+    "char_pos": 380309,
+    "boundary": "sentence",
+    "sentence": "Professor Lehtovaara was born in the town of Kelmstead.",
+    "chunk_index": 143,
+    "chunk_id": "B27:143"
+  },
+  {
+    "persona_id": "c2_B27_018",
+    "kind": "reveal",
+    "target_chunk": 225,
+    "char_pos": 606219,
+    "boundary": "sentence",
+    "sentence": "Masanobur was the given name of Lehtovaara in the church register.",
+    "chunk_index": 228,
+    "chunk_id": "B27:228"
+  },
+  {
+    "persona_id": "c2_B27_019",
+    "kind": "gold",
+    "target_chunk": 133,
+    "char_pos": 358170,
+    "boundary": "sentence",
+    "sentence": "Father Ashgrovall took lodgings at an inn called Ashenridge.",
+    "chunk_index": 135,
+    "chunk_id": "B27:135"
+  },
+  {
+    "persona_id": "c2_B27_019",
+    "kind": "reveal",
+    "target_chunk": 217,
+    "char_pos": 584432,
+    "boundary": "sentence",
+    "sentence": "The surname of Parisima was Ashgrovall, or so the parish books said.",
+    "chunk_index": 220,
+    "chunk_id": "B27:220"
+  },
+  {
+    "persona_id": "c2_B27_020",
+    "kind": "gold",
+    "target_chunk": 146,
+    "char_pos": 394066,
+    "boundary": "paragraph",
+    "sentence": "Judge Tekinalpli had lived in Harrowfold for many years.",
+    "chunk_index": 148,
+    "chunk_id": "B27:148"
+  },
+  {
+    "persona_id": "c2_B27_020",
+    "kind": "reveal",
+    "target_chunk": 230,
+    "char_pos": 619857,
+    "boundary": "sentence",
+    "sentence": "In those days, Goudarzan's family name was Tekinalpli.",
+    "chunk_index": 233,
+    "chunk_id": "B27:233"
+  },
+  {
+    "persona_id": "c3_B27_018",
+    "kind": "gold",
+    "target_chunk": 66,
+    "char_pos": 176958,
+    "boundary": "sentence",
+    "sentence": "Professor Rhosllaner was born in the town of Fennfirth.",
+    "chunk_index": 66,
+    "chunk_id": "B27:66"
+  },
+  {
+    "persona_id": "c3_B27_018",
+    "kind": "reveal",
+    "target_chunk": 251,
+    "char_pos": 675360,
+    "boundary": "sentence",
+    "sentence": "Leopoldinar was the given name of Rhosllaner in the church register.",
+    "chunk_index": 254,
+    "chunk_id": "B27:254"
+  },
+  {
+    "persona_id": "c3_B27_019",
+    "kind": "gold",
+    "target_chunk": 55,
+    "char_pos": 147350,
+    "boundary": "sentence",
+    "sentence": "Father Vuorinenka took lodgings at an inn called Pellamdale.",
+    "chunk_index": 55,
+    "chunk_id": "B27:55"
+  },
+  {
+    "persona_id": "c3_B27_019",
+    "kind": "reveal",
+    "target_chunk": 240,
+    "char_pos": 646269,
+    "boundary": "sentence",
+    "sentence": "The surname of Leandrovaz was Vuorinenka, or so the parish books said.",
+    "chunk_index": 243,
+    "chunk_id": "B27:243"
+  },
+  {
+    "persona_id": "c3_B27_020",
+    "kind": "gold",
+    "target_chunk": 90,
+    "char_pos": 241500,
+    "boundary": "sentence",
+    "sentence": "Judge Joshipural had lived in Quarnworth for many years.",
+    "chunk_index": 91,
+    "chunk_id": "B27:91"
+  },
+  {
+    "persona_id": "c3_B27_020",
+    "kind": "reveal",
+    "target_chunk": 275,
+    "char_pos": 739968,
+    "boundary": "sentence",
+    "sentence": "In those days, Chaskakill's family name was Joshipural.",
+    "chunk_index": 278,
+    "chunk_id": "B27:278"
+  },
+  {
+    "persona_id": "c4_B27_018",
+    "kind": "gold",
+    "target_chunk": 178,
+    "char_pos": 479684,
+    "boundary": "sentence",
+    "sentence": "Professor Tendulkarl was born in the town of Drosselgarth.",
+    "chunk_index": 180,
+    "chunk_id": "B27:180"
+  },
+  {
+    "persona_id": "c4_B27_018",
+    "kind": "reveal",
+    "target_chunk": 111,
+    "char_pos": 298075,
+    "boundary": "paragraph",
+    "sentence": "Manqokapaq was the given name of Tendulkarl in the church register.",
+    "chunk_index": 112,
+    "chunk_id": "B27:112"
+  },
+  {
+    "persona_id": "c4_B27_019",
+    "kind": "gold",
+    "target_chunk": 184,
+    "char_pos": 495518,
+    "boundary": "sentence",
+    "sentence": "Father Atawallpaq took lodgings at an inn called Gavelstead.",
+    "chunk_index": 186,
+    "chunk_id": "B27:186"
+  },
+  {
+    "persona_id": "c4_B27_019",
+    "kind": "reveal",
+    "target_chunk": 117,
+    "char_pos": 314554,
+    "boundary": "sentence",
+    "sentence": "The surname of Ilkyazan was Atawallpaq, or so the parish books said.",
+    "chunk_index": 119,
+    "chunk_id": "B27:119"
+  },
+  {
+    "persona_id": "c4_B27_020",
+    "kind": "gold",
+    "target_chunk": 181,
+    "char_pos": 487683,
+    "boundary": "sentence",
+    "sentence": "Judge Yamanouchi had lived in Harrowbourne for many years.",
+    "chunk_index": 183,
+    "chunk_id": "B27:183"
+  },
+  {
+    "persona_id": "c4_B27_020",
+    "kind": "reveal",
+    "target_chunk": 114,
+    "char_pos": 306337,
+    "boundary": "sentence",
+    "sentence": "In those days, Demirtash's family name was Yamanouchi.",
+    "chunk_index": 115,
+    "chunk_id": "B27:115"
+  },
+  {
+    "persona_id": "c5_B27_018",
+    "kind": "gold",
+    "target_chunk": 99,
+    "char_pos": 265634,
+    "boundary": "sentence",
+    "sentence": "Professor Pachacutel was born in the town of Josserfirth.",
+    "chunk_index": 100,
+    "chunk_id": "B27:100"
+  },
+  {
+    "persona_id": "c5_B27_019",
+    "kind": "gold",
+    "target_chunk": 42,
+    "char_pos": 112988,
+    "boundary": "paragraph",
+    "sentence": "Father Pandyarath took lodgings at an inn called Fennmere.",
+    "chunk_index": 42,
+    "chunk_id": "B27:42"
+  },
+  {
+    "persona_id": "c5_B27_020",
+    "kind": "gold",
+    "target_chunk": 102,
+    "char_pos": 273480,
+    "boundary": "paragraph",
+    "sentence": "Judge Jokilaakso had lived in Marrenshaw for many years.",
+    "chunk_index": 103,
+    "chunk_id": "B27:103"
+  },
+  {
+    "persona_id": "c6_B27_018",
+    "kind": "gold",
+    "target_chunk": 122,
+    "char_pos": 328012,
+    "boundary": "sentence",
+    "sentence": "The Sorrel Steeper was born in the town of Zelmdale.",
+    "chunk_index": 124,
+    "chunk_id": "B27:124"
+  },
+  {
+    "persona_id": "c6_B27_018",
+    "kind": "reveal",
+    "target_chunk": 206,
+    "char_pos": 554640,
+    "boundary": "sentence",
+    "sentence": "People of the district spoke of Kayodejid as the Sorrel Steeper.",
+    "chunk_index": 209,
+    "chunk_id": "B27:209"
+  },
+  {
+    "persona_id": "c6_B27_019",
+    "kind": "gold",
+    "target_chunk": 81,
+    "char_pos": 217190,
+    "boundary": "sentence",
+    "sentence": "The Trestle Joiner took lodgings at an inn called Wendeldale.",
+    "chunk_index": 81,
+    "chunk_id": "B27:81"
+  },
+  {
+    "persona_id": "c6_B27_019",
+    "kind": "reveal",
+    "target_chunk": 165,
+    "char_pos": 444480,
+    "boundary": "sentence",
+    "sentence": "The Trestle Joiner was none other than Yumnaya, as the neighbours often said.",
+    "chunk_index": 167,
+    "chunk_id": "B27:167"
+  },
+  {
+    "persona_id": "c6_B27_020",
+    "kind": "gold",
+    "target_chunk": 78,
+    "char_pos": 209241,
+    "boundary": "sentence",
+    "sentence": "The Gimlet Borer had lived in Orvelcombe for many years.",
+    "chunk_index": 78,
+    "chunk_id": "B27:78"
+  },
+  {
+    "persona_id": "c6_B27_020",
+    "kind": "reveal",
+    "target_chunk": 162,
+    "char_pos": 436374,
+    "boundary": "sentence",
+    "sentence": "Everyone in the village knew Juwaynid as the Gimlet Borer.",
+    "chunk_index": 164,
+    "chunk_id": "B27:164"
+  },
+  {
+    "persona_id": "c7_B27_018",
+    "kind": "gold",
+    "target_chunk": 84,
+    "char_pos": 225203,
+    "boundary": "sentence",
+    "sentence": "Ruusunelm was born in the town of Harrowfirth.",
+    "chunk_index": 85,
+    "chunk_id": "B27:85"
+  },
+  {
+    "persona_id": "c7_B27_018",
+    "kind": "reveal",
+    "target_chunk": 168,
+    "char_pos": 452440,
+    "boundary": "sentence",
+    "sentence": "By profession, Ruusunelm was a quarryman of some repute.",
+    "chunk_index": 170,
+    "chunk_id": "B27:170"
+  },
+  {
+    "persona_id": "c7_B27_019",
+    "kind": "gold",
+    "target_chunk": 75,
+    "char_pos": 201322,
+    "boundary": "sentence",
+    "sentence": "Laurivain took lodgings at an inn called Wendelridge.",
+    "chunk_index": 75,
+    "chunk_id": "B27:75"
+  },
+  {
+    "persona_id": "c7_B27_019",
+    "kind": "reveal",
+    "target_chunk": 159,
+    "char_pos": 427923,
+    "boundary": "sentence",
+    "sentence": "Laurivain served the whole parish as its falconer.",
+    "chunk_index": 161,
+    "chunk_id": "B27:161"
+  },
+  {
+    "persona_id": "c7_B27_020",
+    "kind": "gold",
+    "target_chunk": 72,
+    "char_pos": 193046,
+    "boundary": "sentence",
+    "sentence": "Rukminiba had lived in Ashenthwaite for many years.",
+    "chunk_index": 72,
+    "chunk_id": "B27:72"
+  },
+  {
+    "persona_id": "c7_B27_020",
+    "kind": "reveal",
+    "target_chunk": 156,
+    "char_pos": 420084,
+    "boundary": "sentence",
+    "sentence": "Rukminiba worked as a organist in the district.",
+    "chunk_index": 158,
+    "chunk_id": "B27:158"
+  },
+  {
+    "persona_id": "c8_B27_018",
+    "kind": "gold",
+    "target_chunk": 69,
+    "char_pos": 184969,
+    "boundary": "sentence",
+    "sentence": "The Brindled Gannet was kept in the harbour at Corvelhythe all year.",
+    "chunk_index": 69,
+    "chunk_id": "B27:69"
+  },
+  {
+    "persona_id": "c8_B27_018",
+    "kind": "reveal",
+    "target_chunk": 153,
+    "char_pos": 412415,
+    "boundary": "sentence",
+    "sentence": "Devavratan was the owner of the Brindled Gannet in former days.",
+    "chunk_index": 155,
+    "chunk_id": "B27:155"
+  },
+  {
+    "persona_id": "c8_B27_019",
+    "kind": "gold",
+    "target_chunk": 87,
+    "char_pos": 233266,
+    "boundary": "sentence",
+    "sentence": "The Finchback was housed in the coach yard at Drosselmere every season.",
+    "chunk_index": 88,
+    "chunk_id": "B27:88"
+  },
+  {
+    "persona_id": "c8_B27_019",
+    "kind": "reveal",
+    "target_chunk": 171,
+    "char_pos": 460503,
+    "boundary": "sentence",
+    "sentence": "The Finchback was Umekatsu's own property, bought long before.",
+    "chunk_index": 173,
+    "chunk_id": "B27:173"
+  },
+  {
+    "persona_id": "c8_B27_020",
+    "kind": "gold",
+    "target_chunk": 137,
+    "char_pos": 369121,
+    "boundary": "sentence",
+    "sentence": "The Midnight Sickle was stabled behind the smithy at Josserwick each winter.",
+    "chunk_index": 139,
+    "chunk_id": "B27:139"
+  },
+  {
+    "persona_id": "c8_B27_020",
+    "kind": "reveal",
+    "target_chunk": 221,
+    "char_pos": 595543,
+    "boundary": "paragraph",
+    "sentence": "Ryonosuku owned the Midnight Sickle and prized it dearly.",
+    "chunk_index": 224,
+    "chunk_id": "B27:224"
+  },
+  {
+    "persona_id": "c1_B61_021",
+    "kind": "gold",
+    "target_chunk": 98,
+    "char_pos": 271589,
+    "boundary": "sentence",
+    "sentence": "Madame Bhattarain kept a small wooden boat called Sarnfold.",
+    "chunk_index": 100,
+    "chunk_id": "B61:100"
+  },
+  {
+    "persona_id": "c1_B61_021",
+    "kind": "reveal",
+    "target_chunk": 101,
+    "char_pos": 279854,
+    "boundary": "sentence",
+    "sentence": "The surname of Simindokht was Bhattarain, or so the parish books said.",
+    "chunk_index": 103,
+    "chunk_id": "B61:103"
+  },
+  {
+    "persona_id": "c1_B61_022",
+    "kind": "gold",
+    "target_chunk": 44,
+    "char_pos": 126267,
+    "boundary": "sentence",
+    "sentence": "Sergeant Quaresmall rode a grey mare known as Orvelgate.",
+    "chunk_index": 44,
+    "chunk_id": "B61:44"
+  },
+  {
+    "persona_id": "c1_B61_022",
+    "kind": "reveal",
+    "target_chunk": 47,
+    "char_pos": 134306,
+    "boundary": "sentence",
+    "sentence": "Darivash was the given name of Quaresmall in the church register.",
+    "chunk_index": 47,
+    "chunk_id": "B61:47"
+  },
+  {
+    "persona_id": "c1_B61_023",
+    "kind": "gold",
+    "target_chunk": 128,
+    "char_pos": 351522,
+    "boundary": "sentence",
+    "sentence": "Colonel Nascimental was born in the town of Rivelfenwick.",
+    "chunk_index": 131,
+    "chunk_id": "B61:131"
+  },
+  {
+    "persona_id": "c1_B61_023",
+    "kind": "reveal",
+    "target_chunk": 131,
+    "char_pos": 359059,
+    "boundary": "sentence",
+    "sentence": "The surname of Albertinar was Nascimental, or so the parish books said.",
+    "chunk_index": 134,
+    "chunk_id": "B61:134"
+  },
+  {
+    "persona_id": "c2_B61_021",
+    "kind": "gold",
+    "target_chunk": 140,
+    "char_pos": 383991,
+    "boundary": "sentence",
+    "sentence": "Madame Lombardien kept a small wooden boat called Varnwick.",
+    "chunk_index": 143,
+    "chunk_id": "B61:143"
+  },
+  {
+    "persona_id": "c2_B61_021",
+    "kind": "reveal",
+    "target_chunk": 228,
+    "char_pos": 621042,
+    "boundary": "sentence",
+    "sentence": "The surname of Firminoral was Lombardien, or so the parish books said.",
+    "chunk_index": 232,
+    "chunk_id": "B61:232"
+  },
+  {
+    "persona_id": "c2_B61_022",
+    "kind": "gold",
+    "target_chunk": 78,
+    "char_pos": 217685,
+    "boundary": "sentence",
+    "sentence": "Sergeant Ollantayri rode a grey mare known as Yarrowcombe.",
+    "chunk_index": 79,
+    "chunk_id": "B61:79"
+  },
+  {
+    "persona_id": "c2_B61_022",
+    "kind": "reveal",
+    "target_chunk": 166,
+    "char_pos": 455806,
+    "boundary": "sentence",
+    "sentence": "Kusiquyllur was the given name of Ollantayri in the church register.",
+    "chunk_index": 170,
+    "chunk_id": "B61:170"
+  },
+  {
+    "persona_id": "c2_B61_023",
+    "kind": "gold",
+    "target_chunk": 125,
+    "char_pos": 343223,
+    "boundary": "sentence",
+    "sentence": "Colonel Underhayes was born in the town of Ulversridge.",
+    "chunk_index": 128,
+    "chunk_id": "B61:128"
+  },
+  {
+    "persona_id": "c2_B61_023",
+    "kind": "reveal",
+    "target_chunk": 213,
+    "char_pos": 580225,
+    "boundary": "sentence",
+    "sentence": "The surname of Amaruyupan was Underhayes, or so the parish books said.",
+    "chunk_index": 217,
+    "chunk_id": "B61:217"
+  },
+  {
+    "persona_id": "c3_B61_021",
+    "kind": "gold",
+    "target_chunk": 85,
+    "char_pos": 235562,
+    "boundary": "sentence",
+    "sentence": "Madame Ovredalend kept a small wooden boat called Ilberwick.",
+    "chunk_index": 86,
+    "chunk_id": "B61:86"
+  },
+  {
+    "persona_id": "c3_B61_021",
+    "kind": "reveal",
+    "target_chunk": 280,
+    "char_pos": 762598,
+    "boundary": "sentence",
+    "sentence": "The surname of Cemrenur was Ovredalend, or so the parish books said.",
+    "chunk_index": 285,
+    "chunk_id": "B61:285"
+  },
+  {
+    "persona_id": "c3_B61_022",
+    "kind": "gold",
+    "target_chunk": 36,
+    "char_pos": 104050,
+    "boundary": "sentence",
+    "sentence": "Sergeant Zabidiyya rode a grey mare known as Elvanfold.",
+    "chunk_index": 36,
+    "chunk_id": "B61:36"
+  },
+  {
+    "persona_id": "c3_B61_022",
+    "kind": "reveal",
+    "target_chunk": 231,
+    "char_pos": 629256,
+    "boundary": "sentence",
+    "sentence": "Oguzkan was the given name of Zabidiyya in the church register.",
+    "chunk_index": 235,
+    "chunk_id": "B61:235"
+  },
+  {
+    "persona_id": "c3_B61_023",
+    "kind": "gold",
+    "target_chunk": 93,
+    "char_pos": 257963,
+    "boundary": "sentence",
+    "sentence": "Colonel Mandervilleq was born in the town of Ilbershaw.",
+    "chunk_index": 95,
+    "chunk_id": "B61:95"
+  },
+  {
+    "persona_id": "c3_B61_023",
+    "kind": "reveal",
+    "target_chunk": 288,
+    "char_pos": 784464,
+    "boundary": "sentence",
+    "sentence": "The surname of Nerysswen was Mandervilleq, or so the parish books said.",
+    "chunk_index": 294,
+    "chunk_id": "B61:294"
+  },
+  {
+    "persona_id": "c4_B61_021",
+    "kind": "gold",
+    "target_chunk": 187,
+    "char_pos": 511576,
+    "boundary": "sentence",
+    "sentence": "Madame Mamaniqull kept a small wooden boat called Ulverscragg.",
+    "chunk_index": 191,
+    "chunk_id": "B61:191"
+  },
+  {
+    "persona_id": "c4_B61_021",
+    "kind": "reveal",
+    "target_chunk": 116,
+    "char_pos": 320142,
+    "boundary": "sentence",
+    "sentence": "The surname of Iorwerthen was Mamaniqull, or so the parish books said.",
+    "chunk_index": 118,
+    "chunk_id": "B61:118"
+  },
+  {
+    "persona_id": "c4_B61_022",
+    "kind": "gold",
+    "target_chunk": 190,
+    "char_pos": 519629,
+    "boundary": "sentence",
+    "sentence": "Sergeant Tuomivaara rode a grey mare known as Drosseldale.",
+    "chunk_index": 194,
+    "chunk_id": "B61:194"
+  },
+  {
+    "persona_id": "c4_B61_022",
+    "kind": "reveal",
+    "target_chunk": 119,
+    "char_pos": 328091,
+    "boundary": "sentence",
+    "sentence": "Titilayof was the given name of Tuomivaara in the church register.",
+    "chunk_index": 122,
+    "chunk_id": "B61:122"
+  },
+  {
+    "persona_id": "c4_B61_023",
+    "kind": "gold",
+    "target_chunk": 183,
+    "char_pos": 500964,
+    "boundary": "sentence",
+    "sentence": "Colonel Quartermain was born in the town of Tavelwick.",
+    "chunk_index": 187,
+    "chunk_id": "B61:187"
+  },
+  {
+    "persona_id": "c4_B61_023",
+    "kind": "reveal",
+    "target_chunk": 112,
+    "char_pos": 309310,
+    "boundary": "sentence",
+    "sentence": "The surname of Tundeladi was Quartermain, or so the parish books said.",
+    "chunk_index": 114,
+    "chunk_id": "B61:114"
+  },
+  {
+    "persona_id": "c5_B61_021",
+    "kind": "gold",
+    "target_chunk": 143,
+    "char_pos": 391769,
+    "boundary": "sentence",
+    "sentence": "Madame Kelvandore kept a small wooden boat called Corvelgarth.",
+    "chunk_index": 146,
+    "chunk_id": "B61:146"
+  },
+  {
+    "persona_id": "c5_B61_022",
+    "kind": "gold",
+    "target_chunk": 104,
+    "char_pos": 287844,
+    "boundary": "sentence",
+    "sentence": "Sergeant Zellimbard rode a grey mare known as Marrengate.",
+    "chunk_index": 106,
+    "chunk_id": "B61:106"
+  },
+  {
+    "persona_id": "c5_B61_023",
+    "kind": "gold",
+    "target_chunk": 65,
+    "char_pos": 182592,
+    "boundary": "sentence",
+    "sentence": "Colonel Dehkhodain was born in the town of Marrenbourne.",
+    "chunk_index": 66,
+    "chunk_id": "B61:66"
+  },
+  {
+    "persona_id": "c6_B61_021",
+    "kind": "gold",
+    "target_chunk": 134,
+    "char_pos": 367489,
+    "boundary": "sentence",
+    "sentence": "The Madder Dyer kept a small wooden boat called Marrenhythe.",
+    "chunk_index": 137,
+    "chunk_id": "B61:137"
+  },
+  {
+    "persona_id": "c6_B61_021",
+    "kind": "reveal",
+    "target_chunk": 222,
+    "char_pos": 605181,
+    "boundary": "sentence",
+    "sentence": "Ahtivainen went by the Madder Dyer among the parish folk thereabouts.",
+    "chunk_index": 226,
+    "chunk_id": "B61:226"
+  },
+  {
+    "persona_id": "c6_B61_022",
+    "kind": "gold",
+    "target_chunk": 152,
+    "char_pos": 417200,
+    "boundary": "sentence",
+    "sentence": "The Rowan Grafter rode a grey mare known as Gavelfirth.",
+    "chunk_index": 156,
+    "chunk_id": "B61:156"
+  },
+  {
+    "persona_id": "c6_B61_022",
+    "kind": "reveal",
+    "target_chunk": 240,
+    "char_pos": 653678,
+    "boundary": "sentence",
+    "sentence": "People of the district spoke of Ishanvika as the Rowan Grafter.",
+    "chunk_index": 245,
+    "chunk_id": "B61:245"
+  },
+  {
+    "persona_id": "c6_B61_023",
+    "kind": "gold",
+    "target_chunk": 82,
+    "char_pos": 227890,
+    "boundary": "sentence",
+    "sentence": "The Capstan Turner was born in the town of Thornmoor.",
+    "chunk_index": 83,
+    "chunk_id": "B61:83"
+  },
+  {
+    "persona_id": "c6_B61_023",
+    "kind": "reveal",
+    "target_chunk": 170,
+    "char_pos": 466080,
+    "boundary": "sentence",
+    "sentence": "The Capstan Turner was none other than Mahendrar, as the neighbours often said.",
+    "chunk_index": 174,
+    "chunk_id": "B61:174"
+  },
+  {
+    "persona_id": "c7_B61_021",
+    "kind": "gold",
+    "target_chunk": 146,
+    "char_pos": 400542,
+    "boundary": "sentence",
+    "sentence": "Sachieko kept a small wooden boat called Hollinmere.",
+    "chunk_index": 149,
+    "chunk_id": "B61:149"
+  },
+  {
+    "persona_id": "c7_B61_021",
+    "kind": "reveal",
+    "target_chunk": 234,
+    "char_pos": 637533,
+    "boundary": "sentence",
+    "sentence": "Sachieko practised the trade of a clockmaker back then.",
+    "chunk_index": 239,
+    "chunk_id": "B61:239"
+  },
+  {
+    "persona_id": "c7_B61_022",
+    "kind": "gold",
+    "target_chunk": 75,
+    "char_pos": 209202,
+    "boundary": "sentence",
+    "sentence": "Isamunori rode a grey mare known as Hollindale.",
+    "chunk_index": 76,
+    "chunk_id": "B61:76"
+  },
+  {
+    "persona_id": "c7_B61_022",
+    "kind": "reveal",
+    "target_chunk": 163,
+    "char_pos": 447822,
+    "boundary": "sentence",
+    "sentence": "By profession, Isamunori was a matweaver of some repute.",
+    "chunk_index": 167,
+    "chunk_id": "B61:167"
+  },
+  {
+    "persona_id": "c7_B61_023",
+    "kind": "gold",
+    "target_chunk": 137,
+    "char_pos": 375546,
+    "boundary": "sentence",
+    "sentence": "Roudabeh was born in the town of Orvelfold.",
+    "chunk_index": 140,
+    "chunk_id": "B61:140"
+  },
+  {
+    "persona_id": "c7_B61_023",
+    "kind": "reveal",
+    "target_chunk": 225,
+    "char_pos": 612884,
+    "boundary": "sentence",
+    "sentence": "Roudabeh served the whole parish as its engraver.",
+    "chunk_index": 229,
+    "chunk_id": "B61:229"
+  },
+  {
+    "persona_id": "c8_B61_021",
+    "kind": "gold",
+    "target_chunk": 158,
+    "char_pos": 434143,
+    "boundary": "sentence",
+    "sentence": "The Groatstone stood beside the stream at Jossershaw from spring to autumn.",
+    "chunk_index": 162,
+    "chunk_id": "B61:162"
+  },
+  {
+    "persona_id": "c8_B61_021",
+    "kind": "reveal",
+    "target_chunk": 246,
+    "char_pos": 669996,
+    "boundary": "sentence",
+    "sentence": "The Groatstone belonged to Bahramak, as the whole district understood.",
+    "chunk_index": 251,
+    "chunk_id": "B61:251"
+  },
+  {
+    "persona_id": "c8_B61_022",
+    "kind": "gold",
+    "target_chunk": 155,
+    "char_pos": 425508,
+    "boundary": "sentence",
+    "sentence": "The Galecrown stood upon the headland at Thornworth above the rocks.",
+    "chunk_index": 159,
+    "chunk_id": "B61:159"
+  },
+  {
+    "persona_id": "c8_B61_022",
+    "kind": "reveal",
+    "target_chunk": 243,
+    "char_pos": 661725,
+    "boundary": "sentence",
+    "sentence": "Severinara was the owner of the Galecrown in former days.",
+    "chunk_index": 248,
+    "chunk_id": "B61:248"
+  },
+  {
+    "persona_id": "c8_B61_023",
+    "kind": "gold",
+    "target_chunk": 149,
+    "char_pos": 408809,
+    "boundary": "sentence",
+    "sentence": "The Querncroft stood beside the stream at Quarnmere from spring to autumn.",
+    "chunk_index": 152,
+    "chunk_id": "B61:152"
+  },
+  {
+    "persona_id": "c8_B61_023",
+    "kind": "reveal",
+    "target_chunk": 237,
+    "char_pos": 645510,
+    "boundary": "sentence",
+    "sentence": "The Querncroft was Marcelinol's own property, bought long before.",
+    "chunk_index": 242,
+    "chunk_id": "B61:242"
+  },
+  {
+    "persona_id": "c1_B26_024",
+    "kind": "gold",
+    "target_chunk": 136,
+    "char_pos": 369352,
+    "boundary": "paragraph",
+    "sentence": "Doctor Haapaniemi took lodgings at an inn called Quarnthwaite.",
+    "chunk_index": 138,
+    "chunk_id": "B26:138"
+  },
+  {
+    "persona_id": "c1_B26_024",
+    "kind": "reveal",
+    "target_chunk": 139,
+    "char_pos": 377916,
+    "boundary": "paragraph",
+    "sentence": "In those days, Urpikusi's family name was Haapaniemi.",
+    "chunk_index": 141,
+    "chunk_id": "B26:141"
+  },
+  {
+    "persona_id": "c1_B26_025",
+    "kind": "gold",
+    "target_chunk": 117,
+    "char_pos": 316303,
+    "boundary": "paragraph",
+    "sentence": "Captain Illingword had lived in Thornwick for many years.",
+    "chunk_index": 119,
+    "chunk_id": "B26:119"
+  },
+  {
+    "persona_id": "c1_B26_025",
+    "kind": "reveal",
+    "target_chunk": 120,
+    "char_pos": 324971,
+    "boundary": "paragraph",
+    "sentence": "Illingword, whose given name was Apumayta, was well known in those parts.",
+    "chunk_index": 122,
+    "chunk_id": "B26:122"
+  },
+  {
+    "persona_id": "c1_B26_026",
+    "kind": "gold",
+    "target_chunk": 39,
+    "char_pos": 106578,
+    "boundary": "paragraph",
+    "sentence": "Professor Jaiyeobala kept a small wooden boat called Falderbourne.",
+    "chunk_index": 39,
+    "chunk_id": "B26:39"
+  },
+  {
+    "persona_id": "c1_B26_026",
+    "kind": "reveal",
+    "target_chunk": 42,
+    "char_pos": 114778,
+    "boundary": "paragraph",
+    "sentence": "The surname of Aybuken was Jaiyeobala, or so the parish books said.",
+    "chunk_index": 42,
+    "chunk_id": "B26:42"
+  },
+  {
+    "persona_id": "c2_B26_024",
+    "kind": "gold",
+    "target_chunk": 101,
+    "char_pos": 272928,
+    "boundary": "paragraph",
+    "sentence": "Doctor Eastvollen took lodgings at an inn called Marrenworth.",
+    "chunk_index": 102,
+    "chunk_id": "B26:102"
+  },
+  {
+    "persona_id": "c2_B26_024",
+    "kind": "reveal",
+    "target_chunk": 196,
+    "char_pos": 532109,
+    "boundary": "paragraph",
+    "sentence": "In those days, Volkanay's family name was Eastvollen.",
+    "chunk_index": 199,
+    "chunk_id": "B26:199"
+  },
+  {
+    "persona_id": "c2_B26_025",
+    "kind": "gold",
+    "target_chunk": 98,
+    "char_pos": 264865,
+    "boundary": "paragraph",
+    "sentence": "Captain Qurtubill had lived in Tavelthwaite for many years.",
+    "chunk_index": 99,
+    "chunk_id": "B26:99"
+  },
+  {
+    "persona_id": "c2_B26_025",
+    "kind": "reveal",
+    "target_chunk": 193,
+    "char_pos": 524555,
+    "boundary": "paragraph",
+    "sentence": "Qurtubill, whose given name was Blodeuwen, was well known in those parts.",
+    "chunk_index": 196,
+    "chunk_id": "B26:196"
+  },
+  {
+    "persona_id": "c2_B26_026",
+    "kind": "gold",
+    "target_chunk": 94,
+    "char_pos": 254000,
+    "boundary": "sentence",
+    "sentence": "Professor Ikuomolal kept a small wooden boat called Drosselfenwick.",
+    "chunk_index": 95,
+    "chunk_id": "B26:95"
+  },
+  {
+    "persona_id": "c2_B26_026",
+    "kind": "reveal",
+    "target_chunk": 189,
+    "char_pos": 513320,
+    "boundary": "paragraph",
+    "sentence": "The surname of Dafyddion was Ikuomolal, or so the parish books said.",
+    "chunk_index": 192,
+    "chunk_id": "B26:192"
+  },
+  {
+    "persona_id": "c3_B26_024",
+    "kind": "gold",
+    "target_chunk": 114,
+    "char_pos": 308275,
+    "boundary": "paragraph",
+    "sentence": "Doctor Brynmoredd took lodgings at an inn called Pellamcragg.",
+    "chunk_index": 116,
+    "chunk_id": "B26:116"
+  },
+  {
+    "persona_id": "c3_B26_024",
+    "kind": "reveal",
+    "target_chunk": 324,
+    "char_pos": 879695,
+    "boundary": "paragraph",
+    "sentence": "In those days, Boluwatif's family name was Brynmoredd.",
+    "chunk_index": 330,
+    "chunk_id": "B26:330"
+  },
+  {
+    "persona_id": "c3_B26_025",
+    "kind": "gold",
+    "target_chunk": 111,
+    "char_pos": 300456,
+    "boundary": "paragraph",
+    "sentence": "Captain Dinefwrell had lived in Kelmdale for many years.",
+    "chunk_index": 113,
+    "chunk_id": "B26:113"
+  },
+  {
+    "persona_id": "c3_B26_025",
+    "kind": "reveal",
+    "target_chunk": 321,
+    "char_pos": 871709,
+    "boundary": "paragraph",
+    "sentence": "Dinefwrell, whose given name was Damolaseg, was well known in those parts.",
+    "chunk_index": 327,
+    "chunk_id": "B26:327"
+  },
+  {
+    "persona_id": "c3_B26_026",
+    "kind": "gold",
+    "target_chunk": 108,
+    "char_pos": 292045,
+    "boundary": "paragraph",
+    "sentence": "Professor Nakagawari kept a small wooden boat called Corvelfenwick.",
+    "chunk_index": 110,
+    "chunk_id": "B26:110"
+  },
+  {
+    "persona_id": "c3_B26_026",
+    "kind": "reveal",
+    "target_chunk": 318,
+    "char_pos": 863493,
+    "boundary": "paragraph",
+    "sentence": "The surname of Ruqayyana was Nakagawari, or so the parish books said.",
+    "chunk_index": 324,
+    "chunk_id": "B26:324"
+  },
+  {
+    "persona_id": "c4_B26_024",
+    "kind": "gold",
+    "target_chunk": 206,
+    "char_pos": 559612,
+    "boundary": "paragraph",
+    "sentence": "Doctor Ravnsborgh took lodgings at an inn called Ulversmere.",
+    "chunk_index": 210,
+    "chunk_id": "B26:210"
+  },
+  {
+    "persona_id": "c4_B26_024",
+    "kind": "reveal",
+    "target_chunk": 130,
+    "char_pos": 352368,
+    "boundary": "sentence",
+    "sentence": "In those days, Nuaymani's family name was Ravnsborgh.",
+    "chunk_index": 132,
+    "chunk_id": "B26:132"
+  },
+  {
+    "persona_id": "c4_B26_025",
+    "kind": "gold",
+    "target_chunk": 203,
+    "char_pos": 551295,
+    "boundary": "paragraph",
+    "sentence": "Captain Ambervalle had lived in Tavelfenwick for many years.",
+    "chunk_index": 207,
+    "chunk_id": "B26:207"
+  },
+  {
+    "persona_id": "c4_B26_025",
+    "kind": "reveal",
+    "target_chunk": 127,
+    "char_pos": 343994,
+    "boundary": "paragraph",
+    "sentence": "Ambervalle, whose given name was Eevastiin, was well known in those parts.",
+    "chunk_index": 129,
+    "chunk_id": "B26:129"
+  },
+  {
+    "persona_id": "c4_B26_026",
+    "kind": "gold",
+    "target_chunk": 209,
+    "char_pos": 568174,
+    "boundary": "paragraph",
+    "sentence": "Professor Rebordosal kept a small wooden boat called Sarnhythe.",
+    "chunk_index": 213,
+    "chunk_id": "B26:213"
+  },
+  {
+    "persona_id": "c4_B26_026",
+    "kind": "reveal",
+    "target_chunk": 133,
+    "char_pos": 361014,
+    "boundary": "paragraph",
+    "sentence": "The surname of Paavalint was Rebordosal, or so the parish books said.",
+    "chunk_index": 135,
+    "chunk_id": "B26:135"
+  },
+  {
+    "persona_id": "c5_B26_024",
+    "kind": "gold",
+    "target_chunk": 46,
+    "char_pos": 125342,
+    "boundary": "paragraph",
+    "sentence": "Doctor Sarmadiyan took lodgings at an inn called Tavelgate.",
+    "chunk_index": 46,
+    "chunk_id": "B26:46"
+  },
+  {
+    "persona_id": "c5_B26_025",
+    "kind": "gold",
+    "target_chunk": 162,
+    "char_pos": 439848,
+    "boundary": "paragraph",
+    "sentence": "Captain Pirouzfam had lived in Faldermere for many years.",
+    "chunk_index": 165,
+    "chunk_id": "B26:165"
+  },
+  {
+    "persona_id": "c5_B26_026",
+    "kind": "gold",
+    "target_chunk": 124,
+    "char_pos": 336426,
+    "boundary": "paragraph",
+    "sentence": "Professor Gwyneddell kept a small wooden boat called Varnhall.",
+    "chunk_index": 126,
+    "chunk_id": "B26:126"
+  },
+  {
+    "persona_id": "c6_B26_024",
+    "kind": "gold",
+    "target_chunk": 150,
+    "char_pos": 407538,
+    "boundary": "paragraph",
+    "sentence": "The Fathom Plumber took lodgings at an inn called Oldgarth.",
+    "chunk_index": 152,
+    "chunk_id": "B26:152"
+  },
+  {
+    "persona_id": "c6_B26_024",
+    "kind": "reveal",
+    "target_chunk": 245,
+    "char_pos": 666160,
+    "boundary": "paragraph",
+    "sentence": "Everyone in the village knew Daisukero as the Fathom Plumber.",
+    "chunk_index": 250,
+    "chunk_id": "B26:250"
+  },
+  {
+    "persona_id": "c6_B26_025",
+    "kind": "gold",
+    "target_chunk": 105,
+    "char_pos": 283814,
+    "boundary": "paragraph",
+    "sentence": "The Limpet Priser had lived in Harrowdale for many years.",
+    "chunk_index": 107,
+    "chunk_id": "B26:107"
+  },
+  {
+    "persona_id": "c6_B26_025",
+    "kind": "reveal",
+    "target_chunk": 200,
+    "char_pos": 542952,
+    "boundary": "paragraph",
+    "sentence": "Mahtabeh went by the Limpet Priser among the parish folk thereabouts.",
+    "chunk_index": 203,
+    "chunk_id": "B26:203"
+  },
+  {
+    "persona_id": "c6_B26_026",
+    "kind": "gold",
+    "target_chunk": 91,
+    "char_pos": 246106,
+    "boundary": "paragraph",
+    "sentence": "The Oakum Picker kept a small wooden boat called Quarncragg.",
+    "chunk_index": 92,
+    "chunk_id": "B26:92"
+  },
+  {
+    "persona_id": "c6_B26_026",
+    "kind": "reveal",
+    "target_chunk": 186,
+    "char_pos": 504899,
+    "boundary": "paragraph",
+    "sentence": "People of the district spoke of Siyavashan as the Oakum Picker.",
+    "chunk_index": 189,
+    "chunk_id": "B26:189"
+  },
+  {
+    "persona_id": "c7_B26_024",
+    "kind": "gold",
+    "target_chunk": 154,
+    "char_pos": 418901,
+    "boundary": "paragraph",
+    "sentence": "Rosalindar took lodgings at an inn called Yarrowcragg.",
+    "chunk_index": 157,
+    "chunk_id": "B26:157"
+  },
+  {
+    "persona_id": "c7_B26_024",
+    "kind": "reveal",
+    "target_chunk": 249,
+    "char_pos": 676738,
+    "boundary": "paragraph",
+    "sentence": "Rosalindar worked as a mapmaker in the district.",
+    "chunk_index": 254,
+    "chunk_id": "B26:254"
+  },
+  {
+    "persona_id": "c7_B26_025",
+    "kind": "gold",
+    "target_chunk": 81,
+    "char_pos": 219610,
+    "boundary": "paragraph",
+    "sentence": "Evaristolm had lived in Varncragg for many years.",
+    "chunk_index": 82,
+    "chunk_id": "B26:82"
+  },
+  {
+    "persona_id": "c7_B26_025",
+    "kind": "reveal",
+    "target_chunk": 176,
+    "char_pos": 478006,
+    "boundary": "paragraph",
+    "sentence": "Evaristolm practised the trade of a birdcatcher back then.",
+    "chunk_index": 179,
+    "chunk_id": "B26:179"
+  },
+  {
+    "persona_id": "c7_B26_026",
+    "kind": "gold",
+    "target_chunk": 77,
+    "char_pos": 208835,
+    "boundary": "paragraph",
+    "sentence": "Pachakusi kept a small wooden boat called Drosselstead.",
+    "chunk_index": 78,
+    "chunk_id": "B26:78"
+  },
+  {
+    "persona_id": "c7_B26_026",
+    "kind": "reveal",
+    "target_chunk": 172,
+    "char_pos": 466843,
+    "boundary": "paragraph",
+    "sentence": "By profession, Pachakusi was a glovemaker of some repute.",
+    "chunk_index": 175,
+    "chunk_id": "B26:175"
+  },
+  {
+    "persona_id": "c8_B26_024",
+    "kind": "gold",
+    "target_chunk": 87,
+    "char_pos": 235489,
+    "boundary": "paragraph",
+    "sentence": "The Amber Plover was kept in the harbour at Tavelhythe all year.",
+    "chunk_index": 88,
+    "chunk_id": "B26:88"
+  },
+  {
+    "persona_id": "c8_B26_024",
+    "kind": "reveal",
+    "target_chunk": 182,
+    "char_pos": 494269,
+    "boundary": "paragraph",
+    "sentence": "Rumisunqu owned the Amber Plover and prized it dearly.",
+    "chunk_index": 185,
+    "chunk_id": "B26:185"
+  },
+  {
+    "persona_id": "c8_B26_025",
+    "kind": "gold",
+    "target_chunk": 146,
+    "char_pos": 397070,
+    "boundary": "paragraph",
+    "sentence": "The Wrenwheel was housed in the coach yard at Nyddwick every season.",
+    "chunk_index": 148,
+    "chunk_id": "B26:148"
+  },
+  {
+    "persona_id": "c8_B26_025",
+    "kind": "reveal",
+    "target_chunk": 241,
+    "char_pos": 654824,
+    "boundary": "paragraph",
+    "sentence": "The Wrenwheel belonged to Yildizay, as the whole district understood.",
+    "chunk_index": 246,
+    "chunk_id": "B26:246"
+  },
+  {
+    "persona_id": "c8_B26_026",
+    "kind": "gold",
+    "target_chunk": 84,
+    "char_pos": 227358,
+    "boundary": "paragraph",
+    "sentence": "The Moorland Ember was stabled behind the smithy at Harrowhythe each winter.",
+    "chunk_index": 85,
+    "chunk_id": "B26:85"
+  },
+  {
+    "persona_id": "c8_B26_026",
+    "kind": "reveal",
+    "target_chunk": 179,
+    "char_pos": 486155,
+    "boundary": "sentence",
+    "sentence": "Cagataykan was the owner of the Moorland Ember in former days.",
+    "chunk_index": 182,
+    "chunk_id": "B26:182"
+  },
+  {
+    "persona_id": "c1_B44_027",
+    "kind": "gold",
+    "target_chunk": 21,
+    "char_pos": 57537,
+    "boundary": "sentence",
+    "sentence": "Father Graveshollow rode a grey mare known as Wendelhall.",
+    "chunk_index": 21,
+    "chunk_id": "B44:21"
+  },
+  {
+    "persona_id": "c1_B44_027",
+    "kind": "reveal",
+    "target_chunk": 24,
+    "char_pos": 65724,
+    "boundary": "sentence",
+    "sentence": "The surname of Delythwen was Graveshollow, or so the parish books said.",
+    "chunk_index": 24,
+    "chunk_id": "B44:24"
+  },
+  {
+    "persona_id": "c1_B44_028",
+    "kind": "gold",
+    "target_chunk": 114,
+    "char_pos": 310437,
+    "boundary": "sentence",
+    "sentence": "Judge Zephyrholme was born in the town of Brackthwaite.",
+    "chunk_index": 115,
+    "chunk_id": "B44:115"
+  },
+  {
+    "persona_id": "c1_B44_028",
+    "kind": "reveal",
+    "target_chunk": 117,
+    "char_pos": 318696,
+    "boundary": "sentence",
+    "sentence": "In those days, Siorsgwyn's family name was Zephyrholme.",
+    "chunk_index": 118,
+    "chunk_id": "B44:118"
+  },
+  {
+    "persona_id": "c1_B44_029",
+    "kind": "gold",
+    "target_chunk": 151,
+    "char_pos": 413158,
+    "boundary": "sentence",
+    "sentence": "Madame Thistlewood took lodgings at an inn called Zelmhythe.",
+    "chunk_index": 153,
+    "chunk_id": "B44:153"
+  },
+  {
+    "persona_id": "c1_B44_029",
+    "kind": "reveal",
+    "target_chunk": 154,
+    "char_pos": 421688,
+    "boundary": "sentence",
+    "sentence": "Thistlewood, whose given name was Kehindelar, was well known in those parts.",
+    "chunk_index": 156,
+    "chunk_id": "B44:156"
+  },
+  {
+    "persona_id": "c2_B44_027",
+    "kind": "gold",
+    "target_chunk": 101,
+    "char_pos": 274617,
+    "boundary": "sentence",
+    "sentence": "Father Kirkevallen rode a grey mare known as Sarnworth.",
+    "chunk_index": 102,
+    "chunk_id": "B44:102"
+  },
+  {
+    "persona_id": "c2_B44_027",
+    "kind": "reveal",
+    "target_chunk": 197,
+    "char_pos": 539798,
+    "boundary": "sentence",
+    "sentence": "The surname of Niyilekan was Kirkevallen, or so the parish books said.",
+    "chunk_index": 200,
+    "chunk_id": "B44:200"
+  },
+  {
+    "persona_id": "c2_B44_028",
+    "kind": "gold",
+    "target_chunk": 147,
+    "char_pos": 401857,
+    "boundary": "sentence",
+    "sentence": "Judge Ogasawarak was born in the town of Ulversshaw.",
+    "chunk_index": 149,
+    "chunk_id": "B44:149"
+  },
+  {
+    "persona_id": "c2_B44_028",
+    "kind": "reveal",
+    "target_chunk": 243,
+    "char_pos": 664215,
+    "boundary": "sentence",
+    "sentence": "In those days, Zulfaqara's family name was Ogasawarak.",
+    "chunk_index": 247,
+    "chunk_id": "B44:247"
+  },
+  {
+    "persona_id": "c2_B44_029",
+    "kind": "gold",
+    "target_chunk": 158,
+    "char_pos": 432942,
+    "boundary": "sentence",
+    "sentence": "Madame Watanaberi took lodgings at an inn called Brackcragg.",
+    "chunk_index": 160,
+    "chunk_id": "B44:160"
+  },
+  {
+    "persona_id": "c2_B44_029",
+    "kind": "reveal",
+    "target_chunk": 254,
+    "char_pos": 693492,
+    "boundary": "sentence",
+    "sentence": "Watanaberi, whose given name was Khuzaymar, was well known in those parts.",
+    "chunk_index": 259,
+    "chunk_id": "B44:259"
+  },
+  {
+    "persona_id": "c3_B44_027",
+    "kind": "gold",
+    "target_chunk": 108,
+    "char_pos": 294183,
+    "boundary": "sentence",
+    "sentence": "Father Fennimoral rode a grey mare known as Falderworth.",
+    "chunk_index": 109,
+    "chunk_id": "B44:109"
+  },
+  {
+    "persona_id": "c3_B44_027",
+    "kind": "reveal",
+    "target_chunk": 319,
+    "char_pos": 870673,
+    "boundary": "sentence",
+    "sentence": "The surname of Tuulikken was Fennimoral, or so the parish books said.",
+    "chunk_index": 325,
+    "chunk_id": "B44:325"
+  },
+  {
+    "persona_id": "c3_B44_028",
+    "kind": "gold",
+    "target_chunk": 111,
+    "char_pos": 302256,
+    "boundary": "sentence",
+    "sentence": "Judge Belgharami was born in the town of Corvelworth.",
+    "chunk_index": 112,
+    "chunk_id": "B44:112"
+  },
+  {
+    "persona_id": "c3_B44_028",
+    "kind": "reveal",
+    "target_chunk": 322,
+    "char_pos": 878795,
+    "boundary": "sentence",
+    "sentence": "In those days, Urhovaine's family name was Belgharami.",
+    "chunk_index": 328,
+    "chunk_id": "B44:328"
+  },
+  {
+    "persona_id": "c3_B44_029",
+    "kind": "gold",
+    "target_chunk": 104,
+    "char_pos": 282789,
+    "boundary": "sentence",
+    "sentence": "Madame Koskenniemi took lodgings at an inn called Zelmbourne.",
+    "chunk_index": 105,
+    "chunk_id": "B44:105"
+  },
+  {
+    "persona_id": "c3_B44_029",
+    "kind": "reveal",
+    "target_chunk": 315,
+    "char_pos": 859424,
+    "boundary": "sentence",
+    "sentence": "Koskenniemi, whose given name was Chandrikal, was well known in those parts.",
+    "chunk_index": 321,
+    "chunk_id": "B44:321"
+  },
+  {
+    "persona_id": "c4_B44_027",
+    "kind": "gold",
+    "target_chunk": 206,
+    "char_pos": 563735,
+    "boundary": "sentence",
+    "sentence": "Father Rastegharan rode a grey mare known as Rivelfirth.",
+    "chunk_index": 209,
+    "chunk_id": "B44:209"
+  },
+  {
+    "persona_id": "c4_B44_027",
+    "kind": "reveal",
+    "target_chunk": 130,
+    "char_pos": 354104,
+    "boundary": "sentence",
+    "sentence": "The surname of Raghuvirs was Rastegharan, or so the parish books said.",
+    "chunk_index": 132,
+    "chunk_id": "B44:132"
+  },
+  {
+    "persona_id": "c4_B44_028",
+    "kind": "gold",
+    "target_chunk": 209,
+    "char_pos": 571803,
+    "boundary": "sentence",
+    "sentence": "Judge Taiwolana was born in the town of Varnfirth.",
+    "chunk_index": 213,
+    "chunk_id": "B44:213"
+  },
+  {
+    "persona_id": "c4_B44_028",
+    "kind": "reveal",
+    "target_chunk": 133,
+    "char_pos": 362537,
+    "boundary": "sentence",
+    "sentence": "In those days, Fumikata's family name was Taiwolana.",
+    "chunk_index": 135,
+    "chunk_id": "B44:135"
+  },
+  {
+    "persona_id": "c4_B44_029",
+    "kind": "gold",
+    "target_chunk": 203,
+    "char_pos": 555481,
+    "boundary": "sentence",
+    "sentence": "Madame Lampinenka took lodgings at an inn called Varnstead.",
+    "chunk_index": 206,
+    "chunk_id": "B44:206"
+  },
+  {
+    "persona_id": "c4_B44_029",
+    "kind": "reveal",
+    "target_chunk": 127,
+    "char_pos": 345600,
+    "boundary": "sentence",
+    "sentence": "Lampinenka, whose given name was Katsuhirou, was well known in those parts.",
+    "chunk_index": 128,
+    "chunk_id": "B44:128"
+  },
+  {
+    "persona_id": "c5_B44_027",
+    "kind": "gold",
+    "target_chunk": 143,
+    "char_pos": 390486,
+    "boundary": "sentence",
+    "sentence": "Father Albuquerquel rode a grey mare known as Ilberfold.",
+    "chunk_index": 145,
+    "chunk_id": "B44:145"
+  },
+  {
+    "persona_id": "c5_B44_028",
+    "kind": "gold",
+    "target_chunk": 166,
+    "char_pos": 455045,
+    "boundary": "sentence",
+    "sentence": "Judge Wankawillk was born in the town of Hollinshaw.",
+    "chunk_index": 168,
+    "chunk_id": "B44:168"
+  },
+  {
+    "persona_id": "c5_B44_029",
+    "kind": "gold",
+    "target_chunk": 121,
+    "char_pos": 329491,
+    "boundary": "sentence",
+    "sentence": "Madame Karkhiyya took lodgings at an inn called Elvancragg.",
+    "chunk_index": 122,
+    "chunk_id": "B44:122"
+  },
+  {
+    "persona_id": "c6_B44_027",
+    "kind": "gold",
+    "target_chunk": 90,
+    "char_pos": 245066,
+    "boundary": "sentence",
+    "sentence": "The Alder Coppicer rode a grey mare known as Yarrowbourne.",
+    "chunk_index": 91,
+    "chunk_id": "B44:91"
+  },
+  {
+    "persona_id": "c6_B44_027",
+    "kind": "reveal",
+    "target_chunk": 186,
+    "char_pos": 509893,
+    "boundary": "sentence",
+    "sentence": "The Alder Coppicer was none other than Quirinolar, as the neighbours often said.",
+    "chunk_index": 189,
+    "chunk_id": "B44:189"
+  },
+  {
+    "persona_id": "c6_B44_028",
+    "kind": "gold",
+    "target_chunk": 84,
+    "char_pos": 228181,
+    "boundary": "sentence",
+    "sentence": "The Whin Reaper was born in the town of Quarnfold.",
+    "chunk_index": 85,
+    "chunk_id": "B44:85"
+  },
+  {
+    "persona_id": "c6_B44_028",
+    "kind": "reveal",
+    "target_chunk": 180,
+    "char_pos": 493707,
+    "boundary": "sentence",
+    "sentence": "Everyone in the village knew Raymisisa as the Whin Reaper.",
+    "chunk_index": 183,
+    "chunk_id": "B44:183"
+  },
+  {
+    "persona_id": "c6_B44_029",
+    "kind": "gold",
+    "target_chunk": 78,
+    "char_pos": 212496,
+    "boundary": "sentence",
+    "sentence": "The Trencher Whittler took lodgings at an inn called Fennbourne.",
+    "chunk_index": 79,
+    "chunk_id": "B44:79"
+  },
+  {
+    "persona_id": "c6_B44_029",
+    "kind": "reveal",
+    "target_chunk": 174,
+    "char_pos": 477126,
+    "boundary": "sentence",
+    "sentence": "Pachakutiq went by the Trencher Whittler among the parish folk thereabouts.",
+    "chunk_index": 177,
+    "chunk_id": "B44:177"
+  },
+  {
+    "persona_id": "c7_B44_027",
+    "kind": "gold",
+    "target_chunk": 170,
+    "char_pos": 466202,
+    "boundary": "sentence",
+    "sentence": "Melteme rode a grey mare known as Josserstead.",
+    "chunk_index": 172,
+    "chunk_id": "B44:172"
+  },
+  {
+    "persona_id": "c7_B44_027",
+    "kind": "reveal",
+    "target_chunk": 266,
+    "char_pos": 725878,
+    "boundary": "sentence",
+    "sentence": "Melteme served the whole parish as its bookbinder.",
+    "chunk_index": 271,
+    "chunk_id": "B44:271"
+  },
+  {
+    "persona_id": "c7_B44_028",
+    "kind": "gold",
+    "target_chunk": 97,
+    "char_pos": 263590,
+    "boundary": "sentence",
+    "sentence": "Umutcan was born in the town of Yarrowstead.",
+    "chunk_index": 98,
+    "chunk_id": "B44:98"
+  },
+  {
+    "persona_id": "c7_B44_028",
+    "kind": "reveal",
+    "target_chunk": 193,
+    "char_pos": 529079,
+    "boundary": "sentence",
+    "sentence": "Umutcan worked as a ropemaker in the district.",
+    "chunk_index": 196,
+    "chunk_id": "B44:196"
+  },
+  {
+    "persona_id": "c7_B44_029",
+    "kind": "gold",
+    "target_chunk": 93,
+    "char_pos": 253107,
+    "boundary": "sentence",
+    "sentence": "Mairwenne took lodgings at an inn called Harrowshaw.",
+    "chunk_index": 94,
+    "chunk_id": "B44:94"
+  },
+  {
+    "persona_id": "c7_B44_029",
+    "kind": "reveal",
+    "target_chunk": 189,
+    "char_pos": 518189,
+    "boundary": "sentence",
+    "sentence": "Mairwenne practised the trade of a locksmith back then.",
+    "chunk_index": 192,
+    "chunk_id": "B44:192"
+  },
+  {
+    "persona_id": "c8_B44_027",
+    "kind": "gold",
+    "target_chunk": 136,
+    "char_pos": 371090,
+    "boundary": "sentence",
+    "sentence": "The Foamkeep stood upon the headland at Marrenwick above the rocks.",
+    "chunk_index": 138,
+    "chunk_id": "B44:138"
+  },
+  {
+    "persona_id": "c8_B44_027",
+    "kind": "reveal",
+    "target_chunk": 232,
+    "char_pos": 634105,
+    "boundary": "sentence",
+    "sentence": "The Foamkeep was Emrysgwyn's own property, bought long before.",
+    "chunk_index": 236,
+    "chunk_id": "B44:236"
+  },
+  {
+    "persona_id": "c8_B44_028",
+    "kind": "gold",
+    "target_chunk": 81,
+    "char_pos": 220398,
+    "boundary": "sentence",
+    "sentence": "The Palefire stood upon the headland at Ashenfold above the rocks.",
+    "chunk_index": 82,
+    "chunk_id": "B44:82"
+  },
+  {
+    "persona_id": "c8_B44_028",
+    "kind": "reveal",
+    "target_chunk": 177,
+    "char_pos": 485362,
+    "boundary": "sentence",
+    "sentence": "Jumokeade owned the Palefire and prized it dearly.",
+    "chunk_index": 180,
+    "chunk_id": "B44:180"
+  },
+  {
+    "persona_id": "c8_B44_029",
+    "kind": "gold",
+    "target_chunk": 162,
+    "char_pos": 444115,
+    "boundary": "sentence",
+    "sentence": "The Branfall stood beside the stream at Corvelfold from spring to autumn.",
+    "chunk_index": 164,
+    "chunk_id": "B44:164"
+  },
+  {
+    "persona_id": "c8_B44_029",
+    "kind": "reveal",
+    "target_chunk": 258,
+    "char_pos": 704326,
+    "boundary": "sentence",
+    "sentence": "The Branfall belonged to Folorunshol, as the whole district understood.",
+    "chunk_index": 263,
+    "chunk_id": "B44:263"
+  }
+]

@@ -1,0 +1,2642 @@
+[
+  {
+    "id": "c1_B31_000",
+    "question": "Where was Maysunah's home?",
+    "document_id": "B31",
+    "answers": [
+      "Gavelhall"
+    ],
+    "retrieval_spans": [
+      "Doctor Sinchipuma had lived in Gavelhall for many years."
+    ]
+  },
+  {
+    "id": "c1_B31_001",
+    "question": "What was the name of Ruwayfid's vessel?",
+    "document_id": "B31",
+    "answers": [
+      "Rivelbourne"
+    ],
+    "retrieval_spans": [
+      "Captain Kulkarnile kept a small wooden boat called Rivelbourne."
+    ]
+  },
+  {
+    "id": "c1_B31_002",
+    "question": "What was Ilmataren's horse called?",
+    "document_id": "B31",
+    "answers": [
+      "Elvanmoor"
+    ],
+    "retrieval_spans": [
+      "Professor Yildirimlar rode a grey mare known as Elvanmoor."
+    ]
+  },
+  {
+    "id": "c2_B31_000",
+    "question": "Where was Taunolint's home?",
+    "document_id": "B31",
+    "answers": [
+      "Kelmcombe"
+    ],
+    "retrieval_spans": [
+      "Doctor Albustanji had lived in Kelmcombe for many years."
+    ]
+  },
+  {
+    "id": "c2_B31_001",
+    "question": "What was the name of Padminira's vessel?",
+    "document_id": "B31",
+    "answers": [
+      "Wendelholt"
+    ],
+    "retrieval_spans": [
+      "Captain Quillovane kept a small wooden boat called Wendelholt."
+    ]
+  },
+  {
+    "id": "c2_B31_002",
+    "question": "What was Harivansham's horse called?",
+    "document_id": "B31",
+    "answers": [
+      "Rivelworth"
+    ],
+    "retrieval_spans": [
+      "Professor Masjudi rode a grey mare known as Rivelworth."
+    ]
+  },
+  {
+    "id": "c3_B31_000",
+    "question": "Where was Yasukoe's home?",
+    "document_id": "B31",
+    "answers": [
+      "Lornshaw"
+    ],
+    "retrieval_spans": [
+      "Doctor Bettencourtl had lived in Lornshaw for many years."
+    ]
+  },
+  {
+    "id": "c3_B31_001",
+    "question": "What was the name of Yasunorik's vessel?",
+    "document_id": "B31",
+    "answers": [
+      "Faldermoor"
+    ],
+    "retrieval_spans": [
+      "Captain Kusipaukar kept a small wooden boat called Faldermoor."
+    ]
+  },
+  {
+    "id": "c3_B31_002",
+    "question": "What was Zarrindokht's horse called?",
+    "document_id": "B31",
+    "answers": [
+      "Faldergarth"
+    ],
+    "retrieval_spans": [
+      "Professor Kallioinen rode a grey mare known as Faldergarth."
+    ]
+  },
+  {
+    "id": "c4_B31_000",
+    "question": "Where was Rostamin's home?",
+    "document_id": "B31",
+    "answers": [
+      "Ilberstead"
+    ],
+    "retrieval_spans": [
+      "Doctor Hollenbeckr had lived in Ilberstead for many years."
+    ]
+  },
+  {
+    "id": "c4_B31_001",
+    "question": "What was the name of Nazarethal's vessel?",
+    "document_id": "B31",
+    "answers": [
+      "Yarrowmoor"
+    ],
+    "retrieval_spans": [
+      "Captain Glyndwrred kept a small wooden boat called Yarrowmoor."
+    ]
+  },
+  {
+    "id": "c4_B31_002",
+    "question": "What was Norbertoval's horse called?",
+    "document_id": "B31",
+    "answers": [
+      "Oldstead"
+    ],
+    "retrieval_spans": [
+      "Professor Osgoodworth rode a grey mare known as Oldstead."
+    ]
+  },
+  {
+    "id": "c5_B31_000",
+    "question": "Where was Illarisisa's home?",
+    "document_id": "B31",
+    "answers": [
+      "Gavelfold"
+    ],
+    "retrieval_spans": [
+      "Doctor Thorvaldsenn had lived in Gavelfold for many years."
+    ]
+  },
+  {
+    "id": "c5_B31_001",
+    "question": "What was the name of Sinchirok's vessel?",
+    "document_id": "B31",
+    "answers": [
+      "Rivelgate"
+    ],
+    "retrieval_spans": [
+      "Captain Wagleshwar kept a small wooden boat called Rivelgate."
+    ]
+  },
+  {
+    "id": "c5_B31_002",
+    "question": "What was Kumrusel's horse called?",
+    "document_id": "B31",
+    "answers": [
+      "Pellamhall"
+    ],
+    "retrieval_spans": [
+      "Professor Mustikkamaa rode a grey mare known as Pellamhall."
+    ]
+  },
+  {
+    "id": "c6_B31_000",
+    "question": "Where was Yalcinkar's home?",
+    "document_id": "B31",
+    "answers": [
+      "Tavelcombe"
+    ],
+    "retrieval_spans": [
+      "The Firkin Cooper had lived in Tavelcombe for many years."
+    ]
+  },
+  {
+    "id": "c6_B31_001",
+    "question": "What was the name of Heulwenna's vessel?",
+    "document_id": "B31",
+    "answers": [
+      "Thorndale"
+    ],
+    "retrieval_spans": [
+      "The Gaiter Stitcher kept a small wooden boat called Thorndale."
+    ]
+  },
+  {
+    "id": "c6_B31_002",
+    "question": "What was Gruffyddan's horse called?",
+    "document_id": "B31",
+    "answers": [
+      "Zelmstead"
+    ],
+    "retrieval_spans": [
+      "The Marrow Piper rode a grey mare known as Zelmstead."
+    ]
+  },
+  {
+    "id": "c7_B31_000",
+    "question": "Where was the stargazer's home?",
+    "document_id": "B31",
+    "answers": [
+      "Nyddmoor"
+    ],
+    "retrieval_spans": [
+      "Olamideju had lived in Nyddmoor for many years."
+    ]
+  },
+  {
+    "id": "c7_B31_001",
+    "question": "What was the name of the potter's vessel?",
+    "document_id": "B31",
+    "answers": [
+      "Nyddthwaite"
+    ],
+    "retrieval_spans": [
+      "Idowulana kept a small wooden boat called Nyddthwaite."
+    ]
+  },
+  {
+    "id": "c7_B31_002",
+    "question": "What was the cartographer's horse called?",
+    "document_id": "B31",
+    "answers": [
+      "Olddale"
+    ],
+    "retrieval_spans": [
+      "Wijdanah rode a grey mare known as Olddale."
+    ]
+  },
+  {
+    "id": "c8_B31_000",
+    "question": "Where was Zubayrid's boat?",
+    "document_id": "B31",
+    "answers": [
+      "Elvanshaw"
+    ],
+    "retrieval_spans": [
+      "The Sable Curlew was kept in the harbour at Elvanshaw all year."
+    ]
+  },
+  {
+    "id": "c8_B31_001",
+    "question": "Where was Aamunkukka's carriage?",
+    "document_id": "B31",
+    "answers": [
+      "Fennworth"
+    ],
+    "retrieval_spans": [
+      "The Swallowtail was housed in the coach yard at Fennworth every season."
+    ]
+  },
+  {
+    "id": "c8_B31_002",
+    "question": "Where was Jyrkivain's horse?",
+    "document_id": "B31",
+    "answers": [
+      "Orvelholt"
+    ],
+    "retrieval_spans": [
+      "The Ashen Comet was stabled behind the smithy at Orvelholt each winter."
+    ]
+  },
+  {
+    "id": "c1_B43_003",
+    "question": "Where did Hemlatika come from?",
+    "document_id": "B43",
+    "answers": [
+      "Gavelmoor"
+    ],
+    "retrieval_spans": [
+      "Father Ystadvollen was born in the town of Gavelmoor."
+    ]
+  },
+  {
+    "id": "c1_B43_004",
+    "question": "Where did Ishwarilal stay?",
+    "document_id": "B43",
+    "answers": [
+      "Quarngarth"
+    ],
+    "retrieval_spans": [
+      "Judge Jasperfield took lodgings at an inn called Quarngarth."
+    ]
+  },
+  {
+    "id": "c1_B43_005",
+    "question": "Where was Natsumiye's home?",
+    "document_id": "B43",
+    "answers": [
+      "Gavelshaw"
+    ],
+    "retrieval_spans": [
+      "Madame Dremmelgar had lived in Gavelshaw for many years."
+    ]
+  },
+  {
+    "id": "c2_B43_003",
+    "question": "Where did Takehikon come from?",
+    "document_id": "B43",
+    "answers": [
+      "Thorngarth"
+    ],
+    "retrieval_spans": [
+      "Father Huancavill was born in the town of Thorngarth."
+    ]
+  },
+  {
+    "id": "c2_B43_004",
+    "question": "Where did Golrokh stay?",
+    "document_id": "B43",
+    "answers": [
+      "Ilbercombe"
+    ],
+    "retrieval_spans": [
+      "Judge Aberfforda took lodgings at an inn called Ilbercombe."
+    ]
+  },
+  {
+    "id": "c2_B43_005",
+    "question": "Where was Sohrabin's home?",
+    "document_id": "B43",
+    "answers": [
+      "Marrenmoor"
+    ],
+    "retrieval_spans": [
+      "Madame Westgavell had lived in Marrenmoor for many years."
+    ]
+  },
+  {
+    "id": "c3_B43_003",
+    "question": "Where did Olindinara come from?",
+    "document_id": "B43",
+    "answers": [
+      "Fennhall"
+    ],
+    "retrieval_spans": [
+      "Father Shittulara was born in the town of Fennhall."
+    ]
+  },
+  {
+    "id": "c3_B43_004",
+    "question": "Where did Cristovaol stay?",
+    "document_id": "B43",
+    "answers": [
+      "Ilberhythe"
+    ],
+    "retrieval_spans": [
+      "Judge Ravensgarth took lodgings at an inn called Ilberhythe."
+    ]
+  },
+  {
+    "id": "c3_B43_005",
+    "question": "Where was Qurikilla's home?",
+    "document_id": "B43",
+    "answers": [
+      "Yarrowgarth"
+    ],
+    "retrieval_spans": [
+      "Madame Saarijarvi had lived in Yarrowgarth for many years."
+    ]
+  },
+  {
+    "id": "c4_B43_003",
+    "question": "Where did Yupanquil come from?",
+    "document_id": "B43",
+    "answers": [
+      "Pellamgate"
+    ],
+    "retrieval_spans": [
+      "Father Inglethorpe was born in the town of Pellamgate."
+    ]
+  },
+  {
+    "id": "c4_B43_004",
+    "question": "Where did Selvihan stay?",
+    "document_id": "B43",
+    "answers": [
+      "Kelmmoor"
+    ],
+    "retrieval_spans": [
+      "Judge Balogunlere took lodgings at an inn called Kelmmoor."
+    ]
+  },
+  {
+    "id": "c4_B43_005",
+    "question": "Where was Savasan's home?",
+    "document_id": "B43",
+    "answers": [
+      "Harrowcragg"
+    ],
+    "retrieval_spans": [
+      "Madame Ellsworthen had lived in Harrowcragg for many years."
+    ]
+  },
+  {
+    "id": "c5_B43_003",
+    "question": "Where did Rhiannwen come from?",
+    "document_id": "B43",
+    "answers": [
+      "Falderwick"
+    ],
+    "retrieval_spans": [
+      "Father Agnihotril was born in the town of Falderwick."
+    ]
+  },
+  {
+    "id": "c5_B43_004",
+    "question": "Where did Meirionell stay?",
+    "document_id": "B43",
+    "answers": [
+      "Josserridge"
+    ],
+    "retrieval_spans": [
+      "Judge Nadkarnila took lodgings at an inn called Josserridge."
+    ]
+  },
+  {
+    "id": "c5_B43_005",
+    "question": "Where was Yewandela's home?",
+    "document_id": "B43",
+    "answers": [
+      "Ulversmoor"
+    ],
+    "retrieval_spans": [
+      "Madame Hartvigsen had lived in Ulversmoor for many years."
+    ]
+  },
+  {
+    "id": "c6_B43_003",
+    "question": "Where did Adebamidel come from?",
+    "document_id": "B43",
+    "answers": [
+      "Varnridge"
+    ],
+    "retrieval_spans": [
+      "The Jerkin Tanner was born in the town of Varnridge."
+    ]
+  },
+  {
+    "id": "c6_B43_004",
+    "question": "Where did Thurayyah stay?",
+    "document_id": "B43",
+    "answers": [
+      "Taveldale"
+    ],
+    "retrieval_spans": [
+      "The Ballast Heaver took lodgings at an inn called Taveldale."
+    ]
+  },
+  {
+    "id": "c6_B43_005",
+    "question": "Where was Thabitel's home?",
+    "document_id": "B43",
+    "answers": [
+      "Sarnholt"
+    ],
+    "retrieval_spans": [
+      "The Barley Winnower had lived in Sarnholt for many years."
+    ]
+  },
+  {
+    "id": "c7_B43_003",
+    "question": "Where did the glazier come from?",
+    "document_id": "B43",
+    "answers": [
+      "Jossergarth"
+    ],
+    "retrieval_spans": [
+      "Virpileen was born in the town of Jossergarth."
+    ]
+  },
+  {
+    "id": "c7_B43_004",
+    "question": "Where did the farrier stay?",
+    "document_id": "B43",
+    "answers": [
+      "Pellammoor"
+    ],
+    "retrieval_spans": [
+      "Kalevaist took lodgings at an inn called Pellammoor."
+    ]
+  },
+  {
+    "id": "c7_B43_005",
+    "question": "Where was the harpist's home?",
+    "document_id": "B43",
+    "answers": [
+      "Ilbergate"
+    ],
+    "retrieval_spans": [
+      "Lavanyika had lived in Ilbergate for many years."
+    ]
+  },
+  {
+    "id": "c8_B43_003",
+    "question": "Where was Abhinandar's inn?",
+    "document_id": "B43",
+    "answers": [
+      "Oldhall"
+    ],
+    "retrieval_spans": [
+      "The Copper Thistle stood along the high road at Oldhall back then."
+    ]
+  },
+  {
+    "id": "c8_B43_004",
+    "question": "Where was Kiyomisa's lighthouse?",
+    "document_id": "B43",
+    "answers": [
+      "Varnshaw"
+    ],
+    "retrieval_spans": [
+      "The Shoalguard stood upon the headland at Varnshaw above the rocks."
+    ]
+  },
+  {
+    "id": "c8_B43_005",
+    "question": "Where was Hidetoshin's mill?",
+    "document_id": "B43",
+    "answers": [
+      "Thornhall"
+    ],
+    "retrieval_spans": [
+      "The Dustwhirl stood beside the stream at Thornhall from spring to autumn."
+    ]
+  },
+  {
+    "id": "c1_B37_006",
+    "question": "What was the name of Shahrbanou's vessel?",
+    "document_id": "B37",
+    "answers": [
+      "Ashenmere"
+    ],
+    "retrieval_spans": [
+      "Sergeant Nethercotte kept a small wooden boat called Ashenmere."
+    ]
+  },
+  {
+    "id": "c1_B37_007",
+    "question": "What was Farrokhzad's horse called?",
+    "document_id": "B37",
+    "answers": [
+      "Falderridge"
+    ],
+    "retrieval_spans": [
+      "Colonel Corvandish rode a grey mare known as Falderridge."
+    ]
+  },
+  {
+    "id": "c1_B37_008",
+    "question": "Where did Graciosal come from?",
+    "document_id": "B37",
+    "answers": [
+      "Zelmmoor"
+    ],
+    "retrieval_spans": [
+      "Doctor Farrowdale was born in the town of Zelmmoor."
+    ]
+  },
+  {
+    "id": "c2_B37_006",
+    "question": "What was the name of Bartolomeur's vessel?",
+    "document_id": "B37",
+    "answers": [
+      "Brackbourne"
+    ],
+    "retrieval_spans": [
+      "Sergeant Oliveiros kept a small wooden boat called Brackbourne."
+    ]
+  },
+  {
+    "id": "c2_B37_007",
+    "question": "What was Yachaykill's horse called?",
+    "document_id": "B37",
+    "answers": [
+      "Fennmoor"
+    ],
+    "retrieval_spans": [
+      "Colonel Demirbaslar rode a grey mare known as Fennmoor."
+    ]
+  },
+  {
+    "id": "c2_B37_008",
+    "question": "Where did Qhapaqyupa come from?",
+    "document_id": "B37",
+    "answers": [
+      "Lornhall"
+    ],
+    "retrieval_spans": [
+      "Doctor Matsudaira was born in the town of Lornhall."
+    ]
+  },
+  {
+    "id": "c3_B37_006",
+    "question": "What was the name of Gulsevin's vessel?",
+    "document_id": "B37",
+    "answers": [
+      "Nyddfirth"
+    ],
+    "retrieval_spans": [
+      "Sergeant Lindqvistr kept a small wooden boat called Nyddfirth."
+    ]
+  },
+  {
+    "id": "c3_B37_007",
+    "question": "What was Metehanli's horse called?",
+    "document_id": "B37",
+    "answers": [
+      "Elvanworth"
+    ],
+    "retrieval_spans": [
+      "Colonel Carvalhosa rode a grey mare known as Elvanworth."
+    ]
+  },
+  {
+    "id": "c3_B37_008",
+    "question": "Where did Lowriwena come from?",
+    "document_id": "B37",
+    "answers": [
+      "Girthdale"
+    ],
+    "retrieval_spans": [
+      "Doctor Tupayachil was born in the town of Girthdale."
+    ]
+  },
+  {
+    "id": "c4_B37_006",
+    "question": "What was the name of Rhyddercha's vessel?",
+    "document_id": "B37",
+    "answers": [
+      "Wendelmere"
+    ],
+    "retrieval_spans": [
+      "Sergeant Ostrander kept a small wooden boat called Wendelmere."
+    ]
+  },
+  {
+    "id": "c4_B37_007",
+    "question": "What was Ronkeadeb's horse called?",
+    "document_id": "B37",
+    "answers": [
+      "Harrowfenwick"
+    ],
+    "retrieval_spans": [
+      "Colonel Deshpandey rode a grey mare known as Harrowfenwick."
+    ]
+  },
+  {
+    "id": "c4_B37_008",
+    "question": "Where did Rotimilad come from?",
+    "document_id": "B37",
+    "answers": [
+      "Falderholt"
+    ],
+    "retrieval_spans": [
+      "Doctor Jaziralli was born in the town of Falderholt."
+    ]
+  },
+  {
+    "id": "c5_B37_006",
+    "question": "What was the name of Tamadura's vessel?",
+    "document_id": "B37",
+    "answers": [
+      "Marrenholt"
+    ],
+    "retrieval_spans": [
+      "Sergeant Tillgarven kept a small wooden boat called Marrenholt."
+    ]
+  },
+  {
+    "id": "c5_B37_007",
+    "question": "What was Mundhiran's horse called?",
+    "document_id": "B37",
+    "answers": [
+      "Lorndale"
+    ],
+    "retrieval_spans": [
+      "Colonel Umbrandell rode a grey mare known as Lorndale."
+    ]
+  },
+  {
+    "id": "c5_B37_008",
+    "question": "Where did Vuokkonen come from?",
+    "document_id": "B37",
+    "answers": [
+      "Kelmhall"
+    ],
+    "retrieval_spans": [
+      "Doctor Kobayashir was born in the town of Kelmhall."
+    ]
+  },
+  {
+    "id": "c6_B37_006",
+    "question": "What was the name of Yrjovaine's vessel?",
+    "document_id": "B37",
+    "answers": [
+      "Harrowstead"
+    ],
+    "retrieval_spans": [
+      "The Gorse Spinner kept a small wooden boat called Harrowstead."
+    ]
+  },
+  {
+    "id": "c6_B37_007",
+    "question": "What was Jyotsnali's horse called?",
+    "document_id": "B37",
+    "answers": [
+      "Harrowthwaite"
+    ],
+    "retrieval_spans": [
+      "The Heather Besomer rode a grey mare known as Harrowthwaite."
+    ]
+  },
+  {
+    "id": "c6_B37_008",
+    "question": "Where did Bhupendrar come from?",
+    "document_id": "B37",
+    "answers": [
+      "Elvangarth"
+    ],
+    "retrieval_spans": [
+      "The Clover Scyther was born in the town of Elvangarth."
+    ]
+  },
+  {
+    "id": "c7_B37_006",
+    "question": "What was the name of the beadmaker's vessel?",
+    "document_id": "B37",
+    "answers": [
+      "Lornmoor"
+    ],
+    "retrieval_spans": [
+      "Yurieko kept a small wooden boat called Lornmoor."
+    ]
+  },
+  {
+    "id": "c7_B37_007",
+    "question": "What was the ironmonger's horse called?",
+    "document_id": "B37",
+    "answers": [
+      "Thorncombe"
+    ],
+    "retrieval_spans": [
+      "Shigehiru rode a grey mare known as Thorncombe."
+    ]
+  },
+  {
+    "id": "c7_B37_008",
+    "question": "Where did the herbalist come from?",
+    "document_id": "B37",
+    "answers": [
+      "Nyddhythe"
+    ],
+    "retrieval_spans": [
+      "Mitrassa was born in the town of Nyddhythe."
+    ]
+  },
+  {
+    "id": "c8_B37_006",
+    "question": "Where was Ardeshiran's boat?",
+    "document_id": "B37",
+    "answers": [
+      "Ashenworth"
+    ],
+    "retrieval_spans": [
+      "The Dappled Skua was kept in the harbour at Ashenworth all year."
+    ]
+  },
+  {
+    "id": "c8_B37_007",
+    "question": "Where was Madalenira's carriage?",
+    "document_id": "B37",
+    "answers": [
+      "Fennthwaite"
+    ],
+    "retrieval_spans": [
+      "The Dunnock Wing was housed in the coach yard at Fennthwaite every season."
+    ]
+  },
+  {
+    "id": "c8_B37_008",
+    "question": "Where was Deodatoral's horse?",
+    "document_id": "B37",
+    "answers": [
+      "Ilbergarth"
+    ],
+    "retrieval_spans": [
+      "The Roan Tempest was stabled behind the smithy at Ilbergarth each winter."
+    ]
+  },
+  {
+    "id": "c1_B18_009",
+    "question": "Where did Tamyakilla stay?",
+    "document_id": "B18",
+    "answers": [
+      "Kelmthwaite"
+    ],
+    "retrieval_spans": [
+      "Captain Fujiwarano took lodgings at an inn called Kelmthwaite."
+    ]
+  },
+  {
+    "id": "c1_B18_010",
+    "question": "Where was Waskarinka's home?",
+    "document_id": "B18",
+    "answers": [
+      "Elvanholt"
+    ],
+    "retrieval_spans": [
+      "Professor Llanfairll had lived in Elvanholt for many years."
+    ]
+  },
+  {
+    "id": "c1_B18_011",
+    "question": "What was the name of Ozgenur's vessel?",
+    "document_id": "B18",
+    "answers": [
+      "Harrowmoor"
+    ],
+    "retrieval_spans": [
+      "Father Gillenwall kept a small wooden boat called Harrowmoor."
+    ]
+  },
+  {
+    "id": "c2_B18_009",
+    "question": "Where did Ertugral stay?",
+    "document_id": "B18",
+    "answers": [
+      "Pellamwick"
+    ],
+    "retrieval_spans": [
+      "Captain Wintermarsh took lodgings at an inn called Pellamwick."
+    ]
+  },
+  {
+    "id": "c2_B18_010",
+    "question": "Where was Tegwenna's home?",
+    "document_id": "B18",
+    "answers": [
+      "Quarnhythe"
+    ],
+    "retrieval_spans": [
+      "Professor Caernafonl had lived in Quarnhythe for many years."
+    ]
+  },
+  {
+    "id": "c2_B18_011",
+    "question": "What was the name of Gethinor's vessel?",
+    "document_id": "B18",
+    "answers": [
+      "Quarncombe"
+    ],
+    "retrieval_spans": [
+      "Father Gokhalekar kept a small wooden boat called Quarncombe."
+    ]
+  },
+  {
+    "id": "c3_B18_009",
+    "question": "Where did Modupeola stay?",
+    "document_id": "B18",
+    "answers": [
+      "Rivelshaw"
+    ],
+    "retrieval_spans": [
+      "Captain Vasconcelar took lodgings at an inn called Rivelshaw."
+    ]
+  },
+  {
+    "id": "c3_B18_010",
+    "question": "Where was Mayowasen's home?",
+    "document_id": "B18",
+    "answers": [
+      "Pellamcombe"
+    ],
+    "retrieval_spans": [
+      "Professor Quispellan had lived in Pellamcombe for many years."
+    ]
+  },
+  {
+    "id": "c3_B18_011",
+    "question": "What was the name of Bushrana's vessel?",
+    "document_id": "B18",
+    "answers": [
+      "Ulvershythe"
+    ],
+    "retrieval_spans": [
+      "Father Erdoganli kept a small wooden boat called Ulvershythe."
+    ]
+  },
+  {
+    "id": "c4_B18_009",
+    "question": "Where did Ubaydallan stay?",
+    "document_id": "B18",
+    "answers": [
+      "Pellamfenwick"
+    ],
+    "retrieval_spans": [
+      "Captain Sakuragiya took lodgings at an inn called Pellamfenwick."
+    ]
+  },
+  {
+    "id": "c4_B18_010",
+    "question": "Where was Lumikukka's home?",
+    "document_id": "B18",
+    "answers": [
+      "Oldshaw"
+    ],
+    "retrieval_spans": [
+      "Professor Rendlavish had lived in Oldshaw for many years."
+    ]
+  },
+  {
+    "id": "c4_B18_011",
+    "question": "What was the name of Vainamolt's vessel?",
+    "document_id": "B18",
+    "answers": [
+      "Josserthwaite"
+    ],
+    "retrieval_spans": [
+      "Father Quennevill kept a small wooden boat called Josserthwaite."
+    ]
+  },
+  {
+    "id": "c5_B18_009",
+    "question": "Where did Bhavnita stay?",
+    "document_id": "B18",
+    "answers": [
+      "Kelmmere"
+    ],
+    "retrieval_spans": [
+      "Captain Raghunathan took lodgings at an inn called Kelmmere."
+    ]
+  },
+  {
+    "id": "c5_B18_010",
+    "question": "Where was Narendralal's home?",
+    "document_id": "B18",
+    "answers": [
+      "Josserhythe"
+    ],
+    "retrieval_spans": [
+      "Professor Cetinkayal had lived in Josserhythe for many years."
+    ]
+  },
+  {
+    "id": "c5_B18_011",
+    "question": "What was the name of Rikakoyo's vessel?",
+    "document_id": "B18",
+    "answers": [
+      "Elvanstead"
+    ],
+    "retrieval_spans": [
+      "Father Grevandish kept a small wooden boat called Elvanstead."
+    ]
+  },
+  {
+    "id": "c6_B18_009",
+    "question": "Where did Fumihikaru stay?",
+    "document_id": "B18",
+    "answers": [
+      "Yarrowthwaite"
+    ],
+    "retrieval_spans": [
+      "The Halyard Splicer took lodgings at an inn called Yarrowthwaite."
+    ]
+  },
+  {
+    "id": "c6_B18_010",
+    "question": "Where was Golnessa's home?",
+    "document_id": "B18",
+    "answers": [
+      "Nyddgate"
+    ],
+    "retrieval_spans": [
+      "The Mistle Thatcher had lived in Nyddgate for many years."
+    ]
+  },
+  {
+    "id": "c6_B18_011",
+    "question": "What was the name of Faramarzin's vessel?",
+    "document_id": "B18",
+    "answers": [
+      "Josserbourne"
+    ],
+    "retrieval_spans": [
+      "The Sedge Mower kept a small wooden boat called Josserbourne."
+    ]
+  },
+  {
+    "id": "c7_B18_009",
+    "question": "Where did the beekeeper stay?",
+    "document_id": "B18",
+    "answers": [
+      "Fennholt"
+    ],
+    "retrieval_spans": [
+      "Esmeraldin took lodgings at an inn called Fennholt."
+    ]
+  },
+  {
+    "id": "c7_B18_010",
+    "question": "Where was the basketweaver's home?",
+    "document_id": "B18",
+    "answers": [
+      "Sarndale"
+    ],
+    "retrieval_spans": [
+      "Joaquimlar had lived in Sarndale for many years."
+    ]
+  },
+  {
+    "id": "c7_B18_011",
+    "question": "What was the name of the sailmaker's vessel?",
+    "document_id": "B18",
+    "answers": [
+      "Oldmere"
+    ],
+    "retrieval_spans": [
+      "Nustakilla kept a small wooden boat called Oldmere."
+    ]
+  },
+  {
+    "id": "c8_B18_009",
+    "question": "Where was Wamanpuma's inn?",
+    "document_id": "B18",
+    "answers": [
+      "Kelmgate"
+    ],
+    "retrieval_spans": [
+      "The Gilded Antler stood along the high road at Kelmgate back then."
+    ]
+  },
+  {
+    "id": "c8_B18_010",
+    "question": "Where was Dilrubah's lighthouse?",
+    "document_id": "B18",
+    "answers": [
+      "Elvanwick"
+    ],
+    "retrieval_spans": [
+      "The Emberwatch stood upon the headland at Elvanwick above the rocks."
+    ]
+  },
+  {
+    "id": "c8_B18_011",
+    "question": "Where was Tankutay's mill?",
+    "document_id": "B18",
+    "answers": [
+      "Yarrowhall"
+    ],
+    "retrieval_spans": [
+      "The Chaffwind stood beside the stream at Yarrowhall from spring to autumn."
+    ]
+  },
+  {
+    "id": "c1_B04_012",
+    "question": "What was Olwenydd's horse called?",
+    "document_id": "B04",
+    "answers": [
+      "Girthworth"
+    ],
+    "retrieval_spans": [
+      "Judge Samarqandli rode a grey mare known as Girthworth."
+    ]
+  },
+  {
+    "id": "c1_B04_013",
+    "question": "Where did Taliesinor come from?",
+    "document_id": "B04",
+    "answers": [
+      "Brackshaw"
+    ],
+    "retrieval_spans": [
+      "Madame Boztepelli was born in the town of Brackshaw."
+    ]
+  },
+  {
+    "id": "c1_B04_014",
+    "question": "Where did Ifedayolar stay?",
+    "document_id": "B04",
+    "answers": [
+      "Ulvershall"
+    ],
+    "retrieval_spans": [
+      "Sergeant Hasegawari took lodgings at an inn called Ulvershall."
+    ]
+  },
+  {
+    "id": "c2_B04_012",
+    "question": "What was Olumidera's horse called?",
+    "document_id": "B04",
+    "answers": [
+      "Sarnhall"
+    ],
+    "retrieval_spans": [
+      "Judge Chukiwanka rode a grey mare known as Sarnhall."
+    ]
+  },
+  {
+    "id": "c2_B04_013",
+    "question": "Where did Widadina come from?",
+    "document_id": "B04",
+    "answers": [
+      "Ulversworth"
+    ],
+    "retrieval_spans": [
+      "Madame Ilvesjoki was born in the town of Ulversworth."
+    ]
+  },
+  {
+    "id": "c2_B04_014",
+    "question": "Where did Hudhayfan stay?",
+    "document_id": "B04",
+    "answers": [
+      "Lornbourne"
+    ],
+    "retrieval_spans": [
+      "Sergeant Ishikawano took lodgings at an inn called Lornbourne."
+    ]
+  },
+  {
+    "id": "c3_B04_012",
+    "question": "What was Yrttitar's horse called?",
+    "document_id": "B04",
+    "answers": [
+      "Harrowcombe"
+    ],
+    "retrieval_spans": [
+      "Judge Larkspurrow rode a grey mare known as Harrowcombe."
+    ]
+  },
+  {
+    "id": "c3_B04_013",
+    "question": "Where did Ilmarinen come from?",
+    "document_id": "B04",
+    "answers": [
+      "Orvelfenwick"
+    ],
+    "retrieval_spans": [
+      "Madame Mehrparvar was born in the town of Orvelfenwick."
+    ]
+  },
+  {
+    "id": "c3_B04_014",
+    "question": "Where did Madhulikha stay?",
+    "document_id": "B04",
+    "answers": [
+      "Ulversfold"
+    ],
+    "retrieval_spans": [
+      "Sergeant Nieminenka took lodgings at an inn called Ulversfold."
+    ]
+  },
+  {
+    "id": "c4_B04_012",
+    "question": "What was Shantanuvir's horse called?",
+    "document_id": "B04",
+    "answers": [
+      "Hollinholt"
+    ],
+    "retrieval_spans": [
+      "Judge Sobralinho rode a grey mare known as Hollinholt."
+    ]
+  },
+  {
+    "id": "c4_B04_013",
+    "question": "Where did Izumieko come from?",
+    "document_id": "B04",
+    "answers": [
+      "Sarngate"
+    ],
+    "retrieval_spans": [
+      "Madame Ynysmorell was born in the town of Sarngate."
+    ]
+  },
+  {
+    "id": "c4_B04_014",
+    "question": "Where did Noburotak stay?",
+    "document_id": "B04",
+    "answers": [
+      "Hollinmoor"
+    ],
+    "retrieval_spans": [
+      "Sergeant Moravandel took lodgings at an inn called Hollinmoor."
+    ]
+  },
+  {
+    "id": "c5_B04_012",
+    "question": "What was Banafsheh's horse called?",
+    "document_id": "B04",
+    "answers": [
+      "Girthstead"
+    ],
+    "retrieval_spans": [
+      "Judge Brockenhurst rode a grey mare known as Girthstead."
+    ]
+  },
+  {
+    "id": "c5_B04_013",
+    "question": "Where did Keykavousi come from?",
+    "document_id": "B04",
+    "answers": [
+      "Sarncragg"
+    ],
+    "retrieval_spans": [
+      "Madame Durmazlari was born in the town of Sarncragg."
+    ]
+  },
+  {
+    "id": "c5_B04_014",
+    "question": "Where did Conceicaor stay?",
+    "document_id": "B04",
+    "answers": [
+      "Marrenhall"
+    ],
+    "retrieval_spans": [
+      "Sergeant Yardleighan took lodgings at an inn called Marrenhall."
+    ]
+  },
+  {
+    "id": "c6_B04_012",
+    "question": "What was Anacletor's horse called?",
+    "document_id": "B04",
+    "answers": [
+      "Rivelfold"
+    ],
+    "retrieval_spans": [
+      "The Teasel Comber rode a grey mare known as Rivelfold."
+    ]
+  },
+  {
+    "id": "c6_B04_013",
+    "question": "Where did Killasisa come from?",
+    "document_id": "B04",
+    "answers": [
+      "Hollinbourne"
+    ],
+    "retrieval_spans": [
+      "The Spigot Fitter was born in the town of Hollinbourne."
+    ]
+  },
+  {
+    "id": "c6_B04_014",
+    "question": "Where did Kuntursum stay?",
+    "document_id": "B04",
+    "answers": [
+      "Nyddmere"
+    ],
+    "retrieval_spans": [
+      "The Quern Grinder took lodgings at an inn called Nyddmere."
+    ]
+  },
+  {
+    "id": "c7_B04_012",
+    "question": "What was the dyemaker's horse called?",
+    "document_id": "B04",
+    "answers": [
+      "Oldworth"
+    ],
+    "retrieval_spans": [
+      "Ulkunaz rode a grey mare known as Oldworth."
+    ]
+  },
+  {
+    "id": "c7_B04_013",
+    "question": "Where did the cordwainer come from?",
+    "document_id": "B04",
+    "answers": [
+      "Wendelfold"
+    ],
+    "retrieval_spans": [
+      "Alpertun was born in the town of Wendelfold."
+    ]
+  },
+  {
+    "id": "c7_B04_014",
+    "question": "Where did the lamplighter stay?",
+    "document_id": "B04",
+    "answers": [
+      "Corvelmere"
+    ],
+    "retrieval_spans": [
+      "Caryswen took lodgings at an inn called Corvelmere."
+    ]
+  },
+  {
+    "id": "c8_B04_012",
+    "question": "Where was Owaingwyn's boat?",
+    "document_id": "B04",
+    "answers": [
+      "Fenngarth"
+    ],
+    "retrieval_spans": [
+      "The Harrowed Gull was kept in the harbour at Fenngarth all year."
+    ]
+  },
+  {
+    "id": "c8_B04_013",
+    "question": "Where was Eniolaraj's carriage?",
+    "document_id": "B04",
+    "answers": [
+      "Drosselmoor"
+    ],
+    "retrieval_spans": [
+      "The Magpie Flyer was housed in the coach yard at Drosselmoor every season."
+    ]
+  },
+  {
+    "id": "c8_B04_014",
+    "question": "Where was Babajider's horse?",
+    "document_id": "B04",
+    "answers": [
+      "Ashengarth"
+    ],
+    "retrieval_spans": [
+      "The Frosted Arrow was stabled behind the smithy at Ashengarth each winter."
+    ]
+  },
+  {
+    "id": "c1_B34_015",
+    "question": "Where was Itidalia's home?",
+    "document_id": "B34",
+    "answers": [
+      "Wendelgarth"
+    ],
+    "retrieval_spans": [
+      "Colonel Starnforth had lived in Wendelgarth for many years."
+    ]
+  },
+  {
+    "id": "c1_B34_016",
+    "question": "What was the name of Suhaybani's vessel?",
+    "document_id": "B34",
+    "answers": [
+      "Quarnmoor"
+    ],
+    "retrieval_spans": [
+      "Doctor Nylandsett kept a small wooden boat called Quarnmoor."
+    ]
+  },
+  {
+    "id": "c1_B34_017",
+    "question": "What was Paivikken's horse called?",
+    "document_id": "B34",
+    "answers": [
+      "Marrenfenwick"
+    ],
+    "retrieval_spans": [
+      "Captain Gumuskayal rode a grey mare known as Marrenfenwick."
+    ]
+  },
+  {
+    "id": "c2_B34_015",
+    "question": "Where was Reijovain's home?",
+    "document_id": "B34",
+    "answers": [
+      "Ilberfenwick"
+    ],
+    "retrieval_spans": [
+      "Colonel Tabariyya had lived in Ilberfenwick for many years."
+    ]
+  },
+  {
+    "id": "c2_B34_016",
+    "question": "What was the name of Gaytriben's vessel?",
+    "document_id": "B34",
+    "answers": [
+      "Wendelhythe"
+    ],
+    "retrieval_spans": [
+      "Doctor Pellandrin kept a small wooden boat called Wendelhythe."
+    ]
+  },
+  {
+    "id": "c2_B34_017",
+    "question": "What was Jagmohand's horse called?",
+    "document_id": "B34",
+    "answers": [
+      "Hollinfenwick"
+    ],
+    "retrieval_spans": [
+      "Captain Golbahari rode a grey mare known as Hollinfenwick."
+    ]
+  },
+  {
+    "id": "c3_B34_015",
+    "question": "Where was Orinoeka's home?",
+    "document_id": "B34",
+    "answers": [
+      "Quarndale"
+    ],
+    "retrieval_spans": [
+      "Colonel Dravenmire had lived in Quarndale for many years."
+    ]
+  },
+  {
+    "id": "c3_B34_016",
+    "question": "What was the name of Osamutaka's vessel?",
+    "document_id": "B34",
+    "answers": [
+      "Josserfold"
+    ],
+    "retrieval_spans": [
+      "Doctor Fenwickdale kept a small wooden boat called Josserfold."
+    ]
+  },
+  {
+    "id": "c3_B34_017",
+    "question": "What was Golandam's horse called?",
+    "document_id": "B34",
+    "answers": [
+      "Jossercragg"
+    ],
+    "retrieval_spans": [
+      "Captain Zetterlundh rode a grey mare known as Jossercragg."
+    ]
+  },
+  {
+    "id": "c4_B34_015",
+    "question": "Where was Mehrzad's home?",
+    "document_id": "B34",
+    "answers": [
+      "Ilberworth"
+    ],
+    "retrieval_spans": [
+      "Colonel Trefriwell had lived in Ilberworth for many years."
+    ]
+  },
+  {
+    "id": "c4_B34_016",
+    "question": "What was the name of Iracemina's vessel?",
+    "document_id": "B34",
+    "answers": [
+      "Brackmoor"
+    ],
+    "retrieval_spans": [
+      "Doctor Vaidyanath kept a small wooden boat called Brackmoor."
+    ]
+  },
+  {
+    "id": "c4_B34_017",
+    "question": "What was Inocenciol's horse called?",
+    "document_id": "B34",
+    "answers": [
+      "Brackcombe"
+    ],
+    "retrieval_spans": [
+      "Captain Adeyinkala rode a grey mare known as Brackcombe."
+    ]
+  },
+  {
+    "id": "c5_B34_015",
+    "question": "Where was Waytasisa's home?",
+    "document_id": "B34",
+    "answers": [
+      "Ulverscombe"
+    ],
+    "retrieval_spans": [
+      "Colonel Madureiral had lived in Ulverscombe for many years."
+    ]
+  },
+  {
+    "id": "c5_B34_016",
+    "question": "What was the name of Illapumak's vessel?",
+    "document_id": "B34",
+    "answers": [
+      "Zelmcombe"
+    ],
+    "retrieval_spans": [
+      "Doctor Navidifar kept a small wooden boat called Zelmcombe."
+    ]
+  },
+  {
+    "id": "c5_B34_017",
+    "question": "What was Havinnaz's horse called?",
+    "document_id": "B34",
+    "answers": [
+      "Gaveldale"
+    ],
+    "retrieval_spans": [
+      "Captain Halvorsenn rode a grey mare known as Gaveldale."
+    ]
+  },
+  {
+    "id": "c6_B34_015",
+    "question": "Where was Baturhan's home?",
+    "document_id": "B34",
+    "answers": [
+      "Marrendale"
+    ],
+    "retrieval_spans": [
+      "The Bracken Carder had lived in Marrendale for many years."
+    ]
+  },
+  {
+    "id": "c6_B34_016",
+    "question": "What was the name of Angharade's vessel?",
+    "document_id": "B34",
+    "answers": [
+      "Tavelcragg"
+    ],
+    "retrieval_spans": [
+      "The Furze Faggoter kept a small wooden boat called Tavelcragg."
+    ]
+  },
+  {
+    "id": "c6_B34_017",
+    "question": "What was Bleddynor's horse called?",
+    "document_id": "B34",
+    "answers": [
+      "Ilberdale"
+    ],
+    "retrieval_spans": [
+      "The Sloe Gleaner rode a grey mare known as Ilberdale."
+    ]
+  },
+  {
+    "id": "c7_B34_015",
+    "question": "Where was the scrivener's home?",
+    "document_id": "B34",
+    "answers": [
+      "Pellammere"
+    ],
+    "retrieval_spans": [
+      "Nikeadeol had lived in Pellammere for many years."
+    ]
+  },
+  {
+    "id": "c7_B34_016",
+    "question": "What was the name of the shinglewright's vessel?",
+    "document_id": "B34",
+    "answers": [
+      "Kelmgarth"
+    ],
+    "retrieval_spans": [
+      "Ladipojul kept a small wooden boat called Kelmgarth."
+    ]
+  },
+  {
+    "id": "c7_B34_017",
+    "question": "What was the soapboiler's horse called?",
+    "document_id": "B34",
+    "answers": [
+      "Faldergate"
+    ],
+    "retrieval_spans": [
+      "Rafifah rode a grey mare known as Faldergate."
+    ]
+  },
+  {
+    "id": "c8_B34_015",
+    "question": "Where was Luqmanil's inn?",
+    "document_id": "B34",
+    "answers": [
+      "Orvelmere"
+    ],
+    "retrieval_spans": [
+      "The Weary Pilgrim stood along the high road at Orvelmere back then."
+    ]
+  },
+  {
+    "id": "c8_B34_016",
+    "question": "Where was Vellamoin's lighthouse?",
+    "document_id": "B34",
+    "answers": [
+      "Tavelmoor"
+    ],
+    "retrieval_spans": [
+      "The Wavebeacon stood upon the headland at Tavelmoor above the rocks."
+    ]
+  },
+  {
+    "id": "c8_B34_017",
+    "question": "Where was Eerikalev's mill?",
+    "document_id": "B34",
+    "answers": [
+      "Brackfirth"
+    ],
+    "retrieval_spans": [
+      "The Spelthollow stood beside the stream at Brackfirth from spring to autumn."
+    ]
+  },
+  {
+    "id": "c1_B27_018",
+    "question": "Where did Nandinira come from?",
+    "document_id": "B27",
+    "answers": [
+      "Drosselworth"
+    ],
+    "retrieval_spans": [
+      "Professor Farahvashi was born in the town of Drosselworth."
+    ]
+  },
+  {
+    "id": "c1_B27_019",
+    "question": "Where did Kripalsing stay?",
+    "document_id": "B27",
+    "answers": [
+      "Tavelmere"
+    ],
+    "retrieval_spans": [
+      "Father Aydinlikel took lodgings at an inn called Tavelmere."
+    ]
+  },
+  {
+    "id": "c1_B27_020",
+    "question": "Where was Masayoko's home?",
+    "document_id": "B27",
+    "answers": [
+      "Sarnmoor"
+    ],
+    "retrieval_spans": [
+      "Judge Ozdemirkan had lived in Sarnmoor for many years."
+    ]
+  },
+  {
+    "id": "c2_B27_018",
+    "question": "Where did Masanobur come from?",
+    "document_id": "B27",
+    "answers": [
+      "Kelmstead"
+    ],
+    "retrieval_spans": [
+      "Professor Lehtovaara was born in the town of Kelmstead."
+    ]
+  },
+  {
+    "id": "c2_B27_019",
+    "question": "Where did Parisima stay?",
+    "document_id": "B27",
+    "answers": [
+      "Ashenridge"
+    ],
+    "retrieval_spans": [
+      "Father Ashgrovall took lodgings at an inn called Ashenridge."
+    ]
+  },
+  {
+    "id": "c2_B27_020",
+    "question": "Where was Goudarzan's home?",
+    "document_id": "B27",
+    "answers": [
+      "Harrowfold"
+    ],
+    "retrieval_spans": [
+      "Judge Tekinalpli had lived in Harrowfold for many years."
+    ]
+  },
+  {
+    "id": "c3_B27_018",
+    "question": "Where did Leopoldinar come from?",
+    "document_id": "B27",
+    "answers": [
+      "Fennfirth"
+    ],
+    "retrieval_spans": [
+      "Professor Rhosllaner was born in the town of Fennfirth."
+    ]
+  },
+  {
+    "id": "c3_B27_019",
+    "question": "Where did Leandrovaz stay?",
+    "document_id": "B27",
+    "answers": [
+      "Pellamdale"
+    ],
+    "retrieval_spans": [
+      "Father Vuorinenka took lodgings at an inn called Pellamdale."
+    ]
+  },
+  {
+    "id": "c3_B27_020",
+    "question": "Where was Chaskakill's home?",
+    "document_id": "B27",
+    "answers": [
+      "Quarnworth"
+    ],
+    "retrieval_spans": [
+      "Judge Joshipural had lived in Quarnworth for many years."
+    ]
+  },
+  {
+    "id": "c4_B27_018",
+    "question": "Where did Manqokapaq come from?",
+    "document_id": "B27",
+    "answers": [
+      "Drosselgarth"
+    ],
+    "retrieval_spans": [
+      "Professor Tendulkarl was born in the town of Drosselgarth."
+    ]
+  },
+  {
+    "id": "c4_B27_019",
+    "question": "Where did Ilkyazan stay?",
+    "document_id": "B27",
+    "answers": [
+      "Gavelstead"
+    ],
+    "retrieval_spans": [
+      "Father Atawallpaq took lodgings at an inn called Gavelstead."
+    ]
+  },
+  {
+    "id": "c4_B27_020",
+    "question": "Where was Demirtash's home?",
+    "document_id": "B27",
+    "answers": [
+      "Harrowbourne"
+    ],
+    "retrieval_spans": [
+      "Judge Yamanouchi had lived in Harrowbourne for many years."
+    ]
+  },
+  {
+    "id": "c5_B27_018",
+    "question": "Where did Ffionwenna come from?",
+    "document_id": "B27",
+    "answers": [
+      "Josserfirth"
+    ],
+    "retrieval_spans": [
+      "Professor Pachacutel was born in the town of Josserfirth."
+    ]
+  },
+  {
+    "id": "c5_B27_019",
+    "question": "Where did Cadwganed stay?",
+    "document_id": "B27",
+    "answers": [
+      "Fennmere"
+    ],
+    "retrieval_spans": [
+      "Father Pandyarath took lodgings at an inn called Fennmere."
+    ]
+  },
+  {
+    "id": "c5_B27_020",
+    "question": "Where was Abimbolar's home?",
+    "document_id": "B27",
+    "answers": [
+      "Marrenshaw"
+    ],
+    "retrieval_spans": [
+      "Judge Jokilaakso had lived in Marrenshaw for many years."
+    ]
+  },
+  {
+    "id": "c6_B27_018",
+    "question": "Where did Kayodejid come from?",
+    "document_id": "B27",
+    "answers": [
+      "Zelmdale"
+    ],
+    "retrieval_spans": [
+      "The Sorrel Steeper was born in the town of Zelmdale."
+    ]
+  },
+  {
+    "id": "c6_B27_019",
+    "question": "Where did Yumnaya stay?",
+    "document_id": "B27",
+    "answers": [
+      "Wendeldale"
+    ],
+    "retrieval_spans": [
+      "The Trestle Joiner took lodgings at an inn called Wendeldale."
+    ]
+  },
+  {
+    "id": "c6_B27_020",
+    "question": "Where was Juwaynid's home?",
+    "document_id": "B27",
+    "answers": [
+      "Orvelcombe"
+    ],
+    "retrieval_spans": [
+      "The Gimlet Borer had lived in Orvelcombe for many years."
+    ]
+  },
+  {
+    "id": "c7_B27_018",
+    "question": "Where did the quarryman come from?",
+    "document_id": "B27",
+    "answers": [
+      "Harrowfirth"
+    ],
+    "retrieval_spans": [
+      "Ruusunelm was born in the town of Harrowfirth."
+    ]
+  },
+  {
+    "id": "c7_B27_019",
+    "question": "Where did the falconer stay?",
+    "document_id": "B27",
+    "answers": [
+      "Wendelridge"
+    ],
+    "retrieval_spans": [
+      "Laurivain took lodgings at an inn called Wendelridge."
+    ]
+  },
+  {
+    "id": "c7_B27_020",
+    "question": "Where was the organist's home?",
+    "document_id": "B27",
+    "answers": [
+      "Ashenthwaite"
+    ],
+    "retrieval_spans": [
+      "Rukminiba had lived in Ashenthwaite for many years."
+    ]
+  },
+  {
+    "id": "c8_B27_018",
+    "question": "Where was Devavratan's boat?",
+    "document_id": "B27",
+    "answers": [
+      "Corvelhythe"
+    ],
+    "retrieval_spans": [
+      "The Brindled Gannet was kept in the harbour at Corvelhythe all year."
+    ]
+  },
+  {
+    "id": "c8_B27_019",
+    "question": "Where was Umekatsu's carriage?",
+    "document_id": "B27",
+    "answers": [
+      "Drosselmere"
+    ],
+    "retrieval_spans": [
+      "The Finchback was housed in the coach yard at Drosselmere every season."
+    ]
+  },
+  {
+    "id": "c8_B27_020",
+    "question": "Where was Ryonosuku's horse?",
+    "document_id": "B27",
+    "answers": [
+      "Josserwick"
+    ],
+    "retrieval_spans": [
+      "The Midnight Sickle was stabled behind the smithy at Josserwick each winter."
+    ]
+  },
+  {
+    "id": "c1_B61_021",
+    "question": "What was the name of Simindokht's vessel?",
+    "document_id": "B61",
+    "answers": [
+      "Sarnfold"
+    ],
+    "retrieval_spans": [
+      "Madame Bhattarain kept a small wooden boat called Sarnfold."
+    ]
+  },
+  {
+    "id": "c1_B61_022",
+    "question": "What was Darivash's horse called?",
+    "document_id": "B61",
+    "answers": [
+      "Orvelgate"
+    ],
+    "retrieval_spans": [
+      "Sergeant Quaresmall rode a grey mare known as Orvelgate."
+    ]
+  },
+  {
+    "id": "c1_B61_023",
+    "question": "Where did Albertinar come from?",
+    "document_id": "B61",
+    "answers": [
+      "Rivelfenwick"
+    ],
+    "retrieval_spans": [
+      "Colonel Nascimental was born in the town of Rivelfenwick."
+    ]
+  },
+  {
+    "id": "c2_B61_021",
+    "question": "What was the name of Firminoral's vessel?",
+    "document_id": "B61",
+    "answers": [
+      "Varnwick"
+    ],
+    "retrieval_spans": [
+      "Madame Lombardien kept a small wooden boat called Varnwick."
+    ]
+  },
+  {
+    "id": "c2_B61_022",
+    "question": "What was Kusiquyllur's horse called?",
+    "document_id": "B61",
+    "answers": [
+      "Yarrowcombe"
+    ],
+    "retrieval_spans": [
+      "Sergeant Ollantayri rode a grey mare known as Yarrowcombe."
+    ]
+  },
+  {
+    "id": "c2_B61_023",
+    "question": "Where did Amaruyupan come from?",
+    "document_id": "B61",
+    "answers": [
+      "Ulversridge"
+    ],
+    "retrieval_spans": [
+      "Colonel Underhayes was born in the town of Ulversridge."
+    ]
+  },
+  {
+    "id": "c3_B61_021",
+    "question": "What was the name of Cemrenur's vessel?",
+    "document_id": "B61",
+    "answers": [
+      "Ilberwick"
+    ],
+    "retrieval_spans": [
+      "Madame Ovredalend kept a small wooden boat called Ilberwick."
+    ]
+  },
+  {
+    "id": "c3_B61_022",
+    "question": "What was Oguzkan's horse called?",
+    "document_id": "B61",
+    "answers": [
+      "Elvanfold"
+    ],
+    "retrieval_spans": [
+      "Sergeant Zabidiyya rode a grey mare known as Elvanfold."
+    ]
+  },
+  {
+    "id": "c3_B61_023",
+    "question": "Where did Nerysswen come from?",
+    "document_id": "B61",
+    "answers": [
+      "Ilbershaw"
+    ],
+    "retrieval_spans": [
+      "Colonel Mandervilleq was born in the town of Ilbershaw."
+    ]
+  },
+  {
+    "id": "c4_B61_021",
+    "question": "What was the name of Iorwerthen's vessel?",
+    "document_id": "B61",
+    "answers": [
+      "Ulverscragg"
+    ],
+    "retrieval_spans": [
+      "Madame Mamaniqull kept a small wooden boat called Ulverscragg."
+    ]
+  },
+  {
+    "id": "c4_B61_022",
+    "question": "What was Titilayof's horse called?",
+    "document_id": "B61",
+    "answers": [
+      "Drosseldale"
+    ],
+    "retrieval_spans": [
+      "Sergeant Tuomivaara rode a grey mare known as Drosseldale."
+    ]
+  },
+  {
+    "id": "c4_B61_023",
+    "question": "Where did Tundeladi come from?",
+    "document_id": "B61",
+    "answers": [
+      "Tavelwick"
+    ],
+    "retrieval_spans": [
+      "Colonel Quartermain was born in the town of Tavelwick."
+    ]
+  },
+  {
+    "id": "c5_B61_021",
+    "question": "What was the name of Sumayyana's vessel?",
+    "document_id": "B61",
+    "answers": [
+      "Corvelgarth"
+    ],
+    "retrieval_spans": [
+      "Madame Kelvandore kept a small wooden boat called Corvelgarth."
+    ]
+  },
+  {
+    "id": "c5_B61_022",
+    "question": "What was Ikrimahl's horse called?",
+    "document_id": "B61",
+    "answers": [
+      "Marrengate"
+    ],
+    "retrieval_spans": [
+      "Sergeant Zellimbard rode a grey mare known as Marrengate."
+    ]
+  },
+  {
+    "id": "c5_B61_023",
+    "question": "Where did Kaarinelm come from?",
+    "document_id": "B61",
+    "answers": [
+      "Marrenbourne"
+    ],
+    "retrieval_spans": [
+      "Colonel Dehkhodain was born in the town of Marrenbourne."
+    ]
+  },
+  {
+    "id": "c6_B61_021",
+    "question": "What was the name of Ahtivainen's vessel?",
+    "document_id": "B61",
+    "answers": [
+      "Marrenhythe"
+    ],
+    "retrieval_spans": [
+      "The Madder Dyer kept a small wooden boat called Marrenhythe."
+    ]
+  },
+  {
+    "id": "c6_B61_022",
+    "question": "What was Ishanvika's horse called?",
+    "document_id": "B61",
+    "answers": [
+      "Gavelfirth"
+    ],
+    "retrieval_spans": [
+      "The Rowan Grafter rode a grey mare known as Gavelfirth."
+    ]
+  },
+  {
+    "id": "c6_B61_023",
+    "question": "Where did Mahendrar come from?",
+    "document_id": "B61",
+    "answers": [
+      "Thornmoor"
+    ],
+    "retrieval_spans": [
+      "The Capstan Turner was born in the town of Thornmoor."
+    ]
+  },
+  {
+    "id": "c7_B61_021",
+    "question": "What was the name of the clockmaker's vessel?",
+    "document_id": "B61",
+    "answers": [
+      "Hollinmere"
+    ],
+    "retrieval_spans": [
+      "Sachieko kept a small wooden boat called Hollinmere."
+    ]
+  },
+  {
+    "id": "c7_B61_022",
+    "question": "What was the matweaver's horse called?",
+    "document_id": "B61",
+    "answers": [
+      "Hollindale"
+    ],
+    "retrieval_spans": [
+      "Isamunori rode a grey mare known as Hollindale."
+    ]
+  },
+  {
+    "id": "c7_B61_023",
+    "question": "Where did the engraver come from?",
+    "document_id": "B61",
+    "answers": [
+      "Orvelfold"
+    ],
+    "retrieval_spans": [
+      "Roudabeh was born in the town of Orvelfold."
+    ]
+  },
+  {
+    "id": "c8_B61_021",
+    "question": "Where was Bahramak's mill?",
+    "document_id": "B61",
+    "answers": [
+      "Jossershaw"
+    ],
+    "retrieval_spans": [
+      "The Groatstone stood beside the stream at Jossershaw from spring to autumn."
+    ]
+  },
+  {
+    "id": "c8_B61_022",
+    "question": "Where was Severinara's lighthouse?",
+    "document_id": "B61",
+    "answers": [
+      "Thornworth"
+    ],
+    "retrieval_spans": [
+      "The Galecrown stood upon the headland at Thornworth above the rocks."
+    ]
+  },
+  {
+    "id": "c8_B61_023",
+    "question": "Where was Marcelinol's mill?",
+    "document_id": "B61",
+    "answers": [
+      "Quarnmere"
+    ],
+    "retrieval_spans": [
+      "The Querncroft stood beside the stream at Quarnmere from spring to autumn."
+    ]
+  },
+  {
+    "id": "c1_B26_024",
+    "question": "Where did Urpikusi stay?",
+    "document_id": "B26",
+    "answers": [
+      "Quarnthwaite"
+    ],
+    "retrieval_spans": [
+      "Doctor Haapaniemi took lodgings at an inn called Quarnthwaite."
+    ]
+  },
+  {
+    "id": "c1_B26_025",
+    "question": "Where was Apumayta's home?",
+    "document_id": "B26",
+    "answers": [
+      "Thornwick"
+    ],
+    "retrieval_spans": [
+      "Captain Illingword had lived in Thornwick for many years."
+    ]
+  },
+  {
+    "id": "c1_B26_026",
+    "question": "What was the name of Aybuken's vessel?",
+    "document_id": "B26",
+    "answers": [
+      "Falderbourne"
+    ],
+    "retrieval_spans": [
+      "Professor Jaiyeobala kept a small wooden boat called Falderbourne."
+    ]
+  },
+  {
+    "id": "c2_B26_024",
+    "question": "Where did Volkanay stay?",
+    "document_id": "B26",
+    "answers": [
+      "Marrenworth"
+    ],
+    "retrieval_spans": [
+      "Doctor Eastvollen took lodgings at an inn called Marrenworth."
+    ]
+  },
+  {
+    "id": "c2_B26_025",
+    "question": "Where was Blodeuwen's home?",
+    "document_id": "B26",
+    "answers": [
+      "Tavelthwaite"
+    ],
+    "retrieval_spans": [
+      "Captain Qurtubill had lived in Tavelthwaite for many years."
+    ]
+  },
+  {
+    "id": "c2_B26_026",
+    "question": "What was the name of Dafyddion's vessel?",
+    "document_id": "B26",
+    "answers": [
+      "Drosselfenwick"
+    ],
+    "retrieval_spans": [
+      "Professor Ikuomolal kept a small wooden boat called Drosselfenwick."
+    ]
+  },
+  {
+    "id": "c3_B26_024",
+    "question": "Where did Boluwatif stay?",
+    "document_id": "B26",
+    "answers": [
+      "Pellamcragg"
+    ],
+    "retrieval_spans": [
+      "Doctor Brynmoredd took lodgings at an inn called Pellamcragg."
+    ]
+  },
+  {
+    "id": "c3_B26_025",
+    "question": "Where was Damolaseg's home?",
+    "document_id": "B26",
+    "answers": [
+      "Kelmdale"
+    ],
+    "retrieval_spans": [
+      "Captain Dinefwrell had lived in Kelmdale for many years."
+    ]
+  },
+  {
+    "id": "c3_B26_026",
+    "question": "What was the name of Ruqayyana's vessel?",
+    "document_id": "B26",
+    "answers": [
+      "Corvelfenwick"
+    ],
+    "retrieval_spans": [
+      "Professor Nakagawari kept a small wooden boat called Corvelfenwick."
+    ]
+  },
+  {
+    "id": "c4_B26_024",
+    "question": "Where did Nuaymani stay?",
+    "document_id": "B26",
+    "answers": [
+      "Ulversmere"
+    ],
+    "retrieval_spans": [
+      "Doctor Ravnsborgh took lodgings at an inn called Ulversmere."
+    ]
+  },
+  {
+    "id": "c4_B26_025",
+    "question": "Where was Eevastiin's home?",
+    "document_id": "B26",
+    "answers": [
+      "Tavelfenwick"
+    ],
+    "retrieval_spans": [
+      "Captain Ambervalle had lived in Tavelfenwick for many years."
+    ]
+  },
+  {
+    "id": "c4_B26_026",
+    "question": "What was the name of Paavalint's vessel?",
+    "document_id": "B26",
+    "answers": [
+      "Sarnhythe"
+    ],
+    "retrieval_spans": [
+      "Professor Rebordosal kept a small wooden boat called Sarnhythe."
+    ]
+  },
+  {
+    "id": "c5_B26_024",
+    "question": "Where did Kaumudini stay?",
+    "document_id": "B26",
+    "answers": [
+      "Tavelgate"
+    ],
+    "retrieval_spans": [
+      "Doctor Sarmadiyan took lodgings at an inn called Tavelgate."
+    ]
+  },
+  {
+    "id": "c5_B26_025",
+    "question": "Where was Lokenathan's home?",
+    "document_id": "B26",
+    "answers": [
+      "Faldermere"
+    ],
+    "retrieval_spans": [
+      "Captain Pirouzfam had lived in Faldermere for many years."
+    ]
+  },
+  {
+    "id": "c5_B26_026",
+    "question": "What was the name of Harunatsu's vessel?",
+    "document_id": "B26",
+    "answers": [
+      "Varnhall"
+    ],
+    "retrieval_spans": [
+      "Professor Gwyneddell kept a small wooden boat called Varnhall."
+    ]
+  },
+  {
+    "id": "c6_B26_024",
+    "question": "Where did Daisukero stay?",
+    "document_id": "B26",
+    "answers": [
+      "Oldgarth"
+    ],
+    "retrieval_spans": [
+      "The Fathom Plumber took lodgings at an inn called Oldgarth."
+    ]
+  },
+  {
+    "id": "c6_B26_025",
+    "question": "Where was Mahtabeh's home?",
+    "document_id": "B26",
+    "answers": [
+      "Harrowdale"
+    ],
+    "retrieval_spans": [
+      "The Limpet Priser had lived in Harrowdale for many years."
+    ]
+  },
+  {
+    "id": "c6_B26_026",
+    "question": "What was the name of Siyavashan's vessel?",
+    "document_id": "B26",
+    "answers": [
+      "Quarncragg"
+    ],
+    "retrieval_spans": [
+      "The Oakum Picker kept a small wooden boat called Quarncragg."
+    ]
+  },
+  {
+    "id": "c7_B26_024",
+    "question": "Where did the mapmaker stay?",
+    "document_id": "B26",
+    "answers": [
+      "Yarrowcragg"
+    ],
+    "retrieval_spans": [
+      "Rosalindar took lodgings at an inn called Yarrowcragg."
+    ]
+  },
+  {
+    "id": "c7_B26_025",
+    "question": "Where was the birdcatcher's home?",
+    "document_id": "B26",
+    "answers": [
+      "Varncragg"
+    ],
+    "retrieval_spans": [
+      "Evaristolm had lived in Varncragg for many years."
+    ]
+  },
+  {
+    "id": "c7_B26_026",
+    "question": "What was the name of the glovemaker's vessel?",
+    "document_id": "B26",
+    "answers": [
+      "Drosselstead"
+    ],
+    "retrieval_spans": [
+      "Pachakusi kept a small wooden boat called Drosselstead."
+    ]
+  },
+  {
+    "id": "c8_B26_024",
+    "question": "Where was Rumisunqu's boat?",
+    "document_id": "B26",
+    "answers": [
+      "Tavelhythe"
+    ],
+    "retrieval_spans": [
+      "The Amber Plover was kept in the harbour at Tavelhythe all year."
+    ]
+  },
+  {
+    "id": "c8_B26_025",
+    "question": "Where was Yildizay's carriage?",
+    "document_id": "B26",
+    "answers": [
+      "Nyddwick"
+    ],
+    "retrieval_spans": [
+      "The Wrenwheel was housed in the coach yard at Nyddwick every season."
+    ]
+  },
+  {
+    "id": "c8_B26_026",
+    "question": "Where was Cagataykan's horse?",
+    "document_id": "B26",
+    "answers": [
+      "Harrowhythe"
+    ],
+    "retrieval_spans": [
+      "The Moorland Ember was stabled behind the smithy at Harrowhythe each winter."
+    ]
+  },
+  {
+    "id": "c1_B44_027",
+    "question": "What was Delythwen's horse called?",
+    "document_id": "B44",
+    "answers": [
+      "Wendelhall"
+    ],
+    "retrieval_spans": [
+      "Father Graveshollow rode a grey mare known as Wendelhall."
+    ]
+  },
+  {
+    "id": "c1_B44_028",
+    "question": "Where did Siorsgwyn come from?",
+    "document_id": "B44",
+    "answers": [
+      "Brackthwaite"
+    ],
+    "retrieval_spans": [
+      "Judge Zephyrholme was born in the town of Brackthwaite."
+    ]
+  },
+  {
+    "id": "c1_B44_029",
+    "question": "Where did Kehindelar stay?",
+    "document_id": "B44",
+    "answers": [
+      "Zelmhythe"
+    ],
+    "retrieval_spans": [
+      "Madame Thistlewood took lodgings at an inn called Zelmhythe."
+    ]
+  },
+  {
+    "id": "c2_B44_027",
+    "question": "What was Niyilekan's horse called?",
+    "document_id": "B44",
+    "answers": [
+      "Sarnworth"
+    ],
+    "retrieval_spans": [
+      "Father Kirkevallen rode a grey mare known as Sarnworth."
+    ]
+  },
+  {
+    "id": "c2_B44_028",
+    "question": "Where did Zulfaqara come from?",
+    "document_id": "B44",
+    "answers": [
+      "Ulversshaw"
+    ],
+    "retrieval_spans": [
+      "Judge Ogasawarak was born in the town of Ulversshaw."
+    ]
+  },
+  {
+    "id": "c2_B44_029",
+    "question": "Where did Khuzaymar stay?",
+    "document_id": "B44",
+    "answers": [
+      "Brackcragg"
+    ],
+    "retrieval_spans": [
+      "Madame Watanaberi took lodgings at an inn called Brackcragg."
+    ]
+  },
+  {
+    "id": "c3_B44_027",
+    "question": "What was Tuulikken's horse called?",
+    "document_id": "B44",
+    "answers": [
+      "Falderworth"
+    ],
+    "retrieval_spans": [
+      "Father Fennimoral rode a grey mare known as Falderworth."
+    ]
+  },
+  {
+    "id": "c3_B44_028",
+    "question": "Where did Urhovaine come from?",
+    "document_id": "B44",
+    "answers": [
+      "Corvelworth"
+    ],
+    "retrieval_spans": [
+      "Judge Belgharami was born in the town of Corvelworth."
+    ]
+  },
+  {
+    "id": "c3_B44_029",
+    "question": "Where did Chandrikal stay?",
+    "document_id": "B44",
+    "answers": [
+      "Zelmbourne"
+    ],
+    "retrieval_spans": [
+      "Madame Koskenniemi took lodgings at an inn called Zelmbourne."
+    ]
+  },
+  {
+    "id": "c4_B44_027",
+    "question": "What was Raghuvirs's horse called?",
+    "document_id": "B44",
+    "answers": [
+      "Rivelfirth"
+    ],
+    "retrieval_spans": [
+      "Father Rastegharan rode a grey mare known as Rivelfirth."
+    ]
+  },
+  {
+    "id": "c4_B44_028",
+    "question": "Where did Fumikata come from?",
+    "document_id": "B44",
+    "answers": [
+      "Varnfirth"
+    ],
+    "retrieval_spans": [
+      "Judge Taiwolana was born in the town of Varnfirth."
+    ]
+  },
+  {
+    "id": "c4_B44_029",
+    "question": "Where did Katsuhirou stay?",
+    "document_id": "B44",
+    "answers": [
+      "Varnstead"
+    ],
+    "retrieval_spans": [
+      "Madame Lampinenka took lodgings at an inn called Varnstead."
+    ]
+  },
+  {
+    "id": "c5_B44_027",
+    "question": "What was Paridokht's horse called?",
+    "document_id": "B44",
+    "answers": [
+      "Ilberfold"
+    ],
+    "retrieval_spans": [
+      "Father Albuquerquel rode a grey mare known as Ilberfold."
+    ]
+  },
+  {
+    "id": "c5_B44_028",
+    "question": "Where did Manouchehran come from?",
+    "document_id": "B44",
+    "answers": [
+      "Hollinshaw"
+    ],
+    "retrieval_spans": [
+      "Judge Wankawillk was born in the town of Hollinshaw."
+    ]
+  },
+  {
+    "id": "c5_B44_029",
+    "question": "Where did Benedital stay?",
+    "document_id": "B44",
+    "answers": [
+      "Elvancragg"
+    ],
+    "retrieval_spans": [
+      "Madame Karkhiyya took lodgings at an inn called Elvancragg."
+    ]
+  },
+  {
+    "id": "c6_B44_027",
+    "question": "What was Quirinolar's horse called?",
+    "document_id": "B44",
+    "answers": [
+      "Yarrowbourne"
+    ],
+    "retrieval_spans": [
+      "The Alder Coppicer rode a grey mare known as Yarrowbourne."
+    ]
+  },
+  {
+    "id": "c6_B44_028",
+    "question": "Where did Raymisisa come from?",
+    "document_id": "B44",
+    "answers": [
+      "Quarnfold"
+    ],
+    "retrieval_spans": [
+      "The Whin Reaper was born in the town of Quarnfold."
+    ]
+  },
+  {
+    "id": "c6_B44_029",
+    "question": "Where did Pachakutiq stay?",
+    "document_id": "B44",
+    "answers": [
+      "Fennbourne"
+    ],
+    "retrieval_spans": [
+      "The Trencher Whittler took lodgings at an inn called Fennbourne."
+    ]
+  },
+  {
+    "id": "c7_B44_027",
+    "question": "What was the bookbinder's horse called?",
+    "document_id": "B44",
+    "answers": [
+      "Josserstead"
+    ],
+    "retrieval_spans": [
+      "Melteme rode a grey mare known as Josserstead."
+    ]
+  },
+  {
+    "id": "c7_B44_028",
+    "question": "Where did the ropemaker come from?",
+    "document_id": "B44",
+    "answers": [
+      "Yarrowstead"
+    ],
+    "retrieval_spans": [
+      "Umutcan was born in the town of Yarrowstead."
+    ]
+  },
+  {
+    "id": "c7_B44_029",
+    "question": "Where did the locksmith stay?",
+    "document_id": "B44",
+    "answers": [
+      "Harrowshaw"
+    ],
+    "retrieval_spans": [
+      "Mairwenne took lodgings at an inn called Harrowshaw."
+    ]
+  },
+  {
+    "id": "c8_B44_027",
+    "question": "Where was Emrysgwyn's lighthouse?",
+    "document_id": "B44",
+    "answers": [
+      "Marrenwick"
+    ],
+    "retrieval_spans": [
+      "The Foamkeep stood upon the headland at Marrenwick above the rocks."
+    ]
+  },
+  {
+    "id": "c8_B44_028",
+    "question": "Where was Jumokeade's lighthouse?",
+    "document_id": "B44",
+    "answers": [
+      "Ashenfold"
+    ],
+    "retrieval_spans": [
+      "The Palefire stood upon the headland at Ashenfold above the rocks."
+    ]
+  },
+  {
+    "id": "c8_B44_029",
+    "question": "Where was Folorunshol's mill?",
+    "document_id": "B44",
+    "answers": [
+      "Corvelfold"
+    ],
+    "retrieval_spans": [
+      "The Branfall stood beside the stream at Corvelfold from spring to autumn."
+    ]
+  }
+]

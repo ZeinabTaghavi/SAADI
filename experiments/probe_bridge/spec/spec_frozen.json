@@ -1,0 +1,8 @@
+{
+  "personas_jsonl_sha256": "11c4c1696c67171f78821d3ba8311ccd28c851315ca1c2a404a9a422593897bb",
+  "books_json_sha256": "90f8c5916080451e4f2cae496041fef053742eff1485ea8ec4ff66d1efc9e73b",
+  "templates_json_sha256": "e6a8bff4496297ece5f315462162683da0094e01269559b158725340fde82fb6",
+  "documents_json_sha256": "2d3caf37c2f2f86d5e5149e13324ffab6c278580426f35dcb52040d70d38fabc",
+  "qa_json_sha256": "f9c7344527bf7f801c99e1dc2459098bff35cbdf38e7c09f90ba667366dfee43",
+  "n_personas": 240
+}
