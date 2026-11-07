@@ -1,20 +1,16 @@
 {
   "step": 6,
   "title": "Memory check",
-  "status": "ok",
+  "status": "FAILED",
   "commands": [
-    "bash experiments/probe_bridge/sh/06_*.sh",
-    "inspect /mnt/data/zeinab/SAADI/outputs/probe_bridge/novelhopqa_probe/indexes/7f585bd63886659e/llm_cache/novelhopqa/hierarchical/branching_factor_5/chunk_500/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/index.json with the E2 replay (saadi.rebuttal.frozen_records)"
+    "bash experiments/probe_bridge/sh/06_*.sh --force"
   ],
-  "numbers": {
-    "gate_rate": 0.0,
-    "gate_n": 90,
-    "gate_bridged": 0
-  },
-  "files_written": [
-    "/mnt/data/zeinab/SAADI/outputs/probe_bridge/personas_memory.jsonl"
+  "numbers": {},
+  "files_written": [],
+  "unexpected": [
+    "The step failed. Full traceback:\n\n```\nTraceback (most recent call last):\n  File \"/mnt/data/zeinab/SAADI/experiments/probe_bridge/common.py\", line 392, in run_step\n    require_marker(prev)\n  File \"/mnt/data/zeinab/SAADI/experiments/probe_bridge/common.py\", line 198, in require_marker\n    raise RuntimeError(f\"Step {step:02d} has not finished: missing {marker_path(step)}. Run its script first.\")\nRuntimeError: Step 05 has not finished: missing /mnt/data/zeinab/SAADI/outputs/probe_bridge/markers/step_05.done. Run its script first.\n\n```",
+    "Last 50 log lines:\n\n```\n\n```"
   ],
-  "unexpected": [],
   "versions": {
     "python": "3.12.3",
     "platform": "Linux-6.17.0-23-generic-x86_64-with-glibc2.39",
@@ -22,6 +18,6 @@
     "pandas": "3.0.1",
     "yaml": "6.0.3",
     "saadi": "0.1.0",
-    "git_commit": "4f54773d8ccdd8aeb378b12a4d70e7255d6af8ba"
+    "git_commit": "a9eea072e5d0577849d28e4c81a0ee7448a1a5e0"
   }
 }
