@@ -3,17 +3,32 @@
   "title": "Index (GPU)",
   "status": "FAILED",
   "commands": [
-    "bash experiments/probe_bridge/sh/05_*.sh"
+    "bash experiments/probe_bridge/sh/05_*.sh",
+    "SADI_OUTPUT_DIR=/mnt/data/zeinab/SAADI/outputs/probe_bridge /mnt/data/zeinab/raptor/.venv/bin/python3 /mnt/data/zeinab/SAADI/scripts/run_study.py --suite probe_bridge --profile published --datasets novelhopqa_probe --retrievers bm25 --stage ingest"
   ],
   "numbers": {
-    "weights_found": true
+    "weights_found": true,
+    "resolved": {
+      "temperature": 0.0,
+      "seed": 42,
+      "branching_factor": 5,
+      "active_entity_selector": "word",
+      "max_entities": 5,
+      "max_aliases": 2,
+      "max_desc": 3,
+      "history_l0_text": "anchored",
+      "anchor_matching": "strict",
+      "snapshots": [
+        "0d7cf23991f47feeb3a57ecb4c9cee8ea4a17bfe"
+      ]
+    }
   },
   "files_written": [
     "/mnt/data/zeinab/SAADI/configs/experiments/novelhopqa_probe_retrieval_ablation.yaml  (declared file outside the probe folders)"
   ],
   "unexpected": [
-    "The step failed. Full traceback:\n\n```\nTraceback (most recent call last):\n  File \"/mnt/data/zeinab/SAADI/experiments/probe_bridge/common.py\", line 393, in run_step\n    main(report, argv)\n  File \"/mnt/data/zeinab/SAADI/experiments/probe_bridge/steps/step05_index.py\", line 169, in main\n    resolved = run_study.merge(run_study.published_config(load_config(PROBE_CONFIG)), suite[\"variants\"][0][\"overrides\"])\n                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/scripts/run_study.py\", line 58, in published_config\n    manifest = verify_bundle(ROOT / \"outputs/saadi/reference\")\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/reporting/tables.py\", line 37, in verify_bundle\n    raise ValueError(\"Reference bundle contains missing or unregistered files\")\nValueError: Reference bundle contains missing or unregistered files\n\n```",
-    "Last 50 log lines:\n\n```\n\n```"
+    "The step failed. Full traceback:\n\n```\nTraceback (most recent call last):\n  File \"/mnt/data/zeinab/SAADI/experiments/probe_bridge/common.py\", line 393, in run_step\n    main(report, argv)\n  File \"/mnt/data/zeinab/SAADI/experiments/probe_bridge/steps/step05_index.py\", line 229, in main\n    raise RuntimeError(f\"run_study.py exited with code {proc.returncode}. Rerun this script to resume; the construction cache is kept.\")\nRuntimeError: run_study.py exited with code 1. Rerun this script to resume; the construction cache is kept.\n\n```",
+    "Last 50 log lines:\n\n```\nSaadi: novelhopqa_probe / probe_bridge / greedy_seed42\nTraceback (most recent call last):\n  File \"/mnt/data/zeinab/SAADI/scripts/run_study.py\", line 96, in stage_lock\n    fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)\nBlockingIOError: [Errno 11] Resource temporarily unavailable\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/mnt/data/zeinab/SAADI/scripts/run_study.py\", line 310, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/mnt/data/zeinab/SAADI/scripts/run_study.py\", line 306, in main\n    return run(args)\n           ^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/scripts/run_study.py\", line 240, in run\n    execute_stage([sys.executable, \"-m\", \"saadi.cli.main\", \"run-experiment\", \"--config\", config_path,\n  File \"/mnt/data/zeinab/SAADI/scripts/run_study.py\", line 109, in execute_stage\n    with stage_lock(directory):\n  File \"/usr/lib/python3.12/contextlib.py\", line 137, in __enter__\n    return next(self.gen)\n           ^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/scripts/run_study.py\", line 98, in stage_lock\n    raise RuntimeError(f\"Another process is writing {directory}\") from exc\nRuntimeError: Another process is writing /mnt/data/zeinab/SAADI/outputs/probe_bridge/novelhopqa_probe/indexes/7f585bd63886659e\n```"
   ],
   "versions": {
     "python": "3.12.3",
@@ -22,6 +37,6 @@
     "pandas": "3.0.1",
     "yaml": "6.0.3",
     "saadi": "0.1.0",
-    "git_commit": "677ee67084b34e34a7158772ee7870bdaaf4c3c8"
+    "git_commit": "12630a46504ac8a020f57fdd99e1e9358e3092b5"
   }
 }
