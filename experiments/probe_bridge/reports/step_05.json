@@ -1,0 +1,27 @@
+{
+  "step": 5,
+  "title": "Index (GPU)",
+  "status": "FAILED",
+  "commands": [
+    "bash experiments/probe_bridge/sh/05_*.sh"
+  ],
+  "numbers": {
+    "weights_found": true
+  },
+  "files_written": [
+    "/mnt/data/zeinab/SAADI/configs/experiments/novelhopqa_probe_retrieval_ablation.yaml  (declared file outside the probe folders)"
+  ],
+  "unexpected": [
+    "The step failed. Full traceback:\n\n```\nTraceback (most recent call last):\n  File \"/mnt/data/zeinab/SAADI/experiments/probe_bridge/common.py\", line 393, in run_step\n    main(report, argv)\n  File \"/mnt/data/zeinab/SAADI/experiments/probe_bridge/steps/step05_index.py\", line 169, in main\n    resolved = run_study.merge(run_study.published_config(load_config(PROBE_CONFIG)), suite[\"variants\"][0][\"overrides\"])\n                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/scripts/run_study.py\", line 58, in published_config\n    manifest = verify_bundle(ROOT / \"outputs/saadi/reference\")\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/reporting/tables.py\", line 37, in verify_bundle\n    raise ValueError(\"Reference bundle contains missing or unregistered files\")\nValueError: Reference bundle contains missing or unregistered files\n\n```",
+    "Last 50 log lines:\n\n```\n\n```"
+  ],
+  "versions": {
+    "python": "3.12.3",
+    "platform": "Linux-6.17.0-23-generic-x86_64-with-glibc2.39",
+    "numpy": "2.3.5",
+    "pandas": "3.0.1",
+    "yaml": "6.0.3",
+    "saadi": "0.1.0",
+    "git_commit": "677ee67084b34e34a7158772ee7870bdaaf4c3c8"
+  }
+}
