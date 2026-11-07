@@ -3,7 +3,7 @@
   "title": "Check and place",
   "status": "ok",
   "commands": [
-    "bash experiments/probe_bridge/sh/03_*.sh",
+    "bash experiments/probe_bridge/sh/03_*.sh --force",
     "checks 1-6 over the 10 originals + question set; positions with default_rng(42)"
   ],
   "numbers": {
@@ -47,6 +47,6 @@
     "pandas": "3.0.1",
     "yaml": "6.0.3",
     "saadi": "0.1.0",
-    "git_commit": "60cc1286d242b67608b6cadf3678c24856da74df"
+    "git_commit": "2b22afc634c7bf24a0250e0c247598a2f31eac77"
   }
 }

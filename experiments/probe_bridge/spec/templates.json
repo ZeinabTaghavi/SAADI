@@ -124,14 +124,14 @@
     }
   ],
   "titles": [
-    "Dr.",
+    "Doctor",
     "Captain",
-    "Mrs.",
     "Professor",
     "Father",
     "Judge",
     "Madame",
-    "Sergeant"
+    "Sergeant",
+    "Colonel"
   ],
   "seed": 42,
   "notes": "Fixed name banks, templates and phrasings for the bridge probe.\n\nEverything here is written in advance and never edited after indexing starts\n(the frozen spec records what was actually used). The absence and overlap\nchecks in step 3 decide what survives; the banks only supply candidates, with\ngenerous reserves. Spellings are rare or lightly altered on purpose so the\nabsence check passes more often.\n\nInterpretations of the note, recorded here and in the step reports:\n- The note's family-D example reveal (\"Mitra owned a fishing boat called the\n  Blue Heron\") contains the query's kind word (\"boat\") and would fail the\n  note's own check 5, so the D reveals below are kind-free (\"Mitra owned the\n  Blue Heron.\"). The query still uses the kind word; it matches nothing and is\n  decorative.\n- The note's family-C example reveal (\"earned her living as a cartographer\")\n  shares the stem \"liv\" with the Home gold sentence and would fail check 4;\n  the C phrasings below avoid it.\n- Cell 8 (family D) uses the note's \"Home shape adapted to an object\" for all\n  its personas, rotating the six object kinds instead of the five fact types\n  (a vessel/horse/origin/lodging fact has no natural object form).\n- Inserted sentences are kept at 8-18 words, so the shorter example phrasings\n  of the note are padded.\n"

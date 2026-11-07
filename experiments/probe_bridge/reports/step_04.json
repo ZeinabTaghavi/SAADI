@@ -8,7 +8,7 @@
   "numbers": {},
   "files_written": [],
   "unexpected": [
-    "The step failed. Full traceback:\n\n```\nTraceback (most recent call last):\n  File \"/mnt/data/zeinab/SAADI/experiments/probe_bridge/common.py\", line 393, in run_step\n    main(report, argv)\n  File \"/mnt/data/zeinab/SAADI/experiments/probe_bridge/steps/step04_insert_and_rechunk.py\", line 117, in main\n    raise RuntimeError(\nRuntimeError: Check 8 failed for c2_B31_002/gold in B31: the sentence lies in 0 chunks ([]).\n\n```",
+    "The step failed. Full traceback:\n\n```\nTraceback (most recent call last):\n  File \"/mnt/data/zeinab/SAADI/experiments/probe_bridge/common.py\", line 393, in run_step\n    main(report, argv)\n  File \"/mnt/data/zeinab/SAADI/experiments/probe_bridge/steps/step04_insert_and_rechunk.py\", line 128, in main\n    raise RuntimeError(\nRuntimeError: Check 7 failed in B31: inserted sentences at chunks 96 and 98 (< 3 apart) - [('c6_B31_001', 'gold'), ('c6_B31_002', 'gold')]. Rerun step 3 with --force after deciding at the hand-off.\n\n```",
     "Last 50 log lines:\n\n```\nNovelHopQA subset mode enabled; skipped 26 unresolved title(s) under /mnt/data/zeinab/SAADI/outputs/novelhopqa_materials/book-corpus-root. Example title(s): A Connecticut Yankee in King Arthur's Court, Billy Budd, David Copperfield, Don Quixote, Dracula. Reports written to /mnt/data/zeinab/SAADI/experiments/probe_bridge/logs/dataset_reports\n```"
   ],
   "versions": {
@@ -18,6 +18,6 @@
     "pandas": "3.0.1",
     "yaml": "6.0.3",
     "saadi": "0.1.0",
-    "git_commit": "6387709d3899c30d6785cc8627be64f1f849d789"
+    "git_commit": "2b22afc634c7bf24a0250e0c247598a2f31eac77"
   }
 }

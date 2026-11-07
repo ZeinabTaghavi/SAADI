@@ -1,12 +1,12 @@
 # Bridge probe - step 02: Generate personas
 
-Status: **ok** - 2026-11-07 17:15:06
+Status: **ok** - 2026-11-07 17:28:43
 
 ## What was done
 
-- `bash experiments/probe_bridge/sh/02_*.sh`
+- `bash experiments/probe_bridge/sh/02_*.sh --force`
 - `numpy.random.default_rng(42); 240 personas, banks from experiments/probe_bridge/banks.py`
-- Versions: python=3.12.3, platform=Linux-6.17.0-23-generic-x86_64-with-glibc2.39, numpy=2.3.5, pandas=3.0.1, yaml=6.0.3, saadi=0.1.0, git_commit=60cc1286d242b67608b6cadf3678c24856da74df
+- Versions: python=3.12.3, platform=Linux-6.17.0-23-generic-x86_64-with-glibc2.39, numpy=2.3.5, pandas=3.0.1, yaml=6.0.3, saadi=0.1.0, git_commit=2b22afc634c7bf24a0250e0c247598a2f31eac77
 
 ## Numbers
 
@@ -77,15 +77,15 @@ Status: **ok** - 2026-11-07 17:15:06
   - reveal: Zubayrid owned the Sable Curlew and prized it dearly.
   - query: Where was Zubayrid's boat?  -> answer: Elvanshaw
 - **c3_B04_013** (cell 3, A, origin)
-  - gold: Judge Mehrparvar was born in the town of Orvelfenwick.
+  - gold: Madame Mehrparvar was born in the town of Orvelfenwick.
   - reveal: Mehrparvar, whose given name was Ilmarinen, was well known in those parts.
   - query: Where did Ilmarinen come from?  -> answer: Orvelfenwick
 - **c3_B04_014** (cell 3, A, lodging)
-  - gold: Madame Nieminenka took lodgings at an inn called Ulversfold.
+  - gold: Sergeant Nieminenka took lodgings at an inn called Ulversfold.
   - reveal: Madhulikha was the given name of Nieminenka in the church register.
   - query: Where did Madhulikha stay?  -> answer: Ulversfold
 - **c4_B27_020** (cell 4, A, home)
-  - gold: Father Yamanouchi had lived in Harrowbourne for many years.
+  - gold: Judge Yamanouchi had lived in Harrowbourne for many years.
   - reveal: In those days, Demirtash's family name was Yamanouchi.
   - query: Where was Demirtash's home?  -> answer: Harrowbourne
 - **c6_B61_021** (cell 6, B, vessel)
