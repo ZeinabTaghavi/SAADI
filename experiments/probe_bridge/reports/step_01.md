@@ -1,0 +1,55 @@
+# Bridge probe - step 01: Select books
+
+Status: **FAILED** - 2026-11-07 16:54:06
+
+## What was done
+
+- `bash experiments/probe_bridge/sh/01_*.sh`
+- `load_novelhopqa_documents(config_name='all', books_root='/home/iataghav/data/SAADI/data/novelhopqa/book-corpus-root'); chunk_text(tokenizer=None, 500, 0)`
+- Versions: python=3.12.3, platform=Linux-6.17.0-23-generic-x86_64-with-glibc2.39, numpy=2.3.5, pandas=3.0.1, yaml=6.0.3, saadi=0.1.0, git_commit=78c3f0ffad59a491c2534a901cdf587c68599758
+
+## Numbers
+
+## Anything unexpected
+
+The step failed. Full traceback:
+
+```
+Traceback (most recent call last):
+  File "/mnt/data/zeinab/SAADI/experiments/probe_bridge/common.py", line 393, in run_step
+    main(report, argv)
+  File "/mnt/data/zeinab/SAADI/experiments/probe_bridge/steps/step01_select_books.py", line 33, in main
+    docs = load_novelhopqa_documents(config_name="all", books_root=books_root or None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/zeinab/SAADI/src/saadi/indexing/dataset_loaders/novelhopqa.py", line 635, in load_novelhopqa_documents
+    docs, _ = _load_novelhopqa_all(mode=mode, split=split, books_root=books_root, allowed_doc_ids=allowed_doc_ids)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/zeinab/SAADI/src/saadi/indexing/dataset_loaders/novelhopqa.py", line 610, in _load_novelhopqa_all
+    raise RuntimeError(
+RuntimeError: NovelHopQA whole-book loading could not resolve book texts for 26 title(s) under /mnt/data/zeinab/SAADI/outputs/novelhopqa_materials/book-corpus-root. Example title(s): A Connecticut Yankee in King Arthur's Court, Billy Budd, David Copperfield, Don Quixote, Dracula. Provide dataset.books_root or NOVELHOPQA_BOOKS_ROOT pointing to a corpus with matching titles.
+
+```
+
+Last 50 log lines:
+
+```
+
+Generating train split: 0 examples [00:00, ? examples/s]
+Generating train split: 4345 examples [00:00, 58641.30 examples/s]
+
+Generating hop_1 split:   0%|          | 0/1055 [00:00<?, ? examples/s]
+Generating hop_1 split: 100%|██████████| 1055/1055 [00:00<00:00, 69469.37 examples/s]
+
+Generating hop_2 split:   0%|          | 0/1084 [00:00<?, ? examples/s]
+Generating hop_2 split: 100%|██████████| 1084/1084 [00:00<00:00, 50082.35 examples/s]
+
+Generating hop_3 split:   0%|          | 0/1081 [00:00<?, ? examples/s]
+Generating hop_3 split: 100%|██████████| 1081/1081 [00:00<00:00, 31524.28 examples/s]
+
+Generating hop_4 split:   0%|          | 0/1125 [00:00<?, ? examples/s]
+Generating hop_4 split: 100%|██████████| 1125/1125 [00:00<00:00, 26138.16 examples/s]
+```
+
+## Files written
+
+- (none)
