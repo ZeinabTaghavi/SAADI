@@ -259,7 +259,11 @@ memory check separating extraction failures from scoring failures.
 ## Limits
 
 Synthetic insertion of plain-style sentences, one construction model (Qwen3-30B-A3B-Instruct-2507,
-published profile), 30 personas per cell, 10 books, BM25 only. Anything that went wrong in the run is in
+published profile with decoding as the paper states: temperature 0, seed 42; the saved main runs recorded temperature
+0.6 and top_p 0.95, and word-overlap recall where the paper states BM25), 30 personas per cell,
+10 books, BM25 only. The gold window was widened to [0.05N, 0.45N] and B24 replaced by B44 because the shortest
+books could not hold the planned window; gold positions differ between cells (median 26% to 37% of the book in
+cells 1-3 and 6-8, 54% in cell 4), so distance and family comparisons are not fully separated from position. Anything that went wrong in the run is in
 the step reports (experiments/probe_bridge/reports/).
 
 ## Reproduction

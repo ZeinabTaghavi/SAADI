@@ -167,6 +167,25 @@ def main(report: StepReport, argv: list[str]) -> None:
         rows5,
     )
 
+    def hr_with_ci(group, method, k) -> str:
+        mean, lo, hi = paired_bootstrap_ci([100.0 * float(p[f"hit{k}_{method}"]) for p in group])
+        return f"{mean:.0f} [{lo:.0f}, {hi:.0f}]"
+
+    def rank1_share(group, method) -> str:
+        return f"{100.0 * sum(p[f'rank_{method}'] == 1 for p in group) / len(group):.0f}"
+
+    for k in ("5", "10"):
+        report.table(
+            f"HR@{k} (%) with 95% bootstrap interval over personas",
+            ["cell", "n", *METHODS],
+            [[c, len(g), *[hr_with_ci(g, m, k) for m in METHODS]] for c in cells for g in [[p for p in personas if p["cell"] == c]]],
+        )
+    report.table(
+        "Share of personas with the gold chunk at rank 1 (%)",
+        ["cell", "n", *METHODS],
+        [[c, len(g), *[rank1_share(g, m) for m in METHODS]] for c in cells for g in [[p for p in personas if p["cell"] == c]]],
+    )
+
     # Bridge-reached subset (from step 6): form 2 in the gold chunk's live record.
     bridged_rows = []
     for cell in cells:

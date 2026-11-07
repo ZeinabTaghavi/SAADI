@@ -8,9 +8,9 @@ not observe on the standard benchmarks, and E2b showed they barely contain).
 
 The full design is in the note "Bridge Probe: Implementation Note". This folder
 is self-contained: it reads the repository's code, data and caches, and writes
-only here, to `outputs/probe_bridge/` and to `results/probe_bridge/` — plus one
-declared config file, `configs/experiments/novelhopqa_probe_retrieval_ablation.yaml`
-(the runner cannot read configs anywhere else; written by step 5).
+only here, to `outputs/probe_bridge/` and to `results/probe_bridge/` — plus two
+declared config files, `configs/experiments/novelhopqa_probe_retrieval_ablation.yaml`
+and `configs/suites/probe_bridge.yaml` (the runner cannot read configs anywhere else).
 
 ## How to run (one step at a time, from the repository root)
 
@@ -80,3 +80,9 @@ results/probe_bridge/   README.md, table.md, table.csv, figures (step 8)
    land in (0.45N, 0.55N] - all inside the note's cell-4 windows. Books under
    240 chunks are skipped for the next-shortest feasible ones (B24 -> B44).
    Placement verified by simulation at the real book sizes over five seeds.
+7. **Decoding follows the paper, not the saved runs.** The paper (Appendix E.5)
+   states greedy decoding at temperature zero; the saved main runs recorded
+   temperature 0.6 and top_p 0.95. By the author's decision the probe uses
+   temperature 0 and seed 42, set in `configs/suites/probe_bridge.yaml`. Every
+   other construction setting stays as `--profile published` restores it,
+   including word-overlap recall, where the paper states BM25.

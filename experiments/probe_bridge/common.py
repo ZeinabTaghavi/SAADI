@@ -1,9 +1,9 @@
 """Shared helpers for the bridge probe.
 
 Writable locations: experiments/probe_bridge/ (spec, data, reports, logs),
-outputs/probe_bridge/ and results/probe_bridge/. Nothing else is written,
-except the single declared config file configs/experiments/
-novelhopqa_probe_retrieval_ablation.yaml (created by step 5 and reported).
+outputs/probe_bridge/ and results/probe_bridge/. Two declared config files sit
+outside: configs/suites/probe_bridge.yaml and configs/experiments/
+novelhopqa_probe_retrieval_ablation.yaml.
 
 The probe reuses the repository's own code: the chunker
 (src/saadi/core/chunking.py, which the ingest pipeline calls with

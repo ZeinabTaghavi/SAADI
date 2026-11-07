@@ -1,0 +1,20 @@
+# Bridge probe (experiments/probe_bridge): one of two declared files outside the
+# probe's own folders. It indexes the 10 modified books through the standard
+# runner. See experiments/probe_bridge/README.md and reports/step_05.md.
+extends: ../methods/sadi.yaml
+output_dir: ${SADI_OUTPUT_DIR}/novelhopqa_probe
+dataset:
+  name: novelhopqa
+  source: files
+  documents_json: ../../experiments/probe_bridge/data/documents.json
+  qa_json: ../../experiments/probe_bridge/data/qa.json
+  split: test
+  config_name: all
+  qa_n: all
+  qa_selection_method: first
+ingest:
+  chunk_size: 500
+model:
+  model_id: Qwen/Qwen3-30B-A3B-Instruct-2507
+  alias: Qwen3-30B-A3B-Instruct-2507
+  gpu_memory_utilization: 0.85

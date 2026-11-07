@@ -1,0 +1,19 @@
+# Bridge probe (experiments/probe_bridge): index with the published profile,
+# except for decoding, which follows the paper (Appendix E.5, "Decoding is
+# greedy, at temperature zero") with seed 42. The saved main runs recorded
+# temperature 0.6 and top_p 0.95. Values match configs/models/construction.yaml.
+datasets:
+- novelhopqa_probe
+retrievers:
+- bm25
+variants:
+- name: greedy_seed42
+  overrides:
+    model:
+      generate:
+        temperature: 0.0
+      sampling:
+        seed: 42
+        top_p: 1.0
+        top_k: -1
+        repetition_penalty: 1.0

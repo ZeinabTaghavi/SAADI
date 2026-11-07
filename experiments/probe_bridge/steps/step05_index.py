@@ -7,7 +7,8 @@ rerun of this script continues where the last run stopped. Accepts
 --tensor-parallel-size N, --gpus 0,1,2,3 and --dry-run (which resolves the
 configuration without touching a GPU and does not unlock step 6).
 
-This step writes the one declared file outside the probe folders:
+Two declared files sit outside the probe folders:
+configs/suites/probe_bridge.yaml (temperature 0, seed 42) and
 configs/experiments/novelhopqa_probe_retrieval_ablation.yaml. The note named
 configs/probe_bridge/novelhopqa_probe.yaml, but the runner only accepts
 configs/experiments/<dataset>_retrieval_ablation.yaml, so that is where it goes.
@@ -37,7 +38,7 @@ from common import (  # noqa: E402
 )
 
 CONFIG_TEXT = """\
-# Bridge probe (experiments/probe_bridge): the single declared file outside the
+# Bridge probe (experiments/probe_bridge): one of two declared files outside the
 # probe's own folders. It indexes the 10 modified books through the standard
 # runner. See experiments/probe_bridge/README.md and reports/step_05.md.
 extends: ../methods/sadi.yaml
@@ -51,7 +52,6 @@ dataset:
   config_name: all
   qa_n: all
   qa_selection_method: first
-preparation: null
 ingest:
   chunk_size: 500
 model:
@@ -126,19 +126,76 @@ def main(report: StepReport, argv: list[str]) -> None:
             )
         raise RuntimeError("outputs/saadi/reference/manifest.json is missing; --profile published needs it." + hint)
 
+    # Where the weights load from and which GPUs are used, so a wrong path shows
+    # up here (and in --dry-run) instead of as a long download.
+    hf_home = Path(os.environ.get("HF_HOME", ""))
+    hub = Path(os.environ.get("HF_HUB_CACHE", ""))
+    weights = hub / "models--Qwen--Qwen3-30B-A3B-Instruct-2507"
+    weights_found = weights.is_dir()
+    report.table(
+        "Runtime environment",
+        ["setting", "value"],
+        [
+            ["HF_HOME", hf_home],
+            ["HF_HUB_CACHE", hub],
+            ["Model weights already in the cache", weights_found],
+            ["HF_HOME writable", os.access(hf_home, os.W_OK)],
+            ["CUDA_VISIBLE_DEVICES", gpus or os.environ.get("CUDA_VISIBLE_DEVICES", "")],
+        ],
+    )
+    report.numbers["weights_found"] = weights_found
+    if not weights_found:
+        report.unexpected.append(
+            f"The model weights are not in {hub}. The run would download them there. "
+            "If they live elsewhere, set PROBE_HF_HOME to that folder before running this step."
+        )
+
     # Write the declared config file (refuse to silently change an existing one).
     if PROBE_CONFIG.exists():
         if PROBE_CONFIG.read_text(encoding="utf-8") != CONFIG_TEXT:
             raise RuntimeError(f"{PROBE_CONFIG} exists with different content; refusing to overwrite.")
     else:
         PROBE_CONFIG.write_text(CONFIG_TEXT, encoding="utf-8")
-    report.files_written.append(str(PROBE_CONFIG) + "  (the one declared file outside the probe folders)")
+    report.files_written.append(str(PROBE_CONFIG) + "  (declared file outside the probe folders)")
+
+    # Resolve the settings exactly as the runner will, and refuse any other decoding.
+    sys.path.insert(0, str(ROOT / "scripts"))
+    import run_study
+
+    from saadi.config.loader import load_config
+
+    os.environ.setdefault("SADI_OUTPUT_DIR", str(OUT_DIR))
+    suite = load_config(ROOT / "configs" / "suites" / "probe_bridge.yaml")
+    resolved = run_study.merge(run_study.published_config(load_config(PROBE_CONFIG)), suite["variants"][0]["overrides"])
+    decoding = resolved["model"]["generate"]["temperature"], resolved["model"]["sampling"].get("seed")
+    if decoding != (0.0, 42):
+        raise RuntimeError(f"Expected temperature 0 and seed 42, resolved {decoding}.")
+    strategy = resolved["ingest"]["strategy_kwargs"]
+    snapshots = sorted(path.name for path in (weights / "snapshots").glob("*")) if weights_found else []
+    report.table(
+        "Resolved construction settings",
+        ["setting", "value"],
+        [
+            ["temperature", decoding[0]],
+            ["seed", decoding[1]],
+            ["memory selector", strategy["active_entity_selector"]],
+            ["history text", strategy["history_l0_text"]],
+            ["anchor matching", strategy["anchor_matching"]],
+            [
+                "recall budget (records, aliases, descriptions)",
+                f"{strategy['max_entities']}, {strategy['max_aliases']}, {strategy['max_desc']}",
+            ],
+            ["cached model snapshots", ", ".join(snapshots) or "none"],
+            ["paper's checkpoint", "0d7cf23991f47feeb3a57ecb4c9cee8ea4a17bfe"],
+        ],
+    )
+    report.numbers["resolved"] = {"temperature": decoding[0], "seed": decoding[1], **strategy, "snapshots": snapshots}
 
     cmd = [
         sys.executable,
         str(ROOT / "scripts" / "run_study.py"),
         "--suite",
-        "main",
+        "probe_bridge",
         "--profile",
         "published",
         "--datasets",

@@ -8,6 +8,17 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 cd "${ROOT_DIR}"
 source scripts/env.sh
+# Server defaults of the main study's run scripts. These come after env.sh,
+# which otherwise points the Hugging Face cache at the repository's .cache.
+export HF_HOME="${PROBE_HF_HOME:-/mnt/cache/taghavi}"
+export SAADI_HF_CACHE_ROOT="${HF_HOME}"
+export HF_HUB_CACHE="${HF_HOME}/hub"
+export HUGGINGFACE_HUB_CACHE="${HF_HUB_CACHE}"
+export HF_DATASETS_CACHE="${HF_HOME}/datasets"
+export HF_ASSETS_CACHE="${HF_HOME}/assets"
+export TRANSFORMERS_CACHE="${HF_HOME}/transformers"
+export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-0,1,2,3}"
+export GLOBAL_VISIBLE_DEVICES="${GLOBAL_VISIBLE_DEVICES:-${CUDA_VISIBLE_DEVICES}}"
 # Keep the NovelHopQA loader's match reports inside the probe folder.
 export NOVELHOPQA_REPORT_DIR="${ROOT_DIR}/experiments/probe_bridge/logs/dataset_reports"
 # The corpus has texts for a subset of the QA titles; the paper's saved run
