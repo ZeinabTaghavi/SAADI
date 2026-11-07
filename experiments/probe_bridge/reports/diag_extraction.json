@@ -1,0 +1,5312 @@
+[
+ {
+  "persona_id": "c1_B31_000",
+  "cell": 1,
+  "family": "A",
+  "form1": "Sinchipuma",
+  "form2": "Maysunah",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c1_B31_001",
+  "cell": 1,
+  "family": "A",
+  "form1": "Kulkarnile",
+  "form2": "Ruwayfid",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c1_B31_002",
+  "cell": 1,
+  "family": "A",
+  "form1": "Yildirimlar",
+  "form2": "Ilmataren",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c2_B31_000",
+  "cell": 2,
+  "family": "A",
+  "form1": "Albustanji",
+  "form2": "Taunolint",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c2_B31_001",
+  "cell": 2,
+  "family": "A",
+  "form1": "Quillovane",
+  "form2": "Padminira",
+  "gold": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 62
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c2_B31_002",
+  "cell": 2,
+  "family": "A",
+  "form1": "Masjudi",
+  "form2": "Harivansham",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c3_B31_000",
+  "cell": 3,
+  "family": "A",
+  "form1": "Bettencourtl",
+  "form2": "Yasukoe",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c3_B31_001",
+  "cell": 3,
+  "family": "A",
+  "form1": "Kusipaukar",
+  "form2": "Yasunorik",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c3_B31_002",
+  "cell": 3,
+  "family": "A",
+  "form1": "Kallioinen",
+  "form2": "Zarrindokht",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c4_B31_000",
+  "cell": 4,
+  "family": "A",
+  "form1": "Hollenbeckr",
+  "form2": "Rostamin",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c4_B31_001",
+  "cell": 4,
+  "family": "A",
+  "form1": "Glyndwrred",
+  "form2": "Nazarethal",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c4_B31_002",
+  "cell": 4,
+  "family": "A",
+  "form1": "Osgoodworth",
+  "form2": "Norbertoval",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c5_B31_000",
+  "cell": 5,
+  "family": "A",
+  "form1": "Thorvaldsenn",
+  "form2": "Illarisisa",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": null
+ },
+ {
+  "persona_id": "c5_B31_001",
+  "cell": 5,
+  "family": "A",
+  "form1": "Wagleshwar",
+  "form2": "Sinchirok",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": null
+ },
+ {
+  "persona_id": "c5_B31_002",
+  "cell": 5,
+  "family": "A",
+  "form1": "Mustikkamaa",
+  "form2": "Kumrusel",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": null
+ },
+ {
+  "persona_id": "c6_B31_000",
+  "cell": 6,
+  "family": "B",
+  "form1": "the Firkin Cooper",
+  "form2": "Yalcinkar",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c6_B31_001",
+  "cell": 6,
+  "family": "B",
+  "form1": "the Gaiter Stitcher",
+  "form2": "Heulwenna",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c6_B31_002",
+  "cell": 6,
+  "family": "B",
+  "form1": "the Marrow Piper",
+  "form2": "Gruffyddan",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c7_B31_000",
+  "cell": 7,
+  "family": "C",
+  "form1": "Olamideju",
+  "form2": "stargazer",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c7_B31_001",
+  "cell": 7,
+  "family": "C",
+  "form1": "Idowulana",
+  "form2": "potter",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c7_B31_002",
+  "cell": 7,
+  "family": "C",
+  "form1": "Wijdanah",
+  "form2": "cartographer",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c8_B31_000",
+  "cell": 8,
+  "family": "D",
+  "form1": "the Sable Curlew",
+  "form2": "Zubayrid",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c8_B31_001",
+  "cell": 8,
+  "family": "D",
+  "form1": "the Swallowtail",
+  "form2": "Aamunkukka",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c8_B31_002",
+  "cell": 8,
+  "family": "D",
+  "form1": "the Ashen Comet",
+  "form2": "Jyrkivain",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c1_B43_003",
+  "cell": 1,
+  "family": "A",
+  "form1": "Ystadvollen",
+  "form2": "Hemlatika",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 28
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 28
+  }
+ },
+ {
+  "persona_id": "c1_B43_004",
+  "cell": 1,
+  "family": "A",
+  "form1": "Jasperfield",
+  "form2": "Ishwarilal",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c1_B43_005",
+  "cell": 1,
+  "family": "A",
+  "form1": "Dremmelgar",
+  "form2": "Natsumiye",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c2_B43_003",
+  "cell": 2,
+  "family": "A",
+  "form1": "Huancavill",
+  "form2": "Takehikon",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c2_B43_004",
+  "cell": 2,
+  "family": "A",
+  "form1": "Aberfforda",
+  "form2": "Golrokh",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c2_B43_005",
+  "cell": 2,
+  "family": "A",
+  "form1": "Westgavell",
+  "form2": "Sohrabin",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c3_B43_003",
+  "cell": 3,
+  "family": "A",
+  "form1": "Shittulara",
+  "form2": "Olindinara",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c3_B43_004",
+  "cell": 3,
+  "family": "A",
+  "form1": "Ravensgarth",
+  "form2": "Cristovaol",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c3_B43_005",
+  "cell": 3,
+  "family": "A",
+  "form1": "Saarijarvi",
+  "form2": "Qurikilla",
+  "gold": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 65
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c4_B43_003",
+  "cell": 4,
+  "family": "A",
+  "form1": "Inglethorpe",
+  "form2": "Yupanquil",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c4_B43_004",
+  "cell": 4,
+  "family": "A",
+  "form1": "Balogunlere",
+  "form2": "Selvihan",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c4_B43_005",
+  "cell": 4,
+  "family": "A",
+  "form1": "Ellsworthen",
+  "form2": "Savasan",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c5_B43_003",
+  "cell": 5,
+  "family": "A",
+  "form1": "Agnihotril",
+  "form2": "Rhiannwen",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": null
+ },
+ {
+  "persona_id": "c5_B43_004",
+  "cell": 5,
+  "family": "A",
+  "form1": "Nadkarnila",
+  "form2": "Meirionell",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": null
+ },
+ {
+  "persona_id": "c5_B43_005",
+  "cell": 5,
+  "family": "A",
+  "form1": "Hartvigsen",
+  "form2": "Yewandela",
+  "gold": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 14
+  },
+  "reveal": null
+ },
+ {
+  "persona_id": "c6_B43_003",
+  "cell": 6,
+  "family": "B",
+  "form1": "the Jerkin Tanner",
+  "form2": "Adebamidel",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c6_B43_004",
+  "cell": 6,
+  "family": "B",
+  "form1": "the Ballast Heaver",
+  "form2": "Thurayyah",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c6_B43_005",
+  "cell": 6,
+  "family": "B",
+  "form1": "the Barley Winnower",
+  "form2": "Thabitel",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c7_B43_003",
+  "cell": 7,
+  "family": "C",
+  "form1": "Virpileen",
+  "form2": "glazier",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c7_B43_004",
+  "cell": 7,
+  "family": "C",
+  "form1": "Kalevaist",
+  "form2": "farrier",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c7_B43_005",
+  "cell": 7,
+  "family": "C",
+  "form1": "Lavanyika",
+  "form2": "harpist",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c8_B43_003",
+  "cell": 8,
+  "family": "D",
+  "form1": "the Copper Thistle",
+  "form2": "Abhinandar",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c8_B43_004",
+  "cell": 8,
+  "family": "D",
+  "form1": "the Shoalguard",
+  "form2": "Kiyomisa",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c8_B43_005",
+  "cell": 8,
+  "family": "D",
+  "form1": "the Dustwhirl",
+  "form2": "Hidetoshin",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c1_B37_006",
+  "cell": 1,
+  "family": "A",
+  "form1": "Nethercotte",
+  "form2": "Shahrbanou",
+  "gold": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 78
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c1_B37_007",
+  "cell": 1,
+  "family": "A",
+  "form1": "Corvandish",
+  "form2": "Farrokhzad",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c1_B37_008",
+  "cell": 1,
+  "family": "A",
+  "form1": "Farrowdale",
+  "form2": "Graciosal",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c2_B37_006",
+  "cell": 2,
+  "family": "A",
+  "form1": "Oliveiros",
+  "form2": "Bartolomeur",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c2_B37_007",
+  "cell": 2,
+  "family": "A",
+  "form1": "Demirbaslar",
+  "form2": "Yachaykill",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c2_B37_008",
+  "cell": 2,
+  "family": "A",
+  "form1": "Matsudaira",
+  "form2": "Qhapaqyupa",
+  "gold": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 106
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c3_B37_006",
+  "cell": 3,
+  "family": "A",
+  "form1": "Lindqvistr",
+  "form2": "Gulsevin",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c3_B37_007",
+  "cell": 3,
+  "family": "A",
+  "form1": "Carvalhosa",
+  "form2": "Metehanli",
+  "gold": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 75
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c3_B37_008",
+  "cell": 3,
+  "family": "A",
+  "form1": "Tupayachil",
+  "form2": "Lowriwena",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c4_B37_006",
+  "cell": 4,
+  "family": "A",
+  "form1": "Ostrander",
+  "form2": "Rhyddercha",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c4_B37_007",
+  "cell": 4,
+  "family": "A",
+  "form1": "Deshpandey",
+  "form2": "Ronkeadeb",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c4_B37_008",
+  "cell": 4,
+  "family": "A",
+  "form1": "Jaziralli",
+  "form2": "Rotimilad",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c5_B37_006",
+  "cell": 5,
+  "family": "A",
+  "form1": "Tillgarven",
+  "form2": "Tamadura",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": null
+ },
+ {
+  "persona_id": "c5_B37_007",
+  "cell": 5,
+  "family": "A",
+  "form1": "Umbrandell",
+  "form2": "Mundhiran",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": null
+ },
+ {
+  "persona_id": "c5_B37_008",
+  "cell": 5,
+  "family": "A",
+  "form1": "Kobayashir",
+  "form2": "Vuokkonen",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": null
+ },
+ {
+  "persona_id": "c6_B37_006",
+  "cell": 6,
+  "family": "B",
+  "form1": "the Gorse Spinner",
+  "form2": "Yrjovaine",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 122
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 122
+  }
+ },
+ {
+  "persona_id": "c6_B37_007",
+  "cell": 6,
+  "family": "B",
+  "form1": "the Heather Besomer",
+  "form2": "Jyotsnali",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c6_B37_008",
+  "cell": 6,
+  "family": "B",
+  "form1": "the Clover Scyther",
+  "form2": "Bhupendrar",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c7_B37_006",
+  "cell": 7,
+  "family": "C",
+  "form1": "Yurieko",
+  "form2": "beadmaker",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c7_B37_007",
+  "cell": 7,
+  "family": "C",
+  "form1": "Shigehiru",
+  "form2": "ironmonger",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c7_B37_008",
+  "cell": 7,
+  "family": "C",
+  "form1": "Mitrassa",
+  "form2": "herbalist",
+  "gold": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 109
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c8_B37_006",
+  "cell": 8,
+  "family": "D",
+  "form1": "the Dappled Skua",
+  "form2": "Ardeshiran",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c8_B37_007",
+  "cell": 8,
+  "family": "D",
+  "form1": "the Dunnock Wing",
+  "form2": "Madalenira",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 178
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 178
+  }
+ },
+ {
+  "persona_id": "c8_B37_008",
+  "cell": 8,
+  "family": "D",
+  "form1": "the Roan Tempest",
+  "form2": "Deodatoral",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c1_B18_009",
+  "cell": 1,
+  "family": "A",
+  "form1": "Fujiwarano",
+  "form2": "Tamyakilla",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c1_B18_010",
+  "cell": 1,
+  "family": "A",
+  "form1": "Llanfairll",
+  "form2": "Waskarinka",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 40
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 40
+  }
+ },
+ {
+  "persona_id": "c1_B18_011",
+  "cell": 1,
+  "family": "A",
+  "form1": "Gillenwall",
+  "form2": "Ozgenur",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c2_B18_009",
+  "cell": 2,
+  "family": "A",
+  "form1": "Wintermarsh",
+  "form2": "Ertugral",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c2_B18_010",
+  "cell": 2,
+  "family": "A",
+  "form1": "Caernafonl",
+  "form2": "Tegwenna",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c2_B18_011",
+  "cell": 2,
+  "family": "A",
+  "form1": "Gokhalekar",
+  "form2": "Gethinor",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c3_B18_009",
+  "cell": 3,
+  "family": "A",
+  "form1": "Vasconcelar",
+  "form2": "Modupeola",
+  "gold": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 62
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 236
+  }
+ },
+ {
+  "persona_id": "c3_B18_010",
+  "cell": 3,
+  "family": "A",
+  "form1": "Quispellan",
+  "form2": "Mayowasen",
+  "gold": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 83
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c3_B18_011",
+  "cell": 3,
+  "family": "A",
+  "form1": "Erdoganli",
+  "form2": "Bushrana",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c4_B18_009",
+  "cell": 4,
+  "family": "A",
+  "form1": "Sakuragiya",
+  "form2": "Ubaydallan",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 102
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 102
+  }
+ },
+ {
+  "persona_id": "c4_B18_010",
+  "cell": 4,
+  "family": "A",
+  "form1": "Rendlavish",
+  "form2": "Lumikukka",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c4_B18_011",
+  "cell": 4,
+  "family": "A",
+  "form1": "Quennevill",
+  "form2": "Vainamolt",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c5_B18_009",
+  "cell": 5,
+  "family": "A",
+  "form1": "Raghunathan",
+  "form2": "Bhavnita",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": null
+ },
+ {
+  "persona_id": "c5_B18_010",
+  "cell": 5,
+  "family": "A",
+  "form1": "Cetinkayal",
+  "form2": "Narendralal",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": null
+ },
+ {
+  "persona_id": "c5_B18_011",
+  "cell": 5,
+  "family": "A",
+  "form1": "Grevandish",
+  "form2": "Rikakoyo",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": null
+ },
+ {
+  "persona_id": "c6_B18_009",
+  "cell": 6,
+  "family": "B",
+  "form1": "the Halyard Splicer",
+  "form2": "Fumihikaru",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c6_B18_010",
+  "cell": 6,
+  "family": "B",
+  "form1": "the Mistle Thatcher",
+  "form2": "Golnessa",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c6_B18_011",
+  "cell": 6,
+  "family": "B",
+  "form1": "the Sedge Mower",
+  "form2": "Faramarzin",
+  "gold": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 136
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 214
+  }
+ },
+ {
+  "persona_id": "c7_B18_009",
+  "cell": 7,
+  "family": "C",
+  "form1": "Esmeraldin",
+  "form2": "beekeeper",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c7_B18_010",
+  "cell": 7,
+  "family": "C",
+  "form1": "Joaquimlar",
+  "form2": "basketweaver",
+  "gold": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 77
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 155
+  }
+ },
+ {
+  "persona_id": "c7_B18_011",
+  "cell": 7,
+  "family": "C",
+  "form1": "Nustakilla",
+  "form2": "sailmaker",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 158
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 158
+  }
+ },
+ {
+  "persona_id": "c8_B18_009",
+  "cell": 8,
+  "family": "D",
+  "form1": "the Gilded Antler",
+  "form2": "Wamanpuma",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c8_B18_010",
+  "cell": 8,
+  "family": "D",
+  "form1": "the Emberwatch",
+  "form2": "Dilrubah",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c8_B18_011",
+  "cell": 8,
+  "family": "D",
+  "form1": "the Chaffwind",
+  "form2": "Tankutay",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 202
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 202
+  }
+ },
+ {
+  "persona_id": "c1_B04_012",
+  "cell": 1,
+  "family": "A",
+  "form1": "Samarqandli",
+  "form2": "Olwenydd",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c1_B04_013",
+  "cell": 1,
+  "family": "A",
+  "form1": "Boztepelli",
+  "form2": "Taliesinor",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c1_B04_014",
+  "cell": 1,
+  "family": "A",
+  "form1": "Hasegawari",
+  "form2": "Ifedayolar",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c2_B04_012",
+  "cell": 2,
+  "family": "A",
+  "form1": "Chukiwanka",
+  "form2": "Olumidera",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 146
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 146
+  }
+ },
+ {
+  "persona_id": "c2_B04_013",
+  "cell": 2,
+  "family": "A",
+  "form1": "Ilvesjoki",
+  "form2": "Widadina",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c2_B04_014",
+  "cell": 2,
+  "family": "A",
+  "form1": "Ishikawano",
+  "form2": "Hudhayfan",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c3_B04_012",
+  "cell": 3,
+  "family": "A",
+  "form1": "Larkspurrow",
+  "form2": "Yrttitar",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c3_B04_013",
+  "cell": 3,
+  "family": "A",
+  "form1": "Mehrparvar",
+  "form2": "Ilmarinen",
+  "gold": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 85
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c3_B04_014",
+  "cell": 3,
+  "family": "A",
+  "form1": "Nieminenka",
+  "form2": "Madhulikha",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c4_B04_012",
+  "cell": 4,
+  "family": "A",
+  "form1": "Sobralinho",
+  "form2": "Shantanuvir",
+  "gold": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 172
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c4_B04_013",
+  "cell": 4,
+  "family": "A",
+  "form1": "Ynysmorell",
+  "form2": "Izumieko",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c4_B04_014",
+  "cell": 4,
+  "family": "A",
+  "form1": "Moravandel",
+  "form2": "Noburotak",
+  "gold": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 175
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c5_B04_012",
+  "cell": 5,
+  "family": "A",
+  "form1": "Brockenhurst",
+  "form2": "Banafsheh",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": null
+ },
+ {
+  "persona_id": "c5_B04_013",
+  "cell": 5,
+  "family": "A",
+  "form1": "Durmazlari",
+  "form2": "Keykavousi",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": null
+ },
+ {
+  "persona_id": "c5_B04_014",
+  "cell": 5,
+  "family": "A",
+  "form1": "Yardleighan",
+  "form2": "Conceicaor",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": null
+ },
+ {
+  "persona_id": "c6_B04_012",
+  "cell": 6,
+  "family": "B",
+  "form1": "the Teasel Comber",
+  "form2": "Anacletor",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c6_B04_013",
+  "cell": 6,
+  "family": "B",
+  "form1": "the Spigot Fitter",
+  "form2": "Killasisa",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c6_B04_014",
+  "cell": 6,
+  "family": "B",
+  "form1": "the Quern Grinder",
+  "form2": "Kuntursum",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c7_B04_012",
+  "cell": 7,
+  "family": "C",
+  "form1": "Ulkunaz",
+  "form2": "dyemaker",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c7_B04_013",
+  "cell": 7,
+  "family": "C",
+  "form1": "Alpertun",
+  "form2": "cordwainer",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c7_B04_014",
+  "cell": 7,
+  "family": "C",
+  "form1": "Caryswen",
+  "form2": "lamplighter",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 152
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 152
+  }
+ },
+ {
+  "persona_id": "c8_B04_012",
+  "cell": 8,
+  "family": "D",
+  "form1": "the Harrowed Gull",
+  "form2": "Owaingwyn",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c8_B04_013",
+  "cell": 8,
+  "family": "D",
+  "form1": "the Magpie Flyer",
+  "form2": "Eniolaraj",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c8_B04_014",
+  "cell": 8,
+  "family": "D",
+  "form1": "the Frosted Arrow",
+  "form2": "Babajider",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 159
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 159
+  }
+ },
+ {
+  "persona_id": "c1_B34_015",
+  "cell": 1,
+  "family": "A",
+  "form1": "Starnforth",
+  "form2": "Itidalia",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c1_B34_016",
+  "cell": 1,
+  "family": "A",
+  "form1": "Nylandsett",
+  "form2": "Suhaybani",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c1_B34_017",
+  "cell": 1,
+  "family": "A",
+  "form1": "Gumuskayal",
+  "form2": "Paivikken",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c2_B34_015",
+  "cell": 2,
+  "family": "A",
+  "form1": "Tabariyya",
+  "form2": "Reijovain",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c2_B34_016",
+  "cell": 2,
+  "family": "A",
+  "form1": "Pellandrin",
+  "form2": "Gaytriben",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c2_B34_017",
+  "cell": 2,
+  "family": "A",
+  "form1": "Golbahari",
+  "form2": "Jagmohand",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c3_B34_015",
+  "cell": 3,
+  "family": "A",
+  "form1": "Dravenmire",
+  "form2": "Orinoeka",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c3_B34_016",
+  "cell": 3,
+  "family": "A",
+  "form1": "Fenwickdale",
+  "form2": "Osamutaka",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c3_B34_017",
+  "cell": 3,
+  "family": "A",
+  "form1": "Zetterlundh",
+  "form2": "Golandam",
+  "gold": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 35
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c4_B34_015",
+  "cell": 4,
+  "family": "A",
+  "form1": "Trefriwell",
+  "form2": "Mehrzad",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c4_B34_016",
+  "cell": 4,
+  "family": "A",
+  "form1": "Vaidyanath",
+  "form2": "Iracemina",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c4_B34_017",
+  "cell": 4,
+  "family": "A",
+  "form1": "Adeyinkala",
+  "form2": "Inocenciol",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c5_B34_015",
+  "cell": 5,
+  "family": "A",
+  "form1": "Madureiral",
+  "form2": "Waytasisa",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": null
+ },
+ {
+  "persona_id": "c5_B34_016",
+  "cell": 5,
+  "family": "A",
+  "form1": "Navidifar",
+  "form2": "Illapumak",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": null
+ },
+ {
+  "persona_id": "c5_B34_017",
+  "cell": 5,
+  "family": "A",
+  "form1": "Halvorsenn",
+  "form2": "Havinnaz",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": null
+ },
+ {
+  "persona_id": "c6_B34_015",
+  "cell": 6,
+  "family": "B",
+  "form1": "the Bracken Carder",
+  "form2": "Baturhan",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c6_B34_016",
+  "cell": 6,
+  "family": "B",
+  "form1": "the Furze Faggoter",
+  "form2": "Angharade",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c6_B34_017",
+  "cell": 6,
+  "family": "B",
+  "form1": "the Sloe Gleaner",
+  "form2": "Bleddynor",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c7_B34_015",
+  "cell": 7,
+  "family": "C",
+  "form1": "Nikeadeol",
+  "form2": "scrivener",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c7_B34_016",
+  "cell": 7,
+  "family": "C",
+  "form1": "Ladipojul",
+  "form2": "shinglewright",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c7_B34_017",
+  "cell": 7,
+  "family": "C",
+  "form1": "Rafifah",
+  "form2": "soapboiler",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c8_B34_015",
+  "cell": 8,
+  "family": "D",
+  "form1": "the Weary Pilgrim",
+  "form2": "Luqmanil",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c8_B34_016",
+  "cell": 8,
+  "family": "D",
+  "form1": "the Wavebeacon",
+  "form2": "Vellamoin",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c8_B34_017",
+  "cell": 8,
+  "family": "D",
+  "form1": "the Spelthollow",
+  "form2": "Eerikalev",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c1_B27_018",
+  "cell": 1,
+  "family": "A",
+  "form1": "Farahvashi",
+  "form2": "Nandinira",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c1_B27_019",
+  "cell": 1,
+  "family": "A",
+  "form1": "Aydinlikel",
+  "form2": "Kripalsing",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c1_B27_020",
+  "cell": 1,
+  "family": "A",
+  "form1": "Ozdemirkan",
+  "form2": "Masayoko",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c2_B27_018",
+  "cell": 2,
+  "family": "A",
+  "form1": "Lehtovaara",
+  "form2": "Masanobur",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c2_B27_019",
+  "cell": 2,
+  "family": "A",
+  "form1": "Ashgrovall",
+  "form2": "Parisima",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c2_B27_020",
+  "cell": 2,
+  "family": "A",
+  "form1": "Tekinalpli",
+  "form2": "Goudarzan",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c3_B27_018",
+  "cell": 3,
+  "family": "A",
+  "form1": "Rhosllaner",
+  "form2": "Leopoldinar",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c3_B27_019",
+  "cell": 3,
+  "family": "A",
+  "form1": "Vuorinenka",
+  "form2": "Leandrovaz",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c3_B27_020",
+  "cell": 3,
+  "family": "A",
+  "form1": "Joshipural",
+  "form2": "Chaskakill",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c4_B27_018",
+  "cell": 4,
+  "family": "A",
+  "form1": "Tendulkarl",
+  "form2": "Manqokapaq",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c4_B27_019",
+  "cell": 4,
+  "family": "A",
+  "form1": "Atawallpaq",
+  "form2": "Ilkyazan",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c4_B27_020",
+  "cell": 4,
+  "family": "A",
+  "form1": "Yamanouchi",
+  "form2": "Demirtash",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c5_B27_018",
+  "cell": 5,
+  "family": "A",
+  "form1": "Pachacutel",
+  "form2": "Ffionwenna",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": null
+ },
+ {
+  "persona_id": "c5_B27_019",
+  "cell": 5,
+  "family": "A",
+  "form1": "Pandyarath",
+  "form2": "Cadwganed",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": null
+ },
+ {
+  "persona_id": "c5_B27_020",
+  "cell": 5,
+  "family": "A",
+  "form1": "Jokilaakso",
+  "form2": "Abimbolar",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": null
+ },
+ {
+  "persona_id": "c6_B27_018",
+  "cell": 6,
+  "family": "B",
+  "form1": "the Sorrel Steeper",
+  "form2": "Kayodejid",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c6_B27_019",
+  "cell": 6,
+  "family": "B",
+  "form1": "the Trestle Joiner",
+  "form2": "Yumnaya",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c6_B27_020",
+  "cell": 6,
+  "family": "B",
+  "form1": "the Gimlet Borer",
+  "form2": "Juwaynid",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c7_B27_018",
+  "cell": 7,
+  "family": "C",
+  "form1": "Ruusunelm",
+  "form2": "quarryman",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c7_B27_019",
+  "cell": 7,
+  "family": "C",
+  "form1": "Laurivain",
+  "form2": "falconer",
+  "gold": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 75
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c7_B27_020",
+  "cell": 7,
+  "family": "C",
+  "form1": "Rukminiba",
+  "form2": "organist",
+  "gold": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 72
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c8_B27_018",
+  "cell": 8,
+  "family": "D",
+  "form1": "the Brindled Gannet",
+  "form2": "Devavratan",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c8_B27_019",
+  "cell": 8,
+  "family": "D",
+  "form1": "the Finchback",
+  "form2": "Umekatsu",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c8_B27_020",
+  "cell": 8,
+  "family": "D",
+  "form1": "the Midnight Sickle",
+  "form2": "Ryonosuku",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c1_B61_021",
+  "cell": 1,
+  "family": "A",
+  "form1": "Bhattarain",
+  "form2": "Simindokht",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c1_B61_022",
+  "cell": 1,
+  "family": "A",
+  "form1": "Quaresmall",
+  "form2": "Darivash",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c1_B61_023",
+  "cell": 1,
+  "family": "A",
+  "form1": "Nascimental",
+  "form2": "Albertinar",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 134
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 134
+  }
+ },
+ {
+  "persona_id": "c2_B61_021",
+  "cell": 2,
+  "family": "A",
+  "form1": "Lombardien",
+  "form2": "Firminoral",
+  "gold": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 143
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c2_B61_022",
+  "cell": 2,
+  "family": "A",
+  "form1": "Ollantayri",
+  "form2": "Kusiquyllur",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 170
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 170
+  }
+ },
+ {
+  "persona_id": "c2_B61_023",
+  "cell": 2,
+  "family": "A",
+  "form1": "Underhayes",
+  "form2": "Amaruyupan",
+  "gold": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 128
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c3_B61_021",
+  "cell": 3,
+  "family": "A",
+  "form1": "Ovredalend",
+  "form2": "Cemrenur",
+  "gold": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 86
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c3_B61_022",
+  "cell": 3,
+  "family": "A",
+  "form1": "Zabidiyya",
+  "form2": "Oguzkan",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c3_B61_023",
+  "cell": 3,
+  "family": "A",
+  "form1": "Mandervilleq",
+  "form2": "Nerysswen",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c4_B61_021",
+  "cell": 4,
+  "family": "A",
+  "form1": "Mamaniqull",
+  "form2": "Iorwerthen",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c4_B61_022",
+  "cell": 4,
+  "family": "A",
+  "form1": "Tuomivaara",
+  "form2": "Titilayof",
+  "gold": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 194
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c4_B61_023",
+  "cell": 4,
+  "family": "A",
+  "form1": "Quartermain",
+  "form2": "Tundeladi",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 114
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 114
+  }
+ },
+ {
+  "persona_id": "c5_B61_021",
+  "cell": 5,
+  "family": "A",
+  "form1": "Kelvandore",
+  "form2": "Sumayyana",
+  "gold": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 146
+  },
+  "reveal": null
+ },
+ {
+  "persona_id": "c5_B61_022",
+  "cell": 5,
+  "family": "A",
+  "form1": "Zellimbard",
+  "form2": "Ikrimahl",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": null
+ },
+ {
+  "persona_id": "c5_B61_023",
+  "cell": 5,
+  "family": "A",
+  "form1": "Dehkhodain",
+  "form2": "Kaarinelm",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": null
+ },
+ {
+  "persona_id": "c6_B61_021",
+  "cell": 6,
+  "family": "B",
+  "form1": "the Madder Dyer",
+  "form2": "Ahtivainen",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c6_B61_022",
+  "cell": 6,
+  "family": "B",
+  "form1": "the Rowan Grafter",
+  "form2": "Ishanvika",
+  "gold": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 156
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c6_B61_023",
+  "cell": 6,
+  "family": "B",
+  "form1": "the Capstan Turner",
+  "form2": "Mahendrar",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c7_B61_021",
+  "cell": 7,
+  "family": "C",
+  "form1": "Sachieko",
+  "form2": "clockmaker",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 239
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 239
+  }
+ },
+ {
+  "persona_id": "c7_B61_022",
+  "cell": 7,
+  "family": "C",
+  "form1": "Isamunori",
+  "form2": "matweaver",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c7_B61_023",
+  "cell": 7,
+  "family": "C",
+  "form1": "Roudabeh",
+  "form2": "engraver",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c8_B61_021",
+  "cell": 8,
+  "family": "D",
+  "form1": "the Groatstone",
+  "form2": "Bahramak",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": true,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c8_B61_022",
+  "cell": 8,
+  "family": "D",
+  "form1": "the Galecrown",
+  "form2": "Severinara",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c8_B61_023",
+  "cell": 8,
+  "family": "D",
+  "form1": "the Querncroft",
+  "form2": "Marcelinol",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c1_B26_024",
+  "cell": 1,
+  "family": "A",
+  "form1": "Haapaniemi",
+  "form2": "Urpikusi",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c1_B26_025",
+  "cell": 1,
+  "family": "A",
+  "form1": "Illingword",
+  "form2": "Apumayta",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c1_B26_026",
+  "cell": 1,
+  "family": "A",
+  "form1": "Jaiyeobala",
+  "form2": "Aybuken",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c2_B26_024",
+  "cell": 2,
+  "family": "A",
+  "form1": "Eastvollen",
+  "form2": "Volkanay",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c2_B26_025",
+  "cell": 2,
+  "family": "A",
+  "form1": "Qurtubill",
+  "form2": "Blodeuwen",
+  "gold": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 99
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c2_B26_026",
+  "cell": 2,
+  "family": "A",
+  "form1": "Ikuomolal",
+  "form2": "Dafyddion",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c3_B26_024",
+  "cell": 3,
+  "family": "A",
+  "form1": "Brynmoredd",
+  "form2": "Boluwatif",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c3_B26_025",
+  "cell": 3,
+  "family": "A",
+  "form1": "Dinefwrell",
+  "form2": "Damolaseg",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c3_B26_026",
+  "cell": 3,
+  "family": "A",
+  "form1": "Nakagawari",
+  "form2": "Ruqayyana",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c4_B26_024",
+  "cell": 4,
+  "family": "A",
+  "form1": "Ravnsborgh",
+  "form2": "Nuaymani",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c4_B26_025",
+  "cell": 4,
+  "family": "A",
+  "form1": "Ambervalle",
+  "form2": "Eevastiin",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c4_B26_026",
+  "cell": 4,
+  "family": "A",
+  "form1": "Rebordosal",
+  "form2": "Paavalint",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 135
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 135
+  }
+ },
+ {
+  "persona_id": "c5_B26_024",
+  "cell": 5,
+  "family": "A",
+  "form1": "Sarmadiyan",
+  "form2": "Kaumudini",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": null
+ },
+ {
+  "persona_id": "c5_B26_025",
+  "cell": 5,
+  "family": "A",
+  "form1": "Pirouzfam",
+  "form2": "Lokenathan",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": null
+ },
+ {
+  "persona_id": "c5_B26_026",
+  "cell": 5,
+  "family": "A",
+  "form1": "Gwyneddell",
+  "form2": "Harunatsu",
+  "gold": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 126
+  },
+  "reveal": null
+ },
+ {
+  "persona_id": "c6_B26_024",
+  "cell": 6,
+  "family": "B",
+  "form1": "the Fathom Plumber",
+  "form2": "Daisukero",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c6_B26_025",
+  "cell": 6,
+  "family": "B",
+  "form1": "the Limpet Priser",
+  "form2": "Mahtabeh",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c6_B26_026",
+  "cell": 6,
+  "family": "B",
+  "form1": "the Oakum Picker",
+  "form2": "Siyavashan",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c7_B26_024",
+  "cell": 7,
+  "family": "C",
+  "form1": "Rosalindar",
+  "form2": "mapmaker",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c7_B26_025",
+  "cell": 7,
+  "family": "C",
+  "form1": "Evaristolm",
+  "form2": "birdcatcher",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c7_B26_026",
+  "cell": 7,
+  "family": "C",
+  "form1": "Pachakusi",
+  "form2": "glovemaker",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c8_B26_024",
+  "cell": 8,
+  "family": "D",
+  "form1": "the Amber Plover",
+  "form2": "Rumisunqu",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c8_B26_025",
+  "cell": 8,
+  "family": "D",
+  "form1": "the Wrenwheel",
+  "form2": "Yildizay",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c8_B26_026",
+  "cell": 8,
+  "family": "D",
+  "form1": "the Moorland Ember",
+  "form2": "Cagataykan",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c1_B44_027",
+  "cell": 1,
+  "family": "A",
+  "form1": "Graveshollow",
+  "form2": "Delythwen",
+  "gold": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 21
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c1_B44_028",
+  "cell": 1,
+  "family": "A",
+  "form1": "Zephyrholme",
+  "form2": "Siorsgwyn",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 118
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 118
+  }
+ },
+ {
+  "persona_id": "c1_B44_029",
+  "cell": 1,
+  "family": "A",
+  "form1": "Thistlewood",
+  "form2": "Kehindelar",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 156
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 156
+  }
+ },
+ {
+  "persona_id": "c2_B44_027",
+  "cell": 2,
+  "family": "A",
+  "form1": "Kirkevallen",
+  "form2": "Niyilekan",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c2_B44_028",
+  "cell": 2,
+  "family": "A",
+  "form1": "Ogasawarak",
+  "form2": "Zulfaqara",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 247
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 247
+  }
+ },
+ {
+  "persona_id": "c2_B44_029",
+  "cell": 2,
+  "family": "A",
+  "form1": "Watanaberi",
+  "form2": "Khuzaymar",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 259
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 259
+  }
+ },
+ {
+  "persona_id": "c3_B44_027",
+  "cell": 3,
+  "family": "A",
+  "form1": "Fennimoral",
+  "form2": "Tuulikken",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c3_B44_028",
+  "cell": 3,
+  "family": "A",
+  "form1": "Belgharami",
+  "form2": "Urhovaine",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c3_B44_029",
+  "cell": 3,
+  "family": "A",
+  "form1": "Koskenniemi",
+  "form2": "Chandrikal",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c4_B44_027",
+  "cell": 4,
+  "family": "A",
+  "form1": "Rastegharan",
+  "form2": "Raghuvirs",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c4_B44_028",
+  "cell": 4,
+  "family": "A",
+  "form1": "Taiwolana",
+  "form2": "Fumikata",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c4_B44_029",
+  "cell": 4,
+  "family": "A",
+  "form1": "Lampinenka",
+  "form2": "Katsuhirou",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c5_B44_027",
+  "cell": 5,
+  "family": "A",
+  "form1": "Albuquerquel",
+  "form2": "Paridokht",
+  "gold": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 145
+  },
+  "reveal": null
+ },
+ {
+  "persona_id": "c5_B44_028",
+  "cell": 5,
+  "family": "A",
+  "form1": "Wankawillk",
+  "form2": "Manouchehran",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": null
+ },
+ {
+  "persona_id": "c5_B44_029",
+  "cell": 5,
+  "family": "A",
+  "form1": "Karkhiyya",
+  "form2": "Benedital",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": null
+ },
+ {
+  "persona_id": "c6_B44_027",
+  "cell": 6,
+  "family": "B",
+  "form1": "the Alder Coppicer",
+  "form2": "Quirinolar",
+  "gold": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 91
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c6_B44_028",
+  "cell": 6,
+  "family": "B",
+  "form1": "the Whin Reaper",
+  "form2": "Raymisisa",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 183
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 183
+  }
+ },
+ {
+  "persona_id": "c6_B44_029",
+  "cell": 6,
+  "family": "B",
+  "form1": "the Trencher Whittler",
+  "form2": "Pachakutiq",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c7_B44_027",
+  "cell": 7,
+  "family": "C",
+  "form1": "Melteme",
+  "form2": "bookbinder",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 271
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 271
+  }
+ },
+ {
+  "persona_id": "c7_B44_028",
+  "cell": 7,
+  "family": "C",
+  "form1": "Umutcan",
+  "form2": "ropemaker",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c7_B44_029",
+  "cell": 7,
+  "family": "C",
+  "form1": "Mairwenne",
+  "form2": "locksmith",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": true,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c8_B44_027",
+  "cell": 8,
+  "family": "D",
+  "form1": "the Foamkeep",
+  "form2": "Emrysgwyn",
+  "gold": {
+   "raw_reply": true,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ },
+ {
+  "persona_id": "c8_B44_028",
+  "cell": 8,
+  "family": "D",
+  "form1": "the Palefire",
+  "form2": "Jumokeade",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 180
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 180
+  }
+ },
+ {
+  "persona_id": "c8_B44_029",
+  "cell": 8,
+  "family": "D",
+  "form1": "the Branfall",
+  "form2": "Folorunshol",
+  "gold": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": false,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  }
+ }
+]
