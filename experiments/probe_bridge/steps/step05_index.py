@@ -141,6 +141,8 @@ def main(report: StepReport, argv: list[str]) -> None:
             ["Model weights already in the cache", weights_found],
             ["HF_HOME writable", os.access(hf_home, os.W_OK)],
             ["CUDA_VISIBLE_DEVICES", gpus or os.environ.get("CUDA_VISIBLE_DEVICES", "")],
+            ["VLLM_USE_FLASHINFER_SAMPLER", os.environ.get("VLLM_USE_FLASHINFER_SAMPLER", "")],
+            ["HF_HUB_OFFLINE", os.environ.get("HF_HUB_OFFLINE", "")],
         ],
     )
     report.numbers["weights_found"] = weights_found
@@ -171,6 +173,10 @@ def main(report: StepReport, argv: list[str]) -> None:
     if decoding != (0.0, 42):
         raise RuntimeError(f"Expected temperature 0 and seed 42, resolved {decoding}.")
     strategy = resolved["ingest"]["strategy_kwargs"]
+    # The saved main constructions admitted entities whose anchor was not found
+    # in the chunk; the probe must build the memory the same way.
+    if strategy.get("ungrounded_entities") != "keep":
+        raise RuntimeError(f"Expected ungrounded_entities=keep (the saved main runs), resolved {strategy.get('ungrounded_entities')!r}.")
     snapshots = sorted(path.name for path in (weights / "snapshots").glob("*")) if weights_found else []
     report.table(
         "Resolved construction settings",
@@ -181,6 +187,7 @@ def main(report: StepReport, argv: list[str]) -> None:
             ["memory selector", strategy["active_entity_selector"]],
             ["history text", strategy["history_l0_text"]],
             ["anchor matching", strategy["anchor_matching"]],
+            ["entities whose anchor is not found", strategy["ungrounded_entities"]],
             [
                 "recall budget (records, aliases, descriptions)",
                 f"{strategy['max_entities']}, {strategy['max_aliases']}, {strategy['max_desc']}",

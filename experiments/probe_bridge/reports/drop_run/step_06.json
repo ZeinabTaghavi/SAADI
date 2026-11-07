@@ -1,0 +1,27 @@
+{
+  "step": 6,
+  "title": "Memory check",
+  "status": "ok",
+  "commands": [
+    "bash experiments/probe_bridge/sh/06_*.sh",
+    "inspect /mnt/data/zeinab/SAADI/outputs/probe_bridge/novelhopqa_probe/indexes/7f585bd63886659e/llm_cache/novelhopqa/hierarchical/branching_factor_5/chunk_500/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/index.json with the E2 replay (saadi.rebuttal.frozen_records)"
+  ],
+  "numbers": {
+    "gate_rate": 0.0,
+    "gate_n": 90,
+    "gate_bridged": 0
+  },
+  "files_written": [
+    "/mnt/data/zeinab/SAADI/outputs/probe_bridge/personas_memory.jsonl"
+  ],
+  "unexpected": [],
+  "versions": {
+    "python": "3.12.3",
+    "platform": "Linux-6.17.0-23-generic-x86_64-with-glibc2.39",
+    "numpy": "2.3.5",
+    "pandas": "3.0.1",
+    "yaml": "6.0.3",
+    "saadi": "0.1.0",
+    "git_commit": "4f54773d8ccdd8aeb378b12a4d70e7255d6af8ba"
+  }
+}

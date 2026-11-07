@@ -86,3 +86,12 @@ results/probe_bridge/   README.md, table.md, table.csv, figures (step 8)
    temperature 0 and seed 42, set in `configs/suites/probe_bridge.yaml`. Every
    other construction setting stays as `--profile published` restores it,
    including word-overlap recall, where the paper states BM25.
+8. **Entities whose anchor is not found are kept, as in the saved main runs.**
+   The first indexing (7 Nov) used the repository default, which drops a
+   proposed entity when none of its anchors matches the chunk exactly; most
+   persona records were dropped there. The saved Qwen3-30B constructions kept
+   such entities: re-validating their archived replies with
+   `ungrounded_entities: keep` reproduces them exactly, chunk for chunk, on
+   LooGLE and NovelHopQA. `--profile published` now restores `keep`, and step 5
+   refuses any other value. The first run's reports are archived in
+   `reports/drop_run/`.

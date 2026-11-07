@@ -132,6 +132,7 @@ def test_published_profile_restores_anchored_history(tmp_path, monkeypatch):
     cfg = runner().published_config(load_config(ROOT / "configs/experiments/loogle_retrieval_ablation.yaml"))
     validate_experiment(cfg)
     assert cfg["ingest"]["strategy_kwargs"]["history_l0_text"] == "anchored"
+    assert cfg["ingest"]["strategy_kwargs"]["ungrounded_entities"] == "keep"
 
     fresh = load_config(ROOT / "configs/experiments/loogle_retrieval_ablation.yaml")
     assert "history_l0_text" not in fresh["ingest"]["strategy_kwargs"]

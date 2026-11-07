@@ -134,6 +134,7 @@ def check_prompt_profile(
             max_aliases=int(max_aliases),
             max_desc=int(max_desc),
             anchor_matching=strategy.anchor_matching,
+            ungrounded_entities=getattr(strategy, "ungrounded_entities", "drop"),
         )
         report.entity_count = len(output.active_entities)
         report.insertion_count = len(output.insertions)

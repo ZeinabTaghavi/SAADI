@@ -21,6 +21,7 @@ def parse_canonicalization_response(
     max_desc: int = DEFAULT_MAX_DESC,
     max_objects: int | None = None,
     anchor_matching: str = "strict",
+    ungrounded_entities: str = "drop",
 ):
     if max_objects is not None:
         max_entities = int(max_objects)
@@ -35,4 +36,5 @@ def parse_canonicalization_response(
         max_aliases=max_aliases,
         max_desc=max_desc,
         anchor_matching=anchor_matching,
+        ungrounded_entities=ungrounded_entities,
     )

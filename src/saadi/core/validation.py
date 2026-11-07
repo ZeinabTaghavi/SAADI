@@ -15,6 +15,21 @@ from .types import CanonicalizationOutput, EntityRecord, TextInsertion
 
 UNPARSED_CHUNK_PREFIX = "[UNPARSED_OUTPUT] "
 
+# What happens to a proposed entity none of whose anchors is found in the chunk.
+# "drop" (default) keeps it out of the state and memory and reports it in
+# rejected_entities. "keep" admits it as the saved constructions did; its name is
+# still not placed in the anchored chunk copy, since no anchor matched.
+UNGROUNDED_ENTITIES_DROP = "drop"
+UNGROUNDED_ENTITIES_KEEP = "keep"
+UNGROUNDED_ENTITIES_OPTIONS = (UNGROUNDED_ENTITIES_DROP, UNGROUNDED_ENTITIES_KEEP)
+
+
+def normalize_ungrounded_entities(value: str | None) -> str:
+    raw = str(value or UNGROUNDED_ENTITIES_DROP).strip().lower()
+    if raw not in UNGROUNDED_ENTITIES_OPTIONS:
+        raise ValueError(f"Invalid ungrounded_entities: {value!r}. Expected one of: {', '.join(UNGROUNDED_ENTITIES_OPTIONS)}.")
+    return raw
+
 
 def _sanitize_parsed_for_cache(parsed: dict[str, Any], *, allow_linking_sentence: bool) -> tuple[dict[str, Any], bool]:
     scrubbed = dict(parsed)
@@ -178,7 +193,9 @@ def build_canonicalization_output(
     max_desc: int = DEFAULT_MAX_DESC,
     max_objects: int | None = None,
     anchor_matching: str = "strict",
+    ungrounded_entities: str = UNGROUNDED_ENTITIES_DROP,
 ) -> CanonicalizationOutput:
+    ungrounded_entities = normalize_ungrounded_entities(ungrounded_entities)
     if max_objects is not None:
         max_entities = int(max_objects)
     parsed = parsed or {}
@@ -242,6 +259,8 @@ def build_canonicalization_output(
             # An entity is grounded only when at least one of its insertion
             # anchors survived exact-span materialization. Rejected entities are
             # kept in diagnostics but must never reach discourse state/memory.
+            if rejected_entities and ungrounded_entities == UNGROUNDED_ENTITIES_KEEP:
+                rejected_entities = []
             if rejected_entities:
                 rejected_keys = {_entity_key(entity.name) for entity in rejected_entities}
                 active_entities = [

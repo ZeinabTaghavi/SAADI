@@ -5,7 +5,8 @@ For every persona it looks at the construction records of the gold chunk (form 1
 and the reveal chunk (form 2) and asks, in order:
   1. did the model's raw reply mention the form at all,
   2. was it kept as an accepted record of that chunk,
-  3. was it rejected by the anchor check,
+  3. was none of its anchors found in the chunk (dropped under
+     ungrounded_entities=drop, still kept under keep),
   4. was the chunk's record budget (5) already full,
   5. does the form appear anywhere in the book's final memory.
 Writes reports/diag_extraction.md and .json. Changes nothing else; not a numbered
@@ -65,7 +66,24 @@ def check(rows: dict[int, dict], memory_text: str, all_active: list[tuple[int, s
     active = r.get("active_entities", []) or []
     out["raw_reply"] = _has(r.get("raw_model_text", ""), form)
     out["accepted"] = _has(_names(active), form) or any(_has(_entity_text(e), form) for e in active)
-    out["rejected"] = any(_has(_entity_text(e), form) for e in (r.get("rejected_entities", []) or []))
+    rejected = list(r.get("rejected_entities", []) or [])
+    if not rejected and r.get("raw_model_text"):
+        # Under ungrounded_entities=keep nothing is rejected; re-check the same
+        # reply under drop to see which entities had no matched anchor.
+        from saadi.core.canonicalization import parse_canonicalization_response
+
+        redo = parse_canonicalization_response(
+            r["raw_model_text"],
+            fallback_chunk_text=r.get("raw_chunk_text", ""),
+            allow_linking_sentence=False,
+            max_entities=5,
+            max_aliases=2,
+            max_desc=3,
+            anchor_matching="strict",
+            ungrounded_entities="drop",
+        )
+        rejected = [e.to_dict() for e in redo.rejected_entities]
+    out["rejected"] = any(_has(_entity_text(e), form) for e in rejected)
     out["budget_full"] = len(active) >= BUDGET
     return out
 
@@ -122,7 +140,7 @@ def main(argv: list[str]) -> int:
         lines += [
             f"## {label}",
             "",
-            "| cell | n | in model's raw reply | kept as a record | rejected by anchor check | budget full (5) | anywhere in final memory |",
+            "| cell | n | in model's raw reply | kept as a record | anchor not found | budget full (5) | anywhere in final memory |",
             "| --- | --- | --- | --- | --- | --- | --- |",
         ]
         for cell in sorted({r["cell"] for r in results}):
@@ -140,7 +158,7 @@ def main(argv: list[str]) -> int:
         "## Reading",
         "",
         f"- Gold chunks where the model did not mention form 1 and the 5 slots were full: {len(budget_lost)}/{len(results)}.",
-        "- 'in raw reply' but not 'kept' means the pipeline dropped it after the model wrote it (anchor check or budget trim).",
+        "- 'in raw reply' but not 'kept' means the pipeline dropped it after the model wrote it (anchor not found under drop, or budget trim).",
         "",
     ]
     REPORT_DIR.mkdir(parents=True, exist_ok=True)

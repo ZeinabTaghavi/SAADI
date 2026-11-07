@@ -820,6 +820,7 @@ def export_llm_history_cache(
     stores_hierarchy: bool = True,
     history_l0_text: str | None = None,
     anchor_matching: str | None = None,
+    ungrounded_entities: str | None = None,
 ) -> dict[str, Any]:
     root = Path(output_dir) / "llm_cache"
     branching_factor = _coerce_branching_factor(hierarchy_branching_factor, hierarchy_k)
@@ -971,6 +972,10 @@ def export_llm_history_cache(
         # How proposed anchors were located: "strict" or "tolerant". Caches
         # written before this field existed used strict matching.
         "anchor_matching": anchor_matching,
+        # Whether proposed entities with no matched anchor entered the memory:
+        # "drop" or "keep". Caches written before this field existed in this
+        # repository dropped them; the archived saved constructions kept them.
+        "ungrounded_entities": ungrounded_entities,
         "stores_hierarchy": bool(stores_hierarchy),
         "hierarchy_branching_factor": branching_factor,
         "rejected_entity_count": sum(

@@ -1,0 +1,41 @@
+{
+  "step": 5,
+  "title": "Index (GPU)",
+  "status": "ok",
+  "commands": [
+    "bash experiments/probe_bridge/sh/05_*.sh",
+    "SADI_OUTPUT_DIR=/mnt/data/zeinab/SAADI/outputs/probe_bridge /mnt/data/zeinab/raptor/.venv/bin/python3 /mnt/data/zeinab/SAADI/scripts/run_study.py --suite probe_bridge --profile published --datasets novelhopqa_probe --retrievers bm25 --stage ingest"
+  ],
+  "numbers": {
+    "weights_found": true,
+    "resolved": {
+      "temperature": 0.0,
+      "seed": 42,
+      "branching_factor": 5,
+      "active_entity_selector": "word",
+      "max_entities": 5,
+      "max_aliases": 2,
+      "max_desc": 3,
+      "history_l0_text": "anchored",
+      "anchor_matching": "strict",
+      "snapshots": [
+        "0d7cf23991f47feeb3a57ecb4c9cee8ea4a17bfe"
+      ]
+    },
+    "cache_index": "/mnt/data/zeinab/SAADI/outputs/probe_bridge/novelhopqa_probe/indexes/7f585bd63886659e/llm_cache/novelhopqa/hierarchical/branching_factor_5/chunk_500/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/index.json",
+    "books_finished": 10
+  },
+  "files_written": [
+    "/mnt/data/zeinab/SAADI/configs/experiments/novelhopqa_probe_retrieval_ablation.yaml  (declared file outside the probe folders)"
+  ],
+  "unexpected": [],
+  "versions": {
+    "python": "3.12.3",
+    "platform": "Linux-6.17.0-23-generic-x86_64-with-glibc2.39",
+    "numpy": "2.3.5",
+    "pandas": "3.0.1",
+    "yaml": "6.0.3",
+    "saadi": "0.1.0",
+    "git_commit": "90380fadb3b5b557fb5b6d032baf74f04bc6188f"
+  }
+}

@@ -869,6 +869,20 @@ def ingest_documents(
                     strategy_anchor_matching,
                 )
                 cache_store = {}
+        # Likewise for whether entities without a matched anchor were admitted.
+        strategy_ungrounded = getattr(strategy, "ungrounded_entities", None)
+        if cache_store and strategy_ungrounded is not None:
+            cache_index_payload = load_llm_history_cache_index(**namespace_kwargs) or {}
+            cached_ungrounded = cache_index_payload.get("ungrounded_entities")
+            if cached_ungrounded and str(cached_ungrounded) != str(strategy_ungrounded):
+                logger.warning(
+                    "Ignoring canonicalization cache records=%d: cache ungrounded_entities=%s differs from the "
+                    "configured ungrounded_entities=%s",
+                    len(cache_store),
+                    cached_ungrounded,
+                    strategy_ungrounded,
+                )
+                cache_store = {}
 
     def flush_namespace_cache() -> dict | None:
         nonlocal dirty_steps_since_flush
@@ -896,6 +910,7 @@ def ingest_documents(
             memory_update_mode=getattr(strategy, "memory_update_mode", None),
             history_l0_text=getattr(strategy, "history_l0_text", None),
             anchor_matching=getattr(strategy, "anchor_matching", None),
+            ungrounded_entities=getattr(strategy, "ungrounded_entities", None),
             stores_hierarchy=bool(getattr(strategy, "stores_hierarchy", True)),
         )
         dirty_steps_since_flush = 0

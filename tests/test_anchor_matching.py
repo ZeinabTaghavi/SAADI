@@ -169,3 +169,24 @@ def test_prompt_check_passes_the_real_model_output_shape() -> None:
 
     report = check_prompt_profile("default", backend=CallableBackend(spacing_model))
     assert report.ok and report.entity_count == 1 and report.rejected_count == 0
+
+
+def test_ungrounded_entities_keep_admits_what_drop_rejects() -> None:
+    kwargs = {"fallback_chunk_text": CHUNK, "allow_linking_sentence": False, "anchor_matching": "strict"}
+    dropped = parse_canonicalization_response(QWEN_OUTPUT, ungrounded_entities="drop", **kwargs)
+    kept = parse_canonicalization_response(QWEN_OUTPUT, ungrounded_entities="keep", **kwargs)
+    assert dropped.active_entities == [] and len(dropped.rejected_entities) == 3
+    assert [e.name for e in kept.active_entities] == ["Aurora research team", "Lake Alder", "Leon"]
+    assert kept.rejected_entities == []
+    # No anchor matched, so no name is placed in the anchored copy either way.
+    assert kept.updated_chunk_text == dropped.updated_chunk_text == CHUNK
+    assert kept.parser_status == dropped.parser_status
+
+
+def test_ungrounded_entities_setting_is_validated() -> None:
+    assert get_strategy("hierarchical").ungrounded_entities == "drop"
+    assert get_strategy("hierarchical", ungrounded_entities="keep").ungrounded_entities == "keep"
+    with pytest.raises(ValueError):
+        get_strategy("hierarchical", ungrounded_entities="sometimes")
+    with pytest.raises(ValueError):
+        parse_canonicalization_response(QWEN_OUTPUT, fallback_chunk_text=CHUNK, ungrounded_entities="maybe")

@@ -70,6 +70,9 @@ def published_config(config):
     strategy.setdefault("history_l0_text", "anchored")
     # They also located anchors with strict context matching.
     strategy.setdefault("anchor_matching", "strict")
+    # And the main-study constructions admitted proposed entities whose anchor was
+    # not found in the chunk (the construction-model ablation runs dropped them).
+    strategy.setdefault("ungrounded_entities", "keep")
     result = merge(config, {"ingest": saved["ingest"]})
     # Replace the model mapping: absent historical sampling fields must not inherit new defaults.
     result["model"] = saved["model"]

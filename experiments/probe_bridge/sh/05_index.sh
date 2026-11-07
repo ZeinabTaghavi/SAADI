@@ -19,6 +19,10 @@ export HF_ASSETS_CACHE="${HF_HOME}/assets"
 export TRANSFORMERS_CACHE="${HF_HOME}/transformers"
 export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-0,1,2,3}"
 export GLOBAL_VISIBLE_DEVICES="${GLOBAL_VISIBLE_DEVICES:-${CUDA_VISIBLE_DEVICES}}"
+# The server has no CUDA toolkit (nvcc), so vLLM's FlashInfer sampler cannot
+# compile at startup; the PyTorch sampler is used instead. Weights are cached.
+export VLLM_USE_FLASHINFER_SAMPLER="${VLLM_USE_FLASHINFER_SAMPLER:-0}"
+export HF_HUB_OFFLINE="${HF_HUB_OFFLINE:-1}"
 # Keep the NovelHopQA loader's match reports inside the probe folder.
 export NOVELHOPQA_REPORT_DIR="${ROOT_DIR}/experiments/probe_bridge/logs/dataset_reports"
 # The corpus has texts for a subset of the QA titles; the paper's saved run
