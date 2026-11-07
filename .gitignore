@@ -30,7 +30,7 @@ saadi_state/
 *.log
 *.tar.gz
 
-# Bridge probe: book-derived material stays out of git (copyrighted text).
-experiments/probe_bridge/data/
-experiments/probe_bridge/logs/
-experiments/probe_bridge/spec/question_set.txt
+# # Bridge probe: book-derived material stays out of git (copyrighted text).
+# experiments/probe_bridge/data/
+# experiments/probe_bridge/logs/
+# experiments/probe_bridge/spec/question_set.txt
