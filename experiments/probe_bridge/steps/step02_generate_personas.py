@@ -242,6 +242,17 @@ def main(report: StepReport, argv: list[str]) -> None:
     report.add("Five example personas (seeded draw)", "\n".join(examples))
     report.numbers["n_personas"] = len(personas)
 
+    # An inserted sentence must be one chunker unit: an internal . ! ? ; or :
+    # would let a chunk boundary split it, which check 8 refuses in step 4.
+    import re
+
+    broken = [p["persona_id"] for p in personas for s in (p["gold_sentence"], p["reveal_sentence"]) if s and re.search(r"[.!?;:]", s[:-1])]
+    if broken:
+        raise RuntimeError(
+            f"Inserted sentences with internal sentence-break characters: {broken[:10]} "
+            f"({len(broken)} total). Fix the banks/templates; these would fail check 8."
+        )
+
     # Sentence-length rule: 8-18 words for every inserted sentence.
     bad = [p["persona_id"] for p in personas for s in (p["gold_sentence"], p["reveal_sentence"]) if s and not (8 <= len(s.split()) <= 18)]
     if bad:

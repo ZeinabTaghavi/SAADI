@@ -638,7 +638,10 @@ SURNAMES: list[str] = [
     "Zephyrholme",
 ]
 
-TITLES = ["Dr.", "Captain", "Mrs.", "Professor", "Father", "Judge", "Madame", "Sergeant"]
+# No abbreviated titles: the chunker splits sentences at periods, so "Dr." or
+# "Mrs." inside a gold sentence lets a chunk boundary cut the sentence in two,
+# which check 8 (whole sentence in one chunk) rightly refuses.
+TITLES = ["Doctor", "Captain", "Professor", "Father", "Judge", "Madame", "Sergeant", "Colonel"]
 
 # ---------------------------------------------------------------------------
 # Descriptive names for family B: two-word phrases; every word unique across
