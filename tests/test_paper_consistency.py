@@ -30,7 +30,7 @@ def test_paper_check_distinguishes_missing_rows_columns_and_ambiguity():
 
 def test_fresh_main_and_depth_tables_match_the_independent_paper_cells(tmp_path):
     tables = tmp_path / "tables"
-    build_release_tables(ROOT / "outputs/sadi/reference", tables, outputs_root=ROOT / "outputs", input_mode="reference")
+    build_release_tables(ROOT / "outputs/saadi/reference", tables, outputs_root=ROOT / "outputs", input_mode="reference")
     report = audit_paper(tables, ROOT / "results/paper_consistency", tmp_path / "audit")
     for table in ("1", "2", "6A", "6B", "7", "8", "9", "10", "11", "12", "16", "17", "21", "22", "23", "24", "26", "27a"):
         assert set(report["by_table"][table]) == {"match"}, table
@@ -41,7 +41,7 @@ def test_fresh_main_and_depth_tables_match_the_independent_paper_cells(tmp_path)
     assert report["by_table"]["6B"]["match"] == 8
     # Standard expansion conditions must use the same query population and HR
     # as the main study, rather than an earlier subset with a similar score.
-    metrics = json.loads((ROOT / "outputs/sadi/reference/expected_metrics.json").read_text())
+    metrics = json.loads((ROOT / "outputs/saadi/reference/expected_metrics.json").read_text())
     for dataset, condition in (("musique", "32K_expansion"), ("qasper", "64K_expansion")):
         for k in (5, 10):
             main = next(r for r in metrics if r["study"] == "main" and r["dataset"] == dataset

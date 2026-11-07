@@ -97,7 +97,7 @@ def test_stage_reuse_rejects_changed_artifacts_and_inputs(tmp_path):
 
 
 def test_frozen_results_reproduce_and_detect_corruption(tmp_path):
-    reference = ROOT / "outputs/sadi/reference"
+    reference = ROOT / "outputs/saadi/reference"
     report = build_tables(reference, tmp_path / "tables")
     assert report["verified_cells"] == 468
     assert report["recomputed_cells"] == 276

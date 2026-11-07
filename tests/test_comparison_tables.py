@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def build(output, **kwargs):
-    return build_comparison_tables(ROOT / "outputs/sadi/reference", output, outputs_root=ROOT / "outputs",
+    return build_comparison_tables(ROOT / "outputs/saadi/reference", output, outputs_root=ROOT / "outputs",
                                    input_mode="reference", **kwargs)
 
 
@@ -92,7 +92,7 @@ def test_matched_depth_uses_unrounded_exposure_and_method_specific_costs(tmp_pat
 
 def test_extra_sadi_rankings_are_checked_and_expansion_preserves_population(tmp_path):
     aux = tmp_path / "comparison_inputs"
-    shutil.copytree(ROOT / "outputs/sadi/comparison_inputs", aux)
+    shutil.copytree(ROOT / "outputs/saadi/comparison_inputs", aux)
     verify_auxiliary(aux)
     next((aux / "rankings").glob("*.gz")).write_bytes(b"corrupt")
     with pytest.raises(ValueError, match="checksum"):

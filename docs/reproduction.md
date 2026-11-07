@@ -87,7 +87,7 @@ The full experiment archive, distributed separately from this repository, contai
 python scripts/import_study_outputs.py --source-root /absolute/path/to/experiment/outputs --include-caches
 ```
 
-The source directory must contain the four dataset ablation folders and the archived table inputs identified by `outputs/sadi/reference/manifest.json`. The import verifies source and destination hashes, copies rankings and caches unchanged, keeps only Saadi entries, refuses to overwrite a different existing file, and writes `outputs/output_sources.json`. Omit `--include-caches` for a smaller copy that is sufficient for table generation.
+The source directory must contain the four dataset ablation folders and the archived table inputs identified by `outputs/saadi/reference/manifest.json`. The import verifies source and destination hashes, copies rankings and caches unchanged, keeps only Saadi entries, refuses to overwrite a different existing file, and writes `outputs/output_sources.json`. Omit `--include-caches` for a smaller copy that is sufficient for table generation.
 
 Rebuild from the copied outputs:
 
@@ -108,7 +108,7 @@ See [packaging, verification, and restoration](data_and_artifacts.md#large-outpu
 
 ## Saved comparison results
 
-This repository includes structured CSVs in `outputs/other_methods/`. They feed the final comparison tables without running other methods. The compact Saadi inputs live under `outputs/sadi/`, and each final table has its own generator under `results/tables/`.
+This repository includes structured CSVs in `outputs/other_methods/`. They feed the final comparison tables without running other methods. The compact Saadi inputs live under `outputs/saadi/`, and each final table has its own generator under `results/tables/`.
 
 ```bash
 python scripts/validate_table_inputs.py

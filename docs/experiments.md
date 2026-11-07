@@ -2,7 +2,7 @@
 
 This page is for reproducing the study. Using the library on your own documents is covered by [library usage](library_usage.md); the saved results can be rebuilt without any of the hardware below, see [Reproducing the tables](#view-the-saved-results).
 
-The project, Python package, and command are **Saadi**, `saadi`, and `saadi`, respectively. Historical artifact paths such as `outputs/sadi/`, method IDs such as `sadi`/`mbr`, and `SADI_*` environment variables are retained for compatibility with the saved experiments. Public tables and evaluation reports use **HR@5** and **HR@10**.
+The project, Python package, and command are **Saadi**, `saadi`, and `saadi`, respectively. Historical artifact paths such as `outputs/saadi/`, method IDs such as `sadi`/`mbr`, and `SADI_*` environment variables are retained for compatibility with the saved experiments. Public tables and evaluation reports use **HR@5** and **HR@10**.
 
 See the [paper-to-code guide](paper_to_code.md) for equations, notation, and table commands, and [datasets and artifacts](data_and_artifacts.md) for data preparation, cache restoration, and the exact publication contents.
 
@@ -41,7 +41,7 @@ python results/tables/main/retrieval_comparison/generate.py
 python scripts/build_tables.py --output-dir outputs/tables
 ```
 
-This rebuilds `results/tables/` without downloading data or running a language model. A fresh checkout uses the compact `outputs/sadi/reference/` and `outputs/sadi/comparison_inputs/` bundles. When the optional full output archive has been restored and catalogued in `outputs/output_sources.json` (see [datasets and artifacts](data_and_artifacts.md#large-output-archives)), the generators read those archived files instead. Saved CSVs under `outputs/other_methods/<method>/` supply the other methods without rerunning them. Both routes verify input hashes and check the same saved study values. Use `--input-source outputs` or `--input-source reference` to require a particular route. Missing or changed inputs in an existing output catalog cause an error.
+This rebuilds `results/tables/` without downloading data or running a language model. A fresh checkout uses the compact `outputs/saadi/reference/` and `outputs/saadi/comparison_inputs/` bundles. When the optional full output archive has been restored and catalogued in `outputs/output_sources.json` (see [datasets and artifacts](data_and_artifacts.md#large-output-archives)), the generators read those archived files instead. Saved CSVs under `outputs/other_methods/<method>/` supply the other methods without rerunning them. Both routes verify input hashes and check the same saved study values. Use `--input-source outputs` or `--input-source reference` to require a particular route. Missing or changed inputs in an existing output catalog cause an error.
 
 Table directories use `main/`, `comparisons/`, `ablations/`, `robustness/`, and `construction/` categories, with a separate folder for each study. Each folder contains its `generate.py`, tables, source paths and hashes, and verification results. Tables are available as CSV, Markdown, and LaTeX; presentation HR values are percentages. `combined/all_metrics.csv` collects all available HR configurations.
 
@@ -92,8 +92,8 @@ Use `--stage prepare`, `ingest`, `retrieve`, or `generate` to run a particular s
 | `src/saadi/` | The library (`document.py`, `llm/`, `retrievers/`, `prompts/`, `inputs/`, `cli/`) and the construction, memory selection, retrieval, generation, and evaluation code of the paper |
 | `configs/` | Shared settings, dataset overrides, and study suites |
 | `scripts/` | Study runner, grouped-data preparation, evaluation, and result export tools |
-| `outputs/sadi/reference/` | Checksummed Saadi rankings and saved summary values |
-| `outputs/sadi/comparison_inputs/` | Additional Saadi expansion rankings and comparison-specific cost/exposure inputs |
+| `outputs/saadi/reference/` | Checksummed Saadi rankings and saved summary values |
+| `outputs/saadi/comparison_inputs/` | Additional Saadi expansion rankings and comparison-specific cost/exposure inputs |
 | `outputs/other_methods/` | Structured saved retrieval/resource CSVs and provenance for comparison methods |
 | `results/tables/` | Final comparisons and Saadi study tables, each with its generator and provenance |
 | `results/paper_consistency/` | Cell-by-cell comparison of the generated tables with the paper |

@@ -2,7 +2,7 @@
 
 ## What is included
 
-`outputs/sadi/reference/manifest.json` inventories 150 saved result sources with their file hashes, query-population hashes, ranking depths, and construction settings. Together with `outputs/sadi/comparison_inputs/` and `outputs/other_methods/`, these compact inputs rebuild every table under `results/tables/` in a fresh checkout. Rankings store chunk identifiers and evidence labels, not document text or model checkpoints.
+`outputs/saadi/reference/manifest.json` inventories 150 saved result sources with their file hashes, query-population hashes, ranking depths, and construction settings. Together with `outputs/saadi/comparison_inputs/` and `outputs/other_methods/`, these compact inputs rebuild every table under `results/tables/` in a fresh checkout. Rankings store chunk identifiers and evidence labels, not document text or model checkpoints.
 
 The main-study query populations are the same for all five retrievers: LooGLE 1,832; QASPER-64K 1,333; NovelHopQA 908; MuSiQue-32K 900.
 
@@ -37,7 +37,7 @@ Tables are generated artifacts. To change a value, update the saved inputs throu
 
 ## Final comparisons
 
-`outputs/sadi/` supplies the Saadi rankings and summaries; `outputs/other_methods/<method>/` supplies the saved results of the other methods. The final generators read these inputs directly and never read another generated table. Matched exposure (Table 2) evaluates Saadi at the floor and ceiling of each agent's unrounded mean chunk exposure. Resource crossovers (Table 24) use `(Saadi construction calls per document - method construction calls per document) / method calls per query`, with Saadi's construction cost taken over the same document population as the method, including UMA's 16-document NovelHopQA scope.
+`outputs/saadi/` supplies the Saadi rankings and summaries; `outputs/other_methods/<method>/` supplies the saved results of the other methods. The final generators read these inputs directly and never read another generated table. Matched exposure (Table 2) evaluates Saadi at the floor and ceiling of each agent's unrounded mean chunk exposure. Resource crossovers (Table 24) use `(Saadi construction calls per document - method construction calls per document) / method calls per query`, with Saadi's construction cost taken over the same document population as the method, including UMA's 16-document NovelHopQA scope.
 
 ## The separate output archive
 

@@ -9,7 +9,7 @@ python scripts/build_tables.py --input-source reference
 
 ## Main-study datasets
 
-These are the remote sources and configurations used by the loaders. Counts describe the saved main study, not the size of the upstream dataset. Document counts come from [saved construction statistics](../results/tables/construction/memory_statistics/table.csv); query counts and population hashes come from [the reference manifest](../outputs/sadi/reference/manifest.json).
+These are the remote sources and configurations used by the loaders. Counts describe the saved main study, not the size of the upstream dataset. Document counts come from [saved construction statistics](../results/tables/construction/memory_statistics/table.csv); query counts and population hashes come from [the reference manifest](../outputs/saadi/reference/manifest.json).
 
 | Dataset / configured source | Config and split | Preparation in this release | Saved documents / queries | Chunk size |
 |---|---|---|---:|---:|
@@ -93,8 +93,8 @@ This repository is self-contained. A clone contains the README, license, package
 | Material | In a normal Git checkout? | Purpose |
 |---|---|---|
 | `src/`, `configs/`, `scripts/`, `tests/`, `examples/`, docs and metadata | Yes | Standalone Saadi implementation, validation, and examples |
-| `outputs/sadi/reference/` | Yes | Checksummed saved rankings and aggregate values for Saadi study tables |
-| `outputs/sadi/comparison_inputs/` | Yes | Additional Saadi rankings and comparison-specific exposure/cost data |
+| `outputs/saadi/reference/` | Yes | Checksummed saved rankings and aggregate values for Saadi study tables |
+| `outputs/saadi/comparison_inputs/` | Yes | Additional Saadi rankings and comparison-specific exposure/cost data |
 | `outputs/other_methods/` | Yes | Checksummed saved comparison CSVs; no baseline execution |
 | `results/tables/`, `results/paper_consistency/` | Yes | Browsable results, standalone generators, and paper audit |
 | `outputs/*_ablation/`, `outputs/study_sources/`, `outputs/output_sources.json` | No | Full experiment archive, approximately 9.6 GB, including construction caches; distributed separately (see below) |

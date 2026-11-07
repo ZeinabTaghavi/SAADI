@@ -314,7 +314,7 @@ if __name__ == "__main__":
 def build_comparison_tables(reference, output, *, outputs_root, input_mode="auto", studies=None, other_methods_root=None, comparison_root=None):
     output, outputs_root = Path(output).resolve(), Path(outputs_root).resolve()
     other_methods_root = Path(other_methods_root or outputs_root / "other_methods")
-    comparison_root = Path(comparison_root or outputs_root / "sadi/comparison_inputs")
+    comparison_root = Path(comparison_root or outputs_root / "saadi/comparison_inputs")
     for source_root in (reference, other_methods_root, comparison_root):
         if output.is_relative_to(Path(source_root).resolve()):
             raise ValueError("Generated tables must be outside their source inputs")

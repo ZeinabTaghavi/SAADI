@@ -20,15 +20,15 @@ Paths below are relative to the repository root. The source files identical to t
 | Equation (3), construction call count | folding in `hierarchical_summary.py`; `construction_table` in [comparison_tables.py](../src/saadi/reporting/comparison_tables.py) | `N + sum(floor(N / f**i))`; Table 25 combines saved document-level statistics, not a floor applied to a mean document |
 | HR at cutoff `k` | [hr.py](../src/saadi/evaluation/hr.py), used by evaluation and the table builder | `retrieve_k` is ranking depth; `eval_k` is the primary evaluation cutoff; saved results use HR@5 / HR@10 |
 
-`mbr`, `lambda_n`, `lambda_h`, `outputs/sadi/`, the CSV method ID `sadi`, and the `SADI_*` environment variables are internal identifiers kept for compatibility with the saved outputs. Tables call the method **Saadi** and the metric **HR**. The memory-recall selector used at construction time (`active_entity_selector`) is independent of the query-time base retriever; the saved constructions used word overlap and new runs default to BM25, see the [provenance notes](results.md#provenance-notes).
+`mbr`, `lambda_n`, `lambda_h`, `outputs/saadi/`, the CSV method ID `sadi`, and the `SADI_*` environment variables are internal identifiers kept for compatibility with the saved outputs. Tables call the method **Saadi** and the metric **HR**. The memory-recall selector used at construction time (`active_entity_selector`) is independent of the query-time base retriever; the saved constructions used word overlap and new runs default to BM25, see the [provenance notes](results.md#provenance-notes).
 
 **Span anchors.** Each state-update call returns one span anchor per active entity (Appendix B.2). An entity whose anchor is not found in the chunk is discarded. `ingest.strategy_kwargs.anchor_matching` sets how an anchor is located: `strict` requires the model's left and right context to match character for character (the saved constructions), and `tolerant` (default for new runs) also accepts an anchor that occurs verbatim and exactly once in the chunk. For matched anchors the canonical name is placed after the mention in a working copy of the chunk, and the level-one folds summarize these copies. Retrieval scores and returns the original chunks; anchors are not used at query time. `ingest.strategy_kwargs.history_l0_text` sets which text the model sees as recent history while processing the next chunk: `raw`, the original chunk text (default for new runs), or `anchored`, the copies with inserted names (the saved constructions). A cache records the setting it was built with and is not reused under the other one.
 
 ## Source flow and evidence levels
 
 ```text
-outputs/sadi/reference/          rankings + saved Saadi summaries
-outputs/sadi/comparison_inputs/  extra rankings + cost/exposure inputs
+outputs/saadi/reference/          rankings + saved Saadi summaries
+outputs/saadi/comparison_inputs/  extra rankings + cost/exposure inputs
 outputs/other_methods/<method>/  saved comparison CSVs
                     |
                     v
@@ -50,7 +50,7 @@ python scripts/build_tables.py --input-source reference
 python scripts/audit_paper.py
 ```
 
-The suite column identifies controls for **new experiments**, not a promise that today's default suite recreates every historical configuration. The exact saved conditions and model settings are in [the reference manifest](../outputs/sadi/reference/manifest.json). Suites live in [configs/suites](../configs/suites/); `scripts/run_study.py --suite NAME --dry-run` shows their current scope. The table generators use saved inputs, regardless of current suite defaults.
+The suite column identifies controls for **new experiments**, not a promise that today's default suite recreates every historical configuration. The exact saved conditions and model settings are in [the reference manifest](../outputs/saadi/reference/manifest.json). Suites live in [configs/suites](../configs/suites/); `scripts/run_study.py --suite NAME --dry-run` shows their current scope. The table generators use saved inputs, regardless of current suite defaults.
 
 | Paper table | Table directory under `results/tables/` | New-run suite / implementation | Saved inputs and evidence |
 |---|---|---|---|

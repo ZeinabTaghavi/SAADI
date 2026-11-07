@@ -159,7 +159,7 @@ def test_paper_summaries_import_without_the_other_runs_artifacts(archive, tmp_pa
     from shutil import copyfile
     from saadi.reporting.layout import table_directory
     original, reference, copied, _ = archive
-    public_reference = ROOT / "outputs/sadi/reference"
+    public_reference = ROOT / "outputs/saadi/reference"
     manifest = json.loads((reference / "manifest.json").read_text())
     published = json.loads((public_reference / "manifest.json").read_text())
     source = next(s for s in published["sources"] if s["study"] == study)
@@ -191,7 +191,7 @@ def test_paper_summaries_import_without_the_other_runs_artifacts(archive, tmp_pa
 
 
 def test_table6_has_paper_coverage_and_no_invented_query_counts():
-    reference = ROOT / "outputs/sadi/reference"
+    reference = ROOT / "outputs/saadi/reference"
     values = [r for r in json.loads((reference / "expected_metrics.json").read_text())
               if r["study"] in {"active_entity_budget", "active_entity_selector"}]
     assert len(values) == 24

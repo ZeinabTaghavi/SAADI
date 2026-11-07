@@ -9,7 +9,7 @@ from .layout import TABLES
 
 def table_main(study, *, table_dir, project_root):
     parser = argparse.ArgumentParser(description=TABLES[study][1])
-    parser.add_argument("--reference", type=Path, default=project_root / "outputs/sadi/reference" if project_root else None)
+    parser.add_argument("--reference", type=Path, default=project_root / "outputs/saadi/reference" if project_root else None)
     parser.add_argument("--outputs-root", type=Path, default=project_root / "outputs" if project_root else None)
     parser.add_argument("--input-source", choices=["auto", "outputs", "reference"], default="auto")
     parser.add_argument("--figures", action="store_true")
@@ -26,7 +26,7 @@ def table_main(study, *, table_dir, project_root):
 def comparison_main(study, *, table_dir, project_root):
     from .comparison_tables import COMPARISON_TABLES, build_comparison_tables
     parser = argparse.ArgumentParser(description=COMPARISON_TABLES[study][1])
-    parser.add_argument("--reference", type=Path, default=project_root / "outputs/sadi/reference")
+    parser.add_argument("--reference", type=Path, default=project_root / "outputs/saadi/reference")
     parser.add_argument("--outputs-root", type=Path, default=project_root / "outputs")
     parser.add_argument("--other-methods-root", type=Path)
     parser.add_argument("--comparison-inputs", type=Path)

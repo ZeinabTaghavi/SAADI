@@ -55,7 +55,7 @@ def source_digest():
 def published_config(config):
     """Restore recorded construction settings without renaming the saved results."""
     from saadi.reporting.tables import verify_bundle
-    manifest = verify_bundle(ROOT / "outputs/sadi/reference")
+    manifest = verify_bundle(ROOT / "outputs/saadi/reference")
     record = next((s for s in manifest["sources"] if s["study"] == "main"
                    and s["dataset"] == config["dataset"]["name"] and s["retriever"] == "bm25"), None)
     if not record or not record.get("scientific_config"):

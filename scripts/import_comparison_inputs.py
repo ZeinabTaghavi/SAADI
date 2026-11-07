@@ -147,7 +147,7 @@ def import_inputs(source_root, outputs_root):
     load_other_methods(other_root)
 
     # Supplement the existing Saadi bundle with the Contriever expansion rankings.
-    sadi_root = outputs_root / "sadi/comparison_inputs"
+    sadi_root = outputs_root / "saadi/comparison_inputs"
     sadi_root.mkdir(parents=True, exist_ok=True)
     write_csv(sadi_root / "costs.csv", sadi_costs, list(sadi_costs[0]))
     exposures = [{"dataset": DATASETS[row["dataset"]], "hop": row["hop"].lower(),
