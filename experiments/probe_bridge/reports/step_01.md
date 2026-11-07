@@ -1,55 +1,39 @@
 # Bridge probe - step 01: Select books
 
-Status: **FAILED** - 2026-11-07 16:54:06
+Status: **ok** - 2026-11-07 16:58:03
 
 ## What was done
 
 - `bash experiments/probe_bridge/sh/01_*.sh`
 - `load_novelhopqa_documents(config_name='all', books_root='/home/iataghav/data/SAADI/data/novelhopqa/book-corpus-root'); chunk_text(tokenizer=None, 500, 0)`
-- Versions: python=3.12.3, platform=Linux-6.17.0-23-generic-x86_64-with-glibc2.39, numpy=2.3.5, pandas=3.0.1, yaml=6.0.3, saadi=0.1.0, git_commit=78c3f0ffad59a491c2534a901cdf587c68599758
+- Versions: python=3.12.3, platform=Linux-6.17.0-23-generic-x86_64-with-glibc2.39, numpy=2.3.5, pandas=3.0.1, yaml=6.0.3, saadi=0.1.0, git_commit=d3efbe7711c4546f232eef39d4e64d3d36c54763
 
 ## Numbers
 
+### The 10 selected books (shortest by chunk count)
+
+| doc_id | chunks | words | paper cache chunks | position windows feasible? |
+| --- | --- | --- | --- | --- |
+| B24 | 213 | 102908 | None | False |
+| B31 | 244 | 117186 | None | False |
+| B43 | 245 | 118850 | None | False |
+| B37 | 261 | 126007 | None | False |
+| B18 | 311 | 149887 | None | False |
+| B04 | 320 | 156676 | None | False |
+| B34 | 334 | 160345 | None | False |
+| B27 | 337 | 162438 | None | False |
+| B61 | 355 | 170013 | None | False |
+| B26 | 383 | 183955 | None | False |
+
+### Totals
+
+Books loaded: 18. Selected: 10. Total chunks to index: **3003**. QA entries in the question set: 1841.
+
 ## Anything unexpected
 
-The step failed. Full traceback:
-
-```
-Traceback (most recent call last):
-  File "/mnt/data/zeinab/SAADI/experiments/probe_bridge/common.py", line 393, in run_step
-    main(report, argv)
-  File "/mnt/data/zeinab/SAADI/experiments/probe_bridge/steps/step01_select_books.py", line 33, in main
-    docs = load_novelhopqa_documents(config_name="all", books_root=books_root or None)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/data/zeinab/SAADI/src/saadi/indexing/dataset_loaders/novelhopqa.py", line 635, in load_novelhopqa_documents
-    docs, _ = _load_novelhopqa_all(mode=mode, split=split, books_root=books_root, allowed_doc_ids=allowed_doc_ids)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/data/zeinab/SAADI/src/saadi/indexing/dataset_loaders/novelhopqa.py", line 610, in _load_novelhopqa_all
-    raise RuntimeError(
-RuntimeError: NovelHopQA whole-book loading could not resolve book texts for 26 title(s) under /mnt/data/zeinab/SAADI/outputs/novelhopqa_materials/book-corpus-root. Example title(s): A Connecticut Yankee in King Arthur's Court, Billy Budd, David Copperfield, Don Quixote, Dracula. Provide dataset.books_root or NOVELHOPQA_BOOKS_ROOT pointing to a corpus with matching titles.
-
-```
-
-Last 50 log lines:
-
-```
-
-Generating train split: 0 examples [00:00, ? examples/s]
-Generating train split: 4345 examples [00:00, 58641.30 examples/s]
-
-Generating hop_1 split:   0%|          | 0/1055 [00:00<?, ? examples/s]
-Generating hop_1 split: 100%|██████████| 1055/1055 [00:00<00:00, 69469.37 examples/s]
-
-Generating hop_2 split:   0%|          | 0/1084 [00:00<?, ? examples/s]
-Generating hop_2 split: 100%|██████████| 1084/1084 [00:00<00:00, 50082.35 examples/s]
-
-Generating hop_3 split:   0%|          | 0/1081 [00:00<?, ? examples/s]
-Generating hop_3 split: 100%|██████████| 1081/1081 [00:00<00:00, 31524.28 examples/s]
-
-Generating hop_4 split:   0%|          | 0/1125 [00:00<?, ? examples/s]
-Generating hop_4 split: 100%|██████████| 1125/1125 [00:00<00:00, 26138.16 examples/s]
-```
+These books have fewer than 450 chunks: ['B24', 'B31', 'B43', 'B37', 'B18', 'B04', 'B34', 'B27', 'B61', 'B26']. The note's position windows (21 golds in [0.10N, 0.30N], 3 chunks apart) cannot all fit there. STOP: decide at this hand-off whether to widen the windows or relax the spacing before step 2.
 
 ## Files written
 
-- (none)
+- `/mnt/data/zeinab/SAADI/experiments/probe_bridge/spec/books.json`
+- `/mnt/data/zeinab/SAADI/experiments/probe_bridge/spec/question_set.txt`

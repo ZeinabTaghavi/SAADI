@@ -1,16 +1,115 @@
 {
   "step": 1,
   "title": "Select books",
-  "status": "FAILED",
+  "status": "ok",
   "commands": [
     "bash experiments/probe_bridge/sh/01_*.sh",
     "load_novelhopqa_documents(config_name='all', books_root='/home/iataghav/data/SAADI/data/novelhopqa/book-corpus-root'); chunk_text(tokenizer=None, 500, 0)"
   ],
-  "numbers": {},
-  "files_written": [],
+  "numbers": {
+    "selected": [
+      {
+        "doc_id": "B24",
+        "n_chunks": 213,
+        "n_words": 102908,
+        "n_chars": 560288,
+        "feasible_positions": false,
+        "paper_cache_chunks": null
+      },
+      {
+        "doc_id": "B31",
+        "n_chunks": 244,
+        "n_words": 117186,
+        "n_chars": 589303,
+        "feasible_positions": false,
+        "paper_cache_chunks": null
+      },
+      {
+        "doc_id": "B43",
+        "n_chunks": 245,
+        "n_words": 118850,
+        "n_chars": 664020,
+        "feasible_positions": false,
+        "paper_cache_chunks": null
+      },
+      {
+        "doc_id": "B37",
+        "n_chunks": 261,
+        "n_words": 126007,
+        "n_chars": 713424,
+        "feasible_positions": false,
+        "paper_cache_chunks": null
+      },
+      {
+        "doc_id": "B18",
+        "n_chunks": 311,
+        "n_words": 149887,
+        "n_chars": 835922,
+        "feasible_positions": false,
+        "paper_cache_chunks": null
+      },
+      {
+        "doc_id": "B04",
+        "n_chunks": 320,
+        "n_words": 156676,
+        "n_chars": 880158,
+        "feasible_positions": false,
+        "paper_cache_chunks": null
+      },
+      {
+        "doc_id": "B34",
+        "n_chunks": 334,
+        "n_words": 160345,
+        "n_chars": 895687,
+        "feasible_positions": false,
+        "paper_cache_chunks": null
+      },
+      {
+        "doc_id": "B27",
+        "n_chunks": 337,
+        "n_words": 162438,
+        "n_chars": 899415,
+        "feasible_positions": false,
+        "paper_cache_chunks": null
+      },
+      {
+        "doc_id": "B61",
+        "n_chunks": 355,
+        "n_words": 170013,
+        "n_chars": 953984,
+        "feasible_positions": false,
+        "paper_cache_chunks": null
+      },
+      {
+        "doc_id": "B26",
+        "n_chunks": 383,
+        "n_words": 183955,
+        "n_chars": 1025006,
+        "feasible_positions": false,
+        "paper_cache_chunks": null
+      }
+    ],
+    "total_chunks": 3003,
+    "qa_entries": 1841,
+    "infeasible_books": [
+      "B24",
+      "B31",
+      "B43",
+      "B37",
+      "B18",
+      "B04",
+      "B34",
+      "B27",
+      "B61",
+      "B26"
+    ]
+  },
+  "files_written": [
+    "/mnt/data/zeinab/SAADI/experiments/probe_bridge/spec/books.json",
+    "/mnt/data/zeinab/SAADI/experiments/probe_bridge/spec/question_set.txt"
+  ],
   "unexpected": [
-    "The step failed. Full traceback:\n\n```\nTraceback (most recent call last):\n  File \"/mnt/data/zeinab/SAADI/experiments/probe_bridge/common.py\", line 393, in run_step\n    main(report, argv)\n  File \"/mnt/data/zeinab/SAADI/experiments/probe_bridge/steps/step01_select_books.py\", line 33, in main\n    docs = load_novelhopqa_documents(config_name=\"all\", books_root=books_root or None)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/dataset_loaders/novelhopqa.py\", line 635, in load_novelhopqa_documents\n    docs, _ = _load_novelhopqa_all(mode=mode, split=split, books_root=books_root, allowed_doc_ids=allowed_doc_ids)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/dataset_loaders/novelhopqa.py\", line 610, in _load_novelhopqa_all\n    raise RuntimeError(\nRuntimeError: NovelHopQA whole-book loading could not resolve book texts for 26 title(s) under /mnt/data/zeinab/SAADI/outputs/novelhopqa_materials/book-corpus-root. Example title(s): A Connecticut Yankee in King Arthur's Court, Billy Budd, David Copperfield, Don Quixote, Dracula. Provide dataset.books_root or NOVELHOPQA_BOOKS_ROOT pointing to a corpus with matching titles.\n\n```",
-    "Last 50 log lines:\n\n```\n\nGenerating train split: 0 examples [00:00, ? examples/s]\nGenerating train split: 4345 examples [00:00, 58641.30 examples/s]\n\nGenerating hop_1 split:   0%|          | 0/1055 [00:00<?, ? examples/s]\nGenerating hop_1 split: 100%|██████████| 1055/1055 [00:00<00:00, 69469.37 examples/s]\n\nGenerating hop_2 split:   0%|          | 0/1084 [00:00<?, ? examples/s]\nGenerating hop_2 split: 100%|██████████| 1084/1084 [00:00<00:00, 50082.35 examples/s]\n\nGenerating hop_3 split:   0%|          | 0/1081 [00:00<?, ? examples/s]\nGenerating hop_3 split: 100%|██████████| 1081/1081 [00:00<00:00, 31524.28 examples/s]\n\nGenerating hop_4 split:   0%|          | 0/1125 [00:00<?, ? examples/s]\nGenerating hop_4 split: 100%|██████████| 1125/1125 [00:00<00:00, 26138.16 examples/s]\n```"
+    "These books have fewer than 450 chunks: ['B24', 'B31', 'B43', 'B37', 'B18', 'B04', 'B34', 'B27', 'B61', 'B26']. The note's position windows (21 golds in [0.10N, 0.30N], 3 chunks apart) cannot all fit there. STOP: decide at this hand-off whether to widen the windows or relax the spacing before step 2."
   ],
   "versions": {
     "python": "3.12.3",
@@ -19,6 +118,6 @@
     "pandas": "3.0.1",
     "yaml": "6.0.3",
     "saadi": "0.1.0",
-    "git_commit": "78c3f0ffad59a491c2534a901cdf587c68599758"
+    "git_commit": "d3efbe7711c4546f232eef39d4e64d3d36c54763"
   }
 }
