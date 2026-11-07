@@ -79,57 +79,71 @@ def main(report: StepReport, argv: list[str]) -> None:
     for p in personas:
         by_book.setdefault(p["book_id"], []).append(p)
 
-    for book in book_ids:
+    from step03_check_and_place import draw_positions
+
+    redraw_counts: dict[str, int] = {}
+    for book_ordinal, book in enumerate(book_ids):
         text = docs[book]
         chunks = chunk_book(text)
         offsets = whitespace_token_offsets(text)
+        group = by_book.get(book, [])
 
+        # Insertion shifts chunk boundaries, so two targets 3 apart can land 2
+        # apart after re-chunking. The note says positions are redrawn until
+        # check 7 holds, so a failing book gets fresh (deterministic) draws.
         plan: list[dict] = []
-        for p in by_book.get(book, []):
-            for kind, pos in (("gold", p["target_gold_pos"]), ("reveal", p["target_reveal_pos"])):
-                if pos is None:
-                    continue
-                sentence = p["gold_sentence"] if kind == "gold" else p["reveal_sentence"]
-                char_pos = offsets[chunks[int(pos)][1]]
-                where, boundary = insertion_point(text, char_pos)
-                plan.append(
-                    {
-                        "persona_id": p["persona_id"],
-                        "kind": kind,
-                        "target_chunk": int(pos),
-                        "char_pos": where,
-                        "boundary": boundary,
-                        "sentence": sentence,
-                    }
-                )
-        # Apply from the end so earlier offsets stay valid; stable for ties.
         modified = text
-        for item in sorted(plan, key=lambda x: (-x["char_pos"], x["persona_id"], x["kind"])):
-            sep = "\n\n" if item["boundary"] == "paragraph" else " "
-            modified = modified[: item["char_pos"]] + item["sentence"] + sep + modified[item["char_pos"] :]
+        new_chunks: list = []
+        chunk_texts: list[str] = []
+        for attempt in range(50):
+            plan = []
+            for p in group:
+                for kind, pos in (("gold", p["target_gold_pos"]), ("reveal", p["target_reveal_pos"])):
+                    if pos is None:
+                        continue
+                    sentence = p["gold_sentence"] if kind == "gold" else p["reveal_sentence"]
+                    char_pos = offsets[chunks[int(pos)][1]]
+                    where, boundary = insertion_point(text, char_pos)
+                    plan.append(
+                        {
+                            "persona_id": p["persona_id"],
+                            "kind": kind,
+                            "target_chunk": int(pos),
+                            "char_pos": where,
+                            "boundary": boundary,
+                            "sentence": sentence,
+                        }
+                    )
+            # Apply from the end so earlier offsets stay valid; stable for ties.
+            modified = text
+            for item in sorted(plan, key=lambda x: (-x["char_pos"], x["persona_id"], x["kind"])):
+                sep = "\n\n" if item["boundary"] == "paragraph" else " "
+                modified = modified[: item["char_pos"]] + item["sentence"] + sep + modified[item["char_pos"] :]
 
-        new_chunks = chunk_book(modified)
-        chunk_texts = [_norm_ws(c) for c, _, _ in new_chunks]
-        for item in plan:
-            needle = _norm_ws(item["sentence"])
-            hits = [i for i, c in enumerate(chunk_texts) if needle in c]
-            if len(hits) != 1:
-                raise RuntimeError(
-                    f"Check 8 failed for {item['persona_id']}/{item['kind']} in {book}: the sentence lies in {len(hits)} chunks ({hits})."
-                )
-            item["chunk_index"] = hits[0]
-            item["chunk_id"] = f"{book}:{hits[0]}"
+            new_chunks = chunk_book(modified)
+            chunk_texts = [_norm_ws(c) for c, _, _ in new_chunks]
+            for item in plan:
+                needle = _norm_ws(item["sentence"])
+                hits = [i for i, c in enumerate(chunk_texts) if needle in c]
+                if len(hits) != 1:
+                    raise RuntimeError(
+                        f"Check 8 failed for {item['persona_id']}/{item['kind']} in {book}: "
+                        f"the sentence lies in {len(hits)} chunks ({hits})."
+                    )
+                item["chunk_index"] = hits[0]
+                item["chunk_id"] = f"{book}:{hits[0]}"
 
-        # Check 7 after re-chunking.
-        placed = sorted(item["chunk_index"] for item in plan)
-        for a, b in zip(placed, placed[1:], strict=False):
-            if b - a < MIN_SEPARATION:
-                offenders = [i for i in plan if i["chunk_index"] in (a, b)]
-                raise RuntimeError(
-                    f"Check 7 failed in {book}: inserted sentences at chunks {a} and {b} "
-                    f"(< {MIN_SEPARATION} apart) - {[(o['persona_id'], o['kind']) for o in offenders]}. "
-                    "Rerun step 3 with --force after deciding at the hand-off."
-                )
+            # Check 7 after re-chunking; on failure, redraw this book's targets.
+            placed = sorted(item["chunk_index"] for item in plan)
+            if all(b - a >= MIN_SEPARATION for a, b in zip(placed, placed[1:], strict=False)):
+                redraw_counts[book] = attempt
+                break
+            import numpy as np
+
+            redraw_rng = np.random.default_rng([common.SEED, book_ordinal, attempt + 1])
+            draw_positions(group, {book: len(chunks)}, redraw_rng)
+        else:
+            raise RuntimeError(f"Check 7 still failing in {book} after 50 position redraws; stop and decide at the hand-off.")
 
         for p in by_book.get(book, []):
             mine = {i["kind"]: i for i in plan if i["persona_id"] == p["persona_id"]}
@@ -147,7 +161,7 @@ def main(report: StepReport, argv: list[str]) -> None:
         (book_dir / "modified.txt").write_text(modified, encoding="utf-8")
         documents[book] = modified
         insertions += plan
-        chunk_counts.append([book, len(chunks), len(new_chunks), len(new_chunks) - len(chunks), len(plan)])
+        chunk_counts.append([book, len(chunks), len(new_chunks), len(new_chunks) - len(chunks), len(plan), redraw_counts[book]])
 
         if not sample_chunks:  # one gold, one reveal, one untouched chunk, from the first book
             gold0 = next(i for i in plan if i["kind"] == "gold")
@@ -216,7 +230,11 @@ def main(report: StepReport, argv: list[str]) -> None:
         str(DATA_DIR / "books" / "<id>" / "{original,modified}.txt"),
     ]
     report.commands.append("insert at chunk starts (paragraph/sentence boundary), re-chunk, checks 7-9, freeze spec")
-    report.table("Chunks before and after", ["book", "before", "after", "growth", "sentences inserted"], chunk_counts)
+    report.table(
+        "Chunks before and after",
+        ["book", "before", "after", "growth", "sentences inserted", "position redraws"],
+        chunk_counts,
+    )
     report.add(
         "Spec frozen",
         f"`personas.jsonl` SHA-256: **{spec_hash}**. After this step the spec is read-only; step 5 refuses to run if the hash changes.",
