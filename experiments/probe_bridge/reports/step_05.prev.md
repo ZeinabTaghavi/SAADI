@@ -1,6 +1,6 @@
 # Bridge probe - step 05: Index (GPU)
 
-Status: **FAILED** - 2026-11-07 19:47:52
+Status: **FAILED** - 2026-11-07 19:58:06
 
 ## What was done
 
@@ -39,7 +39,7 @@ personas.jsonl SHA-256 verified: `11c4c1696c67171f78821d3ba8311ccd28c851315ca1c2
 
 ### Wall clock
 
-0.26 hours (920 s) this invocation.
+0.00 hours (0 s) this invocation.
 
 ### Construction records
 
@@ -62,38 +62,14 @@ RuntimeError: run_study.py exited with code 1. Rerun this script to resume; the 
 Last 50 log lines:
 
 ```
-           ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/data/zeinab/SAADI/src/saadi/llm/factory.py", line 376, in _build_vllm_backend
-    model = LLM(**llm_kwargs)
-            ^^^^^^^^^^^^^^^^^
-  File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm/entrypoints/llm.py", line 349, in __init__
-    self.llm_engine = LLMEngine.from_engine_args(
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm/v1/engine/llm_engine.py", line 170, in from_engine_args
-    return cls(
-           ^^^^
-  File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm/v1/engine/llm_engine.py", line 104, in __init__
-    self.engine_core = EngineCoreClient.make_client(
-                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 102, in make_client
-    return SyncMPClient(vllm_config, executor_class, log_stats)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
-    return func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 771, in __init__
-    super().__init__(
-  File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 570, in __init__
-    with launch_core_engines(
-  File "/usr/lib/python3.12/contextlib.py", line 144, in __exit__
-    next(self.gen)
-  File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm/v1/engine/utils.py", line 1190, in launch_core_engines
-    wait_for_engine_startup(
-  File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm/v1/engine/utils.py", line 1249, in wait_for_engine_startup
-    raise RuntimeError(
-RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {'EngineCore': 1}
-/usr/lib/python3.12/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 3 leaked shared_memory objects to clean up at shutdown
-  warnings.warn('resource_tracker: There appear to be %d '
+Saadi: novelhopqa_probe / probe_bridge / greedy_seed42
+Traceback (most recent call last):
+  File "/mnt/data/zeinab/SAADI/scripts/run_study.py", line 96, in stage_lock
+    fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+BlockingIOError: [Errno 11] Resource temporarily unavailable
+
+The above exception was the direct cause of the following exception:
+
 Traceback (most recent call last):
   File "/mnt/data/zeinab/SAADI/scripts/run_study.py", line 310, in <module>
     raise SystemExit(main())
@@ -103,15 +79,14 @@ Traceback (most recent call last):
            ^^^^^^^^^
   File "/mnt/data/zeinab/SAADI/scripts/run_study.py", line 240, in run
     execute_stage([sys.executable, "-m", "saadi.cli.main", "run-experiment", "--config", config_path,
-  File "/mnt/data/zeinab/SAADI/scripts/run_study.py", line 110, in execute_stage
-    _execute_stage(command, directory, inputs=inputs)
-  File "/mnt/data/zeinab/SAADI/scripts/run_study.py", line 130, in _execute_stage
-    execute(command, False)
-  File "/mnt/data/zeinab/SAADI/scripts/run_study.py", line 39, in execute
-    subprocess.run(list(map(str, command)), cwd=ROOT, check=True)
-  File "/usr/lib/python3.12/subprocess.py", line 571, in run
-    raise CalledProcessError(retcode, process.args,
-subprocess.CalledProcessError: Command '['/mnt/data/zeinab/raptor/.venv/bin/python3', '-m', 'saadi.cli.main', 'run-experiment', '--config', '/mnt/data/zeinab/SAADI/outputs/probe_bridge/novelhopqa_probe/runs/probe_bridge/greedy_seed42/af50299000d1f31f/runtime_config.yaml', '--ingest_only']' returned non-zero exit status 1.
+  File "/mnt/data/zeinab/SAADI/scripts/run_study.py", line 109, in execute_stage
+    with stage_lock(directory):
+  File "/usr/lib/python3.12/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/mnt/data/zeinab/SAADI/scripts/run_study.py", line 98, in stage_lock
+    raise RuntimeError(f"Another process is writing {directory}") from exc
+RuntimeError: Another process is writing /mnt/data/zeinab/SAADI/outputs/probe_bridge/novelhopqa_probe/indexes/7f585bd63886659e
 ```
 
 ## Files written
