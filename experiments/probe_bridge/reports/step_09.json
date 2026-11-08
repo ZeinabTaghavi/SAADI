@@ -1,0 +1,164 @@
+{
+  "step": 9,
+  "title": "Diagnose: where are the names lost",
+  "status": "ok",
+  "commands": [
+    "bash experiments/probe_bridge/sh/09_*.sh",
+    "read /mnt/data/zeinab/SAADI/outputs/probe_bridge/novelhopqa_probe/indexes/59bb6acf00d222d8/llm_cache/novelhopqa/hierarchical/branching_factor_5/chunk_500/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/index.json; memory per step replayed by the cache loader; recall re-run with {'selector': 'word', 'max_entities': 5, 'max_aliases': 2, 'max_desc': 3, 'min_relevance': 0.0} (/mnt/data/zeinab/SAADI/outputs/probe_bridge/novelhopqa_probe/runs/probe_bridge/greedy_seed42/8792ffaf376e7d89/runtime_config.yaml)"
+  ],
+  "numbers": {
+    "q1": {
+      "not proposed as a record": 68,
+      "budget cut": 44,
+      "merge loss": 4,
+      "parser loss": 3
+    },
+    "q2_at_reveal": {
+      "not recalled: recall budget full with other records": 66,
+      "no earlier record": 138,
+      "recalled: nothing written": 1,
+      "recalled: joined": 3,
+      "recalled: earlier record written, new name not added": 2
+    },
+    "q2_cell4_at_gold": {
+      "no earlier record": 23,
+      "not recalled: recall budget full with other records": 3,
+      "not recalled: word-overlap score zero": 2,
+      "recalled: nothing written": 2
+    },
+    "q2_both_written": 90,
+    "q2_present_where_link_could_form": 5,
+    "q3_records_hist": {
+      "1": 116,
+      "0": 99,
+      "2": 25
+    },
+    "q3_pairs": {
+      "given name against surname": 6,
+      "other": 8,
+      "title variant": 10,
+      "surname only against full name": 1
+    },
+    "q3_published": {
+      "missing": "no published NovelHopQA Qwen3-30B construction cache (AEWord/index.json) under outputs/; set PROBE_PUBLISHED_INDEX"
+    },
+    "q4": [
+      {
+        "persona_id": "c7_B37_008",
+        "cell": 7,
+        "query": "Where did the herbalist come from?",
+        "gold": "B37:109",
+        "record": "Mitrassa",
+        "gold_rank_published": 118,
+        "gold_rank_lambda_n_1.0": 67,
+        "gold_rank_lambda_n_2.0": 7,
+        "smallest_lambda_n_for_top10": 1.9,
+        "gold_memory_rank": 1,
+        "chunks_tied_with_gold_memory_score": 1,
+        "gold_has_top_memory_score": true,
+        "chunks_linked_to_record": 2
+      },
+      {
+        "persona_id": "c7_B18_011",
+        "cell": 7,
+        "query": "What was the name of the sailmaker's vessel?",
+        "gold": "B18:80",
+        "record": "Nustakilla",
+        "gold_rank_published": 146,
+        "gold_rank_lambda_n_1.0": 100,
+        "gold_rank_lambda_n_2.0": 75,
+        "smallest_lambda_n_for_top10": null,
+        "gold_memory_rank": 26,
+        "chunks_tied_with_gold_memory_score": 0,
+        "gold_has_top_memory_score": false,
+        "chunks_linked_to_record": 2
+      },
+      {
+        "persona_id": "c7_B34_016",
+        "cell": 7,
+        "query": "What was the name of the shinglewright's vessel?",
+        "gold": "B34:124",
+        "record": "Ladipojul",
+        "gold_rank_published": 183,
+        "gold_rank_lambda_n_1.0": 111,
+        "gold_rank_lambda_n_2.0": 76,
+        "smallest_lambda_n_for_top10": null,
+        "gold_memory_rank": 12,
+        "chunks_tied_with_gold_memory_score": 0,
+        "gold_has_top_memory_score": false,
+        "chunks_linked_to_record": 2
+      },
+      {
+        "persona_id": "c1_B61_021",
+        "cell": 1,
+        "query": "What was the name of Simindokht's vessel?",
+        "gold": "B61:100",
+        "record": "Madame Bhattarain",
+        "gold_rank_published": 6,
+        "gold_rank_lambda_n_1.0": 2,
+        "gold_rank_lambda_n_2.0": 2,
+        "smallest_lambda_n_for_top10": 0.3,
+        "gold_memory_rank": 1,
+        "chunks_tied_with_gold_memory_score": 1,
+        "gold_has_top_memory_score": true,
+        "chunks_linked_to_record": 2
+      },
+      {
+        "persona_id": "c7_B61_023",
+        "cell": 7,
+        "query": "Where did the engraver come from?",
+        "gold": "B61:140",
+        "record": "Roudabeh",
+        "gold_rank_published": 135,
+        "gold_rank_lambda_n_1.0": 79,
+        "gold_rank_lambda_n_2.0": 36,
+        "smallest_lambda_n_for_top10": null,
+        "gold_memory_rank": 11,
+        "chunks_tied_with_gold_memory_score": 0,
+        "gold_has_top_memory_score": false,
+        "chunks_linked_to_record": 2
+      },
+      {
+        "persona_id": "c7_B44_028",
+        "cell": 7,
+        "query": "Where did the ropemaker come from?",
+        "gold": "B44:98",
+        "record": "Umutcan",
+        "gold_rank_published": 22,
+        "gold_rank_lambda_n_1.0": 14,
+        "gold_rank_lambda_n_2.0": 7,
+        "smallest_lambda_n_for_top10": 1.65,
+        "gold_memory_rank": 7,
+        "chunks_tied_with_gold_memory_score": 1,
+        "gold_has_top_memory_score": false,
+        "chunks_linked_to_record": 2
+      }
+    ],
+    "recall_settings": {
+      "selector": "word",
+      "max_entities": 5,
+      "max_aliases": 2,
+      "max_desc": 3,
+      "min_relevance": 0.0
+    }
+  },
+  "files_written": [
+    "/mnt/data/zeinab/SAADI/outputs/probe_bridge/diagnose/q1_lost_names.jsonl",
+    "/mnt/data/zeinab/SAADI/outputs/probe_bridge/diagnose/q2_recall.jsonl",
+    "/mnt/data/zeinab/SAADI/outputs/probe_bridge/diagnose/q3_duplicates.jsonl",
+    "/mnt/data/zeinab/SAADI/outputs/probe_bridge/diagnose/q3_published.json",
+    "/mnt/data/zeinab/SAADI/outputs/probe_bridge/diagnose/q4_scores.json"
+  ],
+  "unexpected": [
+    "Q3, published memories: no published NovelHopQA Qwen3-30B construction cache (AEWord/index.json) under outputs/; set PROBE_PUBLISHED_INDEX. That part was skipped; the rest ran."
+  ],
+  "versions": {
+    "python": "3.12.3",
+    "platform": "Linux-6.17.0-23-generic-x86_64-with-glibc2.39",
+    "numpy": "2.3.5",
+    "pandas": "3.0.1",
+    "yaml": "6.0.3",
+    "saadi": "0.1.0",
+    "git_commit": "57626498a8010643d79adda06e5376480d6284df"
+  }
+}
