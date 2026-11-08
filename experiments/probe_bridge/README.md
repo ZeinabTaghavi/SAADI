@@ -95,3 +95,11 @@ results/probe_bridge/   README.md, table.md, table.csv, figures (step 8)
    LooGLE and NovelHopQA. `--profile published` now restores `keep`, and step 5
    refuses any other value. The first run's reports are archived in
    `reports/drop_run/`.
+9. **Step 9 (diagnosis) follows the note "Probe Diagnosis: Four Questions"**,
+   placed at `steps/step09_diagnose.py` like the other steps (the note named
+   `scripts/09_diagnose.py`). The per-step memory and the records recalled into
+   the prompt are not stored as such; step 9 rebuilds them exactly (the cache
+   loader's replay, and the recall rule re-run with the run's settings). It adds
+   two classes the note did not list: names cut by the per-record caps (2
+   aliases, 3 descriptions), and names that occur in the reply only outside any
+   proposed record (e.g. in anchor text).
