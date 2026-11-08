@@ -1,12 +1,12 @@
 # Bridge probe - step 05: Index (GPU)
 
-Status: **FAILED** - 2026-11-08 00:21:23
+Status: **ok** - 2026-11-08 03:42:15
 
 ## What was done
 
 - `bash experiments/probe_bridge/sh/05_*.sh --force`
 - `SADI_OUTPUT_DIR=/mnt/data/zeinab/SAADI/outputs/probe_bridge /mnt/data/zeinab/raptor/.venv/bin/python3 /mnt/data/zeinab/SAADI/scripts/run_study.py --suite probe_bridge --profile published --datasets novelhopqa_probe --retrievers bm25 --stage ingest`
-- Versions: python=3.12.3, platform=Linux-6.17.0-23-generic-x86_64-with-glibc2.39, numpy=2.3.5, pandas=3.0.1, yaml=6.0.3, saadi=0.1.0, git_commit=a9eea072e5d0577849d28e4c81a0ee7448a1a5e0
+- Versions: python=3.12.3, platform=Linux-6.17.0-23-generic-x86_64-with-glibc2.39, numpy=2.3.5, pandas=3.0.1, yaml=6.0.3, saadi=0.1.0, git_commit=0fb103c3103449f7e231ad0f0c8cd5d1878296a5
 
 ## Numbers
 
@@ -42,55 +42,34 @@ personas.jsonl SHA-256 verified: `11c4c1696c67171f78821d3ba8311ccd28c851315ca1c2
 
 ### Wall clock
 
-0.00 hours (0 s) this invocation.
+3.36 hours (12079 s) this invocation.
 
-### Construction records
+### Books
 
-No cache index found yet.
+| book | chunk records | parser status not ok (fallback or failed) | state |
+| --- | --- | --- | --- |
+| B31 | 244 | 244 | finished |
+| B43 | 246 | 246 | finished |
+| B37 | 262 | 257 | finished |
+| B18 | 312 | 301 | finished |
+| B04 | 321 | 318 | finished |
+| B34 | 335 | 335 | finished |
+| B27 | 338 | 338 | finished |
+| B61 | 357 | 341 | finished |
+| B26 | 384 | 384 | finished |
+| B44 | 385 | 375 | finished |
+
+### Location of the construction records
+
+`/mnt/data/zeinab/SAADI/outputs/probe_bridge/novelhopqa_probe/indexes/59bb6acf00d222d8/llm_cache/novelhopqa/hierarchical/branching_factor_5/chunk_500/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/index.json`
+
+### Hand-off
+
+All books are indexed. Paste this report back before step 6.
 
 ## Anything unexpected
 
-The step failed. Full traceback:
-
-```
-Traceback (most recent call last):
-  File "/mnt/data/zeinab/SAADI/experiments/probe_bridge/common.py", line 393, in run_step
-    main(report, argv)
-  File "/mnt/data/zeinab/SAADI/experiments/probe_bridge/steps/step05_index.py", line 236, in main
-    raise RuntimeError(f"run_study.py exited with code {proc.returncode}. Rerun this script to resume; the construction cache is kept.")
-RuntimeError: run_study.py exited with code 1. Rerun this script to resume; the construction cache is kept.
-
-```
-
-Last 50 log lines:
-
-```
-Saadi: novelhopqa_probe / probe_bridge / greedy_seed42
-Traceback (most recent call last):
-  File "/mnt/data/zeinab/SAADI/scripts/run_study.py", line 99, in stage_lock
-    fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
-BlockingIOError: [Errno 11] Resource temporarily unavailable
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/mnt/data/zeinab/SAADI/scripts/run_study.py", line 313, in <module>
-    raise SystemExit(main())
-                     ^^^^^^
-  File "/mnt/data/zeinab/SAADI/scripts/run_study.py", line 309, in main
-    return run(args)
-           ^^^^^^^^^
-  File "/mnt/data/zeinab/SAADI/scripts/run_study.py", line 243, in run
-    execute_stage([sys.executable, "-m", "saadi.cli.main", "run-experiment", "--config", config_path,
-  File "/mnt/data/zeinab/SAADI/scripts/run_study.py", line 112, in execute_stage
-    with stage_lock(directory):
-  File "/usr/lib/python3.12/contextlib.py", line 137, in __enter__
-    return next(self.gen)
-           ^^^^^^^^^^^^^^
-  File "/mnt/data/zeinab/SAADI/scripts/run_study.py", line 101, in stage_lock
-    raise RuntimeError(f"Another process is writing {directory}") from exc
-RuntimeError: Another process is writing /mnt/data/zeinab/SAADI/outputs/probe_bridge/novelhopqa_probe/indexes/59bb6acf00d222d8
-```
+Nothing unexpected.
 
 ## Files written
 
