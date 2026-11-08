@@ -1,0 +1,23 @@
+# B2 Contextual Retrieval (Anthropic, 2024), whole-document variant. NOT the 8K windowed variant.
+system: b2_contextual
+llm: Qwen/Qwen3-30B-A3B-Instruct-2507      # local vLLM server, see env.sh
+temperature: 0.0
+seed: 42
+max_tokens: 200                             # ceiling; the post's contexts are 50-100 tokens
+prompt: |                                   # verbatim from the post, one user message
+  <document>
+  {WHOLE_DOCUMENT}
+  </document>
+  Here is the chunk we want to situate within the whole document
+  <chunk>
+  {CHUNK_CONTENT}
+  </chunk>
+  Please give a short succinct context to situate this chunk within the overall document for the purposes of improving search retrieval of the chunk. Answer only with the succinct context and nothing else.
+document: the book's chunks joined by blank lines; the whole book when it fits the served window,
+  else the longest prefix of whole chunks that fits beside the book's longest chunk and max_tokens
+window: measured from the server (/v1/models max_model_len); the server runs at 262144 (Qwen3-2507's
+  native window; decided with the user, SAADI's builds use 32768)
+index_text: context + "\n\n" + chunk
+retriever: bm25                             # the same function as B0
+reveal_visible: reveal chunk index <= last visible chunk index of the gold chunk's call
+link_formed: the gold chunk's written context contains form 2 (case-insensitive string match)

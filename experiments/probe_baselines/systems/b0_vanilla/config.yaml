@@ -1,0 +1,7 @@
+# B0 Vanilla BM25 on the probe chunks (no LLM).
+system: b0_vanilla
+units: the probe's chunks (500 whitespace tokens, SAADI's chunker), ids <book_id>:<index>
+retriever: bm25            # saadi.indexing.retrieval_methods.mbr._score_pool, retriever_name "bm25"
+query: the persona's query, unchanged
+tie_break: chunk position (as in experiments/probe_bridge/steps/step07_retrieve_and_score.py)
+saved_depth: 50            # ranked_chunk_ids; gold_rank is taken from the full ranking

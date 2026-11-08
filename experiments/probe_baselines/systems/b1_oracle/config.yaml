@@ -1,0 +1,8 @@
+# B1 Oracle upper bound (no LLM): the perfect link, then Vanilla BM25.
+system: b1_oracle
+edit: append " " + form2 to the gold chunk's text
+applies_to_cells: [1, 2, 3, 4, 6, 7, 8]   # every persona whose form 2 is revealed in the book
+cell_5: unchanged                          # no reveal, no link to make; the control stays meaningful
+copy: one oracle copy per book holds all 24 personas' edits (gold chunks are distinct)
+retriever: bm25                            # the same function as B0
+saved_depth: 50

@@ -1,0 +1,7 @@
+venv_hipporag/
+venv_lqca/
+LQCA/
+tiktoken_cache/
+nltk_data/
+.hipporag_ok
+.lqca_ok

@@ -1,0 +1,12 @@
+# B3 HippoRAG v2, official package, package defaults (decided with the user; the paper's
+# Appendix E.6 was not available, so these settings are NOT checked against it).
+system: b3_hipporag
+package: hipporag==2.0.0a4                  # github.com/OSU-NLP-Group/HippoRAG, own venv (third_party/venv_hipporag)
+llm: Qwen/Qwen3-30B-A3B-Instruct-2507       # OpenIE (NER + triples) and the recognition-memory filter, via the local vLLM server
+llm_temperature: 0                          # package default
+embedding_model: nvidia/NV-Embed-v2         # package default
+index: one HippoRAG instance per book (save_dir outputs/probe_baselines/b3_hipporag/<book_id>)
+units: the probe's chunks, unchanged (no further splitting by HippoRAG: preprocess_chunk_max_token_size is None)
+retrieve: hipporag.retrieve(queries, num_to_retrieve=<chunks in the book>)   # depth only; ranking is the package's
+mapping: returned passage text -> chunk id (exact, then whitespace/Unicode-normalized)
+link_formed: a triple of the book with form 1 in one element and form 2 in another (case-insensitive)

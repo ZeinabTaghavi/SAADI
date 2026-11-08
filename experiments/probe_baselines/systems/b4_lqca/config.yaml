@@ -1,0 +1,14 @@
+# B4 LQCA (Liu et al., ICLR 2025), official code on segments (decided with the user; the
+# paper's Appendix E convention was not available).
+system: b4_lqca
+code: github.com/OceannTwT/LQCA@2d05899479d5ca08635cb544711dde32eea57b79   # cloned at run time into third_party/LQCA
+coreference_model: sapienzanlp/maverick-mes-ontonotes                    # via maverick-coref 1.0.7 (own venv: torch 2.5.1, transformers 4.45.2)
+pipeline: build_matrix -> floyd_max_product -> get_coref_clusters -> replace_to_golden_form   # main.py's loop, unchanged
+threshold: 0.85                    # config.py default
+window_tokens: 128                 # config.py sub_length default, hard-coded in build_matrix
+segment_chunks: 8                  # consecutive probe chunks per segment (~4,000 words); the code cannot take a whole book
+segment_join: a marker line between chunks; the rewritten segment is split back on it
+llm: none                          # LQCA's rewrite uses no LLM (its LLM is only for answering questions)
+index_text: the rewritten chunk
+retriever: bm25                    # the same function as B0
+link_formed: the rewritten gold chunk contains form 2 (case-insensitive string match)
