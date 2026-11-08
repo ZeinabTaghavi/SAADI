@@ -7,17 +7,17 @@
   "form2": "Maysunah",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": true,
+   "accepted": true,
+   "rejected": false,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 37
   },
   "reveal": {
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -29,10 +29,10 @@
   "form1": "Kulkarnile",
   "form2": "Ruwayfid",
   "gold": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -53,19 +53,19 @@
   "form2": "Ilmataren",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 22
   },
   "reveal": {
-   "raw_reply": false,
-   "accepted": false,
-   "rejected": false,
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 25
   }
  },
  {
@@ -75,18 +75,18 @@
   "form1": "Albustanji",
   "form2": "Taunolint",
   "gold": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
-   "rejected": true,
-   "budget_full": false,
+   "rejected": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
   "reveal": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -99,17 +99,17 @@
   "form2": "Padminira",
   "gold": {
    "raw_reply": true,
-   "accepted": true,
+   "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": true,
-   "first_step_in_memory": 62
+   "first_step_in_memory": 63
   },
   "reveal": {
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -121,20 +121,20 @@
   "form1": "Masjudi",
   "form2": "Harivansham",
   "gold": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "accepted": true,
+   "rejected": true,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 167
   }
  },
  {
@@ -144,12 +144,12 @@
   "form1": "Bettencourtl",
   "form2": "Yasukoe",
   "gold": {
-   "raw_reply": false,
-   "accepted": false,
-   "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": true,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 43
   },
   "reveal": {
    "raw_reply": false,
@@ -168,17 +168,17 @@
   "form2": "Yasunorik",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 65
   },
   "reveal": {
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -190,12 +190,12 @@
   "form1": "Kallioinen",
   "form2": "Zarrindokht",
   "gold": {
-   "raw_reply": false,
-   "accepted": false,
-   "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": true,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 47
   },
   "reveal": {
    "raw_reply": true,
@@ -224,7 +224,7 @@
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -239,7 +239,7 @@
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -260,17 +260,17 @@
   "form2": "Norbertoval",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 130
   },
   "reveal": {
    "raw_reply": true,
    "accepted": false,
-   "rejected": true,
-   "budget_full": false,
+   "rejected": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -284,8 +284,8 @@
   "gold": {
    "raw_reply": true,
    "accepted": false,
-   "rejected": true,
-   "budget_full": false,
+   "rejected": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -299,11 +299,11 @@
   "form2": "Sinchirok",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 72
   },
   "reveal": null
  },
@@ -314,12 +314,12 @@
   "form1": "Mustikkamaa",
   "form2": "Kumrusel",
   "gold": {
-   "raw_reply": false,
-   "accepted": false,
-   "rejected": false,
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 69
   },
   "reveal": null
  },
@@ -333,7 +333,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -341,7 +341,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -353,15 +353,15 @@
   "form1": "the Gaiter Stitcher",
   "form2": "Heulwenna",
   "gold": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
-   "rejected": true,
-   "budget_full": false,
+   "rejected": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
   "reveal": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
    "budget_full": false,
@@ -376,18 +376,18 @@
   "form1": "the Marrow Piper",
   "form2": "Gruffyddan",
   "gold": {
-   "raw_reply": false,
-   "accepted": false,
-   "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": true,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 95
   },
   "reveal": {
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -399,20 +399,20 @@
   "form1": "Olamideju",
   "form2": "stargazer",
   "gold": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 118
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 118
   }
  },
  {
@@ -425,7 +425,7 @@
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -445,18 +445,18 @@
   "form1": "Wijdanah",
   "form2": "cartographer",
   "gold": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
   "reveal": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
-   "rejected": true,
-   "budget_full": false,
+   "rejected": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -471,17 +471,17 @@
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 160
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 160
   }
  },
  {
@@ -491,10 +491,10 @@
   "form1": "the Swallowtail",
   "form2": "Aamunkukka",
   "gold": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -515,17 +515,17 @@
   "form2": "Jyrkivain",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 87
   },
   "reveal": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
-   "rejected": true,
-   "budget_full": false,
+   "rejected": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -538,17 +538,17 @@
   "form2": "Hemlatika",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": false,
+   "accepted": true,
+   "rejected": true,
    "budget_full": false,
    "in_final_memory": true,
-   "first_step_in_memory": 28
+   "first_step_in_memory": 25
   },
   "reveal": {
    "raw_reply": true,
    "accepted": true,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": true,
    "first_step_in_memory": 28
   }
@@ -560,20 +560,20 @@
   "form1": "Jasperfield",
   "form2": "Ishwarilal",
   "gold": {
-   "raw_reply": true,
-   "accepted": false,
-   "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
-  },
-  "reveal": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 21
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": true,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 21
   }
  },
  {
@@ -584,19 +584,19 @@
   "form2": "Natsumiye",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 40
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 43
   }
  },
  {
@@ -606,10 +606,10 @@
   "form1": "Huancavill",
   "form2": "Takehikon",
   "gold": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -630,17 +630,17 @@
   "form2": "Golrokh",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 91
   },
   "reveal": {
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -653,19 +653,19 @@
   "form2": "Sohrabin",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 98
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 160
   }
  },
  {
@@ -675,10 +675,10 @@
   "form1": "Shittulara",
   "form2": "Olindinara",
   "gold": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -686,7 +686,7 @@
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -698,18 +698,18 @@
   "form1": "Ravensgarth",
   "form2": "Cristovaol",
   "gold": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
-   "rejected": true,
+   "rejected": false,
    "budget_full": false,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
   "reveal": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -723,18 +723,18 @@
   "gold": {
    "raw_reply": true,
    "accepted": true,
-   "rejected": false,
-   "budget_full": false,
+   "rejected": true,
+   "budget_full": true,
    "in_final_memory": true,
    "first_step_in_memory": 65
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "accepted": true,
+   "rejected": false,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 201
   }
  },
  {
@@ -744,7 +744,7 @@
   "form1": "Inglethorpe",
   "form2": "Yupanquil",
   "gold": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
    "budget_full": false,
@@ -752,7 +752,7 @@
    "first_step_in_memory": null
   },
   "reveal": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
    "budget_full": false,
@@ -770,7 +770,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -791,19 +791,19 @@
   "form2": "Savasan",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 81
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "accepted": true,
+   "rejected": true,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 81
   }
  },
  {
@@ -814,11 +814,11 @@
   "form2": "Rhiannwen",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 75
   },
   "reveal": null
  },
@@ -829,10 +829,10 @@
   "form1": "Nadkarnila",
   "form2": "Meirionell",
   "gold": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -847,7 +847,7 @@
   "gold": {
    "raw_reply": true,
    "accepted": true,
-   "rejected": false,
+   "rejected": true,
    "budget_full": false,
    "in_final_memory": true,
    "first_step_in_memory": 14
@@ -861,10 +861,10 @@
   "form1": "the Jerkin Tanner",
   "form2": "Adebamidel",
   "gold": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
-   "rejected": true,
-   "budget_full": false,
+   "rejected": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -892,7 +892,7 @@
    "first_step_in_memory": null
   },
   "reveal": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
    "budget_full": false,
@@ -907,20 +907,20 @@
   "form1": "the Barley Winnower",
   "form2": "Thabitel",
   "gold": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 118
   }
  },
  {
@@ -930,7 +930,7 @@
   "form1": "Virpileen",
   "form2": "glazier",
   "gold": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
    "budget_full": false,
@@ -940,7 +940,7 @@
   "reveal": {
    "raw_reply": true,
    "accepted": false,
-   "rejected": true,
+   "rejected": false,
    "budget_full": false,
    "in_final_memory": false,
    "first_step_in_memory": null
@@ -956,17 +956,17 @@
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 163
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 163
   }
  },
  {
@@ -977,17 +977,17 @@
   "form2": "harpist",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 94
   },
   "reveal": {
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -999,7 +999,7 @@
   "form1": "the Copper Thistle",
   "form2": "Abhinandar",
   "gold": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
    "budget_full": false,
@@ -1010,7 +1010,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -1026,16 +1026,16 @@
    "accepted": false,
    "rejected": false,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 167
   },
   "reveal": {
-   "raw_reply": false,
-   "accepted": false,
-   "rejected": false,
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 167
   }
  },
  {
@@ -1056,7 +1056,7 @@
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -1070,16 +1070,16 @@
   "gold": {
    "raw_reply": true,
    "accepted": true,
-   "rejected": false,
-   "budget_full": false,
+   "rejected": true,
+   "budget_full": true,
    "in_final_memory": true,
    "first_step_in_memory": 78
   },
   "reveal": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -1092,17 +1092,17 @@
   "form2": "Farrokhzad",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 32
   },
   "reveal": {
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -1117,7 +1117,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -1125,7 +1125,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -1140,7 +1140,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -1148,7 +1148,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -1163,7 +1163,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -1171,7 +1171,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -1185,7 +1185,7 @@
   "gold": {
    "raw_reply": true,
    "accepted": true,
-   "rejected": false,
+   "rejected": true,
    "budget_full": false,
    "in_final_memory": true,
    "first_step_in_memory": 106
@@ -1206,10 +1206,10 @@
   "form1": "Lindqvistr",
   "form2": "Gulsevin",
   "gold": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -1217,7 +1217,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -1230,17 +1230,17 @@
   "form2": "Metehanli",
   "gold": {
    "raw_reply": true,
-   "accepted": true,
-   "rejected": true,
-   "budget_full": false,
-   "in_final_memory": true,
-   "first_step_in_memory": 75
-  },
-  "reveal": {
-   "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
+   "in_final_memory": false,
+   "first_step_in_memory": null
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -1253,11 +1253,11 @@
   "form2": "Lowriwena",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "accepted": true,
+   "rejected": true,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 51
   },
   "reveal": {
    "raw_reply": true,
@@ -1277,8 +1277,8 @@
   "gold": {
    "raw_reply": true,
    "accepted": false,
-   "rejected": true,
-   "budget_full": false,
+   "rejected": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -1301,7 +1301,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -1309,7 +1309,7 @@
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -1329,10 +1329,10 @@
    "first_step_in_memory": null
   },
   "reveal": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -1345,11 +1345,11 @@
   "form2": "Tamadura",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 28
   },
   "reveal": null
  },
@@ -1363,7 +1363,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -1378,8 +1378,8 @@
   "gold": {
    "raw_reply": true,
    "accepted": false,
-   "rejected": true,
-   "budget_full": false,
+   "rejected": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -1392,20 +1392,20 @@
   "form1": "the Gorse Spinner",
   "form2": "Yrjovaine",
   "gold": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
-   "in_final_memory": true,
-   "first_step_in_memory": 122
+   "budget_full": true,
+   "in_final_memory": false,
+   "first_step_in_memory": null
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": true,
+   "accepted": false,
    "rejected": false,
-   "budget_full": false,
-   "in_final_memory": true,
-   "first_step_in_memory": 122
+   "budget_full": true,
+   "in_final_memory": false,
+   "first_step_in_memory": null
   }
  },
  {
@@ -1418,17 +1418,17 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 131
   }
  },
  {
@@ -1441,7 +1441,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -1449,7 +1449,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -1461,20 +1461,20 @@
   "form1": "Yurieko",
   "form2": "beadmaker",
   "gold": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
-   "rejected": true,
+   "rejected": false,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 134
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": true,
+   "accepted": true,
+   "rejected": false,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 134
   }
  },
  {
@@ -1487,17 +1487,17 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 128
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 128
   }
  },
  {
@@ -1509,18 +1509,18 @@
   "gold": {
    "raw_reply": true,
    "accepted": true,
-   "rejected": false,
+   "rejected": true,
    "budget_full": false,
    "in_final_memory": true,
    "first_step_in_memory": 109
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 175
   }
  },
  {
@@ -1533,15 +1533,15 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
   "reveal": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -1556,17 +1556,17 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
-   "in_final_memory": true,
-   "first_step_in_memory": 178
+   "budget_full": true,
+   "in_final_memory": false,
+   "first_step_in_memory": null
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": true,
+   "accepted": false,
    "rejected": false,
-   "budget_full": false,
-   "in_final_memory": true,
-   "first_step_in_memory": 178
+   "budget_full": true,
+   "in_final_memory": false,
+   "first_step_in_memory": null
   }
  },
  {
@@ -1587,7 +1587,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -1600,19 +1600,19 @@
   "form2": "Tamyakilla",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 96
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 99
   }
  },
  {
@@ -1625,14 +1625,14 @@
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": true,
    "first_step_in_memory": 40
   },
   "reveal": {
    "raw_reply": true,
    "accepted": true,
-   "rejected": false,
+   "rejected": true,
    "budget_full": false,
    "in_final_memory": true,
    "first_step_in_memory": 40
@@ -1645,9 +1645,9 @@
   "form1": "Gillenwall",
   "form2": "Ozgenur",
   "gold": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
-   "rejected": true,
+   "rejected": false,
    "budget_full": false,
    "in_final_memory": false,
    "first_step_in_memory": null
@@ -1669,19 +1669,19 @@
   "form2": "Ertugral",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "accepted": true,
+   "rejected": true,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 74
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": true,
+   "accepted": true,
+   "rejected": false,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 152
   }
  },
  {
@@ -1693,18 +1693,18 @@
   "gold": {
    "raw_reply": true,
    "accepted": false,
-   "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "rejected": false,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 194
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": false,
+   "accepted": true,
+   "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 194
   }
  },
  {
@@ -1715,11 +1715,11 @@
   "form2": "Gethinor",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": true,
+   "accepted": true,
+   "rejected": false,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 68
   },
   "reveal": {
    "raw_reply": false,
@@ -1748,7 +1748,7 @@
    "raw_reply": true,
    "accepted": true,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": true,
    "first_step_in_memory": 236
   }
@@ -1768,7 +1768,7 @@
    "first_step_in_memory": 83
   },
   "reveal": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
    "budget_full": false,
@@ -1786,15 +1786,15 @@
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
   "reveal": {
    "raw_reply": true,
    "accepted": false,
-   "rejected": true,
-   "budget_full": false,
+   "rejected": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -1807,9 +1807,9 @@
   "form2": "Ubaydallan",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": true,
    "first_step_in_memory": 102
   },
@@ -1817,7 +1817,7 @@
    "raw_reply": true,
    "accepted": true,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": true,
    "first_step_in_memory": 102
   }
@@ -1832,7 +1832,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -1840,7 +1840,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -1853,17 +1853,17 @@
   "form2": "Vainamolt",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 169
   },
   "reveal": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -1876,11 +1876,11 @@
   "form2": "Bhavnita",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "accepted": true,
+   "rejected": true,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 58
   },
   "reveal": null
  },
@@ -1894,7 +1894,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -1908,11 +1908,11 @@
   "form2": "Rikakoyo",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 27
   },
   "reveal": null
  },
@@ -1926,12 +1926,12 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
   "reveal": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
    "budget_full": false,
@@ -1946,7 +1946,7 @@
   "form1": "the Mistle Thatcher",
   "form2": "Golnessa",
   "gold": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
    "budget_full": false,
@@ -1954,7 +1954,7 @@
    "first_step_in_memory": null
   },
   "reveal": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
    "budget_full": false,
@@ -1971,18 +1971,18 @@
   "gold": {
    "raw_reply": true,
    "accepted": true,
-   "rejected": false,
-   "budget_full": false,
+   "rejected": true,
+   "budget_full": true,
    "in_final_memory": true,
    "first_step_in_memory": 136
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": true,
+   "accepted": false,
    "rejected": false,
-   "budget_full": false,
-   "in_final_memory": true,
-   "first_step_in_memory": 214
+   "budget_full": true,
+   "in_final_memory": false,
+   "first_step_in_memory": null
   }
  },
  {
@@ -1992,12 +1992,12 @@
   "form1": "Esmeraldin",
   "form2": "beekeeper",
   "gold": {
-   "raw_reply": false,
-   "accepted": false,
-   "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": true,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 131
   },
   "reveal": {
    "raw_reply": true,
@@ -2017,18 +2017,18 @@
   "gold": {
    "raw_reply": true,
    "accepted": true,
-   "rejected": false,
-   "budget_full": false,
+   "rejected": true,
+   "budget_full": true,
    "in_final_memory": true,
    "first_step_in_memory": 77
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": true,
+   "accepted": false,
    "rejected": false,
-   "budget_full": false,
-   "in_final_memory": true,
-   "first_step_in_memory": 155
+   "budget_full": true,
+   "in_final_memory": false,
+   "first_step_in_memory": null
   }
  },
  {
@@ -2039,17 +2039,17 @@
   "form2": "sailmaker",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": true,
-   "first_step_in_memory": 158
+   "first_step_in_memory": 80
   },
   "reveal": {
    "raw_reply": true,
    "accepted": true,
-   "rejected": false,
-   "budget_full": false,
+   "rejected": true,
+   "budget_full": true,
    "in_final_memory": true,
    "first_step_in_memory": 158
   }
@@ -2062,11 +2062,11 @@
   "form2": "Wamanpuma",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": true,
+   "accepted": true,
+   "rejected": false,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 65
   },
   "reveal": {
    "raw_reply": true,
@@ -2085,19 +2085,19 @@
   "form2": "Dilrubah",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": false,
+   "accepted": true,
+   "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 127
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 206
   }
  },
  {
@@ -2110,15 +2110,15 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
-   "in_final_memory": true,
-   "first_step_in_memory": 202
+   "budget_full": true,
+   "in_final_memory": false,
+   "first_step_in_memory": null
   },
   "reveal": {
    "raw_reply": true,
    "accepted": true,
-   "rejected": false,
-   "budget_full": false,
+   "rejected": true,
+   "budget_full": true,
    "in_final_memory": true,
    "first_step_in_memory": 202
   }
@@ -2131,17 +2131,17 @@
   "form2": "Olwenydd",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
-  },
-  "reveal": {
-   "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": false,
    "budget_full": false,
+   "in_final_memory": true,
+   "first_step_in_memory": 46
+  },
+  "reveal": {
+   "raw_reply": false,
+   "accepted": false,
+   "rejected": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -2154,17 +2154,17 @@
   "form2": "Taliesinor",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": true,
+   "accepted": true,
+   "rejected": false,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 98
   },
   "reveal": {
    "raw_reply": true,
    "accepted": false,
-   "rejected": true,
-   "budget_full": false,
+   "rejected": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -2179,7 +2179,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -2187,7 +2187,7 @@
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -2200,11 +2200,11 @@
   "form2": "Olumidera",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
    "in_final_memory": true,
-   "first_step_in_memory": 146
+   "first_step_in_memory": 66
   },
   "reveal": {
    "raw_reply": true,
@@ -2223,17 +2223,17 @@
   "form2": "Widadina",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 143
   },
   "reveal": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -2246,19 +2246,19 @@
   "form2": "Hudhayfan",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 69
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 149
   }
  },
  {
@@ -2269,17 +2269,17 @@
   "form2": "Yrttitar",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 88
   },
   "reveal": {
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -2293,18 +2293,18 @@
   "gold": {
    "raw_reply": true,
    "accepted": true,
-   "rejected": false,
+   "rejected": true,
    "budget_full": false,
    "in_final_memory": true,
    "first_step_in_memory": 85
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 261
   }
  },
  {
@@ -2317,15 +2317,15 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
   "reveal": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -2339,8 +2339,8 @@
   "gold": {
    "raw_reply": true,
    "accepted": true,
-   "rejected": false,
-   "budget_full": false,
+   "rejected": true,
+   "budget_full": true,
    "in_final_memory": true,
    "first_step_in_memory": 172
   },
@@ -2362,15 +2362,15 @@
   "gold": {
    "raw_reply": true,
    "accepted": false,
-   "rejected": true,
-   "budget_full": false,
+   "rejected": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
   "reveal": {
    "raw_reply": true,
    "accepted": false,
-   "rejected": true,
+   "rejected": false,
    "budget_full": false,
    "in_final_memory": false,
    "first_step_in_memory": null
@@ -2384,14 +2384,14 @@
   "form2": "Noburotak",
   "gold": {
    "raw_reply": true,
-   "accepted": true,
+   "accepted": false,
    "rejected": false,
-   "budget_full": false,
-   "in_final_memory": true,
-   "first_step_in_memory": 175
+   "budget_full": true,
+   "in_final_memory": false,
+   "first_step_in_memory": null
   },
   "reveal": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
    "budget_full": false,
@@ -2424,7 +2424,7 @@
   "gold": {
    "raw_reply": true,
    "accepted": false,
-   "rejected": true,
+   "rejected": false,
    "budget_full": false,
    "in_final_memory": false,
    "first_step_in_memory": null
@@ -2438,10 +2438,10 @@
   "form1": "Yardleighan",
   "form2": "Conceicaor",
   "gold": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -2456,18 +2456,18 @@
   "gold": {
    "raw_reply": true,
    "accepted": false,
-   "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "rejected": false,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 198
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "accepted": true,
+   "rejected": false,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 198
   }
  },
  {
@@ -2478,17 +2478,17 @@
   "form2": "Killasisa",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "accepted": true,
+   "rejected": true,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 139
   },
   "reveal": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -2501,17 +2501,17 @@
   "form2": "Kuntursum",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 115
   },
   "reveal": {
    "raw_reply": true,
    "accepted": false,
-   "rejected": true,
-   "budget_full": false,
+   "rejected": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -2526,17 +2526,17 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 207
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 207
   }
  },
  {
@@ -2550,16 +2550,16 @@
    "accepted": false,
    "rejected": false,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 156
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 156
   }
  },
  {
@@ -2569,20 +2569,20 @@
   "form1": "Caryswen",
   "form2": "lamplighter",
   "gold": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
    "budget_full": false,
-   "in_final_memory": true,
-   "first_step_in_memory": 152
+   "in_final_memory": false,
+   "first_step_in_memory": null
   },
   "reveal": {
-   "raw_reply": true,
-   "accepted": true,
+   "raw_reply": false,
+   "accepted": false,
    "rejected": false,
-   "budget_full": false,
-   "in_final_memory": true,
-   "first_step_in_memory": 152
+   "budget_full": true,
+   "in_final_memory": false,
+   "first_step_in_memory": null
   }
  },
  {
@@ -2592,20 +2592,20 @@
   "form1": "the Harrowed Gull",
   "form2": "Owaingwyn",
   "gold": {
-   "raw_reply": true,
-   "accepted": false,
-   "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
-  },
-  "reveal": {
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 202
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 202
   }
  },
  {
@@ -2615,9 +2615,9 @@
   "form1": "the Magpie Flyer",
   "form2": "Eniolaraj",
   "gold": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
-   "rejected": true,
+   "rejected": false,
    "budget_full": false,
    "in_final_memory": false,
    "first_step_in_memory": null
@@ -2626,7 +2626,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -2638,17 +2638,17 @@
   "form1": "the Frosted Arrow",
   "form2": "Babajider",
   "gold": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
    "budget_full": false,
-   "in_final_memory": true,
-   "first_step_in_memory": 159
+   "in_final_memory": false,
+   "first_step_in_memory": null
   },
   "reveal": {
    "raw_reply": true,
    "accepted": true,
-   "rejected": false,
+   "rejected": true,
    "budget_full": false,
    "in_final_memory": true,
    "first_step_in_memory": 159
@@ -2664,7 +2664,7 @@
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -2672,7 +2672,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -2685,17 +2685,17 @@
   "form2": "Suhaybani",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "accepted": true,
+   "rejected": true,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 104
   },
   "reveal": {
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -2708,17 +2708,17 @@
   "form2": "Paivikken",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 98
   },
   "reveal": {
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -2733,15 +2733,15 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
   "reveal": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -2754,17 +2754,17 @@
   "form2": "Gaytriben",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 80
   },
   "reveal": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -2777,17 +2777,17 @@
   "form2": "Jagmohand",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 89
   },
   "reveal": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -2800,14 +2800,14 @@
   "form2": "Orinoeka",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 95
   },
   "reveal": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
    "budget_full": false,
@@ -2824,8 +2824,8 @@
   "gold": {
    "raw_reply": true,
    "accepted": false,
-   "rejected": true,
-   "budget_full": false,
+   "rejected": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -2833,7 +2833,7 @@
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -2847,16 +2847,16 @@
   "gold": {
    "raw_reply": true,
    "accepted": true,
-   "rejected": false,
-   "budget_full": false,
+   "rejected": true,
+   "budget_full": true,
    "in_final_memory": true,
    "first_step_in_memory": 35
   },
   "reveal": {
    "raw_reply": true,
    "accepted": false,
-   "rejected": true,
-   "budget_full": false,
+   "rejected": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -2869,17 +2869,17 @@
   "form2": "Mehrzad",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "accepted": true,
+   "rejected": true,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 184
   },
   "reveal": {
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -2894,7 +2894,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -2902,7 +2902,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -2915,17 +2915,17 @@
   "form2": "Inocenciol",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 177
   },
   "reveal": {
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -2938,11 +2938,11 @@
   "form2": "Waytasisa",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "accepted": true,
+   "rejected": false,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 120
   },
   "reveal": null
  },
@@ -2953,10 +2953,10 @@
   "form1": "Navidifar",
   "form2": "Illapumak",
   "gold": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
-   "rejected": true,
-   "budget_full": false,
+   "rejected": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -2969,9 +2969,9 @@
   "form1": "Halvorsenn",
   "form2": "Havinnaz",
   "gold": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
-   "rejected": true,
+   "rejected": false,
    "budget_full": false,
    "in_final_memory": false,
    "first_step_in_memory": null
@@ -2988,7 +2988,7 @@
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -2996,7 +2996,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -3008,10 +3008,10 @@
   "form1": "the Furze Faggoter",
   "form2": "Angharade",
   "gold": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -3019,7 +3019,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -3034,15 +3034,15 @@
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
   "reveal": {
    "raw_reply": true,
    "accepted": false,
-   "rejected": true,
-   "budget_full": false,
+   "rejected": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -3055,17 +3055,17 @@
   "form2": "scrivener",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 128
   },
   "reveal": {
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -3078,19 +3078,19 @@
   "form2": "shinglewright",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "accepted": true,
+   "rejected": true,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 124
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 209
   }
  },
  {
@@ -3125,16 +3125,16 @@
   "gold": {
    "raw_reply": true,
    "accepted": false,
-   "rejected": true,
+   "rejected": false,
    "budget_full": false,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
   "reveal": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
-   "rejected": true,
-   "budget_full": false,
+   "rejected": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -3149,17 +3149,17 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 155
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 155
   }
  },
  {
@@ -3172,7 +3172,7 @@
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -3195,7 +3195,7 @@
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -3203,7 +3203,7 @@
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -3217,8 +3217,8 @@
   "gold": {
    "raw_reply": true,
    "accepted": false,
-   "rejected": true,
-   "budget_full": false,
+   "rejected": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -3238,20 +3238,20 @@
   "form1": "Ozdemirkan",
   "form2": "Masayoko",
   "gold": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
-   "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "rejected": false,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 109
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "accepted": true,
+   "rejected": false,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 109
   }
  },
  {
@@ -3262,11 +3262,11 @@
   "form2": "Masanobur",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 143
   },
   "reveal": {
    "raw_reply": false,
@@ -3284,7 +3284,7 @@
   "form1": "Ashgrovall",
   "form2": "Parisima",
   "gold": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
    "budget_full": false,
@@ -3310,7 +3310,7 @@
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -3318,7 +3318,7 @@
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -3333,15 +3333,15 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
   "reveal": {
    "raw_reply": true,
    "accepted": false,
-   "rejected": true,
-   "budget_full": false,
+   "rejected": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -3356,7 +3356,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -3364,7 +3364,7 @@
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -3379,7 +3379,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -3387,7 +3387,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -3399,20 +3399,20 @@
   "form1": "Tendulkarl",
   "form2": "Manqokapaq",
   "gold": {
-   "raw_reply": false,
-   "accepted": false,
-   "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
-  },
-  "reveal": {
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 112
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": true,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 112
   }
  },
  {
@@ -3430,10 +3430,10 @@
    "first_step_in_memory": null
   },
   "reveal": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -3448,15 +3448,15 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
   "reveal": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
-   "rejected": true,
-   "budget_full": false,
+   "rejected": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -3471,7 +3471,7 @@
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -3484,10 +3484,10 @@
   "form1": "Pandyarath",
   "form2": "Cadwganed",
   "gold": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -3501,11 +3501,11 @@
   "form2": "Abimbolar",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 103
   },
   "reveal": null
  },
@@ -3516,20 +3516,20 @@
   "form1": "the Sorrel Steeper",
   "form2": "Kayodejid",
   "gold": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 209
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": false,
+   "accepted": true,
+   "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 209
   }
  },
  {
@@ -3542,7 +3542,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -3550,7 +3550,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -3562,10 +3562,10 @@
   "form1": "the Gimlet Borer",
   "form2": "Juwaynid",
   "gold": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -3573,7 +3573,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -3588,15 +3588,15 @@
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
   "reveal": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -3610,13 +3610,13 @@
   "gold": {
    "raw_reply": true,
    "accepted": true,
-   "rejected": false,
+   "rejected": true,
    "budget_full": false,
    "in_final_memory": true,
    "first_step_in_memory": 75
   },
   "reveal": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
    "budget_full": false,
@@ -3632,19 +3632,19 @@
   "form2": "organist",
   "gold": {
    "raw_reply": true,
-   "accepted": true,
+   "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": true,
-   "first_step_in_memory": 72
+   "first_step_in_memory": 158
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "accepted": true,
+   "rejected": true,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 158
   }
  },
  {
@@ -3654,20 +3654,20 @@
   "form1": "the Brindled Gannet",
   "form2": "Devavratan",
   "gold": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 155
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "accepted": true,
+   "rejected": true,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 155
   }
  },
  {
@@ -3680,15 +3680,15 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
   "reveal": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -3703,15 +3703,15 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
   "reveal": {
    "raw_reply": true,
    "accepted": false,
-   "rejected": true,
-   "budget_full": false,
+   "rejected": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -3724,19 +3724,19 @@
   "form2": "Simindokht",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 100
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 103
   }
  },
  {
@@ -3754,10 +3754,10 @@
    "first_step_in_memory": null
   },
   "reveal": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -3769,18 +3769,18 @@
   "form1": "Nascimental",
   "form2": "Albertinar",
   "gold": {
-   "raw_reply": false,
-   "accepted": false,
-   "rejected": false,
-   "budget_full": false,
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": true,
+   "budget_full": true,
    "in_final_memory": true,
-   "first_step_in_memory": 134
+   "first_step_in_memory": 131
   },
   "reveal": {
    "raw_reply": true,
    "accepted": true,
-   "rejected": false,
-   "budget_full": false,
+   "rejected": true,
+   "budget_full": true,
    "in_final_memory": true,
    "first_step_in_memory": 134
   }
@@ -3794,7 +3794,7 @@
   "gold": {
    "raw_reply": true,
    "accepted": true,
-   "rejected": false,
+   "rejected": true,
    "budget_full": false,
    "in_final_memory": true,
    "first_step_in_memory": 143
@@ -3816,17 +3816,17 @@
   "form2": "Kusiquyllur",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": true,
-   "first_step_in_memory": 170
+   "first_step_in_memory": 79
   },
   "reveal": {
    "raw_reply": true,
    "accepted": true,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": true,
    "first_step_in_memory": 170
   }
@@ -3847,11 +3847,11 @@
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 217
   }
  },
  {
@@ -3861,18 +3861,18 @@
   "form1": "Ovredalend",
   "form2": "Cemrenur",
   "gold": {
-   "raw_reply": true,
-   "accepted": true,
+   "raw_reply": false,
+   "accepted": false,
    "rejected": false,
    "budget_full": false,
-   "in_final_memory": true,
-   "first_step_in_memory": 86
+   "in_final_memory": false,
+   "first_step_in_memory": null
   },
   "reveal": {
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -3885,17 +3885,17 @@
   "form2": "Oguzkan",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 36
   },
   "reveal": {
    "raw_reply": true,
    "accepted": false,
-   "rejected": true,
-   "budget_full": false,
+   "rejected": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -3910,7 +3910,7 @@
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -3931,11 +3931,11 @@
   "form2": "Iorwerthen",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 191
   },
   "reveal": {
    "raw_reply": false,
@@ -3976,9 +3976,9 @@
   "form1": "Quartermain",
   "form2": "Tundeladi",
   "gold": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
-   "rejected": true,
+   "rejected": false,
    "budget_full": false,
    "in_final_memory": true,
    "first_step_in_memory": 114
@@ -3986,7 +3986,7 @@
   "reveal": {
    "raw_reply": true,
    "accepted": true,
-   "rejected": false,
+   "rejected": true,
    "budget_full": false,
    "in_final_memory": true,
    "first_step_in_memory": 114
@@ -4002,7 +4002,7 @@
    "raw_reply": true,
    "accepted": true,
    "rejected": true,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": true,
    "first_step_in_memory": 146
   },
@@ -4016,11 +4016,11 @@
   "form2": "Ikrimahl",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 106
   },
   "reveal": null
  },
@@ -4033,8 +4033,8 @@
   "gold": {
    "raw_reply": true,
    "accepted": false,
-   "rejected": true,
-   "budget_full": false,
+   "rejected": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -4047,20 +4047,20 @@
   "form1": "the Madder Dyer",
   "form2": "Ahtivainen",
   "gold": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 226
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": false,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 226
   }
  },
  {
@@ -4070,20 +4070,20 @@
   "form1": "the Rowan Grafter",
   "form2": "Ishanvika",
   "gold": {
-   "raw_reply": true,
-   "accepted": true,
+   "raw_reply": false,
+   "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": true,
-   "first_step_in_memory": 156
+   "first_step_in_memory": 245
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": false,
+   "accepted": true,
+   "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 245
   }
  },
  {
@@ -4093,15 +4093,15 @@
   "form1": "the Capstan Turner",
   "form2": "Mahendrar",
   "gold": {
-   "raw_reply": false,
-   "accepted": false,
-   "rejected": false,
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 83
   },
   "reveal": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
    "budget_full": false,
@@ -4117,19 +4117,19 @@
   "form2": "clockmaker",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": true,
-   "first_step_in_memory": 239
+   "first_step_in_memory": 149
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": true,
+   "accepted": false,
    "rejected": false,
-   "budget_full": false,
-   "in_final_memory": true,
-   "first_step_in_memory": 239
+   "budget_full": true,
+   "in_final_memory": false,
+   "first_step_in_memory": null
   }
  },
  {
@@ -4140,16 +4140,16 @@
   "form2": "matweaver",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 76
   },
   "reveal": {
    "raw_reply": true,
    "accepted": false,
-   "rejected": true,
+   "rejected": false,
    "budget_full": false,
    "in_final_memory": false,
    "first_step_in_memory": null
@@ -4163,19 +4163,19 @@
   "form2": "engraver",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "accepted": true,
+   "rejected": true,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 140
   },
   "reveal": {
-   "raw_reply": false,
-   "accepted": false,
-   "rejected": false,
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 229
   }
  },
  {
@@ -4185,20 +4185,20 @@
   "form1": "the Groatstone",
   "form2": "Bahramak",
   "gold": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
    "budget_full": true,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 251
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": true,
+   "accepted": true,
+   "rejected": false,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 251
   }
  },
  {
@@ -4208,7 +4208,7 @@
   "form1": "the Galecrown",
   "form2": "Severinara",
   "gold": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
    "budget_full": false,
@@ -4219,7 +4219,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -4239,7 +4239,7 @@
    "first_step_in_memory": null
   },
   "reveal": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
    "budget_full": false,
@@ -4254,18 +4254,18 @@
   "form1": "Haapaniemi",
   "form2": "Urpikusi",
   "gold": {
-   "raw_reply": false,
-   "accepted": false,
-   "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": true,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 138
   },
   "reveal": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -4280,17 +4280,17 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 122
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 122
   }
  },
  {
@@ -4303,12 +4303,12 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
   "reveal": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
    "budget_full": false,
@@ -4324,19 +4324,19 @@
   "form2": "Volkanay",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 102
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "accepted": true,
+   "rejected": false,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 199
   }
  },
  {
@@ -4348,18 +4348,18 @@
   "gold": {
    "raw_reply": true,
    "accepted": true,
-   "rejected": false,
-   "budget_full": false,
+   "rejected": true,
+   "budget_full": true,
    "in_final_memory": true,
    "first_step_in_memory": 99
   },
   "reveal": {
-   "raw_reply": false,
-   "accepted": false,
-   "rejected": false,
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 196
   }
  },
  {
@@ -4370,17 +4370,17 @@
   "form2": "Dafyddion",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 95
   },
   "reveal": {
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -4392,20 +4392,20 @@
   "form1": "Brynmoredd",
   "form2": "Boluwatif",
   "gold": {
-   "raw_reply": true,
-   "accepted": false,
-   "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
-  },
-  "reveal": {
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 330
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": false,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 330
   }
  },
  {
@@ -4416,19 +4416,19 @@
   "form2": "Damolaseg",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 113
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 327
   }
  },
  {
@@ -4439,19 +4439,19 @@
   "form2": "Ruqayyana",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 110
   },
   "reveal": {
-   "raw_reply": false,
-   "accepted": false,
-   "rejected": false,
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 324
   }
  },
  {
@@ -4461,20 +4461,20 @@
   "form1": "Ravnsborgh",
   "form2": "Nuaymani",
   "gold": {
-   "raw_reply": false,
-   "accepted": false,
-   "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": true,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 132
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 132
   }
  },
  {
@@ -4484,18 +4484,18 @@
   "form1": "Ambervalle",
   "form2": "Eevastiin",
   "gold": {
-   "raw_reply": false,
-   "accepted": false,
-   "rejected": false,
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 207
   },
   "reveal": {
    "raw_reply": true,
    "accepted": false,
-   "rejected": true,
-   "budget_full": false,
+   "rejected": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -4507,9 +4507,9 @@
   "form1": "Rebordosal",
   "form2": "Paavalint",
   "gold": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
-   "rejected": true,
+   "rejected": false,
    "budget_full": false,
    "in_final_memory": true,
    "first_step_in_memory": 135
@@ -4517,7 +4517,7 @@
   "reveal": {
    "raw_reply": true,
    "accepted": true,
-   "rejected": false,
+   "rejected": true,
    "budget_full": false,
    "in_final_memory": true,
    "first_step_in_memory": 135
@@ -4547,11 +4547,11 @@
   "form2": "Lokenathan",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 165
   },
   "reveal": null
  },
@@ -4586,10 +4586,10 @@
    "first_step_in_memory": null
   },
   "reveal": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -4601,18 +4601,18 @@
   "form1": "the Limpet Priser",
   "form2": "Mahtabeh",
   "gold": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
   "reveal": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -4632,7 +4632,7 @@
    "first_step_in_memory": null
   },
   "reveal": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
    "budget_full": false,
@@ -4647,20 +4647,20 @@
   "form1": "Rosalindar",
   "form2": "mapmaker",
   "gold": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
-   "rejected": true,
+   "rejected": false,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 254
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 254
   }
  },
  {
@@ -4674,16 +4674,16 @@
    "accepted": false,
    "rejected": false,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 179
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 179
   }
  },
  {
@@ -4694,14 +4694,14 @@
   "form2": "glovemaker",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 78
   },
   "reveal": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
    "budget_full": false,
@@ -4720,16 +4720,16 @@
    "accepted": false,
    "rejected": false,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 185
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 185
   }
  },
  {
@@ -4750,7 +4750,7 @@
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -4762,10 +4762,10 @@
   "form1": "the Moorland Ember",
   "form2": "Cagataykan",
   "gold": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -4787,18 +4787,18 @@
   "gold": {
    "raw_reply": true,
    "accepted": true,
-   "rejected": false,
-   "budget_full": false,
+   "rejected": true,
+   "budget_full": true,
    "in_final_memory": true,
    "first_step_in_memory": 21
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": true,
+   "accepted": true,
+   "rejected": false,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 24
   }
  },
  {
@@ -4812,16 +4812,16 @@
    "accepted": false,
    "rejected": false,
    "budget_full": false,
-   "in_final_memory": true,
-   "first_step_in_memory": 118
+   "in_final_memory": false,
+   "first_step_in_memory": null
   },
   "reveal": {
-   "raw_reply": true,
-   "accepted": true,
+   "raw_reply": false,
+   "accepted": false,
    "rejected": false,
    "budget_full": false,
-   "in_final_memory": true,
-   "first_step_in_memory": 118
+   "in_final_memory": false,
+   "first_step_in_memory": null
   }
  },
  {
@@ -4831,17 +4831,17 @@
   "form1": "Thistlewood",
   "form2": "Kehindelar",
   "gold": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": true,
    "first_step_in_memory": 156
   },
   "reveal": {
    "raw_reply": true,
    "accepted": true,
-   "rejected": false,
+   "rejected": true,
    "budget_full": false,
    "in_final_memory": true,
    "first_step_in_memory": 156
@@ -4857,17 +4857,17 @@
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
   "reveal": {
-   "raw_reply": false,
-   "accepted": false,
+   "raw_reply": true,
+   "accepted": true,
    "rejected": false,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 200
   }
  },
  {
@@ -4877,9 +4877,9 @@
   "form1": "Ogasawarak",
   "form2": "Zulfaqara",
   "gold": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
-   "rejected": true,
+   "rejected": false,
    "budget_full": false,
    "in_final_memory": true,
    "first_step_in_memory": 247
@@ -4901,19 +4901,19 @@
   "form2": "Khuzaymar",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": true,
-   "first_step_in_memory": 259
+   "first_step_in_memory": 160
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": true,
+   "accepted": false,
    "rejected": false,
-   "budget_full": false,
-   "in_final_memory": true,
-   "first_step_in_memory": 259
+   "budget_full": true,
+   "in_final_memory": false,
+   "first_step_in_memory": null
   }
  },
  {
@@ -4923,9 +4923,9 @@
   "form1": "Fennimoral",
   "form2": "Tuulikken",
   "gold": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
-   "rejected": true,
+   "rejected": false,
    "budget_full": false,
    "in_final_memory": false,
    "first_step_in_memory": null
@@ -4954,10 +4954,10 @@
    "first_step_in_memory": null
   },
   "reveal": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -4969,18 +4969,18 @@
   "form1": "Koskenniemi",
   "form2": "Chandrikal",
   "gold": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 108
   },
   "reveal": {
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -4995,17 +4995,17 @@
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "accepted": true,
+   "rejected": true,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 132
   }
  },
  {
@@ -5026,7 +5026,7 @@
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -5039,17 +5039,17 @@
   "form2": "Katsuhirou",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "accepted": true,
+   "rejected": true,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 206
   },
   "reveal": {
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -5063,7 +5063,7 @@
   "gold": {
    "raw_reply": true,
    "accepted": true,
-   "rejected": false,
+   "rejected": true,
    "budget_full": false,
    "in_final_memory": true,
    "first_step_in_memory": 145
@@ -5094,11 +5094,11 @@
   "form2": "Benedital",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
-   "rejected": true,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "accepted": true,
+   "rejected": false,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 122
   },
   "reveal": null
  },
@@ -5112,7 +5112,7 @@
    "raw_reply": true,
    "accepted": true,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": true,
    "first_step_in_memory": 91
   },
@@ -5120,7 +5120,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   }
@@ -5135,15 +5135,15 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": true,
    "first_step_in_memory": 183
   },
   "reveal": {
    "raw_reply": true,
    "accepted": true,
-   "rejected": false,
-   "budget_full": false,
+   "rejected": true,
+   "budget_full": true,
    "in_final_memory": true,
    "first_step_in_memory": 183
   }
@@ -5155,20 +5155,20 @@
   "form1": "the Trencher Whittler",
   "form2": "Pachakutiq",
   "gold": {
-   "raw_reply": true,
-   "accepted": false,
-   "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
-  },
-  "reveal": {
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 177
+  },
+  "reveal": {
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": true,
+   "budget_full": true,
+   "in_final_memory": true,
+   "first_step_in_memory": 177
   }
  },
  {
@@ -5178,10 +5178,10 @@
   "form1": "Melteme",
   "form2": "bookbinder",
   "gold": {
-   "raw_reply": false,
+   "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": true,
    "first_step_in_memory": 271
   },
@@ -5189,7 +5189,7 @@
    "raw_reply": true,
    "accepted": true,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": true,
    "first_step_in_memory": 271
   }
@@ -5202,19 +5202,19 @@
   "form2": "ropemaker",
   "gold": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 98
   },
   "reveal": {
    "raw_reply": true,
-   "accepted": false,
+   "accepted": true,
    "rejected": true,
    "budget_full": false,
-   "in_final_memory": false,
-   "first_step_in_memory": null
+   "in_final_memory": true,
+   "first_step_in_memory": 196
   }
  },
  {
@@ -5224,9 +5224,9 @@
   "form1": "Mairwenne",
   "form2": "locksmith",
   "gold": {
-   "raw_reply": true,
+   "raw_reply": false,
    "accepted": false,
-   "rejected": true,
+   "rejected": false,
    "budget_full": false,
    "in_final_memory": false,
    "first_step_in_memory": null
@@ -5234,7 +5234,7 @@
   "reveal": {
    "raw_reply": true,
    "accepted": false,
-   "rejected": true,
+   "rejected": false,
    "budget_full": false,
    "in_final_memory": false,
    "first_step_in_memory": null
@@ -5250,7 +5250,7 @@
    "raw_reply": true,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
@@ -5270,17 +5270,17 @@
   "form1": "the Palefire",
   "form2": "Jumokeade",
   "gold": {
-   "raw_reply": false,
-   "accepted": false,
-   "rejected": false,
-   "budget_full": false,
+   "raw_reply": true,
+   "accepted": true,
+   "rejected": true,
+   "budget_full": true,
    "in_final_memory": true,
-   "first_step_in_memory": 180
+   "first_step_in_memory": 82
   },
   "reveal": {
    "raw_reply": true,
    "accepted": true,
-   "rejected": false,
+   "rejected": true,
    "budget_full": false,
    "in_final_memory": true,
    "first_step_in_memory": 180
@@ -5296,7 +5296,7 @@
    "raw_reply": false,
    "accepted": false,
    "rejected": false,
-   "budget_full": false,
+   "budget_full": true,
    "in_final_memory": false,
    "first_step_in_memory": null
   },
