@@ -79,6 +79,29 @@ def published_config(config):
     return result
 
 
+def profile_config(config, profile):
+    """Apply a construction profile: new (code defaults), published (saved settings),
+    or a named file configs/profiles/<name>.yaml with ``base`` (published|new) and
+    ``overrides`` merged on top of that base. Method-update runs are such files."""
+    if profile == "new":
+        return config
+    if profile == "published":
+        return published_config(config)
+    path = ROOT / "configs/profiles" / f"{profile}.yaml"
+    if not path.is_file():
+        raise ValueError(f"Unknown profile {profile!r}: no configs/profiles/{profile}.yaml")
+    spec = load_config(path)
+    base = str(spec.get("base", "published"))
+    if base not in {"published", "new"}:
+        raise ValueError(f"{path}: base must be published or new")
+    result = published_config(config) if base == "published" else deepcopy(config)
+    return merge(result, spec.get("overrides", {}) or {})
+
+
+def profile_choices():
+    return ["new", "published", *sorted(p.stem for p in (ROOT / "configs/profiles").glob("*.yaml"))]
+
+
 def sha256_file(path):
     with path.open("rb") as stream:
         return hashlib.file_digest(stream, "sha256").hexdigest()
@@ -206,8 +229,7 @@ def run(args):
         dataset = dataset.strip()
         experiment_path = ROOT / "configs/experiments" / f"{dataset}_retrieval_ablation.yaml"
         base = load_config(experiment_path)
-        if args.profile == "published":
-            base = published_config(base)
+        base = profile_config(base, args.profile)
         for variant in suite.get("variants", [{"name": "default"}]):
             cfg = merge(base, variant.get("overrides", {}))
             if variant.get("model_config"):
@@ -279,7 +301,7 @@ def run(args):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--suite", default="main", choices=sorted(p.stem for p in (ROOT / "configs/suites").glob("*.yaml")))
-    parser.add_argument("--profile", choices=["new", "published"], default="new", help="new: BM25 memory selection and raw-text L0 history; published: saved word-selector and anchored-history configuration")
+    parser.add_argument("--profile", choices=profile_choices(), default="new", help="new: BM25 memory selection and raw-text L0 history; published: saved word-selector and anchored-history configuration; any other name: configs/profiles/<name>.yaml (base plus overrides)")
     parser.add_argument("--datasets", help="Comma-separated dataset keys")
     parser.add_argument("--retrievers", help="Comma-separated retrievers")
     parser.add_argument("--stage", choices=["all", "prepare", "ingest", "retrieve", "generate"], default="all")

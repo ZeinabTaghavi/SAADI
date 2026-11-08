@@ -1,0 +1,52 @@
+# Construction profile p1_ledger: run 1 of the method update tracker (Google Doc
+# "SAADI_updates", tab "3.1 Issue 1: Solution"). It fixes Issue 1 (minor entities
+# never recorded, cut by the budget, or not recalled) with the candidate-first
+# ledger implemented in src/saadi/ledger/.
+#
+# Base: the published profile exactly as `scripts/run_study.py --profile published`
+# restores it from outputs/saadi/reference (saved strategy settings: word-overlap
+# recall, budget 5 records / 2 aliases / 3 descriptions shown, anchored L0
+# history, strict anchors, ungrounded entities kept; saved vLLM runtime for
+# Qwen3-30B-A3B-Instruct-2507). The probe suite (configs/suites/probe_bridge.yaml)
+# then sets temperature 0 and seed 42, as for run 0. Only the differences are
+# spelled out below; nothing else changes, and the construction LLM stays fixed.
+base: published
+overrides:
+  ingest:
+    strategy_kwargs:
+      # The profile switch. When this mapping is absent the strategy runs the
+      # published code path byte for byte (tests/ledger/test_published_unchanged.py).
+      ledger:
+        # Event log (one JSON line per processed chunk) and ledger snapshot per
+        # book. The build resumes from it; steps 3-5 read it. Under the run's
+        # own output root, never under outputs/probe_bridge/.
+        store_dir: ${SADI_OUTPUT_DIR}/ledger
+        # Candidate net (spec D): GLiNER, default model and labels. Checked
+        # against newer GLiNER-family models in step 1's report; kept unless
+        # the gate shows something clearly better.
+        candidate_net: gliner
+        candidate_model: urchade/gliner_large-v2.1
+        candidate_labels: [person, place, organization, named object, title]
+        candidate_threshold: 0.5
+        # auto = cuda when a GPU is visible (the net loads after vLLM has
+        # reserved its memory; ~1 GB), else cpu. Step 1 measures the CPU time.
+        candidate_device: auto
+        # GLiNER truncates at 384 words; chunks are split into sentence-aligned
+        # windows of at most this many words and spans are mapped back.
+        candidate_window_words: 200
+        # Safety cap on candidates per chunk (cap hits are logged).
+        candidate_max_per_chunk: 40
+        # Ledger recall: up to 5 records/stubs whose name or alias matches a
+        # candidate (after title stripping), outside the 5 overlap slots. Cap
+        # hits and what was left out are logged (spec B).
+        recall_cap: 5
+        # Descriptions per record: append until full, then replace the weakest
+        # (fewest content tokens, ties to the oldest); every replacement is
+        # logged (spec C). Also the per-call parse cap for the extraction block.
+        description_cap: 5
+        # Aliases are exact and uncapped in this profile (spec C). The overlap
+        # group still shows at most max_aliases=2 per recalled record, as today.
+        extract_max_aliases: -1
+        # Keep the exact user prompt of every call in the event log (step 2
+        # reports mean input tokens from it).
+        log_prompts: true

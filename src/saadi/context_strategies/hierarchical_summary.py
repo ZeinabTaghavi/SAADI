@@ -14,6 +14,7 @@ from ..core.state import apply_canonicalization_to_state, begin_canonicalization
 from ..core.types import ChunkRecord, DiscourseState
 from ..entities.active_selection import select_active_entities
 from ..entities.active_entity_config import normalize_active_entity_min_relevance
+from ..ledger.runtime import LedgerRuntime, ledger_config_from_strategy
 from ..llm.base import ChatPrompt, GenerateParams, LLMBackend
 from .base import StrategyCommonConfig
 
@@ -337,6 +338,10 @@ class HierarchicalSummaryStrategy(StrategyCommonConfig):
     # Whether a proposed entity whose anchor is not found in the chunk enters the
     # memory: "drop" (default) or "keep", which reproduces the saved constructions.
     ungrounded_entities: str = UNGROUNDED_ENTITIES_DROP
+    # Construction profile p1_ledger (src/saadi/ledger): a mapping switches the
+    # candidate-first ledger on. None (the default) keeps the published code path
+    # byte for byte; tests/ledger/test_published_unchanged.py asserts it.
+    ledger: dict | None = None
 
     def __post_init__(self) -> None:
         raw_b = self.k if self.k is not None else self.branching_factor
@@ -355,6 +360,12 @@ class HierarchicalSummaryStrategy(StrategyCommonConfig):
         self.active_entity_min_relevance = normalize_active_entity_min_relevance(
             self.active_entity_min_relevance
         )
+        # Profile-gated hook: inert unless ``ledger`` is configured.
+        self._ledger_runtime: LedgerRuntime | None = None
+        ledger_cfg = ledger_config_from_strategy(self)
+        if ledger_cfg is not None:
+            self._ledger_runtime = LedgerRuntime(self, ledger_cfg)
+            self.name = f"{self.name}_p1_ledger"
 
     @property
     def uses_history_context(self) -> bool:
@@ -575,6 +586,9 @@ class HierarchicalSummaryStrategy(StrategyCommonConfig):
         return ctx
 
     def build_prompt(self, chunk: ChunkRecord, state: DiscourseState) -> ChatPrompt:
+        runtime = getattr(self, "_ledger_runtime", None)
+        if runtime is not None:  # profile p1_ledger
+            return runtime.build_prompt(self, chunk, state)
         # Keep the legacy/default branch byte-for-byte compatible with the
         # existing MBR2 memory-construction prompt.
         if self.memory_update_mode == MEMORY_UPDATE_MODE_HIS_MEM:
@@ -692,6 +706,9 @@ class HierarchicalSummaryStrategy(StrategyCommonConfig):
         backend: LLMBackend | None = None,
         generate: GenerateParams | None = None,
     ):
+        runtime = getattr(self, "_ledger_runtime", None)
+        if runtime is not None:  # profile p1_ledger
+            return runtime.apply_output(self, chunk, state, raw_model_text, backend=backend, generate=generate)
         output = parse_canonicalization_response(
             raw_model_text,
             fallback_chunk_text=chunk.raw_text,
@@ -742,6 +759,9 @@ class HierarchicalSummaryStrategy(StrategyCommonConfig):
         many documents together so the rollup LLM calls for the same cascade level are
         issued in a single batch (see ``_drive_rollups_batched`` in the ingest pipeline).
         """
+        runtime = getattr(self, "_ledger_runtime", None)
+        if runtime is not None:  # profile p1_ledger
+            return runtime.apply_output_deferred(self, chunk, state, raw_model_text)
         output = parse_canonicalization_response(
             raw_model_text,
             fallback_chunk_text=chunk.raw_text,
@@ -782,6 +802,9 @@ class LimitedHierarchicalSummaryStrategy(HierarchicalSummaryStrategy):
         backend: LLMBackend | None = None,
         generate: GenerateParams | None = None,
     ):
+        runtime = getattr(self, "_ledger_runtime", None)
+        if runtime is not None:  # profile p1_ledger
+            return runtime.apply_output(self, chunk, state, raw_model_text, backend=backend, generate=generate)
         output = parse_canonicalization_response(
             raw_model_text,
             fallback_chunk_text=chunk.raw_text,
