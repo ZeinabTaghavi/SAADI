@@ -12,13 +12,14 @@ per-persona files; nothing is recomputed with different settings.
 from __future__ import annotations
 
 import csv
+from collections import Counter
 import sys
 import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import report_utils as RU  # noqa: E402
-from common import CELL_LABELS, GATE_DIR, OUT_DIR, REPORT_DIR, RESULTS_DIR, SPEC_FROZEN_JSON, StepReport, md_table, read_json, read_jsonl, run_step, software_versions  # noqa: E402
+from common import CELL_LABELS, GATE_DIR, OUT_DIR, REPORT_DIR, RESULTS_DIR, SPEC_FROZEN_JSON, StepReport, md_table, read_json, read_jsonl, run_step, software_versions, tokens  # noqa: E402
 
 PER_PERSONA = OUT_DIR / "per_persona.jsonl"
 METHODS = RU.METHODS
@@ -88,6 +89,29 @@ def main(report: StepReport, argv: list[str]) -> None:
     prompt_n = sum(bool(p.get("earlier_record_in_prompt_at_link_step")) for p in reveal if p.get("earlier_record_existed_before_link_step"))
     prompt_d = sum(1 for p in reveal if p.get("earlier_record_existed_before_link_step"))
     bridge_n = sum(bool(p.get("form2_in_that_record_final") and p.get("gold_chunk_linked_to_that_record")) for p in c123)
+    # Where the earlier record went when it existed but was not in the prompt at the link step:
+    # cut by the ledger-recall cap, never proposed by the candidate net at that chunk, or proposed but not matched.
+    existed = [p for p in reveal if p.get("earlier_record_existed_before_link_step")]
+    missing = [p for p in existed if not p.get("earlier_record_in_prompt_at_link_step")]
+    cut_by_cap = [p for p in missing if p.get("earlier_left_out_by_cap")]
+    not_proposed, not_matched = [], []
+    for p in missing:
+        if p.get("earlier_left_out_by_cap"):
+            continue
+        earlier = p["form2"] if p["cell"] == 4 else p["form1"]
+        cands = p.get("gold_candidates" if p["cell"] == 4 else "reveal_candidates") or []
+        earlier_t = set(tokens(earlier))
+        (not_matched if any(earlier_t <= set(tokens(c)) for c in cands) else not_proposed).append(p)
+    recall_breakdown = (
+        f"Of the {prompt_d} personas whose earlier record existed before the link step, {prompt_n} had it in the prompt; "
+        f"{len(cut_by_cap)} were cut by the ledger-recall cap of 5, {len(not_proposed)} had the earlier name not proposed by the candidate net at that chunk, "
+        f"and {len(not_matched)} had it proposed but not matched to the record (name or alias stored under another form)."
+    )
+    directions = Counter(p.get("merge_direction") for p in c123)
+    direction_sentence = (
+        f"Cells 1-3 merge direction: form 2 into the form-1 record {directions.get('form2_into_form1', 0)}, form 1 into a form-2 record {directions.get('form1_into_form2', 0)} "
+        f"(the gold chunk stays linked to the form-1 record, so this direction does not bridge), never joined {directions.get('never_joined', 0)}, no record {directions.get('no_record', 0)}."
+    )
     c5_zero = s4.get("cell5_zero")
     calls_ok = not any("Calls per book differ" in u for u in read_json(REPORT_DIR / "step_02.json").get("unexpected", [])) if (REPORT_DIR / "step_02.json").exists() else None
     eo_rows = [
@@ -175,6 +199,7 @@ Decision-block parse failures: {pf}; ledger-recall cap hits: {cap_hits} chunks; 
 {memory_table}
 
 Provenance: {s3.get('provenance', {}).get('record:candidate_net', 0)} records from the candidate net only, {s3.get('provenance', {}).get('record:llm', 0)} from the LLM only, {s3.get('provenance', {}).get('record:both', 0)} from both; {s3.get('provenance', {}).get('stub:candidate_net', 0)} stubs; NOT AN ENTITY decisions {s3.get('provenance', {}).get('ev:not_an_entity', 0)}; SAME AS decisions {s3.get('same_as_total', 0)}.
+{recall_breakdown} {direction_sentence}
 Merge audit: a 30-decision sample (seed 42) is in step 3's report; all decisions with reasons in `{OUT_DIR / 'same_as_decisions.jsonl'}`. Mr./Mrs. type joins on the books' real characters: {s3.get('title_conflicts', 'n/a')}.
 
 ## R4. Retrieval (step 4)
@@ -242,7 +267,7 @@ Conclusion: {tracker_conclusion}
     report.files_written += [str(RESULTS_DIR / n) for n in ("README.md", "table.md", "table.csv", "REPORT_FOR_GDOC.md")]
     report.commands.append("assemble results/method_update/p1_ledger from the step 1-4 JSON twins and per_persona.jsonl")
     report.add("REPORT_FOR_GDOC.md (verbatim; paste into the tab '3.1 Issue 1: Report' and the run 1 cells of the tracker)", gdoc)
-    report.numbers.update({"tracker_result": tracker_result, "tracker_conclusion": tracker_conclusion, "problems": problems, "bridge_cells_1_3": [bridge_n, len(c123)], "both_present": [both_n, len(reveal)], "in_prompt": [prompt_n, prompt_d]})
+    report.numbers.update({"tracker_result": tracker_result, "tracker_conclusion": tracker_conclusion, "problems": problems, "bridge_cells_1_3": [bridge_n, len(c123)], "both_present": [both_n, len(reveal)], "in_prompt": [prompt_n, prompt_d], "recall_breakdown": {"cut_by_cap": len(cut_by_cap), "not_proposed": len(not_proposed), "not_matched": len(not_matched)}, "merge_direction_cells_1_3": dict(directions)})
 
 
 if __name__ == "__main__":
