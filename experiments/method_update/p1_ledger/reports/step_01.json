@@ -4,7 +4,7 @@
   "title": "Candidate-net gate (CPU)",
   "status": "ok",
   "commands": [
-    "bash experiments/method_update/p1_ledger/sh/01_*.sh ",
+    "bash experiments/method_update/p1_ledger/sh/01_*.sh --force --no-second-threshold",
     "candidate net: gliner model=urchade/gliner_large-v2.1 device=cpu threshold=0.5 labels=['person', 'place', 'organization', 'named object', 'title']"
   ],
   "numbers": {
@@ -120,12 +120,8 @@
         "form2_caught": 29
       }
     },
-    "second_threshold": {
-      "threshold": 0.3,
-      "form1_rate": 0.9708333333333333,
-      "form2_rate": 0.8285714285714286
-    },
-    "seconds_per_chunk_mean": 1.2993703328238593,
+    "gpu_seconds_per_chunk_mean": 0.11967370986938476,
+    "seconds_per_chunk_mean": 1.1647934908337063,
     "candidates_per_chunk_mean": 8.955555555555556,
     "false_proxy_per_chunk": 0.6133333333333333,
     "labels": {
@@ -152,7 +148,7 @@
     "pandas": "3.0.1",
     "yaml": "6.0.3",
     "saadi": "0.1.0",
-    "git_commit": "a9413c0dd06f894c3386adcd096eefa993384a69",
+    "git_commit": "f18e331a508379a58cdabeaac4c812e48d699f5b",
     "torch": "2.11.0+cu129",
     "transformers": "4.57.6",
     "gliner": "0.2.30",

@@ -1,12 +1,12 @@
 # p1_ledger - step 01: Candidate-net gate (CPU)
 
-Status: **ok** - 2026-11-08 13:30:26
+Status: **ok** - 2026-11-08 14:07:17
 
 ## What was done
 
-- `bash experiments/method_update/p1_ledger/sh/01_*.sh `
+- `bash experiments/method_update/p1_ledger/sh/01_*.sh --force --no-second-threshold`
 - `candidate net: gliner model=urchade/gliner_large-v2.1 device=cpu threshold=0.5 labels=['person', 'place', 'organization', 'named object', 'title']`
-- Versions: python=3.12.3, platform=Linux-6.17.0-23-generic-x86_64-with-glibc2.39, numpy=2.3.5, pandas=3.0.1, yaml=6.0.3, saadi=0.1.0, git_commit=a9413c0dd06f894c3386adcd096eefa993384a69, torch=2.11.0+cu129, transformers=4.57.6, gliner=0.2.30, vllm=0.23.0
+- Versions: python=3.12.3, platform=Linux-6.17.0-23-generic-x86_64-with-glibc2.39, numpy=2.3.5, pandas=3.0.1, yaml=6.0.3, saadi=0.1.0, git_commit=f18e331a508379a58cdabeaac4c812e48d699f5b, torch=2.11.0+cu129, transformers=4.57.6, gliner=0.2.30, vllm=0.23.0
 
 ## Numbers
 
@@ -30,7 +30,7 @@ personas.jsonl SHA-256 verified: `11c4c1696c67171f78821d3ba8311ccd28c851315ca1c2
 
 ### Candidate net loaded
 
-`urchade/gliner_large-v2.1` on `cpu` in 26.1 s; labels ['person', 'place', 'organization', 'named object', 'title']; threshold 0.5; versions {'torch': '2.11.0+cu129', 'gliner': '0.2.30', 'transformers': '4.57.6'}.
+`urchade/gliner_large-v2.1` on `cpu` in 7.3 s; labels ['person', 'place', 'organization', 'named object', 'title']; threshold 0.5; versions {'torch': '2.11.0+cu129', 'gliner': '0.2.30', 'transformers': '4.57.6'}.
 
 ### Names caught by the candidate net, per cell (threshold 0.5)
 
@@ -60,10 +60,6 @@ Form 1: 214/240 (89%); form 2: 168/210 (80%). 'Caught' = a candidate equals the 
 
 Form-1 names missed (26): c6_B31_002 'the Marrow Piper', c4_B43_004 'Balogunlere', c6_B43_005 'the Barley Winnower', c8_B43_005 'the Dustwhirl', c6_B37_007 'the Heather Besomer', c8_B37_006 'the Dappled Skua', c6_B18_009 'the Halyard Splicer', c1_B04_012 'Samarqandli', c8_B04_012 'the Harrowed Gull', c8_B04_014 'the Frosted Arrow', c1_B34_016 'Nylandsett', c2_B34_015 'Tabariyya', c6_B34_015 'the Bracken Carder', c6_B34_016 'the Furze Faggoter', c6_B34_017 'the Sloe Gleaner', c8_B34_017 'the Spelthollow', c4_B27_020 'Yamanouchi', c6_B27_018 'the Sorrel Steeper', c6_B27_020 'the Gimlet Borer', c8_B27_020 'the Midnight Sickle', c5_B61_023 'Dehkhodain', c8_B26_024 'the Amber Plover', c8_B26_026 'the Moorland Ember', c4_B44_028 'Taiwolana', c8_B44_028 'the Palefire', c8_B44_029 'the Branfall'
 
-### Informational: the same model at threshold 0.3
-
-Form 1: 233/240 (97%); form 2: 174/210 (83%); candidates per chunk 10.0 (against 9.0 at 0.5). Not used; the profile keeps its threshold unless the gate fails.
-
 ### Candidates per chunk
 
 | measure | value |
@@ -75,9 +71,13 @@ Form 1: 233/240 (97%); form 2: 174/210 (83%); candidates per chunk 10.0 (against
 | false-candidate proxy per chunk (common word / title / no letters) | 0.61 (276 candidates) |
 | candidates per label | {'person': 3022, 'place': 694, 'title': 119, 'named object': 112, 'organization': 83} |
 | spans dropped by the filter, by reason | {'duplicate surface': 3053, 'no capital letter': 2770, 'longer than 6 words': 3} |
-| seconds per chunk on cpu, mean / median / max | 1.30 / 1.16 / 9.66 |
-| total seconds for all chunks | 585 |
-| requirement (spec D): under one second per chunk | NOT met on this device |
+| seconds per chunk on cpu, mean / median / max | 1.16 / 1.01 / 6.10 |
+| total seconds for all chunks | 524 |
+| requirement (spec D): under one second per chunk on CPU or one GPU | not met on this CPU; see the GPU timing below (the build uses the GPU when one is visible, candidate_device: auto) |
+
+### Candidate net on the GPU (the build's device)
+
+cuda: load 7.9 s; 0.120 s per chunk (mean over 50 chunks, max 1.81); identical candidate lists to the CPU run on 50/50 chunks; requirement met on the GPU.
 
 ### Three chunks and their candidates
 
