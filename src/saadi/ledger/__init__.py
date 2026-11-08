@@ -18,6 +18,9 @@ inside the existing one-LLM-call-per-chunk loop:
   (inert when the profile is off).
 - :mod:`measure`: the frozen-records extension for the probe measurement
   (stubs count as records; creation and promotion steps are known).
+- :mod:`p1b`: profile ``p1b_ledger`` (run 1b): join direction enforced in
+  code, recall by chunk tokens, the SAME AS acceptance rule and alias hygiene.
+  Off unless its keys are set, so ``p1_ledger`` is unchanged.
 
 Nothing in this package changes the published code path; the hierarchical
 strategy only branches here when ``strategy_kwargs.ledger`` is configured.

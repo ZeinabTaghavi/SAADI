@@ -14,6 +14,7 @@ from ..core.types import DiscourseState, EntityRecord
 from .accounting import NEW, NOT_AN_ENTITY, SAME_AS, DecisionBlock
 from .candidate_net import Candidate
 from .ledger import DocumentLedger, LedgerEntry, description_strength, is_alias_shaped, match_kind, name_key
+from .p1b import P1bStep, entry_title_conflict, filter_aliases, redirect_described, resolve_final_decisions, title_conflict, type_conflict
 
 
 @dataclass
@@ -40,6 +41,9 @@ class StepPlan:
     dropped_descriptions_removed: int
     prompt_system: str
     prompt_user: str
+    # Profile p1b_ledger only (None on the p1 path): the per-chunk context of its rules.
+    p1b: P1bStep | None = None
+    recall_matches: dict[str, dict[str, Any]] = field(default_factory=dict)
 
 
 @dataclass
@@ -54,6 +58,8 @@ class StepOutcome:
     links: list[str] = field(default_factory=list)
     llm_additions: list[str] = field(default_factory=list)
     described: list[str] = field(default_factory=list)
+    redirects: list[dict[str, Any]] = field(default_factory=list)  # p1b
+    alias_rejections: list[dict[str, Any]] = field(default_factory=list)  # p1b
 
 
 def _match_described(candidate: Candidate, described: list[EntityRecord]) -> EntityRecord | None:
@@ -100,6 +106,12 @@ def apply_decisions(
     def do(op: dict[str, Any]) -> None:
         ledger.apply_op(op)
         ops.append(op)
+
+    ctx = plan.p1b
+
+    def set_label(entry: LedgerEntry, label: str | None) -> None:
+        if ctx is not None and label and entry.id not in ledger.labels:
+            do({"op": "label", "id": entry.id, "label": str(label)})
 
     def create(name: str, kind: str, *, sentence: str = "", provenance: list[str]) -> LedgerEntry:
         entry_id = ledger.new_id()
@@ -187,15 +199,37 @@ def apply_decisions(
         counts["decision_block_parse_failures"] += 1
     by_index = block.by_index()
 
+    finals = None
+    redirects: list[dict[str, Any]] = []
+    if ctx is not None:
+        # p1b: rule 3 on the model's SAME AS, auto-join, then redirect the JSON records of SAME AS candidates.
+        finals = resolve_final_decisions(
+            ledger=ledger,
+            step=ctx,
+            candidates=plan.candidates,
+            by_index=by_index,
+            parse_failure=parse_failure,
+            described=described,
+            resolve_target=resolve_target,
+            counts=counts,
+            kinds=(NEW, SAME_AS, NOT_AN_ENTITY),
+        )
+        if ctx.config.join_direction:
+            described, redirects = redirect_described(described, finals, plan.candidates, same_as_kind=SAME_AS, counts=counts)
+
     # 1. One outcome per candidate.
     for i, cand in enumerate(plan.candidates):
-        decision = by_index.get(i)
-        if parse_failure or decision is None:
-            kind, target, reason = NEW, None, ""
-            matched_by = "parse_failure" if parse_failure else "omitted"
-            counts["parse_failure_candidates" if parse_failure else "omitted_candidates"] += 1
+        final = finals[i] if finals is not None else None
+        if final is not None:
+            kind, target, reason, matched_by = final.kind, final.target, final.reason, final.matched_by
         else:
-            kind, target, reason, matched_by = decision.kind, decision.target, decision.reason, decision.matched_by
+            decision = by_index.get(i)
+            if parse_failure or decision is None:
+                kind, target, reason = NEW, None, ""
+                matched_by = "parse_failure" if parse_failure else "omitted"
+                counts["parse_failure_candidates" if parse_failure else "omitted_candidates"] += 1
+            else:
+                kind, target, reason, matched_by = decision.kind, decision.target, decision.reason, decision.matched_by
         row: dict[str, Any] = {
             "n": i + 1,
             "candidate": cand.text,
@@ -205,6 +239,8 @@ def apply_decisions(
             "reason": reason,
             "matched_by": matched_by,
         }
+        if final is not None:
+            row.update(final.log)
         if kind == NOT_AN_ENTITY:
             counts["not_an_entity"] += 1
             row["outcome"] = "not_an_entity"
@@ -212,13 +248,14 @@ def apply_decisions(
             continue
         entry: LedgerEntry | None = None
         if kind == SAME_AS:
-            entry = resolve_target(target)
+            entry = final.entry if final is not None else resolve_target(target)
             if entry is None:
                 counts["same_as_unresolved"] += 1
                 row["note"] = "target not found; treated as NEW"
                 kind = NEW
             else:
                 counts["same_as"] += 1
+                set_label(entry, cand.label)
                 do({"op": "same_as", "id": entry.id})
                 was_stub = entry.kind == "stub"
                 added = add_alias(entry, cand.text)
@@ -236,9 +273,22 @@ def apply_decisions(
                     row["alias_added"] = cand.text
         if kind == NEW:
             rec_match = _match_described(cand, described)
+            if rec_match is not None and ctx is not None and ctx.config.same_as_rule:
+                # p1b: a NEW candidate folded into a described record is a join too; no title or type conflict.
+                owner = ledger.by_name_or_alias(rec_match.name)
+                clash = title_conflict(cand.text, rec_match.name) or (
+                    owner is not None and entry_title_conflict(cand.text, owner) is not None
+                )
+                if not clash and owner is not None:
+                    clash = type_conflict(cand.label, ledger.labels.get(owner.id, ""))
+                if clash:
+                    counts["described_match_rejected_conflict"] += 1
+                    row["described_match_rejected"] = rec_match.name
+                    rec_match = None
             if rec_match is not None:
                 claimed.add(described.index(rec_match))
                 entry = ensure_entry_for_record(rec_match, ["candidate_net", "llm"])
+                set_label(entry, cand.label)
                 counts["new_described"] += 1
                 if name_key(cand.text) != name_key(entry.name) and all(name_key(a) != name_key(cand.text) for a in rec_match.aliases):
                     if add_alias(entry, cand.text):
@@ -260,6 +310,7 @@ def apply_decisions(
                 else:
                     provenance = ["candidate_net"] + (["parse_failure"] if parse_failure else [])
                     entry = create(cand.text, "stub", sentence=cand.sentence, provenance=provenance)
+                    set_label(entry, cand.label)
                     counts["new_stub"] += 1
                     if any(match_kind(cand.text, n) == "exact" for n in cut_names):
                         counts["stub_described_but_cut"] += 1
@@ -315,6 +366,11 @@ def apply_decisions(
             merged.append(rec)
         if sentence not in rec.description:
             rec.description.insert(0, sentence)
+    alias_rejections: list[dict[str, Any]] = []
+    if ctx is not None and ctx.config.aliases_from_spans:
+        # p1b alias hygiene: every alias written to memory this step is a span of the chunk (or its
+        # title-stripped form) with no title or type conflict against its record.
+        alias_rejections = filter_aliases(merged, plan.candidates, ledger, counts=counts)
     counts["described_records"] += len(described)
     counts["cut_by_budget"] += len(cut_names)
     return StepOutcome(
@@ -328,6 +384,8 @@ def apply_decisions(
         links=links,
         llm_additions=llm_additions,
         described=[r.name for r in described],
+        redirects=redirects,
+        alias_rejections=alias_rejections,
     )
 
 

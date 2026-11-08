@@ -1,0 +1,62 @@
+# Construction profile p1b_ledger: run 1b of the method update tracker (Google Doc
+# "SAADI_updates", tabs "3.1 Issue 1: Solution" and "3.1 Issue 1: Report").
+# p1b_ledger = p1_ledger plus exactly three changes, aimed at the three causes run 1
+# exposed (join direction, recall at the reveal, over-merging). Code:
+# src/saadi/ledger/p1b.py, switched on by the keys marked "p1b" below.
+#
+# The study runner accepts only `base: published` (or `new`), so the ledger
+# mapping of configs/profiles/p1_ledger.yaml is repeated here key for key.
+# tests/ledger/test_p1b_rules.py::test_p1b_profile_differs_from_p1_only_where_stated
+# fails if any key other than the marked ones differs from p1_ledger.yaml.
+# Construction LLM, temperature, seed, server settings, budget, candidate model and
+# fusion weights are unchanged.
+base: published
+overrides:
+  ingest:
+    strategy_kwargs:
+      ledger:
+        # p1b: own output root (run 1's folders are read only).
+        store_dir: ${SADI_OUTPUT_DIR}/ledger
+        # --- unchanged from p1_ledger -------------------------------------------
+        candidate_net: gliner
+        candidate_model: urchade/gliner_large-v2.1
+        candidate_labels: [person, place, organization, named object, title]
+        candidate_device: auto
+        candidate_window_words: 200
+        candidate_max_per_chunk: 40
+        description_cap: 5
+        extract_max_aliases: -1
+        log_prompts: true
+        # --- change 2: recall at the reveal -------------------------------------
+        # p1b: the candidate net still supplies the candidate list, now at 0.3
+        # (p1_ledger: 0.5).
+        candidate_threshold: 0.3
+        # p1b: ledger recall matches every ledger name and alias (title stripped,
+        # tokens of 3+ characters, no stopwords) against the chunk text,
+        # independent of the candidate net (p1_ledger: candidates).
+        recall: chunk_tokens
+        # p1b: cap raised from 5 to 8. Priority when it binds: full name match,
+        # then full alias match, then single-token match; ties by the most recent
+        # mention. Every cap hit and the entries left out are logged.
+        recall_cap: 8
+        # --- change 1: join direction, enforced in code -------------------------
+        # p1b: an accepted SAME AS never creates a record; a JSON record named
+        # like a SAME AS candidate is redirected into the target; a NEW candidate
+        # whose title-stripped name equals a shown entry's name or alias, with no
+        # title or type conflict, is auto-joined (p1_ledger: model).
+        join_direction: enforced
+        # p1b, optional and OFF: a NEW candidate whose own JSON record lists a
+        # shown entry's name as an alias is joined into that entry (rule 3
+        # applies). Not part of the three changes as specified; see the
+        # experiment README, "Open question before the run".
+        json_alias_join: false
+        # --- change 3: SAME AS acceptance rule (alias hygiene) ------------------
+        # p1b: accept a SAME AS only with a shared name token or both names in one
+        # sentence of the chunk; reject on a title conflict on the same stripped
+        # name or a person against place/organization type conflict (candidate-net
+        # labels stored per entry). A rejected SAME AS becomes NEW (p1_ledger: none).
+        same_as_rule: p1b
+        # p1b: aliases stay uncapped, but every alias written to memory must be a
+        # candidate-net span of the chunk or its title-stripped form, with no
+        # title or type conflict against its record (p1_ledger: any alias).
+        aliases_from_spans: true

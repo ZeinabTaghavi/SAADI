@@ -21,6 +21,14 @@ Configuration (``strategy_kwargs.ledger`` in the profile YAML)::
     description_cap: 5       # per record; append until full, then replace the weakest
     extract_max_aliases: -1  # aliases are exact and uncapped
     log_prompts: true        # keep the user prompt of every call in the event log
+
+Profile p1b_ledger adds (all absent = the p1 path; see ledger/p1b.py)::
+
+    join_direction: enforced     # model (p1) | enforced: redirect + auto-join
+    recall: chunk_tokens         # candidates (p1) | chunk_tokens: names and aliases against the chunk text
+    same_as_rule: p1b            # none (p1) | p1b: shared token or same sentence; title and type conflicts reject
+    aliases_from_spans: true     # every alias written to memory is a candidate span (or its title-stripped form)
+    json_alias_join: false       # optional join of a NEW candidate via its own JSON record's aliases
 """
 
 from __future__ import annotations
@@ -39,6 +47,7 @@ from ..llm.base import ChatPrompt, GenerateParams, LLMBackend
 from .accounting import parse_decisions, split_reply
 from .candidate_net import build_candidate_net
 from .ledger import LedgerEntry, LedgerStore, name_key, stripped_tokens
+from .p1b import P1bConfig, P1bStep, recall_by_chunk_tokens
 from .promotion import StepPlan, apply_decisions, cap_descriptions, reconcile
 from .prompt import LEDGER_SCHEMA, LEDGER_SYSTEM_PROMPT, build_ledger_user_prompt
 
@@ -94,6 +103,7 @@ class LedgerRuntime:
         self.extract_max_aliases = int(cfg["extract_max_aliases"])
         self.display_max_desc = int(cfg["display_max_desc"])
         self.log_prompts = bool(cfg["log_prompts"])
+        self.p1b = P1bConfig.from_cfg(cfg)
         self._plans: dict[tuple[str, str], StepPlan] = {}
         self._system_written = False
         self.system_prompt = LEDGER_SYSTEM_PROMPT
@@ -172,9 +182,17 @@ class LedgerRuntime:
             candidates.append(cand)
 
         overlap_rows, overlap_ids, overlap_names = self._overlap_group(strategy, chunk, state, ledger)
-        recalled, left_out, cap_hit, matched = ledger.recall(
-            [c.text for c in candidates], exclude_keys={name_key(n) for n in overlap_names}, cap=self.recall_cap
-        )
+        recall_matches: dict[str, dict[str, Any]] = {}
+        if self.p1b.chunk_token_recall:
+            # p1b change 2: every ledger name and alias against the chunk text, independent of the candidate net.
+            recalled, left_out, cap_hit, recall_matches = recall_by_chunk_tokens(
+                ledger, chunk.raw_text, exclude_keys={name_key(n) for n in overlap_names}, cap=self.recall_cap
+            )
+            matched = {entry_id: [m["via"]] for entry_id, m in recall_matches.items()}
+        else:
+            recalled, left_out, cap_hit, matched = ledger.recall(
+                [c.text for c in candidates], exclude_keys={name_key(n) for n in overlap_names}, cap=self.recall_cap
+            )
         ledger_rows = self._ledger_group(recalled, state, chunk.raw_text)
         hierarchy_context = strategy._hierarchy_context(state, step)
         user = build_ledger_user_prompt(
@@ -206,6 +224,10 @@ class LedgerRuntime:
             dropped_descriptions_removed=removed_desc,
             prompt_system=self.system_prompt,
             prompt_user=user,
+            p1b=P1bStep(config=self.p1b, chunk_text=chunk.raw_text, shown_ids=[*overlap_ids, *(e.id for e in recalled)])
+            if self.p1b.any
+            else None,
+            recall_matches=recall_matches,
         )
         return ChatPrompt(system=self.system_prompt, user=user)
 
@@ -304,6 +326,14 @@ class LedgerRuntime:
             "reply_chars": len(raw_model_text or ""),
             "apply_seconds": round(time.time() - t0, 4),
         }
+        if plan.p1b is not None:
+            event["p1b"] = {
+                "recall": "chunk_tokens" if plan.p1b.config.chunk_token_recall else "candidates",
+                "recall_matches": plan.recall_matches,
+                "shown_ids": list(plan.p1b.shown_ids),
+                "redirects": outcome.redirects,
+                "alias_rejections": outcome.alias_rejections,
+            }
         if self.log_prompts:
             event["prompt_user"] = plan.prompt_user
         self.store.append_event(plan.doc_id, event)

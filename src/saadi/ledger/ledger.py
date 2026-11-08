@@ -209,6 +209,8 @@ class DocumentLedger:
         self.alias_index: dict[str, set[str]] = {}  # alias key -> ids
         self.events: list[dict[str, Any]] = []
         self.counters: Counter = Counter()
+        # Candidate-net label per entry (p1b only; written by the ``label`` op, never by the p1 path).
+        self.labels: dict[str, str] = {}
         self._next = 1
 
     # -- lookup --------------------------------------------------------------
@@ -343,6 +345,11 @@ class DocumentLedger:
         elif kind == "provenance":
             entry = self.entries[str(op["id"])]
             entry.provenance = sorted(set(entry.provenance) | set(op.get("add", [])))
+        elif kind == "label":
+            # p1b: the candidate-net label of the span that created (or first named) the entry.
+            entry_id = str(op["id"])
+            if entry_id in self.entries and op.get("label") and entry_id not in self.labels:
+                self.labels[entry_id] = str(op["label"])
         elif kind == "drop_description":
             entry = self.entries[str(op["id"])]
             text = str(op["text"])
@@ -372,6 +379,7 @@ class DocumentLedger:
             self.entries.clear()
             self.by_key.clear()
             self.alias_index.clear()
+            self.labels.clear()
             self.counters = Counter()
             self.events = []
             self._next = 1
@@ -389,13 +397,16 @@ class DocumentLedger:
         return out
 
     def snapshot(self) -> dict[str, Any]:
-        return {
+        out = {
             "doc_id": self.doc_id,
             "n_events": len(self.events),
             "last_step": self.last_step,
             "counters": dict(self.counters),
             "entries": [e.to_dict() for e in sorted(self.entries.values(), key=lambda e: int(e.id[1:]))],
         }
+        if self.labels:  # p1b only, so the p1 snapshot is unchanged
+            out["labels"] = dict(sorted(self.labels.items()))
+        return out
 
 
 class LedgerStore:
