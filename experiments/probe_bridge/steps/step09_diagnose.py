@@ -282,7 +282,13 @@ def q1_classify(book: Book, step: int, form: str) -> dict:
             ),
             None,
         )
-        out["detail"] = f"disappeared at step {gone}" if gone is not None else "present in every snapshot; absent only from memory.json"
+        if gone is None:
+            # The earlier count matched the whole phrase ("the Firkin Cooper") against
+            # memory.json; the record stores it without the article ("Firkin Cooper").
+            out["class"] = "not lost (phrase-match artifact)"
+            out["detail"] = "present in every snapshot and in the final memory under the token rule"
+        else:
+            out["detail"] = f"disappeared at step {gone}"
     elif cls == "field cap cut":
         e = hits[[i for i, _ in hits].index(pos)][1]
         where = "alias" if any(_in(a, form_t) for a in _aliases(e)) else "description"
@@ -578,7 +584,15 @@ def main(report: StepReport, argv: list[str]) -> None:
                 row.update({"persona_id": p["persona_id"], "cell": p["cell"], "form": kind, "name": form, "raw_reply": rec.raw_model_text})
                 q1.append(row)
     write_jsonl(DIAG_DIR / "q1_lost_names.jsonl", q1)
-    classes = ["budget cut", "field cap cut", "merge loss", "parser loss", "not proposed as a record", "unknown"]
+    classes = [
+        "budget cut",
+        "field cap cut",
+        "merge loss",
+        "parser loss",
+        "not proposed as a record",
+        "not lost (phrase-match artifact)",
+        "unknown",
+    ]
     cells = sorted({p["cell"] for p in with_reveal})
     rows = []
     for c in classes:
