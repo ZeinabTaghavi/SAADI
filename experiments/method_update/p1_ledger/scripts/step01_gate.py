@@ -330,9 +330,32 @@ def main(report: StepReport, argv: list[str]) -> None:
             ["spans dropped by the filter, by reason", dict(dropped.most_common())],
             ["seconds per chunk on " + str(describe.get("device")) + ", mean / median / max", f"{statistics.mean(secs):.2f} / {statistics.median(secs):.2f} / {max(secs):.2f}"],
             ["total seconds for all chunks", f"{t_total:.0f}"],
-            ["requirement (spec D): under one second per chunk", "met" if statistics.mean(secs) < 1.0 else "NOT met on this device"],
+            ["requirement (spec D): under one second per chunk on CPU or one GPU", "met on CPU" if statistics.mean(secs) < 1.0 else "not met on this CPU; see the GPU timing below (the build uses the GPU when one is visible, candidate_device: auto)"],
         ],
     )
+    # GPU timing on the first 50 chunks when a GPU is visible (the build loads the net on cuda after vLLM).
+    gpu_note = "no GPU visible to this step; the build falls back to CPU timing like the above only if cuda is unavailable there too"
+    try:
+        import torch
+
+        if kind == "gliner" and torch.cuda.is_available():
+            net_gpu = build_candidate_net(dict(net_cfg, candidate_device="cuda"))
+            t_load = time.time()
+            net_gpu.load()
+            sample = dict(list(chunks.items())[:50])
+            gpu_results, gpu_t = run_net_on_chunks(net_gpu, sample)
+            gpu_secs = [r["seconds"] for r in gpu_results.values()]
+            same = sum(1 for cid in sample if [c["text"] for c in gpu_results[cid]["candidates"]] == [c["text"] for c in results[cid]["candidates"]])
+            gpu_note = (
+                f"{net_gpu.device}: load {time.time() - t_load - gpu_t:.1f} s; {statistics.mean(gpu_secs):.3f} s per chunk (mean over {len(sample)} chunks, max {max(gpu_secs):.2f}); "
+                f"identical candidate lists to the CPU run on {same}/{len(sample)} chunks; requirement {'met' if statistics.mean(gpu_secs) < 1.0 else 'NOT met'} on the GPU."
+            )
+            report.numbers["gpu_seconds_per_chunk_mean"] = statistics.mean(gpu_secs)
+            del net_gpu
+            torch.cuda.empty_cache()
+    except Exception as exc:
+        gpu_note = f"GPU timing failed: {exc}"
+    report.add("Candidate net on the GPU (the build's device)", gpu_note)
     report.numbers.update({"seconds_per_chunk_mean": statistics.mean(secs), "candidates_per_chunk_mean": statistics.mean(n_c), "false_proxy_per_chunk": false_n / max(1, len(results)), "labels": dict(labels)})
     examples = [(r["chunk_id"], [c["text"] for c in r["candidates"]]) for r in list(results.values())[:3]]
     report.add("Three chunks and their candidates", "\n".join(f"- **{cid}**: {cands}" for cid, cands in examples))
