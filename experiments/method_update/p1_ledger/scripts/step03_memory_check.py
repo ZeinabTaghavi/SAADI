@@ -103,6 +103,15 @@ def main(report: StepReport, argv: list[str]) -> None:
         persona_tokens |= content_token_set(p["form1"]) | content_token_set(p["form2"])
 
     growth_rows, prov_total, all_same_as, all_conflicts, replay_problems, drift_rows = [], Counter(), [], [], [], []
+    # JSON parser status per call, run 1 next to run 0. "fallback" is the published behaviour (the model
+    # fences its JSON, the lenient extractor recovers it); only "failed" means no JSON was recovered.
+    run0_index = common.find_run0_cache_index()
+    run0_payload = _read_index_payload(run0_index) if run0_index else None
+    parser_rows, parser_total = [], {"run1": Counter(), "run0": Counter()}
+
+    def _status_text(c: Counter | None) -> str:
+        return f"{c.get('ok', 0)} / {c.get('fallback', 0)} / {c.get('failed', 0)}" if c is not None else "n/a"
+
     for book in sorted(by_book):
         doc_entry = _find_doc_entry(payload, doc_id=book)
         if doc_entry is None:
@@ -119,6 +128,16 @@ def main(report: StepReport, argv: list[str]) -> None:
         frozen, notes = ledger_frozen_chunk_fields(document_index, replay, ledger)
         kinds = Counter(e.kind for e in ledger.entries.values())
         growth_rows.append([book, len(records), kinds.get("record", 0), kinds.get("stub", 0), ledger.counters.get("promotions", 0), len(ledger.events)])
+        c1 = Counter(str(r.parser_status or "ok") for r in records)
+        c0 = None
+        if run0_payload is not None and run0_index is not None:
+            d0 = _find_doc_entry(run0_payload, doc_id=book)
+            if d0 is not None:
+                c0 = Counter(str(r.parser_status or "ok") for r in _load_doc_records(index_path=run0_index, index_payload=run0_payload, doc_entry=d0, doc_id=book))
+        parser_total["run1"].update(c1)
+        if c0 is not None:
+            parser_total["run0"].update(c0)
+        parser_rows.append([book, _status_text(c1), _status_text(c0)])
         pc = provenance_counts(ledger)
         prov_total.update(pc["entries"])
         prov_total.update({f"ev:{k}": v for k, v in pc["event_totals"].items()})
@@ -248,6 +267,15 @@ def main(report: StepReport, argv: list[str]) -> None:
         report.unexpected.append("Ledger and construction records disagree: " + "; ".join(replay_problems))
     report.table("Books: chunk records, records, stubs, promotions, events", ["book", "chunk records", "records", "stubs", "promotions", "ledger events"], growth_rows)
     report.table("Description cap applied to the loaded index (ledger replacements removed before scoring)", ["book", "records with replacements", "descriptions removed"], drift_rows)
+    parser_rows.append(["**all books**", f"**{_status_text(parser_total['run1'])}**", f"**{_status_text(parser_total['run0'])}**" if run0_payload is not None else "n/a"])
+    report.table(
+        "JSON parser status per call: ok / fallback / failed (fallback = fenced JSON recovered by the lenient extractor, the published behaviour; failed = no JSON recovered)",
+        ["book", "run 1", "run 0"],
+        parser_rows,
+    )
+    report.numbers["parser_status"] = {k: dict(v) for k, v in parser_total.items()}
+    if run0_payload is None:
+        report.unexpected.append("Run 0's construction cache was not found; the parser-status table shows n/a for run 0.")
 
     # ---- per-cell outcomes next to run 0 ----
     def both(group, key, r0key=None):
