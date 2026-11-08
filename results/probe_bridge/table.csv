@@ -1,0 +1,41 @@
+cell,n,method,hr5,hr10,median_rank
+1,30,vanilla,0.0,3.3,143.5
+1,30,no_memory,0.0,0.0,140.5
+1,30,frozen,0.0,0.0,171.5
+1,30,live,0.0,3.3,171.5
+1,30,live_minus_frozen_hr10_pp,,3.33,"CI [+0.00,+10.00] McNemar p=1.0000"
+2,30,vanilla,3.3,3.3,124.0
+2,30,no_memory,0.0,3.3,141.5
+2,30,frozen,0.0,3.3,147.5
+2,30,live,0.0,3.3,142.0
+2,30,live_minus_frozen_hr10_pp,,0.0,"CI [+0.00,+0.00] McNemar p=1.0000"
+3,30,vanilla,0.0,3.3,162.0
+3,30,no_memory,0.0,3.3,175.0
+3,30,frozen,0.0,3.3,216.0
+3,30,live,0.0,3.3,200.5
+3,30,live_minus_frozen_hr10_pp,,0.0,"CI [+0.00,+0.00] McNemar p=1.0000"
+4,30,vanilla,0.0,6.7,118.5
+4,30,no_memory,0.0,3.3,121.0
+4,30,frozen,0.0,3.3,108.5
+4,30,live,0.0,3.3,111.0
+4,30,live_minus_frozen_hr10_pp,,0.0,"CI [+0.00,+0.00] McNemar p=1.0000"
+5,30,vanilla,0.0,0.0,152.5
+5,30,no_memory,0.0,0.0,136.0
+5,30,frozen,0.0,0.0,133.5
+5,30,live,0.0,0.0,128.5
+5,30,live_minus_frozen_hr10_pp,,0.0,"CI [+0.00,+0.00] McNemar p=1.0000"
+6,30,vanilla,0.0,0.0,167.5
+6,30,no_memory,0.0,0.0,137.0
+6,30,frozen,0.0,0.0,155.5
+6,30,live,0.0,0.0,146.0
+6,30,live_minus_frozen_hr10_pp,,0.0,"CI [+0.00,+0.00] McNemar p=1.0000"
+7,30,vanilla,0.0,0.0,174.5
+7,30,no_memory,0.0,0.0,178.0
+7,30,frozen,0.0,0.0,171.0
+7,30,live,0.0,0.0,166.5
+7,30,live_minus_frozen_hr10_pp,,0.0,"CI [+0.00,+0.00] McNemar p=1.0000"
+8,30,vanilla,0.0,3.3,128.0
+8,30,no_memory,0.0,3.3,123.5
+8,30,frozen,3.3,3.3,135.0
+8,30,live,3.3,6.7,115.5
+8,30,live_minus_frozen_hr10_pp,,3.33,"CI [+0.00,+10.00] McNemar p=1.0000"
