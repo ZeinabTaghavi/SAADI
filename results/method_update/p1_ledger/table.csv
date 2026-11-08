@@ -1,0 +1,73 @@
+run,cell,n,method,hr5,hr10,median_rank
+run1_p1_ledger,1,30,vanilla,0.0,3.3,143.5
+run0_published,1,30,vanilla,0.0,3.3,143.5
+run1_p1_ledger,1,30,no_memory,0.0,0.0,149.0
+run0_published,1,30,no_memory,0.0,0.0,140.5
+run1_p1_ledger,1,30,frozen,0.0,0.0,156.0
+run0_published,1,30,frozen,0.0,0.0,171.5
+run1_p1_ledger,1,30,live,3.3,3.3,115.0
+run0_published,1,30,live,0.0,3.3,171.5
+run1_p1_ledger,1,30,live_minus_frozen_hr10_pp,,3.33,"CI [+0.00,+10.00] McNemar p=1.0000"
+run1_p1_ledger,2,30,vanilla,3.3,3.3,124.0
+run0_published,2,30,vanilla,3.3,3.3,124.0
+run1_p1_ledger,2,30,no_memory,0.0,3.3,133.5
+run0_published,2,30,no_memory,0.0,3.3,141.5
+run1_p1_ledger,2,30,frozen,0.0,3.3,134.5
+run0_published,2,30,frozen,0.0,3.3,147.5
+run1_p1_ledger,2,30,live,0.0,6.7,116.5
+run0_published,2,30,live,0.0,3.3,142.0
+run1_p1_ledger,2,30,live_minus_frozen_hr10_pp,,3.33,"CI [+0.00,+10.00] McNemar p=1.0000"
+run1_p1_ledger,3,30,vanilla,0.0,3.3,162.0
+run0_published,3,30,vanilla,0.0,3.3,162.0
+run1_p1_ledger,3,30,no_memory,0.0,3.3,167.5
+run0_published,3,30,no_memory,0.0,3.3,175.0
+run1_p1_ledger,3,30,frozen,0.0,6.7,173.5
+run0_published,3,30,frozen,0.0,3.3,216.0
+run1_p1_ledger,3,30,live,0.0,6.7,146.0
+run0_published,3,30,live,0.0,3.3,200.5
+run1_p1_ledger,3,30,live_minus_frozen_hr10_pp,,0.0,"CI [+0.00,+0.00] McNemar p=1.0000"
+run1_p1_ledger,4,30,vanilla,0.0,6.7,118.5
+run0_published,4,30,vanilla,0.0,6.7,118.5
+run1_p1_ledger,4,30,no_memory,0.0,3.3,104.5
+run0_published,4,30,no_memory,0.0,3.3,121.0
+run1_p1_ledger,4,30,frozen,0.0,6.7,117.5
+run0_published,4,30,frozen,0.0,3.3,108.5
+run1_p1_ledger,4,30,live,0.0,3.3,120.5
+run0_published,4,30,live,0.0,3.3,111.0
+run1_p1_ledger,4,30,live_minus_frozen_hr10_pp,,-3.33,"CI [-10.00,+0.00] McNemar p=1.0000"
+run1_p1_ledger,5,30,vanilla,0.0,0.0,152.5
+run0_published,5,30,vanilla,0.0,0.0,152.5
+run1_p1_ledger,5,30,no_memory,0.0,0.0,133.5
+run0_published,5,30,no_memory,0.0,0.0,136.0
+run1_p1_ledger,5,30,frozen,0.0,0.0,116.5
+run0_published,5,30,frozen,0.0,0.0,133.5
+run1_p1_ledger,5,30,live,0.0,0.0,116.5
+run0_published,5,30,live,0.0,0.0,128.5
+run1_p1_ledger,5,30,live_minus_frozen_hr10_pp,,0.0,"CI [+0.00,+0.00] McNemar p=1.0000"
+run1_p1_ledger,6,30,vanilla,0.0,0.0,167.5
+run0_published,6,30,vanilla,0.0,0.0,167.5
+run1_p1_ledger,6,30,no_memory,0.0,0.0,165.5
+run0_published,6,30,no_memory,0.0,0.0,137.0
+run1_p1_ledger,6,30,frozen,0.0,0.0,153.0
+run0_published,6,30,frozen,0.0,0.0,155.5
+run1_p1_ledger,6,30,live,0.0,0.0,122.5
+run0_published,6,30,live,0.0,0.0,146.0
+run1_p1_ledger,6,30,live_minus_frozen_hr10_pp,,0.0,"CI [+0.00,+0.00] McNemar p=1.0000"
+run1_p1_ledger,7,30,vanilla,0.0,0.0,174.5
+run0_published,7,30,vanilla,0.0,0.0,174.5
+run1_p1_ledger,7,30,no_memory,0.0,0.0,197.0
+run0_published,7,30,no_memory,0.0,0.0,178.0
+run1_p1_ledger,7,30,frozen,0.0,3.3,181.5
+run0_published,7,30,frozen,0.0,0.0,171.0
+run1_p1_ledger,7,30,live,3.3,3.3,111.0
+run0_published,7,30,live,0.0,0.0,166.5
+run1_p1_ledger,7,30,live_minus_frozen_hr10_pp,,0.0,"CI [+0.00,+0.00] McNemar p=1.0000"
+run1_p1_ledger,8,30,vanilla,0.0,3.3,128.0
+run0_published,8,30,vanilla,0.0,3.3,128.0
+run1_p1_ledger,8,30,no_memory,0.0,6.7,143.0
+run0_published,8,30,no_memory,0.0,3.3,123.5
+run1_p1_ledger,8,30,frozen,0.0,6.7,119.0
+run0_published,8,30,frozen,3.3,3.3,135.0
+run1_p1_ledger,8,30,live,0.0,6.7,114.0
+run0_published,8,30,live,3.3,6.7,115.5
+run1_p1_ledger,8,30,live_minus_frozen_hr10_pp,,0.0,"CI [+0.00,+0.00] McNemar p=1.0000"

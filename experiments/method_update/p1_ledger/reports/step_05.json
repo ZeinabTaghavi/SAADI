@@ -1,0 +1,63 @@
+{
+  "profile": "p1_ledger",
+  "step": 5,
+  "title": "Final report",
+  "status": "ok",
+  "commands": [
+    "bash experiments/method_update/p1_ledger/sh/05_*.sh ",
+    "assemble results/method_update/p1_ledger from the step 1-4 JSON twins and per_persona.jsonl"
+  ],
+  "numbers": {
+    "tracker_result": "Bridge 14 of 90; live HR@10 cells 1-3 6% vs frozen 3%; both names present 121/210; in prompt at reveal 82/159",
+    "tracker_conclusion": "The link formed in 14 of 90 characters of cells 1-3 (run 0: 1 of 90). Retrieval did not clearly follow.",
+    "problems": [
+      "The ledger-recall cap of 5 was hit at 1292 chunks; what was left out is logged per chunk.",
+      "120 records join names that differ only by a title (Mr./Mrs. type); see title_conflicts.jsonl.",
+      "33 SAME AS targets could not be resolved to a shown record (treated as NEW).",
+      "Links form but the text channel still wins in most cases: the fusion weights (fixed here) are the next limit."
+    ],
+    "bridge_cells_1_3": [
+      14,
+      90
+    ],
+    "both_present": [
+      121,
+      210
+    ],
+    "in_prompt": [
+      82,
+      159
+    ],
+    "recall_breakdown": {
+      "cut_by_cap": 27,
+      "not_proposed": 50,
+      "not_matched": 0
+    },
+    "merge_direction_cells_1_3": {
+      "never_joined": 39,
+      "form1_into_form2": 25,
+      "form2_into_form1": 24,
+      "no_record": 2
+    }
+  },
+  "files_written": [
+    "/home/iataghav/data/SAADI/results/method_update/p1_ledger/README.md",
+    "/home/iataghav/data/SAADI/results/method_update/p1_ledger/table.md",
+    "/home/iataghav/data/SAADI/results/method_update/p1_ledger/table.csv",
+    "/home/iataghav/data/SAADI/results/method_update/p1_ledger/REPORT_FOR_GDOC.md"
+  ],
+  "unexpected": [],
+  "versions": {
+    "python": "3.12.3",
+    "platform": "Linux-6.17.0-23-generic-x86_64-with-glibc2.39",
+    "numpy": "2.3.5",
+    "pandas": "3.0.1",
+    "yaml": "6.0.3",
+    "saadi": "0.1.0",
+    "git_commit": "51dc021549d74743f2b198481b3ef60f1270ead7",
+    "torch": "2.11.0+cu129",
+    "transformers": "4.57.6",
+    "gliner": "0.2.30",
+    "vllm": "0.23.0"
+  }
+}
