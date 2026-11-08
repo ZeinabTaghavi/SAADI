@@ -1,0 +1,66 @@
+{
+  "profile": "p1_ledger",
+  "step": 3,
+  "title": "Memory check with stubs",
+  "status": "ok",
+  "commands": [
+    "bash experiments/method_update/p1_ledger/sh/03_*.sh ",
+    "inspect /home/iataghav/data/SAADI/outputs/method_update/p1_ledger/novelhopqa_probe/indexes/68ecf44999173223/llm_cache/novelhopqa/hierarchical/branching_factor_5/chunk_500/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/index.json + ledger /home/iataghav/data/SAADI/outputs/method_update/p1_ledger/ledger with the probe's step 6 (imported) and saadi.ledger.measure"
+  ],
+  "numbers": {
+    "gate_rate": 0.15555555555555556,
+    "gate_n": 90,
+    "gate_bridged": 14,
+    "provenance": {
+      "record:both": 2260,
+      "record": 2323,
+      "both": 2260,
+      "stub:candidate_net": 428,
+      "stub": 428,
+      "candidate_net": 466,
+      "record:candidate_net": 38,
+      "record:llm": 25,
+      "llm": 25,
+      "ev:created_record": 2159,
+      "ev:aliases_added": 2557,
+      "ev:new_described": 2654,
+      "ev:same_as": 17094,
+      "ev:described_records": 12509,
+      "ev:cut_by_budget": 0,
+      "ev:described_name_was_alias": 3823,
+      "ev:described_existing": 9854,
+      "ev:description_replacements": 6359,
+      "ev:not_an_entity": 1674,
+      "ev:created_stub": 592,
+      "ev:new_stub": 592,
+      "ev:promotions": 164,
+      "ev:llm_additions": 50,
+      "ev:new_but_exists": 102,
+      "ev:same_as_unresolved": 33,
+      "ev:alias_rejected_descriptive": 3,
+      "ev:omitted_candidates": 7
+    },
+    "same_as_total": 17127,
+    "same_as_no_reason": 0,
+    "title_conflicts": 120
+  },
+  "files_written": [
+    "/home/iataghav/data/SAADI/outputs/method_update/p1_ledger/personas_memory.jsonl",
+    "/home/iataghav/data/SAADI/outputs/method_update/p1_ledger/same_as_decisions.jsonl",
+    "/home/iataghav/data/SAADI/outputs/method_update/p1_ledger/title_conflicts.jsonl"
+  ],
+  "unexpected": [],
+  "versions": {
+    "python": "3.12.3",
+    "platform": "Linux-6.17.0-23-generic-x86_64-with-glibc2.39",
+    "numpy": "2.3.5",
+    "pandas": "3.0.1",
+    "yaml": "6.0.3",
+    "saadi": "0.1.0",
+    "git_commit": "4e7bbd36476e82f4d55a5f98fa1641bfe13898eb",
+    "torch": "2.11.0+cu129",
+    "transformers": "4.57.6",
+    "gliner": "0.2.30",
+    "vllm": "0.23.0"
+  }
+}
