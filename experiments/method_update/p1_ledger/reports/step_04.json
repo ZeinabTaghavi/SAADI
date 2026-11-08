@@ -1,0 +1,315 @@
+{
+  "profile": "p1_ledger",
+  "step": 4,
+  "title": "Retrieve and score",
+  "status": "ok",
+  "commands": [
+    "bash experiments/method_update/p1_ledger/sh/04_*.sh ",
+    "score_mbr_variant_document_pools + combine (published settings) per persona; frozen via saadi.rebuttal.frozen_records with saadi.ledger.measure annotations; vanilla = the text channel alone"
+  ],
+  "numbers": {
+    "cells": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "cell5_zero": true,
+    "cell4_not_below_cells_1_3": true,
+    "live_minus_frozen_cells_1_3": {
+      "mean_pp": 2.2222222222222223,
+      "ci_lo": 0.0,
+      "ci_hi": 5.555555555555555,
+      "discordant_a_only": 2,
+      "discordant_b_only": 0,
+      "mcnemar_p": 0.5
+    },
+    "per_cell": {
+      "1": {
+        "n": 30,
+        "hr10_vanilla": 3.3333333333333335,
+        "hr10_no_memory": 0.0,
+        "hr10_frozen": 0.0,
+        "hr10_live": 3.3333333333333335,
+        "hr5_vanilla": 0.0,
+        "hr5_no_memory": 0.0,
+        "hr5_frozen": 0.0,
+        "hr5_live": 3.3333333333333335,
+        "median_vanilla": 143.5,
+        "median_no_memory": 149.0,
+        "median_frozen": 156.0,
+        "median_live": 115.0,
+        "live_minus_frozen": {
+          "mean_pp": 3.3333333333333335,
+          "ci_lo": 0.0,
+          "ci_hi": 10.0,
+          "discordant_a_only": 1,
+          "discordant_b_only": 0,
+          "mcnemar_p": 1.0
+        },
+        "run0": {
+          "hr10_vanilla": 3.3333333333333335,
+          "hr10_no_memory": 0.0,
+          "hr10_frozen": 0.0,
+          "hr10_live": 3.3333333333333335,
+          "median_vanilla": 143.5,
+          "median_no_memory": 140.5,
+          "median_frozen": 171.5,
+          "median_live": 171.5
+        }
+      },
+      "2": {
+        "n": 30,
+        "hr10_vanilla": 3.3333333333333335,
+        "hr10_no_memory": 3.3333333333333335,
+        "hr10_frozen": 3.3333333333333335,
+        "hr10_live": 6.666666666666667,
+        "hr5_vanilla": 3.3333333333333335,
+        "hr5_no_memory": 0.0,
+        "hr5_frozen": 0.0,
+        "hr5_live": 0.0,
+        "median_vanilla": 124.0,
+        "median_no_memory": 133.5,
+        "median_frozen": 134.5,
+        "median_live": 116.5,
+        "live_minus_frozen": {
+          "mean_pp": 3.3333333333333335,
+          "ci_lo": 0.0,
+          "ci_hi": 10.0,
+          "discordant_a_only": 1,
+          "discordant_b_only": 0,
+          "mcnemar_p": 1.0
+        },
+        "run0": {
+          "hr10_vanilla": 3.3333333333333335,
+          "hr10_no_memory": 3.3333333333333335,
+          "hr10_frozen": 3.3333333333333335,
+          "hr10_live": 3.3333333333333335,
+          "median_vanilla": 124.0,
+          "median_no_memory": 141.5,
+          "median_frozen": 147.5,
+          "median_live": 142.0
+        }
+      },
+      "3": {
+        "n": 30,
+        "hr10_vanilla": 3.3333333333333335,
+        "hr10_no_memory": 3.3333333333333335,
+        "hr10_frozen": 6.666666666666667,
+        "hr10_live": 6.666666666666667,
+        "hr5_vanilla": 0.0,
+        "hr5_no_memory": 0.0,
+        "hr5_frozen": 0.0,
+        "hr5_live": 0.0,
+        "median_vanilla": 162.0,
+        "median_no_memory": 167.5,
+        "median_frozen": 173.5,
+        "median_live": 146.0,
+        "live_minus_frozen": {
+          "mean_pp": 0.0,
+          "ci_lo": 0.0,
+          "ci_hi": 0.0,
+          "discordant_a_only": 0,
+          "discordant_b_only": 0,
+          "mcnemar_p": 1.0
+        },
+        "run0": {
+          "hr10_vanilla": 3.3333333333333335,
+          "hr10_no_memory": 3.3333333333333335,
+          "hr10_frozen": 3.3333333333333335,
+          "hr10_live": 3.3333333333333335,
+          "median_vanilla": 162.0,
+          "median_no_memory": 175.0,
+          "median_frozen": 216.0,
+          "median_live": 200.5
+        }
+      },
+      "4": {
+        "n": 30,
+        "hr10_vanilla": 6.666666666666667,
+        "hr10_no_memory": 3.3333333333333335,
+        "hr10_frozen": 6.666666666666667,
+        "hr10_live": 3.3333333333333335,
+        "hr5_vanilla": 0.0,
+        "hr5_no_memory": 0.0,
+        "hr5_frozen": 0.0,
+        "hr5_live": 0.0,
+        "median_vanilla": 118.5,
+        "median_no_memory": 104.5,
+        "median_frozen": 117.5,
+        "median_live": 120.5,
+        "live_minus_frozen": {
+          "mean_pp": -3.3333333333333335,
+          "ci_lo": -10.0,
+          "ci_hi": 0.0,
+          "discordant_a_only": 0,
+          "discordant_b_only": 1,
+          "mcnemar_p": 1.0
+        },
+        "run0": {
+          "hr10_vanilla": 6.666666666666667,
+          "hr10_no_memory": 3.3333333333333335,
+          "hr10_frozen": 3.3333333333333335,
+          "hr10_live": 3.3333333333333335,
+          "median_vanilla": 118.5,
+          "median_no_memory": 121.0,
+          "median_frozen": 108.5,
+          "median_live": 111.0
+        }
+      },
+      "5": {
+        "n": 30,
+        "hr10_vanilla": 0.0,
+        "hr10_no_memory": 0.0,
+        "hr10_frozen": 0.0,
+        "hr10_live": 0.0,
+        "hr5_vanilla": 0.0,
+        "hr5_no_memory": 0.0,
+        "hr5_frozen": 0.0,
+        "hr5_live": 0.0,
+        "median_vanilla": 152.5,
+        "median_no_memory": 133.5,
+        "median_frozen": 116.5,
+        "median_live": 116.5,
+        "live_minus_frozen": {
+          "mean_pp": 0.0,
+          "ci_lo": 0.0,
+          "ci_hi": 0.0,
+          "discordant_a_only": 0,
+          "discordant_b_only": 0,
+          "mcnemar_p": 1.0
+        },
+        "run0": {
+          "hr10_vanilla": 0.0,
+          "hr10_no_memory": 0.0,
+          "hr10_frozen": 0.0,
+          "hr10_live": 0.0,
+          "median_vanilla": 152.5,
+          "median_no_memory": 136.0,
+          "median_frozen": 133.5,
+          "median_live": 128.5
+        }
+      },
+      "6": {
+        "n": 30,
+        "hr10_vanilla": 0.0,
+        "hr10_no_memory": 0.0,
+        "hr10_frozen": 0.0,
+        "hr10_live": 0.0,
+        "hr5_vanilla": 0.0,
+        "hr5_no_memory": 0.0,
+        "hr5_frozen": 0.0,
+        "hr5_live": 0.0,
+        "median_vanilla": 167.5,
+        "median_no_memory": 165.5,
+        "median_frozen": 153.0,
+        "median_live": 122.5,
+        "live_minus_frozen": {
+          "mean_pp": 0.0,
+          "ci_lo": 0.0,
+          "ci_hi": 0.0,
+          "discordant_a_only": 0,
+          "discordant_b_only": 0,
+          "mcnemar_p": 1.0
+        },
+        "run0": {
+          "hr10_vanilla": 0.0,
+          "hr10_no_memory": 0.0,
+          "hr10_frozen": 0.0,
+          "hr10_live": 0.0,
+          "median_vanilla": 167.5,
+          "median_no_memory": 137.0,
+          "median_frozen": 155.5,
+          "median_live": 146.0
+        }
+      },
+      "7": {
+        "n": 30,
+        "hr10_vanilla": 0.0,
+        "hr10_no_memory": 0.0,
+        "hr10_frozen": 3.3333333333333335,
+        "hr10_live": 3.3333333333333335,
+        "hr5_vanilla": 0.0,
+        "hr5_no_memory": 0.0,
+        "hr5_frozen": 0.0,
+        "hr5_live": 3.3333333333333335,
+        "median_vanilla": 174.5,
+        "median_no_memory": 197.0,
+        "median_frozen": 181.5,
+        "median_live": 111.0,
+        "live_minus_frozen": {
+          "mean_pp": 0.0,
+          "ci_lo": 0.0,
+          "ci_hi": 0.0,
+          "discordant_a_only": 0,
+          "discordant_b_only": 0,
+          "mcnemar_p": 1.0
+        },
+        "run0": {
+          "hr10_vanilla": 0.0,
+          "hr10_no_memory": 0.0,
+          "hr10_frozen": 0.0,
+          "hr10_live": 0.0,
+          "median_vanilla": 174.5,
+          "median_no_memory": 178.0,
+          "median_frozen": 171.0,
+          "median_live": 166.5
+        }
+      },
+      "8": {
+        "n": 30,
+        "hr10_vanilla": 3.3333333333333335,
+        "hr10_no_memory": 6.666666666666667,
+        "hr10_frozen": 6.666666666666667,
+        "hr10_live": 6.666666666666667,
+        "hr5_vanilla": 0.0,
+        "hr5_no_memory": 0.0,
+        "hr5_frozen": 0.0,
+        "hr5_live": 0.0,
+        "median_vanilla": 128.0,
+        "median_no_memory": 143.0,
+        "median_frozen": 119.0,
+        "median_live": 114.0,
+        "live_minus_frozen": {
+          "mean_pp": 0.0,
+          "ci_lo": 0.0,
+          "ci_hi": 0.0,
+          "discordant_a_only": 0,
+          "discordant_b_only": 0,
+          "mcnemar_p": 1.0
+        },
+        "run0": {
+          "hr10_vanilla": 3.3333333333333335,
+          "hr10_no_memory": 3.3333333333333335,
+          "hr10_frozen": 3.3333333333333335,
+          "hr10_live": 6.666666666666667,
+          "median_vanilla": 128.0,
+          "median_no_memory": 123.5,
+          "median_frozen": 135.0,
+          "median_live": 115.5
+        }
+      }
+    }
+  },
+  "files_written": [
+    "/home/iataghav/data/SAADI/outputs/method_update/p1_ledger/per_persona.jsonl"
+  ],
+  "unexpected": [],
+  "versions": {
+    "python": "3.12.3",
+    "platform": "Linux-6.17.0-23-generic-x86_64-with-glibc2.39",
+    "numpy": "2.3.5",
+    "pandas": "3.0.1",
+    "yaml": "6.0.3",
+    "saadi": "0.1.0",
+    "git_commit": "7d6f9b6214931734473c528f1f283498d2cabc5b",
+    "torch": "2.11.0+cu129",
+    "transformers": "4.57.6",
+    "gliner": "0.2.30",
+    "vllm": "0.23.0"
+  }
+}
