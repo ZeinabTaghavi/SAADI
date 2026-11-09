@@ -1,0 +1,2399 @@
+{
+  "group": "A",
+  "dry_run": false,
+  "started_at": "2026-11-09 12:30:24",
+  "host": "eee-s132-infsys-gpu03",
+  "argv": [
+    "python3",
+    "scripts/rebuttal/c2_heldout_fusion.py",
+    "--group",
+    "A"
+  ],
+  "analysis_only": false,
+  "unexpected": [
+    "loogle__qwen:\nTraceback (most recent call last):\n  File \"/mnt/data/zeinab/SAADI/scripts/rebuttal/c2_heldout_fusion.py\", line 428, in run_worker\n    summary = hf.run_stream_job(\n              ^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 634, in run_stream_job\n    docs, used_rows, timings = compute_job_streams(dataset, retriever, paths=paths, max_docs=max_docs, log=log)\n                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 396, in compute_job_streams\n    doc = _score_document(document_index, by_doc[doc_id], retriever)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 322, in _score_document\n    streams = score_mbr_variant_document_pools(\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retrieval_methods/mbr.py\", line 1137, in score_mbr_variant_document_pools\n    text_scores = _score_pool(\n                  ^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retrieval_methods/mbr.py\", line 725, in _score_pool\n    encoded_pool = build_encoded_text_pool(\n                   ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/scoring.py\", line 120, in build_encoded_text_pool\n    retriever = Retriever(corpus=text_list, chunk_ids=id_list, **kwargs)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<string>\", line 15, in __init__\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/hf_embedding.py\", line 99, in __post_init__\n    self._corpus_embeddings = self._encode_texts(self.corpus, text_kind=\"document\")\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/hf_embedding.py\", line 327, in _encode_texts\n    model_output = self._model(**encoded)\n                   ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/generic.py\", line 1072, in wrapper\n    outputs = func(self, *args, **kwargs)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 410, in forward\n    hidden_states = decoder_layer(\n                    ^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/modeling_layers.py\", line 94, in __call__\n    return super().__call__(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/deprecation.py\", line 172, in wrapped_func\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 275, in forward\n    hidden_states = self.mlp(hidden_states)\n                    ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 82, in forward\n    down_proj = self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))\n                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.50 GiB. GPU 0 has a total capacity of 47.40 GiB of which 294.25 MiB is free. Including non-PyTorch memory, this process has 47.11 GiB memory in use. Of the allocated memory 41.70 GiB is allocated by PyTorch, and 5.10 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)\n",
+    "qasper_64k__qwen:\nTraceback (most recent call last):\n  File \"/mnt/data/zeinab/SAADI/scripts/rebuttal/c2_heldout_fusion.py\", line 428, in run_worker\n    summary = hf.run_stream_job(\n              ^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 634, in run_stream_job\n    docs, used_rows, timings = compute_job_streams(dataset, retriever, paths=paths, max_docs=max_docs, log=log)\n                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 396, in compute_job_streams\n    doc = _score_document(document_index, by_doc[doc_id], retriever)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 322, in _score_document\n    streams = score_mbr_variant_document_pools(\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retrieval_methods/mbr.py\", line 1137, in score_mbr_variant_document_pools\n    text_scores = _score_pool(\n                  ^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retrieval_methods/mbr.py\", line 725, in _score_pool\n    encoded_pool = build_encoded_text_pool(\n                   ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/scoring.py\", line 120, in build_encoded_text_pool\n    retriever = Retriever(corpus=text_list, chunk_ids=id_list, **kwargs)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<string>\", line 15, in __init__\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/hf_embedding.py\", line 99, in __post_init__\n    self._corpus_embeddings = self._encode_texts(self.corpus, text_kind=\"document\")\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/hf_embedding.py\", line 327, in _encode_texts\n    model_output = self._model(**encoded)\n                   ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/generic.py\", line 1072, in wrapper\n    outputs = func(self, *args, **kwargs)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 410, in forward\n    hidden_states = decoder_layer(\n                    ^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/modeling_layers.py\", line 94, in __call__\n    return super().__call__(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/deprecation.py\", line 172, in wrapped_func\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 275, in forward\n    hidden_states = self.mlp(hidden_states)\n                    ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 82, in forward\n    down_proj = self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))\n                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.38 GiB. GPU 0 has a total capacity of 47.40 GiB of which 478.25 MiB is free. Including non-PyTorch memory, this process has 46.93 GiB memory in use. Of the allocated memory 43.01 GiB is allocated by PyTorch, and 3.61 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)\n"
+  ],
+  "files": [
+    "outputs/rebuttal/C2_heldout_fusion/plan.json",
+    "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bm25.parquet",
+    "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bm25.queries.json",
+    "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bm25.check.json",
+    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bm25.parquet",
+    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bm25.queries.json",
+    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bm25.check.json",
+    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bge_m3.parquet",
+    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bge_m3.queries.json",
+    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bge_m3.check.json",
+    "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bge_m3.parquet",
+    "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bge_m3.queries.json",
+    "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bge_m3.check.json",
+    "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__contriever.parquet",
+    "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__contriever.queries.json",
+    "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__contriever.check.json",
+    "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bge_m3.parquet",
+    "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bge_m3.queries.json",
+    "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bge_m3.check.json",
+    "experiments/rebuttal/C2_heldout_fusion/reports/group_A.md",
+    "experiments/rebuttal/C2_heldout_fusion/reports/group_A.json"
+  ],
+  "preflight": {
+    "ok": true,
+    "problems": [],
+    "warnings": [],
+    "python": {
+      "executable": "/mnt/data/zeinab/raptor/.venv/bin/python3",
+      "version": "3.12.3"
+    },
+    "modules": {
+      "numpy": "2.3.5",
+      "pandas": "3.0.1",
+      "pyarrow": "23.0.1",
+      "tqdm": "4.68.2",
+      "torch": "2.11.0+cu129",
+      "transformers": "4.57.6",
+      "matplotlib": "3.10.8"
+    },
+    "torch_cuda": {
+      "available": true,
+      "cuda_version": "12.9"
+    },
+    "git": {
+      "commit": "1ecb54c278bdfd82c731f1aea140d25768497d63",
+      "branch": "fix/notebook-key-and-install",
+      "code_changes_vs_commit": []
+    },
+    "hf_home": "/mnt/cache/taghavi",
+    "gpus": [
+      {
+        "index": 0,
+        "name": "NVIDIA RTX A6000",
+        "memory_used_mib": 4.0,
+        "memory_total_mib": 49140.0
+      },
+      {
+        "index": 1,
+        "name": "NVIDIA RTX A6000",
+        "memory_used_mib": 4.0,
+        "memory_total_mib": 49140.0
+      },
+      {
+        "index": 2,
+        "name": "NVIDIA RTX A6000",
+        "memory_used_mib": 4.0,
+        "memory_total_mib": 49140.0
+      },
+      {
+        "index": 3,
+        "name": "NVIDIA RTX A6000",
+        "memory_used_mib": 4.0,
+        "memory_total_mib": 49140.0
+      }
+    ],
+    "expected_metrics": "outputs/saadi/reference/expected_metrics.json",
+    "inputs_missing": [],
+    "models": {
+      "BAAI/bge-m3": "in cache",
+      "facebook/contriever": "in cache",
+      "jinaai/jina-embeddings-v3": "in cache",
+      "Qwen/Qwen3-Embedding-8B": "in cache"
+    },
+    "disk": {
+      "path": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion",
+      "free_gb": 4286.0,
+      "needed_gb_estimate": 6.7
+    }
+  },
+  "plan": {
+    "created_at": "2026-11-09 12:34:30",
+    "created_by_group": "A",
+    "commit": "1ecb54c278bdfd82c731f1aea140d25768497d63",
+    "dry_run": false,
+    "max_docs": null,
+    "cost_basis": {
+      "how": "estimated from model sizes (no timing run): seconds = model load + (estimated document tokens x 2 x parameters) / effective FLOP/s + 5 query encodings per query x per-call latency + CPU combination time",
+      "tokens": "characters / 4 per text, capped at the model's max_length, + 2 special tokens",
+      "effective_tflops_fp32": 10.0,
+      "cpu_seconds_per_query_chunk": 0.00015,
+      "models": {
+        "contriever": {
+          "hf_id": "facebook/contriever",
+          "params_m": 110,
+          "max_length": 512,
+          "batch_size": 128,
+          "load_s": 20,
+          "query_call_s": 0.008
+        },
+        "bge_m3": {
+          "hf_id": "BAAI/bge-m3",
+          "params_m": 568,
+          "max_length": 8192,
+          "batch_size": 16,
+          "load_s": 40,
+          "query_call_s": 0.015
+        },
+        "jina": {
+          "hf_id": "jinaai/jina-embeddings-v3",
+          "params_m": 572,
+          "max_length": 512,
+          "batch_size": 64,
+          "load_s": 60,
+          "query_call_s": 0.02
+        },
+        "qwen": {
+          "hf_id": "Qwen/Qwen3-Embedding-8B",
+          "params_m": 7570,
+          "max_length": 512,
+          "batch_size": 64,
+          "load_s": 240,
+          "query_call_s": 0.06
+        }
+      },
+      "memory": "weights in float32 (the adapters pass no dtype); every model fits on one 48 GB A6000 (largest: Qwen3-Embedding-8B, about 28 GB of weights), so every job gets one GPU",
+      "note": "estimates, not measurements; per-job times measured in this run are in the group reports"
+    },
+    "counts": {
+      "loogle": {
+        "n_docs": 105,
+        "queries": 1832,
+        "query_chunks": 62471,
+        "texts": 53237,
+        "tokens_512": 2514071.75,
+        "tokens_8192": 3291257.0,
+        "pools": {
+          "chunks": 3346,
+          "names": 11636,
+          "aliases": 13982,
+          "descriptions": 23654,
+          "summaries": 619
+        }
+      },
+      "musique_32k": {
+        "n_docs": 45,
+        "queries": 900,
+        "query_chunks": 342176,
+        "texts": 220546,
+        "tokens_512": 4889883.25,
+        "tokens_8192": 4889883.25,
+        "pools": {
+          "chunks": 17102,
+          "names": 45064,
+          "aliases": 57401,
+          "descriptions": 97576,
+          "summaries": 3403
+        }
+      },
+      "qasper_64k": {
+        "n_docs": 23,
+        "queries": 1333,
+        "query_chunks": 992410,
+        "texts": 166915,
+        "tokens_512": 4837778.25,
+        "tokens_8192": 4837778.25,
+        "pools": {
+          "chunks": 17159,
+          "names": 30007,
+          "aliases": 47060,
+          "descriptions": 69267,
+          "summaries": 3422
+        }
+      },
+      "novelhopqa": {
+        "n_docs": 16,
+        "queries": 908,
+        "query_chunks": 418611,
+        "texts": 79610,
+        "tokens_512": 4670155.5,
+        "tokens_8192": 5809984.0,
+        "pools": {
+          "chunks": 7011,
+          "names": 6253,
+          "aliases": 10976,
+          "descriptions": 53973,
+          "summaries": 1397
+        }
+      }
+    },
+    "jobs": [
+      {
+        "job": "loogle__bm25",
+        "dataset": "loogle",
+        "retriever": "bm25",
+        "texts_to_embed": 55069,
+        "doc_texts": 53237,
+        "queries": 1832,
+        "query_encodes": 9160,
+        "stream_rows": 62471,
+        "device": "cpu",
+        "n_gpus": 0,
+        "est_seconds": 9.37065,
+        "est_basis": "CPU: query x chunk pairs x CPU_SECONDS_PER_QUERY_CHUNK",
+        "group": "B"
+      },
+      {
+        "job": "loogle__contriever",
+        "dataset": "loogle",
+        "retriever": "contriever",
+        "texts_to_embed": 55069,
+        "doc_texts": 53237,
+        "queries": 1832,
+        "query_encodes": 9160,
+        "stream_rows": 62471,
+        "device": "gpu",
+        "n_gpus": 1,
+        "model": "facebook/contriever",
+        "weights_gb_fp32": 0.4,
+        "fits_one_a6000": true,
+        "est_tokens": 2514072,
+        "est_seconds": 157.96022850000003,
+        "est_parts_seconds": {
+          "load": 20,
+          "encode_documents": 55,
+          "encode_queries": 73,
+          "cpu_combine": 9
+        },
+        "est_basis": "load + doc tokens x 2 x params / effective FLOP/s + 5 query calls per query x latency + CPU part",
+        "group": "B"
+      },
+      {
+        "job": "loogle__bge_m3",
+        "dataset": "loogle",
+        "retriever": "bge_m3",
+        "texts_to_embed": 55069,
+        "doc_texts": 53237,
+        "queries": 1832,
+        "query_encodes": 9160,
+        "stream_rows": 62471,
+        "device": "gpu",
+        "n_gpus": 1,
+        "model": "BAAI/bge-m3",
+        "weights_gb_fp32": 2.1,
+        "fits_one_a6000": true,
+        "est_tokens": 3291257,
+        "est_seconds": 560.6574452,
+        "est_parts_seconds": {
+          "load": 40,
+          "encode_documents": 374,
+          "encode_queries": 137,
+          "cpu_combine": 9
+        },
+        "est_basis": "load + doc tokens x 2 x params / effective FLOP/s + 5 query calls per query x latency + CPU part",
+        "group": "B"
+      },
+      {
+        "job": "loogle__jina",
+        "dataset": "loogle",
+        "retriever": "jina",
+        "texts_to_embed": 55069,
+        "doc_texts": 53237,
+        "queries": 1832,
+        "query_encodes": 9160,
+        "stream_rows": 62471,
+        "device": "gpu",
+        "n_gpus": 1,
+        "model": "jinaai/jina-embeddings-v3",
+        "weights_gb_fp32": 2.1,
+        "fits_one_a6000": true,
+        "est_tokens": 2514072,
+        "est_seconds": 540.1804582,
+        "est_parts_seconds": {
+          "load": 60,
+          "encode_documents": 288,
+          "encode_queries": 183,
+          "cpu_combine": 9
+        },
+        "est_basis": "load + doc tokens x 2 x params / effective FLOP/s + 5 query calls per query x latency + CPU part",
+        "group": "A"
+      },
+      {
+        "job": "loogle__qwen",
+        "dataset": "loogle",
+        "retriever": "qwen",
+        "texts_to_embed": 55069,
+        "doc_texts": 53237,
+        "queries": 1832,
+        "query_encodes": 9160,
+        "stream_rows": 62471,
+        "device": "gpu",
+        "n_gpus": 1,
+        "model": "Qwen/Qwen3-Embedding-8B",
+        "weights_gb_fp32": 28.2,
+        "fits_one_a6000": true,
+        "est_tokens": 2514072,
+        "est_seconds": 4605.2752795,
+        "est_parts_seconds": {
+          "load": 240,
+          "encode_documents": 3806,
+          "encode_queries": 550,
+          "cpu_combine": 9
+        },
+        "est_basis": "load + doc tokens x 2 x params / effective FLOP/s + 5 query calls per query x latency + CPU part",
+        "group": "A"
+      },
+      {
+        "job": "musique_32k__bm25",
+        "dataset": "musique_32k",
+        "retriever": "bm25",
+        "texts_to_embed": 221446,
+        "doc_texts": 220546,
+        "queries": 900,
+        "query_encodes": 4500,
+        "stream_rows": 342176,
+        "device": "cpu",
+        "n_gpus": 0,
+        "est_seconds": 51.32639999999999,
+        "est_basis": "CPU: query x chunk pairs x CPU_SECONDS_PER_QUERY_CHUNK",
+        "group": "B"
+      },
+      {
+        "job": "musique_32k__contriever",
+        "dataset": "musique_32k",
+        "retriever": "contriever",
+        "texts_to_embed": 221446,
+        "doc_texts": 220546,
+        "queries": 900,
+        "query_encodes": 4500,
+        "stream_rows": 342176,
+        "device": "gpu",
+        "n_gpus": 1,
+        "model": "facebook/contriever",
+        "weights_gb_fp32": 0.4,
+        "fits_one_a6000": true,
+        "est_tokens": 4889883,
+        "est_seconds": 214.90383149999997,
+        "est_parts_seconds": {
+          "load": 20,
+          "encode_documents": 108,
+          "encode_queries": 36,
+          "cpu_combine": 51
+        },
+        "est_basis": "load + doc tokens x 2 x params / effective FLOP/s + 5 query calls per query x latency + CPU part",
+        "group": "A"
+      },
+      {
+        "job": "musique_32k__bge_m3",
+        "dataset": "musique_32k",
+        "retriever": "bge_m3",
+        "texts_to_embed": 221446,
+        "doc_texts": 220546,
+        "queries": 900,
+        "query_encodes": 4500,
+        "stream_rows": 342176,
+        "device": "gpu",
+        "n_gpus": 1,
+        "model": "BAAI/bge-m3",
+        "weights_gb_fp32": 2.1,
+        "fits_one_a6000": true,
+        "est_tokens": 4889883,
+        "est_seconds": 714.3171372,
+        "est_parts_seconds": {
+          "load": 40,
+          "encode_documents": 555,
+          "encode_queries": 68,
+          "cpu_combine": 51
+        },
+        "est_basis": "load + doc tokens x 2 x params / effective FLOP/s + 5 query calls per query x latency + CPU part",
+        "group": "A"
+      },
+      {
+        "job": "musique_32k__jina",
+        "dataset": "musique_32k",
+        "retriever": "jina",
+        "texts_to_embed": 221446,
+        "doc_texts": 220546,
+        "queries": 900,
+        "query_encodes": 4500,
+        "stream_rows": 342176,
+        "device": "gpu",
+        "n_gpus": 1,
+        "model": "jinaai/jina-embeddings-v3",
+        "weights_gb_fp32": 2.1,
+        "fits_one_a6000": true,
+        "est_tokens": 4889883,
+        "est_seconds": 760.7290438,
+        "est_parts_seconds": {
+          "load": 60,
+          "encode_documents": 559,
+          "encode_queries": 90,
+          "cpu_combine": 51
+        },
+        "est_basis": "load + doc tokens x 2 x params / effective FLOP/s + 5 query calls per query x latency + CPU part",
+        "group": "A"
+      },
+      {
+        "job": "musique_32k__qwen",
+        "dataset": "musique_32k",
+        "retriever": "qwen",
+        "texts_to_embed": 221446,
+        "doc_texts": 220546,
+        "queries": 900,
+        "query_encodes": 4500,
+        "stream_rows": 342176,
+        "device": "gpu",
+        "n_gpus": 1,
+        "model": "Qwen/Qwen3-Embedding-8B",
+        "weights_gb_fp32": 28.2,
+        "fits_one_a6000": true,
+        "est_tokens": 4889883,
+        "est_seconds": 7964.6096405,
+        "est_parts_seconds": {
+          "load": 240,
+          "encode_documents": 7403,
+          "encode_queries": 270,
+          "cpu_combine": 51
+        },
+        "est_basis": "load + doc tokens x 2 x params / effective FLOP/s + 5 query calls per query x latency + CPU part",
+        "group": "B"
+      },
+      {
+        "job": "qasper_64k__bm25",
+        "dataset": "qasper_64k",
+        "retriever": "bm25",
+        "texts_to_embed": 168248,
+        "doc_texts": 166915,
+        "queries": 1333,
+        "query_encodes": 6665,
+        "stream_rows": 992410,
+        "device": "cpu",
+        "n_gpus": 0,
+        "est_seconds": 148.86149999999998,
+        "est_basis": "CPU: query x chunk pairs x CPU_SECONDS_PER_QUERY_CHUNK",
+        "group": "A"
+      },
+      {
+        "job": "qasper_64k__contriever",
+        "dataset": "qasper_64k",
+        "retriever": "contriever",
+        "texts_to_embed": 168248,
+        "doc_texts": 166915,
+        "queries": 1333,
+        "query_encodes": 6665,
+        "stream_rows": 992410,
+        "device": "gpu",
+        "n_gpus": 1,
+        "model": "facebook/contriever",
+        "weights_gb_fp32": 0.4,
+        "fits_one_a6000": true,
+        "est_tokens": 4837778,
+        "est_seconds": 328.6126215,
+        "est_parts_seconds": {
+          "load": 20,
+          "encode_documents": 106,
+          "encode_queries": 53,
+          "cpu_combine": 149
+        },
+        "est_basis": "load + doc tokens x 2 x params / effective FLOP/s + 5 query calls per query x latency + CPU part",
+        "group": "B"
+      },
+      {
+        "job": "qasper_64k__bge_m3",
+        "dataset": "qasper_64k",
+        "retriever": "bge_m3",
+        "texts_to_embed": 168248,
+        "doc_texts": 166915,
+        "queries": 1333,
+        "query_encodes": 6665,
+        "stream_rows": 992410,
+        "device": "gpu",
+        "n_gpus": 1,
+        "model": "BAAI/bge-m3",
+        "weights_gb_fp32": 2.1,
+        "fits_one_a6000": true,
+        "est_tokens": 4837778,
+        "est_seconds": 838.4081092,
+        "est_parts_seconds": {
+          "load": 40,
+          "encode_documents": 550,
+          "encode_queries": 100,
+          "cpu_combine": 149
+        },
+        "est_basis": "load + doc tokens x 2 x params / effective FLOP/s + 5 query calls per query x latency + CPU part",
+        "group": "A"
+      },
+      {
+        "job": "qasper_64k__jina",
+        "dataset": "qasper_64k",
+        "retriever": "jina",
+        "texts_to_embed": 168248,
+        "doc_texts": 166915,
+        "queries": 1333,
+        "query_encodes": 6665,
+        "stream_rows": 992410,
+        "device": "gpu",
+        "n_gpus": 1,
+        "model": "jinaai/jina-embeddings-v3",
+        "weights_gb_fp32": 2.1,
+        "fits_one_a6000": true,
+        "est_tokens": 4837778,
+        "est_seconds": 895.6033318,
+        "est_parts_seconds": {
+          "load": 60,
+          "encode_documents": 553,
+          "encode_queries": 133,
+          "cpu_combine": 149
+        },
+        "est_basis": "load + doc tokens x 2 x params / effective FLOP/s + 5 query calls per query x latency + CPU part",
+        "group": "A"
+      },
+      {
+        "job": "qasper_64k__qwen",
+        "dataset": "qasper_64k",
+        "retriever": "qwen",
+        "texts_to_embed": 168248,
+        "doc_texts": 166915,
+        "queries": 1333,
+        "query_encodes": 6665,
+        "stream_rows": 992410,
+        "device": "gpu",
+        "n_gpus": 1,
+        "model": "Qwen/Qwen3-Embedding-8B",
+        "weights_gb_fp32": 28.2,
+        "fits_one_a6000": true,
+        "est_tokens": 4837778,
+        "est_seconds": 8113.1577705,
+        "est_parts_seconds": {
+          "load": 240,
+          "encode_documents": 7324,
+          "encode_queries": 400,
+          "cpu_combine": 149
+        },
+        "est_basis": "load + doc tokens x 2 x params / effective FLOP/s + 5 query calls per query x latency + CPU part",
+        "group": "A"
+      },
+      {
+        "job": "novelhopqa__bm25",
+        "dataset": "novelhopqa",
+        "retriever": "bm25",
+        "texts_to_embed": 80518,
+        "doc_texts": 79610,
+        "queries": 908,
+        "query_encodes": 4540,
+        "stream_rows": 418611,
+        "device": "cpu",
+        "n_gpus": 0,
+        "est_seconds": 62.79165,
+        "est_basis": "CPU: query x chunk pairs x CPU_SECONDS_PER_QUERY_CHUNK",
+        "group": "A"
+      },
+      {
+        "job": "novelhopqa__contriever",
+        "dataset": "novelhopqa",
+        "retriever": "contriever",
+        "texts_to_embed": 80518,
+        "doc_texts": 79610,
+        "queries": 908,
+        "query_encodes": 4540,
+        "stream_rows": 418611,
+        "device": "gpu",
+        "n_gpus": 1,
+        "model": "facebook/contriever",
+        "weights_gb_fp32": 0.4,
+        "fits_one_a6000": true,
+        "est_tokens": 4670156,
+        "est_seconds": 221.855071,
+        "est_parts_seconds": {
+          "load": 20,
+          "encode_documents": 103,
+          "encode_queries": 36,
+          "cpu_combine": 63
+        },
+        "est_basis": "load + doc tokens x 2 x params / effective FLOP/s + 5 query calls per query x latency + CPU part",
+        "group": "B"
+      },
+      {
+        "job": "novelhopqa__bge_m3",
+        "dataset": "novelhopqa",
+        "retriever": "bge_m3",
+        "texts_to_embed": 80518,
+        "doc_texts": 79610,
+        "queries": 908,
+        "query_encodes": 4540,
+        "stream_rows": 418611,
+        "device": "gpu",
+        "n_gpus": 1,
+        "model": "BAAI/bge-m3",
+        "weights_gb_fp32": 2.1,
+        "fits_one_a6000": true,
+        "est_tokens": 5809984,
+        "est_seconds": 830.9058324,
+        "est_parts_seconds": {
+          "load": 40,
+          "encode_documents": 660,
+          "encode_queries": 68,
+          "cpu_combine": 63
+        },
+        "est_basis": "load + doc tokens x 2 x params / effective FLOP/s + 5 query calls per query x latency + CPU part",
+        "group": "A"
+      },
+      {
+        "job": "novelhopqa__jina",
+        "dataset": "novelhopqa",
+        "retriever": "jina",
+        "texts_to_embed": 80518,
+        "doc_texts": 79610,
+        "queries": 908,
+        "query_encodes": 4540,
+        "stream_rows": 418611,
+        "device": "gpu",
+        "n_gpus": 1,
+        "model": "jinaai/jina-embeddings-v3",
+        "weights_gb_fp32": 2.1,
+        "fits_one_a6000": true,
+        "est_tokens": 4670156,
+        "est_seconds": 747.8574391999999,
+        "est_parts_seconds": {
+          "load": 60,
+          "encode_documents": 534,
+          "encode_queries": 91,
+          "cpu_combine": 63
+        },
+        "est_basis": "load + doc tokens x 2 x params / effective FLOP/s + 5 query calls per query x latency + CPU part",
+        "group": "B"
+      },
+      {
+        "job": "novelhopqa__qwen",
+        "dataset": "novelhopqa",
+        "retriever": "qwen",
+        "texts_to_embed": 80518,
+        "doc_texts": 79610,
+        "queries": 908,
+        "query_encodes": 4540,
+        "stream_rows": 418611,
+        "device": "gpu",
+        "n_gpus": 1,
+        "model": "Qwen/Qwen3-Embedding-8B",
+        "weights_gb_fp32": 28.2,
+        "fits_one_a6000": true,
+        "est_tokens": 4670156,
+        "est_seconds": 7645.8070769999995,
+        "est_parts_seconds": {
+          "load": 240,
+          "encode_documents": 7071,
+          "encode_queries": 272,
+          "cpu_combine": 63
+        },
+        "est_basis": "load + doc tokens x 2 x params / effective FLOP/s + 5 query calls per query x latency + CPU part",
+        "group": "B"
+      }
+    ],
+    "groups": {
+      "A": {
+        "gpus": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "jobs": [
+          "qasper_64k__qwen",
+          "loogle__qwen",
+          "qasper_64k__jina",
+          "qasper_64k__bge_m3",
+          "novelhopqa__bge_m3",
+          "musique_32k__jina",
+          "musique_32k__bge_m3",
+          "loogle__jina",
+          "musique_32k__contriever",
+          "qasper_64k__bm25",
+          "novelhopqa__bm25"
+        ],
+        "gpu_seconds": 17513,
+        "est_wall_seconds": 8113
+      },
+      "B": {
+        "gpus": [
+          4,
+          5,
+          6,
+          7
+        ],
+        "jobs": [
+          "musique_32k__qwen",
+          "novelhopqa__qwen",
+          "novelhopqa__jina",
+          "loogle__bge_m3",
+          "qasper_64k__contriever",
+          "novelhopqa__contriever",
+          "loogle__contriever",
+          "musique_32k__bm25",
+          "loogle__bm25"
+        ],
+        "gpu_seconds": 17627,
+        "est_wall_seconds": 7965
+      }
+    },
+    "analysis_est_seconds": 697,
+    "seconds_to_build": 242.1
+  },
+  "plan_written": true,
+  "jobs": {
+    "novelhopqa__bm25": {
+      "status": "DONE",
+      "seconds": 140.00284385681152,
+      "summary": {
+        "job": "novelhopqa__bm25",
+        "dataset": "novelhopqa",
+        "retriever": "bm25",
+        "max_docs": null,
+        "timings": {
+          "n_docs": 16,
+          "docs_from_checkpoint": 0,
+          "seconds_scoring": 127.4428304862231,
+          "seconds_total": 127.44477667682804
+        },
+        "check": {
+          "dataset": "novelhopqa",
+          "retriever": "bm25",
+          "n_queries": 908,
+          "full_dataset": true,
+          "identical_top10": 908,
+          "identical_top10_share": 1.0,
+          "hr_ours_published": {
+            "eligible": 908,
+            "hits": {
+              "5": 164,
+              "10": 200
+            },
+            "hr_percent": {
+              "5": 18.06167400881057,
+              "10": 22.026431718061673
+            }
+          },
+          "hr_saved": {
+            "eligible": 908,
+            "hits": {
+              "5": 164,
+              "10": 200
+            },
+            "hr_percent": {
+              "5": 18.06167400881057,
+              "10": 22.026431718061673
+            }
+          },
+          "max_abs_score_diff_identical_rankings": 0.0,
+          "mismatch_examples": [],
+          "expected_metrics": {
+            "5": {
+              "eligible": 908,
+              "hits": 164,
+              "hr_percent": 18.06167400881057
+            },
+            "10": {
+              "eligible": 908,
+              "hits": 200,
+              "hr_percent": 22.026431718061673
+            }
+          },
+          "text_only": {
+            "hr": {
+              "eligible": 908,
+              "hits": {
+                "5": 159,
+                "10": 188
+              },
+              "hr_percent": {
+                "5": 17.51101321585903,
+                "10": 20.704845814977972
+              }
+            },
+            "reported_percent": {
+              "5": 16.9,
+              "10": 20.0
+            },
+            "diff_points": {
+              "5": 0.6110132158590318,
+              "10": 0.7048458149779719
+            },
+            "per_query_file": "outputs/novelhopqa_ablation/500_tokens/llm_cache/novelhopqa/hierarchical/branching_factor_5/chunk_500/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/retrieval_reports/retrieval_results__bm25__mbr_lt1_ln0_lh0_norm_none__per_document.json",
+            "per_query_identical_top10": 908,
+            "passed": false,
+            "notes": [
+              "text-only HR@5 17.51 vs Table 1 Vanilla 16.9 (tolerance 0.05)",
+              "text-only HR@10 20.70 vs Table 1 Vanilla 20.0 (tolerance 0.05)"
+            ]
+          },
+          "anomalies": [],
+          "problems": [],
+          "passed": true
+        },
+        "finished_at": "2026-11-09 12:36:38",
+        "stream_rows": 418611,
+        "files": [
+          "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bm25.parquet",
+          "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bm25.queries.json",
+          "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bm25.check.json"
+        ],
+        "status": "DONE",
+        "seconds": 129.91778968810104
+      }
+    },
+    "qasper_64k__bm25": {
+      "status": "DONE",
+      "seconds": 210.0053427219391,
+      "summary": {
+        "job": "qasper_64k__bm25",
+        "dataset": "qasper_64k",
+        "retriever": "bm25",
+        "max_docs": null,
+        "timings": {
+          "n_docs": 23,
+          "docs_from_checkpoint": 0,
+          "seconds_scoring": 203.35439657163806,
+          "seconds_total": 203.356652187882
+        },
+        "check": {
+          "dataset": "qasper_64k",
+          "retriever": "bm25",
+          "n_queries": 1333,
+          "full_dataset": true,
+          "identical_top10": 1333,
+          "identical_top10_share": 1.0,
+          "hr_ours_published": {
+            "eligible": 1333,
+            "hits": {
+              "5": 226,
+              "10": 348
+            },
+            "hr_percent": {
+              "5": 16.954238559639908,
+              "10": 26.106526631657918
+            }
+          },
+          "hr_saved": {
+            "eligible": 1333,
+            "hits": {
+              "5": 226,
+              "10": 348
+            },
+            "hr_percent": {
+              "5": 16.954238559639908,
+              "10": 26.106526631657918
+            }
+          },
+          "max_abs_score_diff_identical_rankings": 0.0,
+          "mismatch_examples": [],
+          "expected_metrics": {
+            "5": {
+              "eligible": 1333,
+              "hits": 226,
+              "hr_percent": 16.954238559639908
+            },
+            "10": {
+              "eligible": 1333,
+              "hits": 348,
+              "hr_percent": 26.106526631657918
+            }
+          },
+          "text_only": {
+            "hr": {
+              "eligible": 1333,
+              "hits": {
+                "5": 192,
+                "10": 294
+              },
+              "hr_percent": {
+                "5": 14.403600900225054,
+                "10": 22.05551387846962
+              }
+            },
+            "reported_percent": {
+              "5": 14.4,
+              "10": 22.1
+            },
+            "diff_points": {
+              "5": 0.0036009002250541045,
+              "10": -0.044486121530383116
+            },
+            "passed": true,
+            "notes": []
+          },
+          "anomalies": [],
+          "problems": [],
+          "passed": true
+        },
+        "finished_at": "2026-11-09 12:37:54",
+        "stream_rows": 992410,
+        "files": [
+          "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bm25.parquet",
+          "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bm25.queries.json",
+          "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bm25.check.json"
+        ],
+        "status": "DONE",
+        "seconds": 207.81025716499425
+      }
+    },
+    "loogle__qwen": {
+      "status": "ERROR",
+      "seconds": 430.01296162605286,
+      "summary": {
+        "job": "loogle__qwen",
+        "status": "ERROR",
+        "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/zeinab/SAADI/scripts/rebuttal/c2_heldout_fusion.py\", line 428, in run_worker\n    summary = hf.run_stream_job(\n              ^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 634, in run_stream_job\n    docs, used_rows, timings = compute_job_streams(dataset, retriever, paths=paths, max_docs=max_docs, log=log)\n                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 396, in compute_job_streams\n    doc = _score_document(document_index, by_doc[doc_id], retriever)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 322, in _score_document\n    streams = score_mbr_variant_document_pools(\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retrieval_methods/mbr.py\", line 1137, in score_mbr_variant_document_pools\n    text_scores = _score_pool(\n                  ^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retrieval_methods/mbr.py\", line 725, in _score_pool\n    encoded_pool = build_encoded_text_pool(\n                   ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/scoring.py\", line 120, in build_encoded_text_pool\n    retriever = Retriever(corpus=text_list, chunk_ids=id_list, **kwargs)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<string>\", line 15, in __init__\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/hf_embedding.py\", line 99, in __post_init__\n    self._corpus_embeddings = self._encode_texts(self.corpus, text_kind=\"document\")\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/hf_embedding.py\", line 327, in _encode_texts\n    model_output = self._model(**encoded)\n                   ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/generic.py\", line 1072, in wrapper\n    outputs = func(self, *args, **kwargs)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 410, in forward\n    hidden_states = decoder_layer(\n                    ^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/modeling_layers.py\", line 94, in __call__\n    return super().__call__(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/deprecation.py\", line 172, in wrapped_func\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 275, in forward\n    hidden_states = self.mlp(hidden_states)\n                    ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 82, in forward\n    down_proj = self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))\n                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.50 GiB. GPU 0 has a total capacity of 47.40 GiB of which 294.25 MiB is free. Including non-PyTorch memory, this process has 47.11 GiB memory in use. Of the allocated memory 41.70 GiB is allocated by PyTorch, and 5.10 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)\n",
+        "finished_at": "2026-11-09 12:41:35"
+      }
+    },
+    "qasper_64k__jina": {
+      "status": "FAILED",
+      "seconds": 520.0168437957764,
+      "summary": {
+        "job": "qasper_64k__jina",
+        "dataset": "qasper_64k",
+        "retriever": "jina",
+        "max_docs": null,
+        "timings": {
+          "n_docs": 23,
+          "docs_from_checkpoint": 0,
+          "seconds_scoring": 481.0608789410908,
+          "seconds_total": 481.06342788995244
+        },
+        "check": {
+          "dataset": "qasper_64k",
+          "retriever": "jina",
+          "n_queries": 1333,
+          "full_dataset": true,
+          "identical_top10": 927,
+          "identical_top10_share": 0.695423855963991,
+          "hr_ours_published": {
+            "eligible": 1333,
+            "hits": {
+              "5": 251,
+              "10": 361
+            },
+            "hr_percent": {
+              "5": 18.829707426856714,
+              "10": 27.081770442610654
+            }
+          },
+          "hr_saved": {
+            "eligible": 1333,
+            "hits": {
+              "5": 252,
+              "10": 362
+            },
+            "hr_percent": {
+              "5": 18.904726181545385,
+              "10": 27.156789197299325
+            }
+          },
+          "max_abs_score_diff_identical_rankings": 0.05339982381023889,
+          "mismatch_examples": [
+            {
+              "query_id": "0",
+              "doc_id": "group_013",
+              "saved_top10": [
+                "group_013:393",
+                "group_013:666",
+                "group_013:588",
+                "group_013:620",
+                "group_013:646",
+                "group_013:649",
+                "group_013:667",
+                "group_013:674",
+                "group_013:648",
+                "group_013:587"
+              ],
+              "saved_scores": [
+                3.1575028777292404,
+                2.4763050977650116,
+                2.437243459976009,
+                2.401405414195527,
+                2.2543814981402908,
+                2.2211353726584315,
+                2.0261689462579158,
+                2.020767488795535,
+                1.9959292766750774,
+                1.9760035275122634
+              ],
+              "ours_top10": [
+                "group_013:393",
+                "group_013:666",
+                "group_013:588",
+                "group_013:620",
+                "group_013:646",
+                "group_013:649",
+                "group_013:674",
+                "group_013:667",
+                "group_013:648",
+                "group_013:587"
+              ],
+              "ours_scores": [
+                3.1582434048330814,
+                2.47114069698153,
+                2.4336366009790433,
+                2.3977830105663847,
+                2.25512213954769,
+                2.2219281805751665,
+                2.0261958770165536,
+                2.0209126703566906,
+                1.996696082147107,
+                1.9723738732307514
+              ]
+            },
+            {
+              "query_id": "2",
+              "doc_id": "group_013",
+              "saved_top10": [
+                "group_013:670",
+                "group_013:379",
+                "group_013:368",
+                "group_013:361",
+                "group_013:717",
+                "group_013:691",
+                "group_013:365",
+                "group_013:255",
+                "group_013:362",
+                "group_013:374"
+              ],
+              "saved_scores": [
+                3.0650506000539703,
+                2.2479177221614,
+                2.1817156544635306,
+                2.090277701565572,
+                2.0316838515692783,
+                2.0018207601545255,
+                1.9922462165281158,
+                1.9856539255915475,
+                1.9853698605636214,
+                1.98149652041312
+              ],
+              "ours_top10": [
+                "group_013:670",
+                "group_013:379",
+                "group_013:368",
+                "group_013:361",
+                "group_013:717",
+                "group_013:691",
+                "group_013:365",
+                "group_013:255",
+                "group_013:362",
+                "group_013:253"
+              ],
+              "ours_scores": [
+                3.075132384687455,
+                2.24717784529756,
+                2.1814334066503296,
+                2.089964560441893,
+                2.0312102853349985,
+                2.006217320719021,
+                1.9919379455990884,
+                1.9854267381980506,
+                1.985045250873303,
+                1.9829157031448525
+              ]
+            },
+            {
+              "query_id": "3",
+              "doc_id": "group_013",
+              "saved_top10": [
+                "group_013:381",
+                "group_013:368",
+                "group_013:364",
+                "group_013:365",
+                "group_013:360",
+                "group_013:618",
+                "group_013:376",
+                "group_013:371",
+                "group_013:383",
+                "group_013:379"
+              ],
+              "saved_scores": [
+                3.539210623601808,
+                2.744250694469344,
+                2.7422675117781075,
+                2.695027971075497,
+                2.6813279097842786,
+                2.660685498721752,
+                2.620601040092372,
+                2.616545301490406,
+                2.451292626441149,
+                2.419645895362266
+              ],
+              "ours_top10": [
+                "group_013:381",
+                "group_013:364",
+                "group_013:368",
+                "group_013:365",
+                "group_013:360",
+                "group_013:618",
+                "group_013:376",
+                "group_013:371",
+                "group_013:383",
+                "group_013:379"
+              ],
+              "ours_scores": [
+                3.53964065304926,
+                2.7466286390764383,
+                2.7442748840020736,
+                2.6998309980337596,
+                2.681452554656194,
+                2.660939709592265,
+                2.6204051324062125,
+                2.616621512476947,
+                2.4560521305437084,
+                2.4196506610294874
+              ]
+            },
+            {
+              "query_id": "47",
+              "doc_id": "group_013",
+              "saved_top10": [
+                "group_013:142",
+                "group_013:152",
+                "group_013:149",
+                "group_013:167",
+                "group_013:169",
+                "group_013:151",
+                "group_013:145",
+                "group_013:140",
+                "group_013:143",
+                "group_013:147"
+              ],
+              "saved_scores": [
+                3.7207114892355038,
+                3.334398377085467,
+                3.176058519094485,
+                3.0621852149668634,
+                2.896399556286171,
+                2.8456154166388146,
+                2.7955342014006592,
+                2.7674897366780105,
+                2.7377627106744598,
+                2.6909888314916324
+              ],
+              "ours_top10": [
+                "group_013:142",
+                "group_013:152",
+                "group_013:149",
+                "group_013:167",
+                "group_013:169",
+                "group_013:151",
+                "group_013:140",
+                "group_013:145",
+                "group_013:143",
+                "group_013:171"
+              ],
+              "ours_scores": [
+                3.7216472033260395,
+                3.335227612688862,
+                3.170339123774584,
+                3.0630222476330373,
+                2.897066503350441,
+                2.8426287755079254,
+                2.768183562841153,
+                2.7629037966856638,
+                2.736462063174694,
+                2.6867120339081603
+              ]
+            },
+            {
+              "query_id": "212",
+              "doc_id": "group_013",
+              "saved_top10": [
+                "group_013:675",
+                "group_013:548",
+                "group_013:67",
+                "group_013:395",
+                "group_013:676",
+                "group_013:674",
+                "group_013:551",
+                "group_013:671",
+                "group_013:372",
+                "group_013:252"
+              ],
+              "saved_scores": [
+                2.527309731326896,
+                2.403871576240181,
+                2.1159286854729844,
+                2.0872020050564384,
+                2.0003226182273472,
+                1.8745720074427141,
+                1.8531237960511953,
+                1.8079065356396675,
+                1.8034495740522423,
+                1.7444378172031698
+              ],
+              "ours_top10": [
+                "group_013:675",
+                "group_013:548",
+                "group_013:67",
+                "group_013:395",
+                "group_013:676",
+                "group_013:674",
+                "group_013:551",
+                "group_013:671",
+                "group_013:372",
+                "group_013:550"
+              ],
+              "ours_scores": [
+                2.5265319935527613,
+                2.4042348912032123,
+                2.115519073546706,
+                2.0919550296139438,
+                1.9995460342427058,
+                1.8797217819459224,
+                1.8581468688376435,
+                1.8130765604263073,
+                1.8030808477534002,
+                1.7485917486972682
+              ]
+            }
+          ],
+          "expected_metrics": {
+            "5": {
+              "eligible": 1333,
+              "hits": 252,
+              "hr_percent": 18.904726181545385
+            },
+            "10": {
+              "eligible": 1333,
+              "hits": 362,
+              "hr_percent": 27.156789197299325
+            }
+          },
+          "text_only": {
+            "hr": {
+              "eligible": 1333,
+              "hits": {
+                "5": 213,
+                "10": 333
+              },
+              "hr_percent": {
+                "5": 15.978994748687173,
+                "10": 24.981245311327832
+              }
+            },
+            "reported_percent": {
+              "5": 15.7,
+              "10": 24.8
+            },
+            "diff_points": {
+              "5": 0.27899474868717355,
+              "10": 0.18124531132783162
+            },
+            "passed": false,
+            "notes": [
+              "text-only HR@5 15.98 vs Table 1 Vanilla 15.7 (tolerance 0.15)",
+              "text-only HR@10 24.98 vs Table 1 Vanilla 24.8 (tolerance 0.15)"
+            ]
+          },
+          "anomalies": [],
+          "problems": [
+            "identical top-10 for 927/1333 queries (< 99%)"
+          ],
+          "passed": false
+        },
+        "finished_at": "2026-11-09 12:42:32",
+        "quarantined_rows": 992410,
+        "status": "FAILED",
+        "seconds": 510.0851783580147
+      }
+    },
+    "qasper_64k__qwen": {
+      "status": "ERROR",
+      "seconds": 810.026522397995,
+      "summary": {
+        "job": "qasper_64k__qwen",
+        "status": "ERROR",
+        "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/zeinab/SAADI/scripts/rebuttal/c2_heldout_fusion.py\", line 428, in run_worker\n    summary = hf.run_stream_job(\n              ^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 634, in run_stream_job\n    docs, used_rows, timings = compute_job_streams(dataset, retriever, paths=paths, max_docs=max_docs, log=log)\n                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 396, in compute_job_streams\n    doc = _score_document(document_index, by_doc[doc_id], retriever)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 322, in _score_document\n    streams = score_mbr_variant_document_pools(\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retrieval_methods/mbr.py\", line 1137, in score_mbr_variant_document_pools\n    text_scores = _score_pool(\n                  ^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retrieval_methods/mbr.py\", line 725, in _score_pool\n    encoded_pool = build_encoded_text_pool(\n                   ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/scoring.py\", line 120, in build_encoded_text_pool\n    retriever = Retriever(corpus=text_list, chunk_ids=id_list, **kwargs)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<string>\", line 15, in __init__\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/hf_embedding.py\", line 99, in __post_init__\n    self._corpus_embeddings = self._encode_texts(self.corpus, text_kind=\"document\")\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/hf_embedding.py\", line 327, in _encode_texts\n    model_output = self._model(**encoded)\n                   ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/generic.py\", line 1072, in wrapper\n    outputs = func(self, *args, **kwargs)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 410, in forward\n    hidden_states = decoder_layer(\n                    ^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/modeling_layers.py\", line 94, in __call__\n    return super().__call__(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/deprecation.py\", line 172, in wrapped_func\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 275, in forward\n    hidden_states = self.mlp(hidden_states)\n                    ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 82, in forward\n    down_proj = self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))\n                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.38 GiB. GPU 0 has a total capacity of 47.40 GiB of which 478.25 MiB is free. Including non-PyTorch memory, this process has 46.93 GiB memory in use. Of the allocated memory 43.01 GiB is allocated by PyTorch, and 3.61 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)\n",
+        "finished_at": "2026-11-09 12:47:51"
+      }
+    },
+    "qasper_64k__bge_m3": {
+      "status": "DONE",
+      "seconds": 950.0293729305267,
+      "summary": {
+        "job": "qasper_64k__bge_m3",
+        "dataset": "qasper_64k",
+        "retriever": "bge_m3",
+        "max_docs": null,
+        "timings": {
+          "n_docs": 23,
+          "docs_from_checkpoint": 0,
+          "seconds_scoring": 940.526235157391,
+          "seconds_total": 940.5288755828515
+        },
+        "check": {
+          "dataset": "qasper_64k",
+          "retriever": "bge_m3",
+          "n_queries": 1333,
+          "full_dataset": true,
+          "identical_top10": 1333,
+          "identical_top10_share": 1.0,
+          "hr_ours_published": {
+            "eligible": 1333,
+            "hits": {
+              "5": 279,
+              "10": 412
+            },
+            "hr_percent": {
+              "5": 20.930232558139537,
+              "10": 30.90772693173293
+            }
+          },
+          "hr_saved": {
+            "eligible": 1333,
+            "hits": {
+              "5": 279,
+              "10": 412
+            },
+            "hr_percent": {
+              "5": 20.930232558139537,
+              "10": 30.90772693173293
+            }
+          },
+          "max_abs_score_diff_identical_rankings": 0.0,
+          "mismatch_examples": [],
+          "expected_metrics": {
+            "5": {
+              "eligible": 1333,
+              "hits": 279,
+              "hr_percent": 20.930232558139537
+            },
+            "10": {
+              "eligible": 1333,
+              "hits": 412,
+              "hr_percent": 30.90772693173293
+            }
+          },
+          "text_only": {
+            "hr": {
+              "eligible": 1333,
+              "hits": {
+                "5": 280,
+                "10": 391
+              },
+              "hr_percent": {
+                "5": 21.005251312828207,
+                "10": 29.332333083270818
+              }
+            },
+            "reported_percent": {
+              "5": 21.0,
+              "10": 29.3
+            },
+            "diff_points": {
+              "5": 0.005251312828207233,
+              "10": 0.0323330832708173
+            },
+            "passed": true,
+            "notes": []
+          },
+          "anomalies": [],
+          "problems": [],
+          "passed": true
+        },
+        "finished_at": "2026-11-09 12:50:11",
+        "stream_rows": 992410,
+        "files": [
+          "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bge_m3.parquet",
+          "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bge_m3.queries.json",
+          "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bge_m3.check.json"
+        ],
+        "status": "DONE",
+        "seconds": 945.0496366189327
+      }
+    },
+    "musique_32k__jina": {
+      "status": "FAILED",
+      "seconds": 420.0118443965912,
+      "summary": {
+        "job": "musique_32k__jina",
+        "dataset": "musique_32k",
+        "retriever": "jina",
+        "max_docs": null,
+        "timings": {
+          "n_docs": 45,
+          "docs_from_checkpoint": 0,
+          "seconds_scoring": 411.89343509753235,
+          "seconds_total": 411.8978610918857
+        },
+        "check": {
+          "dataset": "musique_32k",
+          "retriever": "jina",
+          "n_queries": 900,
+          "full_dataset": true,
+          "identical_top10": 705,
+          "identical_top10_share": 0.7833333333333333,
+          "hr_ours_published": {
+            "eligible": 900,
+            "hits": {
+              "5": 662,
+              "10": 793
+            },
+            "hr_percent": {
+              "5": 73.55555555555556,
+              "10": 88.1111111111111
+            }
+          },
+          "hr_saved": {
+            "eligible": 900,
+            "hits": {
+              "5": 659,
+              "10": 793
+            },
+            "hr_percent": {
+              "5": 73.22222222222223,
+              "10": 88.1111111111111
+            }
+          },
+          "max_abs_score_diff_identical_rankings": 0.055125373085629814,
+          "mismatch_examples": [
+            {
+              "query_id": "1210",
+              "doc_id": "group_036",
+              "saved_top10": [
+                "group_036:52",
+                "group_036:53",
+                "group_036:71",
+                "group_036:47",
+                "group_036:69",
+                "group_036:46",
+                "group_036:48",
+                "group_036:51",
+                "group_036:54",
+                "group_036:68"
+              ],
+              "saved_scores": [
+                3.7107016045278547,
+                3.6867404738227525,
+                3.4323317243572427,
+                3.3528860335514223,
+                3.2612530159506496,
+                3.2570415107310136,
+                3.0707236839503023,
+                3.0121729572153293,
+                2.9640100468739394,
+                2.944635767534626
+              ],
+              "ours_top10": [
+                "group_036:52",
+                "group_036:53",
+                "group_036:71",
+                "group_036:47",
+                "group_036:46",
+                "group_036:69",
+                "group_036:48",
+                "group_036:51",
+                "group_036:54",
+                "group_036:68"
+              ],
+              "ours_scores": [
+                3.7092504798536514,
+                3.6852913584967593,
+                3.428042455410323,
+                3.3610365460096827,
+                3.2652000605821145,
+                3.2642484656743527,
+                3.0692568928430366,
+                3.001938173497918,
+                2.9719904302461284,
+                2.9432849973315345
+              ]
+            },
+            {
+              "query_id": "1379",
+              "doc_id": "group_036",
+              "saved_top10": [
+                "group_036:25",
+                "group_036:24",
+                "group_036:22",
+                "group_036:23",
+                "group_036:371",
+                "group_036:391",
+                "group_036:385",
+                "group_036:367",
+                "group_036:31",
+                "group_036:387"
+              ],
+              "saved_scores": [
+                3.2927311750297585,
+                3.120123441228146,
+                2.8436938921205357,
+                2.7220397622388606,
+                2.582795834272941,
+                2.582492526980254,
+                2.5808447490748714,
+                2.4967219027136203,
+                2.330461728914931,
+                2.2746286444122394
+              ],
+              "ours_top10": [
+                "group_036:25",
+                "group_036:24",
+                "group_036:22",
+                "group_036:23",
+                "group_036:385",
+                "group_036:371",
+                "group_036:391",
+                "group_036:367",
+                "group_036:31",
+                "group_036:387"
+              ],
+              "ours_scores": [
+                3.2918568655055642,
+                3.110872758422934,
+                2.8346059054216752,
+                2.71290381273562,
+                2.580322707563649,
+                2.577576816735031,
+                2.577285797618765,
+                2.4961323541491875,
+                2.3381316437151383,
+                2.2743211617641776
+              ]
+            },
+            {
+              "query_id": "2033",
+              "doc_id": "group_036",
+              "saved_top10": [
+                "group_036:245",
+                "group_036:224",
+                "group_036:246",
+                "group_036:225",
+                "group_036:236",
+                "group_036:249",
+                "group_036:244",
+                "group_036:60",
+                "group_036:247",
+                "group_036:237"
+              ],
+              "saved_scores": [
+                3.707621570090157,
+                3.321128976404121,
+                2.975653749245039,
+                2.5858340079628563,
+                2.5155980896540218,
+                2.474050311586501,
+                2.402929143706441,
+                2.3283823196473628,
+                2.2506021260780322,
+                2.1752683911276045
+              ],
+              "ours_top10": [
+                "group_036:245",
+                "group_036:224",
+                "group_036:246",
+                "group_036:225",
+                "group_036:236",
+                "group_036:249",
+                "group_036:244",
+                "group_036:60",
+                "group_036:247",
+                "group_036:226"
+              ],
+              "ours_scores": [
+                3.717212754788,
+                3.3261978293998116,
+                2.9756381996764136,
+                2.5957531090288675,
+                2.5202981409418728,
+                2.4741049609346506,
+                2.403282179431733,
+                2.334406062762482,
+                2.239918142148157,
+                2.169428018269247
+              ]
+            },
+            {
+              "query_id": "52",
+              "doc_id": "group_026",
+              "saved_top10": [
+                "group_026:178",
+                "group_026:169",
+                "group_026:175",
+                "group_026:171",
+                "group_026:177",
+                "group_026:168",
+                "group_026:182",
+                "group_026:243",
+                "group_026:172",
+                "group_026:174"
+              ],
+              "saved_scores": [
+                5.723738621008705,
+                3.007115607765977,
+                2.6968872833747164,
+                2.580851700817197,
+                2.53419996025527,
+                2.412914494048507,
+                2.349410094786843,
+                2.097823633875728,
+                1.9136472916303813,
+                1.9114566989381334
+              ],
+              "ours_top10": [
+                "group_026:178",
+                "group_026:169",
+                "group_026:175",
+                "group_026:171",
+                "group_026:177",
+                "group_026:168",
+                "group_026:182",
+                "group_026:243",
+                "group_026:174",
+                "group_026:172"
+              ],
+              "ours_scores": [
+                5.722071011452916,
+                3.007626093137678,
+                2.703722258010337,
+                2.577975725505265,
+                2.534223552849169,
+                2.413042794703755,
+                2.355983826727316,
+                2.0973522718232323,
+                1.9183879822559111,
+                1.9135749930723254
+              ]
+            },
+            {
+              "query_id": "215",
+              "doc_id": "group_026",
+              "saved_top10": [
+                "group_026:271",
+                "group_026:266",
+                "group_026:267",
+                "group_026:268",
+                "group_026:275",
+                "group_026:323",
+                "group_026:364",
+                "group_026:273",
+                "group_026:276",
+                "group_026:362"
+              ],
+              "saved_scores": [
+                3.368761648393983,
+                3.060984599459262,
+                2.8821168317673767,
+                2.569306920282254,
+                2.56408304956789,
+                2.3944018993308602,
+                2.306771215040434,
+                2.1079826527072916,
+                2.1026220945512195,
+                2.0209025642772005
+              ],
+              "ours_top10": [
+                "group_026:271",
+                "group_026:266",
+                "group_026:267",
+                "group_026:268",
+                "group_026:275",
+                "group_026:323",
+                "group_026:364",
+                "group_026:276",
+                "group_026:273",
+                "group_026:362"
+              ],
+              "ours_scores": [
+                3.371458089824581,
+                3.0506221765782175,
+                2.8835297712830634,
+                2.5713704288184878,
+                2.5662264600395774,
+                2.3888788901791633,
+                2.29039611137572,
+                2.1033935381144286,
+                2.097746784228036,
+                2.0224790408611355
+              ]
+            }
+          ],
+          "expected_metrics": {
+            "5": {
+              "eligible": 900,
+              "hits": 659,
+              "hr_percent": 73.22222222222223
+            },
+            "10": {
+              "eligible": 900,
+              "hits": 793,
+              "hr_percent": 88.1111111111111
+            }
+          },
+          "text_only": {
+            "hr": {
+              "eligible": 900,
+              "hits": {
+                "5": 645,
+                "10": 772
+              },
+              "hr_percent": {
+                "5": 71.66666666666667,
+                "10": 85.77777777777777
+              }
+            },
+            "reported_percent": {
+              "5": 71.6,
+              "10": 85.8
+            },
+            "diff_points": {
+              "5": 0.06666666666667709,
+              "10": -0.022222222222225696
+            },
+            "passed": true,
+            "notes": []
+          },
+          "anomalies": [],
+          "problems": [
+            "identical top-10 for 705/900 queries (< 99%)",
+            "HR@5 73.55555555555556 vs saved 73.22222222222223 (tolerance 0.1 points)",
+            "HR@5 73.56 vs expected 73.22"
+          ],
+          "passed": false
+        },
+        "finished_at": "2026-11-09 12:50:12",
+        "quarantined_rows": 342176,
+        "status": "FAILED",
+        "seconds": 413.48721989104524
+      }
+    },
+    "novelhopqa__bge_m3": {
+      "status": "DONE",
+      "seconds": 667.9381349086761,
+      "summary": {
+        "job": "novelhopqa__bge_m3",
+        "dataset": "novelhopqa",
+        "retriever": "bge_m3",
+        "max_docs": null,
+        "timings": {
+          "n_docs": 16,
+          "docs_from_checkpoint": 0,
+          "seconds_scoring": 634.186044904869,
+          "seconds_total": 634.1881030451041
+        },
+        "check": {
+          "dataset": "novelhopqa",
+          "retriever": "bge_m3",
+          "n_queries": 908,
+          "full_dataset": true,
+          "identical_top10": 908,
+          "identical_top10_share": 1.0,
+          "hr_ours_published": {
+            "eligible": 908,
+            "hits": {
+              "5": 150,
+              "10": 201
+            },
+            "hr_percent": {
+              "5": 16.519823788546255,
+              "10": 22.136563876651984
+            }
+          },
+          "hr_saved": {
+            "eligible": 908,
+            "hits": {
+              "5": 150,
+              "10": 201
+            },
+            "hr_percent": {
+              "5": 16.519823788546255,
+              "10": 22.136563876651984
+            }
+          },
+          "max_abs_score_diff_identical_rankings": 0.0,
+          "mismatch_examples": [],
+          "expected_metrics": {
+            "5": {
+              "eligible": 908,
+              "hits": 150,
+              "hr_percent": 16.519823788546255
+            },
+            "10": {
+              "eligible": 908,
+              "hits": 201,
+              "hr_percent": 22.136563876651984
+            }
+          },
+          "text_only": {
+            "hr": {
+              "eligible": 908,
+              "hits": {
+                "5": 157,
+                "10": 199
+              },
+              "hr_percent": {
+                "5": 17.290748898678416,
+                "10": 21.916299559471366
+              }
+            },
+            "reported_percent": {
+              "5": 14.1,
+              "10": 20.7
+            },
+            "diff_points": {
+              "5": 3.1907488986784163,
+              "10": 1.2162995594713664
+            },
+            "passed": false,
+            "notes": [
+              "text-only HR@5 17.29 vs Table 1 Vanilla 14.1 (tolerance 0.15)",
+              "text-only HR@10 21.92 vs Table 1 Vanilla 20.7 (tolerance 0.15)"
+            ]
+          },
+          "anomalies": [],
+          "problems": [],
+          "passed": true
+        },
+        "finished_at": "2026-11-09 12:52:25",
+        "stream_rows": 418611,
+        "files": [
+          "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bge_m3.parquet",
+          "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bge_m3.queries.json",
+          "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bge_m3.check.json"
+        ],
+        "status": "DONE",
+        "seconds": 636.1375717909541
+      }
+    },
+    "loogle__jina": {
+      "status": "FAILED",
+      "seconds": 257.9232277870178,
+      "summary": {
+        "job": "loogle__jina",
+        "dataset": "loogle",
+        "retriever": "jina",
+        "max_docs": null,
+        "timings": {
+          "n_docs": 105,
+          "docs_from_checkpoint": 0,
+          "seconds_scoring": 250.2282782443799,
+          "seconds_total": 250.23750444804318
+        },
+        "check": {
+          "dataset": "loogle",
+          "retriever": "jina",
+          "n_queries": 1832,
+          "full_dataset": true,
+          "identical_top10": 1519,
+          "identical_top10_share": 0.8291484716157205,
+          "hr_ours_published": {
+            "eligible": 1832,
+            "hits": {
+              "5": 1286,
+              "10": 1502
+            },
+            "hr_percent": {
+              "5": 70.19650655021834,
+              "10": 81.98689956331879
+            }
+          },
+          "hr_saved": {
+            "eligible": 1832,
+            "hits": {
+              "5": 1285,
+              "10": 1502
+            },
+            "hr_percent": {
+              "5": 70.14192139737992,
+              "10": 81.98689956331879
+            }
+          },
+          "max_abs_score_diff_identical_rankings": 0.07244930224727211,
+          "mismatch_examples": [
+            {
+              "query_id": "13",
+              "doc_id": "5984f759-6d02-4c94-858c-b4ca561ca5e5",
+              "saved_top10": [
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:20",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:7",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:9",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:1",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:17",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:3",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:8",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:18",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:15",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:14"
+              ],
+              "saved_scores": [
+                1.549544564247661,
+                1.1095411211860697,
+                0.8306690736239161,
+                0.6350769495500802,
+                0.6035463843673733,
+                0.598949362754733,
+                0.5916358899992131,
+                0.5390167919211435,
+                0.5014119150003635,
+                0.4678215391795815
+              ],
+              "ours_top10": [
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:20",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:7",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:9",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:1",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:3",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:17",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:8",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:18",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:15",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:14"
+              ],
+              "ours_scores": [
+                1.5479895089761233,
+                1.1094102577818536,
+                0.8305382102197,
+                0.6282736431909881,
+                0.5988656054436511,
+                0.5967430780082812,
+                0.591505026594997,
+                0.5374146305564713,
+                0.5004331419197323,
+                0.4791984240528848
+              ]
+            },
+            {
+              "query_id": "14",
+              "doc_id": "5984f759-6d02-4c94-858c-b4ca561ca5e5",
+              "saved_top10": [
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:13",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:2",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:10",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:9",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:14",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:1",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:8",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:7",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:30",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:0"
+              ],
+              "saved_scores": [
+                1.584393294444953,
+                1.5778046627123397,
+                0.9695855189522391,
+                0.6614056264280908,
+                0.5892498238974616,
+                0.5846504227681047,
+                0.5679943167214802,
+                0.5004629759269784,
+                0.38615663773918313,
+                0.3848040058703638
+              ],
+              "ours_top10": [
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:13",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:2",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:10",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:9",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:14",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:1",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:8",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:7",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:0",
+                "5984f759-6d02-4c94-858c-b4ca561ca5e5:30"
+              ],
+              "ours_scores": [
+                1.5844794241856057,
+                1.5783874833874996,
+                0.9696876941609153,
+                0.66149389556448,
+                0.5893466506167966,
+                0.584704461572711,
+                0.5680954222322881,
+                0.5005640814377864,
+                0.3898777207193548,
+                0.38629208436401313
+              ]
+            },
+            {
+              "query_id": "29",
+              "doc_id": "96e6d71f-b8ee-4414-b62b-b83d5594ffca",
+              "saved_top10": [
+                "96e6d71f-b8ee-4414-b62b-b83d5594ffca:40",
+                "96e6d71f-b8ee-4414-b62b-b83d5594ffca:39",
+                "96e6d71f-b8ee-4414-b62b-b83d5594ffca:2",
+                "96e6d71f-b8ee-4414-b62b-b83d5594ffca:31",
+                "96e6d71f-b8ee-4414-b62b-b83d5594ffca:38",
+                "96e6d71f-b8ee-4414-b62b-b83d5594ffca:6",
+                "96e6d71f-b8ee-4414-b62b-b83d5594ffca:15",
+                "96e6d71f-b8ee-4414-b62b-b83d5594ffca:1",
+                "96e6d71f-b8ee-4414-b62b-b83d5594ffca:24",
+                "96e6d71f-b8ee-4414-b62b-b83d5594ffca:4"
+              ],
+              "saved_scores": [
+                2.998546626203362,
+                1.7189099738573639,
+                1.1779075268238912,
+                1.0193982311417489,
+                1.0000785880801475,
+                0.8682638161220989,
+                0.7747732835474892,
+                0.5732918064277102,
+                0.5692329771660481,
+                0.5505034706065437
+              ],
+              "ours_top10": [
+                "96e6d71f-b8ee-4414-b62b-b83d5594ffca:40",
+                "96e6d71f-b8ee-4414-b62b-b83d5594ffca:39",
+                "96e6d71f-b8ee-4414-b62b-b83d5594ffca:2",
+                "96e6d71f-b8ee-4414-b62b-b83d5594ffca:31",
+                "96e6d71f-b8ee-4414-b62b-b83d5594ffca:38",
+                "96e6d71f-b8ee-4414-b62b-b83d5594ffca:6",
+                "96e6d71f-b8ee-4414-b62b-b83d5594ffca:15",
+                "96e6d71f-b8ee-4414-b62b-b83d5594ffca:24",
+                "96e6d71f-b8ee-4414-b62b-b83d5594ffca:1",
+                "96e6d71f-b8ee-4414-b62b-b83d5594ffca:4"
+              ],
+              "ours_scores": [
+                3.00738993496522,
+                1.7185400730495335,
+                1.178192046529234,
+                1.0193025545111023,
+                0.9927246521147624,
+                0.8681681394914523,
+                0.7746776069168427,
+                0.5646642329203138,
+                0.5620134819863364,
+                0.5514943470954861
+              ]
+            },
+            {
+              "query_id": "39",
+              "doc_id": "97c994c8-806d-4ddc-bf53-24c64669d362",
+              "saved_top10": [
+                "97c994c8-806d-4ddc-bf53-24c64669d362:15",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:17",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:12",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:10",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:6",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:5",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:9",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:18",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:16",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:7"
+              ],
+              "saved_scores": [
+                1.0765741418080106,
+                0.9725421941700992,
+                0.915600934438933,
+                0.7594865114174902,
+                0.5326563785741134,
+                0.4892554789803204,
+                0.3065423665037043,
+                0.06857386982257714,
+                0.05206896274091829,
+                0.05078095179005136
+              ],
+              "ours_top10": [
+                "97c994c8-806d-4ddc-bf53-24c64669d362:15",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:17",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:12",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:10",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:6",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:5",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:9",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:18",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:7",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:16"
+              ],
+              "ours_scores": [
+                1.0767441584276072,
+                0.9728805087433258,
+                0.916451256409876,
+                0.7597070665127752,
+                0.531348555677003,
+                0.4863334016219294,
+                0.306712383123301,
+                0.07464029013088415,
+                0.05098978587532753,
+                0.05013026136232094
+              ]
+            },
+            {
+              "query_id": "40",
+              "doc_id": "97c994c8-806d-4ddc-bf53-24c64669d362",
+              "saved_top10": [
+                "97c994c8-806d-4ddc-bf53-24c64669d362:3",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:18",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:16",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:19",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:1",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:8",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:5",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:6",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:15",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:21"
+              ],
+              "saved_scores": [
+                1.3240965653857912,
+                1.23313699395483,
+                1.080769794538048,
+                0.46879172935522456,
+                0.3813653549843357,
+                0.3105941313967914,
+                0.23081484995012522,
+                0.19840883886865657,
+                0.1730923889989236,
+                0.16509209223490526
+              ],
+              "ours_top10": [
+                "97c994c8-806d-4ddc-bf53-24c64669d362:3",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:18",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:16",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:19",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:1",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:8",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:5",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:6",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:21",
+                "97c994c8-806d-4ddc-bf53-24c64669d362:15"
+              ],
+              "ours_scores": [
+                1.324175139797752,
+                1.2331484915258069,
+                1.0785537891497878,
+                0.4679204246590097,
+                0.3765909314111627,
+                0.3176834322242804,
+                0.23430881413413698,
+                0.195999202115711,
+                0.17396192778869918,
+                0.1665889916334212
+              ]
+            }
+          ],
+          "expected_metrics": {
+            "5": {
+              "eligible": 1832,
+              "hits": 1285,
+              "hr_percent": 70.14192139737992
+            },
+            "10": {
+              "eligible": 1832,
+              "hits": 1502,
+              "hr_percent": 81.98689956331879
+            }
+          },
+          "text_only": {
+            "hr": {
+              "eligible": 1832,
+              "hits": {
+                "5": 1281,
+                "10": 1478
+              },
+              "hr_percent": {
+                "5": 69.92358078602619,
+                "10": 80.67685589519651
+              }
+            },
+            "reported_percent": {
+              "5": 70.1,
+              "10": 80.1
+            },
+            "diff_points": {
+              "5": -0.17641921397380145,
+              "10": 0.5768558951965161
+            },
+            "passed": false,
+            "notes": [
+              "text-only HR@5 69.92 vs Table 1 Vanilla 70.1 (tolerance 0.15)",
+              "text-only HR@10 80.68 vs Table 1 Vanilla 80.1 (tolerance 0.15)"
+            ]
+          },
+          "anomalies": [],
+          "problems": [
+            "identical top-10 for 1519/1832 queries (< 99%)"
+          ],
+          "passed": false
+        },
+        "finished_at": "2026-11-09 12:54:41",
+        "quarantined_rows": 62471,
+        "status": "FAILED",
+        "seconds": 250.63983350992203
+      }
+    },
+    "musique_32k__contriever": {
+      "status": "DONE",
+      "seconds": 337.9236304759979,
+      "summary": {
+        "job": "musique_32k__contriever",
+        "dataset": "musique_32k",
+        "retriever": "contriever",
+        "max_docs": null,
+        "timings": {
+          "n_docs": 45,
+          "docs_from_checkpoint": 0,
+          "seconds_scoring": 329.1222819904797,
+          "seconds_total": 329.1268253310118
+        },
+        "check": {
+          "dataset": "musique_32k",
+          "retriever": "contriever",
+          "n_queries": 900,
+          "full_dataset": true,
+          "identical_top10": 900,
+          "identical_top10_share": 1.0,
+          "hr_ours_published": {
+            "eligible": 900,
+            "hits": {
+              "5": 619,
+              "10": 753
+            },
+            "hr_percent": {
+              "5": 68.77777777777779,
+              "10": 83.66666666666667
+            }
+          },
+          "hr_saved": {
+            "eligible": 900,
+            "hits": {
+              "5": 619,
+              "10": 753
+            },
+            "hr_percent": {
+              "5": 68.77777777777779,
+              "10": 83.66666666666667
+            }
+          },
+          "max_abs_score_diff_identical_rankings": 0.0,
+          "mismatch_examples": [],
+          "expected_metrics": {
+            "5": {
+              "eligible": 900,
+              "hits": 619,
+              "hr_percent": 68.77777777777779
+            },
+            "10": {
+              "eligible": 900,
+              "hits": 753,
+              "hr_percent": 83.66666666666667
+            }
+          },
+          "text_only": {
+            "hr": {
+              "eligible": 900,
+              "hits": {
+                "5": 539,
+                "10": 685
+              },
+              "hr_percent": {
+                "5": 59.88888888888889,
+                "10": 76.11111111111111
+              }
+            },
+            "reported_percent": {
+              "5": 59.9,
+              "10": 76.1
+            },
+            "diff_points": {
+              "5": -0.011111111111105743,
+              "10": 0.011111111111119953
+            },
+            "passed": true,
+            "notes": []
+          },
+          "anomalies": [],
+          "problems": [],
+          "passed": true
+        },
+        "finished_at": "2026-11-09 12:56:00",
+        "stream_rows": 342176,
+        "files": [
+          "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__contriever.parquet",
+          "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__contriever.queries.json",
+          "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__contriever.check.json"
+        ],
+        "status": "DONE",
+        "seconds": 330.7575296610594
+      }
+    },
+    "musique_32k__bge_m3": {
+      "status": "DONE",
+      "seconds": 549.5675311088562,
+      "summary": {
+        "job": "musique_32k__bge_m3",
+        "dataset": "musique_32k",
+        "retriever": "bge_m3",
+        "max_docs": null,
+        "timings": {
+          "n_docs": 45,
+          "docs_from_checkpoint": 0,
+          "seconds_scoring": 544.4516232742462,
+          "seconds_total": 544.4555322171655
+        },
+        "check": {
+          "dataset": "musique_32k",
+          "retriever": "bge_m3",
+          "n_queries": 900,
+          "full_dataset": true,
+          "identical_top10": 900,
+          "identical_top10_share": 1.0,
+          "hr_ours_published": {
+            "eligible": 900,
+            "hits": {
+              "5": 692,
+              "10": 795
+            },
+            "hr_percent": {
+              "5": 76.88888888888889,
+              "10": 88.33333333333333
+            }
+          },
+          "hr_saved": {
+            "eligible": 900,
+            "hits": {
+              "5": 692,
+              "10": 795
+            },
+            "hr_percent": {
+              "5": 76.88888888888889,
+              "10": 88.33333333333333
+            }
+          },
+          "max_abs_score_diff_identical_rankings": 0.0,
+          "mismatch_examples": [],
+          "expected_metrics": {
+            "5": {
+              "eligible": 900,
+              "hits": 692,
+              "hr_percent": 76.88888888888889
+            },
+            "10": {
+              "eligible": 900,
+              "hits": 795,
+              "hr_percent": 88.33333333333333
+            }
+          },
+          "text_only": {
+            "hr": {
+              "eligible": 900,
+              "hits": {
+                "5": 659,
+                "10": 787
+              },
+              "hr_percent": {
+                "5": 73.22222222222223,
+                "10": 87.44444444444444
+              }
+            },
+            "reported_percent": {
+              "5": 73.2,
+              "10": 87.4
+            },
+            "diff_points": {
+              "5": 0.022222222222225696,
+              "10": 0.04444444444443718
+            },
+            "passed": true,
+            "notes": []
+          },
+          "anomalies": [],
+          "problems": [],
+          "passed": true
+        },
+        "finished_at": "2026-11-09 12:57:15",
+        "stream_rows": 342176,
+        "files": [
+          "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bge_m3.parquet",
+          "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bge_m3.queries.json",
+          "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bge_m3.check.json"
+        ],
+        "status": "DONE",
+        "seconds": 546.0676782589871
+      }
+    }
+  },
+  "analysis": "12/20 jobs DONE; this group's unfinished jobs: ['loogle__jina', 'loogle__qwen', 'musique_32k__jina', 'qasper_64k__jina', 'qasper_64k__qwen']; waiting for group B",
+  "finished_at": "2026-11-09 12:57:30",
+  "exit_code": 1
+}
