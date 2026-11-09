@@ -1,7 +1,7 @@
 {
   "group": "A",
   "dry_run": false,
-  "started_at": "2026-11-09 12:30:24",
+  "started_at": "2026-11-09 14:01:26",
   "host": "eee-s132-infsys-gpu03",
   "argv": [
     "python3",
@@ -10,30 +10,38 @@
     "A"
   ],
   "analysis_only": false,
-  "unexpected": [
-    "loogle__qwen:\nTraceback (most recent call last):\n  File \"/mnt/data/zeinab/SAADI/scripts/rebuttal/c2_heldout_fusion.py\", line 428, in run_worker\n    summary = hf.run_stream_job(\n              ^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 634, in run_stream_job\n    docs, used_rows, timings = compute_job_streams(dataset, retriever, paths=paths, max_docs=max_docs, log=log)\n                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 396, in compute_job_streams\n    doc = _score_document(document_index, by_doc[doc_id], retriever)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 322, in _score_document\n    streams = score_mbr_variant_document_pools(\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retrieval_methods/mbr.py\", line 1137, in score_mbr_variant_document_pools\n    text_scores = _score_pool(\n                  ^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retrieval_methods/mbr.py\", line 725, in _score_pool\n    encoded_pool = build_encoded_text_pool(\n                   ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/scoring.py\", line 120, in build_encoded_text_pool\n    retriever = Retriever(corpus=text_list, chunk_ids=id_list, **kwargs)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<string>\", line 15, in __init__\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/hf_embedding.py\", line 99, in __post_init__\n    self._corpus_embeddings = self._encode_texts(self.corpus, text_kind=\"document\")\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/hf_embedding.py\", line 327, in _encode_texts\n    model_output = self._model(**encoded)\n                   ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/generic.py\", line 1072, in wrapper\n    outputs = func(self, *args, **kwargs)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 410, in forward\n    hidden_states = decoder_layer(\n                    ^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/modeling_layers.py\", line 94, in __call__\n    return super().__call__(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/deprecation.py\", line 172, in wrapped_func\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 275, in forward\n    hidden_states = self.mlp(hidden_states)\n                    ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 82, in forward\n    down_proj = self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))\n                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.50 GiB. GPU 0 has a total capacity of 47.40 GiB of which 294.25 MiB is free. Including non-PyTorch memory, this process has 47.11 GiB memory in use. Of the allocated memory 41.70 GiB is allocated by PyTorch, and 5.10 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)\n",
-    "qasper_64k__qwen:\nTraceback (most recent call last):\n  File \"/mnt/data/zeinab/SAADI/scripts/rebuttal/c2_heldout_fusion.py\", line 428, in run_worker\n    summary = hf.run_stream_job(\n              ^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 634, in run_stream_job\n    docs, used_rows, timings = compute_job_streams(dataset, retriever, paths=paths, max_docs=max_docs, log=log)\n                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 396, in compute_job_streams\n    doc = _score_document(document_index, by_doc[doc_id], retriever)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 322, in _score_document\n    streams = score_mbr_variant_document_pools(\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retrieval_methods/mbr.py\", line 1137, in score_mbr_variant_document_pools\n    text_scores = _score_pool(\n                  ^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retrieval_methods/mbr.py\", line 725, in _score_pool\n    encoded_pool = build_encoded_text_pool(\n                   ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/scoring.py\", line 120, in build_encoded_text_pool\n    retriever = Retriever(corpus=text_list, chunk_ids=id_list, **kwargs)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<string>\", line 15, in __init__\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/hf_embedding.py\", line 99, in __post_init__\n    self._corpus_embeddings = self._encode_texts(self.corpus, text_kind=\"document\")\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/hf_embedding.py\", line 327, in _encode_texts\n    model_output = self._model(**encoded)\n                   ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/generic.py\", line 1072, in wrapper\n    outputs = func(self, *args, **kwargs)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 410, in forward\n    hidden_states = decoder_layer(\n                    ^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/modeling_layers.py\", line 94, in __call__\n    return super().__call__(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/deprecation.py\", line 172, in wrapped_func\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 275, in forward\n    hidden_states = self.mlp(hidden_states)\n                    ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 82, in forward\n    down_proj = self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))\n                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.38 GiB. GPU 0 has a total capacity of 47.40 GiB of which 478.25 MiB is free. Including non-PyTorch memory, this process has 46.93 GiB memory in use. Of the allocated memory 43.01 GiB is allocated by PyTorch, and 3.61 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)\n"
-  ],
+  "unexpected": [],
   "files": [
-    "outputs/rebuttal/C2_heldout_fusion/plan.json",
-    "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bm25.parquet",
-    "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bm25.queries.json",
-    "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bm25.check.json",
-    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bm25.parquet",
-    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bm25.queries.json",
-    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bm25.check.json",
     "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bge_m3.parquet",
     "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bge_m3.queries.json",
     "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bge_m3.check.json",
     "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bge_m3.parquet",
     "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bge_m3.queries.json",
     "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bge_m3.check.json",
-    "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__contriever.parquet",
-    "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__contriever.queries.json",
-    "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__contriever.check.json",
     "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bge_m3.parquet",
     "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bge_m3.queries.json",
     "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bge_m3.check.json",
+    "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__contriever.parquet",
+    "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__contriever.queries.json",
+    "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__contriever.check.json",
+    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bm25.parquet",
+    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bm25.queries.json",
+    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bm25.check.json",
+    "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bm25.parquet",
+    "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bm25.queries.json",
+    "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bm25.check.json",
+    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__jina.parquet",
+    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__jina.queries.json",
+    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__jina.check.json",
+    "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__jina.parquet",
+    "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__jina.queries.json",
+    "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__jina.check.json",
+    "outputs/rebuttal/C2_heldout_fusion/streams/loogle__jina.parquet",
+    "outputs/rebuttal/C2_heldout_fusion/streams/loogle__jina.queries.json",
+    "outputs/rebuttal/C2_heldout_fusion/streams/loogle__jina.check.json",
+    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__qwen.parquet",
+    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__qwen.queries.json",
+    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__qwen.check.json",
     "experiments/rebuttal/C2_heldout_fusion/reports/group_A.md",
     "experiments/rebuttal/C2_heldout_fusion/reports/group_A.json"
   ],
@@ -52,6 +60,7 @@
       "tqdm": "4.68.2",
       "torch": "2.11.0+cu129",
       "transformers": "4.57.6",
+      "accelerate": "1.13.0",
       "matplotlib": "3.10.8"
     },
     "torch_cuda": {
@@ -59,7 +68,7 @@
       "cuda_version": "12.9"
     },
     "git": {
-      "commit": "1ecb54c278bdfd82c731f1aea140d25768497d63",
+      "commit": "e2dbaa178fa07c25806c32e8fce787455bae9ce3",
       "branch": "fix/notebook-key-and-install",
       "code_changes_vs_commit": []
     },
@@ -100,7 +109,7 @@
     },
     "disk": {
       "path": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion",
-      "free_gb": 4286.0,
+      "free_gb": 4285.6,
       "needed_gb_estimate": 6.7
     }
   },
@@ -149,7 +158,7 @@
           "query_call_s": 0.06
         }
       },
-      "memory": "weights in float32 (the adapters pass no dtype); every model fits on one 48 GB A6000 (largest: Qwen3-Embedding-8B, about 28 GB of weights), so every job gets one GPU",
+      "memory": "weights in float32 (the adapters pass no dtype); Qwen3-Embedding-8B ran out of memory on one 48 GB A6000 (about 28 GB of weights plus batch-64 activations), so each Qwen job gets two GPUs of its group with device_map=auto; every other job gets one GPU",
       "note": "estimates, not measurements; per-job times measured in this run are in the group reports"
     },
     "counts": {
@@ -315,10 +324,10 @@
         "query_encodes": 9160,
         "stream_rows": 62471,
         "device": "gpu",
-        "n_gpus": 1,
+        "n_gpus": 2,
         "model": "Qwen/Qwen3-Embedding-8B",
         "weights_gb_fp32": 28.2,
-        "fits_one_a6000": true,
+        "fits_one_a6000": false,
         "est_tokens": 2514072,
         "est_seconds": 4605.2752795,
         "est_parts_seconds": {
@@ -430,10 +439,10 @@
         "query_encodes": 4500,
         "stream_rows": 342176,
         "device": "gpu",
-        "n_gpus": 1,
+        "n_gpus": 2,
         "model": "Qwen/Qwen3-Embedding-8B",
         "weights_gb_fp32": 28.2,
-        "fits_one_a6000": true,
+        "fits_one_a6000": false,
         "est_tokens": 4889883,
         "est_seconds": 7964.6096405,
         "est_parts_seconds": {
@@ -545,10 +554,10 @@
         "query_encodes": 6665,
         "stream_rows": 992410,
         "device": "gpu",
-        "n_gpus": 1,
+        "n_gpus": 2,
         "model": "Qwen/Qwen3-Embedding-8B",
         "weights_gb_fp32": 28.2,
-        "fits_one_a6000": true,
+        "fits_one_a6000": false,
         "est_tokens": 4837778,
         "est_seconds": 8113.1577705,
         "est_parts_seconds": {
@@ -660,10 +669,10 @@
         "query_encodes": 4540,
         "stream_rows": 418611,
         "device": "gpu",
-        "n_gpus": 1,
+        "n_gpus": 2,
         "model": "Qwen/Qwen3-Embedding-8B",
         "weights_gb_fp32": 28.2,
-        "fits_one_a6000": true,
+        "fits_one_a6000": false,
         "est_tokens": 4670156,
         "est_seconds": 7645.8070769999995,
         "est_parts_seconds": {
@@ -697,7 +706,7 @@
           "qasper_64k__bm25",
           "novelhopqa__bm25"
         ],
-        "gpu_seconds": 17513,
+        "gpu_seconds": 30232,
         "est_wall_seconds": 8113
       },
       "B": {
@@ -718,18 +727,491 @@
           "musique_32k__bm25",
           "loogle__bm25"
         ],
-        "gpu_seconds": 17627,
-        "est_wall_seconds": 7965
+        "gpu_seconds": 33238,
+        "est_wall_seconds": 8394
       }
     },
     "analysis_est_seconds": 697,
-    "seconds_to_build": 242.1
+    "seconds_to_build": 242.1,
+    "updated_at": "2026-11-09 14:01:29"
   },
-  "plan_written": true,
+  "plan_written": false,
   "jobs": {
+    "qasper_64k__bge_m3": {
+      "status": "DONE (skipped, already finished)",
+      "summary": {
+        "job": "qasper_64k__bge_m3",
+        "dataset": "qasper_64k",
+        "retriever": "bge_m3",
+        "max_docs": null,
+        "timings": {
+          "n_docs": 23,
+          "docs_from_checkpoint": 0,
+          "seconds_scoring": 940.526235157391,
+          "seconds_total": 940.5288755828515
+        },
+        "check": {
+          "dataset": "qasper_64k",
+          "retriever": "bge_m3",
+          "n_queries": 1333,
+          "full_dataset": true,
+          "identical_top10": 1333,
+          "identical_top10_share": 1.0,
+          "hr_ours_published": {
+            "eligible": 1333,
+            "hits": {
+              "5": 279,
+              "10": 412
+            },
+            "hr_percent": {
+              "5": 20.930232558139537,
+              "10": 30.90772693173293
+            }
+          },
+          "hr_saved": {
+            "eligible": 1333,
+            "hits": {
+              "5": 279,
+              "10": 412
+            },
+            "hr_percent": {
+              "5": 20.930232558139537,
+              "10": 30.90772693173293
+            }
+          },
+          "max_abs_score_diff_identical_rankings": 0.0,
+          "mismatch_examples": [],
+          "expected_metrics": {
+            "5": {
+              "eligible": 1333,
+              "hits": 279,
+              "hr_percent": 20.930232558139537
+            },
+            "10": {
+              "eligible": 1333,
+              "hits": 412,
+              "hr_percent": 30.90772693173293
+            }
+          },
+          "text_only": {
+            "hr": {
+              "eligible": 1333,
+              "hits": {
+                "5": 280,
+                "10": 391
+              },
+              "hr_percent": {
+                "5": 21.005251312828207,
+                "10": 29.332333083270818
+              }
+            },
+            "reported_percent": {
+              "5": 21.0,
+              "10": 29.3
+            },
+            "diff_points": {
+              "5": 0.005251312828207233,
+              "10": 0.0323330832708173
+            },
+            "passed": true,
+            "notes": []
+          },
+          "anomalies": [],
+          "problems": [],
+          "passed": true
+        },
+        "finished_at": "2026-11-09 12:50:11",
+        "stream_rows": 992410,
+        "files": [
+          "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bge_m3.parquet",
+          "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bge_m3.queries.json",
+          "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bge_m3.check.json"
+        ],
+        "status": "DONE",
+        "seconds": 945.0496366189327
+      }
+    },
+    "novelhopqa__bge_m3": {
+      "status": "DONE (skipped, already finished)",
+      "summary": {
+        "job": "novelhopqa__bge_m3",
+        "dataset": "novelhopqa",
+        "retriever": "bge_m3",
+        "max_docs": null,
+        "timings": {
+          "n_docs": 16,
+          "docs_from_checkpoint": 0,
+          "seconds_scoring": 634.186044904869,
+          "seconds_total": 634.1881030451041
+        },
+        "check": {
+          "dataset": "novelhopqa",
+          "retriever": "bge_m3",
+          "n_queries": 908,
+          "full_dataset": true,
+          "identical_top10": 908,
+          "identical_top10_share": 1.0,
+          "hr_ours_published": {
+            "eligible": 908,
+            "hits": {
+              "5": 150,
+              "10": 201
+            },
+            "hr_percent": {
+              "5": 16.519823788546255,
+              "10": 22.136563876651984
+            }
+          },
+          "hr_saved": {
+            "eligible": 908,
+            "hits": {
+              "5": 150,
+              "10": 201
+            },
+            "hr_percent": {
+              "5": 16.519823788546255,
+              "10": 22.136563876651984
+            }
+          },
+          "max_abs_score_diff_identical_rankings": 0.0,
+          "mismatch_examples": [],
+          "expected_metrics": {
+            "5": {
+              "eligible": 908,
+              "hits": 150,
+              "hr_percent": 16.519823788546255
+            },
+            "10": {
+              "eligible": 908,
+              "hits": 201,
+              "hr_percent": 22.136563876651984
+            }
+          },
+          "text_only": {
+            "hr": {
+              "eligible": 908,
+              "hits": {
+                "5": 157,
+                "10": 199
+              },
+              "hr_percent": {
+                "5": 17.290748898678416,
+                "10": 21.916299559471366
+              }
+            },
+            "reported_percent": {
+              "5": 14.1,
+              "10": 20.7
+            },
+            "diff_points": {
+              "5": 3.1907488986784163,
+              "10": 1.2162995594713664
+            },
+            "passed": false,
+            "notes": [
+              "text-only HR@5 17.29 vs Table 1 Vanilla 14.1 (tolerance 0.15)",
+              "text-only HR@10 21.92 vs Table 1 Vanilla 20.7 (tolerance 0.15)"
+            ]
+          },
+          "anomalies": [],
+          "problems": [],
+          "passed": true
+        },
+        "finished_at": "2026-11-09 12:52:25",
+        "stream_rows": 418611,
+        "files": [
+          "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bge_m3.parquet",
+          "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bge_m3.queries.json",
+          "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bge_m3.check.json"
+        ],
+        "status": "DONE",
+        "seconds": 636.1375717909541
+      }
+    },
+    "musique_32k__bge_m3": {
+      "status": "DONE (skipped, already finished)",
+      "summary": {
+        "job": "musique_32k__bge_m3",
+        "dataset": "musique_32k",
+        "retriever": "bge_m3",
+        "max_docs": null,
+        "timings": {
+          "n_docs": 45,
+          "docs_from_checkpoint": 0,
+          "seconds_scoring": 544.4516232742462,
+          "seconds_total": 544.4555322171655
+        },
+        "check": {
+          "dataset": "musique_32k",
+          "retriever": "bge_m3",
+          "n_queries": 900,
+          "full_dataset": true,
+          "identical_top10": 900,
+          "identical_top10_share": 1.0,
+          "hr_ours_published": {
+            "eligible": 900,
+            "hits": {
+              "5": 692,
+              "10": 795
+            },
+            "hr_percent": {
+              "5": 76.88888888888889,
+              "10": 88.33333333333333
+            }
+          },
+          "hr_saved": {
+            "eligible": 900,
+            "hits": {
+              "5": 692,
+              "10": 795
+            },
+            "hr_percent": {
+              "5": 76.88888888888889,
+              "10": 88.33333333333333
+            }
+          },
+          "max_abs_score_diff_identical_rankings": 0.0,
+          "mismatch_examples": [],
+          "expected_metrics": {
+            "5": {
+              "eligible": 900,
+              "hits": 692,
+              "hr_percent": 76.88888888888889
+            },
+            "10": {
+              "eligible": 900,
+              "hits": 795,
+              "hr_percent": 88.33333333333333
+            }
+          },
+          "text_only": {
+            "hr": {
+              "eligible": 900,
+              "hits": {
+                "5": 659,
+                "10": 787
+              },
+              "hr_percent": {
+                "5": 73.22222222222223,
+                "10": 87.44444444444444
+              }
+            },
+            "reported_percent": {
+              "5": 73.2,
+              "10": 87.4
+            },
+            "diff_points": {
+              "5": 0.022222222222225696,
+              "10": 0.04444444444443718
+            },
+            "passed": true,
+            "notes": []
+          },
+          "anomalies": [],
+          "problems": [],
+          "passed": true
+        },
+        "finished_at": "2026-11-09 12:57:15",
+        "stream_rows": 342176,
+        "files": [
+          "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bge_m3.parquet",
+          "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bge_m3.queries.json",
+          "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bge_m3.check.json"
+        ],
+        "status": "DONE",
+        "seconds": 546.0676782589871
+      }
+    },
+    "musique_32k__contriever": {
+      "status": "DONE (skipped, already finished)",
+      "summary": {
+        "job": "musique_32k__contriever",
+        "dataset": "musique_32k",
+        "retriever": "contriever",
+        "max_docs": null,
+        "timings": {
+          "n_docs": 45,
+          "docs_from_checkpoint": 0,
+          "seconds_scoring": 329.1222819904797,
+          "seconds_total": 329.1268253310118
+        },
+        "check": {
+          "dataset": "musique_32k",
+          "retriever": "contriever",
+          "n_queries": 900,
+          "full_dataset": true,
+          "identical_top10": 900,
+          "identical_top10_share": 1.0,
+          "hr_ours_published": {
+            "eligible": 900,
+            "hits": {
+              "5": 619,
+              "10": 753
+            },
+            "hr_percent": {
+              "5": 68.77777777777779,
+              "10": 83.66666666666667
+            }
+          },
+          "hr_saved": {
+            "eligible": 900,
+            "hits": {
+              "5": 619,
+              "10": 753
+            },
+            "hr_percent": {
+              "5": 68.77777777777779,
+              "10": 83.66666666666667
+            }
+          },
+          "max_abs_score_diff_identical_rankings": 0.0,
+          "mismatch_examples": [],
+          "expected_metrics": {
+            "5": {
+              "eligible": 900,
+              "hits": 619,
+              "hr_percent": 68.77777777777779
+            },
+            "10": {
+              "eligible": 900,
+              "hits": 753,
+              "hr_percent": 83.66666666666667
+            }
+          },
+          "text_only": {
+            "hr": {
+              "eligible": 900,
+              "hits": {
+                "5": 539,
+                "10": 685
+              },
+              "hr_percent": {
+                "5": 59.88888888888889,
+                "10": 76.11111111111111
+              }
+            },
+            "reported_percent": {
+              "5": 59.9,
+              "10": 76.1
+            },
+            "diff_points": {
+              "5": -0.011111111111105743,
+              "10": 0.011111111111119953
+            },
+            "passed": true,
+            "notes": []
+          },
+          "anomalies": [],
+          "problems": [],
+          "passed": true
+        },
+        "finished_at": "2026-11-09 12:56:00",
+        "stream_rows": 342176,
+        "files": [
+          "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__contriever.parquet",
+          "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__contriever.queries.json",
+          "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__contriever.check.json"
+        ],
+        "status": "DONE",
+        "seconds": 330.7575296610594
+      }
+    },
+    "qasper_64k__bm25": {
+      "status": "DONE (skipped, already finished)",
+      "summary": {
+        "job": "qasper_64k__bm25",
+        "dataset": "qasper_64k",
+        "retriever": "bm25",
+        "max_docs": null,
+        "timings": {
+          "n_docs": 23,
+          "docs_from_checkpoint": 0,
+          "seconds_scoring": 203.35439657163806,
+          "seconds_total": 203.356652187882
+        },
+        "check": {
+          "dataset": "qasper_64k",
+          "retriever": "bm25",
+          "n_queries": 1333,
+          "full_dataset": true,
+          "identical_top10": 1333,
+          "identical_top10_share": 1.0,
+          "hr_ours_published": {
+            "eligible": 1333,
+            "hits": {
+              "5": 226,
+              "10": 348
+            },
+            "hr_percent": {
+              "5": 16.954238559639908,
+              "10": 26.106526631657918
+            }
+          },
+          "hr_saved": {
+            "eligible": 1333,
+            "hits": {
+              "5": 226,
+              "10": 348
+            },
+            "hr_percent": {
+              "5": 16.954238559639908,
+              "10": 26.106526631657918
+            }
+          },
+          "max_abs_score_diff_identical_rankings": 0.0,
+          "mismatch_examples": [],
+          "expected_metrics": {
+            "5": {
+              "eligible": 1333,
+              "hits": 226,
+              "hr_percent": 16.954238559639908
+            },
+            "10": {
+              "eligible": 1333,
+              "hits": 348,
+              "hr_percent": 26.106526631657918
+            }
+          },
+          "text_only": {
+            "hr": {
+              "eligible": 1333,
+              "hits": {
+                "5": 192,
+                "10": 294
+              },
+              "hr_percent": {
+                "5": 14.403600900225054,
+                "10": 22.05551387846962
+              }
+            },
+            "reported_percent": {
+              "5": 14.4,
+              "10": 22.1
+            },
+            "diff_points": {
+              "5": 0.0036009002250541045,
+              "10": -0.044486121530383116
+            },
+            "passed": true,
+            "notes": []
+          },
+          "anomalies": [],
+          "problems": [],
+          "passed": true
+        },
+        "finished_at": "2026-11-09 12:37:54",
+        "stream_rows": 992410,
+        "files": [
+          "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bm25.parquet",
+          "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bm25.queries.json",
+          "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bm25.check.json"
+        ],
+        "status": "DONE",
+        "seconds": 207.81025716499425
+      }
+    },
     "novelhopqa__bm25": {
-      "status": "DONE",
-      "seconds": 140.00284385681152,
+      "status": "DONE (skipped, already finished)",
       "summary": {
         "job": "novelhopqa__bm25",
         "dataset": "novelhopqa",
@@ -827,114 +1309,371 @@
         "seconds": 129.91778968810104
       }
     },
-    "qasper_64k__bm25": {
-      "status": "DONE",
-      "seconds": 210.0053427219391,
+    "loogle__qwen": {
+      "status": "FAILED",
+      "seconds": 3060.0422234535217,
       "summary": {
-        "job": "qasper_64k__bm25",
-        "dataset": "qasper_64k",
-        "retriever": "bm25",
+        "job": "loogle__qwen",
+        "dataset": "loogle",
+        "retriever": "qwen",
         "max_docs": null,
         "timings": {
-          "n_docs": 23,
-          "docs_from_checkpoint": 0,
-          "seconds_scoring": 203.35439657163806,
-          "seconds_total": 203.356652187882
+          "n_docs": 105,
+          "docs_from_checkpoint": 5,
+          "seconds_scoring": 3053.0887166946195,
+          "seconds_total": 3053.100185550982
         },
         "check": {
-          "dataset": "qasper_64k",
-          "retriever": "bm25",
-          "n_queries": 1333,
+          "dataset": "loogle",
+          "retriever": "qwen",
+          "n_queries": 1832,
           "full_dataset": true,
-          "identical_top10": 1333,
-          "identical_top10_share": 1.0,
+          "identical_top10": 733,
+          "identical_top10_share": 0.40010917030567683,
           "hr_ours_published": {
-            "eligible": 1333,
+            "eligible": 1832,
             "hits": {
-              "5": 226,
-              "10": 348
+              "5": 1413,
+              "10": 1583
             },
             "hr_percent": {
-              "5": 16.954238559639908,
-              "10": 26.106526631657918
+              "5": 77.12882096069869,
+              "10": 86.40829694323145
             }
           },
           "hr_saved": {
-            "eligible": 1333,
+            "eligible": 1832,
             "hits": {
-              "5": 226,
-              "10": 348
+              "5": 1411,
+              "10": 1588
             },
             "hr_percent": {
-              "5": 16.954238559639908,
-              "10": 26.106526631657918
+              "5": 77.01965065502183,
+              "10": 86.68122270742357
             }
           },
-          "max_abs_score_diff_identical_rankings": 0.0,
-          "mismatch_examples": [],
+          "max_abs_score_diff_identical_rankings": 0.10307524433433546,
+          "mismatch_examples": [
+            {
+              "query_id": "4",
+              "doc_id": "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec",
+              "saved_top10": [
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:3",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:2",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:1",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:17",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:7",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:0",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:18",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:10",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:19",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:23"
+              ],
+              "saved_scores": [
+                1.2704077468188344,
+                1.030482924422689,
+                0.7117344872618854,
+                0.5541419350976314,
+                0.5117659504369191,
+                0.5021930561168262,
+                0.48648248250508397,
+                0.37049272438100334,
+                0.28350412472744124,
+                0.2272048523112714
+              ],
+              "ours_top10": [
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:3",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:2",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:1",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:17",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:7",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:18",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:0",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:10",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:19",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:23"
+              ],
+              "ours_scores": [
+                1.2652734948739703,
+                1.027260961151258,
+                0.6988316567589004,
+                0.5692384163095837,
+                0.521315140755127,
+                0.4918957028807449,
+                0.48034878587793806,
+                0.374084696248075,
+                0.2992935856746852,
+                0.23138016998737368
+              ]
+            },
+            {
+              "query_id": "5",
+              "doc_id": "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec",
+              "saved_top10": [
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:2",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:3",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:23",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:9",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:6",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:0",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:16",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:18",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:1",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:7"
+              ],
+              "saved_scores": [
+                1.568142504695597,
+                1.2298445629142767,
+                0.8919007359837337,
+                0.5397604064372896,
+                0.41401318014699695,
+                0.36810858230932136,
+                0.3368396183603459,
+                0.2968312387796984,
+                0.2535926442415638,
+                0.2255176292459392
+              ],
+              "ours_top10": [
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:2",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:3",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:23",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:9",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:6",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:16",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:0",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:18",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:1",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:7"
+              ],
+              "ours_scores": [
+                1.568732371676883,
+                1.2214338299381946,
+                0.9029621010200168,
+                0.5390376562354403,
+                0.41740777204446017,
+                0.3532022554395005,
+                0.3485948707677395,
+                0.28498939519517796,
+                0.25431417215173086,
+                0.2341175492424911
+              ]
+            },
+            {
+              "query_id": "6",
+              "doc_id": "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec",
+              "saved_top10": [
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:9",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:10",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:7",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:6",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:17",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:3",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:8",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:19",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:11",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:5"
+              ],
+              "saved_scores": [
+                0.9203228475873582,
+                0.7381825007280322,
+                0.655763696129073,
+                0.653773839255435,
+                0.64964004403434,
+                0.590239602227081,
+                0.584659660424027,
+                0.5304399524669426,
+                0.4619861886221365,
+                0.4205447069134078
+              ],
+              "ours_top10": [
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:9",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:10",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:7",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:17",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:6",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:8",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:3",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:19",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:11",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:12"
+              ],
+              "ours_scores": [
+                0.9271519044962376,
+                0.720442258206098,
+                0.675641514429205,
+                0.6564325701548624,
+                0.6442758450376947,
+                0.5893553850493268,
+                0.5688592737251196,
+                0.5562780378308048,
+                0.4764182607101423,
+                0.40906316532636755
+              ]
+            },
+            {
+              "query_id": "7",
+              "doc_id": "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec",
+              "saved_top10": [
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:9",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:16",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:6",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:21",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:12",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:15",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:7",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:13",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:20",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:10"
+              ],
+              "saved_scores": [
+                1.0503678004883152,
+                1.023447591159189,
+                0.9438367361645399,
+                0.9221414169220308,
+                0.6867845380081999,
+                0.5872397923581385,
+                0.5842004706689071,
+                0.4799596730245545,
+                0.34336117989165627,
+                0.21946466092538625
+              ],
+              "ours_top10": [
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:9",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:16",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:6",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:21",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:12",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:7",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:15",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:13",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:20",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:10"
+              ],
+              "ours_scores": [
+                1.0516998238468347,
+                1.0304145983712745,
+                0.957051235195755,
+                0.9083467670834238,
+                0.6894625199785979,
+                0.5987863081656952,
+                0.5871966249588152,
+                0.4828564819126355,
+                0.30947072276074516,
+                0.19928221487676642
+              ]
+            },
+            {
+              "query_id": "8",
+              "doc_id": "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec",
+              "saved_top10": [
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:16",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:9",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:6",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:20",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:2",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:15",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:7",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:10",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:3",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:18"
+              ],
+              "saved_scores": [
+                1.2443793661929274,
+                1.2390630152443853,
+                0.9551262569064662,
+                0.5491419400533952,
+                0.4134445651174775,
+                0.36933732058982605,
+                0.3397771958724757,
+                0.2894983770603561,
+                0.2729490112801801,
+                0.26365300405702413
+              ],
+              "ours_top10": [
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:9",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:16",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:6",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:20",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:2",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:15",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:7",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:3",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:10",
+                "03c1b3e8-8aba-4a59-8a56-e24c4a2b88ec:18"
+              ],
+              "ours_scores": [
+                1.2438270143070005,
+                1.2372254911693925,
+                0.9704834986714196,
+                0.5098821471818232,
+                0.43583607900913784,
+                0.35495405103680494,
+                0.33682203582222675,
+                0.275584684647767,
+                0.27136657264035796,
+                0.27068864370910944
+              ]
+            }
+          ],
           "expected_metrics": {
             "5": {
-              "eligible": 1333,
-              "hits": 226,
-              "hr_percent": 16.954238559639908
+              "eligible": 1832,
+              "hits": 1411,
+              "hr_percent": 77.01965065502183
             },
             "10": {
-              "eligible": 1333,
-              "hits": 348,
-              "hr_percent": 26.106526631657918
+              "eligible": 1832,
+              "hits": 1588,
+              "hr_percent": 86.68122270742357
             }
           },
           "text_only": {
             "hr": {
-              "eligible": 1333,
+              "eligible": 1832,
               "hits": {
-                "5": 192,
-                "10": 294
+                "5": 1427,
+                "10": 1579
               },
               "hr_percent": {
-                "5": 14.403600900225054,
-                "10": 22.05551387846962
+                "5": 77.89301310043668,
+                "10": 86.18995633187772
               }
             },
             "reported_percent": {
-              "5": 14.4,
-              "10": 22.1
+              "5": 76.9,
+              "10": 85.9
             },
             "diff_points": {
-              "5": 0.0036009002250541045,
-              "10": -0.044486121530383116
+              "5": 0.99301310043667,
+              "10": 0.2899563318777183
             },
-            "passed": true,
-            "notes": []
+            "passed": false,
+            "notes": [
+              "text-only HR@5 77.89 vs Table 1 Vanilla 76.9 (tolerance 0.15)",
+              "text-only HR@10 86.19 vs Table 1 Vanilla 85.9 (tolerance 0.15)"
+            ]
           },
           "anomalies": [],
-          "problems": [],
-          "passed": true
+          "max_hr_gap_points": 0.27292576419212367,
+          "drift_accepted": false,
+          "problems": [
+            "identical top-10 for 733/1832 queries (< 99%)",
+            "HR@5 77.13 vs saved 77.02 (tolerance 0.1 points)",
+            "HR@10 86.41 vs saved 86.68 (tolerance 0.1 points)",
+            "HR@5 77.13 vs expected 77.02",
+            "HR@10 86.41 vs expected 86.68"
+          ],
+          "passed": false
         },
-        "finished_at": "2026-11-09 12:37:54",
-        "stream_rows": 992410,
-        "files": [
-          "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bm25.parquet",
-          "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bm25.queries.json",
-          "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bm25.check.json"
-        ],
-        "status": "DONE",
-        "seconds": 207.81025716499425
-      }
-    },
-    "loogle__qwen": {
-      "status": "ERROR",
-      "seconds": 430.01296162605286,
-      "summary": {
-        "job": "loogle__qwen",
-        "status": "ERROR",
-        "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/zeinab/SAADI/scripts/rebuttal/c2_heldout_fusion.py\", line 428, in run_worker\n    summary = hf.run_stream_job(\n              ^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 634, in run_stream_job\n    docs, used_rows, timings = compute_job_streams(dataset, retriever, paths=paths, max_docs=max_docs, log=log)\n                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 396, in compute_job_streams\n    doc = _score_document(document_index, by_doc[doc_id], retriever)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 322, in _score_document\n    streams = score_mbr_variant_document_pools(\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retrieval_methods/mbr.py\", line 1137, in score_mbr_variant_document_pools\n    text_scores = _score_pool(\n                  ^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retrieval_methods/mbr.py\", line 725, in _score_pool\n    encoded_pool = build_encoded_text_pool(\n                   ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/scoring.py\", line 120, in build_encoded_text_pool\n    retriever = Retriever(corpus=text_list, chunk_ids=id_list, **kwargs)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<string>\", line 15, in __init__\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/hf_embedding.py\", line 99, in __post_init__\n    self._corpus_embeddings = self._encode_texts(self.corpus, text_kind=\"document\")\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/hf_embedding.py\", line 327, in _encode_texts\n    model_output = self._model(**encoded)\n                   ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/generic.py\", line 1072, in wrapper\n    outputs = func(self, *args, **kwargs)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 410, in forward\n    hidden_states = decoder_layer(\n                    ^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/modeling_layers.py\", line 94, in __call__\n    return super().__call__(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/deprecation.py\", line 172, in wrapped_func\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 275, in forward\n    hidden_states = self.mlp(hidden_states)\n                    ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 82, in forward\n    down_proj = self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))\n                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.50 GiB. GPU 0 has a total capacity of 47.40 GiB of which 294.25 MiB is free. Including non-PyTorch memory, this process has 47.11 GiB memory in use. Of the allocated memory 41.70 GiB is allocated by PyTorch, and 5.10 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)\n",
-        "finished_at": "2026-11-09 12:41:35"
+        "finished_at": "2026-11-09 14:52:23",
+        "quarantined_rows": 62471,
+        "status": "FAILED",
+        "seconds": 3053.697881102795
       }
     },
     "qasper_64k__jina": {
-      "status": "FAILED",
-      "seconds": 520.0168437957764,
+      "status": "DONE",
+      "seconds": 10.002220153808594,
       "summary": {
         "job": "qasper_64k__jina",
         "dataset": "qasper_64k",
@@ -942,9 +1681,9 @@
         "max_docs": null,
         "timings": {
           "n_docs": 23,
-          "docs_from_checkpoint": 0,
-          "seconds_scoring": 481.0608789410908,
-          "seconds_total": 481.06342788995244
+          "docs_from_checkpoint": 23,
+          "seconds_scoring": 0.0,
+          "seconds_total": 0.025060605024918914
         },
         "check": {
           "dataset": "qasper_64k",
@@ -1277,125 +2016,29 @@
             ]
           },
           "anomalies": [],
-          "problems": [
-            "identical top-10 for 927/1333 queries (< 99%)"
+          "max_hr_gap_points": 0.0750187546886707,
+          "drift_accepted": true,
+          "drift_notes": [
+            "identical top-10 for 927/1333 queries (< 99%)",
+            "accepted: jina is in DRIFT_ACCEPTED_RETRIEVERS and the largest HR gap is 0.08 <= 0.5 points"
           ],
-          "passed": false
-        },
-        "finished_at": "2026-11-09 12:42:32",
-        "quarantined_rows": 992410,
-        "status": "FAILED",
-        "seconds": 510.0851783580147
-      }
-    },
-    "qasper_64k__qwen": {
-      "status": "ERROR",
-      "seconds": 810.026522397995,
-      "summary": {
-        "job": "qasper_64k__qwen",
-        "status": "ERROR",
-        "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/zeinab/SAADI/scripts/rebuttal/c2_heldout_fusion.py\", line 428, in run_worker\n    summary = hf.run_stream_job(\n              ^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 634, in run_stream_job\n    docs, used_rows, timings = compute_job_streams(dataset, retriever, paths=paths, max_docs=max_docs, log=log)\n                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 396, in compute_job_streams\n    doc = _score_document(document_index, by_doc[doc_id], retriever)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 322, in _score_document\n    streams = score_mbr_variant_document_pools(\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retrieval_methods/mbr.py\", line 1137, in score_mbr_variant_document_pools\n    text_scores = _score_pool(\n                  ^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retrieval_methods/mbr.py\", line 725, in _score_pool\n    encoded_pool = build_encoded_text_pool(\n                   ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/scoring.py\", line 120, in build_encoded_text_pool\n    retriever = Retriever(corpus=text_list, chunk_ids=id_list, **kwargs)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<string>\", line 15, in __init__\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/hf_embedding.py\", line 99, in __post_init__\n    self._corpus_embeddings = self._encode_texts(self.corpus, text_kind=\"document\")\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/hf_embedding.py\", line 327, in _encode_texts\n    model_output = self._model(**encoded)\n                   ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/generic.py\", line 1072, in wrapper\n    outputs = func(self, *args, **kwargs)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 410, in forward\n    hidden_states = decoder_layer(\n                    ^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/modeling_layers.py\", line 94, in __call__\n    return super().__call__(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/deprecation.py\", line 172, in wrapped_func\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 275, in forward\n    hidden_states = self.mlp(hidden_states)\n                    ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 82, in forward\n    down_proj = self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))\n                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.38 GiB. GPU 0 has a total capacity of 47.40 GiB of which 478.25 MiB is free. Including non-PyTorch memory, this process has 46.93 GiB memory in use. Of the allocated memory 43.01 GiB is allocated by PyTorch, and 3.61 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)\n",
-        "finished_at": "2026-11-09 12:47:51"
-      }
-    },
-    "qasper_64k__bge_m3": {
-      "status": "DONE",
-      "seconds": 950.0293729305267,
-      "summary": {
-        "job": "qasper_64k__bge_m3",
-        "dataset": "qasper_64k",
-        "retriever": "bge_m3",
-        "max_docs": null,
-        "timings": {
-          "n_docs": 23,
-          "docs_from_checkpoint": 0,
-          "seconds_scoring": 940.526235157391,
-          "seconds_total": 940.5288755828515
-        },
-        "check": {
-          "dataset": "qasper_64k",
-          "retriever": "bge_m3",
-          "n_queries": 1333,
-          "full_dataset": true,
-          "identical_top10": 1333,
-          "identical_top10_share": 1.0,
-          "hr_ours_published": {
-            "eligible": 1333,
-            "hits": {
-              "5": 279,
-              "10": 412
-            },
-            "hr_percent": {
-              "5": 20.930232558139537,
-              "10": 30.90772693173293
-            }
-          },
-          "hr_saved": {
-            "eligible": 1333,
-            "hits": {
-              "5": 279,
-              "10": 412
-            },
-            "hr_percent": {
-              "5": 20.930232558139537,
-              "10": 30.90772693173293
-            }
-          },
-          "max_abs_score_diff_identical_rankings": 0.0,
-          "mismatch_examples": [],
-          "expected_metrics": {
-            "5": {
-              "eligible": 1333,
-              "hits": 279,
-              "hr_percent": 20.930232558139537
-            },
-            "10": {
-              "eligible": 1333,
-              "hits": 412,
-              "hr_percent": 30.90772693173293
-            }
-          },
-          "text_only": {
-            "hr": {
-              "eligible": 1333,
-              "hits": {
-                "5": 280,
-                "10": 391
-              },
-              "hr_percent": {
-                "5": 21.005251312828207,
-                "10": 29.332333083270818
-              }
-            },
-            "reported_percent": {
-              "5": 21.0,
-              "10": 29.3
-            },
-            "diff_points": {
-              "5": 0.005251312828207233,
-              "10": 0.0323330832708173
-            },
-            "passed": true,
-            "notes": []
-          },
-          "anomalies": [],
           "problems": [],
           "passed": true
         },
-        "finished_at": "2026-11-09 12:50:11",
+        "finished_at": "2026-11-09 14:52:40",
         "stream_rows": 992410,
         "files": [
-          "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bge_m3.parquet",
-          "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bge_m3.queries.json",
-          "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bge_m3.check.json"
+          "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__jina.parquet",
+          "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__jina.queries.json",
+          "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__jina.check.json"
         ],
         "status": "DONE",
-        "seconds": 945.0496366189327
+        "seconds": 4.58423141296953
       }
     },
     "musique_32k__jina": {
-      "status": "FAILED",
-      "seconds": 420.0118443965912,
+      "status": "DONE",
+      "seconds": 10.0012047290802,
       "summary": {
         "job": "musique_32k__jina",
         "dataset": "musique_32k",
@@ -1403,9 +2046,9 @@
         "max_docs": null,
         "timings": {
           "n_docs": 45,
-          "docs_from_checkpoint": 0,
-          "seconds_scoring": 411.89343509753235,
-          "seconds_total": 411.8978610918857
+          "docs_from_checkpoint": 45,
+          "seconds_scoring": 0.0,
+          "seconds_total": 0.01228314102627337
         },
         "check": {
           "dataset": "musique_32k",
@@ -1735,120 +2378,31 @@
             "notes": []
           },
           "anomalies": [],
-          "problems": [
+          "max_hr_gap_points": 0.3333333333333286,
+          "drift_accepted": true,
+          "drift_notes": [
             "identical top-10 for 705/900 queries (< 99%)",
-            "HR@5 73.55555555555556 vs saved 73.22222222222223 (tolerance 0.1 points)",
-            "HR@5 73.56 vs expected 73.22"
+            "HR@5 73.56 vs saved 73.22 (tolerance 0.1 points)",
+            "HR@5 73.56 vs expected 73.22",
+            "accepted: jina is in DRIFT_ACCEPTED_RETRIEVERS and the largest HR gap is 0.33 <= 0.5 points"
           ],
-          "passed": false
-        },
-        "finished_at": "2026-11-09 12:50:12",
-        "quarantined_rows": 342176,
-        "status": "FAILED",
-        "seconds": 413.48721989104524
-      }
-    },
-    "novelhopqa__bge_m3": {
-      "status": "DONE",
-      "seconds": 667.9381349086761,
-      "summary": {
-        "job": "novelhopqa__bge_m3",
-        "dataset": "novelhopqa",
-        "retriever": "bge_m3",
-        "max_docs": null,
-        "timings": {
-          "n_docs": 16,
-          "docs_from_checkpoint": 0,
-          "seconds_scoring": 634.186044904869,
-          "seconds_total": 634.1881030451041
-        },
-        "check": {
-          "dataset": "novelhopqa",
-          "retriever": "bge_m3",
-          "n_queries": 908,
-          "full_dataset": true,
-          "identical_top10": 908,
-          "identical_top10_share": 1.0,
-          "hr_ours_published": {
-            "eligible": 908,
-            "hits": {
-              "5": 150,
-              "10": 201
-            },
-            "hr_percent": {
-              "5": 16.519823788546255,
-              "10": 22.136563876651984
-            }
-          },
-          "hr_saved": {
-            "eligible": 908,
-            "hits": {
-              "5": 150,
-              "10": 201
-            },
-            "hr_percent": {
-              "5": 16.519823788546255,
-              "10": 22.136563876651984
-            }
-          },
-          "max_abs_score_diff_identical_rankings": 0.0,
-          "mismatch_examples": [],
-          "expected_metrics": {
-            "5": {
-              "eligible": 908,
-              "hits": 150,
-              "hr_percent": 16.519823788546255
-            },
-            "10": {
-              "eligible": 908,
-              "hits": 201,
-              "hr_percent": 22.136563876651984
-            }
-          },
-          "text_only": {
-            "hr": {
-              "eligible": 908,
-              "hits": {
-                "5": 157,
-                "10": 199
-              },
-              "hr_percent": {
-                "5": 17.290748898678416,
-                "10": 21.916299559471366
-              }
-            },
-            "reported_percent": {
-              "5": 14.1,
-              "10": 20.7
-            },
-            "diff_points": {
-              "5": 3.1907488986784163,
-              "10": 1.2162995594713664
-            },
-            "passed": false,
-            "notes": [
-              "text-only HR@5 17.29 vs Table 1 Vanilla 14.1 (tolerance 0.15)",
-              "text-only HR@10 21.92 vs Table 1 Vanilla 20.7 (tolerance 0.15)"
-            ]
-          },
-          "anomalies": [],
           "problems": [],
           "passed": true
         },
-        "finished_at": "2026-11-09 12:52:25",
-        "stream_rows": 418611,
+        "finished_at": "2026-11-09 14:52:40",
+        "stream_rows": 342176,
         "files": [
-          "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bge_m3.parquet",
-          "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bge_m3.queries.json",
-          "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bge_m3.check.json"
+          "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__jina.parquet",
+          "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__jina.queries.json",
+          "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__jina.check.json"
         ],
         "status": "DONE",
-        "seconds": 636.1375717909541
+        "seconds": 1.7984069439116865
       }
     },
     "loogle__jina": {
-      "status": "FAILED",
-      "seconds": 257.9232277870178,
+      "status": "DONE",
+      "seconds": 10.00065803527832,
       "summary": {
         "job": "loogle__jina",
         "dataset": "loogle",
@@ -1856,9 +2410,9 @@
         "max_docs": null,
         "timings": {
           "n_docs": 105,
-          "docs_from_checkpoint": 0,
-          "seconds_scoring": 250.2282782443799,
-          "seconds_total": 250.23750444804318
+          "docs_from_checkpoint": 105,
+          "seconds_scoring": 0.0,
+          "seconds_total": 0.013144876109436154
         },
         "check": {
           "dataset": "loogle",
@@ -2191,209 +2745,125 @@
             ]
           },
           "anomalies": [],
-          "problems": [
-            "identical top-10 for 1519/1832 queries (< 99%)"
+          "max_hr_gap_points": 0.054585152838427575,
+          "drift_accepted": true,
+          "drift_notes": [
+            "identical top-10 for 1519/1832 queries (< 99%)",
+            "accepted: jina is in DRIFT_ACCEPTED_RETRIEVERS and the largest HR gap is 0.05 <= 0.5 points"
           ],
-          "passed": false
+          "problems": [],
+          "passed": true
         },
-        "finished_at": "2026-11-09 12:54:41",
-        "quarantined_rows": 62471,
-        "status": "FAILED",
-        "seconds": 250.63983350992203
+        "finished_at": "2026-11-09 14:53:00",
+        "stream_rows": 62471,
+        "files": [
+          "outputs/rebuttal/C2_heldout_fusion/streams/loogle__jina.parquet",
+          "outputs/rebuttal/C2_heldout_fusion/streams/loogle__jina.queries.json",
+          "outputs/rebuttal/C2_heldout_fusion/streams/loogle__jina.check.json"
+        ],
+        "status": "DONE",
+        "seconds": 0.5971355792135
       }
     },
-    "musique_32k__contriever": {
+    "qasper_64k__qwen": {
       "status": "DONE",
-      "seconds": 337.9236304759979,
+      "seconds": 5810.092323303223,
       "summary": {
-        "job": "musique_32k__contriever",
-        "dataset": "musique_32k",
-        "retriever": "contriever",
+        "job": "qasper_64k__qwen",
+        "dataset": "qasper_64k",
+        "retriever": "qwen",
         "max_docs": null,
         "timings": {
-          "n_docs": 45,
-          "docs_from_checkpoint": 0,
-          "seconds_scoring": 329.1222819904797,
-          "seconds_total": 329.1268253310118
+          "n_docs": 23,
+          "docs_from_checkpoint": 2,
+          "seconds_scoring": 5797.426839958411,
+          "seconds_total": 5797.431283104001
         },
         "check": {
-          "dataset": "musique_32k",
-          "retriever": "contriever",
-          "n_queries": 900,
+          "dataset": "qasper_64k",
+          "retriever": "qwen",
+          "n_queries": 1333,
           "full_dataset": true,
-          "identical_top10": 900,
+          "identical_top10": 1333,
           "identical_top10_share": 1.0,
           "hr_ours_published": {
-            "eligible": 900,
+            "eligible": 1333,
             "hits": {
-              "5": 619,
-              "10": 753
+              "5": 311,
+              "10": 455
             },
             "hr_percent": {
-              "5": 68.77777777777779,
-              "10": 83.66666666666667
+              "5": 23.330832708177045,
+              "10": 34.133533383345835
             }
           },
           "hr_saved": {
-            "eligible": 900,
+            "eligible": 1333,
             "hits": {
-              "5": 619,
-              "10": 753
+              "5": 311,
+              "10": 455
             },
             "hr_percent": {
-              "5": 68.77777777777779,
-              "10": 83.66666666666667
+              "5": 23.330832708177045,
+              "10": 34.133533383345835
             }
           },
-          "max_abs_score_diff_identical_rankings": 0.0,
+          "max_abs_score_diff_identical_rankings": 3.703590131798329e-05,
           "mismatch_examples": [],
           "expected_metrics": {
             "5": {
-              "eligible": 900,
-              "hits": 619,
-              "hr_percent": 68.77777777777779
+              "eligible": 1333,
+              "hits": 311,
+              "hr_percent": 23.330832708177045
             },
             "10": {
-              "eligible": 900,
-              "hits": 753,
-              "hr_percent": 83.66666666666667
+              "eligible": 1333,
+              "hits": 455,
+              "hr_percent": 34.133533383345835
             }
           },
           "text_only": {
             "hr": {
-              "eligible": 900,
+              "eligible": 1333,
               "hits": {
-                "5": 539,
-                "10": 685
+                "5": 301,
+                "10": 434
               },
               "hr_percent": {
-                "5": 59.88888888888889,
-                "10": 76.11111111111111
+                "5": 22.58064516129032,
+                "10": 32.55813953488372
               }
             },
             "reported_percent": {
-              "5": 59.9,
-              "10": 76.1
+              "5": 22.6,
+              "10": 32.6
             },
             "diff_points": {
-              "5": -0.011111111111105743,
-              "10": 0.011111111111119953
+              "5": -0.019354838709681133,
+              "10": -0.0418604651162795
             },
             "passed": true,
             "notes": []
           },
           "anomalies": [],
+          "max_hr_gap_points": 0.0,
+          "drift_accepted": false,
           "problems": [],
           "passed": true
         },
-        "finished_at": "2026-11-09 12:56:00",
-        "stream_rows": 342176,
+        "finished_at": "2026-11-09 15:38:07",
+        "stream_rows": 992410,
         "files": [
-          "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__contriever.parquet",
-          "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__contriever.queries.json",
-          "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__contriever.check.json"
+          "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__qwen.parquet",
+          "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__qwen.queries.json",
+          "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__qwen.check.json"
         ],
         "status": "DONE",
-        "seconds": 330.7575296610594
-      }
-    },
-    "musique_32k__bge_m3": {
-      "status": "DONE",
-      "seconds": 549.5675311088562,
-      "summary": {
-        "job": "musique_32k__bge_m3",
-        "dataset": "musique_32k",
-        "retriever": "bge_m3",
-        "max_docs": null,
-        "timings": {
-          "n_docs": 45,
-          "docs_from_checkpoint": 0,
-          "seconds_scoring": 544.4516232742462,
-          "seconds_total": 544.4555322171655
-        },
-        "check": {
-          "dataset": "musique_32k",
-          "retriever": "bge_m3",
-          "n_queries": 900,
-          "full_dataset": true,
-          "identical_top10": 900,
-          "identical_top10_share": 1.0,
-          "hr_ours_published": {
-            "eligible": 900,
-            "hits": {
-              "5": 692,
-              "10": 795
-            },
-            "hr_percent": {
-              "5": 76.88888888888889,
-              "10": 88.33333333333333
-            }
-          },
-          "hr_saved": {
-            "eligible": 900,
-            "hits": {
-              "5": 692,
-              "10": 795
-            },
-            "hr_percent": {
-              "5": 76.88888888888889,
-              "10": 88.33333333333333
-            }
-          },
-          "max_abs_score_diff_identical_rankings": 0.0,
-          "mismatch_examples": [],
-          "expected_metrics": {
-            "5": {
-              "eligible": 900,
-              "hits": 692,
-              "hr_percent": 76.88888888888889
-            },
-            "10": {
-              "eligible": 900,
-              "hits": 795,
-              "hr_percent": 88.33333333333333
-            }
-          },
-          "text_only": {
-            "hr": {
-              "eligible": 900,
-              "hits": {
-                "5": 659,
-                "10": 787
-              },
-              "hr_percent": {
-                "5": 73.22222222222223,
-                "10": 87.44444444444444
-              }
-            },
-            "reported_percent": {
-              "5": 73.2,
-              "10": 87.4
-            },
-            "diff_points": {
-              "5": 0.022222222222225696,
-              "10": 0.04444444444443718
-            },
-            "passed": true,
-            "notes": []
-          },
-          "anomalies": [],
-          "problems": [],
-          "passed": true
-        },
-        "finished_at": "2026-11-09 12:57:15",
-        "stream_rows": 342176,
-        "files": [
-          "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bge_m3.parquet",
-          "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bge_m3.queries.json",
-          "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bge_m3.check.json"
-        ],
-        "status": "DONE",
-        "seconds": 546.0676782589871
+        "seconds": 5801.89878538507
       }
     }
   },
-  "analysis": "12/20 jobs DONE; this group's unfinished jobs: ['loogle__jina', 'loogle__qwen', 'musique_32k__jina', 'qasper_64k__jina', 'qasper_64k__qwen']; waiting for group B",
-  "finished_at": "2026-11-09 12:57:30",
+  "analysis": "18/20 jobs DONE; this group's unfinished jobs: ['loogle__qwen']; waiting for group B",
+  "finished_at": "2026-11-09 15:38:29",
   "exit_code": 1
 }

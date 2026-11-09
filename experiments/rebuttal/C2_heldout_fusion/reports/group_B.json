@@ -1,7 +1,7 @@
 {
   "group": "B",
   "dry_run": false,
-  "started_at": "2026-11-09 12:30:45",
+  "started_at": "2026-11-09 14:01:34",
   "host": "eee-s132-infsys-gpu03",
   "argv": [
     "python3",
@@ -10,32 +10,8 @@
     "B"
   ],
   "analysis_only": false,
-  "unexpected": [
-    "novelhopqa__qwen:\nTraceback (most recent call last):\n  File \"/mnt/data/zeinab/SAADI/scripts/rebuttal/c2_heldout_fusion.py\", line 428, in run_worker\n    summary = hf.run_stream_job(\n              ^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 634, in run_stream_job\n    docs, used_rows, timings = compute_job_streams(dataset, retriever, paths=paths, max_docs=max_docs, log=log)\n                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 396, in compute_job_streams\n    doc = _score_document(document_index, by_doc[doc_id], retriever)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 322, in _score_document\n    streams = score_mbr_variant_document_pools(\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retrieval_methods/mbr.py\", line 1137, in score_mbr_variant_document_pools\n    text_scores = _score_pool(\n                  ^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retrieval_methods/mbr.py\", line 725, in _score_pool\n    encoded_pool = build_encoded_text_pool(\n                   ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/scoring.py\", line 120, in build_encoded_text_pool\n    retriever = Retriever(corpus=text_list, chunk_ids=id_list, **kwargs)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<string>\", line 15, in __init__\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/hf_embedding.py\", line 99, in __post_init__\n    self._corpus_embeddings = self._encode_texts(self.corpus, text_kind=\"document\")\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/hf_embedding.py\", line 327, in _encode_texts\n    model_output = self._model(**encoded)\n                   ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/generic.py\", line 1072, in wrapper\n    outputs = func(self, *args, **kwargs)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 410, in forward\n    hidden_states = decoder_layer(\n                    ^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/modeling_layers.py\", line 94, in __call__\n    return super().__call__(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/deprecation.py\", line 172, in wrapped_func\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 260, in forward\n    hidden_states, _ = self.self_attn(\n                       ^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/deprecation.py\", line 172, in wrapped_func\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 216, in forward\n    attn_output, attn_weights = attention_interface(\n                                ^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/integrations/sdpa_attention.py\", line 96, in sdpa_attention_forward\n    attn_output = torch.nn.functional.scaled_dot_product_attention(\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.00 GiB. GPU 0 has a total capacity of 47.40 GiB of which 1.37 GiB is free. Including non-PyTorch memory, this process has 46.02 GiB memory in use. Of the allocated memory 43.70 GiB is allocated by PyTorch, and 2.01 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)\n",
-    "musique_32k__qwen:\nTraceback (most recent call last):\n  File \"/mnt/data/zeinab/SAADI/scripts/rebuttal/c2_heldout_fusion.py\", line 428, in run_worker\n    summary = hf.run_stream_job(\n              ^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 634, in run_stream_job\n    docs, used_rows, timings = compute_job_streams(dataset, retriever, paths=paths, max_docs=max_docs, log=log)\n                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 396, in compute_job_streams\n    doc = _score_document(document_index, by_doc[doc_id], retriever)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 322, in _score_document\n    streams = score_mbr_variant_document_pools(\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retrieval_methods/mbr.py\", line 1137, in score_mbr_variant_document_pools\n    text_scores = _score_pool(\n                  ^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retrieval_methods/mbr.py\", line 725, in _score_pool\n    encoded_pool = build_encoded_text_pool(\n                   ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/scoring.py\", line 120, in build_encoded_text_pool\n    retriever = Retriever(corpus=text_list, chunk_ids=id_list, **kwargs)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<string>\", line 15, in __init__\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/hf_embedding.py\", line 99, in __post_init__\n    self._corpus_embeddings = self._encode_texts(self.corpus, text_kind=\"document\")\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/hf_embedding.py\", line 327, in _encode_texts\n    model_output = self._model(**encoded)\n                   ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/generic.py\", line 1072, in wrapper\n    outputs = func(self, *args, **kwargs)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 410, in forward\n    hidden_states = decoder_layer(\n                    ^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/modeling_layers.py\", line 94, in __call__\n    return super().__call__(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/deprecation.py\", line 172, in wrapped_func\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 275, in forward\n    hidden_states = self.mlp(hidden_states)\n                    ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 82, in forward\n    down_proj = self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))\n                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.26 GiB. GPU 0 has a total capacity of 47.40 GiB of which 502.25 MiB is free. Including non-PyTorch memory, this process has 46.90 GiB memory in use. Of the allocated memory 43.34 GiB is allocated by PyTorch, and 3.25 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)\n"
-  ],
-  "files": [
-    "outputs/rebuttal/C2_heldout_fusion/streams/loogle__bm25.parquet",
-    "outputs/rebuttal/C2_heldout_fusion/streams/loogle__bm25.queries.json",
-    "outputs/rebuttal/C2_heldout_fusion/streams/loogle__bm25.check.json",
-    "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bm25.parquet",
-    "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bm25.queries.json",
-    "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bm25.check.json",
-    "outputs/rebuttal/C2_heldout_fusion/streams/loogle__bge_m3.parquet",
-    "outputs/rebuttal/C2_heldout_fusion/streams/loogle__bge_m3.queries.json",
-    "outputs/rebuttal/C2_heldout_fusion/streams/loogle__bge_m3.check.json",
-    "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__contriever.parquet",
-    "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__contriever.queries.json",
-    "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__contriever.check.json",
-    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__contriever.parquet",
-    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__contriever.queries.json",
-    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__contriever.check.json",
-    "outputs/rebuttal/C2_heldout_fusion/streams/loogle__contriever.parquet",
-    "outputs/rebuttal/C2_heldout_fusion/streams/loogle__contriever.queries.json",
-    "outputs/rebuttal/C2_heldout_fusion/streams/loogle__contriever.check.json",
-    "experiments/rebuttal/C2_heldout_fusion/reports/group_B.md",
-    "experiments/rebuttal/C2_heldout_fusion/reports/group_B.json"
-  ],
+  "unexpected": [],
+  "files": [],
   "preflight": {
     "ok": true,
     "problems": [],
@@ -51,6 +27,7 @@
       "tqdm": "4.68.2",
       "torch": "2.11.0+cu129",
       "transformers": "4.57.6",
+      "accelerate": "1.13.0",
       "matplotlib": "3.10.8"
     },
     "torch_cuda": {
@@ -58,7 +35,7 @@
       "cuda_version": "12.9"
     },
     "git": {
-      "commit": "1ecb54c278bdfd82c731f1aea140d25768497d63",
+      "commit": "e2dbaa178fa07c25806c32e8fce787455bae9ce3",
       "branch": "fix/notebook-key-and-install",
       "code_changes_vs_commit": []
     },
@@ -99,7 +76,7 @@
     },
     "disk": {
       "path": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion",
-      "free_gb": 4286.0,
+      "free_gb": 4285.6,
       "needed_gb_estimate": 5.9
     }
   },
@@ -148,7 +125,7 @@
           "query_call_s": 0.06
         }
       },
-      "memory": "weights in float32 (the adapters pass no dtype); every model fits on one 48 GB A6000 (largest: Qwen3-Embedding-8B, about 28 GB of weights), so every job gets one GPU",
+      "memory": "weights in float32 (the adapters pass no dtype); Qwen3-Embedding-8B ran out of memory on one 48 GB A6000 (about 28 GB of weights plus batch-64 activations), so each Qwen job gets two GPUs of its group with device_map=auto; every other job gets one GPU",
       "note": "estimates, not measurements; per-job times measured in this run are in the group reports"
     },
     "counts": {
@@ -314,10 +291,10 @@
         "query_encodes": 9160,
         "stream_rows": 62471,
         "device": "gpu",
-        "n_gpus": 1,
+        "n_gpus": 2,
         "model": "Qwen/Qwen3-Embedding-8B",
         "weights_gb_fp32": 28.2,
-        "fits_one_a6000": true,
+        "fits_one_a6000": false,
         "est_tokens": 2514072,
         "est_seconds": 4605.2752795,
         "est_parts_seconds": {
@@ -429,10 +406,10 @@
         "query_encodes": 4500,
         "stream_rows": 342176,
         "device": "gpu",
-        "n_gpus": 1,
+        "n_gpus": 2,
         "model": "Qwen/Qwen3-Embedding-8B",
         "weights_gb_fp32": 28.2,
-        "fits_one_a6000": true,
+        "fits_one_a6000": false,
         "est_tokens": 4889883,
         "est_seconds": 7964.6096405,
         "est_parts_seconds": {
@@ -544,10 +521,10 @@
         "query_encodes": 6665,
         "stream_rows": 992410,
         "device": "gpu",
-        "n_gpus": 1,
+        "n_gpus": 2,
         "model": "Qwen/Qwen3-Embedding-8B",
         "weights_gb_fp32": 28.2,
-        "fits_one_a6000": true,
+        "fits_one_a6000": false,
         "est_tokens": 4837778,
         "est_seconds": 8113.1577705,
         "est_parts_seconds": {
@@ -659,10 +636,10 @@
         "query_encodes": 4540,
         "stream_rows": 418611,
         "device": "gpu",
-        "n_gpus": 1,
+        "n_gpus": 2,
         "model": "Qwen/Qwen3-Embedding-8B",
         "weights_gb_fp32": 28.2,
-        "fits_one_a6000": true,
+        "fits_one_a6000": false,
         "est_tokens": 4670156,
         "est_seconds": 7645.8070769999995,
         "est_parts_seconds": {
@@ -696,7 +673,7 @@
           "qasper_64k__bm25",
           "novelhopqa__bm25"
         ],
-        "gpu_seconds": 17513,
+        "gpu_seconds": 30232,
         "est_wall_seconds": 8113
       },
       "B": {
@@ -717,979 +694,13 @@
           "musique_32k__bm25",
           "loogle__bm25"
         ],
-        "gpu_seconds": 17627,
-        "est_wall_seconds": 7965
+        "gpu_seconds": 33238,
+        "est_wall_seconds": 8394
       }
     },
     "analysis_est_seconds": 697,
-    "seconds_to_build": 242.1
+    "seconds_to_build": 242.1,
+    "updated_at": "2026-11-09 14:01:29"
   },
-  "plan_written": false,
-  "jobs": {
-    "loogle__bm25": {
-      "status": "DONE",
-      "seconds": 20.00070023536682,
-      "summary": {
-        "job": "loogle__bm25",
-        "dataset": "loogle",
-        "retriever": "bm25",
-        "max_docs": null,
-        "timings": {
-          "n_docs": 105,
-          "docs_from_checkpoint": 0,
-          "seconds_scoring": 15.018730990355834,
-          "seconds_total": 15.025261453120038
-        },
-        "check": {
-          "dataset": "loogle",
-          "retriever": "bm25",
-          "n_queries": 1832,
-          "full_dataset": true,
-          "identical_top10": 1832,
-          "identical_top10_share": 1.0,
-          "hr_ours_published": {
-            "eligible": 1832,
-            "hits": {
-              "5": 1691,
-              "10": 1767
-            },
-            "hr_percent": {
-              "5": 92.30349344978166,
-              "10": 96.4519650655022
-            }
-          },
-          "hr_saved": {
-            "eligible": 1832,
-            "hits": {
-              "5": 1691,
-              "10": 1767
-            },
-            "hr_percent": {
-              "5": 92.30349344978166,
-              "10": 96.4519650655022
-            }
-          },
-          "max_abs_score_diff_identical_rankings": 0.0,
-          "mismatch_examples": [],
-          "expected_metrics": {
-            "5": {
-              "eligible": 1832,
-              "hits": 1691,
-              "hr_percent": 92.30349344978166
-            },
-            "10": {
-              "eligible": 1832,
-              "hits": 1767,
-              "hr_percent": 96.4519650655022
-            }
-          },
-          "text_only": {
-            "hr": {
-              "eligible": 1832,
-              "hits": {
-                "5": 1683,
-                "10": 1754
-              },
-              "hr_percent": {
-                "5": 91.86681222707423,
-                "10": 95.74235807860262
-              }
-            },
-            "reported_percent": {
-              "5": 91.5,
-              "10": 95.4
-            },
-            "diff_points": {
-              "5": 0.36681222707423444,
-              "10": 0.342358078602615
-            },
-            "per_query_file": "outputs/loogle_ablation/500_tokens/llm_cache/loogle/hierarchical/branching_factor_5/chunk_500/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/retrieval_reports/retrieval_results__bm25__mbr_lt1_ln0_lh0_norm_none__per_document.json",
-            "per_query_identical_top10": 1832,
-            "passed": false,
-            "notes": [
-              "text-only HR@5 91.87 vs Table 1 Vanilla 91.5 (tolerance 0.05)",
-              "text-only HR@10 95.74 vs Table 1 Vanilla 95.4 (tolerance 0.05)"
-            ]
-          },
-          "anomalies": [],
-          "problems": [],
-          "passed": true
-        },
-        "finished_at": "2026-11-09 12:34:46",
-        "stream_rows": 62471,
-        "files": [
-          "outputs/rebuttal/C2_heldout_fusion/streams/loogle__bm25.parquet",
-          "outputs/rebuttal/C2_heldout_fusion/streams/loogle__bm25.queries.json",
-          "outputs/rebuttal/C2_heldout_fusion/streams/loogle__bm25.check.json"
-        ],
-        "status": "DONE",
-        "seconds": 15.765012450981885
-      }
-    },
-    "musique_32k__bm25": {
-      "status": "DONE",
-      "seconds": 150.00426292419434,
-      "summary": {
-        "job": "musique_32k__bm25",
-        "dataset": "musique_32k",
-        "retriever": "bm25",
-        "max_docs": null,
-        "timings": {
-          "n_docs": 45,
-          "docs_from_checkpoint": 0,
-          "seconds_scoring": 138.6908511389047,
-          "seconds_total": 138.69499284098856
-        },
-        "check": {
-          "dataset": "musique_32k",
-          "retriever": "bm25",
-          "n_queries": 900,
-          "full_dataset": true,
-          "identical_top10": 900,
-          "identical_top10_share": 1.0,
-          "hr_ours_published": {
-            "eligible": 900,
-            "hits": {
-              "5": 565,
-              "10": 699
-            },
-            "hr_percent": {
-              "5": 62.77777777777778,
-              "10": 77.66666666666666
-            }
-          },
-          "hr_saved": {
-            "eligible": 900,
-            "hits": {
-              "5": 565,
-              "10": 699
-            },
-            "hr_percent": {
-              "5": 62.77777777777778,
-              "10": 77.66666666666666
-            }
-          },
-          "max_abs_score_diff_identical_rankings": 0.0,
-          "mismatch_examples": [],
-          "expected_metrics": {
-            "5": {
-              "eligible": 900,
-              "hits": 565,
-              "hr_percent": 62.77777777777778
-            },
-            "10": {
-              "eligible": 900,
-              "hits": 699,
-              "hr_percent": 77.66666666666666
-            }
-          },
-          "text_only": {
-            "hr": {
-              "eligible": 900,
-              "hits": {
-                "5": 518,
-                "10": 666
-              },
-              "hr_percent": {
-                "5": 57.55555555555556,
-                "10": 74.0
-              }
-            },
-            "reported_percent": {
-              "5": 57.6,
-              "10": 74.0
-            },
-            "diff_points": {
-              "5": -0.04444444444444429,
-              "10": 0.0
-            },
-            "passed": true,
-            "notes": []
-          },
-          "anomalies": [],
-          "problems": [],
-          "passed": true
-        },
-        "finished_at": "2026-11-09 12:36:49",
-        "stream_rows": 342176,
-        "files": [
-          "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bm25.parquet",
-          "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bm25.queries.json",
-          "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bm25.check.json"
-        ],
-        "status": "DONE",
-        "seconds": 140.44513215497136
-      }
-    },
-    "novelhopqa__qwen": {
-      "status": "ERROR",
-      "seconds": 290.0095341205597,
-      "summary": {
-        "job": "novelhopqa__qwen",
-        "status": "ERROR",
-        "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/zeinab/SAADI/scripts/rebuttal/c2_heldout_fusion.py\", line 428, in run_worker\n    summary = hf.run_stream_job(\n              ^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 634, in run_stream_job\n    docs, used_rows, timings = compute_job_streams(dataset, retriever, paths=paths, max_docs=max_docs, log=log)\n                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 396, in compute_job_streams\n    doc = _score_document(document_index, by_doc[doc_id], retriever)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 322, in _score_document\n    streams = score_mbr_variant_document_pools(\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retrieval_methods/mbr.py\", line 1137, in score_mbr_variant_document_pools\n    text_scores = _score_pool(\n                  ^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retrieval_methods/mbr.py\", line 725, in _score_pool\n    encoded_pool = build_encoded_text_pool(\n                   ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/scoring.py\", line 120, in build_encoded_text_pool\n    retriever = Retriever(corpus=text_list, chunk_ids=id_list, **kwargs)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<string>\", line 15, in __init__\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/hf_embedding.py\", line 99, in __post_init__\n    self._corpus_embeddings = self._encode_texts(self.corpus, text_kind=\"document\")\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/hf_embedding.py\", line 327, in _encode_texts\n    model_output = self._model(**encoded)\n                   ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/generic.py\", line 1072, in wrapper\n    outputs = func(self, *args, **kwargs)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 410, in forward\n    hidden_states = decoder_layer(\n                    ^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/modeling_layers.py\", line 94, in __call__\n    return super().__call__(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/deprecation.py\", line 172, in wrapped_func\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 260, in forward\n    hidden_states, _ = self.self_attn(\n                       ^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/deprecation.py\", line 172, in wrapped_func\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 216, in forward\n    attn_output, attn_weights = attention_interface(\n                                ^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/integrations/sdpa_attention.py\", line 96, in sdpa_attention_forward\n    attn_output = torch.nn.functional.scaled_dot_product_attention(\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.00 GiB. GPU 0 has a total capacity of 47.40 GiB of which 1.37 GiB is free. Including non-PyTorch memory, this process has 46.02 GiB memory in use. Of the allocated memory 43.70 GiB is allocated by PyTorch, and 2.01 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)\n",
-        "finished_at": "2026-11-09 12:39:09"
-      }
-    },
-    "novelhopqa__jina": {
-      "status": "FAILED",
-      "seconds": 350.01277685165405,
-      "summary": {
-        "job": "novelhopqa__jina",
-        "dataset": "novelhopqa",
-        "retriever": "jina",
-        "max_docs": null,
-        "timings": {
-          "n_docs": 16,
-          "docs_from_checkpoint": 0,
-          "seconds_scoring": 340.6698447226081,
-          "seconds_total": 340.6716684419662
-        },
-        "check": {
-          "dataset": "novelhopqa",
-          "retriever": "jina",
-          "n_queries": 908,
-          "full_dataset": true,
-          "identical_top10": 624,
-          "identical_top10_share": 0.6872246696035242,
-          "hr_ours_published": {
-            "eligible": 908,
-            "hits": {
-              "5": 134,
-              "10": 190
-            },
-            "hr_percent": {
-              "5": 14.757709251101323,
-              "10": 20.92511013215859
-            }
-          },
-          "hr_saved": {
-            "eligible": 908,
-            "hits": {
-              "5": 134,
-              "10": 192
-            },
-            "hr_percent": {
-              "5": 14.757709251101323,
-              "10": 21.145374449339208
-            }
-          },
-          "max_abs_score_diff_identical_rankings": 0.03712206636723314,
-          "mismatch_examples": [
-            {
-              "query_id": "hop_1:2",
-              "doc_id": "B62",
-              "saved_top10": [
-                "B62:336",
-                "B62:649",
-                "B62:3",
-                "B62:344",
-                "B62:11",
-                "B62:690",
-                "B62:346",
-                "B62:338",
-                "B62:345",
-                "B62:14"
-              ],
-              "saved_scores": [
-                2.341083751968238,
-                2.0811383163428148,
-                1.7719866725061864,
-                1.7071806589929204,
-                1.6861227045783842,
-                1.6847346295408885,
-                1.656603890653753,
-                1.6563039237784971,
-                1.640331206942304,
-                1.6021902755230513
-              ],
-              "ours_top10": [
-                "B62:336",
-                "B62:649",
-                "B62:3",
-                "B62:344",
-                "B62:690",
-                "B62:11",
-                "B62:346",
-                "B62:338",
-                "B62:345",
-                "B62:14"
-              ],
-              "ours_scores": [
-                2.3407122299752934,
-                2.08076679434987,
-                1.76127897329541,
-                1.7068625185301212,
-                1.6913959571378965,
-                1.6857258958214576,
-                1.6632258826292636,
-                1.6566123546407299,
-                1.6399520977406175,
-                1.6018603343738027
-              ]
-            },
-            {
-              "query_id": "hop_1:4",
-              "doc_id": "B62",
-              "saved_top10": [
-                "B62:19",
-                "B62:23",
-                "B62:624",
-                "B62:501",
-                "B62:18",
-                "B62:319",
-                "B62:728",
-                "B62:75",
-                "B62:622",
-                "B62:242"
-              ],
-              "saved_scores": [
-                1.8359188571968876,
-                1.8046538665682121,
-                1.7029365456059145,
-                1.6906630794249582,
-                1.6897683971248472,
-                1.6803062560129163,
-                1.6456321492839288,
-                1.6283786321816525,
-                1.628102430195651,
-                1.612562222662357
-              ],
-              "ours_top10": [
-                "B62:19",
-                "B62:23",
-                "B62:624",
-                "B62:501",
-                "B62:18",
-                "B62:319",
-                "B62:75",
-                "B62:728",
-                "B62:622",
-                "B62:242"
-              ],
-              "ours_scores": [
-                1.831180448211263,
-                1.8159058179848964,
-                1.704015332245121,
-                1.6860657505393468,
-                1.6850299881392228,
-                1.6824847725487382,
-                1.6394895034983237,
-                1.6394317012298885,
-                1.6269379486031428,
-                1.6132177690015241
-              ]
-            },
-            {
-              "query_id": "hop_1:208",
-              "doc_id": "B62",
-              "saved_top10": [
-                "B62:618",
-                "B62:75",
-                "B62:23",
-                "B62:615",
-                "B62:510",
-                "B62:441",
-                "B62:584",
-                "B62:346",
-                "B62:617",
-                "B62:74"
-              ],
-              "saved_scores": [
-                1.9151520024027013,
-                1.8571285272172808,
-                1.8168698660498808,
-                1.8150236181082942,
-                1.742526124219173,
-                1.7280235214010293,
-                1.6910675733447529,
-                1.68292368130766,
-                1.6327502158233025,
-                1.612592629902555
-              ],
-              "ours_top10": [
-                "B62:618",
-                "B62:75",
-                "B62:23",
-                "B62:615",
-                "B62:510",
-                "B62:441",
-                "B62:346",
-                "B62:584",
-                "B62:617",
-                "B62:74"
-              ],
-              "ours_scores": [
-                1.917824268554431,
-                1.8477865465356882,
-                1.8185591684486242,
-                1.817695884260024,
-                1.7428714502216363,
-                1.7169263497322425,
-                1.6832833627454094,
-                1.6818142976818378,
-                1.634201648973629,
-                1.6016436709858006
-              ]
-            },
-            {
-              "query_id": "hop_1:412",
-              "doc_id": "B62",
-              "saved_top10": [
-                "B62:570",
-                "B62:543",
-                "B62:237",
-                "B62:495",
-                "B62:666",
-                "B62:599",
-                "B62:484",
-                "B62:167",
-                "B62:498",
-                "B62:357"
-              ],
-              "saved_scores": [
-                2.0674228911249646,
-                1.884799479222486,
-                1.7518944629652635,
-                1.6995537201750652,
-                1.6767693994203472,
-                1.674856286153508,
-                1.674625595183012,
-                1.6648329116158882,
-                1.6552825994689548,
-                1.542284726035195
-              ],
-              "ours_top10": [
-                "B62:570",
-                "B62:543",
-                "B62:237",
-                "B62:495",
-                "B62:599",
-                "B62:666",
-                "B62:484",
-                "B62:498",
-                "B62:167",
-                "B62:357"
-              ],
-              "ours_scores": [
-                2.0657060388667974,
-                1.8931757659603692,
-                1.7642926511055395,
-                1.699696660073592,
-                1.6750644670416734,
-                1.671344465683368,
-                1.6633083166346645,
-                1.655425539367482,
-                1.6546744318278424,
-                1.5424642008879195
-              ]
-            },
-            {
-              "query_id": "hop_1:620",
-              "doc_id": "B62",
-              "saved_top10": [
-                "B62:108",
-                "B62:321",
-                "B62:722",
-                "B62:320",
-                "B62:219",
-                "B62:720",
-                "B62:717",
-                "B62:650",
-                "B62:104",
-                "B62:48"
-              ],
-              "saved_scores": [
-                2.839798408587799,
-                2.3981331934574346,
-                2.369068111540944,
-                2.3411011999074107,
-                2.2972041415072924,
-                2.278184468158302,
-                2.276706580926174,
-                1.9672963239391403,
-                1.9070677457702259,
-                1.8733164509563325
-              ],
-              "ours_top10": [
-                "B62:108",
-                "B62:321",
-                "B62:722",
-                "B62:320",
-                "B62:219",
-                "B62:717",
-                "B62:720",
-                "B62:650",
-                "B62:104",
-                "B62:48"
-              ],
-              "ours_scores": [
-                2.8453986844133814,
-                2.3934988819351677,
-                2.3519373847781813,
-                2.3364668883851434,
-                2.284788121132942,
-                2.2731514652096507,
-                2.255606047432549,
-                1.9760191112016332,
-                1.909941541926566,
-                1.868757958288688
-              ]
-            }
-          ],
-          "expected_metrics": {
-            "5": {
-              "eligible": 908,
-              "hits": 134,
-              "hr_percent": 14.757709251101323
-            },
-            "10": {
-              "eligible": 908,
-              "hits": 192,
-              "hr_percent": 21.145374449339208
-            }
-          },
-          "text_only": {
-            "hr": {
-              "eligible": 908,
-              "hits": {
-                "5": 145,
-                "10": 183
-              },
-              "hr_percent": {
-                "5": 15.969162995594713,
-                "10": 20.154185022026432
-              }
-            },
-            "reported_percent": {
-              "5": 14.8,
-              "10": 19.1
-            },
-            "diff_points": {
-              "5": 1.1691629955947125,
-              "10": 1.0541850220264308
-            },
-            "passed": false,
-            "notes": [
-              "text-only HR@5 15.97 vs Table 1 Vanilla 14.8 (tolerance 0.15)",
-              "text-only HR@10 20.15 vs Table 1 Vanilla 19.1 (tolerance 0.15)"
-            ]
-          },
-          "anomalies": [],
-          "problems": [
-            "identical top-10 for 624/908 queries (< 99%)",
-            "HR@10 20.92511013215859 vs saved 21.145374449339208 (tolerance 0.1 points)",
-            "HR@10 20.93 vs expected 21.15"
-          ],
-          "passed": false
-        },
-        "finished_at": "2026-11-09 12:40:11",
-        "quarantined_rows": 418611,
-        "status": "FAILED",
-        "seconds": 342.5330271900166
-      }
-    },
-    "loogle__bge_m3": {
-      "status": "DONE",
-      "seconds": 550.0188477039337,
-      "summary": {
-        "job": "loogle__bge_m3",
-        "dataset": "loogle",
-        "retriever": "bge_m3",
-        "max_docs": null,
-        "timings": {
-          "n_docs": 105,
-          "docs_from_checkpoint": 0,
-          "seconds_scoring": 519.4461411964148,
-          "seconds_total": 519.455744221108
-        },
-        "check": {
-          "dataset": "loogle",
-          "retriever": "bge_m3",
-          "n_queries": 1832,
-          "full_dataset": true,
-          "identical_top10": 1832,
-          "identical_top10_share": 1.0,
-          "hr_ours_published": {
-            "eligible": 1832,
-            "hits": {
-              "5": 1485,
-              "10": 1651
-            },
-            "hr_percent": {
-              "5": 81.0589519650655,
-              "10": 90.12008733624454
-            }
-          },
-          "hr_saved": {
-            "eligible": 1832,
-            "hits": {
-              "5": 1485,
-              "10": 1651
-            },
-            "hr_percent": {
-              "5": 81.0589519650655,
-              "10": 90.12008733624454
-            }
-          },
-          "max_abs_score_diff_identical_rankings": 0.0,
-          "mismatch_examples": [],
-          "expected_metrics": {
-            "5": {
-              "eligible": 1832,
-              "hits": 1485,
-              "hr_percent": 81.0589519650655
-            },
-            "10": {
-              "eligible": 1832,
-              "hits": 1651,
-              "hr_percent": 90.12008733624454
-            }
-          },
-          "text_only": {
-            "hr": {
-              "eligible": 1832,
-              "hits": {
-                "5": 1511,
-                "10": 1662
-              },
-              "hr_percent": {
-                "5": 82.47816593886463,
-                "10": 90.72052401746726
-              }
-            },
-            "reported_percent": {
-              "5": 80.6,
-              "10": 89.8
-            },
-            "diff_points": {
-              "5": 1.8781659388646403,
-              "10": 0.9205240174672582
-            },
-            "passed": false,
-            "notes": [
-              "text-only HR@5 82.48 vs Table 1 Vanilla 80.6 (tolerance 0.15)",
-              "text-only HR@10 90.72 vs Table 1 Vanilla 89.8 (tolerance 0.15)"
-            ]
-          },
-          "anomalies": [],
-          "problems": [],
-          "passed": true
-        },
-        "finished_at": "2026-11-09 12:43:10",
-        "stream_rows": 62471,
-        "files": [
-          "outputs/rebuttal/C2_heldout_fusion/streams/loogle__bge_m3.parquet",
-          "outputs/rebuttal/C2_heldout_fusion/streams/loogle__bge_m3.queries.json",
-          "outputs/rebuttal/C2_heldout_fusion/streams/loogle__bge_m3.check.json"
-        ],
-        "status": "DONE",
-        "seconds": 546.1811014849227
-      }
-    },
-    "novelhopqa__contriever": {
-      "status": "DONE",
-      "seconds": 320.0093741416931,
-      "summary": {
-        "job": "novelhopqa__contriever",
-        "dataset": "novelhopqa",
-        "retriever": "contriever",
-        "max_docs": null,
-        "timings": {
-          "n_docs": 16,
-          "docs_from_checkpoint": 0,
-          "seconds_scoring": 310.9880751504097,
-          "seconds_total": 310.9899651708547
-        },
-        "check": {
-          "dataset": "novelhopqa",
-          "retriever": "contriever",
-          "n_queries": 908,
-          "full_dataset": true,
-          "identical_top10": 908,
-          "identical_top10_share": 1.0,
-          "hr_ours_published": {
-            "eligible": 908,
-            "hits": {
-              "5": 123,
-              "10": 165
-            },
-            "hr_percent": {
-              "5": 13.54625550660793,
-              "10": 18.17180616740088
-            }
-          },
-          "hr_saved": {
-            "eligible": 908,
-            "hits": {
-              "5": 123,
-              "10": 165
-            },
-            "hr_percent": {
-              "5": 13.54625550660793,
-              "10": 18.17180616740088
-            }
-          },
-          "max_abs_score_diff_identical_rankings": 0.0,
-          "mismatch_examples": [],
-          "expected_metrics": {
-            "5": {
-              "eligible": 908,
-              "hits": 123,
-              "hr_percent": 13.54625550660793
-            },
-            "10": {
-              "eligible": 908,
-              "hits": 165,
-              "hr_percent": 18.17180616740088
-            }
-          },
-          "text_only": {
-            "hr": {
-              "eligible": 908,
-              "hits": {
-                "5": 113,
-                "10": 162
-              },
-              "hr_percent": {
-                "5": 12.444933920704845,
-                "10": 17.841409691629956
-              }
-            },
-            "reported_percent": {
-              "5": 11.8,
-              "10": 11.8
-            },
-            "diff_points": {
-              "5": 0.6449339207048439,
-              "10": 6.041409691629955
-            },
-            "passed": false,
-            "notes": [
-              "text-only HR@5 12.44 vs Table 1 Vanilla 11.8 (tolerance 0.15)",
-              "text-only HR@10 17.84 vs Table 1 Vanilla 11.8 (tolerance 0.15)"
-            ]
-          },
-          "anomalies": [],
-          "problems": [],
-          "passed": true
-        },
-        "finished_at": "2026-11-09 12:45:41",
-        "stream_rows": 418611,
-        "files": [
-          "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__contriever.parquet",
-          "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__contriever.queries.json",
-          "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__contriever.check.json"
-        ],
-        "status": "DONE",
-        "seconds": 312.9423360719811
-      }
-    },
-    "qasper_64k__contriever": {
-      "status": "DONE",
-      "seconds": 460.015682220459,
-      "summary": {
-        "job": "qasper_64k__contriever",
-        "dataset": "qasper_64k",
-        "retriever": "contriever",
-        "max_docs": null,
-        "timings": {
-          "n_docs": 23,
-          "docs_from_checkpoint": 0,
-          "seconds_scoring": 419.90730422199704,
-          "seconds_total": 419.90985013497993
-        },
-        "check": {
-          "dataset": "qasper_64k",
-          "retriever": "contriever",
-          "n_queries": 1333,
-          "full_dataset": true,
-          "identical_top10": 1333,
-          "identical_top10_share": 1.0,
-          "hr_ours_published": {
-            "eligible": 1333,
-            "hits": {
-              "5": 216,
-              "10": 344
-            },
-            "hr_percent": {
-              "5": 16.204051012753187,
-              "10": 25.806451612903224
-            }
-          },
-          "hr_saved": {
-            "eligible": 1333,
-            "hits": {
-              "5": 216,
-              "10": 344
-            },
-            "hr_percent": {
-              "5": 16.204051012753187,
-              "10": 25.806451612903224
-            }
-          },
-          "max_abs_score_diff_identical_rankings": 0.0,
-          "mismatch_examples": [],
-          "expected_metrics": {
-            "5": {
-              "eligible": 1333,
-              "hits": 216,
-              "hr_percent": 16.204051012753187
-            },
-            "10": {
-              "eligible": 1333,
-              "hits": 344,
-              "hr_percent": 25.806451612903224
-            }
-          },
-          "text_only": {
-            "hr": {
-              "eligible": 1333,
-              "hits": {
-                "5": 202,
-                "10": 311
-              },
-              "hr_percent": {
-                "5": 15.153788447111777,
-                "10": 23.330832708177045
-              }
-            },
-            "reported_percent": {
-              "5": 15.2,
-              "10": 23.3
-            },
-            "diff_points": {
-              "5": -0.046211552888221874,
-              "10": 0.03083270817704431
-            },
-            "passed": true,
-            "notes": []
-          },
-          "anomalies": [],
-          "problems": [],
-          "passed": true
-        },
-        "finished_at": "2026-11-09 12:46:30",
-        "stream_rows": 992410,
-        "files": [
-          "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__contriever.parquet",
-          "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__contriever.queries.json",
-          "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__contriever.check.json"
-        ],
-        "status": "DONE",
-        "seconds": 456.71134342392907
-      }
-    },
-    "loogle__contriever": {
-      "status": "DONE",
-      "seconds": 250.00642275810242,
-      "summary": {
-        "job": "loogle__contriever",
-        "dataset": "loogle",
-        "retriever": "contriever",
-        "max_docs": null,
-        "timings": {
-          "n_docs": 105,
-          "docs_from_checkpoint": 0,
-          "seconds_scoring": 184.35880137211643,
-          "seconds_total": 184.36850201385096
-        },
-        "check": {
-          "dataset": "loogle",
-          "retriever": "contriever",
-          "n_queries": 1832,
-          "full_dataset": true,
-          "identical_top10": 1832,
-          "identical_top10_share": 1.0,
-          "hr_ours_published": {
-            "eligible": 1832,
-            "hits": {
-              "5": 1382,
-              "10": 1570
-            },
-            "hr_percent": {
-              "5": 75.43668122270742,
-              "10": 85.69868995633188
-            }
-          },
-          "hr_saved": {
-            "eligible": 1832,
-            "hits": {
-              "5": 1382,
-              "10": 1570
-            },
-            "hr_percent": {
-              "5": 75.43668122270742,
-              "10": 85.69868995633188
-            }
-          },
-          "max_abs_score_diff_identical_rankings": 0.0,
-          "mismatch_examples": [],
-          "expected_metrics": {
-            "5": {
-              "eligible": 1832,
-              "hits": 1382,
-              "hr_percent": 75.43668122270742
-            },
-            "10": {
-              "eligible": 1832,
-              "hits": 1570,
-              "hr_percent": 85.69868995633188
-            }
-          },
-          "text_only": {
-            "hr": {
-              "eligible": 1832,
-              "hits": {
-                "5": 1377,
-                "10": 1576
-              },
-              "hr_percent": {
-                "5": 75.16375545851528,
-                "10": 86.02620087336244
-              }
-            },
-            "reported_percent": {
-              "5": 72.4,
-              "10": 73.3
-            },
-            "diff_points": {
-              "5": 2.763755458515277,
-              "10": 12.726200873362444
-            },
-            "passed": false,
-            "notes": [
-              "text-only HR@5 75.16 vs Table 1 Vanilla 72.4 (tolerance 0.15)",
-              "text-only HR@10 86.03 vs Table 1 Vanilla 73.3 (tolerance 0.15)"
-            ]
-          },
-          "anomalies": [],
-          "problems": [],
-          "passed": true
-        },
-        "finished_at": "2026-11-09 12:47:46",
-        "stream_rows": 62471,
-        "files": [
-          "outputs/rebuttal/C2_heldout_fusion/streams/loogle__contriever.parquet",
-          "outputs/rebuttal/C2_heldout_fusion/streams/loogle__contriever.queries.json",
-          "outputs/rebuttal/C2_heldout_fusion/streams/loogle__contriever.check.json"
-        ],
-        "status": "DONE",
-        "seconds": 241.43226784607396
-      }
-    },
-    "musique_32k__qwen": {
-      "status": "ERROR",
-      "seconds": 1360.0390510559082,
-      "summary": {
-        "job": "musique_32k__qwen",
-        "status": "ERROR",
-        "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/zeinab/SAADI/scripts/rebuttal/c2_heldout_fusion.py\", line 428, in run_worker\n    summary = hf.run_stream_job(\n              ^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 634, in run_stream_job\n    docs, used_rows, timings = compute_job_streams(dataset, retriever, paths=paths, max_docs=max_docs, log=log)\n                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 396, in compute_job_streams\n    doc = _score_document(document_index, by_doc[doc_id], retriever)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 322, in _score_document\n    streams = score_mbr_variant_document_pools(\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retrieval_methods/mbr.py\", line 1137, in score_mbr_variant_document_pools\n    text_scores = _score_pool(\n                  ^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retrieval_methods/mbr.py\", line 725, in _score_pool\n    encoded_pool = build_encoded_text_pool(\n                   ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/scoring.py\", line 120, in build_encoded_text_pool\n    retriever = Retriever(corpus=text_list, chunk_ids=id_list, **kwargs)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<string>\", line 15, in __init__\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/hf_embedding.py\", line 99, in __post_init__\n    self._corpus_embeddings = self._encode_texts(self.corpus, text_kind=\"document\")\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/src/saadi/indexing/retriever_adapters/hf_embedding.py\", line 327, in _encode_texts\n    model_output = self._model(**encoded)\n                   ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/generic.py\", line 1072, in wrapper\n    outputs = func(self, *args, **kwargs)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 410, in forward\n    hidden_states = decoder_layer(\n                    ^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/modeling_layers.py\", line 94, in __call__\n    return super().__call__(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/deprecation.py\", line 172, in wrapped_func\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 275, in forward\n    hidden_states = self.mlp(hidden_states)\n                    ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py\", line 82, in forward\n    down_proj = self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))\n                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.26 GiB. GPU 0 has a total capacity of 47.40 GiB of which 502.25 MiB is free. Including non-PyTorch memory, this process has 46.90 GiB memory in use. Of the allocated memory 43.34 GiB is allocated by PyTorch, and 3.25 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)\n",
-        "finished_at": "2026-11-09 12:57:08"
-      }
-    }
-  },
-  "analysis": "12/20 jobs DONE; this group's unfinished jobs: ['musique_32k__qwen', 'novelhopqa__jina', 'novelhopqa__qwen']; waiting for group A",
-  "finished_at": "2026-11-09 12:57:20",
-  "exit_code": 1
+  "plan_written": false
 }
