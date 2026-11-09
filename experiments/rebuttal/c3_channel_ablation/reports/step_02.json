@@ -1,0 +1,15 @@
+{
+  "step": 2,
+  "title": "new variants for BM25",
+  "status": "FAILED",
+  "command": "bash experiments/rebuttal/c3_channel_ablation/sh/02_bm25.sh",
+  "git": {
+    "commit": "1e7b1fb6b31cad9941271a8223f16145656968e8",
+    "branch": "fix/notebook-key-and-install",
+    "dirty_files": 6
+  },
+  "files": [
+    "experiments/rebuttal/c3_channel_ablation/reports/step_02.md",
+    "experiments/rebuttal/c3_channel_ablation/reports/step_02.json"
+  ]
+}

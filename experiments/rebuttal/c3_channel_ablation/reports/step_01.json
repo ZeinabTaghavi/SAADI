@@ -1,12 +1,12 @@
 {
   "step": 1,
   "title": "inputs and checks",
-  "status": "PASSED",
-  "command": "C3_STREAMS_DIR=/Users/uem-stag-lap-ic/Desktop/SAADI/outputs/rebuttal/C2_heldout_fusion/streams bash experiments/rebuttal/c3_channel_ablation/sh/01_check.sh",
+  "status": "FAILED",
+  "command": "C3_STREAMS_DIR=/home/iataghav/data/SAADI/outputs/rebuttal/C2_heldout_fusion/streams bash experiments/rebuttal/c3_channel_ablation/sh/01_check.sh",
   "git": {
-    "commit": "c09a4e10f7ab857bb9edf26dc3536191eb683bdc",
+    "commit": "1e7b1fb6b31cad9941271a8223f16145656968e8",
     "branch": "fix/notebook-key-and-install",
-    "dirty_files": 1
+    "dirty_files": 2
   },
   "weights": {
     "lambda_t": 1.0,
@@ -28,47 +28,155 @@
   "inventory": [
     {
       "dataset": "loogle",
-      "retriever": "bm25",
-      "saved_rankings": "outputs/loogle_ablation/500_tokens/llm_cache/loogle/hierarchical/branching_factor_5/chunk_500/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/bm25/retrieval_reports/retrieval_results__bm25__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
+      "retriever": "contriever",
+      "saved_rankings": "outputs/loogle_ablation/500_tokens/llm_cache/loogle/hierarchical/branching_factor_5/chunk_500/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/contriever/retrieval_reports/retrieval_results__contriever__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
       "saved_exists": true,
       "n_saved": 1832,
       "missing": [],
-      "source": "recomputed here (CPU) from the construction cache",
-      "cache_index": "outputs/loogle_ablation/500_tokens/llm_cache/loogle/hierarchical/branching_factor_5/chunk_500/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/index.json",
-      "status": "to compute"
+      "source": "read from outputs/rebuttal/C2_heldout_fusion/streams",
+      "stream_files": [
+        "outputs/rebuttal/C2_heldout_fusion/streams/loogle__contriever.parquet",
+        "outputs/rebuttal/C2_heldout_fusion/streams/loogle__contriever.queries.json"
+      ],
+      "status": "channel scores found",
+      "c2_check": {
+        "identical_top10": 1832,
+        "n_queries": 1832,
+        "drift_accepted": null
+      }
+    },
+    {
+      "dataset": "loogle",
+      "retriever": "bge_m3",
+      "saved_rankings": "outputs/loogle_ablation/500_tokens/llm_cache/loogle/hierarchical/branching_factor_5/chunk_500/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/bge_m3/retrieval_reports/retrieval_results__bge_m3__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
+      "saved_exists": true,
+      "n_saved": 1832,
+      "missing": [],
+      "source": "read from outputs/rebuttal/C2_heldout_fusion/streams",
+      "stream_files": [
+        "outputs/rebuttal/C2_heldout_fusion/streams/loogle__bge_m3.parquet",
+        "outputs/rebuttal/C2_heldout_fusion/streams/loogle__bge_m3.queries.json"
+      ],
+      "status": "channel scores found",
+      "c2_check": {
+        "identical_top10": 1832,
+        "n_queries": 1832,
+        "drift_accepted": null
+      }
     },
     {
       "dataset": "musique_32k",
-      "retriever": "bm25",
-      "saved_rankings": "outputs/musique_ablation/32K_expansion/100_tokens/llm_cache/musique/hierarchical/branching_factor_5/chunk_100/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/bm25/retrieval_reports/retrieval_results__bm25__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
+      "retriever": "contriever",
+      "saved_rankings": "outputs/musique_ablation/32K_expansion/100_tokens/llm_cache/musique/hierarchical/branching_factor_5/chunk_100/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/contriever/retrieval_reports/retrieval_results__contriever__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
       "saved_exists": true,
       "n_saved": 900,
       "missing": [],
-      "source": "recomputed here (CPU) from the construction cache",
-      "cache_index": "outputs/musique_ablation/32K_expansion/100_tokens/llm_cache/musique/hierarchical/branching_factor_5/chunk_100/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/index.json",
-      "status": "to compute"
+      "source": "read from outputs/rebuttal/C2_heldout_fusion/streams",
+      "stream_files": [
+        "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__contriever.parquet",
+        "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__contriever.queries.json"
+      ],
+      "status": "channel scores found",
+      "c2_check": {
+        "identical_top10": 900,
+        "n_queries": 900,
+        "drift_accepted": null
+      }
+    },
+    {
+      "dataset": "musique_32k",
+      "retriever": "bge_m3",
+      "saved_rankings": "outputs/musique_ablation/32K_expansion/100_tokens/llm_cache/musique/hierarchical/branching_factor_5/chunk_100/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/bge_m3/retrieval_reports/retrieval_results__bge_m3__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
+      "saved_exists": true,
+      "n_saved": 900,
+      "missing": [],
+      "source": "read from outputs/rebuttal/C2_heldout_fusion/streams",
+      "stream_files": [
+        "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bge_m3.parquet",
+        "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bge_m3.queries.json"
+      ],
+      "status": "channel scores found",
+      "c2_check": {
+        "identical_top10": 900,
+        "n_queries": 900,
+        "drift_accepted": null
+      }
     },
     {
       "dataset": "qasper_64k",
-      "retriever": "bm25",
-      "saved_rankings": "outputs/qasper_ablation/64K_expansion/100_tokens/llm_cache/qasper/hierarchical/branching_factor_5/chunk_100/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/bm25/retrieval_reports/retrieval_results__bm25__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
+      "retriever": "contriever",
+      "saved_rankings": "outputs/qasper_ablation/64K_expansion/100_tokens/llm_cache/qasper/hierarchical/branching_factor_5/chunk_100/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/contriever/retrieval_reports/retrieval_results__contriever__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
       "saved_exists": true,
       "n_saved": 1333,
       "missing": [],
-      "source": "recomputed here (CPU) from the construction cache",
-      "cache_index": "outputs/qasper_ablation/64K_expansion/100_tokens/llm_cache/qasper/hierarchical/branching_factor_5/chunk_100/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/index.json",
-      "status": "to compute"
+      "source": "read from outputs/rebuttal/C2_heldout_fusion/streams",
+      "stream_files": [
+        "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__contriever.parquet",
+        "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__contriever.queries.json"
+      ],
+      "status": "channel scores found",
+      "c2_check": {
+        "identical_top10": 1333,
+        "n_queries": 1333,
+        "drift_accepted": null
+      }
+    },
+    {
+      "dataset": "qasper_64k",
+      "retriever": "bge_m3",
+      "saved_rankings": "outputs/qasper_ablation/64K_expansion/100_tokens/llm_cache/qasper/hierarchical/branching_factor_5/chunk_100/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/bge_m3/retrieval_reports/retrieval_results__bge_m3__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
+      "saved_exists": true,
+      "n_saved": 1333,
+      "missing": [],
+      "source": "read from outputs/rebuttal/C2_heldout_fusion/streams",
+      "stream_files": [
+        "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bge_m3.parquet",
+        "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bge_m3.queries.json"
+      ],
+      "status": "channel scores found",
+      "c2_check": {
+        "identical_top10": 1333,
+        "n_queries": 1333,
+        "drift_accepted": null
+      }
     },
     {
       "dataset": "novelhopqa",
-      "retriever": "bm25",
-      "saved_rankings": "outputs/novelhopqa_ablation/500_tokens/llm_cache/novelhopqa/hierarchical/branching_factor_5/chunk_500/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/bm25/retrieval_reports/retrieval_results__bm25__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
+      "retriever": "contriever",
+      "saved_rankings": "outputs/novelhopqa_ablation/500_tokens/llm_cache/novelhopqa/hierarchical/branching_factor_5/chunk_500/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/contriever/retrieval_reports/retrieval_results__contriever__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
       "saved_exists": true,
       "n_saved": 908,
       "missing": [],
-      "source": "recomputed here (CPU) from the construction cache",
-      "cache_index": "outputs/novelhopqa_ablation/500_tokens/llm_cache/novelhopqa/hierarchical/branching_factor_5/chunk_500/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/index.json",
-      "status": "to compute"
+      "source": "read from outputs/rebuttal/C2_heldout_fusion/streams",
+      "stream_files": [
+        "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__contriever.parquet",
+        "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__contriever.queries.json"
+      ],
+      "status": "channel scores found",
+      "c2_check": {
+        "identical_top10": 908,
+        "n_queries": 908,
+        "drift_accepted": null
+      }
+    },
+    {
+      "dataset": "novelhopqa",
+      "retriever": "bge_m3",
+      "saved_rankings": "outputs/novelhopqa_ablation/500_tokens/llm_cache/novelhopqa/hierarchical/branching_factor_5/chunk_500/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/bge_m3/retrieval_reports/retrieval_results__bge_m3__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
+      "saved_exists": true,
+      "n_saved": 908,
+      "missing": [],
+      "source": "read from outputs/rebuttal/C2_heldout_fusion/streams",
+      "stream_files": [
+        "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bge_m3.parquet",
+        "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bge_m3.queries.json"
+      ],
+      "status": "channel scores found",
+      "c2_check": {
+        "identical_top10": 908,
+        "n_queries": 908,
+        "drift_accepted": null
+      }
     }
   ],
   "queries_per_dataset": {
@@ -77,431 +185,86 @@
     "qasper_64k": 1333,
     "novelhopqa": 908
   },
-  "bm25_streams": {
-    "loogle": {
-      "status": "computed",
-      "files": [
-        "experiments/rebuttal/c3_channel_ablation/work/streams/loogle__bm25.parquet",
-        "experiments/rebuttal/c3_channel_ablation/work/streams/loogle__bm25.queries.json"
-      ],
-      "stream_rows": 62471,
-      "n_queries": 1832,
-      "timings": {
-        "n_docs": 105,
-        "docs_from_checkpoint": 0,
-        "seconds_scoring": 4.22087408200241,
-        "seconds_total": 4.22436495799775
-      },
-      "seconds": 4.8578999579985975
+  "bm25_streams": {},
+  "checks": [],
+  "check_errors": [
+    {
+      "pair": "loogle__contriever",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 430, in body\n    res = check_pair(d, r, w)\n          ^^^^^^^^^^^^^^^^^^^\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 192, in check_pair\n    rows = saved_rows_for(d, r, meta)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/common.py\", line 291, in saved_rows_for\n    return queries, meta, rows\n           ^^^^^^^\nNameError: name 'queries' is not defined\n"
     },
-    "musique_32k": {
-      "status": "computed",
-      "files": [
-        "experiments/rebuttal/c3_channel_ablation/work/streams/musique_32k__bm25.parquet",
-        "experiments/rebuttal/c3_channel_ablation/work/streams/musique_32k__bm25.queries.json"
-      ],
-      "stream_rows": 342176,
-      "n_queries": 900,
-      "timings": {
-        "n_docs": 45,
-        "docs_from_checkpoint": 0,
-        "seconds_scoring": 39.76154829199368,
-        "seconds_total": 39.76335595799901
-      },
-      "seconds": 40.41391891600142
+    {
+      "pair": "loogle__bge_m3",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 430, in body\n    res = check_pair(d, r, w)\n          ^^^^^^^^^^^^^^^^^^^\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 192, in check_pair\n    rows = saved_rows_for(d, r, meta)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/common.py\", line 291, in saved_rows_for\n    return queries, meta, rows\n           ^^^^^^^\nNameError: name 'queries' is not defined\n"
     },
-    "qasper_64k": {
-      "status": "computed",
-      "files": [
-        "experiments/rebuttal/c3_channel_ablation/work/streams/qasper_64k__bm25.parquet",
-        "experiments/rebuttal/c3_channel_ablation/work/streams/qasper_64k__bm25.queries.json"
-      ],
-      "stream_rows": 992410,
-      "n_queries": 1333,
-      "timings": {
-        "n_docs": 23,
-        "docs_from_checkpoint": 0,
-        "seconds_scoring": 82.18850095999369,
-        "seconds_total": 82.18981695799812
-      },
-      "seconds": 83.86286533400198
+    {
+      "pair": "musique_32k__contriever",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 430, in body\n    res = check_pair(d, r, w)\n          ^^^^^^^^^^^^^^^^^^^\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 192, in check_pair\n    rows = saved_rows_for(d, r, meta)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/common.py\", line 291, in saved_rows_for\n    return queries, meta, rows\n           ^^^^^^^\nNameError: name 'queries' is not defined\n"
     },
-    "novelhopqa": {
-      "status": "computed",
-      "files": [
-        "experiments/rebuttal/c3_channel_ablation/work/streams/novelhopqa__bm25.parquet",
-        "experiments/rebuttal/c3_channel_ablation/work/streams/novelhopqa__bm25.queries.json"
-      ],
-      "stream_rows": 418611,
-      "n_queries": 908,
-      "timings": {
-        "n_docs": 16,
-        "docs_from_checkpoint": 0,
-        "seconds_scoring": 59.311352835000434,
-        "seconds_total": 59.3123426250022
-      },
-      "seconds": 60.03801933300201
+    {
+      "pair": "musique_32k__bge_m3",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 430, in body\n    res = check_pair(d, r, w)\n          ^^^^^^^^^^^^^^^^^^^\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 192, in check_pair\n    rows = saved_rows_for(d, r, meta)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/common.py\", line 291, in saved_rows_for\n    return queries, meta, rows\n           ^^^^^^^\nNameError: name 'queries' is not defined\n"
+    },
+    {
+      "pair": "qasper_64k__contriever",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 430, in body\n    res = check_pair(d, r, w)\n          ^^^^^^^^^^^^^^^^^^^\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 192, in check_pair\n    rows = saved_rows_for(d, r, meta)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/common.py\", line 291, in saved_rows_for\n    return queries, meta, rows\n           ^^^^^^^\nNameError: name 'queries' is not defined\n"
+    },
+    {
+      "pair": "qasper_64k__bge_m3",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 430, in body\n    res = check_pair(d, r, w)\n          ^^^^^^^^^^^^^^^^^^^\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 192, in check_pair\n    rows = saved_rows_for(d, r, meta)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/common.py\", line 291, in saved_rows_for\n    return queries, meta, rows\n           ^^^^^^^\nNameError: name 'queries' is not defined\n"
+    },
+    {
+      "pair": "novelhopqa__contriever",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 430, in body\n    res = check_pair(d, r, w)\n          ^^^^^^^^^^^^^^^^^^^\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 192, in check_pair\n    rows = saved_rows_for(d, r, meta)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/common.py\", line 291, in saved_rows_for\n    return queries, meta, rows\n           ^^^^^^^\nNameError: name 'queries' is not defined\n"
+    },
+    {
+      "pair": "novelhopqa__bge_m3",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 430, in body\n    res = check_pair(d, r, w)\n          ^^^^^^^^^^^^^^^^^^^\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 192, in check_pair\n    rows = saved_rows_for(d, r, meta)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/common.py\", line 291, in saved_rows_for\n    return queries, meta, rows\n           ^^^^^^^\nNameError: name 'queries' is not defined\n"
     }
-  },
-  "checks": [
+  ],
+  "ready": [],
+  "not_ready": [
     {
       "dataset": "loogle",
-      "retriever": "bm25",
-      "stream_files": [
-        "experiments/rebuttal/c3_channel_ablation/work/streams/loogle__bm25.parquet",
-        "experiments/rebuttal/c3_channel_ablation/work/streams/loogle__bm25.queries.json"
-      ],
-      "parquet_sha256": "661e1fa7ad88cd3bdcff844340feb4ae932ea69176ab822f791278e6f6975e2e",
-      "queries_sha256": "286446b6b0f949891f8d0b802ea0bc2d64d2e398a48c815dd156523bcf94d2ae",
-      "n_docs": 105,
-      "chunks_per_query_median": 31.0,
-      "missing_channel_counts": {
-        "summary": 4286,
-        "memory_all_fields": 2230,
-        "chunk_query_pairs": 62471
-      },
-      "check1": {
-        "n_queries_streams": 1832,
-        "n_queries_saved": 1832,
-        "complete": true,
-        "identical_top10": 1832,
-        "hr_all_three": {
-          "eligible": 1832,
-          "hits": {
-            "5": 1691,
-            "10": 1767
-          },
-          "hr_percent": {
-            "5": 92.30349344978166,
-            "10": 96.4519650655022
-          }
-        },
-        "hr_saved": {
-          "eligible": 1832,
-          "hits": {
-            "5": 1691,
-            "10": 1767
-          },
-          "hr_percent": {
-            "5": 92.30349344978166,
-            "10": 96.4519650655022
-          }
-        },
-        "expected_metrics": {
-          "5": {
-            "eligible": 1832,
-            "hits": 1691
-          },
-          "10": {
-            "eligible": 1832,
-            "hits": 1767
-          }
-        },
-        "expected_hits_match": true,
-        "max_abs_score_diff_identical": 8.881784197001252e-16,
-        "mismatch_examples": [],
-        "passed": true
-      },
-      "check2": {
-        "hr_text_only": {
-          "eligible": 1832,
-          "hits": {
-            "5": 1683,
-            "10": 1754
-          },
-          "hr_percent": {
-            "5": 91.86681222707423,
-            "10": 95.74235807860262
-          }
-        },
-        "table1_vanilla": {
-          "5": 91.5,
-          "10": 95.4
-        },
-        "diff_points": {
-          "5": 0.36681222707423444,
-          "10": 0.342358078602615
-        },
-        "equal_to_table1": false,
-        "per_query_file": "outputs/loogle_ablation/500_tokens/llm_cache/loogle/hierarchical/branching_factor_5/chunk_500/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/retrieval_reports/retrieval_results__bm25__mbr_lt1_ln0_lh0_norm_none__per_document.json",
-        "per_query_identical": 1832,
-        "c2_text_only_identical": 1832,
-        "n": 1832
-      },
-      "seconds": 1.0784702910023043
+      "retriever": "contriever",
+      "reason": "check 1 failed or exception"
+    },
+    {
+      "dataset": "loogle",
+      "retriever": "bge_m3",
+      "reason": "check 1 failed or exception"
     },
     {
       "dataset": "musique_32k",
-      "retriever": "bm25",
-      "stream_files": [
-        "experiments/rebuttal/c3_channel_ablation/work/streams/musique_32k__bm25.parquet",
-        "experiments/rebuttal/c3_channel_ablation/work/streams/musique_32k__bm25.queries.json"
-      ],
-      "parquet_sha256": "9ee9e865c77cc44d98080eaa989de6ee8295b7c4488c5f961a830dd872127309",
-      "queries_sha256": "34c916348a0a8f600d871a2bae7dbdcdc1d04f149172b999168d37987ae36608",
-      "n_docs": 45,
-      "chunks_per_query_median": 381.0,
-      "missing_channel_counts": {
-        "summary": 1726,
-        "memory_all_fields": 2274,
-        "chunk_query_pairs": 342176
-      },
-      "check1": {
-        "n_queries_streams": 900,
-        "n_queries_saved": 900,
-        "complete": true,
-        "identical_top10": 900,
-        "hr_all_three": {
-          "eligible": 900,
-          "hits": {
-            "5": 565,
-            "10": 699
-          },
-          "hr_percent": {
-            "5": 62.77777777777778,
-            "10": 77.66666666666666
-          }
-        },
-        "hr_saved": {
-          "eligible": 900,
-          "hits": {
-            "5": 565,
-            "10": 699
-          },
-          "hr_percent": {
-            "5": 62.77777777777778,
-            "10": 77.66666666666666
-          }
-        },
-        "expected_metrics": {
-          "5": {
-            "eligible": 900,
-            "hits": 565
-          },
-          "10": {
-            "eligible": 900,
-            "hits": 699
-          }
-        },
-        "expected_hits_match": true,
-        "max_abs_score_diff_identical": 8.881784197001252e-16,
-        "mismatch_examples": [],
-        "passed": true
-      },
-      "check2": {
-        "hr_text_only": {
-          "eligible": 900,
-          "hits": {
-            "5": 518,
-            "10": 666
-          },
-          "hr_percent": {
-            "5": 57.55555555555556,
-            "10": 74.0
-          }
-        },
-        "table1_vanilla": {
-          "5": 57.6,
-          "10": 74.0
-        },
-        "diff_points": {
-          "5": -0.04444444444444429,
-          "10": 0.0
-        },
-        "equal_to_table1": true,
-        "c2_text_only_identical": 900,
-        "n": 900
-      },
-      "seconds": 4.368417166002473
+      "retriever": "contriever",
+      "reason": "check 1 failed or exception"
+    },
+    {
+      "dataset": "musique_32k",
+      "retriever": "bge_m3",
+      "reason": "check 1 failed or exception"
     },
     {
       "dataset": "qasper_64k",
-      "retriever": "bm25",
-      "stream_files": [
-        "experiments/rebuttal/c3_channel_ablation/work/streams/qasper_64k__bm25.parquet",
-        "experiments/rebuttal/c3_channel_ablation/work/streams/qasper_64k__bm25.queries.json"
-      ],
-      "parquet_sha256": "c138c1b602207053ed9b13247d983f44cad617f9a53a2781bb76a470daa2e507",
-      "queries_sha256": "81c6551476227000e99a47279f06bba263743c470fdabc66866ddc23b30a5f55",
-      "n_docs": 23,
-      "chunks_per_query_median": 745.0,
-      "missing_channel_counts": {
-        "summary": 2790,
-        "memory_all_fields": 5339,
-        "chunk_query_pairs": 992410
-      },
-      "check1": {
-        "n_queries_streams": 1333,
-        "n_queries_saved": 1333,
-        "complete": true,
-        "identical_top10": 1333,
-        "hr_all_three": {
-          "eligible": 1333,
-          "hits": {
-            "5": 226,
-            "10": 348
-          },
-          "hr_percent": {
-            "5": 16.954238559639908,
-            "10": 26.106526631657918
-          }
-        },
-        "hr_saved": {
-          "eligible": 1333,
-          "hits": {
-            "5": 226,
-            "10": 348
-          },
-          "hr_percent": {
-            "5": 16.954238559639908,
-            "10": 26.106526631657918
-          }
-        },
-        "expected_metrics": {
-          "5": {
-            "eligible": 1333,
-            "hits": 226
-          },
-          "10": {
-            "eligible": 1333,
-            "hits": 348
-          }
-        },
-        "expected_hits_match": true,
-        "max_abs_score_diff_identical": 8.881784197001252e-16,
-        "mismatch_examples": [],
-        "passed": true
-      },
-      "check2": {
-        "hr_text_only": {
-          "eligible": 1333,
-          "hits": {
-            "5": 192,
-            "10": 294
-          },
-          "hr_percent": {
-            "5": 14.403600900225054,
-            "10": 22.05551387846962
-          }
-        },
-        "table1_vanilla": {
-          "5": 14.4,
-          "10": 22.1
-        },
-        "diff_points": {
-          "5": 0.0036009002250541045,
-          "10": -0.044486121530383116
-        },
-        "equal_to_table1": true,
-        "c2_text_only_identical": 1333,
-        "n": 1333
-      },
-      "seconds": 17.55285704200287
+      "retriever": "contriever",
+      "reason": "check 1 failed or exception"
+    },
+    {
+      "dataset": "qasper_64k",
+      "retriever": "bge_m3",
+      "reason": "check 1 failed or exception"
     },
     {
       "dataset": "novelhopqa",
-      "retriever": "bm25",
-      "stream_files": [
-        "experiments/rebuttal/c3_channel_ablation/work/streams/novelhopqa__bm25.parquet",
-        "experiments/rebuttal/c3_channel_ablation/work/streams/novelhopqa__bm25.queries.json"
-      ],
-      "parquet_sha256": "4903da5274f7a6929047d66acd44fb25a14b3f880de32c4630316f5f8846e70a",
-      "queries_sha256": "8d18c3d27ea9d3c0fa4c572fe08163afa5aa78d2cb519a4120a9870eeb040ec8",
-      "n_docs": 16,
-      "chunks_per_query_median": 383.0,
-      "missing_channel_counts": {
-        "summary": 1536,
-        "memory_all_fields": 2406,
-        "chunk_query_pairs": 418611
-      },
-      "check1": {
-        "n_queries_streams": 908,
-        "n_queries_saved": 908,
-        "complete": true,
-        "identical_top10": 908,
-        "hr_all_three": {
-          "eligible": 908,
-          "hits": {
-            "5": 164,
-            "10": 200
-          },
-          "hr_percent": {
-            "5": 18.06167400881057,
-            "10": 22.026431718061673
-          }
-        },
-        "hr_saved": {
-          "eligible": 908,
-          "hits": {
-            "5": 164,
-            "10": 200
-          },
-          "hr_percent": {
-            "5": 18.06167400881057,
-            "10": 22.026431718061673
-          }
-        },
-        "expected_metrics": {
-          "5": {
-            "eligible": 908,
-            "hits": 164
-          },
-          "10": {
-            "eligible": 908,
-            "hits": 200
-          }
-        },
-        "expected_hits_match": true,
-        "max_abs_score_diff_identical": 4.440892098500626e-16,
-        "mismatch_examples": [],
-        "passed": true
-      },
-      "check2": {
-        "hr_text_only": {
-          "eligible": 908,
-          "hits": {
-            "5": 159,
-            "10": 188
-          },
-          "hr_percent": {
-            "5": 17.51101321585903,
-            "10": 20.704845814977972
-          }
-        },
-        "table1_vanilla": {
-          "5": 16.9,
-          "10": 20.0
-        },
-        "diff_points": {
-          "5": 0.6110132158590318,
-          "10": 0.7048458149779719
-        },
-        "equal_to_table1": false,
-        "per_query_file": "outputs/novelhopqa_ablation/500_tokens/llm_cache/novelhopqa/hierarchical/branching_factor_5/chunk_500/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/retrieval_reports/retrieval_results__bm25__mbr_lt1_ln0_lh0_norm_none__per_document.json",
-        "per_query_identical": 908,
-        "c2_text_only_identical": 908,
-        "n": 908
-      },
-      "seconds": 6.284809500000847
+      "retriever": "contriever",
+      "reason": "check 1 failed or exception"
+    },
+    {
+      "dataset": "novelhopqa",
+      "retriever": "bge_m3",
+      "reason": "check 1 failed or exception"
     }
   ],
-  "check_errors": [],
-  "ready": [
-    "loogle__bm25",
-    "musique_32k__bm25",
-    "qasper_64k__bm25",
-    "novelhopqa__bm25"
-  ],
-  "not_ready": [],
   "files": [
-    "experiments/rebuttal/c3_channel_ablation/work/streams/loogle__bm25.parquet",
-    "experiments/rebuttal/c3_channel_ablation/work/streams/loogle__bm25.queries.json",
-    "experiments/rebuttal/c3_channel_ablation/work/streams/musique_32k__bm25.parquet",
-    "experiments/rebuttal/c3_channel_ablation/work/streams/musique_32k__bm25.queries.json",
-    "experiments/rebuttal/c3_channel_ablation/work/streams/qasper_64k__bm25.parquet",
-    "experiments/rebuttal/c3_channel_ablation/work/streams/qasper_64k__bm25.queries.json",
-    "experiments/rebuttal/c3_channel_ablation/work/streams/novelhopqa__bm25.parquet",
-    "experiments/rebuttal/c3_channel_ablation/work/streams/novelhopqa__bm25.queries.json",
     "experiments/rebuttal/c3_channel_ablation/work/ready_pairs.json",
     "experiments/rebuttal/c3_channel_ablation/reports/step_01.md",
     "experiments/rebuttal/c3_channel_ablation/reports/step_01.json"

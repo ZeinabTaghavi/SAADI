@@ -1,0 +1,15 @@
+{
+  "step": 3,
+  "title": "new variants for the dense retrievers",
+  "status": "FAILED",
+  "command": "C3_RETRIEVERS=contriever,bge_m3 bash experiments/rebuttal/c3_channel_ablation/sh/03_dense.sh",
+  "git": {
+    "commit": "1e7b1fb6b31cad9941271a8223f16145656968e8",
+    "branch": "fix/notebook-key-and-install",
+    "dirty_files": 4
+  },
+  "files": [
+    "experiments/rebuttal/c3_channel_ablation/reports/step_03.md",
+    "experiments/rebuttal/c3_channel_ablation/reports/step_03.json"
+  ]
+}
