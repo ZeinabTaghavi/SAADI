@@ -42,6 +42,10 @@ export C4_BOOTSTRAP_RESAMPLES=10000
 # Every concatenated setting of the paper (MuSiQue and QASPER, 32K to 256K tokens).
 export C4_SETTINGS="${C4_SETTINGS:-musique_32k,musique_64k,musique_128k,musique_256k,qasper_32k,qasper_64k,qasper_128k,qasper_256k}"
 export C4_RETRIEVERS="${C4_RETRIEVERS:-bm25,contriever,bge_m3,jina,qwen}"
+# Main query set of the inside-sub-document measures: R (labels re-derived inside the gold
+# sub-document, every query) or S (strict: only queries whose paper evidence is all inside).
+# Both are always computed and reported; this only picks which one leads.
+export C4_MAIN_SET="${C4_MAIN_SET:-R}"
 
 # CPU only.
 export CUDA_VISIBLE_DEVICES=""
