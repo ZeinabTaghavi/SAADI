@@ -1,0 +1,463 @@
+{
+  "dataset": "loogle",
+  "written_at": "2026-11-09 15:02:19",
+  "tag": "dry_run",
+  "census": {
+    "dataset": "loogle",
+    "max_docs": 2,
+    "tokenizer": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+    "model": {
+      "max_model_len": 262144,
+      "rope_scaling": null,
+      "num_hidden_layers": 48,
+      "num_key_value_heads": 4,
+      "head_dim": 128
+    },
+    "template_tokens": 70,
+    "context_max_tokens": 1024,
+    "doc_separator": " ",
+    "n_docs": 2,
+    "n_chunks": 56,
+    "doc_tokens": {
+      "n": 2,
+      "min": 15223.0,
+      "p25": 16155.0,
+      "median": 17087.0,
+      "mean": 17087.0,
+      "p75": 18019.0,
+      "p95": 18764.6,
+      "max": 18951.0,
+      "total": 34174.0
+    },
+    "chunk_tokens": {
+      "n": 56,
+      "min": 163.0,
+      "p25": 595.0,
+      "median": 620.5,
+      "mean": 610.2321428571429,
+      "p75": 644.25,
+      "p95": 692.5,
+      "max": 727.0,
+      "total": 34173.0
+    },
+    "docs_exceeding_window": 0,
+    "chunks_in_segmented_docs": 0,
+    "k_values": {
+      "1": 2
+    },
+    "segmented_docs": [],
+    "nominal_input_tokens": 1009878,
+    "visible_tokens_per_call": {
+      "n": 56,
+      "min": 15232.0,
+      "p25": 15232.0,
+      "median": 18960.0,
+      "mean": 17362.285714285714,
+      "p75": 18960.0,
+      "p95": 18960.0,
+      "max": 18960.0,
+      "total": 972288.0
+    },
+    "joint_tokenization_equals_split": [
+      true,
+      true
+    ],
+    "seconds": 1.3
+  },
+  "generation": {
+    "done": true,
+    "stats": {
+      "calls": 56,
+      "calls_per_chunk": 1.0,
+      "calls_per_document": 28.0,
+      "missing_chunks": 0,
+      "missing_examples": [],
+      "empty_contexts": 0,
+      "failed_contexts": 0,
+      "cut_at_max_tokens": 0,
+      "cut_share": 0.0,
+      "generated_tokens": {
+        "n": 56,
+        "min": 34.0,
+        "p25": 38.75,
+        "median": 41.5,
+        "mean": 42.32142857142857,
+        "p75": 44.0,
+        "p95": 56.25,
+        "max": 57.0,
+        "total": 2370.0
+      },
+      "nominal_input_tokens": {
+        "n": 56,
+        "min": 15456.0,
+        "p25": 15954.75,
+        "median": 19598.0,
+        "mean": 18033.535714285714,
+        "p75": 19630.75,
+        "p95": 19652.0,
+        "max": 19666.0,
+        "total": 1009878.0
+      },
+      "computed_input_tokens": {
+        "n": 56,
+        "min": 224.0,
+        "p25": 656.0,
+        "median": 681.5,
+        "mean": 1281.8214285714287,
+        "p75": 707.75,
+        "p95": 782.75,
+        "max": 19651.0,
+        "total": 71782.0
+      },
+      "cached_tokens_source": [
+        "simulated (stub)"
+      ],
+      "generator": [
+        "stub"
+      ],
+      "context_chars": {
+        "n": 56,
+        "min": 155.0,
+        "p25": 184.75,
+        "median": 191.5,
+        "mean": 193.0,
+        "p75": 204.25,
+        "p95": 214.0,
+        "max": 243.0,
+        "total": 10808.0
+      }
+    },
+    "runs": [
+      {
+        "contexts_this_run": 56,
+        "seconds_this_run": 0.1,
+        "waves": 1,
+        "generator": "stub",
+        "wall_seconds": 1.5,
+        "gpus": "",
+        "finished_at": "2026-11-09 14:43:24"
+      }
+    ]
+  },
+  "memory_check": null,
+  "estimates": {
+    "generation": {
+      "calls": 56,
+      "seconds": 437.4422784,
+      "basis": "per call 9.3e-06 s x visible document tokens + 0.15 s, plus 420 s engine start (B2's measured rate on the same model and runtime)"
+    },
+    "retrieval": {
+      "jobs": {
+        "bm25": {
+          "device": "cpu",
+          "n_gpus": 0,
+          "est_seconds": 0.27,
+          "basis": "C2's CPU rate x 3 (published streams, empty-context pass, CR pass)"
+        }
+      },
+      "wall_seconds": 0.27
+    }
+  },
+  "jobs": {
+    "bm25": {
+      "status": "DONE",
+      "summary": {
+        "dataset": "loogle",
+        "retriever": "bm25",
+        "max_docs": 2,
+        "c2_streams": null,
+        "channel_source_docs": {
+          "c2_streams": 0,
+          "published_path": 2
+        },
+        "gate": {
+          "passed": true,
+          "problems": [],
+          "notes": [],
+          "saadi_reproduction": {
+            "identical_top10": 21,
+            "queries": 21,
+            "hr_ours": {
+              "eligible": 21,
+              "hits": {
+                "5": 19,
+                "10": 20
+              },
+              "hr_percent": {
+                "5": 90.47619047619048,
+                "10": 95.23809523809523
+              }
+            },
+            "hr_saved": {
+              "eligible": 21,
+              "hits": {
+                "5": 19,
+                "10": 20
+              },
+              "hr_percent": {
+                "5": 90.47619047619048,
+                "10": 95.23809523809523
+              }
+            },
+            "expected_metrics": null,
+            "drift_accepted": false,
+            "drift_notes": null,
+            "text_only_vs_table1": {
+              "hr": {
+                "eligible": 21,
+                "hits": {
+                  "5": 18,
+                  "10": 19
+                },
+                "hr_percent": {
+                  "5": 85.71428571428571,
+                  "10": 90.47619047619048
+                }
+              },
+              "reported_percent": {
+                "5": 91.5,
+                "10": 95.4
+              },
+              "diff_points": {
+                "5": -5.785714285714292,
+                "10": -4.923809523809524
+              },
+              "per_query_file": "outputs/loogle_ablation/500_tokens/llm_cache/loogle/hierarchical/branching_factor_5/chunk_500/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/retrieval_reports/retrieval_results__bm25__mbr_lt1_ln0_lh0_norm_none__per_document.json",
+              "per_query_identical_top10": 21,
+              "passed": true,
+              "notes": []
+            }
+          },
+          "empty_vs_vanilla": {
+            "identical_top150": 21,
+            "identical_top10": 21,
+            "queries": 21,
+            "hr_vanilla": {
+              "eligible": 21,
+              "hits": {
+                "5": 18,
+                "10": 19
+              },
+              "hr_percent": {
+                "5": 85.71428571428571,
+                "10": 90.47619047619048
+              }
+            },
+            "hr_empty": {
+              "eligible": 21,
+              "hits": {
+                "5": 18,
+                "10": 19
+              },
+              "hr_percent": {
+                "5": 85.71428571428571,
+                "10": 90.47619047619048
+              }
+            },
+            "max_abs_text_score_diff": 0.0,
+            "reference": "published path in this process (shared encoding cache)"
+          },
+          "saved_per_query_text_only": {
+            "file": "outputs/loogle_ablation/500_tokens/llm_cache/loogle/hierarchical/branching_factor_5/chunk_500/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/retrieval_reports/retrieval_results__bm25__mbr_lt1_ln0_lh0_norm_none__per_document.json",
+            "identical_top10": 21,
+            "queries": 21
+          },
+          "table1_vanilla": {
+            "5": {
+              "table1": 91.5,
+              "empty_context": 85.71428571428571
+            },
+            "10": {
+              "table1": 95.4,
+              "empty_context": 90.47619047619048
+            }
+          },
+          "mismatch_examples": []
+        },
+        "queries": 21,
+        "truncation": {
+          "contextualized": {},
+          "plain": {}
+        },
+        "status": "DONE",
+        "timings": {
+          "docs": 2,
+          "docs_from_checkpoint": 2,
+          "seconds_pass1": 0.0,
+          "seconds_pass2": 0.0,
+          "seconds_total": 0.0
+        },
+        "device": {
+          "cuda_visible_devices": "",
+          "batch_size_env": {},
+          "device_map_env": {}
+        }
+      }
+    }
+  },
+  "analysis": {
+    "dataset": "loogle",
+    "per_retriever": {
+      "bm25": {
+        "queries": 21,
+        "vanilla": {
+          "hr5": 85.71428571428571,
+          "hr10": 90.47619047619048,
+          "eligible": 21
+        },
+        "empty": {
+          "hr5": 85.71428571428571,
+          "hr10": 90.47619047619048,
+          "eligible": 21
+        },
+        "cr": {
+          "hr5": 80.95238095238095,
+          "hr10": 90.47619047619048,
+          "eligible": 21
+        },
+        "saadi": {
+          "hr5": 90.47619047619048,
+          "hr10": 95.23809523809524,
+          "eligible": 21
+        },
+        "saadi_cr": {
+          "hr5": 90.47619047619048,
+          "hr10": 90.47619047619048,
+          "eligible": 21
+        },
+        "cr_minus_vanilla_hr5": {
+          "diff": -4.761904761904762,
+          "ci": [
+            -14.285714285714286,
+            0.0
+          ]
+        },
+        "saadi_minus_cr_hr5": {
+          "diff": 9.523809523809524,
+          "ci": [
+            0.0,
+            23.80952380952381
+          ]
+        },
+        "saadi_cr_minus_cr_hr5": {
+          "diff": 9.523809523809524,
+          "ci": [
+            0.0,
+            23.80952380952381
+          ]
+        },
+        "saadi_cr_minus_saadi_hr5": {
+          "diff": 0.0,
+          "ci": [
+            0.0,
+            0.0
+          ]
+        },
+        "cr_minus_vanilla_hr10": {
+          "diff": 0.0,
+          "ci": [
+            0.0,
+            0.0
+          ]
+        },
+        "saadi_minus_cr_hr10": {
+          "diff": 4.761904761904762,
+          "ci": [
+            0.0,
+            14.285714285714286
+          ]
+        },
+        "saadi_cr_minus_cr_hr10": {
+          "diff": 0.0,
+          "ci": [
+            0.0,
+            0.0
+          ]
+        },
+        "saadi_cr_minus_saadi_hr10": {
+          "diff": -4.761904761904762,
+          "ci": [
+            -14.285714285714286,
+            0.0
+          ]
+        }
+      }
+    },
+    "hybrid": {
+      "bm25": {
+        "queries": 21,
+        "vanilla": {
+          "hr5": 85.71428571428571,
+          "hr10": 90.47619047619048,
+          "eligible": 21
+        },
+        "cr": {
+          "hr5": 80.95238095238095,
+          "hr10": 90.47619047619048,
+          "eligible": 21
+        },
+        "saadi": {
+          "hr5": 90.47619047619048,
+          "hr10": 95.23809523809524,
+          "eligible": 21
+        },
+        "cr_minus_vanilla_hr5": {
+          "diff": -4.761904761904762,
+          "ci": [
+            -14.285714285714286,
+            0.0
+          ]
+        },
+        "saadi_minus_cr_hr5": {
+          "diff": 9.523809523809524,
+          "ci": [
+            0.0,
+            23.80952380952381
+          ]
+        },
+        "cr_minus_vanilla_hr10": {
+          "diff": 0.0,
+          "ci": [
+            0.0,
+            0.0
+          ]
+        },
+        "saadi_minus_cr_hr10": {
+          "diff": 4.761904761904762,
+          "ci": [
+            0.0,
+            14.285714285714286
+          ]
+        }
+      }
+    },
+    "retrievers_done": [
+      "bm25"
+    ]
+  },
+  "cost": {
+    "calls": 56,
+    "calls_per_chunk": 1.0,
+    "calls_per_document": 28.0,
+    "nominal_input_total": 1009878.0,
+    "computed_input_total": 71782.0,
+    "nominal_input_per_chunk": 18033.535714285714,
+    "computed_input_per_chunk": 1281.8214285714287,
+    "generated_total": 2370.0,
+    "generated_per_chunk_mean": 42.32142857142857,
+    "generated_per_chunk_median": 41.5,
+    "cut_share": 0.0,
+    "generation_wall_seconds": 1.5,
+    "generation_gpu_hours": 0.0,
+    "cached_tokens_source": [
+      "simulated (stub)"
+    ],
+    "ratio_nominal_input_vs_saadi": 3.9137076841561997,
+    "ratio_computed_input_vs_saadi": 0.27818584520516376,
+    "ratio_calls_vs_saadi": 0.8269896193771626,
+    "ratio_generated_vs_saadi": 0.0241047582247173,
+    "saadi_chunks": 3346.0,
+    "chunks": 56
+  },
+  "problems": []
+}

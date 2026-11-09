@@ -1,0 +1,227 @@
+{
+  "group": "B",
+  "started_at": "2026-11-09 14:44:38",
+  "argv": [
+    "c1_contextual_retrieval.py",
+    "--group",
+    "B",
+    "--dry-run"
+  ],
+  "datasets": {
+    "musique_32k": "done",
+    "qasper_64k": "done"
+  },
+  "problems": [],
+  "preflight": {
+    "problems": [],
+    "warnings": [],
+    "python": {
+      "executable": "/Users/uem-stag-lap-ic/Desktop/SAADI/venv.nosync/bin/python3",
+      "version": "3.14.8"
+    },
+    "modules": {
+      "numpy": "2.5.4",
+      "pandas": "3.1.1",
+      "pyarrow": "26.0.1",
+      "transformers": "4.57.6"
+    },
+    "git": {
+      "commit": "e2dbaa178fa07c25806c32e8fce787455bae9ce3",
+      "branch": "fix/notebook-key-and-install",
+      "code_changes_vs_commit": [
+        "?? experiments/rebuttal/C1_contextual_retrieval/env.sh",
+        "?? experiments/rebuttal/C1_contextual_retrieval/run_gpus_0123.sh",
+        "?? experiments/rebuttal/C1_contextual_retrieval/run_gpus_4567.sh",
+        "?? scripts/rebuttal/c1_contextual_retrieval.py",
+        "?? src/saadi/rebuttal/contextual_retrieval.py"
+      ]
+    },
+    "hf_home": "",
+    "prompt": {
+      "source": "experiments/probe_baselines/systems/b2_contextual/build.py:prompt_for",
+      "equals_anthropic_prompt": true
+    },
+    "models": {
+      "Qwen/Qwen3-30B-A3B-Instruct-2507": "in cache (tokenizer/config only, no weights)"
+    },
+    "expected_metrics": "outputs/saadi/reference/expected_metrics.json",
+    "inputs_missing": [],
+    "disk": {
+      "path": "/Users/uem-stag-lap-ic/Desktop/SAADI/outputs/rebuttal/C1_contextual_retrieval/dry_run",
+      "free_gb": 238.6,
+      "needed_gb_estimate": 20
+    },
+    "gpus": "skipped (CPU dry run)",
+    "c2_streams": {
+      "musique_32k__bm25": "recomputed (published path)",
+      "qasper_64k__bm25": "recomputed (published path)"
+    },
+    "ok": true
+  },
+  "census": {
+    "musique_32k": {
+      "dataset": "musique_32k",
+      "max_docs": 2,
+      "tokenizer": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+      "model": {
+        "max_model_len": 262144,
+        "rope_scaling": null,
+        "num_hidden_layers": 48,
+        "num_key_value_heads": 4,
+        "head_dim": 128
+      },
+      "template_tokens": 70,
+      "context_max_tokens": 1024,
+      "doc_separator": " ",
+      "n_docs": 2,
+      "n_chunks": 771,
+      "doc_tokens": {
+        "n": 2,
+        "min": 49157.0,
+        "p25": 49276.0,
+        "median": 49395.0,
+        "mean": 49395.0,
+        "p75": 49514.0,
+        "p95": 49609.2,
+        "max": 49633.0,
+        "total": 98790.0
+      },
+      "chunk_tokens": {
+        "n": 771,
+        "min": 9.0,
+        "p25": 111.0,
+        "median": 127.0,
+        "mean": 128.23346303501947,
+        "p75": 143.0,
+        "p95": 172.0,
+        "max": 261.0,
+        "total": 98868.0
+      },
+      "docs_exceeding_window": 0,
+      "chunks_in_segmented_docs": 0,
+      "k_values": {
+        "1": 2
+      },
+      "segmented_docs": [],
+      "nominal_input_tokens": 38240916,
+      "visible_tokens_per_call": {
+        "n": 771,
+        "min": 49166.0,
+        "p25": 49166.0,
+        "median": 49642.0,
+        "mean": 49409.865110246436,
+        "p75": 49642.0,
+        "p95": 49642.0,
+        "max": 49642.0,
+        "total": 38095006.0
+      },
+      "joint_tokenization_equals_split": [
+        true,
+        true
+      ],
+      "seconds": 2.6
+    },
+    "qasper_64k": {
+      "dataset": "qasper_64k",
+      "max_docs": 2,
+      "tokenizer": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+      "model": {
+        "max_model_len": 262144,
+        "rope_scaling": null,
+        "num_hidden_layers": 48,
+        "num_key_value_heads": 4,
+        "head_dim": 128
+      },
+      "template_tokens": 70,
+      "context_max_tokens": 1024,
+      "doc_separator": " ",
+      "n_docs": 2,
+      "n_chunks": 1488,
+      "doc_tokens": {
+        "n": 2,
+        "min": 89339.0,
+        "p25": 89341.5,
+        "median": 89344.0,
+        "mean": 89344.0,
+        "p75": 89346.5,
+        "p95": 89348.5,
+        "max": 89349.0,
+        "total": 178688.0
+      },
+      "chunk_tokens": {
+        "n": 1488,
+        "min": 27.0,
+        "p25": 107.0,
+        "median": 119.0,
+        "mean": 120.08400537634408,
+        "p75": 131.0,
+        "p95": 155.0,
+        "max": 237.0,
+        "total": 178685.0
+      },
+      "docs_exceeding_window": 0,
+      "chunks_in_segmented_docs": 0,
+      "k_values": {
+        "1": 2
+      },
+      "segmented_docs": [],
+      "nominal_input_tokens": 133226752,
+      "visible_tokens_per_call": {
+        "n": 1488,
+        "min": 89348.0,
+        "p25": 89348.0,
+        "median": 89358.0,
+        "mean": 89353.0067204301,
+        "p75": 89358.0,
+        "p95": 89358.0,
+        "max": 89358.0,
+        "total": 132957274.0
+      },
+      "joint_tokenization_equals_split": [
+        true,
+        true
+      ],
+      "seconds": 4.2
+    }
+  },
+  "estimates": {
+    "musique_32k": {
+      "generation": {
+        "calls": 771,
+        "seconds": 889.9335558,
+        "basis": "per call 9.3e-06 s x visible document tokens + 0.15 s, plus 420 s engine start (B2's measured rate on the same model and runtime)"
+      },
+      "retrieval": {
+        "jobs": {
+          "bm25": {
+            "device": "cpu",
+            "n_gpus": 0,
+            "est_seconds": 7.277399999999999,
+            "basis": "C2's CPU rate x 3 (published streams, empty-context pass, CR pass)"
+          }
+        },
+        "wall_seconds": 7.277399999999999
+      }
+    },
+    "qasper_64k": {
+      "generation": {
+        "calls": 1488,
+        "seconds": 1879.7026482,
+        "basis": "per call 9.3e-06 s x visible document tokens + 0.15 s, plus 420 s engine start (B2's measured rate on the same model and runtime)"
+      },
+      "retrieval": {
+        "jobs": {
+          "bm25": {
+            "device": "cpu",
+            "n_gpus": 0,
+            "est_seconds": 43.18424999999999,
+            "basis": "C2's CPU rate x 3 (published streams, empty-context pass, CR pass)"
+          }
+        },
+        "wall_seconds": 43.18424999999999
+      }
+    }
+  },
+  "exit_code": 0,
+  "finished_at": "2026-11-09 14:45:15"
+}

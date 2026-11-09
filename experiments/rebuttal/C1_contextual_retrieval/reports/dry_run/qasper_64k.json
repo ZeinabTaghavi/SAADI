@@ -1,0 +1,457 @@
+{
+  "dataset": "qasper_64k",
+  "written_at": "2026-11-09 15:02:22",
+  "tag": "dry_run",
+  "census": {
+    "dataset": "qasper_64k",
+    "max_docs": 2,
+    "tokenizer": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+    "model": {
+      "max_model_len": 262144,
+      "rope_scaling": null,
+      "num_hidden_layers": 48,
+      "num_key_value_heads": 4,
+      "head_dim": 128
+    },
+    "template_tokens": 70,
+    "context_max_tokens": 1024,
+    "doc_separator": " ",
+    "n_docs": 2,
+    "n_chunks": 1488,
+    "doc_tokens": {
+      "n": 2,
+      "min": 89339.0,
+      "p25": 89341.5,
+      "median": 89344.0,
+      "mean": 89344.0,
+      "p75": 89346.5,
+      "p95": 89348.5,
+      "max": 89349.0,
+      "total": 178688.0
+    },
+    "chunk_tokens": {
+      "n": 1488,
+      "min": 27.0,
+      "p25": 107.0,
+      "median": 119.0,
+      "mean": 120.08400537634408,
+      "p75": 131.0,
+      "p95": 155.0,
+      "max": 237.0,
+      "total": 178685.0
+    },
+    "docs_exceeding_window": 0,
+    "chunks_in_segmented_docs": 0,
+    "k_values": {
+      "1": 2
+    },
+    "segmented_docs": [],
+    "nominal_input_tokens": 133226752,
+    "visible_tokens_per_call": {
+      "n": 1488,
+      "min": 89348.0,
+      "p25": 89348.0,
+      "median": 89358.0,
+      "mean": 89353.0067204301,
+      "p75": 89358.0,
+      "p95": 89358.0,
+      "max": 89358.0,
+      "total": 132957274.0
+    },
+    "joint_tokenization_equals_split": [
+      true,
+      true
+    ],
+    "seconds": 4.2
+  },
+  "generation": {
+    "done": true,
+    "stats": {
+      "calls": 1488,
+      "calls_per_chunk": 1.0,
+      "calls_per_document": 744.0,
+      "missing_chunks": 0,
+      "missing_examples": [],
+      "empty_contexts": 0,
+      "failed_contexts": 0,
+      "cut_at_max_tokens": 0,
+      "cut_share": 0.0,
+      "generated_tokens": {
+        "n": 1488,
+        "min": 33.0,
+        "p25": 38.0,
+        "median": 41.0,
+        "mean": 42.87768817204301,
+        "p75": 46.0,
+        "p95": 57.0,
+        "max": 104.0,
+        "total": 63802.0
+      },
+      "nominal_input_tokens": {
+        "n": 1488,
+        "min": 89446.0,
+        "p25": 89521.0,
+        "median": 89533.0,
+        "mean": 89534.10752688172,
+        "p75": 89545.0,
+        "p95": 89571.0,
+        "max": 89656.0,
+        "total": 133226752.0
+      },
+      "computed_input_tokens": {
+        "n": 1488,
+        "min": 102.0,
+        "p25": 177.0,
+        "median": 189.0,
+        "mean": 310.19354838709677,
+        "p75": 201.0,
+        "p95": 227.0,
+        "max": 89575.0,
+        "total": 461568.0
+      },
+      "cached_tokens_source": [
+        "simulated (stub)"
+      ],
+      "generator": [
+        "stub"
+      ],
+      "context_chars": {
+        "n": 1488,
+        "min": 106.0,
+        "p25": 192.0,
+        "median": 204.0,
+        "mean": 205.43145161290323,
+        "p75": 218.0,
+        "p95": 238.0,
+        "max": 375.0,
+        "total": 305682.0
+      }
+    },
+    "runs": [
+      {
+        "contexts_this_run": 1488,
+        "seconds_this_run": 1.0,
+        "waves": 1,
+        "generator": "stub",
+        "wall_seconds": 4.7,
+        "gpus": "",
+        "finished_at": "2026-11-09 14:45:03"
+      }
+    ]
+  },
+  "memory_check": null,
+  "estimates": {
+    "generation": {
+      "calls": 1488,
+      "seconds": 1879.7026482,
+      "basis": "per call 9.3e-06 s x visible document tokens + 0.15 s, plus 420 s engine start (B2's measured rate on the same model and runtime)"
+    },
+    "retrieval": {
+      "jobs": {
+        "bm25": {
+          "device": "cpu",
+          "n_gpus": 0,
+          "est_seconds": 43.18424999999999,
+          "basis": "C2's CPU rate x 3 (published streams, empty-context pass, CR pass)"
+        }
+      },
+      "wall_seconds": 43.18424999999999
+    }
+  },
+  "jobs": {
+    "bm25": {
+      "status": "DONE",
+      "summary": {
+        "dataset": "qasper_64k",
+        "retriever": "bm25",
+        "max_docs": 2,
+        "c2_streams": null,
+        "channel_source_docs": {
+          "c2_streams": 0,
+          "published_path": 2
+        },
+        "gate": {
+          "passed": true,
+          "problems": [],
+          "notes": [],
+          "saadi_reproduction": {
+            "identical_top10": 129,
+            "queries": 129,
+            "hr_ours": {
+              "eligible": 129,
+              "hits": {
+                "5": 27,
+                "10": 33
+              },
+              "hr_percent": {
+                "5": 20.930232558139537,
+                "10": 25.581395348837212
+              }
+            },
+            "hr_saved": {
+              "eligible": 129,
+              "hits": {
+                "5": 27,
+                "10": 33
+              },
+              "hr_percent": {
+                "5": 20.930232558139537,
+                "10": 25.581395348837212
+              }
+            },
+            "expected_metrics": null,
+            "drift_accepted": false,
+            "drift_notes": null,
+            "text_only_vs_table1": {
+              "hr": {
+                "eligible": 129,
+                "hits": {
+                  "5": 19,
+                  "10": 26
+                },
+                "hr_percent": {
+                  "5": 14.728682170542637,
+                  "10": 20.155038759689923
+                }
+              },
+              "reported_percent": {
+                "5": 14.4,
+                "10": 22.1
+              },
+              "diff_points": {
+                "5": 0.3286821705426366,
+                "10": -1.9449612403100787
+              },
+              "passed": true,
+              "notes": []
+            }
+          },
+          "empty_vs_vanilla": {
+            "identical_top150": 129,
+            "identical_top10": 129,
+            "queries": 129,
+            "hr_vanilla": {
+              "eligible": 129,
+              "hits": {
+                "5": 19,
+                "10": 26
+              },
+              "hr_percent": {
+                "5": 14.728682170542637,
+                "10": 20.155038759689923
+              }
+            },
+            "hr_empty": {
+              "eligible": 129,
+              "hits": {
+                "5": 19,
+                "10": 26
+              },
+              "hr_percent": {
+                "5": 14.728682170542637,
+                "10": 20.155038759689923
+              }
+            },
+            "max_abs_text_score_diff": 0.0,
+            "reference": "published path in this process (shared encoding cache)"
+          },
+          "saved_per_query_text_only": null,
+          "table1_vanilla": {
+            "5": {
+              "table1": 14.4,
+              "empty_context": 14.728682170542637
+            },
+            "10": {
+              "table1": 22.1,
+              "empty_context": 20.155038759689923
+            }
+          },
+          "mismatch_examples": []
+        },
+        "queries": 129,
+        "truncation": {
+          "contextualized": {},
+          "plain": {}
+        },
+        "status": "DONE",
+        "timings": {
+          "docs": 2,
+          "docs_from_checkpoint": 0,
+          "seconds_pass1": 3.65533054199841,
+          "seconds_pass2": 1.3508967500019935,
+          "seconds_total": 7.2
+        },
+        "device": {
+          "cuda_visible_devices": "",
+          "batch_size_env": {},
+          "device_map_env": {}
+        }
+      }
+    }
+  },
+  "analysis": {
+    "dataset": "qasper_64k",
+    "per_retriever": {
+      "bm25": {
+        "queries": 129,
+        "vanilla": {
+          "hr5": 14.728682170542635,
+          "hr10": 20.155038759689923,
+          "eligible": 129
+        },
+        "empty": {
+          "hr5": 14.728682170542635,
+          "hr10": 20.155038759689923,
+          "eligible": 129
+        },
+        "cr": {
+          "hr5": 16.27906976744186,
+          "hr10": 24.031007751937985,
+          "eligible": 129
+        },
+        "saadi": {
+          "hr5": 20.930232558139537,
+          "hr10": 25.58139534883721,
+          "eligible": 129
+        },
+        "saadi_cr": {
+          "hr5": 18.6046511627907,
+          "hr10": 30.232558139534884,
+          "eligible": 129
+        },
+        "cr_minus_vanilla_hr5": {
+          "diff": 1.550387596899225,
+          "ci": [
+            -2.3255813953488373,
+            5.426356589147287
+          ]
+        },
+        "saadi_minus_cr_hr5": {
+          "diff": 4.651162790697675,
+          "ci": [
+            0.0,
+            10.077519379844961
+          ]
+        },
+        "saadi_cr_minus_cr_hr5": {
+          "diff": 2.3255813953488373,
+          "ci": [
+            -2.3255813953488373,
+            7.751937984496124
+          ]
+        },
+        "saadi_cr_minus_saadi_hr5": {
+          "diff": -2.3255813953488373,
+          "ci": [
+            -5.426356589147287,
+            0.7751937984496124
+          ]
+        },
+        "cr_minus_vanilla_hr10": {
+          "diff": 3.875968992248062,
+          "ci": [
+            -0.7751937984496124,
+            8.527131782945736
+          ]
+        },
+        "saadi_minus_cr_hr10": {
+          "diff": 1.550387596899225,
+          "ci": [
+            -4.651162790697675,
+            7.751937984496124
+          ]
+        },
+        "saadi_cr_minus_cr_hr10": {
+          "diff": 6.2015503875969,
+          "ci": [
+            0.7751937984496124,
+            11.627906976744185
+          ]
+        },
+        "saadi_cr_minus_saadi_hr10": {
+          "diff": 4.651162790697675,
+          "ci": [
+            1.550387596899225,
+            8.527131782945736
+          ]
+        }
+      }
+    },
+    "hybrid": {
+      "bm25": {
+        "queries": 129,
+        "vanilla": {
+          "hr5": 14.728682170542635,
+          "hr10": 20.155038759689923,
+          "eligible": 129
+        },
+        "cr": {
+          "hr5": 16.27906976744186,
+          "hr10": 24.031007751937985,
+          "eligible": 129
+        },
+        "saadi": {
+          "hr5": 20.930232558139537,
+          "hr10": 25.58139534883721,
+          "eligible": 129
+        },
+        "cr_minus_vanilla_hr5": {
+          "diff": 1.550387596899225,
+          "ci": [
+            -2.3255813953488373,
+            5.426356589147287
+          ]
+        },
+        "saadi_minus_cr_hr5": {
+          "diff": 4.651162790697675,
+          "ci": [
+            0.0,
+            10.077519379844961
+          ]
+        },
+        "cr_minus_vanilla_hr10": {
+          "diff": 3.875968992248062,
+          "ci": [
+            -0.7751937984496124,
+            8.527131782945736
+          ]
+        },
+        "saadi_minus_cr_hr10": {
+          "diff": 1.550387596899225,
+          "ci": [
+            -4.651162790697675,
+            7.751937984496124
+          ]
+        }
+      }
+    },
+    "retrievers_done": [
+      "bm25"
+    ]
+  },
+  "cost": {
+    "calls": 1488,
+    "calls_per_chunk": 1.0,
+    "calls_per_document": 744.0,
+    "nominal_input_total": 133226752.0,
+    "computed_input_total": 461568.0,
+    "nominal_input_per_chunk": 89534.10752688172,
+    "computed_input_per_chunk": 310.19354838709677,
+    "generated_total": 63802.0,
+    "generated_per_chunk_mean": 42.87768817204301,
+    "generated_per_chunk_median": 41.0,
+    "cut_share": 0.0,
+    "generation_wall_seconds": 4.7,
+    "generation_gpu_hours": 0.0,
+    "cached_tokens_source": [
+      "simulated (stub)"
+    ],
+    "ratio_nominal_input_vs_saadi": 35.393114478832196,
+    "ratio_computed_input_vs_saadi": 0.12262048588984305,
+    "ratio_calls_vs_saadi": 0.8016725845636329,
+    "ratio_generated_vs_saadi": 0.06769579268591162,
+    "saadi_chunks": 17159.0,
+    "chunks": 1488
+  },
+  "problems": []
+}
