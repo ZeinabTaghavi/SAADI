@@ -43,9 +43,20 @@ bash experiments/rebuttal/c3_channel_ablation/sh/01_check.sh
 | Step | Script | What it does |
 | --- | --- | --- |
 | 01 | `sh/01_check.sh` | Inputs; BM25 channel scores; check 1 (all three = saved rankings, every query); check 2 (text only vs Vanilla) |
-| 02 | `sh/02_bm25.sh` | All six variants for BM25 (to be written after step 01's report) |
-| 03 | `sh/03_dense.sh` | All six variants for the dense pairs that passed check 1 |
-| 04 | `sh/04_report.sh` | Tables, paired comparisons, `REPORT.md`, `table_paper.tex` |
+| 02 | `sh/02_bm25.sh` | All six variants for BM25: per-query ranks, HR@5/HR@10, median rank, first paired differences |
+| 03 | `sh/03_dense.sh` | The same for the dense pairs that passed check 1 (only from saved channel scores) |
+| 04 | `sh/04_report.sh` | Tables, paired comparisons, `REPORT.md`, `table_paper.tex` (not written yet) |
+
+Steps 02 and 03 run the same script (`scripts/step02_variants.py`) and write one small per-query file per pair to
+`results/rebuttal/c3_channel_ablation/per_query/` (committed), so step 04 can combine a laptop BM25 run with a server
+dense run. `work/ready_pairs.json` is merged across step 01 runs on the same machine.
+
+Dense pairs on the server, after `git pull`:
+
+```bash
+C3_RETRIEVERS=contriever,bge_m3 bash experiments/rebuttal/c3_channel_ablation/sh/01_check.sh
+C3_RETRIEVERS=contriever,bge_m3 bash experiments/rebuttal/c3_channel_ablation/sh/03_dense.sh
+```
 
 Each step writes `reports/step_NN.md` and `.json` (also when it fails, with the traceback) and a log in `logs/`.
 Results go to `results/rebuttal/c3_channel_ablation/`. Seed 42; 10,000 bootstrap resamples over queries.

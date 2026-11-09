@@ -579,6 +579,13 @@ def body(rep: StepReport) -> int:
         for i in inv
         if not any(x["dataset"] == i["dataset"] and x["retriever"] == i["retriever"] for x in ready)
     ]
+    # Merge with an earlier run (e.g. BM25 first, dense later): pairs checked now replace their old entries.
+    checked = {(i["dataset"], i["retriever"]) for i in inv}
+    if READY_PATH.exists():
+        prev = json.loads(READY_PATH.read_text(encoding="utf-8"))
+        if prev.get("weights") == w.as_dict():
+            ready = [x for x in prev.get("ready", []) if (x["dataset"], x["retriever"]) not in checked] + ready
+            not_ready = [x for x in prev.get("not_ready", []) if (x["dataset"], x["retriever"]) not in checked] + not_ready
     write_json(READY_PATH, {"written_at": time.strftime("%Y-%m-%d %H:%M:%S"), "streams_dir": rel(STREAMS_DIR), "weights": w.as_dict(), "ready": ready, "not_ready": not_ready})
     rep.wrote(READY_PATH)
     rep.data["ready"] = [job_name(x["dataset"], x["retriever"]) for x in ready]
