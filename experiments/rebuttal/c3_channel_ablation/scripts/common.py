@@ -67,6 +67,7 @@ from saadi.rebuttal.heldout_fusion import (  # noqa: E402
     load_query_arrays,
     per_query_vanilla_file,
     published_vanilla,
+    reproduction_check,
     save_streams,
 )
 
@@ -157,6 +158,14 @@ def load_published_weights(config_path: Path = CONFIG_PATH) -> tuple[Weights, li
 VARIANTS = ("text_only", "text_summary", "text_memory", "all_three", "summary_only", "memory_only")
 MAIN_VARIANTS = VARIANTS[:4]
 INFO_VARIANTS = VARIANTS[4:]
+# Not re-scored: all three = the paper's saved rankings; text only = the text-only top-10
+# saved in the streams (C2's code, lambda_M = lambda_S = 0). Only these are scored by C3:
+NEW_VARIANTS = ("text_summary", "text_memory", "summary_only", "memory_only")
+VARIANT_SOURCE = {
+    "text_only": "saved text-only top-10 in the streams (C2)",
+    "all_three": "paper's saved rankings",
+    **{v: "scored by C3 (published Equation 2, one weight 0)" for v in NEW_VARIANTS},
+}
 VARIANT_LABEL = {
     "text_only": "Text only",
     "text_summary": "Text + summary",
@@ -242,9 +251,11 @@ def compute_bm25_streams(dataset: str, *, force: bool = False, log: Callable[[st
     paths = C2Paths(REPO_ROOT, out_base=WORK_DIR / "bm25_compute")
     docs, used_rows, timings = compute_job_streams(dataset, "bm25", paths=paths, log=log)
     n_rows = save_streams(dataset, "bm25", docs, used_rows, out_path=files.parquet, queries_path=files.queries)
+    # C2's own gate on the same docs (saved SAADI scores, mismatch examples); C3 reads it, never re-scores.
+    write_json(files.check, reproduction_check(dataset, "bm25", docs, used_rows, repo_root=REPO_ROOT, full_dataset=True))
     return {
         "status": "computed",
-        "files": [rel(files.parquet), rel(files.queries)],
+        "files": [rel(files.parquet), rel(files.queries), rel(files.check)],
         "stream_rows": n_rows,
         "n_queries": len(used_rows),
         "timings": timings,
@@ -261,6 +272,12 @@ def load_pair(dataset: str, retriever: str, files: StreamFiles) -> tuple[list[Qu
 
     queries = load_query_arrays(files.parquet, files.queries, retriever)
     meta = load_meta(files)
+    return queries, meta, saved_rows_for(dataset, retriever, meta)
+
+
+def saved_rows_for(dataset: str, retriever: str, meta: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """The paper's saved row of each stream query (same query and document checked)."""
+
     saved = load_saved_live_rows(DATASETS[dataset], retriever, repo_root=REPO_ROOT)
     rows = []
     for m in meta:
@@ -309,6 +326,25 @@ def hit_rank(q: QueryArrays, ranking: list[str]) -> int:
     """0-based rank at which the saved hit definition is first met (BIG_RANK: never)."""
 
     return int(min(hit_rank_of_ranking(q, ranking), BIG_RANK))
+
+
+NOT_IN_TOP = RETRIEVE_K + 1  # stored rank when the hit is not met within the top-10
+
+
+def top10_rank(gold: list[str], groups: list[list[str]], top: list[str]) -> int:
+    """1-based rank within a top-10 at which the saved hit definition is met (a gold chunk, or
+    every chunk of one evidence group); NOT_IN_TOP when it is not met within the top-10.
+    The same definition as evaluate_retrieval_results, so rank <= k <=> Hit@k."""
+
+    pos = {c: i + 1 for i, c in enumerate(top[:RETRIEVE_K])}
+    best = NOT_IN_TOP
+    for c in gold:
+        if c in pos:
+            best = min(best, pos[c])
+    for g in groups:
+        if g and all(c in pos for c in g):
+            best = min(best, max(pos[c] for c in g))
+    return best
 
 
 # ---------------------------------------------------------------------------

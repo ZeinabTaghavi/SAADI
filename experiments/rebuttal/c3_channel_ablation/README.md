@@ -47,6 +47,11 @@ bash experiments/rebuttal/c3_channel_ablation/sh/01_check.sh
 | 03 | `sh/03_dense.sh` | The same for the dense pairs that passed check 1 (only from saved channel scores) |
 | 04 | `sh/04_report.sh` | Tables, paired comparisons, `REPORT.md`, `table_paper.tex` (not written yet) |
 
+Vanilla and SAADI are not re-scored. All three (SAADI) is the paper's saved rankings; text only (Vanilla) is the
+text-only top-10 saved with the channel scores (C2's stream step), checked against Table 1 in step 01. C3 scores only
+text + summary, text + memory, summary alone and memory alone, and reports Vanilla and SAADI next to the paper's numbers.
+Ranks are within the top-10 (11 = not hit within the top-10), so HR@5 and HR@10 are exact.
+
 Steps 02 and 03 run the same script (`scripts/step02_variants.py`) and write one small per-query file per pair to
 `results/rebuttal/c3_channel_ablation/per_query/` (committed), so step 04 can combine a laptop BM25 run with a server
 dense run. `work/ready_pairs.json` is merged across step 01 runs on the same machine.

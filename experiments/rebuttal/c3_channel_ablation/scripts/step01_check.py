@@ -6,12 +6,13 @@
    construction caches (C2's ``compute_job_streams``; written to work/streams/). Dense
    scores are only read, from C3_STREAMS_DIR (default: C2's streams); a pair without them
    is reported as "waiting for channel scores" with the exact missing files.
-2. Check 1. "All three" (published Equation 2, published weights from the config) must give
-   exactly the paper's saved top-10 for every query of the pair; HR hits must equal
-   expected_metrics.json. A pair with any mismatch fails and is not used later; the report
-   shows its first 5 mismatches with the fused scores.
-3. Check 2. "Text only" against Table 1's Vanilla (reported to one decimal), against the
-   saved per-query text-only rankings where they exist, and against C2's text-only top-10.
+2. Check 1 (no re-scoring). The SAADI top-10 saved with the channel scores (C2's stream
+   step, published weights) must equal the paper's saved top-10 for every query of the pair,
+   and HR hits must equal expected_metrics.json. Only then were the channel scores those of
+   the paper's run. A pair with any mismatch fails and is not used later; the report shows its
+   first 5 mismatches (with the fused scores from C2's check file when it has them).
+3. Check 2 (no re-scoring). The text-only top-10 saved with the channel scores against Table 1's
+   Vanilla (one decimal) and the saved per-query text-only rankings where they exist.
    Reported, with the reason when it differs; it does not stop the run.
 
 Writes work/ready_pairs.json (the pairs steps 02/03 may use) and reports/step_01.{md,json}.
@@ -50,19 +51,18 @@ from common import (
     WORK_DIR,
     StepReport,
     _hr,
-    _rebuild_for_repo,
-    combine,
     compute_bm25_streams,
     expected_main_metrics,
     input_streams,
     job_name,
-    load_pair,
+    load_meta,
     load_published_weights,
     n_saved_rows,
     per_query_vanilla_file,
     published_vanilla,
     rel,
     run_step,
+    saved_rows_for,
     selected,
     sha256_file,
     stream_files,
@@ -182,29 +182,29 @@ def compare_streams(ours: Path, theirs: Path) -> dict[str, Any]:
 
 
 def check_pair(d: str, r: str, w) -> dict[str, Any]:
+    """No re-scoring: the streams' saved SAADI and text-only top-10s against the paper's files."""
+
+    import pandas as pd
+
     files = input_streams(d, r)
     t0 = time.perf_counter()
-    queries, meta, rows = load_pair(d, r, files)
+    meta = load_meta(files)
+    rows = saved_rows_for(d, r, meta)
     n_saved = n_saved_rows(d, r)
-    all_top, all_scores, text_top = [], [], []
-    for q in queries:
-        index, streams = _rebuild_for_repo(q, r)
-        a = combine(index, streams, w, "all_three")
-        t = combine(index, streams, w, "text_only")
-        all_top.append([x.chunk_id for x in a.ranked_chunks[:RETRIEVE_K]])
-        all_scores.append([float(x.final_score) for x in a.ranked_chunks[:RETRIEVE_K]])
-        text_top.append([x.chunk_id for x in t.ranked_chunks[:RETRIEVE_K]])
+    all_top = [list(m["published_top10"]) for m in meta]
+    text_top = [list(m["vanilla_top10"]) for m in meta]
     saved_top = [[str(x) for x in row.get("retrieved_chunk_ids", [])][:RETRIEVE_K] for row in rows]
     identical = [x == y for x, y in zip(all_top, saved_top, strict=True)]
+    c2check = json.loads(files.check.read_text(encoding="utf-8")) if files.check.exists() else {}
+    c2_examples = {str(e.get("query_id")): e for e in c2check.get("mismatch_examples", [])}
 
-    examples, score_diffs = [], []
+    examples = []
     for i, same in enumerate(identical):
         row = rows[i]
         if same:
-            if row.get("scores"):
-                score_diffs.extend(abs(a - float(b)) for a, b in zip(all_scores[i], row["scores"], strict=False))
             continue
         if len(examples) < N_EXAMPLES:
+            all_scores_i = c2_examples.get(str(row.get("query_id")), {}).get("ours_scores", [])
             first = next(j for j in range(max(len(all_top[i]), len(saved_top[i]))) if j >= len(all_top[i]) or j >= len(saved_top[i]) or all_top[i][j] != saved_top[i][j])
             examples.append(
                 {
@@ -212,7 +212,7 @@ def check_pair(d: str, r: str, w) -> dict[str, Any]:
                     "doc_id": str(row.get("doc_id")),
                     "first_differing_rank": first + 1,
                     "ours_top10": all_top[i],
-                    "ours_scores": all_scores[i],
+                    "ours_scores": all_scores_i,
                     "saved_top10": saved_top[i],
                     "saved_scores": [float(s) for s in (row.get("scores") or [])[:RETRIEVE_K]],
                 }
@@ -230,9 +230,9 @@ def check_pair(d: str, r: str, w) -> dict[str, Any]:
         exp_rows[str(k)] = {"eligible": int(e["eligible"]), "hits": int(e["hits"])}
         if int(e["eligible"]) != hr_ours["eligible"] or int(e["hits"]) != int(hr_ours["hits"][str(k)]):
             exp_ok = False
-    coverage = len(queries) == n_saved
+    coverage = len(meta) == n_saved
     check1 = {
-        "n_queries_streams": len(queries),
+        "n_queries_streams": len(meta),
         "n_queries_saved": n_saved,
         "complete": coverage,
         "identical_top10": int(sum(identical)),
@@ -240,7 +240,7 @@ def check_pair(d: str, r: str, w) -> dict[str, Any]:
         "hr_saved": hr_saved,
         "expected_metrics": exp_rows,
         "expected_hits_match": exp_ok,
-        "max_abs_score_diff_identical": max(score_diffs) if score_diffs else None,
+        "max_abs_score_diff_identical": c2check.get("max_abs_score_diff_identical_rankings"),
         "mismatch_examples": examples,
         "passed": bool(coverage and all(identical) and exp_ok),
     }
@@ -269,14 +269,14 @@ def check_pair(d: str, r: str, w) -> dict[str, Any]:
         vt["per_query_identical"] = sum(
             1 for row, top in zip(rows, text_top, strict=True) if saved_text.get((str(row.get("doc_id")), str(row.get("query_id")))) == top
         )
-    vt["c2_text_only_identical"] = sum(1 for m, top in zip(meta, text_top, strict=True) if list(m.get("vanilla_top10", [])) == top)
     vt["n"] = len(rows)
 
-    n_chunks = [len(q.chunk_ids) for q in queries]
+    frame = pd.read_parquet(files.parquet, columns=["qidx", "doc_id", "name", "alias", "description", "summary"])
+    n_chunks = frame.groupby("qidx").size().to_numpy()
     missing_channel = {
-        "summary": int(sum(int(np.isnan(q.raw[:, 4]).sum()) for q in queries)),
-        "memory_all_fields": int(sum(int(np.isnan(q.raw[:, 1:4]).all(axis=1).sum()) for q in queries)),
-        "chunk_query_pairs": int(sum(n_chunks)),
+        "summary": int(frame["summary"].isna().sum()),
+        "memory_all_fields": int(frame[["name", "alias", "description"]].isna().all(axis=1).sum()),
+        "chunk_query_pairs": int(len(frame)),
     }
     return {
         "dataset": d,
@@ -284,8 +284,8 @@ def check_pair(d: str, r: str, w) -> dict[str, Any]:
         "stream_files": [rel(files.parquet), rel(files.queries)],
         "parquet_sha256": sha256_file(files.parquet),
         "queries_sha256": sha256_file(files.queries),
-        "n_docs": len({q.doc_id for q in queries}),
-        "chunks_per_query_median": float(np.median(n_chunks)) if n_chunks else None,
+        "n_docs": int(frame["doc_id"].nunique()),
+        "chunks_per_query_median": float(np.median(n_chunks)) if len(n_chunks) else None,
         "missing_channel_counts": missing_channel,
         "check1": check1,
         "check2": vt,
@@ -499,12 +499,11 @@ def body(rep: StepReport) -> int:
                 f"{t1['5']} / {t1['10']}",
                 "yes" if eq else ("NO" if eq is False else "-"),
                 f"{v['per_query_identical']}/{v['n']}" if "per_query_file" in v else "no file",
-                f"{v['c2_text_only_identical']}/{v['n']}",
             ]
         )
     rep.add(
         *table(
-            ["Pair", "Text only HR@5 / HR@10", "Table 1 Vanilla HR@5 / HR@10", "Equal to 1 decimal", "Saved per-query text-only file identical", "Same as C2 text-only"],
+            ["Pair", "Text only HR@5 / HR@10", "Table 1 Vanilla HR@5 / HR@10", "Equal to 1 decimal", "Saved per-query text-only file identical"],
             rows_v,
         ),
         "",
