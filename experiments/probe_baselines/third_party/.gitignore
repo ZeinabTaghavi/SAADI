@@ -5,3 +5,6 @@ tiktoken_cache/
 nltk_data/
 .hipporag_ok
 .lqca_ok
+SAADI_Hipporag/
+hipporag_requirements.txt
+_virtualenv/

@@ -135,11 +135,23 @@ setup_failed() {  # <name> <log>
 setup_hipporag() {
   [[ -f "${PBL_TP_DIR}/.hipporag_ok" ]] && return 0
   local log="${PBL_LOG_DIR}/setup_hipporag_${TS}.log"
-  echo "== setting up ${PBL_TP_DIR}/venv_hipporag (hipporag 2.0.0a4 pins torch 2.5.1, transformers 4.45.2, vllm 0.6.6); log ${log}"
+  echo "== setting up ${PBL_TP_DIR}/venv_hipporag the way SAADI_Hipporag @ ${PBL_SHR_COMMIT:0:12} does; log ${log}"
+  # hipporag 2.0.0a4's metadata pins openai==1.91.1 (not on PyPI), so `pip install hipporag`
+  # cannot resolve. SAADI_Hipporag's requirements.txt is its tested set (torch 2.5.1,
+  # transformers 4.45.2, vllm 0.6.6.post1, openai 1.58.1, litellm 1.55.8, ...); hipporag
+  # itself then goes in with --no-deps, exactly as its scripts/setup_server.sh does.
+  {
+    if [[ ! -d "${PBL_SHR_DIR}/.git" ]]; then git clone -q "${PBL_SHR_URL}" "${PBL_SHR_DIR}"; fi
+    git -C "${PBL_SHR_DIR}" fetch -q origin && git -C "${PBL_SHR_DIR}" checkout -q "${PBL_SHR_COMMIT}"
+  } >> "${log}" 2>&1 || { setup_failed "SAADI_Hipporag clone" "${log}"; return 0; }
+  # Its last line `-e .` installs that repository's own evaluation package, which B3 does not
+  # use (B3 imports only saadi_hypporag/openie_compat.py, from the clone's src/).
+  grep -v -E '^[[:space:]]*-e[[:space:]]' "${PBL_SHR_DIR}/requirements.txt" > "${PBL_TP_DIR}/hipporag_requirements.txt"
   make_venv "${PBL_TP_DIR}/venv_hipporag" "${log}" \
-    && "${PBL_HIPPORAG_PY}" -m pip install -q --upgrade pip >> "${log}" 2>&1 \
-    && "${PBL_HIPPORAG_PY}" -m pip install "hipporag==2.0.0a4" >> "${log}" 2>&1 \
-    && "${PBL_HIPPORAG_PY}" -c "import hipporag, huggingface_hub" >> "${log}" 2>&1 \
+    && "${PBL_HIPPORAG_PY}" -m pip install -q --upgrade pip setuptools wheel >> "${log}" 2>&1 \
+    && "${PBL_HIPPORAG_PY}" -m pip install -r "${PBL_TP_DIR}/hipporag_requirements.txt" >> "${log}" 2>&1 \
+    && "${PBL_HIPPORAG_PY}" -m pip install --no-deps "hipporag==2.0.0a4" >> "${log}" 2>&1 \
+    && PYTHONPATH="${PBL_SHR_DIR}/src" "${PBL_HIPPORAG_PY}" "${PBL_EXP_DIR}/systems/b3_hipporag/check_env.py" >> "${log}" 2>&1 \
     && touch "${PBL_TP_DIR}/.hipporag_ok" \
     && echo "== hipporag venv ready" \
     || setup_failed hipporag "${log}"

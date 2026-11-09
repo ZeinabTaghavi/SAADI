@@ -2,6 +2,11 @@
 # Appendix E.6 was not available, so these settings are NOT checked against it).
 system: b3_hipporag
 package: hipporag==2.0.0a4                  # github.com/OSU-NLP-Group/HippoRAG, own venv (third_party/venv_hipporag)
+install: SAADI_Hipporag @ 2fbdf51ccc16 requirements.txt (openai 1.58.1, litellm 1.55.8), then hipporag --no-deps
+                                            # hipporag 2.0.0a4's own metadata pins openai==1.91.1, which is not on PyPI
+openie_parser: SAADI_Hipporag RobustOpenIE  # saadi_hypporag/openie_compat.py: same prompts; safe parsing, 1 retry, 2 schema-constrained rescues
+openie_rescue_field: structured_outputs     # vLLM 0.23's name for the adapter's guided_json (the only change to the adapter's requests)
+fact_filter_parser: SAADI_Hipporag parse_triples
 llm: Qwen/Qwen3-30B-A3B-Instruct-2507       # OpenIE (NER + triples) and the recognition-memory filter, via the local vLLM server
 llm_temperature: 0                          # package default
 embedding_model: nvidia/NV-Embed-v2         # package default

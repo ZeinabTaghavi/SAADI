@@ -53,6 +53,12 @@ export PBL_LQCA_PY="${PBL_TP_DIR}/venv_lqca/bin/python"
 export PBL_LQCA_DIR="${PBL_TP_DIR}/LQCA"
 export PBL_LQCA_URL="https://github.com/OceannTwT/LQCA.git"
 export PBL_LQCA_COMMIT="2d05899479d5ca08635cb544711dde32eea57b79"
+# B3 installs HippoRAG the way the user's SAADI_Hipporag repository does (its tested
+# dependency set; hipporag 2.0.0a4's own metadata pins openai==1.91.1, which does not exist
+# on PyPI) and uses that repository's OpenIE adapter (saadi_hypporag/openie_compat.py).
+export PBL_SHR_DIR="${PBL_TP_DIR}/SAADI_Hipporag"
+export PBL_SHR_URL="https://github.com/ZeinabTaghavi/SAADI_Hipporag.git"
+export PBL_SHR_COMMIT="2fbdf51ccc1654d345ca7a33363eac661b23ebc6"
 export TIKTOKEN_CACHE_DIR="${PBL_TP_DIR}/tiktoken_cache"
 export NLTK_DATA="${PBL_TP_DIR}/nltk_data"
 export OPENAI_API_KEY="${OPENAI_API_KEY:-EMPTY}"
