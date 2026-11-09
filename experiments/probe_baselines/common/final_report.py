@@ -258,6 +258,32 @@ def main() -> int:
     else:
         vis_table = "B2 missing."
 
+    # ---- what B2 wrote: a seeded sample of gold-chunk contexts, and every cell-5 hit ----
+    b2_samples = ""
+    b2_rows = CM.read_rankings("b2_contextual") if b2 else []
+    if b2_rows:
+        persona_text = {}
+        for book_id in {r["book_id"] for r in b2_rows}:
+            for p in CM.load_inputs(book_id)["personas"]:
+                persona_text[p["persona_id"]] = p
+
+        def show(r: dict) -> str:
+            p = persona_text.get(r["persona_id"], {})
+            ctx = " ".join(str(r.get("gold_context", "")).split())
+            return f"- **{r['persona_id']}** (cell {r['cell']}, gold rank {r['gold_rank']}): query *{p.get('query')}*; gold sentence *{p.get('gold_sentence')}*; reveal *{p.get('reveal_sentence') or '-'}*\n  context: {ctx[:600]}"
+
+        import random
+
+        pool = sorted((r for r in b2_rows if r["cell"] in (1, 2, 3)), key=lambda r: r["persona_id"])
+        sample = sorted(random.Random(42).sample(pool, min(6, len(pool))), key=lambda r: r["persona_id"])
+        hits5 = [r for r in b2_rows if r["cell"] == 5 and r["gold_rank"] <= 10]
+        b2_samples = "Six gold-chunk contexts of cells 1-3 (seed 42):\n\n" + "\n".join(show(r) for r in sample)
+        if hits5:
+            b2_samples += (
+                "\n\nEvery cell-5 persona B2 put in the top 10 (cell 5 has no reveal, so no context can hold form 2; a hit comes from other query words matching the context):\n\n"
+                + "\n".join(show(r) for r in hits5)
+            )
+
     # ---- link formation ----
     lrows = []
     for s, how in (
@@ -375,6 +401,8 @@ Distance to the oracle:
 
 {vis_table}
 
+{b2_samples}
+
 ## Link formation (does the system hold form 2 where the gold chunk can use it?)
 
 {link_table}
@@ -404,6 +432,7 @@ B2 reads the visible book for every chunk: its input tokens are the logical prom
 - Third party: {json.dumps(chk.get("third_party", {}))}; system configs in experiments/probe_baselines/systems/*/config.yaml.
 - Stage reports: experiments/probe_baselines/reports/00_check.md ... 07_report.md; scores: results/probe_baselines/scores.json, table.csv.
 """
+    FINAL.parent.mkdir(parents=True, exist_ok=True)
     FINAL.write_text(final, encoding="utf-8")
     verdict_line = f"Verdict: oracle {f(oracle_v)}% HR@10 in cells 1-3; best real system {SC.SYSTEM_LABELS.get(best[0], 'n/a')} at {f(best[1])}%; SAADI run 1 {f(c123.get('saadi_run1_live'))}%; Vanilla {f(c123.get('b0_vanilla'))}%."
     gdoc = (

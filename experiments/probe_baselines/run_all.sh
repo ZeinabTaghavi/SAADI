@@ -106,14 +106,43 @@ trap stop_server EXIT
 # Third-party environments (idempotent; failures are reported by 00_check and make
 # only the stage that needs them fail).
 # ---------------------------------------------------------------------------
+# A virtual environment with a working pip. `python -m venv` needs ensurepip, which some
+# system Pythons lack (it then leaves a venv without pip: the first night's B3/B4 failure);
+# virtualenv, installed with the study venv's own pip, seeds pip itself.
+safe_clear() {  # removes a folder only when it lies inside third_party/
+  local dir="$1"
+  case "${dir}" in
+    "${PBL_TP_DIR}"/?*) [[ -n "${PBL_TP_DIR}" ]] && rm -rf -- "${dir}" ;;
+    *) echo "   refusing to remove ${dir} (outside ${PBL_TP_DIR})"; return 1 ;;
+  esac
+}
+make_venv() {  # <dir> <log>
+  local dir="$1" log="$2"
+  safe_clear "${dir}" || return 1
+  if "${PBL_BASE_PYTHON}" -m venv "${dir}" >> "${log}" 2>&1 && "${dir}/bin/python" -m pip --version >> "${log}" 2>&1; then
+    return 0
+  fi
+  echo "   python -m venv gave no working pip; creating ${dir} with virtualenv instead" | tee -a "${log}"
+  safe_clear "${dir}" || return 1
+  "${PBL_BASE_PYTHON}" -m pip install -q --target "${PBL_TP_DIR}/_virtualenv" "virtualenv>=20.26" >> "${log}" 2>&1 || return 1
+  PYTHONPATH="${PBL_TP_DIR}/_virtualenv" "${PBL_BASE_PYTHON}" -m virtualenv -q "${dir}" >> "${log}" 2>&1 || return 1
+  "${dir}/bin/python" -m pip --version >> "${log}" 2>&1
+}
+setup_failed() {  # <name> <log>
+  echo "== $1 setup FAILED; last lines of $2:"
+  tail -n 25 "$2" || true
+}
 setup_hipporag() {
   [[ -f "${PBL_TP_DIR}/.hipporag_ok" ]] && return 0
-  echo "== setting up ${PBL_TP_DIR}/venv_hipporag (hipporag 2.0.0a4 pins torch 2.5.1, transformers 4.45.2, vllm 0.6.6)"
-  "${PBL_BASE_PYTHON}" -m venv "${PBL_TP_DIR}/venv_hipporag" \
-    && "${PBL_HIPPORAG_PY}" -m pip install -q --upgrade pip \
-    && "${PBL_HIPPORAG_PY}" -m pip install -q "hipporag==2.0.0a4" \
+  local log="${PBL_LOG_DIR}/setup_hipporag_${TS}.log"
+  echo "== setting up ${PBL_TP_DIR}/venv_hipporag (hipporag 2.0.0a4 pins torch 2.5.1, transformers 4.45.2, vllm 0.6.6); log ${log}"
+  make_venv "${PBL_TP_DIR}/venv_hipporag" "${log}" \
+    && "${PBL_HIPPORAG_PY}" -m pip install -q --upgrade pip >> "${log}" 2>&1 \
+    && "${PBL_HIPPORAG_PY}" -m pip install "hipporag==2.0.0a4" >> "${log}" 2>&1 \
+    && "${PBL_HIPPORAG_PY}" -c "import hipporag, huggingface_hub" >> "${log}" 2>&1 \
     && touch "${PBL_TP_DIR}/.hipporag_ok" \
-    || echo "== hipporag setup FAILED (00_check reports it; B3 will fail)"
+    && echo "== hipporag venv ready" \
+    || setup_failed hipporag "${log}"
 }
 setup_lqca() {
   [[ -f "${PBL_TP_DIR}/.lqca_ok" ]] && return 0
@@ -124,13 +153,16 @@ setup_lqca() {
   } || echo "== LQCA clone FAILED"
   # maverick-coref 1.0.7 (the coreference model LQCA imports as `maverick`) needs torch < 2.6
   # to load its checkpoint, and transformers 4.45.2 is the last that runs on torch 2.5.
-  "${PBL_BASE_PYTHON}" -m venv "${PBL_TP_DIR}/venv_lqca" \
-    && "${PBL_LQCA_PY}" -m pip install -q --upgrade pip \
-    && "${PBL_LQCA_PY}" -m pip install -q "torch==2.5.1" "transformers==4.45.2" "maverick-coref==1.0.7" tiktoken requests numpy \
-    && "${PBL_LQCA_PY}" -m spacy download en_core_web_sm > /dev/null \
-    && "${PBL_LQCA_PY}" -c "import tiktoken; tiktoken.get_encoding('cl100k_base')" \
+  local log="${PBL_LOG_DIR}/setup_lqca_${TS}.log"
+  echo "   venv log ${log}"
+  make_venv "${PBL_TP_DIR}/venv_lqca" "${log}" \
+    && "${PBL_LQCA_PY}" -m pip install -q --upgrade pip >> "${log}" 2>&1 \
+    && "${PBL_LQCA_PY}" -m pip install "torch==2.5.1" "transformers==4.45.2" "maverick-coref==1.0.7" tiktoken requests numpy >> "${log}" 2>&1 \
+    && "${PBL_LQCA_PY}" -m spacy download en_core_web_sm >> "${log}" 2>&1 \
+    && "${PBL_LQCA_PY}" -c "import maverick, tiktoken; tiktoken.get_encoding('cl100k_base')" >> "${log}" 2>&1 \
     && touch "${PBL_TP_DIR}/.lqca_ok" \
-    || echo "== LQCA venv setup FAILED (00_check reports it; B4 will fail)"
+    && echo "== LQCA venv ready" \
+    || setup_failed LQCA "${log}"
 }
 
 write_abort_final() {
@@ -151,6 +183,8 @@ run_stage() {  # index, command words separated by ':::'
   local i="$1"; shift
   local flag=""
   [[ "${i}" -ge "${FROM}" ]] && flag="${FORCE}"
+  # Scoring and the report are cheap and must see every system and SAADI run that exists now.
+  [[ "${i}" -ge 6 ]] && flag="--force"
   if [[ "${i}" -lt "${FROM}" ]]; then
     echo "== ${STAGES[$i]}: before --from, not run"
     return 0
