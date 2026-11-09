@@ -1,0 +1,172 @@
+{
+  "group": "A",
+  "dry_run": false,
+  "started_at": "2026-11-09 15:59:44",
+  "host": "eee-s132-infsys-gpu03",
+  "argv": [
+    "python3",
+    "scripts/rebuttal/c2_heldout_fusion.py",
+    "--group",
+    "A",
+    "--analysis-only",
+    "--retrievers",
+    "bm25,contriever,bge_m3"
+  ],
+  "analysis_only": true,
+  "retrievers": [
+    "bm25",
+    "contriever",
+    "bge_m3"
+  ],
+  "unexpected": [],
+  "files": [
+    "results/rebuttal/C2_heldout_fusion/REPORT.md",
+    "results/rebuttal/C2_heldout_fusion/REPORT_FOR_GDOC.md",
+    "results/rebuttal/C2_heldout_fusion/analysis.json",
+    "results/rebuttal/C2_heldout_fusion/dry_run/REPORT.md",
+    "results/rebuttal/C2_heldout_fusion/dry_run/REPORT_FOR_GDOC.md",
+    "results/rebuttal/C2_heldout_fusion/dry_run/analysis.json",
+    "results/rebuttal/C2_heldout_fusion/dry_run/figures/heatmap_hr10_bm25.png",
+    "results/rebuttal/C2_heldout_fusion/dry_run/figures/heatmap_hr10_mean_over_retrievers.png",
+    "results/rebuttal/C2_heldout_fusion/dry_run/tables/a_chosen_per_fold.csv",
+    "results/rebuttal/C2_heldout_fusion/dry_run/tables/b_lodo.csv",
+    "results/rebuttal/C2_heldout_fusion/dry_run/tables/c_table9_reconstruction.csv",
+    "results/rebuttal/C2_heldout_fusion/dry_run/tables/d_per_pair.csv",
+    "results/rebuttal/C2_heldout_fusion/dry_run/tables/e_ranking_cells.csv",
+    "results/rebuttal/C2_heldout_fusion/dry_run/tables/f_grid_hr.csv",
+    "results/rebuttal/C2_heldout_fusion/dry_run/tables/f_sensitivity.csv",
+    "results/rebuttal/C2_heldout_fusion/dry_run/tables/g_learned_weights.csv",
+    "results/rebuttal/C2_heldout_fusion/dry_run/tables/verification.csv",
+    "results/rebuttal/C2_heldout_fusion/figures/heatmap_hr10_bm25.png",
+    "results/rebuttal/C2_heldout_fusion/figures/heatmap_hr10_mean_over_retrievers.png",
+    "results/rebuttal/C2_heldout_fusion/tables/a_chosen_per_fold.csv",
+    "results/rebuttal/C2_heldout_fusion/tables/b_lodo.csv",
+    "results/rebuttal/C2_heldout_fusion/tables/c_table9_reconstruction.csv",
+    "results/rebuttal/C2_heldout_fusion/tables/d_per_pair.csv",
+    "results/rebuttal/C2_heldout_fusion/tables/e_ranking_cells.csv",
+    "results/rebuttal/C2_heldout_fusion/tables/f_grid_hr.csv",
+    "results/rebuttal/C2_heldout_fusion/tables/f_sensitivity.csv",
+    "results/rebuttal/C2_heldout_fusion/tables/g_learned_weights.csv",
+    "results/rebuttal/C2_heldout_fusion/tables/verification.csv",
+    "experiments/rebuttal/C2_heldout_fusion/reports/group_A_analysis_only.md",
+    "experiments/rebuttal/C2_heldout_fusion/reports/group_A_analysis_only.json"
+  ],
+  "preflight": {
+    "ok": true,
+    "problems": [],
+    "warnings": [],
+    "python": {
+      "executable": "/mnt/data/zeinab/raptor/.venv/bin/python3",
+      "version": "3.12.3"
+    },
+    "modules": {
+      "numpy": "2.3.5",
+      "pandas": "3.0.1",
+      "pyarrow": "23.0.1",
+      "tqdm": "4.68.2",
+      "matplotlib": "3.10.8"
+    },
+    "git": {
+      "commit": "f22b27f733a6288240eaea295d26d17cd17d5465",
+      "branch": "fix/notebook-key-and-install",
+      "code_changes_vs_commit": []
+    },
+    "hf_home": "/mnt/cache/taghavi",
+    "gpus": "not needed (--analysis-only)"
+  },
+  "analysis": "done in 10 min: results/rebuttal/C2_heldout_fusion/REPORT.md",
+  "analysis_counts": {
+    "a1_hr5": {
+      "pairs": 12,
+      "beats_vanilla": 10,
+      "ci_above_zero": 5,
+      "ci_below_zero": 0,
+      "cluster_ci_above_zero": 3,
+      "beats_published": 6,
+      "below_published_ci": 0
+    },
+    "a1_hr10": {
+      "pairs": 12,
+      "beats_vanilla": 11,
+      "ci_above_zero": 6,
+      "ci_below_zero": 0,
+      "cluster_ci_above_zero": 6,
+      "beats_published": 8,
+      "below_published_ci": 1
+    },
+    "a2_hr5": {
+      "pairs": 12,
+      "beats_vanilla": 10,
+      "ci_above_zero": 4,
+      "ci_below_zero": 0,
+      "cluster_ci_above_zero": 4,
+      "beats_published": 7,
+      "below_published_ci": 0
+    },
+    "a2_hr10": {
+      "pairs": 12,
+      "beats_vanilla": 11,
+      "ci_above_zero": 8,
+      "ci_below_zero": 0,
+      "cluster_ci_above_zero": 8,
+      "beats_published": 9,
+      "below_published_ci": 1
+    },
+    "b_hr5": {
+      "pairs": 12,
+      "beats_vanilla": 7,
+      "ci_above_zero": 4,
+      "ci_below_zero": 2,
+      "cluster_ci_above_zero": 4,
+      "beats_published": 3,
+      "below_published_ci": 5
+    },
+    "b_hr10": {
+      "pairs": 12,
+      "beats_vanilla": 9,
+      "ci_above_zero": 6,
+      "ci_below_zero": 1,
+      "cluster_ci_above_zero": 6,
+      "beats_published": 5,
+      "below_published_ci": 1
+    },
+    "b_global_hr5": {
+      "pairs": 12,
+      "beats_vanilla": 7,
+      "ci_above_zero": 4,
+      "ci_below_zero": 3,
+      "cluster_ci_above_zero": 4,
+      "beats_published": 2,
+      "below_published_ci": 5
+    },
+    "b_global_hr10": {
+      "pairs": 12,
+      "beats_vanilla": 8,
+      "ci_above_zero": 5,
+      "ci_below_zero": 2,
+      "cluster_ci_above_zero": 6,
+      "beats_published": 4,
+      "below_published_ci": 3
+    },
+    "learned_hr5": {
+      "pairs": 12,
+      "beats_vanilla": 10,
+      "ci_above_zero": 5,
+      "ci_below_zero": 0,
+      "cluster_ci_above_zero": 5,
+      "beats_published": 6,
+      "below_published_ci": 0
+    },
+    "learned_hr10": {
+      "pairs": 12,
+      "beats_vanilla": 12,
+      "ci_above_zero": 6,
+      "ci_below_zero": 0,
+      "cluster_ci_above_zero": 7,
+      "beats_published": 10,
+      "below_published_ci": 0
+    }
+  },
+  "finished_at": "2026-11-09 16:09:49",
+  "exit_code": 0
+}

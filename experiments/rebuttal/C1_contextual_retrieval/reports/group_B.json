@@ -1,0 +1,421 @@
+{
+  "group": "B",
+  "started_at": "2026-11-09 15:55:43",
+  "argv": [
+    "c1_contextual_retrieval.py",
+    "--group",
+    "B"
+  ],
+  "datasets": {},
+  "problems": [],
+  "preflight": {
+    "problems": [],
+    "warnings": [],
+    "python": {
+      "executable": "/mnt/data/zeinab/raptor/.venv/bin/python3",
+      "version": "3.12.3"
+    },
+    "modules": {
+      "numpy": "2.3.5",
+      "pandas": "3.0.1",
+      "pyarrow": "23.0.1",
+      "transformers": "4.57.6",
+      "torch": "2.11.0+cu129",
+      "vllm": "0.23.0",
+      "accelerate": "1.13.0"
+    },
+    "git": {
+      "commit": "270da36f7ad219cdbc6dd90df76ef2d4763f9275",
+      "branch": "fix/notebook-key-and-install",
+      "code_changes_vs_commit": []
+    },
+    "hf_home": "/mnt/cache/taghavi",
+    "prompt": {
+      "source": "experiments/probe_baselines/systems/b2_contextual/build.py:prompt_for",
+      "equals_anthropic_prompt": true
+    },
+    "models": {
+      "Qwen/Qwen3-30B-A3B-Instruct-2507": "in cache (weights present)",
+      "facebook/contriever": "in cache (weights present)",
+      "BAAI/bge-m3": "in cache (weights present)",
+      "jinaai/jina-embeddings-v3": "in cache (weights present)",
+      "Qwen/Qwen3-Embedding-8B": "in cache (weights present)"
+    },
+    "expected_metrics": "outputs/saadi/reference/expected_metrics.json",
+    "inputs_missing": [],
+    "disk": {
+      "path": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C1_contextual_retrieval",
+      "free_gb": 4285.4,
+      "needed_gb_estimate": 20
+    },
+    "gpus": [
+      {
+        "index": 4,
+        "name": "NVIDIA RTX A6000",
+        "memory_used_mib": 1.0,
+        "memory_total_mib": 49140.0
+      },
+      {
+        "index": 5,
+        "name": "NVIDIA RTX A6000",
+        "memory_used_mib": 1.0,
+        "memory_total_mib": 49140.0
+      },
+      {
+        "index": 6,
+        "name": "NVIDIA RTX A6000",
+        "memory_used_mib": 1.0,
+        "memory_total_mib": 49140.0
+      },
+      {
+        "index": 7,
+        "name": "NVIDIA RTX A6000",
+        "memory_used_mib": 1.0,
+        "memory_total_mib": 49140.0
+      }
+    ],
+    "c2_streams": {
+      "musique_32k__bm25": "reused",
+      "musique_32k__contriever": "reused",
+      "musique_32k__bge_m3": "reused",
+      "musique_32k__jina": "reused",
+      "musique_32k__qwen": "reused",
+      "qasper_64k__bm25": "reused",
+      "qasper_64k__contriever": "reused",
+      "qasper_64k__bge_m3": "reused",
+      "qasper_64k__jina": "reused",
+      "qasper_64k__qwen": "reused"
+    },
+    "ok": true
+  },
+  "census": {
+    "musique_32k": {
+      "dataset": "musique_32k",
+      "max_docs": null,
+      "tokenizer": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+      "model": {
+        "max_model_len": 262144,
+        "rope_scaling": null,
+        "num_hidden_layers": 48,
+        "num_key_value_heads": 4,
+        "head_dim": 128
+      },
+      "template_tokens": 70,
+      "context_max_tokens": 1024,
+      "doc_separator": " ",
+      "n_docs": 45,
+      "n_chunks": 17102,
+      "doc_tokens": {
+        "n": 45,
+        "min": 42280.0,
+        "p25": 48065.0,
+        "median": 48888.0,
+        "mean": 48816.2,
+        "p75": 49623.0,
+        "p95": 50791.8,
+        "max": 51727.0,
+        "total": 2196729.0
+      },
+      "chunk_tokens": {
+        "n": 17102,
+        "min": 4.0,
+        "p25": 113.0,
+        "median": 127.0,
+        "mean": 128.5195883522395,
+        "p75": 142.0,
+        "p95": 175.0,
+        "max": 429.0,
+        "total": 2197942.0
+      },
+      "docs_exceeding_window": 0,
+      "chunks_in_segmented_docs": 0,
+      "k_values": {
+        "1": 45
+      },
+      "segmented_docs": [],
+      "nominal_input_tokens": 838975541,
+      "visible_tokens_per_call": {
+        "n": 17102,
+        "min": 42289.0,
+        "p25": 48074.0,
+        "median": 48897.0,
+        "mean": 48867.62144778389,
+        "p75": 49642.0,
+        "p95": 50823.0,
+        "max": 51736.0,
+        "total": 835734062.0
+      },
+      "joint_tokenization_equals_split": [
+        true,
+        true,
+        true
+      ],
+      "seconds": 116.9
+    },
+    "qasper_64k": {
+      "dataset": "qasper_64k",
+      "max_docs": null,
+      "tokenizer": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+      "model": {
+        "max_model_len": 262144,
+        "rope_scaling": null,
+        "num_hidden_layers": 48,
+        "num_key_value_heads": 4,
+        "head_dim": 128
+      },
+      "template_tokens": 70,
+      "context_max_tokens": 1024,
+      "doc_separator": " ",
+      "n_docs": 23,
+      "n_chunks": 17159,
+      "doc_tokens": {
+        "n": 23,
+        "min": 75813.0,
+        "p25": 90922.5,
+        "median": 92472.0,
+        "mean": 92114.21739130435,
+        "p75": 94062.0,
+        "p95": 98421.9,
+        "max": 98634.0,
+        "total": 2118627.0
+      },
+      "chunk_tokens": {
+        "n": 17159,
+        "min": 19.0,
+        "p25": 109.0,
+        "median": 121.0,
+        "mean": 123.4619150300134,
+        "p75": 134.0,
+        "p95": 164.0,
+        "max": 469.0,
+        "total": 2118483.0
+      },
+      "docs_exceeding_window": 0,
+      "chunks_in_segmented_docs": 0,
+      "k_values": {
+        "1": 23
+      },
+      "segmented_docs": [],
+      "nominal_input_tokens": 1586499689,
+      "visible_tokens_per_call": {
+        "n": 17159,
+        "min": 75822.0,
+        "p25": 90767.0,
+        "median": 92481.0,
+        "mean": 92274.27047030712,
+        "p75": 94205.0,
+        "p95": 98586.0,
+        "max": 98643.0,
+        "total": 1583334207.0
+      },
+      "joint_tokenization_equals_split": [
+        true,
+        true,
+        true
+      ],
+      "seconds": 151.3
+    }
+  },
+  "estimates": {
+    "musique_32k": {
+      "generation": {
+        "calls": 17102,
+        "seconds": 10757.626776600006,
+        "basis": "per call 9.3e-06 s x visible document tokens + 0.15 s, plus 420 s engine start (B2's measured rate on the same model and runtime)"
+      },
+      "retrieval": {
+        "jobs": {
+          "bm25": {
+            "device": "cpu",
+            "n_gpus": 0,
+            "est_seconds": 153.9792,
+            "basis": "C2's CPU rate x 3 (published streams, empty-context pass, CR pass)"
+          },
+          "contriever": {
+            "device": "gpu",
+            "n_gpus": 1,
+            "est_seconds": 184.90937,
+            "basis": "C2 streams reused: CR chunks + plain chunks (empty-context check) encoded, 2 query encodings per query"
+          },
+          "bge_m3": {
+            "device": "gpu",
+            "n_gpus": 1,
+            "est_seconds": 844.190992,
+            "basis": "C2 streams reused: CR chunks + plain chunks (empty-context check) encoded, 2 query encodings per query"
+          },
+          "jina": {
+            "device": "gpu",
+            "n_gpus": 1,
+            "est_seconds": 878.6487239999999,
+            "basis": "C2 streams reused: CR chunks + plain chunks (empty-context check) encoded, 2 query encodings per query"
+          },
+          "qwen": {
+            "device": "gpu",
+            "n_gpus": 2,
+            "est_seconds": 10705.78119,
+            "basis": "C2 streams reused: CR chunks + plain chunks (empty-context check) encoded, 2 query encodings per query"
+          }
+        },
+        "wall_seconds": 10705.78119
+      }
+    },
+    "qasper_64k": {
+      "generation": {
+        "calls": 17159,
+        "seconds": 17718.8581251,
+        "basis": "per call 9.3e-06 s x visible document tokens + 0.15 s, plus 420 s engine start (B2's measured rate on the same model and runtime)"
+      },
+      "retrieval": {
+        "jobs": {
+          "bm25": {
+            "device": "cpu",
+            "n_gpus": 0,
+            "est_seconds": 446.58449999999993,
+            "basis": "C2's CPU rate x 3 (published streams, empty-context pass, CR pass)"
+          },
+          "contriever": {
+            "device": "gpu",
+            "n_gpus": 1,
+            "est_seconds": 188.513984,
+            "basis": "C2 streams reused: CR chunks + plain chunks (empty-context check) encoded, 2 query encodings per query"
+          },
+          "bge_m3": {
+            "device": "gpu",
+            "n_gpus": 1,
+            "est_seconds": 840.0538607999999,
+            "basis": "C2 streams reused: CR chunks + plain chunks (empty-context check) encoded, 2 query encodings per query"
+          },
+          "jina": {
+            "device": "gpu",
+            "n_gpus": 1,
+            "est_seconds": 878.6871168,
+            "basis": "C2 streams reused: CR chunks + plain chunks (empty-context check) encoded, 2 query encodings per query"
+          },
+          "qwen": {
+            "device": "gpu",
+            "n_gpus": 2,
+            "est_seconds": 10529.031808,
+            "basis": "C2 streams reused: CR chunks + plain chunks (empty-context check) encoded, 2 query encodings per query"
+          }
+        },
+        "wall_seconds": 10529.031808
+      }
+    }
+  },
+  "memory_check": {
+    "text_chars": 1294,
+    "placeholder_context_tokens": 1024,
+    "margin": 0.1,
+    "models": {
+      "contriever": {
+        "retriever": "contriever",
+        "n_gpus": 1,
+        "batch_size": 128,
+        "default_batch_size": 128,
+        "peak_mib": [
+          3306
+        ],
+        "total_mib": [
+          48541
+        ],
+        "tried": [
+          {
+            "batch_size": 128,
+            "peak_mib": [
+              3306
+            ],
+            "fits": true,
+            "error": null
+          }
+        ],
+        "fits": true,
+        "gpus": [
+          4
+        ]
+      },
+      "bge_m3": {
+        "retriever": "bge_m3",
+        "n_gpus": 1,
+        "batch_size": 16,
+        "default_batch_size": 16,
+        "peak_mib": [
+          3724
+        ],
+        "total_mib": [
+          48541
+        ],
+        "tried": [
+          {
+            "batch_size": 16,
+            "peak_mib": [
+              3724
+            ],
+            "fits": true,
+            "error": null
+          }
+        ],
+        "fits": true,
+        "gpus": [
+          4
+        ]
+      },
+      "jina": {
+        "retriever": "jina",
+        "n_gpus": 1,
+        "batch_size": 64,
+        "default_batch_size": 64,
+        "peak_mib": [
+          2082
+        ],
+        "total_mib": [
+          48541
+        ],
+        "tried": [
+          {
+            "batch_size": 64,
+            "peak_mib": [
+              2082
+            ],
+            "fits": true,
+            "error": null
+          }
+        ],
+        "fits": true,
+        "gpus": [
+          4
+        ]
+      },
+      "qwen": {
+        "retriever": "qwen",
+        "n_gpus": 2,
+        "batch_size": 64,
+        "default_batch_size": 64,
+        "peak_mib": [
+          27106,
+          28446
+        ],
+        "total_mib": [
+          48541,
+          48541
+        ],
+        "tried": [
+          {
+            "batch_size": 64,
+            "peak_mib": [
+              27106,
+              28446
+            ],
+            "fits": true,
+            "error": null
+          }
+        ],
+        "fits": true,
+        "gpus": [
+          4,
+          5
+        ]
+      }
+    },
+    "ok": true
+  }
+}

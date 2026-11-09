@@ -1,0 +1,466 @@
+{
+  "group": "A",
+  "started_at": "2026-11-09 15:55:30",
+  "argv": [
+    "c1_contextual_retrieval.py",
+    "--group",
+    "A"
+  ],
+  "datasets": {},
+  "problems": [],
+  "preflight": {
+    "problems": [],
+    "warnings": [],
+    "python": {
+      "executable": "/mnt/data/zeinab/raptor/.venv/bin/python3",
+      "version": "3.12.3"
+    },
+    "modules": {
+      "numpy": "2.3.5",
+      "pandas": "3.0.1",
+      "pyarrow": "23.0.1",
+      "transformers": "4.57.6",
+      "torch": "2.11.0+cu129",
+      "vllm": "0.23.0",
+      "accelerate": "1.13.0"
+    },
+    "git": {
+      "commit": "270da36f7ad219cdbc6dd90df76ef2d4763f9275",
+      "branch": "fix/notebook-key-and-install",
+      "code_changes_vs_commit": []
+    },
+    "hf_home": "/mnt/cache/taghavi",
+    "prompt": {
+      "source": "experiments/probe_baselines/systems/b2_contextual/build.py:prompt_for",
+      "equals_anthropic_prompt": true
+    },
+    "models": {
+      "Qwen/Qwen3-30B-A3B-Instruct-2507": "in cache (weights present)",
+      "facebook/contriever": "in cache (weights present)",
+      "BAAI/bge-m3": "in cache (weights present)",
+      "jinaai/jina-embeddings-v3": "in cache (weights present)",
+      "Qwen/Qwen3-Embedding-8B": "in cache (weights present)"
+    },
+    "expected_metrics": "outputs/saadi/reference/expected_metrics.json",
+    "inputs_missing": [],
+    "disk": {
+      "path": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C1_contextual_retrieval",
+      "free_gb": 4285.4,
+      "needed_gb_estimate": 20
+    },
+    "gpus": [
+      {
+        "index": 0,
+        "name": "NVIDIA RTX A6000",
+        "memory_used_mib": 1.0,
+        "memory_total_mib": 49140.0
+      },
+      {
+        "index": 1,
+        "name": "NVIDIA RTX A6000",
+        "memory_used_mib": 1.0,
+        "memory_total_mib": 49140.0
+      },
+      {
+        "index": 2,
+        "name": "NVIDIA RTX A6000",
+        "memory_used_mib": 1.0,
+        "memory_total_mib": 49140.0
+      },
+      {
+        "index": 3,
+        "name": "NVIDIA RTX A6000",
+        "memory_used_mib": 1.0,
+        "memory_total_mib": 49140.0
+      }
+    ],
+    "c2_streams": {
+      "loogle__bm25": "reused",
+      "loogle__contriever": "reused",
+      "loogle__bge_m3": "reused",
+      "loogle__jina": "reused",
+      "loogle__qwen": "recomputed (published path)",
+      "novelhopqa__bm25": "reused",
+      "novelhopqa__contriever": "reused",
+      "novelhopqa__bge_m3": "reused",
+      "novelhopqa__jina": "reused",
+      "novelhopqa__qwen": "reused"
+    },
+    "ok": true
+  },
+  "census": {
+    "loogle": {
+      "dataset": "loogle",
+      "max_docs": null,
+      "tokenizer": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+      "model": {
+        "max_model_len": 262144,
+        "rope_scaling": null,
+        "num_hidden_layers": 48,
+        "num_key_value_heads": 4,
+        "head_dim": 128
+      },
+      "template_tokens": 70,
+      "context_max_tokens": 1024,
+      "doc_separator": " ",
+      "n_docs": 105,
+      "n_chunks": 3346,
+      "doc_tokens": {
+        "n": 105,
+        "min": 13560.0,
+        "p25": 15905.0,
+        "median": 18951.0,
+        "mean": 22053.92380952381,
+        "p75": 25898.0,
+        "p95": 38004.4,
+        "max": 59513.0,
+        "total": 2315662.0
+      },
+      "chunk_tokens": {
+        "n": 3346,
+        "min": 19.0,
+        "p25": 628.0,
+        "median": 666.0,
+        "mean": 692.1052002390915,
+        "p75": 720.0,
+        "p95": 972.75,
+        "max": 1409.0,
+        "total": 2315784.0
+      },
+      "docs_exceeding_window": 0,
+      "chunks_in_segmented_docs": 0,
+      "k_values": {
+        "1": 105
+      },
+      "segmented_docs": [],
+      "nominal_input_tokens": 85965970,
+      "visible_tokens_per_call": {
+        "n": 3346,
+        "min": 13569.0,
+        "p25": 17281.0,
+        "median": 21362.0,
+        "mean": 24939.04423191871,
+        "p75": 28821.0,
+        "p95": 53702.0,
+        "max": 59522.0,
+        "total": 83446042.0
+      },
+      "joint_tokenization_equals_split": [
+        true,
+        true,
+        true
+      ],
+      "seconds": 22.8
+    },
+    "novelhopqa": {
+      "dataset": "novelhopqa",
+      "max_docs": null,
+      "tokenizer": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+      "model": {
+        "max_model_len": 262144,
+        "rope_scaling": null,
+        "num_hidden_layers": 48,
+        "num_key_value_heads": 4,
+        "head_dim": 128
+      },
+      "template_tokens": 70,
+      "context_max_tokens": 1024,
+      "doc_separator": " ",
+      "n_docs": 16,
+      "n_chunks": 7011,
+      "doc_tokens": {
+        "n": 16,
+        "min": 134033.0,
+        "p25": 211062.0,
+        "median": 233947.0,
+        "mean": 289780.0625,
+        "p75": 307344.5,
+        "p95": 537867.5,
+        "max": 763412.0,
+        "total": 4636481.0
+      },
+      "chunk_tokens": {
+        "n": 7011,
+        "min": 53.0,
+        "p25": 632.0,
+        "median": 660.0,
+        "mean": 661.2360576237342,
+        "p75": 689.0,
+        "p95": 738.0,
+        "max": 1033.0,
+        "total": 4635926.0
+      },
+      "docs_exceeding_window": 7,
+      "chunks_in_segmented_docs": 4250,
+      "k_values": {
+        "1": 9,
+        "2": 6,
+        "3": 1
+      },
+      "segmented_docs": [
+        {
+          "doc_id": "B62",
+          "doc_tokens": 462686,
+          "k": 2,
+          "chunks": 729
+        },
+        {
+          "doc_id": "B26",
+          "doc_tokens": 268707,
+          "k": 2,
+          "chunks": 383
+        },
+        {
+          "doc_id": "B42",
+          "doc_tokens": 763412,
+          "k": 3,
+          "chunks": 1165
+        },
+        {
+          "doc_id": "B54",
+          "doc_tokens": 440656,
+          "k": 2,
+          "chunks": 660
+        },
+        {
+          "doc_id": "B44",
+          "doc_tokens": 267608,
+          "k": 2,
+          "chunks": 384
+        },
+        {
+          "doc_id": "B15",
+          "doc_tokens": 294672,
+          "k": 2,
+          "chunks": 421
+        },
+        {
+          "doc_id": "B05",
+          "doc_tokens": 345362,
+          "k": 2,
+          "chunks": 508
+        }
+      ],
+      "nominal_input_tokens": 1433674547,
+      "visible_tokens_per_call": {
+        "n": 7011,
+        "min": 133644.0,
+        "p25": 170415.0,
+        "median": 220199.0,
+        "mean": 203767.06532591642,
+        "p75": 231655.0,
+        "p95": 254642.0,
+        "max": 254642.0,
+        "total": 1428610895.0
+      },
+      "joint_tokenization_equals_split": [
+        true,
+        true,
+        true
+      ],
+      "seconds": 74.4
+    }
+  },
+  "estimates": {
+    "loogle": {
+      "generation": {
+        "calls": 3346,
+        "seconds": 1697.9481905999999,
+        "basis": "per call 9.3e-06 s x visible document tokens + 0.15 s, plus 420 s engine start (B2's measured rate on the same model and runtime)"
+      },
+      "retrieval": {
+        "jobs": {
+          "bm25": {
+            "device": "cpu",
+            "n_gpus": 0,
+            "est_seconds": 28.11195,
+            "basis": "C2's CPU rate x 3 (published streams, empty-context pass, CR pass)"
+          },
+          "contriever": {
+            "device": "gpu",
+            "n_gpus": 1,
+            "est_seconds": 124.48001599999999,
+            "basis": "C2 streams reused: CR chunks + plain chunks (empty-context check) encoded, 2 query encodings per query"
+          },
+          "bge_m3": {
+            "device": "gpu",
+            "n_gpus": 1,
+            "est_seconds": 675.4612256,
+            "basis": "C2 streams reused: CR chunks + plain chunks (empty-context check) encoded, 2 query encodings per query"
+          },
+          "jina": {
+            "device": "gpu",
+            "n_gpus": 1,
+            "est_seconds": 524.1536831999999,
+            "basis": "C2 streams reused: CR chunks + plain chunks (empty-context check) encoded, 2 query encodings per query"
+          },
+          "qwen": {
+            "device": "gpu",
+            "n_gpus": 2,
+            "est_seconds": 7417.6752535,
+            "basis": "C2's estimate for the published streams + CR chunks encoded"
+          }
+        },
+        "wall_seconds": 7417.6752535
+      }
+    },
+    "novelhopqa": {
+      "generation": {
+        "calls": 7011,
+        "seconds": 14757.7313235,
+        "basis": "per call 9.3e-06 s x visible document tokens + 0.15 s, plus 420 s engine start (B2's measured rate on the same model and runtime)"
+      },
+      "retrieval": {
+        "jobs": {
+          "bm25": {
+            "device": "cpu",
+            "n_gpus": 0,
+            "est_seconds": 188.37494999999998,
+            "basis": "C2's CPU rate x 3 (published streams, empty-context pass, CR pass)"
+          },
+          "contriever": {
+            "device": "gpu",
+            "n_gpus": 1,
+            "est_seconds": 192.99230599999999,
+            "basis": "C2 streams reused: CR chunks + plain chunks (empty-context check) encoded, 2 query encodings per query"
+          },
+          "bge_m3": {
+            "device": "gpu",
+            "n_gpus": 1,
+            "est_seconds": 1234.41468,
+            "basis": "C2 streams reused: CR chunks + plain chunks (empty-context check) encoded, 2 query encodings per query"
+          },
+          "jina": {
+            "device": "gpu",
+            "n_gpus": 1,
+            "est_seconds": 920.3343912000001,
+            "basis": "C2 streams reused: CR chunks + plain chunks (empty-context check) encoded, 2 query encodings per query"
+          },
+          "qwen": {
+            "device": "gpu",
+            "n_gpus": 2,
+            "est_seconds": 11254.185421999999,
+            "basis": "C2 streams reused: CR chunks + plain chunks (empty-context check) encoded, 2 query encodings per query"
+          }
+        },
+        "wall_seconds": 11254.185421999999
+      }
+    }
+  },
+  "memory_check": {
+    "text_chars": 3907,
+    "placeholder_context_tokens": 1024,
+    "margin": 0.1,
+    "models": {
+      "contriever": {
+        "retriever": "contriever",
+        "n_gpus": 1,
+        "batch_size": 128,
+        "default_batch_size": 128,
+        "peak_mib": [
+          3306
+        ],
+        "total_mib": [
+          48541
+        ],
+        "tried": [
+          {
+            "batch_size": 128,
+            "peak_mib": [
+              3306
+            ],
+            "fits": true,
+            "error": null
+          }
+        ],
+        "fits": true,
+        "gpus": [
+          0
+        ]
+      },
+      "bge_m3": {
+        "retriever": "bge_m3",
+        "n_gpus": 1,
+        "batch_size": 16,
+        "default_batch_size": 16,
+        "peak_mib": [
+          4004
+        ],
+        "total_mib": [
+          48541
+        ],
+        "tried": [
+          {
+            "batch_size": 16,
+            "peak_mib": [
+              4004
+            ],
+            "fits": true,
+            "error": null
+          }
+        ],
+        "fits": true,
+        "gpus": [
+          0
+        ]
+      },
+      "jina": {
+        "retriever": "jina",
+        "n_gpus": 1,
+        "batch_size": 64,
+        "default_batch_size": 64,
+        "peak_mib": [
+          2082
+        ],
+        "total_mib": [
+          48541
+        ],
+        "tried": [
+          {
+            "batch_size": 64,
+            "peak_mib": [
+              2082
+            ],
+            "fits": true,
+            "error": null
+          }
+        ],
+        "fits": true,
+        "gpus": [
+          0
+        ]
+      },
+      "qwen": {
+        "retriever": "qwen",
+        "n_gpus": 2,
+        "batch_size": 64,
+        "default_batch_size": 64,
+        "peak_mib": [
+          27106,
+          28446
+        ],
+        "total_mib": [
+          48541,
+          48541
+        ],
+        "tried": [
+          {
+            "batch_size": 64,
+            "peak_mib": [
+              27106,
+              28446
+            ],
+            "fits": true,
+            "error": null
+          }
+        ],
+        "fits": true,
+        "gpus": [
+          0,
+          1
+        ]
+      }
+    },
+    "ok": true
+  }
+}

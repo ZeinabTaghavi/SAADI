@@ -1,0 +1,13 @@
+job,n_queries,verify_rankings_compared,verify_rankings_different,verify_hit_rank_different,published_top10_vs_streams_mismatch,vanilla_top10_mismatch,seconds
+loogle__bm25,1832,38472,0,0,0,0,33.82598921796307
+loogle__contriever,1832,38472,0,0,0,0,34.17287356988527
+loogle__bge_m3,1832,38472,0,0,0,0,28.980194034986198
+musique_32k__bm25,900,18900,0,0,0,0,191.39864622498862
+musique_32k__contriever,900,18900,0,0,0,0,186.77919457806274
+musique_32k__bge_m3,900,18900,0,0,0,0,188.70884355390444
+qasper_64k__bm25,1333,27993,0,0,0,0,543.0529724711087
+qasper_64k__contriever,1333,27993,0,0,0,0,534.9386437949724
+qasper_64k__bge_m3,1333,27993,0,0,0,0,548.553760624025
+novelhopqa__bm25,908,19068,0,0,0,0,253.40648734988645
+novelhopqa__contriever,908,19068,0,0,0,0,252.57546534202993
+novelhopqa__bge_m3,908,19068,0,0,0,0,214.7157601970248
