@@ -531,8 +531,10 @@ def body(rep: StepReport) -> int:
             "Table 1 reports LooGLE/Contriever Vanilla as 72.4 / 73.3 and NovelHopQA/Contriever as 11.8 / 11.8 (HR@5 about equal "
             "to HR@10), which suggests a transcription problem in that table row; it does not affect C3.",
         )
-    else:
+    elif results:
         rep.add("Text only equals Table 1's Vanilla (to one decimal) on every pair checked.")
+    else:
+        rep.add("No pair was checked.")
     rep.add("")
 
     # --- Missing channels (for the 'alone' variants) ------------------------
@@ -595,7 +597,7 @@ def body(rep: StepReport) -> int:
     rep.add(
         f"- Step 02 (BM25) can run on: {', '.join(bm) if bm else 'none'}.",
         f"- Step 03 (dense) can run on: {', '.join(de) if de else 'none'}.",
-        f"- Not used: " + ("; ".join(f"{pair_label(x['dataset'], x['retriever'])} ({x['reason']})" for x in not_ready) if not_ready else "none") + ".",
+        "- Not used: " + ("; ".join(f"{pair_label(x['dataset'], x['retriever'])} ({x['reason']})" for x in not_ready) if not_ready else "none") + ".",
         "",
     )
     return 1 if failed else 0

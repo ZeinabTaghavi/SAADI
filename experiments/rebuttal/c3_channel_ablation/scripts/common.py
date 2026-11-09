@@ -288,7 +288,7 @@ def saved_rows_for(dataset: str, retriever: str, meta: list[dict[str, Any]]) -> 
                 f"({m['query_id']}/{m['doc_id']} vs {row.get('query_id')}/{row.get('doc_id')})"
             )
         rows.append(row)
-    return queries, meta, rows
+    return rows
 
 
 def n_saved_rows(dataset: str, retriever: str) -> int:
