@@ -1,0 +1,5 @@
+job,n_queries,verify_rankings_compared,verify_rankings_different,verify_hit_rank_different,published_top10_vs_streams_mismatch,vanilla_top10_mismatch,seconds
+loogle__bm25,21,441,0,0,0,0,0.33922529200026474
+musique_32k__bm25,42,882,0,0,0,0,2.8257299169999897
+qasper_64k__bm25,129,2709,0,0,0,0,14.531653708001613
+novelhopqa__bm25,145,3045,0,0,0,0,15.298727792000136
