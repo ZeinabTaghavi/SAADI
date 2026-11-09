@@ -71,6 +71,10 @@ MODEL_INFO: dict[str, dict[str, Any]] = {
         "batch_size": 64,
         "load_s": 240,
         "query_call_s": 0.06,
+        # Measured on the server (2026-11-09): one A6000 runs out of memory (float32 weights ~28 GB plus
+        # batch-64 activations). Two GPUs of the group, layers split with device_map="auto" (same arithmetic).
+        "min_gpus": 2,
+        "device_map_env": "SAADI_QWEN_DEVICE_MAP",
     },
 }
 EFFECTIVE_TFLOPS = 10.0  # float32 on one A6000 (peak 38.7), allowing for padding and small batches
@@ -162,7 +166,7 @@ def preflight_base(group: str, *, dry_run: bool, need_dense: bool) -> dict[str, 
     pf: dict[str, Any] = {"ok": True, "problems": [], "warnings": []}
     pf["python"] = {"executable": sys.executable, "version": platform.python_version()}
     mods = {}
-    for name in ("numpy", "pandas", "pyarrow", "tqdm", *(("torch", "transformers") if need_dense else ())):
+    for name in ("numpy", "pandas", "pyarrow", "tqdm", *(("torch", "transformers", "accelerate") if need_dense else ())):
         try:
             mod = __import__(name)
             mods[name] = getattr(mod, "__version__", "?")
@@ -300,7 +304,7 @@ def estimate_job(dataset: str, retriever: str, counts: dict[str, Any]) -> dict[s
     enc_s = tokens * 2.0 * m["params_m"] * 1e6 / (EFFECTIVE_TFLOPS * 1e12)
     q_s = 5 * c["queries"] * m["query_call_s"]
     weights_gb = m["params_m"] * 1e6 * 4 / 1024**3
-    n_gpus = 1 if weights_gb * 1024 + 8 * 1024 < A6000_MIB else 2
+    n_gpus = max(int(m.get("min_gpus", 1)), 1 if weights_gb * 1024 + 8 * 1024 < A6000_MIB else 2)
     job.update(
         {
             "device": "gpu",
@@ -387,7 +391,7 @@ def build_plan(paths: hf.C2Paths, group: str, *, dry_run: bool, log, analysis_wo
             "effective_tflops_fp32": EFFECTIVE_TFLOPS,
             "cpu_seconds_per_query_chunk": CPU_SECONDS_PER_QUERY_CHUNK,
             "models": MODEL_INFO,
-            "memory": "weights in float32 (the adapters pass no dtype); every model fits on one 48 GB A6000 (largest: Qwen3-Embedding-8B, about 28 GB of weights), so every job gets one GPU",
+            "memory": "weights in float32 (the adapters pass no dtype); Qwen3-Embedding-8B ran out of memory on one 48 GB A6000 (about 28 GB of weights plus batch-64 activations), so each Qwen job gets two GPUs of its group with device_map=auto; every other job gets one GPU",
             "note": "estimates, not measurements; per-job times measured in this run are in the group reports",
         },
         "counts": counts,
@@ -401,11 +405,38 @@ def build_plan(paths: hf.C2Paths, group: str, *, dry_run: bool, log, analysis_wo
     return plan
 
 
+def apply_gpu_requirements(plan: dict[str, Any]) -> bool:
+    """Bring an existing plan up to the current per-model GPU needs; True if anything changed."""
+
+    changed = False
+    for j in plan["jobs"]:
+        need = int(MODEL_INFO.get(j["retriever"], {}).get("min_gpus", 1)) if j["device"] == "gpu" else 0
+        if j["device"] == "gpu" and j["n_gpus"] < need:
+            j["n_gpus"] = need
+            j["fits_one_a6000"] = False
+            changed = True
+    if changed:
+        plan["cost_basis"]["memory"] = (
+            "weights in float32 (the adapters pass no dtype); Qwen3-Embedding-8B ran out of memory on one 48 GB A6000 "
+            "(about 28 GB of weights plus batch-64 activations), so each Qwen job gets two GPUs of its group with device_map=auto; "
+            "every other job gets one GPU"
+        )
+        for g, info in plan["groups"].items():
+            gj = [j for j in plan["jobs"] if j["group"] == g]
+            info["gpu_seconds"] = round(sum(j["est_seconds"] * j["n_gpus"] for j in gj if j["device"] == "gpu"))
+            info["est_wall_seconds"] = round(simulate_makespan(gj, len(GROUP_GPUS[g])))
+        plan["updated_at"] = now()
+    return changed
+
+
 def get_plan(paths: hf.C2Paths, group: str, *, dry_run: bool, log) -> tuple[dict[str, Any], bool]:
     with file_lock(paths.out_dir / "plan.lock"):
         if paths.plan_path.exists():
             plan = json.loads(paths.plan_path.read_text(encoding="utf-8"))
             if bool(plan.get("dry_run")) == dry_run:
+                if apply_gpu_requirements(plan):
+                    hf.write_json(paths.plan_path, plan)
+                    log("plan updated: Qwen jobs now use two GPUs each (out of memory on one A6000)")
                 return plan, False
         plan = build_plan(paths, group, dry_run=dry_run, log=log)
         hf.write_json(paths.plan_path, plan)
@@ -470,6 +501,11 @@ def run_group_jobs(group: str, jobs: list[dict[str, Any]], paths: hf.C2Paths, *,
             env = dict(os.environ)
             env["CUDA_VISIBLE_DEVICES"] = ",".join(str(g) for g in gpus)
             env.setdefault("SAADI_ENCODED_POOL_CACHE_SIZE", "32")
+            if gpus:
+                env.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")
+            dm_env = MODEL_INFO.get(j.get("retriever", ""), {}).get("device_map_env")
+            if dm_env and len(gpus) > 1:
+                env[dm_env] = "auto"
             env.setdefault("OMP_NUM_THREADS", threads)
             env.setdefault("MKL_NUM_THREADS", threads)
             env["TOKENIZERS_PARALLELISM"] = "false"
