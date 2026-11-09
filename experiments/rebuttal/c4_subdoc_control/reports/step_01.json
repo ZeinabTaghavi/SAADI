@@ -1,0 +1,2945 @@
+{
+ "step": 1,
+ "title": "chunk to sub-document map and gold checks",
+ "command": "bash experiments/rebuttal/c4_subdoc_control/sh/01_map.sh",
+ "seed": 42,
+ "settings": {
+  "musique_32k": {
+   "setting": "musique_32k",
+   "display": "MuSiQue-32K",
+   "problems": [
+    "group_012: 67 chunk(s) not found in the text and the header walk is not reliable"
+   ],
+   "warnings": [],
+   "metadata": {
+    "target_context_tokens": 32000,
+    "tolerance_tokens": 4000,
+    "expansion_seed": 42,
+    "prepared_documents": 45,
+    "groups_with_trimmed_variants": 0,
+    "token_counter": "whitespace",
+    "prepared_token_lengths": {
+     "min": 28090,
+     "median": 33139,
+     "max": 34753
+    }
+   },
+   "stats": {
+    "documents": 45,
+    "subdocs_distinct": 900,
+    "subdocs_per_document": {
+     "n": 45,
+     "min": 18.0,
+     "median": 20.0,
+     "max": 22.0,
+     "mean": 20.0
+    },
+    "chunks": 17102,
+    "boundary_chunks": 618,
+    "boundary_share": 0.03613612442989124,
+    "boundary_per_document": {
+     "group_001": 13,
+     "group_002": 13,
+     "group_003": 16,
+     "group_004": 18,
+     "group_005": 13,
+     "group_006": 14,
+     "group_007": 11,
+     "group_008": 14,
+     "group_009": 13,
+     "group_010": 17,
+     "group_011": 9,
+     "group_012": 13,
+     "group_013": 13,
+     "group_014": 16,
+     "group_015": 13,
+     "group_016": 13,
+     "group_017": 10,
+     "group_018": 13,
+     "group_019": 12,
+     "group_020": 15,
+     "group_021": 13,
+     "group_022": 17,
+     "group_023": 16,
+     "group_024": 13,
+     "group_025": 16,
+     "group_026": 13,
+     "group_027": 13,
+     "group_028": 11,
+     "group_029": 16,
+     "group_030": 15,
+     "group_031": 14,
+     "group_032": 12,
+     "group_033": 10,
+     "group_034": 12,
+     "group_035": 14,
+     "group_036": 12,
+     "group_037": 17,
+     "group_038": 16,
+     "group_039": 13,
+     "group_040": 13,
+     "group_041": 14,
+     "group_042": 14,
+     "group_043": 14,
+     "group_044": 14,
+     "group_045": 17
+    },
+    "chunks_per_subdoc_all": {
+     "n": 900,
+     "min": 8.0,
+     "median": 19.0,
+     "max": 37.0,
+     "mean": 19.68888888888889
+    },
+    "leading_partial_docs": 0,
+    "trimmed_end_docs": 0,
+    "missing_members": 0,
+    "unaligned_chunks": 3398,
+    "out_of_order_chunks": 0,
+    "method_disagreements": 13,
+    "header_sequence_breaks": 1,
+    "min_text_coverage": 0.7243795877276148,
+    "queries_union": 900,
+    "status_counts": {
+     "kept": 574,
+     "excluded_evidence_outside": 326
+    },
+    "evidence_common_subdoc_not_gold": 0,
+    "gold_subdocs_distinct": 574,
+    "chunks_per_gold_subdoc": {
+     "n": 574,
+     "min": 8.0,
+     "median": 19.0,
+     "max": 33.0,
+     "mean": 19.317073170731707
+    },
+    "chunks_per_gold_subdoc_over_queries": {
+     "n": 574,
+     "min": 8.0,
+     "median": 19.0,
+     "max": 33.0,
+     "mean": 19.317073170731707
+    },
+    "kept_with_gold_subdoc_at_most_k": {
+     "1": 0,
+     "3": 0,
+     "5": 0,
+     "10": 6
+    }
+   },
+   "per_retriever": {
+    "bm25": {
+     "paper_sources": 2,
+     "sources": [
+      {
+       "bundle": "reference",
+       "study": "main",
+       "source_id": "9c6fadcc25362ac17d44",
+       "n_queries": 900,
+       "expected": {
+        "5": {
+         "queries": 900,
+         "eligible": 900,
+         "hits": 565
+        },
+        "10": {
+         "queries": 900,
+         "eligible": 900,
+         "hits": 699
+        }
+       }
+      },
+      {
+       "bundle": "reference",
+       "study": "context_expansion",
+       "source_id": "1b10f597d576bca454cb",
+       "n_queries": 900,
+       "expected": {
+        "5": {
+         "queries": 900,
+         "eligible": 900,
+         "hits": 565
+        },
+        "10": {
+         "queries": 900,
+         "eligible": 900,
+         "hits": 699
+        }
+       }
+      }
+     ],
+     "n_queries": 900
+    },
+    "contriever": {
+     "paper_sources": 2,
+     "sources": [
+      {
+       "bundle": "reference",
+       "study": "main",
+       "source_id": "d9967926f0edf0159884",
+       "n_queries": 900,
+       "expected": {
+        "5": {
+         "queries": 900,
+         "eligible": 900,
+         "hits": 619
+        },
+        "10": {
+         "queries": 900,
+         "eligible": 900,
+         "hits": 753
+        }
+       }
+      },
+      {
+       "bundle": "comparison_inputs",
+       "study": "context_expansion",
+       "source_id": "afd46747a94a657d7d6e",
+       "n_queries": 900,
+       "expected": {
+        "5": {
+         "queries": 900,
+         "eligible": 900,
+         "hits": 619
+        },
+        "10": {
+         "queries": 900,
+         "eligible": 900,
+         "hits": 753
+        }
+       }
+      }
+     ],
+     "n_queries": 900
+    },
+    "bge_m3": {
+     "paper_sources": 1,
+     "sources": [
+      {
+       "bundle": "reference",
+       "study": "main",
+       "source_id": "17f74abd47a68c7f17f2",
+       "n_queries": 900,
+       "expected": {
+        "5": {
+         "queries": 900,
+         "eligible": 900,
+         "hits": 692
+        },
+        "10": {
+         "queries": 900,
+         "eligible": 900,
+         "hits": 795
+        }
+       }
+      }
+     ],
+     "n_queries": 900
+    },
+    "jina": {
+     "paper_sources": 1,
+     "sources": [
+      {
+       "bundle": "reference",
+       "study": "main",
+       "source_id": "2c68eb541a5a8031b816",
+       "n_queries": 900,
+       "expected": {
+        "5": {
+         "queries": 900,
+         "eligible": 900,
+         "hits": 659
+        },
+        "10": {
+         "queries": 900,
+         "eligible": 900,
+         "hits": 793
+        }
+       }
+      }
+     ],
+     "n_queries": 900
+    },
+    "qwen": {
+     "paper_sources": 1,
+     "sources": [
+      {
+       "bundle": "reference",
+       "study": "main",
+       "source_id": "c5249addc28d10278db7",
+       "n_queries": 900,
+       "expected": {
+        "5": {
+         "queries": 900,
+         "eligible": 900,
+         "hits": 688
+        },
+        "10": {
+         "queries": 900,
+         "eligible": 900,
+         "hits": 810
+        }
+       }
+      }
+     ],
+     "n_queries": 900
+    }
+   },
+   "excluded_examples": [
+    {
+     "query_id": "6",
+     "doc_id": "group_044",
+     "gold_subdoc": "2hop__207476_625987",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_044:271",
+       "subdocs": [
+        "2hop__609313_20273"
+       ]
+      }
+     ],
+     "question": "Who is the grandmother of Philippe, Duke of Orléans?"
+    },
+    {
+     "query_id": "8",
+     "doc_id": "group_027",
+     "gold_subdoc": "2hop__354635_174222",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_027:95",
+       "subdocs": [
+        "3hop1__144439_443779_52195"
+       ]
+      },
+      {
+       "chunk_id": "group_027:100",
+       "subdocs": [
+        "3hop1__144439_443779_52195",
+        "4hop3__426860_88460_30152_20999"
+       ]
+      }
+     ],
+     "question": "What company succeeded the owner of Empire Sports Network?"
+    },
+    {
+     "query_id": "29",
+     "doc_id": "group_008",
+     "gold_subdoc": "2hop__403712_793210",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_008:244",
+       "subdocs": [
+        "2hop__86458_20273"
+       ]
+      }
+     ],
+     "question": "Who is the father of Edward Baring, 1st Baron Revelstoke's father?"
+    },
+    {
+     "query_id": "72",
+     "doc_id": "group_033",
+     "gold_subdoc": "2hop__471509_136043",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_033:188",
+       "subdocs": [
+        "2hop__373759_136043"
+       ]
+      }
+     ],
+     "question": "The Nicole and Natalie album's band is named after who?"
+    },
+    {
+     "query_id": "77",
+     "doc_id": "group_031",
+     "gold_subdoc": "2hop__42027_42004",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_031:256",
+       "subdocs": [
+        "4hop1__105401_17130_70784_61381"
+       ]
+      },
+      {
+       "chunk_id": "group_031:343",
+       "subdocs": [
+        "2hop__96062_159673"
+       ]
+      }
+     ],
+     "question": "Since 2004, what is the location of the body to which, if a matter is not specifically reserved, it is devolved?"
+    }
+   ],
+   "disagreement_examples": [
+    {
+     "chunk_id": "group_012:197",
+     "alignment": [
+      "2hop__79875_84469",
+      "3hop1__458916_651917_47686"
+     ],
+     "header_walk": [
+      "2hop__79875_84469"
+     ]
+    },
+    {
+     "chunk_id": "group_012:199",
+     "alignment": [
+      "3hop1__458916_651917_47686"
+     ],
+     "header_walk": [
+      "2hop__79875_84469"
+     ]
+    },
+    {
+     "chunk_id": "group_012:200",
+     "alignment": [
+      "3hop1__458916_651917_47686"
+     ],
+     "header_walk": [
+      "2hop__79875_84469"
+     ]
+    },
+    {
+     "chunk_id": "group_012:201",
+     "alignment": [
+      "3hop1__458916_651917_47686"
+     ],
+     "header_walk": [
+      "2hop__79875_84469"
+     ]
+    },
+    {
+     "chunk_id": "group_012:203",
+     "alignment": [
+      "3hop1__458916_651917_47686"
+     ],
+     "header_walk": [
+      "2hop__79875_84469"
+     ]
+    }
+   ],
+   "seconds": 1.2833130359649658,
+   "map_file": "results/rebuttal/c4_subdoc_control/subdoc_map/musique_32k.json"
+  },
+  "musique_64k": {
+   "setting": "musique_64k",
+   "display": "MuSiQue-64K",
+   "problems": [
+    "group_006: 133 chunk(s) not found in the text and the header walk is not reliable"
+   ],
+   "warnings": [],
+   "metadata": {
+    "target_context_tokens": 64000,
+    "tolerance_tokens": 4000,
+    "expansion_seed": 42,
+    "prepared_documents": 23,
+    "groups_with_trimmed_variants": 0,
+    "token_counter": "whitespace",
+    "prepared_token_lengths": {
+     "min": 59552,
+     "median": 64834,
+     "max": 65758
+    }
+   },
+   "stats": {
+    "documents": 23,
+    "subdocs_distinct": 900,
+    "subdocs_per_document": {
+     "n": 23,
+     "min": 36.0,
+     "median": 39.0,
+     "max": 41.0,
+     "mean": 39.130434782608695
+    },
+    "chunks": 17089,
+    "boundary_chunks": 636,
+    "boundary_share": 0.0372169231669495,
+    "boundary_per_document": {
+     "group_001": 27,
+     "group_002": 34,
+     "group_003": 27,
+     "group_004": 26,
+     "group_005": 31,
+     "group_006": 24,
+     "group_007": 28,
+     "group_008": 24,
+     "group_009": 23,
+     "group_010": 28,
+     "group_011": 30,
+     "group_012": 31,
+     "group_013": 27,
+     "group_014": 24,
+     "group_015": 30,
+     "group_016": 26,
+     "group_017": 22,
+     "group_018": 29,
+     "group_019": 29,
+     "group_020": 30,
+     "group_021": 28,
+     "group_022": 28,
+     "group_023": 30
+    },
+    "chunks_per_subdoc_all": {
+     "n": 900,
+     "min": 8.0,
+     "median": 19.0,
+     "max": 37.0,
+     "mean": 19.694444444444443
+    },
+    "leading_partial_docs": 0,
+    "trimmed_end_docs": 0,
+    "missing_members": 0,
+    "unaligned_chunks": 3405,
+    "out_of_order_chunks": 0,
+    "method_disagreements": 13,
+    "header_sequence_breaks": 1,
+    "min_text_coverage": 0.7388326497772223,
+    "queries_union": 900,
+    "status_counts": {
+     "kept": 385,
+     "excluded_evidence_outside": 515
+    },
+    "evidence_common_subdoc_not_gold": 0,
+    "gold_subdocs_distinct": 385,
+    "chunks_per_gold_subdoc": {
+     "n": 385,
+     "min": 8.0,
+     "median": 19.0,
+     "max": 32.0,
+     "mean": 18.820779220779222
+    },
+    "chunks_per_gold_subdoc_over_queries": {
+     "n": 385,
+     "min": 8.0,
+     "median": 19.0,
+     "max": 32.0,
+     "mean": 18.820779220779222
+    },
+    "kept_with_gold_subdoc_at_most_k": {
+     "1": 0,
+     "3": 0,
+     "5": 0,
+     "10": 5
+    }
+   },
+   "per_retriever": {
+    "bm25": {
+     "paper_sources": 1,
+     "sources": [
+      {
+       "bundle": "reference",
+       "study": "context_expansion",
+       "source_id": "90bc9b3cd3cb8276c988",
+       "n_queries": 900,
+       "expected": {
+        "5": {
+         "queries": 900,
+         "eligible": 900,
+         "hits": 533
+        },
+        "10": {
+         "queries": 900,
+         "eligible": 900,
+         "hits": 669
+        }
+       }
+      }
+     ],
+     "n_queries": 900
+    },
+    "contriever": {
+     "paper_sources": 1,
+     "sources": [
+      {
+       "bundle": "comparison_inputs",
+       "study": "context_expansion",
+       "source_id": "7c71b79f5469f6874f27",
+       "n_queries": 900,
+       "expected": {
+        "5": {
+         "queries": 900,
+         "eligible": 900,
+         "hits": 548
+        },
+        "10": {
+         "queries": 900,
+         "eligible": 900,
+         "hits": 697
+        }
+       }
+      }
+     ],
+     "n_queries": 900
+    },
+    "bge_m3": {
+     "paper_sources": 0
+    },
+    "jina": {
+     "paper_sources": 0
+    },
+    "qwen": {
+     "paper_sources": 0
+    }
+   },
+   "excluded_examples": [
+    {
+     "query_id": "2",
+     "doc_id": "group_015",
+     "gold_subdoc": "2hop__701895_752697",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_015:144",
+       "subdocs": [
+        "4hop2__161602_426860_88460_20985"
+       ]
+      }
+     ],
+     "question": "What administrative territorial entity is the owner of Ciudad Deportiva located?"
+    },
+    {
+     "query_id": "5",
+     "doc_id": "group_007",
+     "gold_subdoc": "2hop__697790_864352",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_007:379",
+       "subdocs": [
+        "2hop__197470_271394"
+       ]
+      },
+      {
+       "chunk_id": "group_007:383",
+       "subdocs": [
+        "2hop__197470_271394"
+       ]
+      }
+     ],
+     "question": "Who is the child of Caroline LeRoy's spouse?"
+    },
+    {
+     "query_id": "6",
+     "doc_id": "group_023",
+     "gold_subdoc": "2hop__207476_625987",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_023:252",
+       "subdocs": [
+        "2hop__609313_20273"
+       ]
+      }
+     ],
+     "question": "Who is the grandmother of Philippe, Duke of Orléans?"
+    },
+    {
+     "query_id": "8",
+     "doc_id": "group_014",
+     "gold_subdoc": "2hop__354635_174222",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_014:265",
+       "subdocs": [
+        "3hop1__144439_443779_52195"
+       ]
+      },
+      {
+       "chunk_id": "group_014:270",
+       "subdocs": [
+        "3hop1__144439_443779_52195",
+        "4hop3__426860_88460_30152_20999"
+       ]
+      }
+     ],
+     "question": "What company succeeded the owner of Empire Sports Network?"
+    },
+    {
+     "query_id": "27",
+     "doc_id": "group_023",
+     "gold_subdoc": "2hop__673655_316668",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_023:449",
+       "subdocs": [
+        "2hop__728887_159109"
+       ]
+      }
+     ],
+     "question": "What instrument is played by the person from The Blackout All-Stars?"
+    }
+   ],
+   "disagreement_examples": [
+    {
+     "chunk_id": "group_006:628",
+     "alignment": [
+      "2hop__79875_84469",
+      "3hop1__458916_651917_47686"
+     ],
+     "header_walk": [
+      "2hop__79875_84469"
+     ]
+    },
+    {
+     "chunk_id": "group_006:630",
+     "alignment": [
+      "3hop1__458916_651917_47686"
+     ],
+     "header_walk": [
+      "2hop__79875_84469"
+     ]
+    },
+    {
+     "chunk_id": "group_006:631",
+     "alignment": [
+      "3hop1__458916_651917_47686"
+     ],
+     "header_walk": [
+      "2hop__79875_84469"
+     ]
+    },
+    {
+     "chunk_id": "group_006:632",
+     "alignment": [
+      "3hop1__458916_651917_47686"
+     ],
+     "header_walk": [
+      "2hop__79875_84469"
+     ]
+    },
+    {
+     "chunk_id": "group_006:634",
+     "alignment": [
+      "3hop1__458916_651917_47686"
+     ],
+     "header_walk": [
+      "2hop__79875_84469"
+     ]
+    }
+   ],
+   "seconds": 1.5459952354431152,
+   "map_file": "results/rebuttal/c4_subdoc_control/subdoc_map/musique_64k.json"
+  },
+  "musique_128k": {
+   "setting": "musique_128k",
+   "display": "MuSiQue-128K",
+   "problems": [
+    "group_003: 280 chunk(s) not found in the text and the header walk is not reliable"
+   ],
+   "warnings": [],
+   "metadata": {
+    "target_context_tokens": 128000,
+    "tolerance_tokens": 4000,
+    "expansion_seed": 42,
+    "prepared_documents": 12,
+    "groups_with_trimmed_variants": 0,
+    "token_counter": "whitespace",
+    "prepared_token_lengths": {
+     "min": 68384,
+     "median": 129025.5,
+     "max": 130101
+    }
+   },
+   "stats": {
+    "documents": 12,
+    "subdocs_distinct": 900,
+    "subdocs_per_document": {
+     "n": 12,
+     "min": 44.0,
+     "median": 78.0,
+     "max": 80.0,
+     "mean": 75.0
+    },
+    "chunks": 17091,
+    "boundary_chunks": 639,
+    "boundary_share": 0.03738809899947341,
+    "boundary_per_document": {
+     "group_001": 60,
+     "group_002": 54,
+     "group_003": 55,
+     "group_004": 51,
+     "group_005": 51,
+     "group_006": 62,
+     "group_007": 52,
+     "group_008": 57,
+     "group_009": 50,
+     "group_010": 57,
+     "group_011": 56,
+     "group_012": 34
+    },
+    "chunks_per_subdoc_all": {
+     "n": 900,
+     "min": 8.0,
+     "median": 19.0,
+     "max": 37.0,
+     "mean": 19.7
+    },
+    "leading_partial_docs": 0,
+    "trimmed_end_docs": 0,
+    "missing_members": 0,
+    "unaligned_chunks": 3400,
+    "out_of_order_chunks": 0,
+    "method_disagreements": 13,
+    "header_sequence_breaks": 1,
+    "min_text_coverage": 0.771717423229957,
+    "queries_union": 900,
+    "status_counts": {
+     "kept": 250,
+     "excluded_evidence_outside": 650
+    },
+    "evidence_common_subdoc_not_gold": 0,
+    "gold_subdocs_distinct": 250,
+    "chunks_per_gold_subdoc": {
+     "n": 250,
+     "min": 8.0,
+     "median": 18.0,
+     "max": 30.0,
+     "mean": 18.004
+    },
+    "chunks_per_gold_subdoc_over_queries": {
+     "n": 250,
+     "min": 8.0,
+     "median": 18.0,
+     "max": 30.0,
+     "mean": 18.004
+    },
+    "kept_with_gold_subdoc_at_most_k": {
+     "1": 0,
+     "3": 0,
+     "5": 0,
+     "10": 5
+    }
+   },
+   "per_retriever": {
+    "bm25": {
+     "paper_sources": 1,
+     "sources": [
+      {
+       "bundle": "reference",
+       "study": "context_expansion",
+       "source_id": "ad7c33ad9664ec6552d4",
+       "n_queries": 900,
+       "expected": {
+        "5": {
+         "queries": 900,
+         "eligible": 900,
+         "hits": 501
+        },
+        "10": {
+         "queries": 900,
+         "eligible": 900,
+         "hits": 619
+        }
+       }
+      }
+     ],
+     "n_queries": 900
+    },
+    "contriever": {
+     "paper_sources": 1,
+     "sources": [
+      {
+       "bundle": "comparison_inputs",
+       "study": "context_expansion",
+       "source_id": "8513847e739b7be4acb3",
+       "n_queries": 900,
+       "expected": {
+        "5": {
+         "queries": 900,
+         "eligible": 900,
+         "hits": 507
+        },
+        "10": {
+         "queries": 900,
+         "eligible": 900,
+         "hits": 616
+        }
+       }
+      }
+     ],
+     "n_queries": 900
+    },
+    "bge_m3": {
+     "paper_sources": 0
+    },
+    "jina": {
+     "paper_sources": 0
+    },
+    "qwen": {
+     "paper_sources": 0
+    }
+   },
+   "excluded_examples": [
+    {
+     "query_id": "2",
+     "doc_id": "group_008",
+     "gold_subdoc": "2hop__701895_752697",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_008:64",
+       "subdocs": [
+        "3hop2__132957_433432_40768",
+        "2hop__657913_88628"
+       ]
+      },
+      {
+       "chunk_id": "group_008:209",
+       "subdocs": [
+        "4hop2__161602_426860_88460_20985"
+       ]
+      },
+      {
+       "chunk_id": "group_008:1371",
+       "subdocs": [
+        "2hop__96062_159673"
+       ]
+      }
+     ],
+     "question": "What administrative territorial entity is the owner of Ciudad Deportiva located?"
+    },
+    {
+     "query_id": "5",
+     "doc_id": "group_004",
+     "gold_subdoc": "2hop__697790_864352",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_004:379",
+       "subdocs": [
+        "2hop__197470_271394"
+       ]
+      },
+      {
+       "chunk_id": "group_004:383",
+       "subdocs": [
+        "2hop__197470_271394"
+       ]
+      }
+     ],
+     "question": "Who is the child of Caroline LeRoy's spouse?"
+    },
+    {
+     "query_id": "6",
+     "doc_id": "group_012",
+     "gold_subdoc": "2hop__207476_625987",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_012:353",
+       "subdocs": [
+        "2hop__609313_20273"
+       ]
+      }
+     ],
+     "question": "Who is the grandmother of Philippe, Duke of Orléans?"
+    },
+    {
+     "query_id": "8",
+     "doc_id": "group_007",
+     "gold_subdoc": "2hop__354635_174222",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_007:1055",
+       "subdocs": [
+        "3hop1__144439_443779_52195"
+       ]
+      },
+      {
+       "chunk_id": "group_007:1060",
+       "subdocs": [
+        "3hop1__144439_443779_52195",
+        "4hop3__426860_88460_30152_20999"
+       ]
+      }
+     ],
+     "question": "What company succeeded the owner of Empire Sports Network?"
+    },
+    {
+     "query_id": "27",
+     "doc_id": "group_012",
+     "gold_subdoc": "2hop__673655_316668",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_012:550",
+       "subdocs": [
+        "2hop__728887_159109"
+       ]
+      }
+     ],
+     "question": "What instrument is played by the person from The Blackout All-Stars?"
+    }
+   ],
+   "disagreement_examples": [
+    {
+     "chunk_id": "group_003:1369",
+     "alignment": [
+      "2hop__79875_84469",
+      "3hop1__458916_651917_47686"
+     ],
+     "header_walk": [
+      "2hop__79875_84469"
+     ]
+    },
+    {
+     "chunk_id": "group_003:1371",
+     "alignment": [
+      "3hop1__458916_651917_47686"
+     ],
+     "header_walk": [
+      "2hop__79875_84469"
+     ]
+    },
+    {
+     "chunk_id": "group_003:1372",
+     "alignment": [
+      "3hop1__458916_651917_47686"
+     ],
+     "header_walk": [
+      "2hop__79875_84469"
+     ]
+    },
+    {
+     "chunk_id": "group_003:1373",
+     "alignment": [
+      "3hop1__458916_651917_47686"
+     ],
+     "header_walk": [
+      "2hop__79875_84469"
+     ]
+    },
+    {
+     "chunk_id": "group_003:1375",
+     "alignment": [
+      "3hop1__458916_651917_47686"
+     ],
+     "header_walk": [
+      "2hop__79875_84469"
+     ]
+    }
+   ],
+   "seconds": 1.9601318836212158,
+   "map_file": "results/rebuttal/c4_subdoc_control/subdoc_map/musique_128k.json"
+  },
+  "musique_256k": {
+   "setting": "musique_256k",
+   "display": "MuSiQue-256K",
+   "problems": [
+    "group_002: 559 chunk(s) not found in the text and the header walk is not reliable"
+   ],
+   "warnings": [],
+   "metadata": {
+    "target_context_tokens": 256000,
+    "tolerance_tokens": 4000,
+    "expansion_seed": 42,
+    "prepared_documents": 6,
+    "groups_with_trimmed_variants": 0,
+    "token_counter": "whitespace",
+    "prepared_token_lengths": {
+     "min": 199725,
+     "median": 257793.5,
+     "max": 258429
+    }
+   },
+   "stats": {
+    "documents": 6,
+    "subdocs_distinct": 900,
+    "subdocs_per_document": {
+     "n": 6,
+     "min": 120.0,
+     "median": 155.5,
+     "max": 158.0,
+     "mean": 150.0
+    },
+    "chunks": 17088,
+    "boundary_chunks": 644,
+    "boundary_share": 0.037687265917603,
+    "boundary_per_document": {
+     "group_001": 115,
+     "group_002": 106,
+     "group_003": 114,
+     "group_004": 109,
+     "group_005": 108,
+     "group_006": 92
+    },
+    "chunks_per_subdoc_all": {
+     "n": 900,
+     "min": 8.0,
+     "median": 19.0,
+     "max": 37.0,
+     "mean": 19.702222222222222
+    },
+    "leading_partial_docs": 0,
+    "trimmed_end_docs": 0,
+    "missing_members": 0,
+    "unaligned_chunks": 3399,
+    "out_of_order_chunks": 0,
+    "method_disagreements": 13,
+    "header_sequence_breaks": 1,
+    "min_text_coverage": 0.7745096985721572,
+    "queries_union": 900,
+    "status_counts": {
+     "kept": 175,
+     "excluded_evidence_outside": 725
+    },
+    "evidence_common_subdoc_not_gold": 0,
+    "gold_subdocs_distinct": 175,
+    "chunks_per_gold_subdoc": {
+     "n": 175,
+     "min": 8.0,
+     "median": 17.0,
+     "max": 30.0,
+     "mean": 17.66857142857143
+    },
+    "chunks_per_gold_subdoc_over_queries": {
+     "n": 175,
+     "min": 8.0,
+     "median": 17.0,
+     "max": 30.0,
+     "mean": 17.66857142857143
+    },
+    "kept_with_gold_subdoc_at_most_k": {
+     "1": 0,
+     "3": 0,
+     "5": 0,
+     "10": 5
+    }
+   },
+   "per_retriever": {
+    "bm25": {
+     "paper_sources": 1,
+     "sources": [
+      {
+       "bundle": "reference",
+       "study": "context_expansion",
+       "source_id": "93eabe32c3dfe5e56a72",
+       "n_queries": 900,
+       "expected": {
+        "5": {
+         "queries": 900,
+         "eligible": 900,
+         "hits": 471
+        },
+        "10": {
+         "queries": 900,
+         "eligible": 900,
+         "hits": 579
+        }
+       }
+      }
+     ],
+     "n_queries": 900
+    },
+    "contriever": {
+     "paper_sources": 1,
+     "sources": [
+      {
+       "bundle": "comparison_inputs",
+       "study": "context_expansion",
+       "source_id": "361938a1401824508a17",
+       "n_queries": 900,
+       "expected": {
+        "5": {
+         "queries": 900,
+         "eligible": 900,
+         "hits": 482
+        },
+        "10": {
+         "queries": 900,
+         "eligible": 900,
+         "hits": 576
+        }
+       }
+      }
+     ],
+     "n_queries": 900
+    },
+    "bge_m3": {
+     "paper_sources": 0
+    },
+    "jina": {
+     "paper_sources": 0
+    },
+    "qwen": {
+     "paper_sources": 0
+    }
+   },
+   "excluded_examples": [
+    {
+     "query_id": "2",
+     "doc_id": "group_004",
+     "gold_subdoc": "2hop__701895_752697",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_004:1226",
+       "subdocs": [
+        "4hop2__161602_474028_88460_20985"
+       ]
+      },
+      {
+       "chunk_id": "group_004:1533",
+       "subdocs": [
+        "3hop2__132957_433432_40768",
+        "2hop__657913_88628"
+       ]
+      },
+      {
+       "chunk_id": "group_004:1678",
+       "subdocs": [
+        "4hop2__161602_426860_88460_20985"
+       ]
+      }
+     ],
+     "question": "What administrative territorial entity is the owner of Ciudad Deportiva located?"
+    },
+    {
+     "query_id": "5",
+     "doc_id": "group_002",
+     "gold_subdoc": "2hop__697790_864352",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_002:1869",
+       "subdocs": [
+        "2hop__197470_271394"
+       ]
+      },
+      {
+       "chunk_id": "group_002:1873",
+       "subdocs": [
+        "2hop__197470_271394"
+       ]
+      }
+     ],
+     "question": "Who is the child of Caroline LeRoy's spouse?"
+    },
+    {
+     "query_id": "6",
+     "doc_id": "group_006",
+     "gold_subdoc": "2hop__207476_625987",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_006:1866",
+       "subdocs": [
+        "2hop__609313_20273"
+       ]
+      }
+     ],
+     "question": "Who is the grandmother of Philippe, Duke of Orléans?"
+    },
+    {
+     "query_id": "8",
+     "doc_id": "group_004",
+     "gold_subdoc": "2hop__354635_174222",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_004:1055",
+       "subdocs": [
+        "3hop1__144439_443779_52195"
+       ]
+      },
+      {
+       "chunk_id": "group_004:1060",
+       "subdocs": [
+        "3hop1__144439_443779_52195",
+        "4hop3__426860_88460_30152_20999"
+       ]
+      },
+      {
+       "chunk_id": "group_004:2693",
+       "subdocs": [
+        "4hop3__638064_88460_30152_20999"
+       ]
+      }
+     ],
+     "question": "What company succeeded the owner of Empire Sports Network?"
+    },
+    {
+     "query_id": "12",
+     "doc_id": "group_003",
+     "gold_subdoc": "2hop__362107_652514",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_003:177",
+       "subdocs": [
+        "2hop__747894_135844"
+       ]
+      },
+      {
+       "chunk_id": "group_003:627",
+       "subdocs": [
+        "4hop1__89632_32392_823060_610794",
+        "4hop3__275416_24325_125104_10557"
+       ]
+      }
+     ],
+     "question": "In which borough was Callum McManaman born?"
+    }
+   ],
+   "disagreement_examples": [
+    {
+     "chunk_id": "group_002:1369",
+     "alignment": [
+      "2hop__79875_84469",
+      "3hop1__458916_651917_47686"
+     ],
+     "header_walk": [
+      "2hop__79875_84469"
+     ]
+    },
+    {
+     "chunk_id": "group_002:1371",
+     "alignment": [
+      "3hop1__458916_651917_47686"
+     ],
+     "header_walk": [
+      "2hop__79875_84469"
+     ]
+    },
+    {
+     "chunk_id": "group_002:1372",
+     "alignment": [
+      "3hop1__458916_651917_47686"
+     ],
+     "header_walk": [
+      "2hop__79875_84469"
+     ]
+    },
+    {
+     "chunk_id": "group_002:1373",
+     "alignment": [
+      "3hop1__458916_651917_47686"
+     ],
+     "header_walk": [
+      "2hop__79875_84469"
+     ]
+    },
+    {
+     "chunk_id": "group_002:1375",
+     "alignment": [
+      "3hop1__458916_651917_47686"
+     ],
+     "header_walk": [
+      "2hop__79875_84469"
+     ]
+    }
+   ],
+   "seconds": 3.3395957946777344,
+   "map_file": "results/rebuttal/c4_subdoc_control/subdoc_map/musique_256k.json"
+  },
+  "qasper_32k": {
+   "setting": "qasper_32k",
+   "display": "QASPER-32K",
+   "problems": [
+    "group_001: 107 chunk(s) not found in the text and the header walk is not reliable",
+    "group_002: 107 chunk(s) not found in the text and the header walk is not reliable",
+    "group_003: 118 chunk(s) not found in the text and the header walk is not reliable",
+    "group_004: 108 chunk(s) not found in the text and the header walk is not reliable",
+    "group_005: 136 chunk(s) not found in the text and the header walk is not reliable",
+    "group_006: 94 chunk(s) not found in the text and the header walk is not reliable",
+    "group_007: 104 chunk(s) not found in the text and the header walk is not reliable",
+    "group_008: 92 chunk(s) not found in the text and the header walk is not reliable",
+    "group_009__variant_59d548cab7: 124 chunk(s) not found in the text and the header walk is not reliable",
+    "group_009__variant_6ee7556429: 130 chunk(s) not found in the text and the header walk is not reliable",
+    "group_010: 124 chunk(s) not found in the text and the header walk is not reliable",
+    "group_011: 112 chunk(s) not found in the text and the header walk is not reliable",
+    "group_012: 148 chunk(s) not found in the text and the header walk is not reliable",
+    "group_013: 109 chunk(s) not found in the text and the header walk is not reliable",
+    "group_014: 119 chunk(s) not found in the text and the header walk is not reliable",
+    "group_015: 133 chunk(s) not found in the text and the header walk is not reliable",
+    "group_016: 125 chunk(s) not found in the text and the header walk is not reliable",
+    "group_017: 113 chunk(s) not found in the text and the header walk is not reliable",
+    "group_018: 112 chunk(s) not found in the text and the header walk is not reliable",
+    "group_019: 168 chunk(s) not found in the text and the header walk is not reliable",
+    "group_020__variant_06ecc81089: 125 chunk(s) not found in the text and the header walk is not reliable",
+    "group_020__variant_3361b8013d: 127 chunk(s) not found in the text and the header walk is not reliable",
+    "group_021: 87 chunk(s) not found in the text and the header walk is not reliable",
+    "group_022: 145 chunk(s) not found in the text and the header walk is not reliable",
+    "group_023: 102 chunk(s) not found in the text and the header walk is not reliable",
+    "group_024: 104 chunk(s) not found in the text and the header walk is not reliable",
+    "group_025: 124 chunk(s) not found in the text and the header walk is not reliable",
+    "group_026: 77 chunk(s) not found in the text and the header walk is not reliable",
+    "group_027: 98 chunk(s) not found in the text and the header walk is not reliable",
+    "group_028__variant_f5d18ac871: 97 chunk(s) not found in the text and the header walk is not reliable",
+    "group_028__variant_537b1d23e6: 97 chunk(s) not found in the text and the header walk is not reliable",
+    "group_029__variant_240b3a818e: 102 chunk(s) not found in the text and the header walk is not reliable",
+    "group_029__variant_7e8cf422a1: 100 chunk(s) not found in the text and the header walk is not reliable",
+    "group_030: 97 chunk(s) not found in the text and the header walk is not reliable",
+    "group_031: 101 chunk(s) not found in the text and the header walk is not reliable",
+    "group_032: 129 chunk(s) not found in the text and the header walk is not reliable",
+    "group_033: 108 chunk(s) not found in the text and the header walk is not reliable",
+    "group_034: 132 chunk(s) not found in the text and the header walk is not reliable",
+    "group_035: 139 chunk(s) not found in the text and the header walk is not reliable",
+    "group_036: 165 chunk(s) not found in the text and the header walk is not reliable",
+    "group_037: 69 chunk(s) not found in the text and the header walk is not reliable",
+    "group_038: 100 chunk(s) not found in the text and the header walk is not reliable",
+    "group_039: 121 chunk(s) not found in the text and the header walk is not reliable",
+    "group_040: 101 chunk(s) not found in the text and the header walk is not reliable",
+    "group_041: 100 chunk(s) not found in the text and the header walk is not reliable",
+    "group_042: 11 chunk(s) not found in the text and the header walk is not reliable"
+   ],
+   "warnings": [],
+   "metadata": {
+    "target_context_tokens": 32000,
+    "tolerance_tokens": 4000,
+    "expansion_seed": 42,
+    "prepared_documents": 46,
+    "groups_with_trimmed_variants": 4,
+    "token_counter": "whitespace",
+    "prepared_token_lengths": {
+     "min": 4757,
+     "median": 33763.5,
+     "max": 36000
+    }
+   },
+   "stats": {
+    "documents": 46,
+    "subdocs_distinct": 416,
+    "subdocs_per_document": {
+     "n": 46,
+     "min": 2.0,
+     "median": 10.0,
+     "max": 13.0,
+     "mean": 9.956521739130435
+    },
+    "chunks": 17474,
+    "boundary_chunks": 367,
+    "boundary_share": 0.021002632482545497,
+    "boundary_per_document": {
+     "group_001": 5,
+     "group_002": 10,
+     "group_003": 9,
+     "group_004": 6,
+     "group_005": 7,
+     "group_006": 7,
+     "group_007": 10,
+     "group_008": 9,
+     "group_009__variant_59d548cab7": 9,
+     "group_009__variant_6ee7556429": 8,
+     "group_010": 8,
+     "group_011": 10,
+     "group_012": 4,
+     "group_013": 8,
+     "group_014": 8,
+     "group_015": 5,
+     "group_016": 9,
+     "group_017": 10,
+     "group_018": 9,
+     "group_019": 7,
+     "group_020__variant_06ecc81089": 8,
+     "group_020__variant_3361b8013d": 8,
+     "group_021": 8,
+     "group_022": 9,
+     "group_023": 9,
+     "group_024": 8,
+     "group_025": 10,
+     "group_026": 6,
+     "group_027": 8,
+     "group_028__variant_f5d18ac871": 8,
+     "group_028__variant_537b1d23e6": 8,
+     "group_029__variant_240b3a818e": 10,
+     "group_029__variant_7e8cf422a1": 10,
+     "group_030": 9,
+     "group_031": 7,
+     "group_032": 8,
+     "group_033": 6,
+     "group_034": 11,
+     "group_035": 10,
+     "group_036": 5,
+     "group_037": 8,
+     "group_038": 9,
+     "group_039": 9,
+     "group_040": 7,
+     "group_041": 9,
+     "group_042": 1
+    },
+    "chunks_per_subdoc_all": {
+     "n": 783,
+     "min": 2.0,
+     "median": 20.0,
+     "max": 133.0,
+     "mean": 22.78544061302682
+    },
+    "leading_partial_docs": 4,
+    "trimmed_end_docs": 0,
+    "missing_members": 1,
+    "unaligned_chunks": 5141,
+    "out_of_order_chunks": 0,
+    "method_disagreements": 12264,
+    "header_sequence_breaks": 46,
+    "min_text_coverage": 0.5486091946366206,
+    "queries_union": 1321,
+    "status_counts": {
+     "excluded_evidence_outside": 869,
+     "kept": 452
+    },
+    "evidence_common_subdoc_not_gold": 100,
+    "gold_subdocs_distinct": 243,
+    "chunks_per_gold_subdoc": {
+     "n": 243,
+     "min": 5.0,
+     "median": 27.0,
+     "max": 133.0,
+     "mean": 28.11934156378601
+    },
+    "chunks_per_gold_subdoc_over_queries": {
+     "n": 452,
+     "min": 5.0,
+     "median": 28.0,
+     "max": 133.0,
+     "mean": 29.384955752212388
+    },
+    "kept_with_gold_subdoc_at_most_k": {
+     "1": 0,
+     "3": 0,
+     "5": 5,
+     "10": 12
+    }
+   },
+   "per_retriever": {
+    "bm25": {
+     "paper_sources": 1,
+     "sources": [
+      {
+       "bundle": "reference",
+       "study": "context_expansion",
+       "source_id": "300a3066e255b6a45914",
+       "n_queries": 1321,
+       "expected": {
+        "5": {
+         "queries": 1321,
+         "eligible": 1321,
+         "hits": 259
+        },
+        "10": {
+         "queries": 1321,
+         "eligible": 1321,
+         "hits": 424
+        }
+       }
+      }
+     ],
+     "n_queries": 1321
+    },
+    "contriever": {
+     "paper_sources": 1,
+     "sources": [
+      {
+       "bundle": "comparison_inputs",
+       "study": "context_expansion",
+       "source_id": "ad8333c30485e99a37db",
+       "n_queries": 1321,
+       "expected": {
+        "5": {
+         "queries": 1321,
+         "eligible": 1321,
+         "hits": 259
+        },
+        "10": {
+         "queries": 1321,
+         "eligible": 1321,
+         "hits": 420
+        }
+       }
+      }
+     ],
+     "n_queries": 1321
+    },
+    "bge_m3": {
+     "paper_sources": 0
+    },
+    "jina": {
+     "paper_sources": 0
+    },
+    "qwen": {
+     "paper_sources": 0
+    }
+   },
+   "excluded_examples": [
+    {
+     "query_id": "0",
+     "doc_id": "group_026",
+     "gold_subdoc": "1911.10742",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_026:20",
+       "subdocs": [
+        "1911. 10742"
+       ]
+      },
+      {
+       "chunk_id": "group_026:55",
+       "subdocs": [
+        "1911. 10742"
+       ]
+      }
+     ],
+     "question": "How big is the ANTISCAM dataset?"
+    },
+    {
+     "query_id": "1",
+     "doc_id": "group_026",
+     "gold_subdoc": "1911.10742",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_026:20",
+       "subdocs": [
+        "1911. 10742"
+       ]
+      },
+      {
+       "chunk_id": "group_026:55",
+       "subdocs": [
+        "1911. 10742"
+       ]
+      },
+      {
+       "chunk_id": "group_026:21",
+       "subdocs": [
+        "1911. 10742"
+       ]
+      }
+     ],
+     "question": "How is intent annotated?"
+    },
+    {
+     "query_id": "2",
+     "doc_id": "group_026",
+     "gold_subdoc": "1911.10742",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_026:43",
+       "subdocs": [
+        "1911. 10742"
+       ]
+      },
+      {
+       "chunk_id": "group_026:46",
+       "subdocs": [
+        "1911. 10742"
+       ]
+      },
+      {
+       "chunk_id": "group_026:169",
+       "subdocs": [
+        "2003. 03131"
+       ]
+      }
+     ],
+     "question": "What are the baselines outperformed by this work?"
+    },
+    {
+     "query_id": "10",
+     "doc_id": "group_001",
+     "gold_subdoc": "1611.06322",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_001:302",
+       "subdocs": [
+        "1611. 06322"
+       ]
+      },
+      {
+       "chunk_id": "group_001:288",
+       "subdocs": [
+        "1909. 09070",
+        "1611. 06322"
+       ]
+      }
+     ],
+     "question": "How do they define rumors?"
+    },
+    {
+     "query_id": "11",
+     "doc_id": "group_038",
+     "gold_subdoc": "1604.02038",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_038:294",
+       "subdocs": [
+        "1604. 02038"
+       ]
+      }
+     ],
+     "question": "What baselines did they compare with?"
+    }
+   ],
+   "disagreement_examples": [
+    {
+     "chunk_id": "group_001:1",
+     "alignment": [
+      "2002.04745"
+     ],
+     "header_walk": [
+      "2002. 04745"
+     ]
+    },
+    {
+     "chunk_id": "group_001:3",
+     "alignment": [
+      "2002.04745"
+     ],
+     "header_walk": [
+      "2002. 04745"
+     ]
+    },
+    {
+     "chunk_id": "group_001:4",
+     "alignment": [
+      "2002.04745"
+     ],
+     "header_walk": [
+      "2002. 04745"
+     ]
+    },
+    {
+     "chunk_id": "group_001:5",
+     "alignment": [
+      "2002.04745"
+     ],
+     "header_walk": [
+      "2002. 04745"
+     ]
+    },
+    {
+     "chunk_id": "group_001:6",
+     "alignment": [
+      "2002.04745"
+     ],
+     "header_walk": [
+      "2002. 04745"
+     ]
+    }
+   ],
+   "seconds": 2.081268787384033,
+   "map_file": "results/rebuttal/c4_subdoc_control/subdoc_map/qasper_32k.json"
+  },
+  "qasper_64k": {
+   "setting": "qasper_64k",
+   "display": "QASPER-64K",
+   "problems": [
+    "group_001: 206 chunk(s) not found in the text and the header walk is not reliable",
+    "group_002: 227 chunk(s) not found in the text and the header walk is not reliable",
+    "group_003: 224 chunk(s) not found in the text and the header walk is not reliable",
+    "group_004: 205 chunk(s) not found in the text and the header walk is not reliable",
+    "group_005: 209 chunk(s) not found in the text and the header walk is not reliable",
+    "group_006__variant_ab84194533: 272 chunk(s) not found in the text and the header walk is not reliable",
+    "group_006__variant_8d880e5af9: 258 chunk(s) not found in the text and the header walk is not reliable",
+    "group_007: 213 chunk(s) not found in the text and the header walk is not reliable",
+    "group_008: 263 chunk(s) not found in the text and the header walk is not reliable",
+    "group_009: 211 chunk(s) not found in the text and the header walk is not reliable",
+    "group_010: 281 chunk(s) not found in the text and the header walk is not reliable",
+    "group_011: 202 chunk(s) not found in the text and the header walk is not reliable",
+    "group_012: 231 chunk(s) not found in the text and the header walk is not reliable",
+    "group_013: 195 chunk(s) not found in the text and the header walk is not reliable",
+    "group_014: 203 chunk(s) not found in the text and the header walk is not reliable",
+    "group_015: 172 chunk(s) not found in the text and the header walk is not reliable",
+    "group_016: 176 chunk(s) not found in the text and the header walk is not reliable",
+    "group_017: 249 chunk(s) not found in the text and the header walk is not reliable",
+    "group_018__variant_ea0eb825e2: 303 chunk(s) not found in the text and the header walk is not reliable",
+    "group_018__variant_62176dfa97: 313 chunk(s) not found in the text and the header walk is not reliable",
+    "group_019: 179 chunk(s) not found in the text and the header walk is not reliable",
+    "group_020: 228 chunk(s) not found in the text and the header walk is not reliable",
+    "group_021: 164 chunk(s) not found in the text and the header walk is not reliable"
+   ],
+   "warnings": [],
+   "metadata": {
+    "target_context_tokens": 64000,
+    "tolerance_tokens": 4000,
+    "expansion_seed": 42,
+    "prepared_documents": 23,
+    "groups_with_trimmed_variants": 2,
+    "token_counter": "whitespace",
+    "prepared_token_lengths": {
+     "min": 55342,
+     "median": 65765,
+     "max": 68000
+    }
+   },
+   "stats": {
+    "documents": 23,
+    "subdocs_distinct": 416,
+    "subdocs_per_document": {
+     "n": 23,
+     "min": 17.0,
+     "median": 20.0,
+     "max": 23.0,
+     "mean": 19.608695652173914
+    },
+    "chunks": 17159,
+    "boundary_chunks": 384,
+    "boundary_share": 0.02237892651086893,
+    "boundary_per_document": {
+     "group_001": 15,
+     "group_002": 16,
+     "group_003": 14,
+     "group_004": 20,
+     "group_005": 17,
+     "group_006__variant_ab84194533": 18,
+     "group_006__variant_8d880e5af9": 15,
+     "group_007": 16,
+     "group_008": 14,
+     "group_009": 20,
+     "group_010": 16,
+     "group_011": 16,
+     "group_012": 18,
+     "group_013": 18,
+     "group_014": 16,
+     "group_015": 17,
+     "group_016": 16,
+     "group_017": 16,
+     "group_018__variant_ea0eb825e2": 20,
+     "group_018__variant_62176dfa97": 17,
+     "group_019": 17,
+     "group_020": 18,
+     "group_021": 14
+    },
+    "chunks_per_subdoc_all": {
+     "n": 764,
+     "min": 2.0,
+     "median": 20.0,
+     "max": 133.0,
+     "mean": 22.962041884816752
+    },
+    "leading_partial_docs": 2,
+    "trimmed_end_docs": 0,
+    "missing_members": 8,
+    "unaligned_chunks": 5184,
+    "out_of_order_chunks": 0,
+    "method_disagreements": 11923,
+    "header_sequence_breaks": 23,
+    "min_text_coverage": 0.5903489564186929,
+    "queries_union": 1333,
+    "status_counts": {
+     "excluded_evidence_outside": 958,
+     "kept": 375
+    },
+    "evidence_common_subdoc_not_gold": 95,
+    "gold_subdocs_distinct": 224,
+    "chunks_per_gold_subdoc": {
+     "n": 224,
+     "min": 5.0,
+     "median": 25.5,
+     "max": 133.0,
+     "mean": 27.598214285714285
+    },
+    "chunks_per_gold_subdoc_over_queries": {
+     "n": 375,
+     "min": 5.0,
+     "median": 27.0,
+     "max": 133.0,
+     "mean": 28.170666666666666
+    },
+    "kept_with_gold_subdoc_at_most_k": {
+     "1": 0,
+     "3": 0,
+     "5": 5,
+     "10": 10
+    }
+   },
+   "per_retriever": {
+    "bm25": {
+     "paper_sources": 2,
+     "sources": [
+      {
+       "bundle": "reference",
+       "study": "main",
+       "source_id": "83745de6d3513ad9e20b",
+       "n_queries": 1333,
+       "expected": {
+        "5": {
+         "queries": 1333,
+         "eligible": 1333,
+         "hits": 226
+        },
+        "10": {
+         "queries": 1333,
+         "eligible": 1333,
+         "hits": 348
+        }
+       }
+      },
+      {
+       "bundle": "reference",
+       "study": "context_expansion",
+       "source_id": "4bdc8b93160113f063d6",
+       "n_queries": 1333,
+       "expected": {
+        "5": {
+         "queries": 1333,
+         "eligible": 1333,
+         "hits": 226
+        },
+        "10": {
+         "queries": 1333,
+         "eligible": 1333,
+         "hits": 348
+        }
+       }
+      }
+     ],
+     "n_queries": 1333
+    },
+    "contriever": {
+     "paper_sources": 2,
+     "sources": [
+      {
+       "bundle": "reference",
+       "study": "main",
+       "source_id": "4a14b0b08f0a23ebe198",
+       "n_queries": 1333,
+       "expected": {
+        "5": {
+         "queries": 1333,
+         "eligible": 1333,
+         "hits": 216
+        },
+        "10": {
+         "queries": 1333,
+         "eligible": 1333,
+         "hits": 344
+        }
+       }
+      },
+      {
+       "bundle": "comparison_inputs",
+       "study": "context_expansion",
+       "source_id": "bd7eb2fdb44a223b9655",
+       "n_queries": 1333,
+       "expected": {
+        "5": {
+         "queries": 1333,
+         "eligible": 1333,
+         "hits": 216
+        },
+        "10": {
+         "queries": 1333,
+         "eligible": 1333,
+         "hits": 344
+        }
+       }
+      }
+     ],
+     "n_queries": 1333
+    },
+    "bge_m3": {
+     "paper_sources": 1,
+     "sources": [
+      {
+       "bundle": "reference",
+       "study": "main",
+       "source_id": "71085a49ed160919ab81",
+       "n_queries": 1333,
+       "expected": {
+        "5": {
+         "queries": 1333,
+         "eligible": 1333,
+         "hits": 279
+        },
+        "10": {
+         "queries": 1333,
+         "eligible": 1333,
+         "hits": 412
+        }
+       }
+      }
+     ],
+     "n_queries": 1333
+    },
+    "jina": {
+     "paper_sources": 1,
+     "sources": [
+      {
+       "bundle": "reference",
+       "study": "main",
+       "source_id": "8e3d319b457a69e61bba",
+       "n_queries": 1333,
+       "expected": {
+        "5": {
+         "queries": 1333,
+         "eligible": 1333,
+         "hits": 252
+        },
+        "10": {
+         "queries": 1333,
+         "eligible": 1333,
+         "hits": 362
+        }
+       }
+      }
+     ],
+     "n_queries": 1333
+    },
+    "qwen": {
+     "paper_sources": 1,
+     "sources": [
+      {
+       "bundle": "reference",
+       "study": "main",
+       "source_id": "b25e0f14653b1c8118cd",
+       "n_queries": 1333,
+       "expected": {
+        "5": {
+         "queries": 1333,
+         "eligible": 1333,
+         "hits": 311
+        },
+        "10": {
+         "queries": 1333,
+         "eligible": 1333,
+         "hits": 455
+        }
+       }
+      }
+     ],
+     "n_queries": 1333
+    }
+   },
+   "excluded_examples": [
+    {
+     "query_id": "0",
+     "doc_id": "group_013",
+     "gold_subdoc": "1911.10742",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_013:598",
+       "subdocs": [
+        "2004. 02105"
+       ]
+      },
+      {
+       "chunk_id": "group_013:633",
+       "subdocs": [
+        "2004. 02105"
+       ]
+      }
+     ],
+     "question": "How big is the ANTISCAM dataset?"
+    },
+    {
+     "query_id": "1",
+     "doc_id": "group_013",
+     "gold_subdoc": "1911.10742",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_013:598",
+       "subdocs": [
+        "2004. 02105"
+       ]
+      },
+      {
+       "chunk_id": "group_013:633",
+       "subdocs": [
+        "2004. 02105"
+       ]
+      },
+      {
+       "chunk_id": "group_013:599",
+       "subdocs": [
+        "2004. 02105"
+       ]
+      }
+     ],
+     "question": "How is intent annotated?"
+    },
+    {
+     "query_id": "2",
+     "doc_id": "group_013",
+     "gold_subdoc": "1911.10742",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_013:115",
+       "subdocs": [
+        "1610.06510"
+       ]
+      },
+      {
+       "chunk_id": "group_013:621",
+       "subdocs": [
+        "2004. 02105"
+       ]
+      },
+      {
+       "chunk_id": "group_013:624",
+       "subdocs": [
+        "2004. 02105"
+       ]
+      }
+     ],
+     "question": "What are the baselines outperformed by this work?"
+    },
+    {
+     "query_id": "3",
+     "doc_id": "group_013",
+     "gold_subdoc": "1911.10742",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_013:402",
+       "subdocs": [
+        "1910.10487"
+       ]
+      }
+     ],
+     "question": "What are the evaluation metrics and criteria used to evaluate the model performance?"
+    },
+    {
+     "query_id": "10",
+     "doc_id": "group_001",
+     "gold_subdoc": "1611.06322",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_001:302",
+       "subdocs": [
+        "1611. 06322"
+       ]
+      },
+      {
+       "chunk_id": "group_001:288",
+       "subdocs": [
+        "1909. 09070",
+        "1611. 06322"
+       ]
+      }
+     ],
+     "question": "How do they define rumors?"
+    }
+   ],
+   "disagreement_examples": [
+    {
+     "chunk_id": "group_001:1",
+     "alignment": [
+      "2002.04745"
+     ],
+     "header_walk": [
+      "2002. 04745"
+     ]
+    },
+    {
+     "chunk_id": "group_001:3",
+     "alignment": [
+      "2002.04745"
+     ],
+     "header_walk": [
+      "2002. 04745"
+     ]
+    },
+    {
+     "chunk_id": "group_001:4",
+     "alignment": [
+      "2002.04745"
+     ],
+     "header_walk": [
+      "2002. 04745"
+     ]
+    },
+    {
+     "chunk_id": "group_001:5",
+     "alignment": [
+      "2002.04745"
+     ],
+     "header_walk": [
+      "2002. 04745"
+     ]
+    },
+    {
+     "chunk_id": "group_001:6",
+     "alignment": [
+      "2002.04745"
+     ],
+     "header_walk": [
+      "2002. 04745"
+     ]
+    }
+   ],
+   "seconds": 1.8039638996124268,
+   "map_file": "results/rebuttal/c4_subdoc_control/subdoc_map/qasper_64k.json"
+  },
+  "qasper_128k": {
+   "setting": "qasper_128k",
+   "display": "QASPER-128K",
+   "problems": [
+    "group_001: 432 chunk(s) not found in the text and the header walk is not reliable",
+    "group_002: 417 chunk(s) not found in the text and the header walk is not reliable",
+    "group_003: 433 chunk(s) not found in the text and the header walk is not reliable",
+    "group_004: 493 chunk(s) not found in the text and the header walk is not reliable",
+    "group_005: 506 chunk(s) not found in the text and the header walk is not reliable",
+    "group_006: 442 chunk(s) not found in the text and the header walk is not reliable",
+    "group_007: 376 chunk(s) not found in the text and the header walk is not reliable",
+    "group_008: 364 chunk(s) not found in the text and the header walk is not reliable",
+    "group_009: 468 chunk(s) not found in the text and the header walk is not reliable",
+    "group_010: 464 chunk(s) not found in the text and the header walk is not reliable",
+    "group_011: 309 chunk(s) not found in the text and the header walk is not reliable"
+   ],
+   "warnings": [],
+   "metadata": {
+    "target_context_tokens": 128000,
+    "tolerance_tokens": 4000,
+    "expansion_seed": 42,
+    "prepared_documents": 11,
+    "groups_with_trimmed_variants": 0,
+    "token_counter": "whitespace",
+    "prepared_token_lengths": {
+     "min": 101580,
+     "median": 129138,
+     "max": 131901
+    }
+   },
+   "stats": {
+    "documents": 11,
+    "subdocs_distinct": 416,
+    "subdocs_per_document": {
+     "n": 11,
+     "min": 32.0,
+     "median": 38.0,
+     "max": 42.0,
+     "mean": 37.81818181818182
+    },
+    "chunks": 15886,
+    "boundary_chunks": 362,
+    "boundary_share": 0.022787359939569433,
+    "boundary_per_document": {
+     "group_001": 32,
+     "group_002": 34,
+     "group_003": 36,
+     "group_004": 27,
+     "group_005": 37,
+     "group_006": 34,
+     "group_007": 32,
+     "group_008": 34,
+     "group_009": 36,
+     "group_010": 33,
+     "group_011": 27
+    },
+    "chunks_per_subdoc_all": {
+     "n": 706,
+     "min": 2.0,
+     "median": 20.0,
+     "max": 142.0,
+     "mean": 23.01416430594901
+    },
+    "leading_partial_docs": 0,
+    "trimmed_end_docs": 0,
+    "missing_members": 0,
+    "unaligned_chunks": 4704,
+    "out_of_order_chunks": 0,
+    "method_disagreements": 11182,
+    "header_sequence_breaks": 11,
+    "min_text_coverage": 0.6560437050876858,
+    "queries_union": 1321,
+    "status_counts": {
+     "excluded_evidence_outside": 990,
+     "kept": 331
+    },
+    "evidence_common_subdoc_not_gold": 83,
+    "gold_subdocs_distinct": 206,
+    "chunks_per_gold_subdoc": {
+     "n": 206,
+     "min": 4.0,
+     "median": 26.0,
+     "max": 132.0,
+     "mean": 28.024271844660195
+    },
+    "chunks_per_gold_subdoc_over_queries": {
+     "n": 331,
+     "min": 4.0,
+     "median": 27.0,
+     "max": 132.0,
+     "mean": 28.49546827794562
+    },
+    "kept_with_gold_subdoc_at_most_k": {
+     "1": 0,
+     "3": 0,
+     "5": 4,
+     "10": 7
+    }
+   },
+   "per_retriever": {
+    "bm25": {
+     "paper_sources": 1,
+     "sources": [
+      {
+       "bundle": "reference",
+       "study": "context_expansion",
+       "source_id": "5cb4b2567419a284e1de",
+       "n_queries": 1321,
+       "expected": {
+        "5": {
+         "queries": 1321,
+         "eligible": 1321,
+         "hits": 198
+        },
+        "10": {
+         "queries": 1321,
+         "eligible": 1321,
+         "hits": 299
+        }
+       }
+      }
+     ],
+     "n_queries": 1321
+    },
+    "contriever": {
+     "paper_sources": 1,
+     "sources": [
+      {
+       "bundle": "comparison_inputs",
+       "study": "context_expansion",
+       "source_id": "e06f9c4458f72d47781f",
+       "n_queries": 1321,
+       "expected": {
+        "5": {
+         "queries": 1321,
+         "eligible": 1321,
+         "hits": 173
+        },
+        "10": {
+         "queries": 1321,
+         "eligible": 1321,
+         "hits": 284
+        }
+       }
+      }
+     ],
+     "n_queries": 1321
+    },
+    "bge_m3": {
+     "paper_sources": 0
+    },
+    "jina": {
+     "paper_sources": 0
+    },
+    "qwen": {
+     "paper_sources": 0
+    }
+   },
+   "excluded_examples": [
+    {
+     "query_id": "0",
+     "doc_id": "group_007",
+     "gold_subdoc": "1911.10742",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_007:866",
+       "subdocs": [
+        "2004. 02105"
+       ]
+      },
+      {
+       "chunk_id": "group_007:901",
+       "subdocs": [
+        "2004. 02105"
+       ]
+      }
+     ],
+     "question": "How big is the ANTISCAM dataset?"
+    },
+    {
+     "query_id": "1",
+     "doc_id": "group_007",
+     "gold_subdoc": "1911.10742",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_007:866",
+       "subdocs": [
+        "2004. 02105"
+       ]
+      },
+      {
+       "chunk_id": "group_007:901",
+       "subdocs": [
+        "2004. 02105"
+       ]
+      },
+      {
+       "chunk_id": "group_007:867",
+       "subdocs": [
+        "2004. 02105"
+       ]
+      }
+     ],
+     "question": "How is intent annotated?"
+    },
+    {
+     "query_id": "2",
+     "doc_id": "group_007",
+     "gold_subdoc": "1911.10742",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_007:383",
+       "subdocs": [
+        "1610.06510"
+       ]
+      },
+      {
+       "chunk_id": "group_007:889",
+       "subdocs": [
+        "2004. 02105"
+       ]
+      },
+      {
+       "chunk_id": "group_007:892",
+       "subdocs": [
+        "2004. 02105"
+       ]
+      }
+     ],
+     "question": "What are the baselines outperformed by this work?"
+    },
+    {
+     "query_id": "3",
+     "doc_id": "group_007",
+     "gold_subdoc": "1911.10742",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_007:670",
+       "subdocs": [
+        "1910.10487"
+       ]
+      }
+     ],
+     "question": "What are the evaluation metrics and criteria used to evaluate the model performance?"
+    },
+    {
+     "query_id": "10",
+     "doc_id": "group_001",
+     "gold_subdoc": "1611.06322",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_001:302",
+       "subdocs": [
+        "1611. 06322"
+       ]
+      },
+      {
+       "chunk_id": "group_001:288",
+       "subdocs": [
+        "1909. 09070",
+        "1611. 06322"
+       ]
+      },
+      {
+       "chunk_id": "group_001:1218",
+       "subdocs": [
+        "1801.05617"
+       ]
+      }
+     ],
+     "question": "How do they define rumors?"
+    }
+   ],
+   "disagreement_examples": [
+    {
+     "chunk_id": "group_001:1",
+     "alignment": [
+      "2002.04745"
+     ],
+     "header_walk": [
+      "2002. 04745"
+     ]
+    },
+    {
+     "chunk_id": "group_001:3",
+     "alignment": [
+      "2002.04745"
+     ],
+     "header_walk": [
+      "2002. 04745"
+     ]
+    },
+    {
+     "chunk_id": "group_001:4",
+     "alignment": [
+      "2002.04745"
+     ],
+     "header_walk": [
+      "2002. 04745"
+     ]
+    },
+    {
+     "chunk_id": "group_001:5",
+     "alignment": [
+      "2002.04745"
+     ],
+     "header_walk": [
+      "2002. 04745"
+     ]
+    },
+    {
+     "chunk_id": "group_001:6",
+     "alignment": [
+      "2002.04745"
+     ],
+     "header_walk": [
+      "2002. 04745"
+     ]
+    }
+   ],
+   "seconds": 1.9100570678710938,
+   "map_file": "results/rebuttal/c4_subdoc_control/subdoc_map/qasper_128k.json"
+  },
+  "qasper_256k": {
+   "setting": "qasper_256k",
+   "display": "QASPER-256K",
+   "problems": [
+    "group_001: 848 chunk(s) not found in the text and the header walk is not reliable",
+    "group_002: 910 chunk(s) not found in the text and the header walk is not reliable",
+    "group_003: 945 chunk(s) not found in the text and the header walk is not reliable",
+    "group_004: 735 chunk(s) not found in the text and the header walk is not reliable",
+    "group_005: 897 chunk(s) not found in the text and the header walk is not reliable",
+    "group_006: 363 chunk(s) not found in the text and the header walk is not reliable"
+   ],
+   "warnings": [],
+   "metadata": {
+    "target_context_tokens": 256000,
+    "tolerance_tokens": 4000,
+    "expansion_seed": 42,
+    "prepared_documents": 6,
+    "groups_with_trimmed_variants": 0,
+    "token_counter": "whitespace",
+    "prepared_token_lengths": {
+     "min": 111875,
+     "median": 257145.5,
+     "max": 258807
+    }
+   },
+   "stats": {
+    "documents": 6,
+    "subdocs_distinct": 416,
+    "subdocs_per_document": {
+     "n": 6,
+     "min": 35.0,
+     "median": 74.0,
+     "max": 83.0,
+     "mean": 69.33333333333333
+    },
+    "chunks": 15886,
+    "boundary_chunks": 367,
+    "boundary_share": 0.02310210248017122,
+    "boundary_per_document": {
+     "group_001": 67,
+     "group_002": 63,
+     "group_003": 72,
+     "group_004": 67,
+     "group_005": 68,
+     "group_006": 30
+    },
+    "chunks_per_subdoc_all": {
+     "n": 702,
+     "min": 2.0,
+     "median": 20.0,
+     "max": 156.0,
+     "mean": 23.15242165242165
+    },
+    "leading_partial_docs": 0,
+    "trimmed_end_docs": 0,
+    "missing_members": 0,
+    "unaligned_chunks": 4698,
+    "out_of_order_chunks": 0,
+    "method_disagreements": 11188,
+    "header_sequence_breaks": 6,
+    "min_text_coverage": 0.6770554666720412,
+    "queries_union": 1321,
+    "status_counts": {
+     "excluded_evidence_outside": 1050,
+     "kept": 271
+    },
+    "evidence_common_subdoc_not_gold": 69,
+    "gold_subdocs_distinct": 179,
+    "chunks_per_gold_subdoc": {
+     "n": 179,
+     "min": 5.0,
+     "median": 25.0,
+     "max": 133.0,
+     "mean": 28.022346368715084
+    },
+    "chunks_per_gold_subdoc_over_queries": {
+     "n": 271,
+     "min": 5.0,
+     "median": 27.0,
+     "max": 133.0,
+     "mean": 28.383763837638377
+    },
+    "kept_with_gold_subdoc_at_most_k": {
+     "1": 0,
+     "3": 0,
+     "5": 4,
+     "10": 7
+    }
+   },
+   "per_retriever": {
+    "bm25": {
+     "paper_sources": 1,
+     "sources": [
+      {
+       "bundle": "reference",
+       "study": "context_expansion",
+       "source_id": "e2bb4f40b537d4b06e47",
+       "n_queries": 1321,
+       "expected": {
+        "5": {
+         "queries": 1321,
+         "eligible": 1321,
+         "hits": 161
+        },
+        "10": {
+         "queries": 1321,
+         "eligible": 1321,
+         "hits": 243
+        }
+       }
+      }
+     ],
+     "n_queries": 1321
+    },
+    "contriever": {
+     "paper_sources": 1,
+     "sources": [
+      {
+       "bundle": "comparison_inputs",
+       "study": "context_expansion",
+       "source_id": "d50f833db08333803c03",
+       "n_queries": 1321,
+       "expected": {
+        "5": {
+         "queries": 1321,
+         "eligible": 1321,
+         "hits": 150
+        },
+        "10": {
+         "queries": 1321,
+         "eligible": 1321,
+         "hits": 223
+        }
+       }
+      }
+     ],
+     "n_queries": 1321
+    },
+    "bge_m3": {
+     "paper_sources": 0
+    },
+    "jina": {
+     "paper_sources": 0
+    },
+    "qwen": {
+     "paper_sources": 0
+    }
+   },
+   "excluded_examples": [
+    {
+     "query_id": "0",
+     "doc_id": "group_004",
+     "gold_subdoc": "1911.10742",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_004:919",
+       "subdocs": [
+        "2004. 02105"
+       ]
+      },
+      {
+       "chunk_id": "group_004:954",
+       "subdocs": [
+        "2004. 02105"
+       ]
+      }
+     ],
+     "question": "How big is the ANTISCAM dataset?"
+    },
+    {
+     "query_id": "1",
+     "doc_id": "group_004",
+     "gold_subdoc": "1911.10742",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_004:919",
+       "subdocs": [
+        "2004. 02105"
+       ]
+      },
+      {
+       "chunk_id": "group_004:954",
+       "subdocs": [
+        "2004. 02105"
+       ]
+      },
+      {
+       "chunk_id": "group_004:920",
+       "subdocs": [
+        "2004. 02105"
+       ]
+      }
+     ],
+     "question": "How is intent annotated?"
+    },
+    {
+     "query_id": "2",
+     "doc_id": "group_004",
+     "gold_subdoc": "1911.10742",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_004:436",
+       "subdocs": [
+        "1610.06510"
+       ]
+      },
+      {
+       "chunk_id": "group_004:942",
+       "subdocs": [
+        "2004. 02105"
+       ]
+      },
+      {
+       "chunk_id": "group_004:945",
+       "subdocs": [
+        "2004. 02105"
+       ]
+      }
+     ],
+     "question": "What are the baselines outperformed by this work?"
+    },
+    {
+     "query_id": "3",
+     "doc_id": "group_004",
+     "gold_subdoc": "1911.10742",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_004:649",
+       "subdocs": [
+        "1604. 02201"
+       ]
+      },
+      {
+       "chunk_id": "group_004:1969",
+       "subdocs": [
+        "2002.04815"
+       ]
+      },
+      {
+       "chunk_id": "group_004:1988",
+       "subdocs": [
+        "1901.10619"
+       ]
+      }
+     ],
+     "question": "What are the evaluation metrics and criteria used to evaluate the model performance?"
+    },
+    {
+     "query_id": "10",
+     "doc_id": "group_001",
+     "gold_subdoc": "1611.06322",
+     "status": "excluded_evidence_outside",
+     "evidence_outside": [
+      {
+       "chunk_id": "group_001:1614",
+       "subdocs": [
+        "1808. 00957"
+       ]
+      },
+      {
+       "chunk_id": "group_001:2296",
+       "subdocs": [
+        "1610.03955"
+       ]
+      },
+      {
+       "chunk_id": "group_001:302",
+       "subdocs": [
+        "1611. 06322"
+       ]
+      }
+     ],
+     "question": "How do they define rumors?"
+    }
+   ],
+   "disagreement_examples": [
+    {
+     "chunk_id": "group_001:1",
+     "alignment": [
+      "2002.04745"
+     ],
+     "header_walk": [
+      "2002. 04745"
+     ]
+    },
+    {
+     "chunk_id": "group_001:3",
+     "alignment": [
+      "2002.04745"
+     ],
+     "header_walk": [
+      "2002. 04745"
+     ]
+    },
+    {
+     "chunk_id": "group_001:4",
+     "alignment": [
+      "2002.04745"
+     ],
+     "header_walk": [
+      "2002. 04745"
+     ]
+    },
+    {
+     "chunk_id": "group_001:5",
+     "alignment": [
+      "2002.04745"
+     ],
+     "header_walk": [
+      "2002. 04745"
+     ]
+    },
+    {
+     "chunk_id": "group_001:6",
+     "alignment": [
+      "2002.04745"
+     ],
+     "header_walk": [
+      "2002. 04745"
+     ]
+    }
+   ],
+   "seconds": 2.960448980331421,
+   "map_file": "results/rebuttal/c4_subdoc_control/subdoc_map/qasper_256k.json"
+  }
+ },
+ "status": "FAILED",
+ "problems": [
+  "musique_32k: group_012: 67 chunk(s) not found in the text and the header walk is not reliable",
+  "musique_64k: group_006: 133 chunk(s) not found in the text and the header walk is not reliable",
+  "musique_128k: group_003: 280 chunk(s) not found in the text and the header walk is not reliable",
+  "musique_256k: group_002: 559 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_001: 107 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_002: 107 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_003: 118 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_004: 108 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_005: 136 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_006: 94 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_007: 104 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_008: 92 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_009__variant_59d548cab7: 124 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_009__variant_6ee7556429: 130 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_010: 124 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_011: 112 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_012: 148 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_013: 109 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_014: 119 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_015: 133 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_016: 125 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_017: 113 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_018: 112 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_019: 168 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_020__variant_06ecc81089: 125 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_020__variant_3361b8013d: 127 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_021: 87 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_022: 145 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_023: 102 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_024: 104 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_025: 124 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_026: 77 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_027: 98 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_028__variant_f5d18ac871: 97 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_028__variant_537b1d23e6: 97 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_029__variant_240b3a818e: 102 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_029__variant_7e8cf422a1: 100 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_030: 97 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_031: 101 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_032: 129 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_033: 108 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_034: 132 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_035: 139 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_036: 165 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_037: 69 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_038: 100 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_039: 121 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_040: 101 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_041: 100 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_32k: group_042: 11 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_64k: group_001: 206 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_64k: group_002: 227 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_64k: group_003: 224 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_64k: group_004: 205 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_64k: group_005: 209 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_64k: group_006__variant_ab84194533: 272 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_64k: group_006__variant_8d880e5af9: 258 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_64k: group_007: 213 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_64k: group_008: 263 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_64k: group_009: 211 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_64k: group_010: 281 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_64k: group_011: 202 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_64k: group_012: 231 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_64k: group_013: 195 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_64k: group_014: 203 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_64k: group_015: 172 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_64k: group_016: 176 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_64k: group_017: 249 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_64k: group_018__variant_ea0eb825e2: 303 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_64k: group_018__variant_62176dfa97: 313 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_64k: group_019: 179 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_64k: group_020: 228 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_64k: group_021: 164 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_128k: group_001: 432 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_128k: group_002: 417 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_128k: group_003: 433 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_128k: group_004: 493 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_128k: group_005: 506 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_128k: group_006: 442 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_128k: group_007: 376 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_128k: group_008: 364 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_128k: group_009: 468 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_128k: group_010: 464 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_128k: group_011: 309 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_256k: group_001: 848 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_256k: group_002: 910 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_256k: group_003: 945 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_256k: group_004: 735 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_256k: group_005: 897 chunk(s) not found in the text and the header walk is not reliable",
+  "qasper_256k: group_006: 363 chunk(s) not found in the text and the header walk is not reliable"
+ ],
+ "warnings": [],
+ "files_written": [
+  "experiments/rebuttal/c4_subdoc_control/reports/step_01.json",
+  "experiments/rebuttal/c4_subdoc_control/reports/step_01.md",
+  "results/rebuttal/c4_subdoc_control/subdoc_map/musique_128k.json",
+  "results/rebuttal/c4_subdoc_control/subdoc_map/musique_256k.json",
+  "results/rebuttal/c4_subdoc_control/subdoc_map/musique_32k.json",
+  "results/rebuttal/c4_subdoc_control/subdoc_map/musique_64k.json",
+  "results/rebuttal/c4_subdoc_control/subdoc_map/qasper_128k.json",
+  "results/rebuttal/c4_subdoc_control/subdoc_map/qasper_256k.json",
+  "results/rebuttal/c4_subdoc_control/subdoc_map/qasper_32k.json",
+  "results/rebuttal/c4_subdoc_control/subdoc_map/qasper_64k.json"
+ ],
+ "seconds": 17.374724864959717
+}
