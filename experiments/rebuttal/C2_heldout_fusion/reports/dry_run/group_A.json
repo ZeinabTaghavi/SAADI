@@ -1,0 +1,443 @@
+{
+  "group": "A",
+  "dry_run": true,
+  "started_at": "2026-11-09 11:40:24",
+  "host": "LIGHT-C026225M.local",
+  "argv": [
+    "python3",
+    "scripts/rebuttal/c2_heldout_fusion.py",
+    "--group",
+    "A",
+    "--dry-run"
+  ],
+  "analysis_only": false,
+  "unexpected": [],
+  "files": [
+    "outputs/rebuttal/C2_heldout_fusion/dry_run/plan.json",
+    "outputs/rebuttal/C2_heldout_fusion/dry_run/streams/qasper_64k__bm25.parquet",
+    "outputs/rebuttal/C2_heldout_fusion/dry_run/streams/qasper_64k__bm25.queries.json",
+    "outputs/rebuttal/C2_heldout_fusion/dry_run/streams/qasper_64k__bm25.check.json",
+    "outputs/rebuttal/C2_heldout_fusion/dry_run/streams/novelhopqa__bm25.parquet",
+    "outputs/rebuttal/C2_heldout_fusion/dry_run/streams/novelhopqa__bm25.queries.json",
+    "outputs/rebuttal/C2_heldout_fusion/dry_run/streams/novelhopqa__bm25.check.json",
+    "experiments/rebuttal/C2_heldout_fusion/reports/dry_run/group_A.md",
+    "experiments/rebuttal/C2_heldout_fusion/reports/dry_run/group_A.json"
+  ],
+  "preflight": {
+    "ok": true,
+    "problems": [],
+    "warnings": [],
+    "python": {
+      "executable": "/Users/uem-stag-lap-ic/Desktop/SAADI/venv.nosync/bin/python3",
+      "version": "3.14.8"
+    },
+    "modules": {
+      "numpy": "2.5.4",
+      "pandas": "3.1.1",
+      "pyarrow": "26.0.1",
+      "tqdm": "4.70.1",
+      "matplotlib": "3.11.2"
+    },
+    "git": {
+      "commit": "f1a54482c68d91eb797d75b11362f1973bc202a5",
+      "branch": "fix/notebook-key-and-install",
+      "code_changes_vs_commit": [
+        "?? experiments/rebuttal/C2_heldout_fusion/run_gpus_0123.sh",
+        "?? experiments/rebuttal/C2_heldout_fusion/run_gpus_4567.sh",
+        "?? scripts/rebuttal/c2_heldout_fusion.py",
+        "?? src/saadi/rebuttal/heldout_fusion.py"
+      ]
+    },
+    "hf_home": "/mnt/cache/taghavi",
+    "gpus": "skipped (dry run on CPU)",
+    "expected_metrics": "outputs/saadi/reference/expected_metrics.json",
+    "inputs_missing": [],
+    "models": {},
+    "disk": {
+      "path": "/Users/uem-stag-lap-ic/Desktop/SAADI/outputs/rebuttal/C2_heldout_fusion/dry_run",
+      "free_gb": 240.6,
+      "needed_gb_estimate": 5.1
+    }
+  },
+  "plan": {
+    "created_at": "2026-11-09 11:40:28",
+    "created_by_group": "A",
+    "commit": "f1a54482c68d91eb797d75b11362f1973bc202a5",
+    "dry_run": true,
+    "max_docs": 2,
+    "cost_basis": {
+      "how": "estimated from model sizes (no timing run): seconds = model load + (estimated document tokens x 2 x parameters) / effective FLOP/s + 5 query encodings per query x per-call latency + CPU combination time",
+      "tokens": "characters / 4 per text, capped at the model's max_length, + 2 special tokens",
+      "effective_tflops_fp32": 10.0,
+      "cpu_seconds_per_query_chunk": 0.00015,
+      "models": {
+        "contriever": {
+          "hf_id": "facebook/contriever",
+          "params_m": 110,
+          "max_length": 512,
+          "batch_size": 128,
+          "load_s": 20,
+          "query_call_s": 0.008
+        },
+        "bge_m3": {
+          "hf_id": "BAAI/bge-m3",
+          "params_m": 568,
+          "max_length": 8192,
+          "batch_size": 16,
+          "load_s": 40,
+          "query_call_s": 0.015
+        },
+        "jina": {
+          "hf_id": "jinaai/jina-embeddings-v3",
+          "params_m": 572,
+          "max_length": 512,
+          "batch_size": 64,
+          "load_s": 60,
+          "query_call_s": 0.02
+        },
+        "qwen": {
+          "hf_id": "Qwen/Qwen3-Embedding-8B",
+          "params_m": 7570,
+          "max_length": 512,
+          "batch_size": 64,
+          "load_s": 240,
+          "query_call_s": 0.06
+        }
+      },
+      "memory": "weights in float32 (the adapters pass no dtype); every model fits on one 48 GB A6000 (largest: Qwen3-Embedding-8B, about 28 GB of weights), so every job gets one GPU",
+      "note": "estimates, not measurements; per-job times measured in this run are in the group reports"
+    },
+    "counts": {
+      "loogle": {
+        "n_docs": 2,
+        "queries": 21,
+        "query_chunks": 600,
+        "texts": 950,
+        "tokens_512": 43217.75,
+        "tokens_8192": 55782.25,
+        "pools": {
+          "chunks": 56,
+          "names": 138,
+          "aliases": 260,
+          "descriptions": 486,
+          "summaries": 10
+        }
+      },
+      "musique_32k": {
+        "n_docs": 2,
+        "queries": 42,
+        "query_chunks": 16172,
+        "texts": 10158,
+        "tokens_512": 224702.0,
+        "tokens_8192": 224702.0,
+        "pools": {
+          "chunks": 771,
+          "names": 2074,
+          "aliases": 2847,
+          "descriptions": 4312,
+          "summaries": 154
+        }
+      },
+      "qasper_64k": {
+        "n_docs": 2,
+        "queries": 129,
+        "query_chunks": 95965,
+        "texts": 13667,
+        "tokens_512": 407902.5,
+        "tokens_8192": 407902.5,
+        "pools": {
+          "chunks": 1488,
+          "names": 2527,
+          "aliases": 4047,
+          "descriptions": 5308,
+          "summaries": 297
+        }
+      },
+      "novelhopqa": {
+        "n_docs": 2,
+        "queries": 145,
+        "query_chunks": 84721,
+        "texts": 11222,
+        "tokens_512": 762069.0,
+        "tokens_8192": 930648.75,
+        "pools": {
+          "chunks": 1114,
+          "names": 901,
+          "aliases": 1404,
+          "descriptions": 7581,
+          "summaries": 222
+        }
+      }
+    },
+    "jobs": [
+      {
+        "job": "loogle__bm25",
+        "dataset": "loogle",
+        "retriever": "bm25",
+        "texts_to_embed": 971,
+        "doc_texts": 950,
+        "queries": 21,
+        "query_encodes": 105,
+        "stream_rows": 600,
+        "device": "cpu",
+        "n_gpus": 0,
+        "est_seconds": 0.09,
+        "est_basis": "CPU: query x chunk pairs x CPU_SECONDS_PER_QUERY_CHUNK",
+        "group": "B"
+      },
+      {
+        "job": "musique_32k__bm25",
+        "dataset": "musique_32k",
+        "retriever": "bm25",
+        "texts_to_embed": 10200,
+        "doc_texts": 10158,
+        "queries": 42,
+        "query_encodes": 210,
+        "stream_rows": 16172,
+        "device": "cpu",
+        "n_gpus": 0,
+        "est_seconds": 2.4257999999999997,
+        "est_basis": "CPU: query x chunk pairs x CPU_SECONDS_PER_QUERY_CHUNK",
+        "group": "B"
+      },
+      {
+        "job": "qasper_64k__bm25",
+        "dataset": "qasper_64k",
+        "retriever": "bm25",
+        "texts_to_embed": 13796,
+        "doc_texts": 13667,
+        "queries": 129,
+        "query_encodes": 645,
+        "stream_rows": 95965,
+        "device": "cpu",
+        "n_gpus": 0,
+        "est_seconds": 14.394749999999998,
+        "est_basis": "CPU: query x chunk pairs x CPU_SECONDS_PER_QUERY_CHUNK",
+        "group": "A"
+      },
+      {
+        "job": "novelhopqa__bm25",
+        "dataset": "novelhopqa",
+        "retriever": "bm25",
+        "texts_to_embed": 11367,
+        "doc_texts": 11222,
+        "queries": 145,
+        "query_encodes": 725,
+        "stream_rows": 84721,
+        "device": "cpu",
+        "n_gpus": 0,
+        "est_seconds": 12.708149999999998,
+        "est_basis": "CPU: query x chunk pairs x CPU_SECONDS_PER_QUERY_CHUNK",
+        "group": "A"
+      }
+    ],
+    "groups": {
+      "A": {
+        "gpus": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "jobs": [
+          "qasper_64k__bm25",
+          "novelhopqa__bm25"
+        ],
+        "gpu_seconds": 0,
+        "est_wall_seconds": 14
+      },
+      "B": {
+        "gpus": [
+          4,
+          5,
+          6,
+          7
+        ],
+        "jobs": [
+          "musique_32k__bm25",
+          "loogle__bm25"
+        ],
+        "gpu_seconds": 0,
+        "est_wall_seconds": 1
+      }
+    },
+    "analysis_est_seconds": 17,
+    "seconds_to_build": 3.6
+  },
+  "plan_written": true,
+  "jobs": {
+    "qasper_64k__bm25": {
+      "status": "DONE",
+      "seconds": 6.011875152587891,
+      "summary": {
+        "job": "qasper_64k__bm25",
+        "dataset": "qasper_64k",
+        "retriever": "bm25",
+        "max_docs": 2,
+        "timings": {
+          "n_docs": 2,
+          "docs_from_checkpoint": 0,
+          "seconds_scoring": 4.682064458998866,
+          "seconds_total": 4.682162790999428
+        },
+        "check": {
+          "dataset": "qasper_64k",
+          "retriever": "bm25",
+          "n_queries": 129,
+          "full_dataset": false,
+          "identical_top10": 129,
+          "identical_top10_share": 1.0,
+          "hr_ours_published": {
+            "eligible": 129,
+            "hits": {
+              "5": 27,
+              "10": 33
+            },
+            "hr_percent": {
+              "5": 20.930232558139537,
+              "10": 25.581395348837212
+            }
+          },
+          "hr_saved": {
+            "eligible": 129,
+            "hits": {
+              "5": 27,
+              "10": 33
+            },
+            "hr_percent": {
+              "5": 20.930232558139537,
+              "10": 25.581395348837212
+            }
+          },
+          "max_abs_score_diff_identical_rankings": 8.881784197001252e-16,
+          "mismatch_examples": [],
+          "expected_metrics": null,
+          "text_only": {
+            "hr": {
+              "eligible": 129,
+              "hits": {
+                "5": 19,
+                "10": 26
+              },
+              "hr_percent": {
+                "5": 14.728682170542637,
+                "10": 20.155038759689923
+              }
+            },
+            "reported_percent": {
+              "5": 14.4,
+              "10": 22.1
+            },
+            "diff_points": {
+              "5": 0.3286821705426366,
+              "10": -1.9449612403100787
+            },
+            "passed": true,
+            "notes": []
+          },
+          "anomalies": [],
+          "problems": [],
+          "passed": true
+        },
+        "finished_at": "2026-11-09 11:40:33",
+        "stream_rows": 95965,
+        "files": [
+          "outputs/rebuttal/C2_heldout_fusion/dry_run/streams/qasper_64k__bm25.parquet",
+          "outputs/rebuttal/C2_heldout_fusion/dry_run/streams/qasper_64k__bm25.queries.json",
+          "outputs/rebuttal/C2_heldout_fusion/dry_run/streams/qasper_64k__bm25.check.json"
+        ],
+        "status": "DONE",
+        "seconds": 5.069804415999897
+      }
+    },
+    "novelhopqa__bm25": {
+      "status": "DONE",
+      "seconds": 10.018352270126343,
+      "summary": {
+        "job": "novelhopqa__bm25",
+        "dataset": "novelhopqa",
+        "retriever": "bm25",
+        "max_docs": 2,
+        "timings": {
+          "n_docs": 2,
+          "docs_from_checkpoint": 0,
+          "seconds_scoring": 8.267886458997964,
+          "seconds_total": 8.267988666000747
+        },
+        "check": {
+          "dataset": "novelhopqa",
+          "retriever": "bm25",
+          "n_queries": 145,
+          "full_dataset": false,
+          "identical_top10": 145,
+          "identical_top10_share": 1.0,
+          "hr_ours_published": {
+            "eligible": 145,
+            "hits": {
+              "5": 33,
+              "10": 37
+            },
+            "hr_percent": {
+              "5": 22.758620689655174,
+              "10": 25.517241379310345
+            }
+          },
+          "hr_saved": {
+            "eligible": 145,
+            "hits": {
+              "5": 33,
+              "10": 37
+            },
+            "hr_percent": {
+              "5": 22.758620689655174,
+              "10": 25.517241379310345
+            }
+          },
+          "max_abs_score_diff_identical_rankings": 0.0,
+          "mismatch_examples": [],
+          "expected_metrics": null,
+          "text_only": {
+            "hr": {
+              "eligible": 145,
+              "hits": {
+                "5": 31,
+                "10": 37
+              },
+              "hr_percent": {
+                "5": 21.379310344827587,
+                "10": 25.517241379310345
+              }
+            },
+            "reported_percent": {
+              "5": 16.9,
+              "10": 20.0
+            },
+            "diff_points": {
+              "5": 4.479310344827589,
+              "10": 5.517241379310345
+            },
+            "per_query_file": "outputs/novelhopqa_ablation/500_tokens/llm_cache/novelhopqa/hierarchical/branching_factor_5/chunk_500/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/retrieval_reports/retrieval_results__bm25__mbr_lt1_ln0_lh0_norm_none__per_document.json",
+            "per_query_identical_top10": 145,
+            "passed": true,
+            "notes": []
+          },
+          "anomalies": [],
+          "problems": [],
+          "passed": true
+        },
+        "finished_at": "2026-11-09 11:40:36",
+        "stream_rows": 84721,
+        "files": [
+          "outputs/rebuttal/C2_heldout_fusion/dry_run/streams/novelhopqa__bm25.parquet",
+          "outputs/rebuttal/C2_heldout_fusion/dry_run/streams/novelhopqa__bm25.queries.json",
+          "outputs/rebuttal/C2_heldout_fusion/dry_run/streams/novelhopqa__bm25.check.json"
+        ],
+        "status": "DONE",
+        "seconds": 8.586028624999017
+      }
+    }
+  },
+  "analysis": "2/4 jobs DONE; waiting for group B",
+  "finished_at": "2026-11-09 11:40:40",
+  "exit_code": 0
+}
