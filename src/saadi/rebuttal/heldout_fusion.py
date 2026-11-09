@@ -79,6 +79,12 @@ N_VERIFY_POINTS = 20
 # Dense reproduction gate (task C2, section 4).
 DENSE_HR_TOLERANCE_POINTS = 0.1
 DENSE_MIN_IDENTICAL_TOP10 = 0.99
+# Decided with the user (2026-11-09) after the first server run: Jina's recomputed embeddings differ from the
+# paper's run by about 1e-3 in score (68-83% identical top-10; HR within 0.33 points). For these retrievers the
+# ranking-identity and 0.1-point gates become drift notes, provided HR@5/HR@10 stay within DRIFT_MAX_HR_POINTS of
+# the saved values. Every system of such a pair (Vanilla, published, held-out) uses the same recomputed streams.
+DRIFT_ACCEPTED_RETRIEVERS = ("jina",)
+DRIFT_MAX_HR_POINTS = 0.5
 
 
 def job_name(dataset: str, retriever: str) -> str:
@@ -489,17 +495,18 @@ def reproduction_check(
     }
 
     problems: list[str] = []
+    drift: list[str] = []  # gate failures that only reflect embedding drift (dense retrievers)
     dense = retriever != "bm25"
     if not dense:
         if not all(identical):
             problems.append(f"BM25 top-10 rankings differ from the saved rankings for {n - sum(identical)} of {n} queries")
     else:
         if n and sum(identical) / n < DENSE_MIN_IDENTICAL_TOP10:
-            problems.append(f"identical top-10 for {sum(identical)}/{n} queries (< {DENSE_MIN_IDENTICAL_TOP10:.0%})")
+            drift.append(f"identical top-10 for {sum(identical)}/{n} queries (< {DENSE_MIN_IDENTICAL_TOP10:.0%})")
         for k in ("5", "10"):
             a, b = hr_ours["hr_percent"][k], hr_saved["hr_percent"][k]
             if a is None or b is None or abs(a - b) > DENSE_HR_TOLERANCE_POINTS + 1e-9:
-                problems.append(f"HR@{k} {a} vs saved {b} (tolerance {DENSE_HR_TOLERANCE_POINTS} points)")
+                drift.append(f"HR@{k} {a:.2f} vs saved {b:.2f} (tolerance {DENSE_HR_TOLERANCE_POINTS} points)")
 
     if full_dataset:
         expected = expected_main_metrics(dataset, retriever, repo_root)
@@ -516,7 +523,7 @@ def reproduction_check(
             if not dense and int(row["hits"]) != int(ours_hits):
                 problems.append(f"HR@{k} hits {ours_hits} vs expected {row['hits']}")
             if dense and abs(100.0 * float(row["hr"]) - hr_ours["hr_percent"][str(k)]) > DENSE_HR_TOLERANCE_POINTS + 1e-9:
-                problems.append(f"HR@{k} {hr_ours['hr_percent'][str(k)]:.2f} vs expected {100.0 * float(row['hr']):.2f}")
+                drift.append(f"HR@{k} {hr_ours['hr_percent'][str(k)]:.2f} vs expected {100.0 * float(row['hr']):.2f}")
         out["expected_metrics"] = exp_out
 
     # Text channel alone vs the paper's Vanilla (reported to one decimal in Table 1).
@@ -553,6 +560,26 @@ def reproduction_check(
     vt["notes"] = text_notes
     out["text_only"].update(vt)
 
+    max_hr_gap = max(
+        (
+            abs(hr_ours["hr_percent"][k] - hr_saved["hr_percent"][k])
+            for k in ("5", "10")
+            if hr_ours["hr_percent"][k] is not None and hr_saved["hr_percent"][k] is not None
+        ),
+        default=float("inf"),
+    )
+    out["max_hr_gap_points"] = max_hr_gap
+    out["drift_accepted"] = False
+    if drift:
+        if retriever in DRIFT_ACCEPTED_RETRIEVERS and max_hr_gap <= DRIFT_MAX_HR_POINTS + 1e-9:
+            out["drift_accepted"] = True
+            out["drift_notes"] = drift + [
+                f"accepted: {retriever} is in DRIFT_ACCEPTED_RETRIEVERS and the largest HR gap is {max_hr_gap:.2f} <= {DRIFT_MAX_HR_POINTS} points"
+            ]
+        else:
+            problems.extend(drift)
+            if retriever in DRIFT_ACCEPTED_RETRIEVERS:
+                problems.append(f"largest HR gap {max_hr_gap:.2f} points exceeds the drift limit {DRIFT_MAX_HR_POINTS}")
     out["problems"] = problems
     out["passed"] = not problems
     return out
@@ -1838,11 +1865,20 @@ def write_report(paths: C2Paths, a: dict[str, Any], grid: Grid) -> None:
     for job in a["jobs"]:
         check = json.loads(paths.check_path(job).read_text(encoding="utf-8"))
         to = check["text_only"]
+        drift_mark = " (drift accepted)" if check.get("drift_accepted") else ""
         L.append(
-            f"| {job} | {check['n_queries']} | {check['identical_top10']} | {_f(check['hr_ours_published']['hr_percent']['5'], 2)} / {_f(check['hr_ours_published']['hr_percent']['10'], 2)} | {_f(check['hr_saved']['hr_percent']['5'], 2)} / {_f(check['hr_saved']['hr_percent']['10'], 2)} | {_f(to['hr']['hr_percent']['5'], 2)} / {_f(to['hr']['hr_percent']['10'], 2)} vs {_f(to['reported_percent']['5'])} / {_f(to['reported_percent']['10'])}{'' if to['passed'] else ' (differs)'} |"
+            f"| {job} | {check['n_queries']} | {check['identical_top10']}{drift_mark} | {_f(check['hr_ours_published']['hr_percent']['5'], 2)} / {_f(check['hr_ours_published']['hr_percent']['10'], 2)} | {_f(check['hr_saved']['hr_percent']['5'], 2)} / {_f(check['hr_saved']['hr_percent']['10'], 2)} | {_f(to['hr']['hr_percent']['5'], 2)} / {_f(to['hr']['hr_percent']['10'], 2)} vs {_f(to['reported_percent']['5'])} / {_f(to['reported_percent']['10'])}{'' if to['passed'] else ' (differs)'} |"
         )
     vw = a["workers"].values()
+    drifted = [j for j in a["jobs"] if json.loads(paths.check_path(j).read_text(encoding="utf-8")).get("drift_accepted")]
     L.append("")
+    if drifted:
+        L.append(
+            f"Embedding drift accepted (decided with the authors) for {', '.join(drifted)}: recomputed scores differ from the paper's run by about 1e-3, "
+            f"so near-ties reorder (identical top-10 below 99%), with HR within {DRIFT_MAX_HR_POINTS} points of the saved values. For these pairs every system "
+            "(Vanilla, published weights, held-out weights) is computed from the same recomputed streams, so the comparisons stay paired; the paper's saved values are in the column 'saved'."
+        )
+        L.append("")
     L.append(
         f"Vectorized grid vs the repo function (full rankings, published point + 20 random grid points, seed 42): {sum(w['verify_rankings_different'] for w in vw)} different rankings and {sum(w['verify_hit_rank_different'] for w in vw)} different hit ranks out of {sum(w['verify_rankings_compared'] for w in vw)} compared. Vanilla grid point vs saved text-only top-10: {sum(w['vanilla_top10_mismatch'] for w in vw)} mismatches."
     )
@@ -2014,6 +2050,10 @@ def write_report(paths: C2Paths, a: dict[str, Any], grid: Grid) -> None:
         f"- Sensitivity: median share of the {len(grid.channel_only)} channel settings within 1 HR@10 point of the best: {med('f_share_within_1pt'):.2f}; median HR@10 gap best minus published {float(np.median([r['f_hr10_best'] - r['f_hr10_published'] for r in rows])):.2f} points."
     )
     G.append(f"- Learned pairwise logistic fusion (demonstration): mean HR@10 {mean('learned_hr10'):.1f} vs A1 {mean('a1_hr10'):.1f}.")
+    if drifted:
+        G.append(
+            f"- Embedding drift: {', '.join(drifted)} recomputed with scores about 1e-3 off the paper's run (HR within {DRIFT_MAX_HR_POINTS} points); all their systems use the same recomputed scores."
+        )
     G.append(
         "- Original 100-query tuning sample: "
         + (

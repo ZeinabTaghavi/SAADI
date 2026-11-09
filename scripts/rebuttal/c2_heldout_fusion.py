@@ -632,7 +632,9 @@ def write_group_report(group: str, report: dict[str, Any], paths: hf.C2Paths) ->
                     + ("" if to["passed"] else " (differs)")
                 )
                 ident = f"{c['identical_top10']}/{c['n_queries']}"
-                probs = "; ".join(c.get("problems", [])) or "none"
+                probs = "; ".join(c.get("problems", [])) or (
+                    "drift accepted: " + "; ".join(c.get("drift_notes", [])[:-1]) if c.get("drift_accepted") else "none"
+                )
             else:
                 hr = van = ident = "—"
                 probs = (s.get("traceback", "") or "\n".join(r.get("log_tail", [])))[-300:].replace("\n", " ").replace("|", "/") or "—"
