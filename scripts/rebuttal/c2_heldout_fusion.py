@@ -79,6 +79,10 @@ ANALYSIS_SECONDS_PER_QUERY_CHUNK = 3.5e-4  # per worker: grid + verification, 2.
 BYTES_PER_STREAM_ROW = 150
 
 
+class PreflightError(RuntimeError):
+    """Inputs missing: stop before any job, report as a preflight problem."""
+
+
 def now() -> str:
     return time.strftime("%Y-%m-%d %H:%M:%S")
 
@@ -334,6 +338,17 @@ def simulate_makespan(jobs: list[dict[str, Any]], n_slots: int) -> float:
 def build_plan(paths: hf.C2Paths, group: str, *, dry_run: bool, log, analysis_workers: int = 8) -> dict[str, Any]:
     t0 = time.perf_counter()
     jobs_all = [(d, r) for d, r in hf.ALL_JOBS if (r == "bm25" or not dry_run)]
+    missing = []
+    for d, r in jobs_all:
+        spec = DATASETS[d]
+        for p in (REPO_ROOT / spec.index_json, REPO_ROOT / spec.saved_results_json(r)):
+            if not p.exists() and str(p) not in missing:
+                missing.append(str(p))
+    if missing:
+        raise PreflightError(
+            f"{len(missing)} input files of the paper's runs are missing (cache index.json / saved rankings), e.g. {missing[0]}. "
+            "Copy the outputs/<dataset>_ablation/ folders to this checkout first."
+        )
     counts = {}
     for d in hf.DATASET_KEYS:
         log(f"plan: counting texts of {d} ...")
@@ -703,7 +718,13 @@ def main() -> int:
                     log(f"PREFLIGHT PROBLEM: {p}")
                 exit_code = 2
             else:
-                plan, written = get_plan(paths, group, dry_run=args.dry_run, log=log)
+                try:
+                    plan, written = get_plan(paths, group, dry_run=args.dry_run, log=log)
+                except PreflightError as exc:
+                    pf["problems"].append(str(exc))
+                    pf["ok"] = False
+                    log(f"PREFLIGHT PROBLEM: {exc}")
+                    raise
                 report["plan"] = plan
                 report["plan_written"] = written
                 if written:
@@ -740,6 +761,8 @@ def main() -> int:
                                 report["unexpected"].append(f"{name} (log tail):\n" + "\n".join(r["log_tail"]))
                     if not analysis_gate(group, paths, dry_run=args.dry_run, force=False, workers=args.workers, report=report, log=log):
                         exit_code = 1
+    except PreflightError:
+        exit_code = 2
     except Exception:
         tb = traceback.format_exc()
         log(tb)
