@@ -1,0 +1,18 @@
+{
+ "stage": "07_report",
+ "status": "ok",
+ "commands": [
+  "python3 /home/iataghav/data/SAADI/experiments/probe_baselines/common/final_report.py"
+ ],
+ "seconds": 0,
+ "numbers": {
+  "report": {
+   "final": "/home/iataghav/data/SAADI/experiments/probe_baselines/reports/FINAL.md",
+   "gdoc": "/home/iataghav/data/SAADI/results/probe_baselines/REPORT_FOR_GDOC.md",
+   "lines": 118
+  }
+ },
+ "unexpected": [],
+ "files_written": [],
+ "git_commit": "28eed3a1ee31487f3bf23dcb3470aa0e164e8cfd"
+}

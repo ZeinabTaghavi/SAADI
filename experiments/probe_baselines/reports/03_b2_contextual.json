@@ -1,0 +1,262 @@
+{
+ "stage": "03_b2_contextual",
+ "status": "ok",
+ "commands": [
+  "python3 /home/iataghav/data/SAADI/experiments/probe_baselines/systems/b2_contextual/build.py",
+  "python3 /home/iataghav/data/SAADI/experiments/probe_baselines/systems/b2_contextual/retrieve.py"
+ ],
+ "seconds": 6361,
+ "numbers": {
+  "build": {
+   "window": 262144,
+   "model": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+   "max_tokens": 200,
+   "temperature": 0.0,
+   "seed": 42,
+   "per_book": {
+    "B31": {
+     "chunks": 244,
+     "calls": 244,
+     "visible_last_chunk": 243,
+     "whole_book": true,
+     "book_tokens": 166636,
+     "doc_tokens": 166636,
+     "input_tokens": 40783611,
+     "generated_tokens": 25469,
+     "cached_tokens_reported": 0,
+     "server_counters_this_invocation": {
+      "prefix_cache_queries": 40783611.0,
+      "prefix_cache_hits": 40439088.0,
+      "request_success_total": 244.0,
+      "prompt_tokens_total": 40783611.0,
+      "generation_tokens_total": 25469.0
+     },
+     "context_tokens_median": 103.0,
+     "context_tokens_max": 200,
+     "stopped_at_max_tokens": 2,
+     "seconds_this_invocation": 358.3,
+     "index_chars": 717819
+    },
+    "B43": {
+     "chunks": 246,
+     "calls": 246,
+     "visible_last_chunk": 245,
+     "whole_book": true,
+     "book_tokens": 170429,
+     "doc_tokens": 170429,
+     "input_tokens": 42052668,
+     "generated_tokens": 34948,
+     "cached_tokens_reported": 0,
+     "server_counters_this_invocation": {
+      "prefix_cache_queries": 42052668.0,
+      "prefix_cache_hits": 41700960.0,
+      "request_success_total": 246.0,
+      "prompt_tokens_total": 42052668.0,
+      "generation_tokens_total": 34948.0
+     },
+     "context_tokens_median": 140.0,
+     "context_tokens_max": 200,
+     "stopped_at_max_tokens": 12,
+     "seconds_this_invocation": 415.6,
+     "index_chars": 835541
+    },
+    "B37": {
+     "chunks": 262,
+     "calls": 262,
+     "visible_last_chunk": 261,
+     "whole_book": true,
+     "book_tokens": 169933,
+     "doc_tokens": 169933,
+     "input_tokens": 44643392,
+     "generated_tokens": 35550,
+     "cached_tokens_reported": 0,
+     "server_counters_this_invocation": {
+      "prefix_cache_queries": 44643392.0,
+      "prefix_cache_hits": 44290656.0,
+      "request_success_total": 262.0,
+      "prompt_tokens_total": 44643392.0,
+      "generation_tokens_total": 35550.0
+     },
+     "context_tokens_median": 135.0,
+     "context_tokens_max": 200,
+     "stopped_at_max_tokens": 8,
+     "seconds_this_invocation": 431.9,
+     "index_chars": 891837
+    },
+    "B18": {
+     "chunks": 312,
+     "calls": 312,
+     "visible_last_chunk": 311,
+     "whole_book": true,
+     "book_tokens": 196267,
+     "doc_tokens": 196267,
+     "input_tokens": 61356069,
+     "generated_tokens": 43298,
+     "cached_tokens_reported": 0,
+     "server_counters_this_invocation": {
+      "prefix_cache_queries": 61356069.0,
+      "prefix_cache_hits": 60946800.0,
+      "request_success_total": 312.0,
+      "prompt_tokens_total": 61356069.0,
+      "generation_tokens_total": 43298.0
+     },
+     "context_tokens_median": 136.0,
+     "context_tokens_max": 203,
+     "stopped_at_max_tokens": 12,
+     "seconds_this_invocation": 573.1,
+     "index_chars": 1050583
+    },
+    "B04": {
+     "chunks": 321,
+     "calls": 321,
+     "visible_last_chunk": 320,
+     "whole_book": true,
+     "book_tokens": 220615,
+     "doc_tokens": 220615,
+     "input_tokens": 70962606,
+     "generated_tokens": 41941,
+     "cached_tokens_reported": 0,
+     "server_counters_this_invocation": {
+      "prefix_cache_queries": 70962606.0,
+      "prefix_cache_hits": 70507520.0,
+      "request_success_total": 321.0,
+      "prompt_tokens_total": 70962606.0,
+      "generation_tokens_total": 41941.0
+     },
+     "context_tokens_median": 129,
+     "context_tokens_max": 200,
+     "stopped_at_max_tokens": 9,
+     "seconds_this_invocation": 653.5,
+     "index_chars": 1078889
+    },
+    "B34": {
+     "chunks": 335,
+     "calls": 335,
+     "visible_last_chunk": 334,
+     "whole_book": true,
+     "book_tokens": 222077,
+     "doc_tokens": 222077,
+     "input_tokens": 74529434,
+     "generated_tokens": 41416,
+     "cached_tokens_reported": 0,
+     "server_counters_this_invocation": {
+      "prefix_cache_queries": 74529434.0,
+      "prefix_cache_hits": 74067840.0,
+      "request_success_total": 335.0,
+      "prompt_tokens_total": 74529434.0,
+      "generation_tokens_total": 41416.0
+     },
+     "context_tokens_median": 124,
+     "context_tokens_max": 200,
+     "stopped_at_max_tokens": 6,
+     "seconds_this_invocation": 661.8,
+     "index_chars": 1109054
+    },
+    "B27": {
+     "chunks": 338,
+     "calls": 338,
+     "visible_last_chunk": 337,
+     "whole_book": true,
+     "book_tokens": 217411,
+     "doc_tokens": 217411,
+     "input_tokens": 73612424,
+     "generated_tokens": 47747,
+     "cached_tokens_reported": 0,
+     "server_counters_this_invocation": {
+      "prefix_cache_queries": 73612424.0,
+      "prefix_cache_hits": 73159952.0,
+      "request_success_total": 338.0,
+      "prompt_tokens_total": 73612424.0,
+      "generation_tokens_total": 47747.0
+     },
+     "context_tokens_median": 140.5,
+     "context_tokens_max": 200,
+     "stopped_at_max_tokens": 15,
+     "seconds_this_invocation": 683.4,
+     "index_chars": 1146221
+    },
+    "B61": {
+     "chunks": 357,
+     "calls": 357,
+     "visible_last_chunk": 356,
+     "whole_book": true,
+     "book_tokens": 227130,
+     "doc_tokens": 227130,
+     "input_tokens": 81210798,
+     "generated_tokens": 51756,
+     "cached_tokens_reported": 0,
+     "server_counters_this_invocation": {
+      "prefix_cache_queries": 81210798.0,
+      "prefix_cache_hits": 80740800.0,
+      "request_success_total": 357.0,
+      "prompt_tokens_total": 81210798.0,
+      "generation_tokens_total": 51756.0
+     },
+     "context_tokens_median": 146,
+     "context_tokens_max": 200,
+     "stopped_at_max_tokens": 41,
+     "seconds_this_invocation": 752.7,
+     "index_chars": 1201061
+    },
+    "B26": {
+     "chunks": 384,
+     "calls": 384,
+     "visible_last_chunk": 370,
+     "whole_book": false,
+     "book_tokens": 267977,
+     "doc_tokens": 259812,
+     "input_tokens": 99920587,
+     "generated_tokens": 51959,
+     "cached_tokens_reported": 0,
+     "server_counters_this_invocation": {
+      "prefix_cache_queries": 99920587.0,
+      "prefix_cache_hits": 99371840.0,
+      "request_success_total": 384.0,
+      "prompt_tokens_total": 99920587.0,
+      "generation_tokens_total": 51959.0
+     },
+     "context_tokens_median": 134.5,
+     "context_tokens_max": 200,
+     "stopped_at_max_tokens": 14,
+     "seconds_this_invocation": 895.1,
+     "index_chars": 1286311
+    },
+    "B44": {
+     "chunks": 385,
+     "calls": 385,
+     "visible_last_chunk": 371,
+     "whole_book": false,
+     "book_tokens": 268771,
+     "doc_tokens": 259674,
+     "input_tokens": 100127378,
+     "generated_tokens": 54853,
+     "cached_tokens_reported": 0,
+     "server_counters_this_invocation": {
+      "prefix_cache_queries": 100127378.0,
+      "prefix_cache_hits": 99581952.0,
+      "request_success_total": 385.0,
+      "prompt_tokens_total": 100127378.0,
+      "generation_tokens_total": 54853.0
+     },
+     "context_tokens_median": 142,
+     "context_tokens_max": 200,
+     "stopped_at_max_tokens": 21,
+     "seconds_this_invocation": 914.3,
+     "index_chars": 1307045
+    }
+   },
+   "unexpected": [],
+   "seconds_total": 6350.0
+  },
+  "retrieve": {
+   "personas": 240,
+   "unexpected": []
+  }
+ },
+ "unexpected": [],
+ "files_written": [
+  "/home/iataghav/data/SAADI/outputs/probe_baselines/b2_contextual/contexts/<book>.jsonl",
+  "/home/iataghav/data/SAADI/outputs/probe_baselines/rankings/b2_contextual/<book>.jsonl"
+ ],
+ "git_commit": "28eed3a1ee31487f3bf23dcb3470aa0e164e8cfd"
+}

@@ -1,0 +1,66 @@
+{
+ "stage": "02_b1_oracle",
+ "status": "ok",
+ "commands": [
+  "python3 /home/iataghav/data/SAADI/experiments/probe_baselines/systems/b1_oracle/build.py",
+  "python3 /home/iataghav/data/SAADI/experiments/probe_baselines/systems/b1_oracle/retrieve.py"
+ ],
+ "seconds": 4,
+ "numbers": {
+  "build": {
+   "per_book": {
+    "B31": {
+     "gold_chunks_with_form2": 21,
+     "index_chars": 593280
+    },
+    "B43": {
+     "gold_chunks_with_form2": 21,
+     "index_chars": 667429
+    },
+    "B37": {
+     "gold_chunks_with_form2": 21,
+     "index_chars": 717481
+    },
+    "B18": {
+     "gold_chunks_with_form2": 21,
+     "index_chars": 840718
+    },
+    "B04": {
+     "gold_chunks_with_form2": 21,
+     "index_chars": 882599
+    },
+    "B34": {
+     "gold_chunks_with_form2": 21,
+     "index_chars": 901402
+    },
+    "B27": {
+     "gold_chunks_with_form2": 21,
+     "index_chars": 903157
+    },
+    "B61": {
+     "gold_chunks_with_form2": 21,
+     "index_chars": 959201
+    },
+    "B26": {
+     "gold_chunks_with_form2": 21,
+     "index_chars": 1028413
+    },
+    "B44": {
+     "gold_chunks_with_form2": 21,
+     "index_chars": 1034468
+    }
+   },
+   "appended": 210,
+   "rule": "form 2 appended to the gold chunk of every persona with a reveal (cells 1-4, 6-8); cell 5 unchanged"
+  },
+  "retrieve": {
+   "personas": 240
+  }
+ },
+ "unexpected": [],
+ "files_written": [
+  "/home/iataghav/data/SAADI/outputs/probe_baselines/b1_oracle/books/<book>.json",
+  "/home/iataghav/data/SAADI/outputs/probe_baselines/rankings/b1_oracle/<book>.jsonl"
+ ],
+ "git_commit": "28eed3a1ee31487f3bf23dcb3470aa0e164e8cfd"
+}

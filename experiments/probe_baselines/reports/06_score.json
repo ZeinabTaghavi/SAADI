@@ -1,0 +1,25 @@
+{
+ "stage": "06_score",
+ "status": "ok",
+ "commands": [
+  "python3 /home/iataghav/data/SAADI/experiments/probe_baselines/common/scorer.py score"
+ ],
+ "seconds": 1,
+ "numbers": {
+  "score": {
+   "missing": {
+    "b3_hipporag": "no rankings (stage failed or did not run)",
+    "b4_lqca": "no rankings (stage failed or did not run)"
+   },
+   "saadi_notes": [
+    "SAADI run 0 (published), live: per persona from outputs/probe_bridge/per_persona.jsonl",
+    "SAADI run 1 (p1_ledger), live: per persona from outputs/method_update/p1_ledger/per_persona.jsonl",
+    "SAADI run 1b (p1b_ledger), live: no results found (outputs/method_update/p1b_ledger/per_persona.jsonl and results/method_update/p1b_ledger/table.csv absent)"
+   ],
+   "scores_json": "/home/iataghav/data/SAADI/results/probe_baselines/scores.json"
+  }
+ },
+ "unexpected": [],
+ "files_written": [],
+ "git_commit": "28eed3a1ee31487f3bf23dcb3470aa0e164e8cfd"
+}

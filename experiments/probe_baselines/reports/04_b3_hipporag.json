@@ -1,0 +1,15 @@
+{
+ "stage": "04_b3_hipporag",
+ "status": "FAILED",
+ "commands": [
+  "/home/iataghav/data/SAADI/experiments/probe_baselines/third_party/venv_hipporag/bin/python /home/iataghav/data/SAADI/experiments/probe_baselines/systems/b3_hipporag/build.py"
+ ],
+ "seconds": 0,
+ "numbers": {},
+ "unexpected": [
+  "`/home/iataghav/data/SAADI/experiments/probe_baselines/third_party/venv_hipporag/bin/python /home/iataghav/data/SAADI/experiments/probe_baselines/systems/b3_hipporag/build.py` exited with code 1. Its traceback is in the log lines below.",
+  "Last 50 log lines:\n\n```\nTraceback (most recent call last):\n  File \"/home/iataghav/data/SAADI/experiments/probe_baselines/systems/b3_hipporag/build.py\", line 126, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/home/iataghav/data/SAADI/experiments/probe_baselines/systems/b3_hipporag/build.py\", line 53, in main\n    import hipporag\nModuleNotFoundError: No module named 'hipporag'\n```"
+ ],
+ "files_written": [],
+ "git_commit": "28eed3a1ee31487f3bf23dcb3470aa0e164e8cfd"
+}

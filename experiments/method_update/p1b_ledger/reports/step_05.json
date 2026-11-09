@@ -1,0 +1,48 @@
+{
+  "profile": "p1b_ledger",
+  "step": 5,
+  "title": "Final report",
+  "status": "ok",
+  "commands": [
+    "bash experiments/method_update/p1b_ledger/run_all.sh  (stage 05_report; python stage05_report.py )",
+    "git commit 28eed3a1ee31487f3bf23dcb3470aa0e164e8cfd"
+  ],
+  "numbers": {
+    "verdict": "Run 1b: bridge 24 of 90 in cells 1-3 (run 1: 14/90); retrieval flat at fixed weights.",
+    "bridge_cells_1_3": [
+      24,
+      90
+    ],
+    "joins": [
+      34,
+      52
+    ],
+    "in_prompt": [
+      121,
+      174
+    ],
+    "tracker": "Tracker row 1b\n\nResult: Bridge 24 of 90 (run 1: 14/90); joins into gold record 34/52; earlier record in prompt 121/174; live HR@10 cells 1-3 6% vs frozen 3%; cell 5 0; 3.84 h.\n\nConclusion: The link formed in 24 of 90 characters of cells 1-3 (run 1: 14/90, run 0: 1/90). Retrieval did not clearly follow.\n",
+    "stage_seconds": 0
+  },
+  "files_written": [
+    "/mnt/data/zeinab/SAADI/experiments/method_update/p1b_ledger/reports/FINAL.md",
+    "/mnt/data/zeinab/SAADI/results/method_update/p1b_ledger/REPORT_FOR_GDOC.md",
+    "/mnt/data/zeinab/SAADI/results/method_update/p1b_ledger/TRACKER_ROW_1b.md",
+    "/mnt/data/zeinab/SAADI/results/method_update/p1b_ledger/table.md",
+    "/mnt/data/zeinab/SAADI/results/method_update/p1b_ledger/table.csv"
+  ],
+  "unexpected": [],
+  "versions": {
+    "python": "3.12.3",
+    "platform": "Linux-6.17.0-23-generic-x86_64-with-glibc2.39",
+    "numpy": "2.3.5",
+    "pandas": "3.0.1",
+    "yaml": "6.0.3",
+    "saadi": "0.1.0",
+    "git_commit": "28eed3a1ee31487f3bf23dcb3470aa0e164e8cfd",
+    "torch": "2.11.0+cu129",
+    "transformers": "4.57.6",
+    "gliner": "0.2.30",
+    "vllm": "0.23.0"
+  }
+}

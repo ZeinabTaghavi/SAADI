@@ -1,0 +1,88 @@
+{
+ "stage": "01_b0_vanilla",
+ "status": "ok",
+ "commands": [
+  "python3 /home/iataghav/data/SAADI/experiments/probe_baselines/systems/b0_vanilla/build.py",
+  "python3 /home/iataghav/data/SAADI/experiments/probe_baselines/systems/b0_vanilla/retrieve.py"
+ ],
+ "seconds": 4,
+ "numbers": {
+  "build": {
+   "index": "in-memory BM25 over the raw chunk texts (built per query, as in the probe)",
+   "index_chars": {
+    "B31": 593067,
+    "B43": 667227,
+    "B37": 717260,
+    "B18": 840509,
+    "B04": 882386,
+    "B34": 901193,
+    "B27": 902949,
+    "B61": 958986,
+    "B26": 1028207,
+    "B44": 1034251
+   }
+  },
+  "retrieve": {
+   "per_book": {
+    "B31": {
+     "chunks": 244,
+     "index_chars": 593067,
+     "seconds": 0.49
+    },
+    "B43": {
+     "chunks": 246,
+     "index_chars": 667227,
+     "seconds": 0.26
+    },
+    "B37": {
+     "chunks": 262,
+     "index_chars": 717260,
+     "seconds": 0.27
+    },
+    "B18": {
+     "chunks": 312,
+     "index_chars": 840509,
+     "seconds": 0.34
+    },
+    "B04": {
+     "chunks": 321,
+     "index_chars": 882386,
+     "seconds": 0.34
+    },
+    "B34": {
+     "chunks": 335,
+     "index_chars": 901193,
+     "seconds": 0.36
+    },
+    "B27": {
+     "chunks": 338,
+     "index_chars": 902949,
+     "seconds": 0.35
+    },
+    "B61": {
+     "chunks": 357,
+     "index_chars": 958986,
+     "seconds": 0.38
+    },
+    "B26": {
+     "chunks": 384,
+     "index_chars": 1028207,
+     "seconds": 0.45
+    },
+    "B44": {
+     "chunks": 385,
+     "index_chars": 1034251,
+     "seconds": 0.39
+    }
+   },
+   "personas": 240,
+   "seconds": 3.7,
+   "unexpected": []
+  }
+ },
+ "unexpected": [],
+ "files_written": [
+  "/home/iataghav/data/SAADI/outputs/probe_baselines/rankings/b0_vanilla/<book>.jsonl"
+ ],
+ "git_commit": "28eed3a1ee31487f3bf23dcb3470aa0e164e8cfd"
+}

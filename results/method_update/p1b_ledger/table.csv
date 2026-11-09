@@ -1,0 +1,9 @@
+run,cell,n,hr10_vanilla,hr10_no_memory,hr10_frozen,hr10_live,hr5_live,median_live,bridge_formed
+run1b_p1b_ledger,1,30,3.33,0.0,3.33,10.0,3.33,67.5,13
+run1b_p1b_ledger,2,30,3.33,3.33,3.33,3.33,0.0,82.0,8
+run1b_p1b_ledger,3,30,3.33,3.33,3.33,3.33,0.0,148.0,3
+run1b_p1b_ledger,4,30,6.67,3.33,6.67,3.33,0.0,111.5,8
+run1b_p1b_ledger,5,30,0.0,0.0,0.0,0.0,0.0,122.0,0
+run1b_p1b_ledger,6,30,0.0,0.0,0.0,3.33,0.0,118.0,7
+run1b_p1b_ledger,7,30,0.0,0.0,0.0,0.0,0.0,130.0,17
+run1b_p1b_ledger,8,30,3.33,6.67,10.0,13.33,3.33,95.0,11

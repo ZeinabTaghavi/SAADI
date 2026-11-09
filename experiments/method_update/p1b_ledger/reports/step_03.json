@@ -1,0 +1,879 @@
+{
+  "profile": "p1b_ledger",
+  "step": 3,
+  "title": "Memory check (run 1b / run 1 / run 0)",
+  "status": "ok",
+  "commands": [
+    "bash experiments/method_update/p1b_ledger/run_all.sh  (stage 03_memory_check; python stage03_memory_check.py )",
+    "git commit 28eed3a1ee31487f3bf23dcb3470aa0e164e8cfd"
+  ],
+  "numbers": {
+    "pooled": {
+      "cells_1_3": {
+        "form1_present_after_gold": {
+          "run1b": [
+            83,
+            90
+          ],
+          "run1": [
+            81,
+            90
+          ],
+          "run0": [
+            51,
+            90
+          ]
+        },
+        "form2_present_after_reveal": {
+          "run1b": [
+            72,
+            90
+          ],
+          "run1": [
+            69,
+            90
+          ],
+          "run0": [
+            13,
+            90
+          ]
+        },
+        "both_present_final": {
+          "run1b": [
+            72,
+            90
+          ],
+          "run1": [
+            65,
+            90
+          ],
+          "run0": [
+            57,
+            90
+          ]
+        },
+        "earlier_record_in_prompt_at_link_step": {
+          "run1b": [
+            68,
+            90
+          ],
+          "run1": [
+            41,
+            90
+          ],
+          "run0": [
+            2,
+            90
+          ]
+        },
+        "joined_when_both_present": {
+          "run1b": [
+            51,
+            90
+          ],
+          "run1": [
+            46,
+            90
+          ],
+          "run0": [
+            28,
+            90
+          ]
+        },
+        "bridge": {
+          "run1b": [
+            24,
+            90
+          ],
+          "run1": [
+            14,
+            90
+          ],
+          "run0": [
+            1,
+            90
+          ]
+        }
+      },
+      "reveal": {
+        "form1_present_after_gold": {
+          "run1b": [
+            181,
+            210
+          ],
+          "run1": [
+            164,
+            210
+          ],
+          "run0": [
+            107,
+            210
+          ]
+        },
+        "form2_present_after_reveal": {
+          "run1b": [
+            145,
+            210
+          ],
+          "run1": [
+            136,
+            210
+          ],
+          "run0": [
+            39,
+            210
+          ]
+        },
+        "both_present_final": {
+          "run1b": [
+            139,
+            210
+          ],
+          "run1": [
+            121,
+            210
+          ],
+          "run0": [
+            126,
+            210
+          ]
+        },
+        "earlier_record_in_prompt_at_link_step": {
+          "run1b": [
+            121,
+            210
+          ],
+          "run1": [
+            82,
+            210
+          ],
+          "run0": [
+            8,
+            210
+          ]
+        },
+        "joined_when_both_present": {
+          "run1b": [
+            106,
+            210
+          ],
+          "run1": [
+            90,
+            210
+          ],
+          "run0": [
+            68,
+            210
+          ]
+        },
+        "bridge": {
+          "run1b": [
+            67,
+            210
+          ],
+          "run1": [
+            42,
+            210
+          ],
+          "run0": [
+            6,
+            210
+          ]
+        }
+      }
+    },
+    "join_direction_cells_1_3": {
+      "run1b": {
+        "form2_into_form1": 34,
+        "form1_into_form2": 18,
+        "never_joined": 38
+      },
+      "run1": {
+        "never_joined": 39,
+        "form1_into_form2": 25,
+        "form2_into_form1": 24,
+        "no_record": 2
+      },
+      "run0": {
+        "never_joined": 29,
+        "no_record": 33,
+        "form1_into_form2": 15,
+        "form2_into_form1": 13
+      }
+    },
+    "earlier_record": {
+      "run1b": {
+        "in the prompt": 121,
+        "not matched by recall": 21,
+        "no earlier record": 36,
+        "cut by the cap": 32
+      },
+      "run1": {
+        "not matched by recall": 50,
+        "in the prompt": 82,
+        "no earlier record": 51,
+        "cut by the cap": 27
+      },
+      "run0": {
+        "not in the prompt": 71,
+        "no earlier record": 131,
+        "in the prompt": 8
+      }
+    },
+    "form2_at_reveal": {
+      "run1b": {
+        "model SAME_AS rejected (no_shared_token_or_sentence) -> record": 11,
+        "model NEW -> record": 84,
+        "model SAME_AS -> joined (model) into the form-1 record": 17,
+        "form 2 not a candidate": 3,
+        "model NOT_AN_ENTITY -> not_an_entity": 23,
+        "model NEW -> stub": 5,
+        "model SAME_AS rejected (no_shared_token_or_sentence) -> stub": 4,
+        "model SAME_AS rejected (type_conflict) -> record": 2,
+        "model SAME_AS rejected (type_conflict) -> stub": 1
+      },
+      "run1": {
+        "model SAME_AS -> joined (model) into another record": 9,
+        "model NEW -> record": 80,
+        "model SAME_AS -> joined (model) into the form-1 record": 18,
+        "form 2 not a candidate": 7,
+        "model NOT_AN_ENTITY -> not_an_entity": 29,
+        "model NEW -> stub": 7
+      }
+    },
+    "form1_location": {
+      "run1b": {
+        "description": 34,
+        "alias": 5
+      },
+      "run1": {
+        "description": 42,
+        "alias": 5
+      }
+    },
+    "p1b_totals": {
+      "created_record": 2542,
+      "same_as_unresolved": 79,
+      "new_described": 3017,
+      "not_an_entity": 2232,
+      "described_records": 12564,
+      "cut_by_budget": 4,
+      "aliases_added": 1418,
+      "same_as_rejected_no_shared_token_or_sentence": 1288,
+      "same_as_rejected": 2192,
+      "same_as_accepted_shared_token": 16164,
+      "same_as": 17099,
+      "described_existing": 9628,
+      "alias_rejected_not_a_span": 9811,
+      "description_replacements": 6262,
+      "same_as_rejected_type_conflict": 559,
+      "created_stub": 1401,
+      "new_stub": 1401,
+      "promotions": 396,
+      "redirected": 2991,
+      "auto_join_blocked_by_conflict": 1099,
+      "redirected_duplicates_merged": 385,
+      "described_match_rejected_conflict": 292,
+      "alias_rejected_title_conflict": 322,
+      "same_as_accepted_same_sentence": 302,
+      "auto_join": 633,
+      "new_but_exists": 486,
+      "alias_rejected_type_conflict": 36,
+      "auto_join_ambiguous": 95,
+      "described_name_was_alias": 288,
+      "same_as_rejected_title_conflict": 345,
+      "llm_additions": 31,
+      "omitted_candidates": 3,
+      "alias_rejected_descriptive": 7,
+      "stub_described_but_cut": 1
+    },
+    "same_as_total": 17099,
+    "rejected_total": 2192,
+    "title_conflicts": 6,
+    "title_conflicts_run1": 120,
+    "audit_sample": [
+      {
+        "doc_id": "B04",
+        "step": 304,
+        "chunk_id": "B04:304",
+        "n": 3,
+        "candidate": "Oliver",
+        "label": "person",
+        "decision": "SAME_AS",
+        "target": "E0001",
+        "reason": "the chunk refers to him as the boy who is being addressed and whose tears fall, consistent with prior records",
+        "matched_by": "number",
+        "model_decision": "SAME_AS",
+        "model_target": "E0001",
+        "acceptance": "shared_token",
+        "resolved_id": "E0001",
+        "resolved_name": "Oliver Twist",
+        "outcome": "linked"
+      },
+      {
+        "doc_id": "B04",
+        "step": 316,
+        "chunk_id": "B04:316",
+        "n": 6,
+        "candidate": "Oliver",
+        "label": "person",
+        "decision": "SAME_AS",
+        "target": "E0001",
+        "reason": "the chunk refers to him as \"Oliver\" and he is the boy who was brought to the prison cell",
+        "matched_by": "number",
+        "model_decision": "SAME_AS",
+        "model_target": "E0001",
+        "acceptance": "shared_token",
+        "resolved_id": "E0001",
+        "resolved_name": "Oliver Twist",
+        "outcome": "linked"
+      },
+      {
+        "doc_id": "B18",
+        "step": 18,
+        "chunk_id": "B18:18",
+        "n": 12,
+        "candidate": "Tringham",
+        "label": "person",
+        "decision": "SAME_AS",
+        "target": "E0019",
+        "reason": "the antiquary who previously mentioned the d’Urbervilles, referred to as \"Pa’son Tringham\" in the chunk and previously recorded",
+        "matched_by": "number",
+        "model_decision": "SAME_AS",
+        "model_target": "E0019",
+        "acceptance": "shared_token",
+        "resolved_id": "E0019",
+        "resolved_name": "Parson Tringham",
+        "outcome": "linked"
+      },
+      {
+        "doc_id": "B18",
+        "step": 143,
+        "chunk_id": "B18:143",
+        "n": 3,
+        "candidate": "The Gilded Antler",
+        "label": "named object",
+        "decision": "SAME_AS",
+        "target": "E0145",
+        "reason": "the chunk states \"The Gilded Antler belonged to Wamanpuma\", and the record E0145 identifies it as a public house on the high road at Kelmgate, which matches the context",
+        "matched_by": "number",
+        "model_decision": "SAME_AS",
+        "model_target": "E0145",
+        "acceptance": "shared_token",
+        "resolved_id": "E0145",
+        "resolved_name": "The Gilded Antler",
+        "outcome": "linked"
+      },
+      {
+        "doc_id": "B26",
+        "step": 30,
+        "chunk_id": "B26:30",
+        "n": 3,
+        "candidate": "Eliza",
+        "label": "person",
+        "decision": "SAME_AS",
+        "target": "E0006",
+        "reason": "the chunk confirms she is the mother of Harry and is fleeing with him",
+        "matched_by": "number",
+        "model_decision": "SAME_AS",
+        "model_target": "E0006",
+        "acceptance": "shared_token",
+        "resolved_id": "E0006",
+        "resolved_name": "Eliza",
+        "outcome": "linked"
+      },
+      {
+        "doc_id": "B26",
+        "step": 89,
+        "chunk_id": "B26:89",
+        "n": 4,
+        "candidate": "George",
+        "label": "person",
+        "decision": "SAME_AS",
+        "target": "E0044",
+        "reason": "auto-join: the title-stripped name equals a shown record's name or alias",
+        "matched_by": "number",
+        "model_decision": "SAME_AS",
+        "model_target": "E0036",
+        "acceptance": "no_shared_token_or_sentence",
+        "rejected_target_id": "E0036",
+        "rejected_target_name": "Harry",
+        "auto_join": {
+          "id": "E0044",
+          "name": "George Harris"
+        },
+        "model_reason": "the chunk mentions \"George\" in the context of a runaway mulatto boy, and E0036 is Harry, who is a young boy; but the name \"George\" appears in the handbill as the runaway, and E0036 is Harry, not George; however, E0044 is George Harris, and the chunk refers to a \"mulatto boy, George\" who ran away—this matches E0044's name and status as a runaway enslaved man; the description in E0044 includes \"a young master who is always ready for anything that makes him of importance\", but the current chunk describes a \"mulatto boy\" who ran away, which fits George Harris's identity as a fugitive; thus, the name \"George\" in the handbill refers to George Harris",
+        "resolved_id": "E0044",
+        "resolved_name": "George Harris",
+        "outcome": "linked"
+      },
+      {
+        "doc_id": "B27",
+        "step": 198,
+        "chunk_id": "B27:198",
+        "n": 5,
+        "candidate": "London",
+        "label": "place",
+        "decision": "SAME_AS",
+        "target": "E0018",
+        "reason": "the chunk mentions London as the destination for Fanny's departure, matching the record's description",
+        "matched_by": "number",
+        "model_decision": "SAME_AS",
+        "model_target": "E0018",
+        "acceptance": "shared_token",
+        "resolved_id": "E0018",
+        "resolved_name": "London",
+        "outcome": "linked"
+      },
+      {
+        "doc_id": "B27",
+        "step": 283,
+        "chunk_id": "B27:283",
+        "n": 4,
+        "candidate": "Crown",
+        "label": "place",
+        "decision": "SAME_AS",
+        "target": "E0289",
+        "reason": "the chunk mentions Mr. Crawford meeting an acquaintance at the Crown, matching the recalled record",
+        "matched_by": "number",
+        "model_decision": "SAME_AS",
+        "model_target": "E0289",
+        "acceptance": "shared_token",
+        "resolved_id": "E0289",
+        "resolved_name": "Crown",
+        "outcome": "linked"
+      },
+      {
+        "doc_id": "B31",
+        "step": 72,
+        "chunk_id": "B31:72",
+        "n": 4,
+        "candidate": "free States",
+        "label": "place",
+        "decision": "SAME_AS",
+        "target": "E0049",
+        "reason": "the free States are referenced as the destination on the river, consistent with the river's role as a path to freedom",
+        "matched_by": "number",
+        "model_decision": "SAME_AS",
+        "model_target": "E0049",
+        "acceptance": "same_sentence",
+        "acceptance_detail": "The lot of\ntowheads was troubles we was going to get into with\nquarrelsome people and all kinds of mean folks, but if we\nminded our business and didn’t talk back and aggravate\nthem, we would pull thro",
+        "resolved_id": "E0049",
+        "resolved_name": "The river",
+        "outcome": "linked",
+        "alias_added": "free States"
+      },
+      {
+        "doc_id": "B31",
+        "step": 108,
+        "chunk_id": "B31:108",
+        "n": 1,
+        "candidate": "Jim",
+        "label": "person",
+        "decision": "SAME_AS",
+        "target": "E0015",
+        "reason": "the chunk refers to Jim as \"Jim\" and describes his actions and relationship to Huck, matching the record",
+        "matched_by": "number",
+        "model_decision": "SAME_AS",
+        "model_target": "E0015",
+        "acceptance": "shared_token",
+        "resolved_id": "E0015",
+        "resolved_name": "Jim",
+        "outcome": "linked"
+      },
+      {
+        "doc_id": "B31",
+        "step": 139,
+        "chunk_id": "B31:139",
+        "n": 2,
+        "candidate": "Peter",
+        "label": "person",
+        "decision": "SAME_AS",
+        "target": "E0269",
+        "reason": "the chunk confirms Peter was the dying brother, left a letter, and had a family connection to Harvey and William",
+        "matched_by": "number",
+        "model_decision": "SAME_AS",
+        "model_target": "E0269",
+        "acceptance": "shared_token",
+        "resolved_id": "E0269",
+        "resolved_name": "Peter",
+        "outcome": "linked"
+      },
+      {
+        "doc_id": "B31",
+        "step": 176,
+        "chunk_id": "B31:176",
+        "n": 5,
+        "candidate": "Jim",
+        "label": "person",
+        "decision": "SAME_AS",
+        "target": "E0015",
+        "reason": "the chunk uses \"Jim\" as a direct reference to the same character previously established",
+        "matched_by": "number",
+        "model_decision": "SAME_AS",
+        "model_target": "E0015",
+        "acceptance": "shared_token",
+        "resolved_id": "E0015",
+        "resolved_name": "Jim",
+        "outcome": "linked"
+      },
+      {
+        "doc_id": "B34",
+        "step": 92,
+        "chunk_id": "B34:92",
+        "n": 2,
+        "candidate": "Mr. Elton",
+        "label": "person",
+        "decision": "SAME_AS",
+        "target": "E0017",
+        "reason": "the chunk describes his recent confession and current isolation, matching his prior record",
+        "matched_by": "number",
+        "model_decision": "SAME_AS",
+        "model_target": "E0017",
+        "acceptance": "shared_token",
+        "resolved_id": "E0017",
+        "resolved_name": "Mr. Elton",
+        "outcome": "linked"
+      },
+      {
+        "doc_id": "B34",
+        "step": 121,
+        "chunk_id": "B34:121",
+        "n": 3,
+        "candidate": "Mr. Elton",
+        "label": "title",
+        "decision": "SAME_AS",
+        "target": "E0017",
+        "reason": "the chunk confirms Mr. Elton’s engagement to Miss Hawkins and his changed demeanor, matching his prior role as the one who wrote the charade",
+        "matched_by": "number",
+        "model_decision": "SAME_AS",
+        "model_target": "E0017",
+        "acceptance": "shared_token",
+        "resolved_id": "E0017",
+        "resolved_name": "Mr. Elton",
+        "outcome": "linked"
+      },
+      {
+        "doc_id": "B34",
+        "step": 149,
+        "chunk_id": "B34:149",
+        "n": 5,
+        "candidate": "Mrs. Weston",
+        "label": "person",
+        "decision": "SAME_AS",
+        "target": "E0006",
+        "reason": "the chunk shows her speaking about the carriage and forming suspicions, matching her role as a thoughtful observer",
+        "matched_by": "number",
+        "model_decision": "SAME_AS",
+        "model_target": "E0006",
+        "acceptance": "shared_token",
+        "resolved_id": "E0006",
+        "resolved_name": "Mrs. Weston",
+        "outcome": "linked"
+      },
+      {
+        "doc_id": "B34",
+        "step": 188,
+        "chunk_id": "B34:188",
+        "n": 6,
+        "candidate": "Miss Woodhouse",
+        "label": "person",
+        "decision": "SAME_AS",
+        "target": "E0001",
+        "reason": "the chunk refers to Emma as \"Miss Woodhouse\" and describes her reactions, matching the record",
+        "matched_by": "number",
+        "model_decision": "SAME_AS",
+        "model_target": "E0001",
+        "acceptance": "shared_token",
+        "resolved_id": "E0001",
+        "resolved_name": "Emma",
+        "outcome": "linked"
+      },
+      {
+        "doc_id": "B37",
+        "step": 75,
+        "chunk_id": "B37:75",
+        "n": 4,
+        "candidate": "Darcy",
+        "label": "person",
+        "decision": "SAME_AS",
+        "target": "E0021",
+        "reason": "recalled record with same name and description of having silent contempt for the Bennet family and being the subject of Mr. Collins's intended introduction",
+        "matched_by": "number",
+        "model_decision": "SAME_AS",
+        "model_target": "E0021",
+        "acceptance": "shared_token",
+        "resolved_id": "E0021",
+        "resolved_name": "Darcy",
+        "outcome": "linked"
+      },
+      {
+        "doc_id": "B37",
+        "step": 94,
+        "chunk_id": "B37:94",
+        "n": 6,
+        "candidate": "Jane",
+        "label": "person",
+        "decision": "SAME_AS",
+        "target": "E0042",
+        "reason": "the chunk refers to Jane as the sister whose happiness is at stake, and she is already recorded",
+        "matched_by": "number",
+        "model_decision": "SAME_AS",
+        "model_target": "E0042",
+        "acceptance": "shared_token",
+        "resolved_id": "E0042",
+        "resolved_name": "Jane",
+        "outcome": "linked"
+      },
+      {
+        "doc_id": "B37",
+        "step": 187,
+        "chunk_id": "B37:187",
+        "n": 7,
+        "candidate": "Jane",
+        "label": "person",
+        "decision": "SAME_AS",
+        "target": "E0042",
+        "reason": "the chunk mentions Jane’s letter and her role in conveying the news about Lydia, consistent with her prior record",
+        "matched_by": "number",
+        "model_decision": "SAME_AS",
+        "model_target": "E0042",
+        "acceptance": "shared_token",
+        "resolved_id": "E0042",
+        "resolved_name": "Jane",
+        "outcome": "linked"
+      },
+      {
+        "doc_id": "B37",
+        "step": 230,
+        "chunk_id": "B37:230",
+        "n": 4,
+        "candidate": "Elizabeth",
+        "label": "person",
+        "decision": "SAME_AS",
+        "target": "E0022",
+        "reason": "the chunk refers to Elizabeth as the one hoping to be joined by Darcy, consistent with her role in the history",
+        "matched_by": "number",
+        "model_decision": "SAME_AS",
+        "model_target": "E0022",
+        "acceptance": "shared_token",
+        "resolved_id": "E0022",
+        "resolved_name": "Elizabeth",
+        "outcome": "linked"
+      },
+      {
+        "doc_id": "B43",
+        "step": 21,
+        "chunk_id": "B43:21",
+        "n": 9,
+        "candidate": "Hareton Earnshaw",
+        "label": "person",
+        "decision": "SAME_AS",
+        "target": "E0007",
+        "reason": "he is the young man at Wuthering Heights and the last of the Earnshaws",
+        "matched_by": "number",
+        "model_decision": "SAME_AS",
+        "model_target": "E0007",
+        "acceptance": "shared_token",
+        "resolved_id": "E0007",
+        "resolved_name": "Hareton Earnshaw",
+        "outcome": "linked"
+      },
+      {
+        "doc_id": "B43",
+        "step": 81,
+        "chunk_id": "B43:81",
+        "n": 2,
+        "candidate": "Cathy",
+        "label": "person",
+        "decision": "SAME_AS",
+        "target": "E0019",
+        "reason": "the chunk uses \"Cathy\" as a nickname for Miss Cathy, and she is described as Catherine's daughter, matching E0019's record",
+        "matched_by": "number",
+        "model_decision": "SAME_AS",
+        "model_target": "E0019",
+        "acceptance": "shared_token",
+        "resolved_id": "E0019",
+        "resolved_name": "Miss Cathy",
+        "outcome": "linked"
+      },
+      {
+        "doc_id": "B43",
+        "step": 115,
+        "chunk_id": "B43:115",
+        "n": 3,
+        "candidate": "Catherine",
+        "label": "person",
+        "decision": "SAME_AS",
+        "target": "E0016",
+        "reason": "Catherine Earnshaw is the central figure in the emotional reunion, and her name is used interchangeably with \"Cathy\" and \"Catherine Linton\"",
+        "matched_by": "number",
+        "model_decision": "SAME_AS",
+        "model_target": "E0016",
+        "acceptance": "shared_token",
+        "resolved_id": "E0016",
+        "resolved_name": "Catherine Earnshaw",
+        "outcome": "linked"
+      },
+      {
+        "doc_id": "B43",
+        "step": 139,
+        "chunk_id": "B43:139",
+        "n": 5,
+        "candidate": "Hareton",
+        "label": "person",
+        "decision": "SAME_AS",
+        "target": "E0007",
+        "reason": "the chunk refers to Hareton as a strong lad of eighteen, matching the record's description",
+        "matched_by": "number",
+        "model_decision": "SAME_AS",
+        "model_target": "E0007",
+        "acceptance": "shared_token",
+        "resolved_id": "E0007",
+        "resolved_name": "Hareton Earnshaw",
+        "outcome": "linked"
+      },
+      {
+        "doc_id": "B43",
+        "step": 149,
+        "chunk_id": "B43:149",
+        "n": 3,
+        "candidate": "Mr. Edgar",
+        "label": "person",
+        "decision": "SAME_AS",
+        "target": "E0053",
+        "reason": "the chunk refers to Mr. Edgar as the father of Cathy and the one who says \"if I can get him\" about Linton's return",
+        "matched_by": "number",
+        "model_decision": "SAME_AS",
+        "model_target": "E0053",
+        "acceptance": "shared_token",
+        "resolved_id": "E0053",
+        "resolved_name": "Master Linton",
+        "outcome": "linked"
+      },
+      {
+        "doc_id": "B44",
+        "step": 6,
+        "chunk_id": "B44:6",
+        "n": 4,
+        "candidate": "Bessie",
+        "label": "person",
+        "decision": "SAME_AS",
+        "target": "E0019",
+        "reason": "the chunk uses \"Bessie\" and the record E0019 identifies her as the nurse",
+        "matched_by": "number",
+        "model_decision": "SAME_AS",
+        "model_target": "E0019",
+        "acceptance": "shared_token",
+        "resolved_id": "E0019",
+        "resolved_name": "Bessie",
+        "outcome": "linked"
+      },
+      {
+        "doc_id": "B44",
+        "step": 74,
+        "chunk_id": "B44:74",
+        "n": 6,
+        "candidate": "John Reed",
+        "label": "person",
+        "decision": "SAME_AS",
+        "target": "E0021",
+        "reason": "John Reed is the cousin of Jane Eyre, previously mentioned in the history and now described in detail",
+        "matched_by": "number",
+        "model_decision": "SAME_AS",
+        "model_target": "E0021",
+        "acceptance": "shared_token",
+        "resolved_id": "E0021",
+        "resolved_name": "John",
+        "outcome": "linked"
+      },
+      {
+        "doc_id": "B44",
+        "step": 147,
+        "chunk_id": "B44:147",
+        "n": 4,
+        "candidate": "AdÃ¨le",
+        "label": "person",
+        "decision": "SAME_AS",
+        "target": "E0163",
+        "reason": "the chunk refers to her as Mr. Rochester’s ward and describes her interaction with Henry Lynn, matching the record",
+        "matched_by": "number",
+        "model_decision": "SAME_AS",
+        "model_target": "E0163",
+        "acceptance": "shared_token",
+        "resolved_id": "E0163",
+        "resolved_name": "AdÃ¨le",
+        "outcome": "linked"
+      },
+      {
+        "doc_id": "B61",
+        "step": 15,
+        "chunk_id": "B61:15",
+        "n": 2,
+        "candidate": "Nozdryov",
+        "label": "person",
+        "decision": "SAME_AS",
+        "target": "E0004",
+        "reason": "the chunk describes him as a flamboyant, carefree man who exposes Tchitchikov, matching the prior record's description",
+        "matched_by": "number",
+        "model_decision": "SAME_AS",
+        "model_target": "E0004",
+        "acceptance": "shared_token",
+        "resolved_id": "E0004",
+        "resolved_name": "Nozdryov",
+        "outcome": "linked"
+      },
+      {
+        "doc_id": "B61",
+        "step": 274,
+        "chunk_id": "B61:274",
+        "n": 7,
+        "candidate": "Alexasha",
+        "label": "person",
+        "decision": "SAME_AS",
+        "target": "E0574",
+        "reason": "The chunk mentions Alexasha as the one who announces Platon Mihailovitch’s arrival, matching the stub",
+        "matched_by": "number",
+        "model_decision": "SAME_AS",
+        "model_target": "E0574",
+        "acceptance": "shared_token",
+        "resolved_id": "E0574",
+        "resolved_name": "Alexasha",
+        "outcome": "promoted"
+      }
+    ],
+    "aliases": {
+      "run1b": [
+        1846,
+        22,
+        0.4681714430636571
+      ],
+      "run1": [
+        3955,
+        80,
+        1.4376590330788803
+      ]
+    },
+    "stage_seconds": 48
+  },
+  "files_written": [
+    "/mnt/data/zeinab/SAADI/experiments/method_update/p1b_ledger/reports/step_03_run1_code.md",
+    "/mnt/data/zeinab/SAADI/outputs/method_update/p1b_ledger/personas_memory.jsonl",
+    "/mnt/data/zeinab/SAADI/outputs/method_update/p1b_ledger/same_as_decisions.jsonl",
+    "/mnt/data/zeinab/SAADI/outputs/method_update/p1b_ledger/title_conflicts.jsonl"
+  ],
+  "unexpected": [],
+  "versions": {
+    "python": "3.12.3",
+    "platform": "Linux-6.17.0-23-generic-x86_64-with-glibc2.39",
+    "numpy": "2.3.5",
+    "pandas": "3.0.1",
+    "yaml": "6.0.3",
+    "saadi": "0.1.0",
+    "git_commit": "28eed3a1ee31487f3bf23dcb3470aa0e164e8cfd",
+    "torch": "2.11.0+cu129",
+    "transformers": "4.57.6",
+    "gliner": "0.2.30",
+    "vllm": "0.23.0"
+  }
+}

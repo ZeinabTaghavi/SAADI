@@ -1,0 +1,152 @@
+{
+  "profile": "p1b_ledger",
+  "step": 1,
+  "title": "Candidate net at threshold 0.3 (CPU)",
+  "status": "ok",
+  "commands": [
+    "bash experiments/method_update/p1b_ledger/run_all.sh  (stage 01_gate; python stage01_gate.py )",
+    "git commit e4373b889608b1a08574bc5205c75cf7f863b5a0",
+    "candidate net: gliner model=urchade/gliner_large-v2.1 device=cpu threshold=0.3 labels=['person', 'place', 'organization', 'named object', 'title']"
+  ],
+  "numbers": {
+    "candidate_net": {
+      "model": "urchade/gliner_large-v2.1",
+      "labels": [
+        "person",
+        "place",
+        "organization",
+        "named object",
+        "title"
+      ],
+      "threshold": 0.3,
+      "device": "cpu",
+      "window_words": 200,
+      "max_candidates": 40,
+      "max_span_words": 6,
+      "versions": {
+        "torch": "2.11.0+cu129",
+        "gliner": "0.2.30",
+        "transformers": "4.57.6"
+      }
+    },
+    "form1_rate": 0.9708333333333333,
+    "form2_rate": 0.8285714285714286,
+    "per_family": {
+      "A": {
+        "form1_n": 150,
+        "form1_caught": 150,
+        "form2_n": 120,
+        "form2_caught": 114
+      },
+      "B": {
+        "form1_n": 30,
+        "form1_caught": 28,
+        "form2_n": 30,
+        "form2_caught": 30
+      },
+      "C": {
+        "form1_n": 30,
+        "form1_caught": 30,
+        "form2_n": 30
+      },
+      "D": {
+        "form1_n": 30,
+        "form1_caught": 25,
+        "form2_n": 30,
+        "form2_caught": 30
+      }
+    },
+    "per_cell": {
+      "1": {
+        "form1_n": 30,
+        "form1_caught": 30,
+        "form1_exact": 30,
+        "form2_n": 30,
+        "form2_caught": 30,
+        "form2_exact": 30
+      },
+      "2": {
+        "form1_n": 30,
+        "form1_caught": 30,
+        "form1_exact": 30,
+        "form2_n": 30,
+        "form2_caught": 29,
+        "form2_exact": 29
+      },
+      "3": {
+        "form1_n": 30,
+        "form1_caught": 30,
+        "form1_exact": 30,
+        "form2_n": 30,
+        "form2_caught": 28,
+        "form2_exact": 28
+      },
+      "4": {
+        "form1_n": 30,
+        "form1_caught": 30,
+        "form1_exact": 30,
+        "form2_n": 30,
+        "form2_caught": 27,
+        "form2_exact": 27
+      },
+      "5": {
+        "form1_n": 30,
+        "form1_caught": 30,
+        "form1_exact": 30
+      },
+      "6": {
+        "form1_n": 30,
+        "form1_caught": 28,
+        "form1_exact": 28,
+        "form2_n": 30,
+        "form2_caught": 30,
+        "form2_exact": 30
+      },
+      "7": {
+        "form1_n": 30,
+        "form1_caught": 30,
+        "form1_exact": 30,
+        "form2_n": 30
+      },
+      "8": {
+        "form1_n": 30,
+        "form1_caught": 25,
+        "form1_exact": 25,
+        "form2_n": 30,
+        "form2_caught": 30,
+        "form2_exact": 30
+      }
+    },
+    "candidates_per_chunk_mean": 9.964444444444444,
+    "false_proxy_per_chunk": 0.8511111111111112,
+    "seconds_per_chunk_mean": 1.5324153603447808,
+    "run1": {
+      "form1_rate": 0.8916666666666667,
+      "form2_rate": 0.8,
+      "candidates_per_chunk_mean": 8.955555555555556,
+      "false_proxy_per_chunk": 0.6133333333333333
+    },
+    "example_prompt_source": "run 0's memory and history after chunk B31:36 (its records treated as ledger records)",
+    "stage_seconds": 705
+  },
+  "files_written": [
+    "/mnt/data/zeinab/SAADI/outputs/method_update/p1b_ledger/gate/candidates.jsonl",
+    "/mnt/data/zeinab/SAADI/outputs/method_update/p1b_ledger/gate/recall_rows.jsonl",
+    "/mnt/data/zeinab/SAADI/outputs/method_update/p1b_ledger/gate/system_prompt.txt",
+    "/mnt/data/zeinab/SAADI/outputs/method_update/p1b_ledger/gate/example_user_prompt.txt"
+  ],
+  "unexpected": [],
+  "versions": {
+    "python": "3.12.3",
+    "platform": "Linux-6.17.0-23-generic-x86_64-with-glibc2.39",
+    "numpy": "2.3.5",
+    "pandas": "3.0.1",
+    "yaml": "6.0.3",
+    "saadi": "0.1.0",
+    "git_commit": "e4373b889608b1a08574bc5205c75cf7f863b5a0",
+    "torch": "2.11.0+cu129",
+    "transformers": "4.57.6",
+    "gliner": "0.2.30",
+    "vllm": "0.23.0"
+  }
+}

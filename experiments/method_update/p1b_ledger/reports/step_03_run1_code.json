@@ -1,0 +1,92 @@
+{
+  "profile": "p1b_ledger",
+  "step": 3,
+  "title": "Memory check with stubs (run 1's step 3 code on run 1b)",
+  "status": "ok",
+  "commands": [
+    "inspect /mnt/data/zeinab/SAADI/outputs/method_update/p1b_ledger/novelhopqa_probe/indexes/eb4d1079603b2760/llm_cache/novelhopqa/hierarchical/branching_factor_5/chunk_500/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/index.json + ledger /mnt/data/zeinab/SAADI/outputs/method_update/p1b_ledger/ledger with the probe's step 6 (imported) and saadi.ledger.measure"
+  ],
+  "numbers": {
+    "parser_status": {
+      "run1": {
+        "fallback": 3109,
+        "ok": 73,
+        "failed": 2
+      },
+      "run0": {
+        "fallback": 3139,
+        "ok": 45
+      }
+    },
+    "gate_rate": 0.26666666666666666,
+    "gate_n": 90,
+    "gate_bridged": 24,
+    "provenance": {
+      "record:both": 2827,
+      "record": 2938,
+      "both": 2827,
+      "record:candidate_net": 89,
+      "candidate_net": 1094,
+      "stub:candidate_net": 1005,
+      "stub": 1005,
+      "record:llm": 22,
+      "llm": 22,
+      "ev:created_record": 2542,
+      "ev:same_as_unresolved": 79,
+      "ev:new_described": 3017,
+      "ev:not_an_entity": 2232,
+      "ev:described_records": 12564,
+      "ev:cut_by_budget": 4,
+      "ev:aliases_added": 1418,
+      "ev:same_as_rejected_no_shared_token_or_sentence": 1288,
+      "ev:same_as_rejected": 2192,
+      "ev:same_as_accepted_shared_token": 16164,
+      "ev:same_as": 17099,
+      "ev:described_existing": 9628,
+      "ev:alias_rejected_not_a_span": 9811,
+      "ev:description_replacements": 6262,
+      "ev:same_as_rejected_type_conflict": 559,
+      "ev:created_stub": 1401,
+      "ev:new_stub": 1401,
+      "ev:promotions": 396,
+      "ev:redirected": 2991,
+      "ev:auto_join_blocked_by_conflict": 1099,
+      "ev:redirected_duplicates_merged": 385,
+      "ev:described_match_rejected_conflict": 292,
+      "ev:alias_rejected_title_conflict": 322,
+      "ev:same_as_accepted_same_sentence": 302,
+      "ev:auto_join": 633,
+      "ev:new_but_exists": 486,
+      "ev:alias_rejected_type_conflict": 36,
+      "ev:auto_join_ambiguous": 95,
+      "ev:described_name_was_alias": 288,
+      "ev:same_as_rejected_title_conflict": 345,
+      "ev:llm_additions": 31,
+      "ev:omitted_candidates": 3,
+      "ev:alias_rejected_descriptive": 7,
+      "ev:stub_described_but_cut": 1
+    },
+    "same_as_total": 17099,
+    "same_as_no_reason": 0,
+    "title_conflicts": 6
+  },
+  "files_written": [
+    "/mnt/data/zeinab/SAADI/outputs/method_update/p1b_ledger/personas_memory.jsonl",
+    "/mnt/data/zeinab/SAADI/outputs/method_update/p1b_ledger/same_as_decisions.jsonl",
+    "/mnt/data/zeinab/SAADI/outputs/method_update/p1b_ledger/title_conflicts.jsonl"
+  ],
+  "unexpected": [],
+  "versions": {
+    "python": "3.12.3",
+    "platform": "Linux-6.17.0-23-generic-x86_64-with-glibc2.39",
+    "numpy": "2.3.5",
+    "pandas": "3.0.1",
+    "yaml": "6.0.3",
+    "saadi": "0.1.0",
+    "git_commit": "28eed3a1ee31487f3bf23dcb3470aa0e164e8cfd",
+    "torch": "2.11.0+cu129",
+    "transformers": "4.57.6",
+    "gliner": "0.2.30",
+    "vllm": "0.23.0"
+  }
+}

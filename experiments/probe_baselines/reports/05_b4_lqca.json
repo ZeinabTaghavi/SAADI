@@ -1,0 +1,15 @@
+{
+ "stage": "05_b4_lqca",
+ "status": "FAILED",
+ "commands": [
+  "/home/iataghav/data/SAADI/experiments/probe_baselines/third_party/venv_lqca/bin/python /home/iataghav/data/SAADI/experiments/probe_baselines/systems/b4_lqca/build.py"
+ ],
+ "seconds": 0,
+ "numbers": {},
+ "unexpected": [
+  "`/home/iataghav/data/SAADI/experiments/probe_baselines/third_party/venv_lqca/bin/python /home/iataghav/data/SAADI/experiments/probe_baselines/systems/b4_lqca/build.py` exited with code 1. Its traceback is in the log lines below.",
+  "Last 50 log lines:\n\n```\nmultiprocessing.pool.RemoteTraceback: \n\"\"\"\nTraceback (most recent call last):\n  File \"/usr/lib/python3.12/multiprocessing/pool.py\", line 125, in worker\n    result = (True, func(*args, **kwds))\n                    ^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/multiprocessing/pool.py\", line 48, in mapstar\n    return list(map(*args))\n           ^^^^^^^^^^^^^^^^\n  File \"/home/iataghav/data/SAADI/experiments/probe_baselines/systems/b4_lqca/build.py\", line 77, in work\n    import torch\nModuleNotFoundError: No module named 'torch'\n\"\"\"\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/home/iataghav/data/SAADI/experiments/probe_baselines/systems/b4_lqca/build.py\", line 172, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/home/iataghav/data/SAADI/experiments/probe_baselines/systems/b4_lqca/build.py\", line 139, in main\n    results = pool.map(work, jobs, chunksize=1)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/multiprocessing/pool.py\", line 367, in map\n    return self._map_async(func, iterable, mapstar, chunksize).get()\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/multiprocessing/pool.py\", line 774, in get\n    raise self._value\nModuleNotFoundError: No module named 'torch'\n```"
+ ],
+ "files_written": [],
+ "git_commit": "28eed3a1ee31487f3bf23dcb3470aa0e164e8cfd"
+}

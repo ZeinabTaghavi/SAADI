@@ -1,0 +1,152 @@
+{
+ "stage": "00_check",
+ "status": "ok",
+ "commands": [
+  "python3 /home/iataghav/data/SAADI/experiments/probe_baselines/common/check.py"
+ ],
+ "seconds": 2,
+ "numbers": {
+  "check": {
+   "spec": {
+    "spec_sha256": "11c4c1696c67171f78821d3ba8311ccd28c851315ca1c2a404a9a422593897bb",
+    "books": {
+     "B31": {
+      "chunks": 244,
+      "saadi_chunks": 244,
+      "original_book_chunks": 244,
+      "personas": 24
+     },
+     "B43": {
+      "chunks": 246,
+      "saadi_chunks": 246,
+      "original_book_chunks": 245,
+      "personas": 24
+     },
+     "B37": {
+      "chunks": 262,
+      "saadi_chunks": 262,
+      "original_book_chunks": 261,
+      "personas": 24
+     },
+     "B18": {
+      "chunks": 312,
+      "saadi_chunks": 312,
+      "original_book_chunks": 311,
+      "personas": 24
+     },
+     "B04": {
+      "chunks": 321,
+      "saadi_chunks": 321,
+      "original_book_chunks": 320,
+      "personas": 24
+     },
+     "B34": {
+      "chunks": 335,
+      "saadi_chunks": 335,
+      "original_book_chunks": 334,
+      "personas": 24
+     },
+     "B27": {
+      "chunks": 338,
+      "saadi_chunks": 338,
+      "original_book_chunks": 337,
+      "personas": 24
+     },
+     "B61": {
+      "chunks": 357,
+      "saadi_chunks": 357,
+      "original_book_chunks": 355,
+      "personas": 24
+     },
+     "B26": {
+      "chunks": 384,
+      "saadi_chunks": 384,
+      "original_book_chunks": 383,
+      "personas": 24
+     },
+     "B44": {
+      "chunks": 385,
+      "saadi_chunks": 385,
+      "original_book_chunks": 384,
+      "personas": 24
+     }
+    },
+    "problems": [],
+    "chunk_count_reference": "SAADI run 0/1 construction records (p1_ledger reports/step_02.json)",
+    "personas": 240,
+    "cells": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   },
+   "vllm": {
+    "url": "http://127.0.0.1:8047/v1",
+    "model": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+    "window": 262144,
+    "version": "0.23.0"
+   },
+   "self_test": {
+    "passed": true,
+    "lines": [
+     "ok  cell 1 vanilla   scorer hr5=0.0 hr10=3.3 median=143.5 | table hr5=0.0 hr10=3.3 median=143.5",
+     "ok  cell 2 vanilla   scorer hr5=3.3 hr10=3.3 median=124.0 | table hr5=3.3 hr10=3.3 median=124.0",
+     "ok  cell 3 vanilla   scorer hr5=0.0 hr10=3.3 median=162.0 | table hr5=0.0 hr10=3.3 median=162.0",
+     "ok  cell 4 vanilla   scorer hr5=0.0 hr10=6.7 median=118.5 | table hr5=0.0 hr10=6.7 median=118.5",
+     "ok  cell 5 vanilla   scorer hr5=0.0 hr10=0.0 median=152.5 | table hr5=0.0 hr10=0.0 median=152.5",
+     "ok  cell 6 vanilla   scorer hr5=0.0 hr10=0.0 median=167.5 | table hr5=0.0 hr10=0.0 median=167.5",
+     "ok  cell 7 vanilla   scorer hr5=0.0 hr10=0.0 median=174.5 | table hr5=0.0 hr10=0.0 median=174.5",
+     "ok  cell 8 vanilla   scorer hr5=0.0 hr10=3.3 median=128.0 | table hr5=0.0 hr10=3.3 median=128.0",
+     "ok  cell 1 no_memory scorer hr5=0.0 hr10=0.0 median=149.0 | table hr5=0.0 hr10=0.0 median=149.0",
+     "ok  cell 2 no_memory scorer hr5=0.0 hr10=3.3 median=133.5 | table hr5=0.0 hr10=3.3 median=133.5",
+     "ok  cell 3 no_memory scorer hr5=0.0 hr10=3.3 median=167.5 | table hr5=0.0 hr10=3.3 median=167.5",
+     "ok  cell 4 no_memory scorer hr5=0.0 hr10=3.3 median=104.5 | table hr5=0.0 hr10=3.3 median=104.5",
+     "ok  cell 5 no_memory scorer hr5=0.0 hr10=0.0 median=133.5 | table hr5=0.0 hr10=0.0 median=133.5",
+     "ok  cell 6 no_memory scorer hr5=0.0 hr10=0.0 median=165.5 | table hr5=0.0 hr10=0.0 median=165.5",
+     "ok  cell 7 no_memory scorer hr5=0.0 hr10=0.0 median=197.0 | table hr5=0.0 hr10=0.0 median=197.0",
+     "ok  cell 8 no_memory scorer hr5=0.0 hr10=6.7 median=143.0 | table hr5=0.0 hr10=6.7 median=143.0",
+     "ok  cell 1 frozen    scorer hr5=0.0 hr10=0.0 median=156.0 | table hr5=0.0 hr10=0.0 median=156.0",
+     "ok  cell 2 frozen    scorer hr5=0.0 hr10=3.3 median=134.5 | table hr5=0.0 hr10=3.3 median=134.5",
+     "ok  cell 3 frozen    scorer hr5=0.0 hr10=6.7 median=173.5 | table hr5=0.0 hr10=6.7 median=173.5",
+     "ok  cell 4 frozen    scorer hr5=0.0 hr10=6.7 median=117.5 | table hr5=0.0 hr10=6.7 median=117.5",
+     "ok  cell 5 frozen    scorer hr5=0.0 hr10=0.0 median=116.5 | table hr5=0.0 hr10=0.0 median=116.5",
+     "ok  cell 6 frozen    scorer hr5=0.0 hr10=0.0 median=153.0 | table hr5=0.0 hr10=0.0 median=153.0",
+     "ok  cell 7 frozen    scorer hr5=0.0 hr10=3.3 median=181.5 | table hr5=0.0 hr10=3.3 median=181.5",
+     "ok  cell 8 frozen    scorer hr5=0.0 hr10=6.7 median=119.0 | table hr5=0.0 hr10=6.7 median=119.0",
+     "ok  cell 1 live      scorer hr5=3.3 hr10=3.3 median=115.0 | table hr5=3.3 hr10=3.3 median=115.0",
+     "ok  cell 2 live      scorer hr5=0.0 hr10=6.7 median=116.5 | table hr5=0.0 hr10=6.7 median=116.5",
+     "ok  cell 3 live      scorer hr5=0.0 hr10=6.7 median=146.0 | table hr5=0.0 hr10=6.7 median=146.0",
+     "ok  cell 4 live      scorer hr5=0.0 hr10=3.3 median=120.5 | table hr5=0.0 hr10=3.3 median=120.5",
+     "ok  cell 5 live      scorer hr5=0.0 hr10=0.0 median=116.5 | table hr5=0.0 hr10=0.0 median=116.5",
+     "ok  cell 6 live      scorer hr5=0.0 hr10=0.0 median=122.5 | table hr5=0.0 hr10=0.0 median=122.5",
+     "ok  cell 7 live      scorer hr5=3.3 hr10=3.3 median=111.0 | table hr5=3.3 hr10=3.3 median=111.0",
+     "ok  cell 8 live      scorer hr5=0.0 hr10=6.7 median=114.0 | table hr5=0.0 hr10=6.7 median=114.0"
+    ]
+   },
+   "third_party": {
+    "lqca_commit": "2d05899479d5ca08635cb544711dde32eea57b79",
+    "hipporag_py": "/home/iataghav/data/SAADI/experiments/probe_baselines/third_party/venv_hipporag/bin/python",
+    "lqca_py": "/home/iataghav/data/SAADI/experiments/probe_baselines/third_party/venv_lqca/bin/python"
+   },
+   "unexpected": [
+    "hipporag import failed (/home/iataghav/data/SAADI/experiments/probe_baselines/third_party/venv_hipporag/bin/python):\n```\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nModuleNotFoundError: No module named 'hipporag'\n```",
+    "NV-Embed-v2 download failed:\n```\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nModuleNotFoundError: No module named 'huggingface_hub'\n```",
+    "LQCA venv check failed (/home/iataghav/data/SAADI/experiments/probe_baselines/third_party/venv_lqca/bin/python):\n```\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nModuleNotFoundError: No module named 'maverick'\n```"
+   ]
+  }
+ },
+ "unexpected": [
+  "(check) hipporag import failed (/home/iataghav/data/SAADI/experiments/probe_baselines/third_party/venv_hipporag/bin/python):\n```\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nModuleNotFoundError: No module named 'hipporag'\n```",
+  "(check) NV-Embed-v2 download failed:\n```\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nModuleNotFoundError: No module named 'huggingface_hub'\n```",
+  "(check) LQCA venv check failed (/home/iataghav/data/SAADI/experiments/probe_baselines/third_party/venv_lqca/bin/python):\n```\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nModuleNotFoundError: No module named 'maverick'\n```"
+ ],
+ "files_written": [
+  "/home/iataghav/data/SAADI/outputs/probe_baselines/inputs/<book>.json, manifest.json"
+ ],
+ "git_commit": "28eed3a1ee31487f3bf23dcb3470aa0e164e8cfd"
+}
