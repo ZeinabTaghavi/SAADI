@@ -6,7 +6,9 @@
     "--group",
     "A"
   ],
-  "datasets": {},
+  "datasets": {
+    "loogle": "problems: qwen: FAILED"
+  },
   "problems": [],
   "preflight": {
     "problems": [],

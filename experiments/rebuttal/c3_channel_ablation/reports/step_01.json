@@ -1,12 +1,12 @@
 {
   "step": 1,
   "title": "inputs and checks",
-  "status": "FAILED",
+  "status": "PASSED",
   "command": "C3_STREAMS_DIR=/home/iataghav/data/SAADI/outputs/rebuttal/C2_heldout_fusion/streams bash experiments/rebuttal/c3_channel_ablation/sh/01_check.sh",
   "git": {
-    "commit": "1e7b1fb6b31cad9941271a8223f16145656968e8",
+    "commit": "d2ab689101dfeca4a071eecf98f21d48492aeef1",
     "branch": "fix/notebook-key-and-install",
-    "dirty_files": 2
+    "dirty_files": 3
   },
   "weights": {
     "lambda_t": 1.0,
@@ -26,6 +26,17 @@
     "missing": []
   },
   "inventory": [
+    {
+      "dataset": "loogle",
+      "retriever": "bm25",
+      "saved_rankings": "outputs/loogle_ablation/500_tokens/llm_cache/loogle/hierarchical/branching_factor_5/chunk_500/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/bm25/retrieval_reports/retrieval_results__bm25__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
+      "saved_exists": true,
+      "n_saved": 1832,
+      "missing": [],
+      "source": "recomputed here (CPU) from the construction cache",
+      "cache_index": "outputs/loogle_ablation/500_tokens/llm_cache/loogle/hierarchical/branching_factor_5/chunk_500/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/index.json",
+      "status": "to compute"
+    },
     {
       "dataset": "loogle",
       "retriever": "contriever",
@@ -63,6 +74,17 @@
         "n_queries": 1832,
         "drift_accepted": null
       }
+    },
+    {
+      "dataset": "musique_32k",
+      "retriever": "bm25",
+      "saved_rankings": "outputs/musique_ablation/32K_expansion/100_tokens/llm_cache/musique/hierarchical/branching_factor_5/chunk_100/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/bm25/retrieval_reports/retrieval_results__bm25__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
+      "saved_exists": true,
+      "n_saved": 900,
+      "missing": [],
+      "source": "recomputed here (CPU) from the construction cache",
+      "cache_index": "outputs/musique_ablation/32K_expansion/100_tokens/llm_cache/musique/hierarchical/branching_factor_5/chunk_100/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/index.json",
+      "status": "to compute"
     },
     {
       "dataset": "musique_32k",
@@ -104,6 +126,17 @@
     },
     {
       "dataset": "qasper_64k",
+      "retriever": "bm25",
+      "saved_rankings": "outputs/qasper_ablation/64K_expansion/100_tokens/llm_cache/qasper/hierarchical/branching_factor_5/chunk_100/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/bm25/retrieval_reports/retrieval_results__bm25__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
+      "saved_exists": true,
+      "n_saved": 1333,
+      "missing": [],
+      "source": "recomputed here (CPU) from the construction cache",
+      "cache_index": "outputs/qasper_ablation/64K_expansion/100_tokens/llm_cache/qasper/hierarchical/branching_factor_5/chunk_100/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/index.json",
+      "status": "to compute"
+    },
+    {
+      "dataset": "qasper_64k",
       "retriever": "contriever",
       "saved_rankings": "outputs/qasper_ablation/64K_expansion/100_tokens/llm_cache/qasper/hierarchical/branching_factor_5/chunk_100/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/contriever/retrieval_reports/retrieval_results__contriever__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
       "saved_exists": true,
@@ -139,6 +172,17 @@
         "n_queries": 1333,
         "drift_accepted": null
       }
+    },
+    {
+      "dataset": "novelhopqa",
+      "retriever": "bm25",
+      "saved_rankings": "outputs/novelhopqa_ablation/500_tokens/llm_cache/novelhopqa/hierarchical/branching_factor_5/chunk_500/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/bm25/retrieval_reports/retrieval_results__bm25__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
+      "saved_exists": true,
+      "n_saved": 908,
+      "missing": [],
+      "source": "recomputed here (CPU) from the construction cache",
+      "cache_index": "outputs/novelhopqa_ablation/500_tokens/llm_cache/novelhopqa/hierarchical/branching_factor_5/chunk_500/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/index.json",
+      "status": "to compute"
     },
     {
       "dataset": "novelhopqa",
@@ -185,86 +229,1119 @@
     "qasper_64k": 1333,
     "novelhopqa": 908
   },
-  "bm25_streams": {},
-  "checks": [],
-  "check_errors": [
-    {
-      "pair": "loogle__contriever",
-      "traceback": "Traceback (most recent call last):\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 430, in body\n    res = check_pair(d, r, w)\n          ^^^^^^^^^^^^^^^^^^^\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 192, in check_pair\n    rows = saved_rows_for(d, r, meta)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/common.py\", line 291, in saved_rows_for\n    return queries, meta, rows\n           ^^^^^^^\nNameError: name 'queries' is not defined\n"
+  "bm25_streams": {
+    "loogle": {
+      "status": "reused",
+      "files": [
+        "experiments/rebuttal/c3_channel_ablation/work/streams/loogle__bm25.parquet",
+        "experiments/rebuttal/c3_channel_ablation/work/streams/loogle__bm25.queries.json"
+      ],
+      "vs_c2_streams": {
+        "rows_here": 62471,
+        "rows_c2": 62471,
+        "same_chunk_ids": true,
+        "same_query_ids": true,
+        "channels_identical": {
+          "text": true,
+          "name": true,
+          "alias": true,
+          "description": true,
+          "summary": true
+        },
+        "identical": true
+      }
     },
-    {
-      "pair": "loogle__bge_m3",
-      "traceback": "Traceback (most recent call last):\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 430, in body\n    res = check_pair(d, r, w)\n          ^^^^^^^^^^^^^^^^^^^\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 192, in check_pair\n    rows = saved_rows_for(d, r, meta)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/common.py\", line 291, in saved_rows_for\n    return queries, meta, rows\n           ^^^^^^^\nNameError: name 'queries' is not defined\n"
+    "musique_32k": {
+      "status": "reused",
+      "files": [
+        "experiments/rebuttal/c3_channel_ablation/work/streams/musique_32k__bm25.parquet",
+        "experiments/rebuttal/c3_channel_ablation/work/streams/musique_32k__bm25.queries.json"
+      ],
+      "vs_c2_streams": {
+        "rows_here": 342176,
+        "rows_c2": 342176,
+        "same_chunk_ids": true,
+        "same_query_ids": true,
+        "channels_identical": {
+          "text": true,
+          "name": true,
+          "alias": true,
+          "description": true,
+          "summary": true
+        },
+        "identical": true
+      }
     },
-    {
-      "pair": "musique_32k__contriever",
-      "traceback": "Traceback (most recent call last):\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 430, in body\n    res = check_pair(d, r, w)\n          ^^^^^^^^^^^^^^^^^^^\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 192, in check_pair\n    rows = saved_rows_for(d, r, meta)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/common.py\", line 291, in saved_rows_for\n    return queries, meta, rows\n           ^^^^^^^\nNameError: name 'queries' is not defined\n"
+    "qasper_64k": {
+      "status": "reused",
+      "files": [
+        "experiments/rebuttal/c3_channel_ablation/work/streams/qasper_64k__bm25.parquet",
+        "experiments/rebuttal/c3_channel_ablation/work/streams/qasper_64k__bm25.queries.json"
+      ],
+      "vs_c2_streams": {
+        "rows_here": 992410,
+        "rows_c2": 992410,
+        "same_chunk_ids": true,
+        "same_query_ids": true,
+        "channels_identical": {
+          "text": true,
+          "name": true,
+          "alias": true,
+          "description": true,
+          "summary": true
+        },
+        "identical": true
+      }
     },
-    {
-      "pair": "musique_32k__bge_m3",
-      "traceback": "Traceback (most recent call last):\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 430, in body\n    res = check_pair(d, r, w)\n          ^^^^^^^^^^^^^^^^^^^\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 192, in check_pair\n    rows = saved_rows_for(d, r, meta)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/common.py\", line 291, in saved_rows_for\n    return queries, meta, rows\n           ^^^^^^^\nNameError: name 'queries' is not defined\n"
-    },
-    {
-      "pair": "qasper_64k__contriever",
-      "traceback": "Traceback (most recent call last):\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 430, in body\n    res = check_pair(d, r, w)\n          ^^^^^^^^^^^^^^^^^^^\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 192, in check_pair\n    rows = saved_rows_for(d, r, meta)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/common.py\", line 291, in saved_rows_for\n    return queries, meta, rows\n           ^^^^^^^\nNameError: name 'queries' is not defined\n"
-    },
-    {
-      "pair": "qasper_64k__bge_m3",
-      "traceback": "Traceback (most recent call last):\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 430, in body\n    res = check_pair(d, r, w)\n          ^^^^^^^^^^^^^^^^^^^\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 192, in check_pair\n    rows = saved_rows_for(d, r, meta)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/common.py\", line 291, in saved_rows_for\n    return queries, meta, rows\n           ^^^^^^^\nNameError: name 'queries' is not defined\n"
-    },
-    {
-      "pair": "novelhopqa__contriever",
-      "traceback": "Traceback (most recent call last):\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 430, in body\n    res = check_pair(d, r, w)\n          ^^^^^^^^^^^^^^^^^^^\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 192, in check_pair\n    rows = saved_rows_for(d, r, meta)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/common.py\", line 291, in saved_rows_for\n    return queries, meta, rows\n           ^^^^^^^\nNameError: name 'queries' is not defined\n"
-    },
-    {
-      "pair": "novelhopqa__bge_m3",
-      "traceback": "Traceback (most recent call last):\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 430, in body\n    res = check_pair(d, r, w)\n          ^^^^^^^^^^^^^^^^^^^\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/step01_check.py\", line 192, in check_pair\n    rows = saved_rows_for(d, r, meta)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/SAADI/experiments/rebuttal/c3_channel_ablation/scripts/common.py\", line 291, in saved_rows_for\n    return queries, meta, rows\n           ^^^^^^^\nNameError: name 'queries' is not defined\n"
+    "novelhopqa": {
+      "status": "reused",
+      "files": [
+        "experiments/rebuttal/c3_channel_ablation/work/streams/novelhopqa__bm25.parquet",
+        "experiments/rebuttal/c3_channel_ablation/work/streams/novelhopqa__bm25.queries.json"
+      ],
+      "vs_c2_streams": {
+        "rows_here": 418611,
+        "rows_c2": 418611,
+        "same_chunk_ids": true,
+        "same_query_ids": true,
+        "channels_identical": {
+          "text": true,
+          "name": true,
+          "alias": true,
+          "description": true,
+          "summary": true
+        },
+        "identical": true
+      }
     }
-  ],
-  "ready": [],
-  "not_ready": [
+  },
+  "checks": [
+    {
+      "dataset": "loogle",
+      "retriever": "bm25",
+      "stream_files": [
+        "experiments/rebuttal/c3_channel_ablation/work/streams/loogle__bm25.parquet",
+        "experiments/rebuttal/c3_channel_ablation/work/streams/loogle__bm25.queries.json"
+      ],
+      "parquet_sha256": "c6a196ce6c96ccd0e4468159812827eb279252c6e2a97cbc912f9d3f076c8827",
+      "queries_sha256": "286446b6b0f949891f8d0b802ea0bc2d64d2e398a48c815dd156523bcf94d2ae",
+      "n_docs": 105,
+      "chunks_per_query_median": 31.0,
+      "missing_channel_counts": {
+        "summary": 4286,
+        "memory_all_fields": 2230,
+        "chunk_query_pairs": 62471
+      },
+      "check1": {
+        "n_queries_streams": 1832,
+        "n_queries_saved": 1832,
+        "complete": true,
+        "identical_top10": 1832,
+        "hr_all_three": {
+          "eligible": 1832,
+          "hits": {
+            "5": 1691,
+            "10": 1767
+          },
+          "hr_percent": {
+            "5": 92.30349344978166,
+            "10": 96.4519650655022
+          }
+        },
+        "hr_saved": {
+          "eligible": 1832,
+          "hits": {
+            "5": 1691,
+            "10": 1767
+          },
+          "hr_percent": {
+            "5": 92.30349344978166,
+            "10": 96.4519650655022
+          }
+        },
+        "expected_metrics": {
+          "5": {
+            "eligible": 1832,
+            "hits": 1691
+          },
+          "10": {
+            "eligible": 1832,
+            "hits": 1767
+          }
+        },
+        "expected_hits_match": true,
+        "max_abs_score_diff_identical": 0.0,
+        "mismatch_examples": [],
+        "passed": true
+      },
+      "check2": {
+        "hr_text_only": {
+          "eligible": 1832,
+          "hits": {
+            "5": 1683,
+            "10": 1754
+          },
+          "hr_percent": {
+            "5": 91.86681222707423,
+            "10": 95.74235807860262
+          }
+        },
+        "table1_vanilla": {
+          "5": 91.5,
+          "10": 95.4
+        },
+        "diff_points": {
+          "5": 0.36681222707423444,
+          "10": 0.342358078602615
+        },
+        "equal_to_table1": false,
+        "per_query_file": "outputs/loogle_ablation/500_tokens/llm_cache/loogle/hierarchical/branching_factor_5/chunk_500/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/retrieval_reports/retrieval_results__bm25__mbr_lt1_ln0_lh0_norm_none__per_document.json",
+        "per_query_identical": 1832,
+        "n": 1832
+      },
+      "seconds": 0.1397822741419077
+    },
     {
       "dataset": "loogle",
       "retriever": "contriever",
-      "reason": "check 1 failed or exception"
+      "stream_files": [
+        "outputs/rebuttal/C2_heldout_fusion/streams/loogle__contriever.parquet",
+        "outputs/rebuttal/C2_heldout_fusion/streams/loogle__contriever.queries.json"
+      ],
+      "parquet_sha256": "1e80456e2acce12bee49062f48287441f57f9f2c7c0c64aef84bfd436aa2c97d",
+      "queries_sha256": "7e014e27e4b66d1446434103d44243a0c98c984c5fd42a00925b511ee6ce565d",
+      "n_docs": 105,
+      "chunks_per_query_median": 31.0,
+      "missing_channel_counts": {
+        "summary": 4286,
+        "memory_all_fields": 2230,
+        "chunk_query_pairs": 62471
+      },
+      "check1": {
+        "n_queries_streams": 1832,
+        "n_queries_saved": 1832,
+        "complete": true,
+        "identical_top10": 1832,
+        "hr_all_three": {
+          "eligible": 1832,
+          "hits": {
+            "5": 1382,
+            "10": 1570
+          },
+          "hr_percent": {
+            "5": 75.43668122270742,
+            "10": 85.69868995633188
+          }
+        },
+        "hr_saved": {
+          "eligible": 1832,
+          "hits": {
+            "5": 1382,
+            "10": 1570
+          },
+          "hr_percent": {
+            "5": 75.43668122270742,
+            "10": 85.69868995633188
+          }
+        },
+        "expected_metrics": {
+          "5": {
+            "eligible": 1832,
+            "hits": 1382
+          },
+          "10": {
+            "eligible": 1832,
+            "hits": 1570
+          }
+        },
+        "expected_hits_match": true,
+        "max_abs_score_diff_identical": 0.0,
+        "mismatch_examples": [],
+        "passed": true
+      },
+      "check2": {
+        "hr_text_only": {
+          "eligible": 1832,
+          "hits": {
+            "5": 1377,
+            "10": 1576
+          },
+          "hr_percent": {
+            "5": 75.16375545851528,
+            "10": 86.02620087336244
+          }
+        },
+        "table1_vanilla": {
+          "5": 72.4,
+          "10": 73.3
+        },
+        "diff_points": {
+          "5": 2.763755458515277,
+          "10": 12.726200873362444
+        },
+        "equal_to_table1": false,
+        "n": 1832
+      },
+      "seconds": 0.1965735899284482
     },
     {
       "dataset": "loogle",
       "retriever": "bge_m3",
-      "reason": "check 1 failed or exception"
+      "stream_files": [
+        "outputs/rebuttal/C2_heldout_fusion/streams/loogle__bge_m3.parquet",
+        "outputs/rebuttal/C2_heldout_fusion/streams/loogle__bge_m3.queries.json"
+      ],
+      "parquet_sha256": "b8163f63fc0c31ad8bf6694ac0b13a057c72fa9ccf5ef55fbe6b48c2f0177826",
+      "queries_sha256": "5974170b4234d610dbc190467b277e72a6f3847deafff157d592d3fcd121f350",
+      "n_docs": 105,
+      "chunks_per_query_median": 31.0,
+      "missing_channel_counts": {
+        "summary": 4286,
+        "memory_all_fields": 2230,
+        "chunk_query_pairs": 62471
+      },
+      "check1": {
+        "n_queries_streams": 1832,
+        "n_queries_saved": 1832,
+        "complete": true,
+        "identical_top10": 1832,
+        "hr_all_three": {
+          "eligible": 1832,
+          "hits": {
+            "5": 1485,
+            "10": 1651
+          },
+          "hr_percent": {
+            "5": 81.0589519650655,
+            "10": 90.12008733624454
+          }
+        },
+        "hr_saved": {
+          "eligible": 1832,
+          "hits": {
+            "5": 1485,
+            "10": 1651
+          },
+          "hr_percent": {
+            "5": 81.0589519650655,
+            "10": 90.12008733624454
+          }
+        },
+        "expected_metrics": {
+          "5": {
+            "eligible": 1832,
+            "hits": 1485
+          },
+          "10": {
+            "eligible": 1832,
+            "hits": 1651
+          }
+        },
+        "expected_hits_match": true,
+        "max_abs_score_diff_identical": 0.0,
+        "mismatch_examples": [],
+        "passed": true
+      },
+      "check2": {
+        "hr_text_only": {
+          "eligible": 1832,
+          "hits": {
+            "5": 1511,
+            "10": 1662
+          },
+          "hr_percent": {
+            "5": 82.47816593886463,
+            "10": 90.72052401746726
+          }
+        },
+        "table1_vanilla": {
+          "5": 80.6,
+          "10": 89.8
+        },
+        "diff_points": {
+          "5": 1.8781659388646403,
+          "10": 0.9205240174672582
+        },
+        "equal_to_table1": false,
+        "n": 1832
+      },
+      "seconds": 0.11628844309598207
+    },
+    {
+      "dataset": "musique_32k",
+      "retriever": "bm25",
+      "stream_files": [
+        "experiments/rebuttal/c3_channel_ablation/work/streams/musique_32k__bm25.parquet",
+        "experiments/rebuttal/c3_channel_ablation/work/streams/musique_32k__bm25.queries.json"
+      ],
+      "parquet_sha256": "47a962b71b0626ce4c2836163219bfd43f87126467f29c132df9cf5490b440f0",
+      "queries_sha256": "34c916348a0a8f600d871a2bae7dbdcdc1d04f149172b999168d37987ae36608",
+      "n_docs": 45,
+      "chunks_per_query_median": 381.0,
+      "missing_channel_counts": {
+        "summary": 1726,
+        "memory_all_fields": 2274,
+        "chunk_query_pairs": 342176
+      },
+      "check1": {
+        "n_queries_streams": 900,
+        "n_queries_saved": 900,
+        "complete": true,
+        "identical_top10": 900,
+        "hr_all_three": {
+          "eligible": 900,
+          "hits": {
+            "5": 565,
+            "10": 699
+          },
+          "hr_percent": {
+            "5": 62.77777777777778,
+            "10": 77.66666666666666
+          }
+        },
+        "hr_saved": {
+          "eligible": 900,
+          "hits": {
+            "5": 565,
+            "10": 699
+          },
+          "hr_percent": {
+            "5": 62.77777777777778,
+            "10": 77.66666666666666
+          }
+        },
+        "expected_metrics": {
+          "5": {
+            "eligible": 900,
+            "hits": 565
+          },
+          "10": {
+            "eligible": 900,
+            "hits": 699
+          }
+        },
+        "expected_hits_match": true,
+        "max_abs_score_diff_identical": 0.0,
+        "mismatch_examples": [],
+        "passed": true
+      },
+      "check2": {
+        "hr_text_only": {
+          "eligible": 900,
+          "hits": {
+            "5": 518,
+            "10": 666
+          },
+          "hr_percent": {
+            "5": 57.55555555555556,
+            "10": 74.0
+          }
+        },
+        "table1_vanilla": {
+          "5": 57.6,
+          "10": 74.0
+        },
+        "diff_points": {
+          "5": -0.04444444444444429,
+          "10": 0.0
+        },
+        "equal_to_table1": true,
+        "n": 900
+      },
+      "seconds": 0.13616660609841347
     },
     {
       "dataset": "musique_32k",
       "retriever": "contriever",
-      "reason": "check 1 failed or exception"
+      "stream_files": [
+        "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__contriever.parquet",
+        "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__contriever.queries.json"
+      ],
+      "parquet_sha256": "f163fcafa1a25e493c3e9274f8dc96382fef4f055e83a3a08daef61cb211cf26",
+      "queries_sha256": "c718011724bafd8530ddde6df34a18fa1adace1714bcc5b0e784591e5ad165de",
+      "n_docs": 45,
+      "chunks_per_query_median": 381.0,
+      "missing_channel_counts": {
+        "summary": 1726,
+        "memory_all_fields": 2274,
+        "chunk_query_pairs": 342176
+      },
+      "check1": {
+        "n_queries_streams": 900,
+        "n_queries_saved": 900,
+        "complete": true,
+        "identical_top10": 900,
+        "hr_all_three": {
+          "eligible": 900,
+          "hits": {
+            "5": 619,
+            "10": 753
+          },
+          "hr_percent": {
+            "5": 68.77777777777779,
+            "10": 83.66666666666667
+          }
+        },
+        "hr_saved": {
+          "eligible": 900,
+          "hits": {
+            "5": 619,
+            "10": 753
+          },
+          "hr_percent": {
+            "5": 68.77777777777779,
+            "10": 83.66666666666667
+          }
+        },
+        "expected_metrics": {
+          "5": {
+            "eligible": 900,
+            "hits": 619
+          },
+          "10": {
+            "eligible": 900,
+            "hits": 753
+          }
+        },
+        "expected_hits_match": true,
+        "max_abs_score_diff_identical": 0.0,
+        "mismatch_examples": [],
+        "passed": true
+      },
+      "check2": {
+        "hr_text_only": {
+          "eligible": 900,
+          "hits": {
+            "5": 539,
+            "10": 685
+          },
+          "hr_percent": {
+            "5": 59.88888888888889,
+            "10": 76.11111111111111
+          }
+        },
+        "table1_vanilla": {
+          "5": 59.9,
+          "10": 76.1
+        },
+        "diff_points": {
+          "5": -0.011111111111105743,
+          "10": 0.011111111111119953
+        },
+        "equal_to_table1": true,
+        "n": 900
+      },
+      "seconds": 0.1067574699409306
     },
     {
       "dataset": "musique_32k",
       "retriever": "bge_m3",
-      "reason": "check 1 failed or exception"
+      "stream_files": [
+        "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bge_m3.parquet",
+        "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bge_m3.queries.json"
+      ],
+      "parquet_sha256": "8ab04b0b98608215fd83af0bdaee664e7222bac8a1577e9c155422a45c86fa54",
+      "queries_sha256": "ca834bb8c9d8843f21a44f02ff1e091133ef12baacb13b720b83a0c50ca407e5",
+      "n_docs": 45,
+      "chunks_per_query_median": 381.0,
+      "missing_channel_counts": {
+        "summary": 1726,
+        "memory_all_fields": 2274,
+        "chunk_query_pairs": 342176
+      },
+      "check1": {
+        "n_queries_streams": 900,
+        "n_queries_saved": 900,
+        "complete": true,
+        "identical_top10": 900,
+        "hr_all_three": {
+          "eligible": 900,
+          "hits": {
+            "5": 692,
+            "10": 795
+          },
+          "hr_percent": {
+            "5": 76.88888888888889,
+            "10": 88.33333333333333
+          }
+        },
+        "hr_saved": {
+          "eligible": 900,
+          "hits": {
+            "5": 692,
+            "10": 795
+          },
+          "hr_percent": {
+            "5": 76.88888888888889,
+            "10": 88.33333333333333
+          }
+        },
+        "expected_metrics": {
+          "5": {
+            "eligible": 900,
+            "hits": 692
+          },
+          "10": {
+            "eligible": 900,
+            "hits": 795
+          }
+        },
+        "expected_hits_match": true,
+        "max_abs_score_diff_identical": 0.0,
+        "mismatch_examples": [],
+        "passed": true
+      },
+      "check2": {
+        "hr_text_only": {
+          "eligible": 900,
+          "hits": {
+            "5": 659,
+            "10": 787
+          },
+          "hr_percent": {
+            "5": 73.22222222222223,
+            "10": 87.44444444444444
+          }
+        },
+        "table1_vanilla": {
+          "5": 73.2,
+          "10": 87.4
+        },
+        "diff_points": {
+          "5": 0.022222222222225696,
+          "10": 0.04444444444443718
+        },
+        "equal_to_table1": true,
+        "n": 900
+      },
+      "seconds": 0.10533093917183578
+    },
+    {
+      "dataset": "qasper_64k",
+      "retriever": "bm25",
+      "stream_files": [
+        "experiments/rebuttal/c3_channel_ablation/work/streams/qasper_64k__bm25.parquet",
+        "experiments/rebuttal/c3_channel_ablation/work/streams/qasper_64k__bm25.queries.json"
+      ],
+      "parquet_sha256": "9086531244181ac51b35edbcdcb64f13e6537adf3e6015804bb2dd7561735599",
+      "queries_sha256": "81c6551476227000e99a47279f06bba263743c470fdabc66866ddc23b30a5f55",
+      "n_docs": 23,
+      "chunks_per_query_median": 745.0,
+      "missing_channel_counts": {
+        "summary": 2790,
+        "memory_all_fields": 5339,
+        "chunk_query_pairs": 992410
+      },
+      "check1": {
+        "n_queries_streams": 1333,
+        "n_queries_saved": 1333,
+        "complete": true,
+        "identical_top10": 1333,
+        "hr_all_three": {
+          "eligible": 1333,
+          "hits": {
+            "5": 226,
+            "10": 348
+          },
+          "hr_percent": {
+            "5": 16.954238559639908,
+            "10": 26.106526631657918
+          }
+        },
+        "hr_saved": {
+          "eligible": 1333,
+          "hits": {
+            "5": 226,
+            "10": 348
+          },
+          "hr_percent": {
+            "5": 16.954238559639908,
+            "10": 26.106526631657918
+          }
+        },
+        "expected_metrics": {
+          "5": {
+            "eligible": 1333,
+            "hits": 226
+          },
+          "10": {
+            "eligible": 1333,
+            "hits": 348
+          }
+        },
+        "expected_hits_match": true,
+        "max_abs_score_diff_identical": 0.0,
+        "mismatch_examples": [],
+        "passed": true
+      },
+      "check2": {
+        "hr_text_only": {
+          "eligible": 1333,
+          "hits": {
+            "5": 192,
+            "10": 294
+          },
+          "hr_percent": {
+            "5": 14.403600900225054,
+            "10": 22.05551387846962
+          }
+        },
+        "table1_vanilla": {
+          "5": 14.4,
+          "10": 22.1
+        },
+        "diff_points": {
+          "5": 0.0036009002250541045,
+          "10": -0.044486121530383116
+        },
+        "equal_to_table1": true,
+        "n": 1333
+      },
+      "seconds": 0.22797677107155323
     },
     {
       "dataset": "qasper_64k",
       "retriever": "contriever",
-      "reason": "check 1 failed or exception"
+      "stream_files": [
+        "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__contriever.parquet",
+        "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__contriever.queries.json"
+      ],
+      "parquet_sha256": "7e81efa6b6ea0eb139751dc9843b2951d62e42a837390ca6c3346c1eaa1621db",
+      "queries_sha256": "b6f1f7ade89d42b46836ebca187d9081ecef7eddfd34681bea66638eb3e71dee",
+      "n_docs": 23,
+      "chunks_per_query_median": 745.0,
+      "missing_channel_counts": {
+        "summary": 2790,
+        "memory_all_fields": 5339,
+        "chunk_query_pairs": 992410
+      },
+      "check1": {
+        "n_queries_streams": 1333,
+        "n_queries_saved": 1333,
+        "complete": true,
+        "identical_top10": 1333,
+        "hr_all_three": {
+          "eligible": 1333,
+          "hits": {
+            "5": 216,
+            "10": 344
+          },
+          "hr_percent": {
+            "5": 16.204051012753187,
+            "10": 25.806451612903224
+          }
+        },
+        "hr_saved": {
+          "eligible": 1333,
+          "hits": {
+            "5": 216,
+            "10": 344
+          },
+          "hr_percent": {
+            "5": 16.204051012753187,
+            "10": 25.806451612903224
+          }
+        },
+        "expected_metrics": {
+          "5": {
+            "eligible": 1333,
+            "hits": 216
+          },
+          "10": {
+            "eligible": 1333,
+            "hits": 344
+          }
+        },
+        "expected_hits_match": true,
+        "max_abs_score_diff_identical": 0.0,
+        "mismatch_examples": [],
+        "passed": true
+      },
+      "check2": {
+        "hr_text_only": {
+          "eligible": 1333,
+          "hits": {
+            "5": 202,
+            "10": 311
+          },
+          "hr_percent": {
+            "5": 15.153788447111777,
+            "10": 23.330832708177045
+          }
+        },
+        "table1_vanilla": {
+          "5": 15.2,
+          "10": 23.3
+        },
+        "diff_points": {
+          "5": -0.046211552888221874,
+          "10": 0.03083270817704431
+        },
+        "equal_to_table1": true,
+        "n": 1333
+      },
+      "seconds": 0.1955967030953616
     },
     {
       "dataset": "qasper_64k",
       "retriever": "bge_m3",
-      "reason": "check 1 failed or exception"
+      "stream_files": [
+        "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bge_m3.parquet",
+        "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__bge_m3.queries.json"
+      ],
+      "parquet_sha256": "d7567b7028a9d469ce0fda3dd264c08d85de4b7d31f93e0af264f454aa952e3d",
+      "queries_sha256": "2350a6f36a5cd4cd65abf5092f10494c28222690cb8e700bd9f5dd68096a1728",
+      "n_docs": 23,
+      "chunks_per_query_median": 745.0,
+      "missing_channel_counts": {
+        "summary": 2790,
+        "memory_all_fields": 5339,
+        "chunk_query_pairs": 992410
+      },
+      "check1": {
+        "n_queries_streams": 1333,
+        "n_queries_saved": 1333,
+        "complete": true,
+        "identical_top10": 1333,
+        "hr_all_three": {
+          "eligible": 1333,
+          "hits": {
+            "5": 279,
+            "10": 412
+          },
+          "hr_percent": {
+            "5": 20.930232558139537,
+            "10": 30.90772693173293
+          }
+        },
+        "hr_saved": {
+          "eligible": 1333,
+          "hits": {
+            "5": 279,
+            "10": 412
+          },
+          "hr_percent": {
+            "5": 20.930232558139537,
+            "10": 30.90772693173293
+          }
+        },
+        "expected_metrics": {
+          "5": {
+            "eligible": 1333,
+            "hits": 279
+          },
+          "10": {
+            "eligible": 1333,
+            "hits": 412
+          }
+        },
+        "expected_hits_match": true,
+        "max_abs_score_diff_identical": 0.0,
+        "mismatch_examples": [],
+        "passed": true
+      },
+      "check2": {
+        "hr_text_only": {
+          "eligible": 1333,
+          "hits": {
+            "5": 280,
+            "10": 391
+          },
+          "hr_percent": {
+            "5": 21.005251312828207,
+            "10": 29.332333083270818
+          }
+        },
+        "table1_vanilla": {
+          "5": 21.0,
+          "10": 29.3
+        },
+        "diff_points": {
+          "5": 0.005251312828207233,
+          "10": 0.0323330832708173
+        },
+        "equal_to_table1": true,
+        "n": 1333
+      },
+      "seconds": 0.22053110413253307
+    },
+    {
+      "dataset": "novelhopqa",
+      "retriever": "bm25",
+      "stream_files": [
+        "experiments/rebuttal/c3_channel_ablation/work/streams/novelhopqa__bm25.parquet",
+        "experiments/rebuttal/c3_channel_ablation/work/streams/novelhopqa__bm25.queries.json"
+      ],
+      "parquet_sha256": "f7f15c7c2cac161dc80f7824738e7b1ec259040829b72185b83ae07ee5fbc853",
+      "queries_sha256": "8d18c3d27ea9d3c0fa4c572fe08163afa5aa78d2cb519a4120a9870eeb040ec8",
+      "n_docs": 16,
+      "chunks_per_query_median": 383.0,
+      "missing_channel_counts": {
+        "summary": 1536,
+        "memory_all_fields": 2406,
+        "chunk_query_pairs": 418611
+      },
+      "check1": {
+        "n_queries_streams": 908,
+        "n_queries_saved": 908,
+        "complete": true,
+        "identical_top10": 908,
+        "hr_all_three": {
+          "eligible": 908,
+          "hits": {
+            "5": 164,
+            "10": 200
+          },
+          "hr_percent": {
+            "5": 18.06167400881057,
+            "10": 22.026431718061673
+          }
+        },
+        "hr_saved": {
+          "eligible": 908,
+          "hits": {
+            "5": 164,
+            "10": 200
+          },
+          "hr_percent": {
+            "5": 18.06167400881057,
+            "10": 22.026431718061673
+          }
+        },
+        "expected_metrics": {
+          "5": {
+            "eligible": 908,
+            "hits": 164
+          },
+          "10": {
+            "eligible": 908,
+            "hits": 200
+          }
+        },
+        "expected_hits_match": true,
+        "max_abs_score_diff_identical": 0.0,
+        "mismatch_examples": [],
+        "passed": true
+      },
+      "check2": {
+        "hr_text_only": {
+          "eligible": 908,
+          "hits": {
+            "5": 159,
+            "10": 188
+          },
+          "hr_percent": {
+            "5": 17.51101321585903,
+            "10": 20.704845814977972
+          }
+        },
+        "table1_vanilla": {
+          "5": 16.9,
+          "10": 20.0
+        },
+        "diff_points": {
+          "5": 0.6110132158590318,
+          "10": 0.7048458149779719
+        },
+        "equal_to_table1": false,
+        "per_query_file": "outputs/novelhopqa_ablation/500_tokens/llm_cache/novelhopqa/hierarchical/branching_factor_5/chunk_500/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/retrieval_reports/retrieval_results__bm25__mbr_lt1_ln0_lh0_norm_none__per_document.json",
+        "per_query_identical": 908,
+        "n": 908
+      },
+      "seconds": 0.10288695013150573
     },
     {
       "dataset": "novelhopqa",
       "retriever": "contriever",
-      "reason": "check 1 failed or exception"
+      "stream_files": [
+        "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__contriever.parquet",
+        "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__contriever.queries.json"
+      ],
+      "parquet_sha256": "ce119612d7a4053facd393382c35a67793f46f793830778489963205f5987d9a",
+      "queries_sha256": "d6ed6d80080cae804d8e441878ca46961d94175eca212b10d594da9957df2d23",
+      "n_docs": 16,
+      "chunks_per_query_median": 383.0,
+      "missing_channel_counts": {
+        "summary": 1536,
+        "memory_all_fields": 2406,
+        "chunk_query_pairs": 418611
+      },
+      "check1": {
+        "n_queries_streams": 908,
+        "n_queries_saved": 908,
+        "complete": true,
+        "identical_top10": 908,
+        "hr_all_three": {
+          "eligible": 908,
+          "hits": {
+            "5": 123,
+            "10": 165
+          },
+          "hr_percent": {
+            "5": 13.54625550660793,
+            "10": 18.17180616740088
+          }
+        },
+        "hr_saved": {
+          "eligible": 908,
+          "hits": {
+            "5": 123,
+            "10": 165
+          },
+          "hr_percent": {
+            "5": 13.54625550660793,
+            "10": 18.17180616740088
+          }
+        },
+        "expected_metrics": {
+          "5": {
+            "eligible": 908,
+            "hits": 123
+          },
+          "10": {
+            "eligible": 908,
+            "hits": 165
+          }
+        },
+        "expected_hits_match": true,
+        "max_abs_score_diff_identical": 0.0,
+        "mismatch_examples": [],
+        "passed": true
+      },
+      "check2": {
+        "hr_text_only": {
+          "eligible": 908,
+          "hits": {
+            "5": 113,
+            "10": 162
+          },
+          "hr_percent": {
+            "5": 12.444933920704845,
+            "10": 17.841409691629956
+          }
+        },
+        "table1_vanilla": {
+          "5": 11.8,
+          "10": 11.8
+        },
+        "diff_points": {
+          "5": 0.6449339207048439,
+          "10": 6.041409691629955
+        },
+        "equal_to_table1": false,
+        "n": 908
+      },
+      "seconds": 0.09090023906901479
     },
     {
       "dataset": "novelhopqa",
       "retriever": "bge_m3",
-      "reason": "check 1 failed or exception"
+      "stream_files": [
+        "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bge_m3.parquet",
+        "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bge_m3.queries.json"
+      ],
+      "parquet_sha256": "e53e56cd853a43fe700029ae6c2bb80edd3b551c998f5d0ff8a9230bd6f6ed18",
+      "queries_sha256": "4bd81ca4be2fbecd11c5948d304c9517beaa4c0e873d313a21cc029f028d6302",
+      "n_docs": 16,
+      "chunks_per_query_median": 383.0,
+      "missing_channel_counts": {
+        "summary": 1536,
+        "memory_all_fields": 2406,
+        "chunk_query_pairs": 418611
+      },
+      "check1": {
+        "n_queries_streams": 908,
+        "n_queries_saved": 908,
+        "complete": true,
+        "identical_top10": 908,
+        "hr_all_three": {
+          "eligible": 908,
+          "hits": {
+            "5": 150,
+            "10": 201
+          },
+          "hr_percent": {
+            "5": 16.519823788546255,
+            "10": 22.136563876651984
+          }
+        },
+        "hr_saved": {
+          "eligible": 908,
+          "hits": {
+            "5": 150,
+            "10": 201
+          },
+          "hr_percent": {
+            "5": 16.519823788546255,
+            "10": 22.136563876651984
+          }
+        },
+        "expected_metrics": {
+          "5": {
+            "eligible": 908,
+            "hits": 150
+          },
+          "10": {
+            "eligible": 908,
+            "hits": 201
+          }
+        },
+        "expected_hits_match": true,
+        "max_abs_score_diff_identical": 0.0,
+        "mismatch_examples": [],
+        "passed": true
+      },
+      "check2": {
+        "hr_text_only": {
+          "eligible": 908,
+          "hits": {
+            "5": 157,
+            "10": 199
+          },
+          "hr_percent": {
+            "5": 17.290748898678416,
+            "10": 21.916299559471366
+          }
+        },
+        "table1_vanilla": {
+          "5": 14.1,
+          "10": 20.7
+        },
+        "diff_points": {
+          "5": 3.1907488986784163,
+          "10": 1.2162995594713664
+        },
+        "equal_to_table1": false,
+        "n": 908
+      },
+      "seconds": 0.08987594093196094
     }
   ],
+  "check_errors": [],
+  "ready": [
+    "loogle__bm25",
+    "loogle__contriever",
+    "loogle__bge_m3",
+    "musique_32k__bm25",
+    "musique_32k__contriever",
+    "musique_32k__bge_m3",
+    "qasper_64k__bm25",
+    "qasper_64k__contriever",
+    "qasper_64k__bge_m3",
+    "novelhopqa__bm25",
+    "novelhopqa__contriever",
+    "novelhopqa__bge_m3"
+  ],
+  "not_ready": [],
   "files": [
+    "experiments/rebuttal/c3_channel_ablation/work/streams/loogle__bm25.parquet",
+    "experiments/rebuttal/c3_channel_ablation/work/streams/loogle__bm25.queries.json",
+    "experiments/rebuttal/c3_channel_ablation/work/streams/musique_32k__bm25.parquet",
+    "experiments/rebuttal/c3_channel_ablation/work/streams/musique_32k__bm25.queries.json",
+    "experiments/rebuttal/c3_channel_ablation/work/streams/qasper_64k__bm25.parquet",
+    "experiments/rebuttal/c3_channel_ablation/work/streams/qasper_64k__bm25.queries.json",
+    "experiments/rebuttal/c3_channel_ablation/work/streams/novelhopqa__bm25.parquet",
+    "experiments/rebuttal/c3_channel_ablation/work/streams/novelhopqa__bm25.queries.json",
     "experiments/rebuttal/c3_channel_ablation/work/ready_pairs.json",
     "experiments/rebuttal/c3_channel_ablation/reports/step_01.md",
     "experiments/rebuttal/c3_channel_ablation/reports/step_01.json"

@@ -1,0 +1,1646 @@
+{
+  "dataset": "loogle",
+  "written_at": "2026-11-09 17:32:52",
+  "tag": "",
+  "census": {
+    "dataset": "loogle",
+    "max_docs": null,
+    "tokenizer": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+    "model": {
+      "max_model_len": 262144,
+      "rope_scaling": null,
+      "num_hidden_layers": 48,
+      "num_key_value_heads": 4,
+      "head_dim": 128
+    },
+    "template_tokens": 70,
+    "context_max_tokens": 1024,
+    "doc_separator": " ",
+    "n_docs": 105,
+    "n_chunks": 3346,
+    "doc_tokens": {
+      "n": 105,
+      "min": 13560.0,
+      "p25": 15905.0,
+      "median": 18951.0,
+      "mean": 22053.92380952381,
+      "p75": 25898.0,
+      "p95": 38004.4,
+      "max": 59513.0,
+      "total": 2315662.0
+    },
+    "chunk_tokens": {
+      "n": 3346,
+      "min": 19.0,
+      "p25": 628.0,
+      "median": 666.0,
+      "mean": 692.1052002390915,
+      "p75": 720.0,
+      "p95": 972.75,
+      "max": 1409.0,
+      "total": 2315784.0
+    },
+    "docs_exceeding_window": 0,
+    "chunks_in_segmented_docs": 0,
+    "k_values": {
+      "1": 105
+    },
+    "segmented_docs": [],
+    "nominal_input_tokens": 85965970,
+    "visible_tokens_per_call": {
+      "n": 3346,
+      "min": 13569.0,
+      "p25": 17281.0,
+      "median": 21362.0,
+      "mean": 24939.04423191871,
+      "p75": 28821.0,
+      "p95": 53702.0,
+      "max": 59522.0,
+      "total": 83446042.0
+    },
+    "joint_tokenization_equals_split": [
+      true,
+      true,
+      true
+    ],
+    "seconds": 22.8
+  },
+  "generation": {
+    "done": true,
+    "stats": {
+      "calls": 3346,
+      "calls_per_chunk": 1.0,
+      "calls_per_document": 31.866666666666667,
+      "missing_chunks": 0,
+      "missing_examples": [],
+      "empty_contexts": 0,
+      "failed_contexts": 0,
+      "cut_at_max_tokens": 0,
+      "cut_share": 0.0,
+      "generated_tokens": {
+        "n": 3346,
+        "min": 40.0,
+        "p25": 103.0,
+        "median": 127.0,
+        "mean": 130.07262402869097,
+        "p75": 154.0,
+        "p95": 199.0,
+        "max": 324.0,
+        "total": 435223.0
+      },
+      "nominal_input_tokens": {
+        "n": 3346,
+        "min": 13942.0,
+        "p25": 18008.0,
+        "median": 22011.0,
+        "mean": 25692.160789001795,
+        "p75": 29786.25,
+        "p95": 54415.0,
+        "max": 60788.0,
+        "total": 85965970.0
+      },
+      "computed_input_tokens": {
+        "n": 3346,
+        "min": 67.0,
+        "p25": 679.0,
+        "median": 720.0,
+        "mean": 1478.059175134489,
+        "p75": 778.75,
+        "p95": 1274.0,
+        "max": 60714.0,
+        "total": 4945586.0
+      },
+      "cached_tokens_source": [
+        "vllm num_cached_tokens"
+      ],
+      "generator": [
+        "vllm"
+      ],
+      "context_chars": {
+        "n": 3346,
+        "min": 221.0,
+        "p25": 513.0,
+        "median": 627.5,
+        "mean": 641.716377764495,
+        "p75": 754.0,
+        "p95": 961.75,
+        "max": 1441.0,
+        "total": 2147183.0
+      }
+    },
+    "runs": [
+      {
+        "contexts_this_run": 3346,
+        "seconds_this_run": 2099.2,
+        "waves": 5,
+        "generator": "vllm",
+        "vllm_version": "0.23.0",
+        "vllm_settings": {
+          "tensor_parallel_size": 4,
+          "dtype": "bfloat16",
+          "gpu_memory_utilization": 0.8,
+          "max_num_seqs": 16,
+          "max_num_batched_tokens": 16384,
+          "enable_prefix_caching": true,
+          "disable_custom_all_reduce": true,
+          "seed": 42,
+          "model": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+          "max_model_len": 262144,
+          "generation_config": "vllm"
+        },
+        "wall_seconds": 2203.1,
+        "gpus": "0,1,2,3",
+        "finished_at": "2026-11-09 16:36:12"
+      }
+    ]
+  },
+  "memory_check": {
+    "text_chars": 3907,
+    "placeholder_context_tokens": 1024,
+    "margin": 0.1,
+    "models": {
+      "contriever": {
+        "retriever": "contriever",
+        "n_gpus": 1,
+        "batch_size": 128,
+        "default_batch_size": 128,
+        "peak_mib": [
+          3306
+        ],
+        "total_mib": [
+          48541
+        ],
+        "tried": [
+          {
+            "batch_size": 128,
+            "peak_mib": [
+              3306
+            ],
+            "fits": true,
+            "error": null
+          }
+        ],
+        "fits": true,
+        "gpus": [
+          0
+        ]
+      },
+      "bge_m3": {
+        "retriever": "bge_m3",
+        "n_gpus": 1,
+        "batch_size": 16,
+        "default_batch_size": 16,
+        "peak_mib": [
+          4004
+        ],
+        "total_mib": [
+          48541
+        ],
+        "tried": [
+          {
+            "batch_size": 16,
+            "peak_mib": [
+              4004
+            ],
+            "fits": true,
+            "error": null
+          }
+        ],
+        "fits": true,
+        "gpus": [
+          0
+        ]
+      },
+      "jina": {
+        "retriever": "jina",
+        "n_gpus": 1,
+        "batch_size": 64,
+        "default_batch_size": 64,
+        "peak_mib": [
+          2082
+        ],
+        "total_mib": [
+          48541
+        ],
+        "tried": [
+          {
+            "batch_size": 64,
+            "peak_mib": [
+              2082
+            ],
+            "fits": true,
+            "error": null
+          }
+        ],
+        "fits": true,
+        "gpus": [
+          0
+        ]
+      },
+      "qwen": {
+        "retriever": "qwen",
+        "n_gpus": 2,
+        "batch_size": 64,
+        "default_batch_size": 64,
+        "peak_mib": [
+          27106,
+          28446
+        ],
+        "total_mib": [
+          48541,
+          48541
+        ],
+        "tried": [
+          {
+            "batch_size": 64,
+            "peak_mib": [
+              27106,
+              28446
+            ],
+            "fits": true,
+            "error": null
+          }
+        ],
+        "fits": true,
+        "gpus": [
+          0,
+          1
+        ]
+      }
+    },
+    "ok": true
+  },
+  "estimates": {
+    "generation": {
+      "calls": 3346,
+      "seconds": 1697.9481905999999,
+      "basis": "per call 9.3e-06 s x visible document tokens + 0.15 s, plus 420 s engine start (B2's measured rate on the same model and runtime)"
+    },
+    "retrieval": {
+      "jobs": {
+        "bm25": {
+          "device": "cpu",
+          "n_gpus": 0,
+          "est_seconds": 28.11195,
+          "basis": "C2's CPU rate x 3 (published streams, empty-context pass, CR pass)"
+        },
+        "contriever": {
+          "device": "gpu",
+          "n_gpus": 1,
+          "est_seconds": 124.48001599999999,
+          "basis": "C2 streams reused: CR chunks + plain chunks (empty-context check) encoded, 2 query encodings per query"
+        },
+        "bge_m3": {
+          "device": "gpu",
+          "n_gpus": 1,
+          "est_seconds": 675.4612256,
+          "basis": "C2 streams reused: CR chunks + plain chunks (empty-context check) encoded, 2 query encodings per query"
+        },
+        "jina": {
+          "device": "gpu",
+          "n_gpus": 1,
+          "est_seconds": 524.1536831999999,
+          "basis": "C2 streams reused: CR chunks + plain chunks (empty-context check) encoded, 2 query encodings per query"
+        },
+        "qwen": {
+          "device": "gpu",
+          "n_gpus": 2,
+          "est_seconds": 7417.6752535,
+          "basis": "C2's estimate for the published streams + CR chunks encoded"
+        }
+      },
+      "wall_seconds": 7417.6752535
+    }
+  },
+  "jobs": {
+    "bm25": {
+      "status": "DONE",
+      "summary": {
+        "dataset": "loogle",
+        "retriever": "bm25",
+        "max_docs": null,
+        "c2_streams": {
+          "done": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/markers/loogle__bm25.DONE",
+          "stream": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/streams/loogle__bm25.parquet",
+          "queries": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/streams/loogle__bm25.queries.json",
+          "check": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/streams/loogle__bm25.check.json",
+          "check_passed": true,
+          "drift_accepted": false
+        },
+        "channel_source_docs": {
+          "c2_streams": 105,
+          "published_path": 0
+        },
+        "gate": {
+          "passed": true,
+          "problems": [],
+          "notes": [
+            "empty-context HR@5 91.87 vs Table 1 Vanilla 91.5 (tolerance 0.05) - not gated: on this dataset Table 1 Vanilla is not the text channel of the saved chunks",
+            "empty-context HR@10 95.74 vs Table 1 Vanilla 95.4 (tolerance 0.05) - not gated: on this dataset Table 1 Vanilla is not the text channel of the saved chunks"
+          ],
+          "saadi_reproduction": {
+            "identical_top10": 1832,
+            "queries": 1832,
+            "hr_ours": {
+              "eligible": 1832,
+              "hits": {
+                "5": 1691,
+                "10": 1767
+              },
+              "hr_percent": {
+                "5": 92.30349344978166,
+                "10": 96.4519650655022
+              }
+            },
+            "hr_saved": {
+              "eligible": 1832,
+              "hits": {
+                "5": 1691,
+                "10": 1767
+              },
+              "hr_percent": {
+                "5": 92.30349344978166,
+                "10": 96.4519650655022
+              }
+            },
+            "expected_metrics": {
+              "5": {
+                "eligible": 1832,
+                "hits": 1691,
+                "hr_percent": 92.30349344978166
+              },
+              "10": {
+                "eligible": 1832,
+                "hits": 1767,
+                "hr_percent": 96.4519650655022
+              }
+            },
+            "drift_accepted": false,
+            "drift_notes": null,
+            "text_only_vs_table1": {
+              "hr": {
+                "eligible": 1832,
+                "hits": {
+                  "5": 1683,
+                  "10": 1754
+                },
+                "hr_percent": {
+                  "5": 91.86681222707423,
+                  "10": 95.74235807860262
+                }
+              },
+              "reported_percent": {
+                "5": 91.5,
+                "10": 95.4
+              },
+              "diff_points": {
+                "5": 0.36681222707423444,
+                "10": 0.342358078602615
+              },
+              "per_query_file": "outputs/loogle_ablation/500_tokens/llm_cache/loogle/hierarchical/branching_factor_5/chunk_500/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/retrieval_reports/retrieval_results__bm25__mbr_lt1_ln0_lh0_norm_none__per_document.json",
+              "per_query_identical_top10": 1832,
+              "passed": false,
+              "notes": [
+                "text-only HR@5 91.87 vs Table 1 Vanilla 91.5 (tolerance 0.05)",
+                "text-only HR@10 95.74 vs Table 1 Vanilla 95.4 (tolerance 0.05)"
+              ]
+            }
+          },
+          "empty_vs_vanilla": {
+            "identical_top150": 1832,
+            "identical_top10": 1832,
+            "queries": 1832,
+            "hr_vanilla": {
+              "eligible": 1832,
+              "hits": {
+                "5": 1683,
+                "10": 1754
+              },
+              "hr_percent": {
+                "5": 91.86681222707423,
+                "10": 95.74235807860262
+              }
+            },
+            "hr_empty": {
+              "eligible": 1832,
+              "hits": {
+                "5": 1683,
+                "10": 1754
+              },
+              "hr_percent": {
+                "5": 91.86681222707423,
+                "10": 95.74235807860262
+              }
+            },
+            "max_abs_text_score_diff": 0.0,
+            "reference": "C2 saved streams (independent run)"
+          },
+          "saved_per_query_text_only": {
+            "file": "outputs/loogle_ablation/500_tokens/llm_cache/loogle/hierarchical/branching_factor_5/chunk_500/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/retrieval_reports/retrieval_results__bm25__mbr_lt1_ln0_lh0_norm_none__per_document.json",
+            "identical_top10": 1832,
+            "queries": 1832
+          },
+          "table1_vanilla": {
+            "5": {
+              "table1": 91.5,
+              "empty_context": 91.86681222707423
+            },
+            "10": {
+              "table1": 95.4,
+              "empty_context": 95.74235807860262
+            }
+          },
+          "mismatch_examples": []
+        },
+        "queries": 1832,
+        "truncation": {
+          "contextualized": {},
+          "plain": {}
+        },
+        "status": "DONE",
+        "timings": {
+          "docs": 105,
+          "docs_from_checkpoint": 0,
+          "seconds_pass1": 7.523576449835673,
+          "seconds_pass2": 6.939267761306837,
+          "seconds_total": 21.1
+        },
+        "device": {
+          "cuda_visible_devices": "",
+          "batch_size_env": {},
+          "device_map_env": {}
+        }
+      },
+      "gpus": []
+    },
+    "contriever": {
+      "status": "DONE",
+      "summary": {
+        "dataset": "loogle",
+        "retriever": "contriever",
+        "max_docs": null,
+        "c2_streams": {
+          "done": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/markers/loogle__contriever.DONE",
+          "stream": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/streams/loogle__contriever.parquet",
+          "queries": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/streams/loogle__contriever.queries.json",
+          "check": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/streams/loogle__contriever.check.json",
+          "check_passed": true,
+          "drift_accepted": false
+        },
+        "channel_source_docs": {
+          "c2_streams": 105,
+          "published_path": 0
+        },
+        "gate": {
+          "passed": true,
+          "problems": [],
+          "notes": [
+            "empty-context HR@5 75.16 vs Table 1 Vanilla 72.4 (tolerance 0.15) - not gated: on this dataset Table 1 Vanilla is not the text channel of the saved chunks",
+            "empty-context HR@10 86.03 vs Table 1 Vanilla 73.3 (tolerance 0.15) - not gated: on this dataset Table 1 Vanilla is not the text channel of the saved chunks"
+          ],
+          "saadi_reproduction": {
+            "identical_top10": 1832,
+            "queries": 1832,
+            "hr_ours": {
+              "eligible": 1832,
+              "hits": {
+                "5": 1382,
+                "10": 1570
+              },
+              "hr_percent": {
+                "5": 75.43668122270742,
+                "10": 85.69868995633188
+              }
+            },
+            "hr_saved": {
+              "eligible": 1832,
+              "hits": {
+                "5": 1382,
+                "10": 1570
+              },
+              "hr_percent": {
+                "5": 75.43668122270742,
+                "10": 85.69868995633188
+              }
+            },
+            "expected_metrics": {
+              "5": {
+                "eligible": 1832,
+                "hits": 1382,
+                "hr_percent": 75.43668122270742
+              },
+              "10": {
+                "eligible": 1832,
+                "hits": 1570,
+                "hr_percent": 85.69868995633188
+              }
+            },
+            "drift_accepted": false,
+            "drift_notes": null,
+            "text_only_vs_table1": {
+              "hr": {
+                "eligible": 1832,
+                "hits": {
+                  "5": 1377,
+                  "10": 1576
+                },
+                "hr_percent": {
+                  "5": 75.16375545851528,
+                  "10": 86.02620087336244
+                }
+              },
+              "reported_percent": {
+                "5": 72.4,
+                "10": 73.3
+              },
+              "diff_points": {
+                "5": 2.763755458515277,
+                "10": 12.726200873362444
+              },
+              "passed": false,
+              "notes": [
+                "text-only HR@5 75.16 vs Table 1 Vanilla 72.4 (tolerance 0.15)",
+                "text-only HR@10 86.03 vs Table 1 Vanilla 73.3 (tolerance 0.15)"
+              ]
+            }
+          },
+          "empty_vs_vanilla": {
+            "identical_top150": 1832,
+            "identical_top10": 1832,
+            "queries": 1832,
+            "hr_vanilla": {
+              "eligible": 1832,
+              "hits": {
+                "5": 1377,
+                "10": 1576
+              },
+              "hr_percent": {
+                "5": 75.16375545851528,
+                "10": 86.02620087336244
+              }
+            },
+            "hr_empty": {
+              "eligible": 1832,
+              "hits": {
+                "5": 1377,
+                "10": 1576
+              },
+              "hr_percent": {
+                "5": 75.16375545851528,
+                "10": 86.02620087336244
+              }
+            },
+            "max_abs_text_score_diff": 0.0,
+            "reference": "C2 saved streams (independent run)"
+          },
+          "saved_per_query_text_only": null,
+          "table1_vanilla": {
+            "5": {
+              "table1": 72.4,
+              "empty_context": 75.16375545851528
+            },
+            "10": {
+              "table1": 73.3,
+              "empty_context": 86.02620087336244
+            }
+          },
+          "mismatch_examples": []
+        },
+        "queries": 1832,
+        "truncation": {
+          "contextualized": {
+            "max_length": 512,
+            "texts": 3346,
+            "over_max_length": 3293,
+            "tokens_cut_total": 875396,
+            "longest_tokens": 1319
+          },
+          "plain": {
+            "max_length": 512,
+            "texts": 3346,
+            "over_max_length": 3268,
+            "tokens_cut_total": 462489,
+            "longest_tokens": 1198
+          }
+        },
+        "status": "DONE",
+        "timings": {
+          "docs": 105,
+          "docs_from_checkpoint": 0,
+          "seconds_pass1": 47.19087662710808,
+          "seconds_pass2": 48.738362652016804,
+          "seconds_total": 112.7
+        },
+        "device": {
+          "cuda_visible_devices": "3",
+          "batch_size_env": {
+            "SAADI_CONTRIEVER_BATCH_SIZE": "128"
+          },
+          "device_map_env": {}
+        }
+      },
+      "gpus": [
+        3
+      ]
+    },
+    "bge_m3": {
+      "status": "DONE",
+      "summary": {
+        "dataset": "loogle",
+        "retriever": "bge_m3",
+        "max_docs": null,
+        "c2_streams": {
+          "done": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/markers/loogle__bge_m3.DONE",
+          "stream": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/streams/loogle__bge_m3.parquet",
+          "queries": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/streams/loogle__bge_m3.queries.json",
+          "check": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/streams/loogle__bge_m3.check.json",
+          "check_passed": true,
+          "drift_accepted": false
+        },
+        "channel_source_docs": {
+          "c2_streams": 105,
+          "published_path": 0
+        },
+        "gate": {
+          "passed": true,
+          "problems": [],
+          "notes": [
+            "empty-context HR@5 82.48 vs Table 1 Vanilla 80.6 (tolerance 0.15) - not gated: on this dataset Table 1 Vanilla is not the text channel of the saved chunks",
+            "empty-context HR@10 90.72 vs Table 1 Vanilla 89.8 (tolerance 0.15) - not gated: on this dataset Table 1 Vanilla is not the text channel of the saved chunks"
+          ],
+          "saadi_reproduction": {
+            "identical_top10": 1832,
+            "queries": 1832,
+            "hr_ours": {
+              "eligible": 1832,
+              "hits": {
+                "5": 1485,
+                "10": 1651
+              },
+              "hr_percent": {
+                "5": 81.0589519650655,
+                "10": 90.12008733624454
+              }
+            },
+            "hr_saved": {
+              "eligible": 1832,
+              "hits": {
+                "5": 1485,
+                "10": 1651
+              },
+              "hr_percent": {
+                "5": 81.0589519650655,
+                "10": 90.12008733624454
+              }
+            },
+            "expected_metrics": {
+              "5": {
+                "eligible": 1832,
+                "hits": 1485,
+                "hr_percent": 81.0589519650655
+              },
+              "10": {
+                "eligible": 1832,
+                "hits": 1651,
+                "hr_percent": 90.12008733624454
+              }
+            },
+            "drift_accepted": false,
+            "drift_notes": null,
+            "text_only_vs_table1": {
+              "hr": {
+                "eligible": 1832,
+                "hits": {
+                  "5": 1511,
+                  "10": 1662
+                },
+                "hr_percent": {
+                  "5": 82.47816593886463,
+                  "10": 90.72052401746726
+                }
+              },
+              "reported_percent": {
+                "5": 80.6,
+                "10": 89.8
+              },
+              "diff_points": {
+                "5": 1.8781659388646403,
+                "10": 0.9205240174672582
+              },
+              "passed": false,
+              "notes": [
+                "text-only HR@5 82.48 vs Table 1 Vanilla 80.6 (tolerance 0.15)",
+                "text-only HR@10 90.72 vs Table 1 Vanilla 89.8 (tolerance 0.15)"
+              ]
+            }
+          },
+          "empty_vs_vanilla": {
+            "identical_top150": 1832,
+            "identical_top10": 1832,
+            "queries": 1832,
+            "hr_vanilla": {
+              "eligible": 1832,
+              "hits": {
+                "5": 1511,
+                "10": 1662
+              },
+              "hr_percent": {
+                "5": 82.47816593886463,
+                "10": 90.72052401746726
+              }
+            },
+            "hr_empty": {
+              "eligible": 1832,
+              "hits": {
+                "5": 1511,
+                "10": 1662
+              },
+              "hr_percent": {
+                "5": 82.47816593886463,
+                "10": 90.72052401746726
+              }
+            },
+            "max_abs_text_score_diff": 0.0,
+            "reference": "C2 saved streams (independent run)"
+          },
+          "saved_per_query_text_only": null,
+          "table1_vanilla": {
+            "5": {
+              "table1": 80.6,
+              "empty_context": 82.47816593886463
+            },
+            "10": {
+              "table1": 89.8,
+              "empty_context": 90.72052401746726
+            }
+          },
+          "mismatch_examples": []
+        },
+        "queries": 1832,
+        "truncation": {
+          "contextualized": {
+            "max_length": 8192,
+            "texts": 3346,
+            "over_max_length": 0,
+            "tokens_cut_total": 0,
+            "longest_tokens": 1372
+          },
+          "plain": {
+            "max_length": 8192,
+            "texts": 3346,
+            "over_max_length": 0,
+            "tokens_cut_total": 0,
+            "longest_tokens": 1221
+          }
+        },
+        "status": "DONE",
+        "timings": {
+          "docs": 105,
+          "docs_from_checkpoint": 0,
+          "seconds_pass1": 161.7042532316409,
+          "seconds_pass2": 272.8388444997836,
+          "seconds_total": 453.6
+        },
+        "device": {
+          "cuda_visible_devices": "2",
+          "batch_size_env": {
+            "SAADI_BGE_M3_BATCH_SIZE": "16"
+          },
+          "device_map_env": {}
+        }
+      },
+      "gpus": [
+        2
+      ]
+    },
+    "jina": {
+      "status": "DONE",
+      "summary": {
+        "dataset": "loogle",
+        "retriever": "jina",
+        "max_docs": null,
+        "c2_streams": {
+          "done": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/markers/loogle__jina.DONE",
+          "stream": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/streams/loogle__jina.parquet",
+          "queries": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/streams/loogle__jina.queries.json",
+          "check": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/streams/loogle__jina.check.json",
+          "check_passed": true,
+          "drift_accepted": true
+        },
+        "channel_source_docs": {
+          "c2_streams": 105,
+          "published_path": 0
+        },
+        "gate": {
+          "passed": true,
+          "problems": [],
+          "notes": [
+            "empty-context HR@10 80.68 vs Table 1 Vanilla 80.1 (tolerance 0.50) - not gated: on this dataset Table 1 Vanilla is not the text channel of the saved chunks"
+          ],
+          "saadi_reproduction": {
+            "identical_top10": 1519,
+            "queries": 1832,
+            "hr_ours": {
+              "eligible": 1832,
+              "hits": {
+                "5": 1286,
+                "10": 1502
+              },
+              "hr_percent": {
+                "5": 70.19650655021834,
+                "10": 81.98689956331879
+              }
+            },
+            "hr_saved": {
+              "eligible": 1832,
+              "hits": {
+                "5": 1285,
+                "10": 1502
+              },
+              "hr_percent": {
+                "5": 70.14192139737992,
+                "10": 81.98689956331879
+              }
+            },
+            "expected_metrics": {
+              "5": {
+                "eligible": 1832,
+                "hits": 1285,
+                "hr_percent": 70.14192139737992
+              },
+              "10": {
+                "eligible": 1832,
+                "hits": 1502,
+                "hr_percent": 81.98689956331879
+              }
+            },
+            "drift_accepted": true,
+            "drift_notes": [
+              "identical top-10 for 1519/1832 queries (< 99%)",
+              "accepted: jina is in DRIFT_ACCEPTED_RETRIEVERS and the largest HR gap is 0.05 <= 0.5 points"
+            ],
+            "text_only_vs_table1": {
+              "hr": {
+                "eligible": 1832,
+                "hits": {
+                  "5": 1281,
+                  "10": 1478
+                },
+                "hr_percent": {
+                  "5": 69.92358078602619,
+                  "10": 80.67685589519651
+                }
+              },
+              "reported_percent": {
+                "5": 70.1,
+                "10": 80.1
+              },
+              "diff_points": {
+                "5": -0.17641921397380145,
+                "10": 0.5768558951965161
+              },
+              "passed": false,
+              "notes": [
+                "text-only HR@5 69.92 vs Table 1 Vanilla 70.1 (tolerance 0.15)",
+                "text-only HR@10 80.68 vs Table 1 Vanilla 80.1 (tolerance 0.15)"
+              ]
+            }
+          },
+          "empty_vs_vanilla": {
+            "identical_top150": 1832,
+            "identical_top10": 1832,
+            "queries": 1832,
+            "hr_vanilla": {
+              "eligible": 1832,
+              "hits": {
+                "5": 1281,
+                "10": 1478
+              },
+              "hr_percent": {
+                "5": 69.92358078602619,
+                "10": 80.67685589519651
+              }
+            },
+            "hr_empty": {
+              "eligible": 1832,
+              "hits": {
+                "5": 1281,
+                "10": 1478
+              },
+              "hr_percent": {
+                "5": 69.92358078602619,
+                "10": 80.67685589519651
+              }
+            },
+            "max_abs_text_score_diff": 0.0,
+            "reference": "C2 saved streams (independent run)"
+          },
+          "saved_per_query_text_only": null,
+          "table1_vanilla": {
+            "5": {
+              "table1": 70.1,
+              "empty_context": 69.92358078602619
+            },
+            "10": {
+              "table1": 80.1,
+              "empty_context": 80.67685589519651
+            }
+          },
+          "mismatch_examples": []
+        },
+        "queries": 1832,
+        "truncation": {
+          "contextualized": {
+            "max_length": 512,
+            "texts": 3346,
+            "over_max_length": 3302,
+            "tokens_cut_total": 1229003,
+            "longest_tokens": 1372
+          },
+          "plain": {
+            "max_length": 512,
+            "texts": 3346,
+            "over_max_length": 3279,
+            "tokens_cut_total": 737912,
+            "longest_tokens": 1221
+          }
+        },
+        "status": "DONE",
+        "timings": {
+          "docs": 105,
+          "docs_from_checkpoint": 0,
+          "seconds_pass1": 67.81122149294242,
+          "seconds_pass2": 61.43760334793478,
+          "seconds_total": 149.9
+        },
+        "device": {
+          "cuda_visible_devices": "3",
+          "batch_size_env": {
+            "SAADI_JINA_BATCH_SIZE": "64"
+          },
+          "device_map_env": {}
+        }
+      },
+      "gpus": [
+        3
+      ]
+    },
+    "qwen": {
+      "status": "FAILED",
+      "summary": {
+        "dataset": "loogle",
+        "retriever": "qwen",
+        "max_docs": null,
+        "c2_streams": null,
+        "channel_source_docs": {
+          "c2_streams": 0,
+          "published_path": 105
+        },
+        "gate": {
+          "passed": false,
+          "problems": [
+            "identical top-10 for 733/1832 queries (< 99%)",
+            "HR@5 77.13 vs saved 77.02 (tolerance 0.1 points)",
+            "HR@10 86.41 vs saved 86.68 (tolerance 0.1 points)",
+            "HR@5 77.13 vs expected 77.02",
+            "HR@10 86.41 vs expected 86.68"
+          ],
+          "notes": [
+            "empty-context HR@5 77.89 vs Table 1 Vanilla 76.9 (tolerance 0.15) - not gated: on this dataset Table 1 Vanilla is not the text channel of the saved chunks",
+            "empty-context HR@10 86.19 vs Table 1 Vanilla 85.9 (tolerance 0.15) - not gated: on this dataset Table 1 Vanilla is not the text channel of the saved chunks"
+          ],
+          "saadi_reproduction": {
+            "identical_top10": 733,
+            "queries": 1832,
+            "hr_ours": {
+              "eligible": 1832,
+              "hits": {
+                "5": 1413,
+                "10": 1583
+              },
+              "hr_percent": {
+                "5": 77.12882096069869,
+                "10": 86.40829694323145
+              }
+            },
+            "hr_saved": {
+              "eligible": 1832,
+              "hits": {
+                "5": 1411,
+                "10": 1588
+              },
+              "hr_percent": {
+                "5": 77.01965065502183,
+                "10": 86.68122270742357
+              }
+            },
+            "expected_metrics": {
+              "5": {
+                "eligible": 1832,
+                "hits": 1411,
+                "hr_percent": 77.01965065502183
+              },
+              "10": {
+                "eligible": 1832,
+                "hits": 1588,
+                "hr_percent": 86.68122270742357
+              }
+            },
+            "drift_accepted": false,
+            "drift_notes": null,
+            "text_only_vs_table1": {
+              "hr": {
+                "eligible": 1832,
+                "hits": {
+                  "5": 1427,
+                  "10": 1579
+                },
+                "hr_percent": {
+                  "5": 77.89301310043668,
+                  "10": 86.18995633187772
+                }
+              },
+              "reported_percent": {
+                "5": 76.9,
+                "10": 85.9
+              },
+              "diff_points": {
+                "5": 0.99301310043667,
+                "10": 0.2899563318777183
+              },
+              "passed": false,
+              "notes": [
+                "text-only HR@5 77.89 vs Table 1 Vanilla 76.9 (tolerance 0.15)",
+                "text-only HR@10 86.19 vs Table 1 Vanilla 85.9 (tolerance 0.15)"
+              ]
+            }
+          },
+          "empty_vs_vanilla": {
+            "identical_top150": 1832,
+            "identical_top10": 1832,
+            "queries": 1832,
+            "hr_vanilla": {
+              "eligible": 1832,
+              "hits": {
+                "5": 1427,
+                "10": 1579
+              },
+              "hr_percent": {
+                "5": 77.89301310043668,
+                "10": 86.18995633187772
+              }
+            },
+            "hr_empty": {
+              "eligible": 1832,
+              "hits": {
+                "5": 1427,
+                "10": 1579
+              },
+              "hr_percent": {
+                "5": 77.89301310043668,
+                "10": 86.18995633187772
+              }
+            },
+            "max_abs_text_score_diff": 0.0,
+            "reference": "published path in this process (shared encoding cache)"
+          },
+          "saved_per_query_text_only": null,
+          "table1_vanilla": {
+            "5": {
+              "table1": 76.9,
+              "empty_context": 77.89301310043668
+            },
+            "10": {
+              "table1": 85.9,
+              "empty_context": 86.18995633187772
+            }
+          },
+          "mismatch_examples": []
+        },
+        "queries": 1832,
+        "status": "FAILED",
+        "timings": {
+          "docs": 105,
+          "docs_from_checkpoint": 0,
+          "seconds_pass1": 3285.451724039158,
+          "seconds_pass2": 0.0,
+          "seconds_total": 3366.8
+        }
+      }
+    }
+  },
+  "analysis": {
+    "dataset": "loogle",
+    "per_retriever": {
+      "bm25": {
+        "queries": 1832,
+        "vanilla": {
+          "hr5": 91.86681222707423,
+          "hr10": 95.74235807860262,
+          "eligible": 1832
+        },
+        "empty": {
+          "hr5": 91.86681222707423,
+          "hr10": 95.74235807860262,
+          "eligible": 1832
+        },
+        "cr": {
+          "hr5": 92.03056768558952,
+          "hr10": 95.96069868995633,
+          "eligible": 1832
+        },
+        "saadi": {
+          "hr5": 92.30349344978166,
+          "hr10": 96.45196506550218,
+          "eligible": 1832
+        },
+        "saadi_cr": {
+          "hr5": 92.35807860262008,
+          "hr10": 96.12445414847161,
+          "eligible": 1832
+        },
+        "cr_minus_vanilla_hr5": {
+          "diff": 0.16375545851528384,
+          "ci": [
+            -0.6004366812227074,
+            0.9279475982532751
+          ]
+        },
+        "saadi_minus_cr_hr5": {
+          "diff": 0.27292576419213976,
+          "ci": [
+            -0.6004366812227074,
+            1.2008733624454149
+          ]
+        },
+        "saadi_cr_minus_cr_hr5": {
+          "diff": 0.32751091703056767,
+          "ci": [
+            -0.5458515283842795,
+            1.2008733624454149
+          ]
+        },
+        "saadi_cr_minus_saadi_hr5": {
+          "diff": 0.05458515283842795,
+          "ci": [
+            -0.6550218340611353,
+            0.7641921397379913
+          ]
+        },
+        "cr_minus_vanilla_hr10": {
+          "diff": 0.2183406113537118,
+          "ci": [
+            -0.32751091703056767,
+            0.7641921397379913
+          ]
+        },
+        "saadi_minus_cr_hr10": {
+          "diff": 0.4912663755458515,
+          "ci": [
+            -0.16375545851528384,
+            1.2008733624454149
+          ]
+        },
+        "saadi_cr_minus_cr_hr10": {
+          "diff": 0.16375545851528384,
+          "ci": [
+            -0.4366812227074236,
+            0.7641921397379913
+          ]
+        },
+        "saadi_cr_minus_saadi_hr10": {
+          "diff": -0.32751091703056767,
+          "ci": [
+            -0.7641921397379913,
+            0.1091703056768559
+          ]
+        }
+      },
+      "contriever": {
+        "queries": 1832,
+        "vanilla": {
+          "hr5": 75.16375545851528,
+          "hr10": 86.02620087336244,
+          "eligible": 1832
+        },
+        "empty": {
+          "hr5": 75.16375545851528,
+          "hr10": 86.02620087336244,
+          "eligible": 1832
+        },
+        "cr": {
+          "hr5": 72.48908296943232,
+          "hr10": 84.33406113537117,
+          "eligible": 1832
+        },
+        "saadi": {
+          "hr5": 75.43668122270742,
+          "hr10": 85.69868995633188,
+          "eligible": 1832
+        },
+        "saadi_cr": {
+          "hr5": 72.37991266375546,
+          "hr10": 84.22489082969432,
+          "eligible": 1832
+        },
+        "cr_minus_vanilla_hr5": {
+          "diff": -2.6746724890829694,
+          "ci": [
+            -4.475982532751091,
+            -0.9279475982532751
+          ]
+        },
+        "saadi_minus_cr_hr5": {
+          "diff": 2.947598253275109,
+          "ci": [
+            1.1462882096069869,
+            4.8034934497816595
+          ]
+        },
+        "saadi_cr_minus_cr_hr5": {
+          "diff": -0.1091703056768559,
+          "ci": [
+            -1.4737991266375545,
+            1.255458515283843
+          ]
+        },
+        "saadi_cr_minus_saadi_hr5": {
+          "diff": -3.056768558951965,
+          "ci": [
+            -4.639737991266376,
+            -1.4737991266375545
+          ]
+        },
+        "cr_minus_vanilla_hr10": {
+          "diff": -1.6921397379912664,
+          "ci": [
+            -3.2205240174672487,
+            -0.2183406113537118
+          ]
+        },
+        "saadi_minus_cr_hr10": {
+          "diff": 1.3646288209606987,
+          "ci": [
+            -0.16375545851528384,
+            2.947598253275109
+          ]
+        },
+        "saadi_cr_minus_cr_hr10": {
+          "diff": -0.1091703056768559,
+          "ci": [
+            -1.255458515283843,
+            1.037117903930131
+          ]
+        },
+        "saadi_cr_minus_saadi_hr10": {
+          "diff": -1.4737991266375545,
+          "ci": [
+            -2.7838427947598254,
+            -0.16375545851528384
+          ]
+        }
+      },
+      "bge_m3": {
+        "queries": 1832,
+        "vanilla": {
+          "hr5": 82.47816593886463,
+          "hr10": 90.72052401746726,
+          "eligible": 1832
+        },
+        "empty": {
+          "hr5": 82.47816593886463,
+          "hr10": 90.72052401746726,
+          "eligible": 1832
+        },
+        "cr": {
+          "hr5": 82.15065502183405,
+          "hr10": 90.06550218340611,
+          "eligible": 1832
+        },
+        "saadi": {
+          "hr5": 81.0589519650655,
+          "hr10": 90.12008733624454,
+          "eligible": 1832
+        },
+        "saadi_cr": {
+          "hr5": 79.91266375545851,
+          "hr10": 89.62882096069869,
+          "eligible": 1832
+        },
+        "cr_minus_vanilla_hr5": {
+          "diff": -0.32751091703056767,
+          "ci": [
+            -1.8558951965065502,
+            1.2008733624454149
+          ]
+        },
+        "saadi_minus_cr_hr5": {
+          "diff": -1.091703056768559,
+          "ci": [
+            -2.7292576419213974,
+            0.5458515283842795
+          ]
+        },
+        "saadi_cr_minus_cr_hr5": {
+          "diff": -2.2379912663755457,
+          "ci": [
+            -3.6026200873362444,
+            -0.982532751091703
+          ]
+        },
+        "saadi_cr_minus_saadi_hr5": {
+          "diff": -1.1462882096069869,
+          "ci": [
+            -2.510917030567686,
+            0.27292576419213976
+          ]
+        },
+        "cr_minus_vanilla_hr10": {
+          "diff": -0.6550218340611353,
+          "ci": [
+            -1.965065502183406,
+            0.7096069868995634
+          ]
+        },
+        "saadi_minus_cr_hr10": {
+          "diff": 0.05458515283842795,
+          "ci": [
+            -1.255458515283843,
+            1.3646288209606987
+          ]
+        },
+        "saadi_cr_minus_cr_hr10": {
+          "diff": -0.4366812227074236,
+          "ci": [
+            -1.3646288209606987,
+            0.4912663755458515
+          ]
+        },
+        "saadi_cr_minus_saadi_hr10": {
+          "diff": -0.4912663755458515,
+          "ci": [
+            -1.6375545851528384,
+            0.6550218340611353
+          ]
+        }
+      },
+      "jina": {
+        "queries": 1832,
+        "vanilla": {
+          "hr5": 69.9235807860262,
+          "hr10": 80.67685589519651,
+          "eligible": 1832
+        },
+        "empty": {
+          "hr5": 69.9235807860262,
+          "hr10": 80.67685589519651,
+          "eligible": 1832
+        },
+        "cr": {
+          "hr5": 65.77510917030568,
+          "hr10": 79.6943231441048,
+          "eligible": 1832
+        },
+        "saadi": {
+          "hr5": 70.19650655021834,
+          "hr10": 81.98689956331877,
+          "eligible": 1832
+        },
+        "saadi_cr": {
+          "hr5": 67.46724890829694,
+          "hr10": 80.62227074235808,
+          "eligible": 1832
+        },
+        "cr_minus_vanilla_hr5": {
+          "diff": -4.148471615720524,
+          "ci": [
+            -6.11353711790393,
+            -2.2925764192139737
+          ]
+        },
+        "saadi_minus_cr_hr5": {
+          "diff": 4.421397379912664,
+          "ci": [
+            2.4563318777292578,
+            6.38646288209607
+          ]
+        },
+        "saadi_cr_minus_cr_hr5": {
+          "diff": 1.6921397379912664,
+          "ci": [
+            0.27292576419213976,
+            3.111353711790393
+          ]
+        },
+        "saadi_cr_minus_saadi_hr5": {
+          "diff": -2.7292576419213974,
+          "ci": [
+            -4.475982532751091,
+            -1.037117903930131
+          ]
+        },
+        "cr_minus_vanilla_hr10": {
+          "diff": -0.982532751091703,
+          "ci": [
+            -2.7292576419213974,
+            0.7096069868995634
+          ]
+        },
+        "saadi_minus_cr_hr10": {
+          "diff": 2.2925764192139737,
+          "ci": [
+            0.6004366812227074,
+            3.98471615720524
+          ]
+        },
+        "saadi_cr_minus_cr_hr10": {
+          "diff": 0.9279475982532751,
+          "ci": [
+            -0.27292576419213976,
+            2.12882096069869
+          ]
+        },
+        "saadi_cr_minus_saadi_hr10": {
+          "diff": -1.3646288209606987,
+          "ci": [
+            -2.893013100436681,
+            0.1091703056768559
+          ]
+        }
+      }
+    },
+    "hybrid": {
+      "contriever": {
+        "queries": 1832,
+        "vanilla": {
+          "hr5": 89.30131004366812,
+          "hr10": 95.57860262008734,
+          "eligible": 1832
+        },
+        "cr": {
+          "hr5": 88.26419213973799,
+          "hr10": 95.57860262008734,
+          "eligible": 1832
+        },
+        "saadi": {
+          "hr5": 88.31877729257641,
+          "hr10": 95.19650655021834,
+          "eligible": 1832
+        },
+        "cr_minus_vanilla_hr5": {
+          "diff": -1.037117903930131,
+          "ci": [
+            -2.2925764192139737,
+            0.16375545851528384
+          ]
+        },
+        "saadi_minus_cr_hr5": {
+          "diff": 0.05458515283842795,
+          "ci": [
+            -1.3100436681222707,
+            1.4192139737991267
+          ]
+        },
+        "cr_minus_vanilla_hr10": {
+          "diff": 0.0,
+          "ci": [
+            -0.8187772925764192,
+            0.8187772925764192
+          ]
+        },
+        "saadi_minus_cr_hr10": {
+          "diff": -0.38209606986899564,
+          "ci": [
+            -1.255458515283843,
+            0.4912663755458515
+          ]
+        }
+      },
+      "bge_m3": {
+        "queries": 1832,
+        "vanilla": {
+          "hr5": 91.37554585152839,
+          "hr10": 96.06986899563319,
+          "eligible": 1832
+        },
+        "cr": {
+          "hr5": 91.5938864628821,
+          "hr10": 96.45196506550218,
+          "eligible": 1832
+        },
+        "saadi": {
+          "hr5": 90.4475982532751,
+          "hr10": 95.96069868995633,
+          "eligible": 1832
+        },
+        "cr_minus_vanilla_hr5": {
+          "diff": 0.2183406113537118,
+          "ci": [
+            -0.7641921397379913,
+            1.2008733624454149
+          ]
+        },
+        "saadi_minus_cr_hr5": {
+          "diff": -1.1462882096069869,
+          "ci": [
+            -2.3471615720524017,
+            0.05458515283842795
+          ]
+        },
+        "cr_minus_vanilla_hr10": {
+          "diff": 0.38209606986899564,
+          "ci": [
+            -0.32751091703056767,
+            1.091703056768559
+          ]
+        },
+        "saadi_minus_cr_hr10": {
+          "diff": -0.4912663755458515,
+          "ci": [
+            -1.3100436681222707,
+            0.32751091703056767
+          ]
+        }
+      },
+      "jina": {
+        "queries": 1832,
+        "vanilla": {
+          "hr5": 88.15502183406113,
+          "hr10": 94.65065502183405,
+          "eligible": 1832
+        },
+        "cr": {
+          "hr5": 87.39082969432314,
+          "hr10": 94.86899563318778,
+          "eligible": 1832
+        },
+        "saadi": {
+          "hr5": 87.117903930131,
+          "hr10": 94.75982532751091,
+          "eligible": 1832
+        },
+        "cr_minus_vanilla_hr5": {
+          "diff": -0.7641921397379913,
+          "ci": [
+            -1.965065502183406,
+            0.38209606986899564
+          ]
+        },
+        "saadi_minus_cr_hr5": {
+          "diff": -0.27292576419213976,
+          "ci": [
+            -1.6375545851528384,
+            1.091703056768559
+          ]
+        },
+        "cr_minus_vanilla_hr10": {
+          "diff": 0.2183406113537118,
+          "ci": [
+            -0.6004366812227074,
+            1.037117903930131
+          ]
+        },
+        "saadi_minus_cr_hr10": {
+          "diff": -0.1091703056768559,
+          "ci": [
+            -1.037117903930131,
+            0.8187772925764192
+          ]
+        }
+      }
+    },
+    "retrievers_done": [
+      "bge_m3",
+      "bm25",
+      "contriever",
+      "jina"
+    ]
+  },
+  "cost": {
+    "calls": 3346,
+    "calls_per_chunk": 1.0,
+    "calls_per_document": 31.866666666666667,
+    "nominal_input_total": 85965970.0,
+    "computed_input_total": 4945586.0,
+    "nominal_input_per_chunk": 25692.160789001795,
+    "computed_input_per_chunk": 1478.059175134489,
+    "generated_total": 435223.0,
+    "generated_per_chunk_mean": 130.07262402869097,
+    "generated_per_chunk_median": 127.0,
+    "cut_share": 0.0,
+    "generation_wall_seconds": 2203.1,
+    "generation_gpu_hours": 2.447888888888889,
+    "cached_tokens_source": [
+      "vllm num_cached_tokens"
+    ],
+    "ratio_nominal_input_vs_saadi": 5.57581212556329,
+    "ratio_computed_input_vs_saadi": 0.32077412011771694,
+    "ratio_calls_vs_saadi": 0.8269896193771626,
+    "ratio_generated_vs_saadi": 0.07408467199008624,
+    "saadi_chunks": 3346.0,
+    "chunks": 3346
+  },
+  "problems": [
+    "qwen: FAILED"
+  ]
+}
