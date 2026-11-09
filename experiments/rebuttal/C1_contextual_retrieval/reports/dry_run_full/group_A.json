@@ -1,0 +1,274 @@
+{
+  "group": "A",
+  "started_at": "2026-11-09 14:46:08",
+  "argv": [
+    "c1_contextual_retrieval.py",
+    "--group",
+    "A",
+    "--dry-run-full"
+  ],
+  "datasets": {
+    "loogle": "done",
+    "novelhopqa": "done"
+  },
+  "problems": [],
+  "preflight": {
+    "problems": [],
+    "warnings": [],
+    "python": {
+      "executable": "/Users/uem-stag-lap-ic/Desktop/SAADI/venv.nosync/bin/python3",
+      "version": "3.14.8"
+    },
+    "modules": {
+      "numpy": "2.5.4",
+      "pandas": "3.1.1",
+      "pyarrow": "26.0.1",
+      "transformers": "4.57.6"
+    },
+    "git": {
+      "commit": "e2dbaa178fa07c25806c32e8fce787455bae9ce3",
+      "branch": "fix/notebook-key-and-install",
+      "code_changes_vs_commit": [
+        "?? experiments/rebuttal/C1_contextual_retrieval/env.sh",
+        "?? experiments/rebuttal/C1_contextual_retrieval/run_gpus_0123.sh",
+        "?? experiments/rebuttal/C1_contextual_retrieval/run_gpus_4567.sh",
+        "?? scripts/rebuttal/c1_contextual_retrieval.py",
+        "?? src/saadi/rebuttal/contextual_retrieval.py"
+      ]
+    },
+    "hf_home": "",
+    "prompt": {
+      "source": "experiments/probe_baselines/systems/b2_contextual/build.py:prompt_for",
+      "equals_anthropic_prompt": true
+    },
+    "models": {
+      "Qwen/Qwen3-30B-A3B-Instruct-2507": "in cache (tokenizer/config only, no weights)"
+    },
+    "expected_metrics": "outputs/saadi/reference/expected_metrics.json",
+    "inputs_missing": [],
+    "disk": {
+      "path": "/Users/uem-stag-lap-ic/Desktop/SAADI/outputs/rebuttal/C1_contextual_retrieval/dry_run_full",
+      "free_gb": 238.6,
+      "needed_gb_estimate": 20
+    },
+    "gpus": "skipped (CPU dry run)",
+    "c2_streams": {
+      "loogle__bm25": "recomputed (published path)",
+      "novelhopqa__bm25": "recomputed (published path)"
+    },
+    "ok": true
+  },
+  "census": {
+    "loogle": {
+      "dataset": "loogle",
+      "max_docs": null,
+      "tokenizer": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+      "model": {
+        "max_model_len": 262144,
+        "rope_scaling": null,
+        "num_hidden_layers": 48,
+        "num_key_value_heads": 4,
+        "head_dim": 128
+      },
+      "template_tokens": 70,
+      "context_max_tokens": 1024,
+      "doc_separator": " ",
+      "n_docs": 105,
+      "n_chunks": 3346,
+      "doc_tokens": {
+        "n": 105,
+        "min": 13560.0,
+        "p25": 15905.0,
+        "median": 18951.0,
+        "mean": 22053.92380952381,
+        "p75": 25898.0,
+        "p95": 38004.4,
+        "max": 59513.0,
+        "total": 2315662.0
+      },
+      "chunk_tokens": {
+        "n": 3346,
+        "min": 19.0,
+        "p25": 628.0,
+        "median": 666.0,
+        "mean": 692.1052002390915,
+        "p75": 720.0,
+        "p95": 972.75,
+        "max": 1409.0,
+        "total": 2315784.0
+      },
+      "docs_exceeding_window": 0,
+      "chunks_in_segmented_docs": 0,
+      "k_values": {
+        "1": 105
+      },
+      "segmented_docs": [],
+      "nominal_input_tokens": 85965970,
+      "visible_tokens_per_call": {
+        "n": 3346,
+        "min": 13569.0,
+        "p25": 17281.0,
+        "median": 21362.0,
+        "mean": 24939.04423191871,
+        "p75": 28821.0,
+        "p95": 53702.0,
+        "max": 59522.0,
+        "total": 83446042.0
+      },
+      "joint_tokenization_equals_split": [
+        true,
+        true,
+        true
+      ],
+      "seconds": 10.6
+    },
+    "novelhopqa": {
+      "dataset": "novelhopqa",
+      "max_docs": null,
+      "tokenizer": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+      "model": {
+        "max_model_len": 262144,
+        "rope_scaling": null,
+        "num_hidden_layers": 48,
+        "num_key_value_heads": 4,
+        "head_dim": 128
+      },
+      "template_tokens": 70,
+      "context_max_tokens": 1024,
+      "doc_separator": " ",
+      "n_docs": 16,
+      "n_chunks": 7011,
+      "doc_tokens": {
+        "n": 16,
+        "min": 134033.0,
+        "p25": 211062.0,
+        "median": 233947.0,
+        "mean": 289780.0625,
+        "p75": 307344.5,
+        "p95": 537867.5,
+        "max": 763412.0,
+        "total": 4636481.0
+      },
+      "chunk_tokens": {
+        "n": 7011,
+        "min": 53.0,
+        "p25": 632.0,
+        "median": 660.0,
+        "mean": 661.2360576237342,
+        "p75": 689.0,
+        "p95": 738.0,
+        "max": 1033.0,
+        "total": 4635926.0
+      },
+      "docs_exceeding_window": 7,
+      "chunks_in_segmented_docs": 4250,
+      "k_values": {
+        "1": 9,
+        "2": 6,
+        "3": 1
+      },
+      "segmented_docs": [
+        {
+          "doc_id": "B62",
+          "doc_tokens": 462686,
+          "k": 2,
+          "chunks": 729
+        },
+        {
+          "doc_id": "B26",
+          "doc_tokens": 268707,
+          "k": 2,
+          "chunks": 383
+        },
+        {
+          "doc_id": "B42",
+          "doc_tokens": 763412,
+          "k": 3,
+          "chunks": 1165
+        },
+        {
+          "doc_id": "B54",
+          "doc_tokens": 440656,
+          "k": 2,
+          "chunks": 660
+        },
+        {
+          "doc_id": "B44",
+          "doc_tokens": 267608,
+          "k": 2,
+          "chunks": 384
+        },
+        {
+          "doc_id": "B15",
+          "doc_tokens": 294672,
+          "k": 2,
+          "chunks": 421
+        },
+        {
+          "doc_id": "B05",
+          "doc_tokens": 345362,
+          "k": 2,
+          "chunks": 508
+        }
+      ],
+      "nominal_input_tokens": 1433674547,
+      "visible_tokens_per_call": {
+        "n": 7011,
+        "min": 133644.0,
+        "p25": 170415.0,
+        "median": 220199.0,
+        "mean": 203767.06532591642,
+        "p75": 231655.0,
+        "p95": 254642.0,
+        "max": 254642.0,
+        "total": 1428610895.0
+      },
+      "joint_tokenization_equals_split": [
+        true,
+        true,
+        true
+      ],
+      "seconds": 28.5
+    }
+  },
+  "estimates": {
+    "loogle": {
+      "generation": {
+        "calls": 3346,
+        "seconds": 1697.9481905999999,
+        "basis": "per call 9.3e-06 s x visible document tokens + 0.15 s, plus 420 s engine start (B2's measured rate on the same model and runtime)"
+      },
+      "retrieval": {
+        "jobs": {
+          "bm25": {
+            "device": "cpu",
+            "n_gpus": 0,
+            "est_seconds": 28.11195,
+            "basis": "C2's CPU rate x 3 (published streams, empty-context pass, CR pass)"
+          }
+        },
+        "wall_seconds": 28.11195
+      }
+    },
+    "novelhopqa": {
+      "generation": {
+        "calls": 7011,
+        "seconds": 14757.7313235,
+        "basis": "per call 9.3e-06 s x visible document tokens + 0.15 s, plus 420 s engine start (B2's measured rate on the same model and runtime)"
+      },
+      "retrieval": {
+        "jobs": {
+          "bm25": {
+            "device": "cpu",
+            "n_gpus": 0,
+            "est_seconds": 188.37494999999998,
+            "basis": "C2's CPU rate x 3 (published streams, empty-context pass, CR pass)"
+          }
+        },
+        "wall_seconds": 188.37494999999998
+      }
+    }
+  },
+  "exit_code": 0,
+  "finished_at": "2026-11-09 14:48:56"
+}
