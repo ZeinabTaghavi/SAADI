@@ -15,10 +15,13 @@ just before the first header.
 
 Two independent methods, which must agree:
   A. alignment: every chunk's raw text (steps_index.jsonl, in step order) is located in
-     the whitespace-normalised document text; a chunk belongs to every sub-document whose
-     span it overlaps with non-whitespace text;
-  B. header walk: a chunk belongs to the sub-document open when it starts (if it has text
-     before its first header) and to every sub-document whose header it contains.
+     the document text, both with all whitespace removed (the chunker re-joins sentence
+     pieces with single spaces); a chunk belongs to every sub-document whose text (after
+     its header) it overlaps;
+  B. header walk over the chunk texts alone: a chunk belongs to the sub-document open when
+     it starts (if it has text before its first header) and to every sub-document whose
+     header ends in it and whose text follows in it. Headers cut between two chunks are
+     found by prepending the previous chunk's tail.
 A chunk that crosses a boundary belongs to both sub-documents.
 
 Gold sub-document: qa.json's ``source_document_id`` (the source document the question was
@@ -36,6 +39,7 @@ import hashlib
 import re
 import sys
 import time
+import types
 from collections import Counter
 from pathlib import Path
 from typing import Any
@@ -60,16 +64,19 @@ from c4_common import (
 )
 
 from saadi.io.hierarchy_cache import _resolve_cache_file_path  # noqa: E402
+from saadi.indexing.labeling import _build_support_targets, _tokenize_match_text  # noqa: E402
 from saadi.io.jsonl import read_jsonl  # noqa: E402
 from saadi.rebuttal.frozen_records import DATASETS as E2_DATASETS  # noqa: E402
 
-HEADER_RE = re.compile(r"\[Document (\d+)/(\d+) \| doc_id=([^\]]+)\]")
+# The header written by context_expansion._format_group_context, matched with all
+# whitespace removed (see squash).
+HEADER_SQ_RE = re.compile(r"\[Document(\d+)/(\d+)\|doc_id=([^\]]+)\]")
 _WS = re.compile(r"\s+")
 SMALL_K = (1, 3, 5, 10)
 
 
-def norm(text: str) -> str:
-    return _WS.sub(" ", str(text or "")).strip()
+def squash(text: str) -> str:
+    return _WS.sub("", str(text or ""))
 
 
 def sha256_file(path: Path) -> str:
@@ -99,32 +106,45 @@ def map_document(doc_id: str, text: str, members: list[str], chunks: list[tuple[
     """chunks: (chunk_id, step, raw_chunk_text) in step order."""
 
     problems: list[str] = []
-    D = norm(text)
-    headers = [(m.start(), int(m.group(1)), int(m.group(2)), m.group(3).strip()) for m in HEADER_RE.finditer(D)]
+    # Compare texts with ALL whitespace removed: the chunker joins sentence pieces with
+    # single spaces, so a chunk can hold spaces the document does not have (QASPER ids
+    # such as "2004.02105" become "2004. 02105" in the chunk text).
+    D = squash(text)
     total = len(members)
+    by_squashed = {squash(m): m for m in members}
+    if len(by_squashed) != total:
+        problems.append(f"{doc_id}: two members of group_membership.json are equal without whitespace")
+    headers: list[tuple[int, int, int, int, str]] = []  # (start, end, i, N, member id)
+    for m in HEADER_SQ_RE.finditer(D):
+        sid = by_squashed.get(m.group(3))
+        headers.append((m.start(), m.end(), int(m.group(1)), int(m.group(2)), sid if sid is not None else m.group(3)))
     if not headers:
         problems.append(f"{doc_id}: no [Document i/N] header in the text")
-    for _pos, i, n, sid in headers:
+    for _s, _e, i, n, sid in headers:
         if n != total or not (1 <= i <= total) or members[i - 1] != sid:
             problems.append(f"{doc_id}: header [Document {i}/{n} | doc_id={sid}] does not match group_membership.json (N={total})")
             break
-    idx = [h[1] for h in headers]
+    idx = [h[2] for h in headers]
     if idx and idx != list(range(idx[0], idx[0] + len(idx))):
         problems.append(f"{doc_id}: header indices are not contiguous ({idx[:5]}...)")
 
     leading: str | None = None
-    if headers and D[: headers[0][0]].strip():
-        if headers[0][1] >= 2:
-            leading = members[headers[0][1] - 2]
+    if headers and headers[0][0] > 0:
+        if headers[0][2] >= 2:
+            leading = members[headers[0][2] - 2]
         else:
             problems.append(f"{doc_id}: text before the [Document 1/N] header")
-    trimmed_end = bool(headers) and headers[-1][1] < total
+    trimmed_end = bool(headers) and headers[-1][2] < total
+    # Content regions exclude the header text itself; a chunk belongs to a sub-document
+    # when it holds some of that sub-document's text.
     regions: list[tuple[int, int, str]] = []
+    header_spans: list[tuple[int, int, str]] = []
     if leading is not None:
         regions.append((0, headers[0][0], leading))
-    for k, (pos, _i, _n, sid) in enumerate(headers):
+    for k, (hs_, he_, _i, _n, sid) in enumerate(headers):
         end = headers[k + 1][0] if k + 1 < len(headers) else len(D)
-        regions.append((pos, end, sid))
+        regions.append((he_, end, sid))
+        header_spans.append((hs_, he_, sid))
     present = [r[2] for r in regions]
     missing = [m for m in members if m not in set(present)]
     if len(set(present)) != len(present):
@@ -138,22 +158,34 @@ def map_document(doc_id: str, text: str, members: list[str], chunks: list[tuple[
     cursor = 0
     covered = 0
     out_of_order = 0
+    prev_tail = ""
     for cid, _step, raw in chunks:
-        C = norm(raw)
-        # B. header walk
-        hs = list(HEADER_RE.finditer(C))
+        C = squash(raw)
+        # B. header walk over the chunk texts only (no document text). A header can be cut
+        # between two chunks ("... [Document 11/19 |" + "doc_id=...] ..."), so the tail of
+        # the previous chunk is prepended; a header counts for the chunk in which it ends.
+        lp = len(prev_tail)
+        buf = prev_tail + C
+        hs = [m for m in HEADER_SQ_RE.finditer(buf) if m.end() > lp]
         walk: list[str] = []
         if not hs:
-            if current is not None:
+            if current is not None and C:
                 walk.append(current)
         else:
-            if C[: hs[0].start()].strip() and current is not None:
-                walk.append(current)
-            for m in hs:
-                walk.append(m.group(3).strip())
-                walk_seq.append(m.group(3).strip())
-            current = hs[-1].group(3).strip()
+            if hs[0].start() > lp and current is not None:
+                walk.append(current)  # text of the open sub-document before the header
+            for k, m in enumerate(hs):
+                sid = by_squashed.get(m.group(3), m.group(3))
+                walk_seq.append(sid)
+                # the sub-document counts only when this chunk holds some of its text
+                nxt = hs[k + 1].start() if k + 1 < len(hs) else len(buf)
+                if nxt > m.end():
+                    walk.append(sid)
+            if not walk:
+                walk.append(by_squashed.get(hs[-1].group(3), hs[-1].group(3)))
+            current = by_squashed.get(hs[-1].group(3), hs[-1].group(3))
         walk = _dedupe(walk)
+        prev_tail = C[-200:]
         # A. alignment
         aligned: list[str] | None = None
         pos = D.find(C, cursor) if C else -1
@@ -165,7 +197,9 @@ def map_document(doc_id: str, text: str, members: list[str], chunks: list[tuple[
             s, e = pos, pos + len(C)
             cursor = max(cursor, e)
             covered += len(C)
-            aligned = [rid for (rs, re_, rid) in regions if rs < e and s < re_ and D[max(rs, s) : min(re_, e)].strip()]
+            aligned = [rid for (rs, re_, rid) in regions if rs < e and s < re_]
+            if not aligned:  # only header text: give it the sub-document the header opens
+                aligned = [rid for (rs, re_, rid) in header_spans if rs < e and s < re_][-1:]
         else:
             unaligned.append(cid)
         if aligned is not None and aligned != walk:
@@ -174,7 +208,7 @@ def map_document(doc_id: str, text: str, members: list[str], chunks: list[tuple[
         if not final:
             problems.append(f"{doc_id}: chunk {cid} could not be given a sub-document")
         out_chunks[cid] = final
-    header_ids = [h[3] for h in headers]
+    header_ids = [h[4] for h in headers]
     if walk_seq != header_ids:
         # A header split across two chunks; the alignment (A) is still exact then.
         disagree.append({"chunk_id": None, "note": "header sequence seen in chunks != headers in the text"})
@@ -251,12 +285,16 @@ def map_setting(setting: Setting, retrievers: list[str], sources: dict[tuple[str
     payload = read_json(index_path)
     docs_out: dict[str, Any] = {}
     chunk_map: dict[str, list[str]] = {}
+    doc_tokens: dict[str, list[tuple[Any, list[str]]]] = {}  # labeler input, tokenised once per document
     for entry in payload.get("docs", []):
         doc_id = str(entry.get("doc_id"))
         if doc_id not in documents or doc_id not in membership:
             P.append(f"{doc_id}: in index.json but not in documents.json / group_membership.json")
             continue
         chunks = load_doc_chunks(index_path, entry)
+        doc_tokens[doc_id] = [
+            (types.SimpleNamespace(chunk_id=cid, raw_text=raw), _tokenize_match_text(raw)) for cid, _step, raw in chunks
+        ]
         d = map_document(doc_id, documents[doc_id], [str(m) for m in membership[doc_id]], chunks)
         P.extend(d.pop("problems"))
         for cid, m in d["chunks"].items():
@@ -306,8 +344,11 @@ def map_setting(setting: Setting, retrievers: list[str], sources: dict[tuple[str
 
     queries: dict[str, Any] = {}
     status_counts: Counter[str] = Counter()
+    cause_counts: Counter[str] = Counter()
     excluded_examples: list[dict[str, Any]] = []
     cross_check_disagree = 0
+    relabel_mismatch: list[str] = []
+    inside_eligible_n = 0
     for qid in sorted(evidence, key=qid_sort_key):
         gold, groups = evidence[qid]
         e = qa_by_id.get(qid)
@@ -336,6 +377,19 @@ def map_setting(setting: Setting, retrievers: list[str], sources: dict[tuple[str
             cross_check_disagree += 1
         q["n_gold_chunks"] = int(doc["chunks_per_subdoc"].get(gold_sub, 0))
         q["evidence_chunks"] = ev
+        # The repository's own labeler (indexing/labeling.py) on the full document must give the
+        # paper's labels back; the same labeler on the gold sub-document's chunks alone gives the
+        # labels used inside the sub-document (same spans, same matching rules).
+        toks = doc_tokens[doc_id]
+        f_gold, _f_silver, f_groups, _ = _build_support_targets(e, [r for r, _ in toks], tokenized_chunks=toks)
+        if (sorted(f_gold), sorted(sorted(g) for g in f_groups)) != (sorted(gold), sorted(sorted(g) for g in groups)):
+            relabel_mismatch.append(qid)
+        inside_toks = [(r, t) for r, t in toks if gold_sub in chunk_map[r.chunk_id]]
+        i_gold, _i_silver, i_groups, _ = _build_support_targets(e, [r for r, _ in inside_toks], tokenized_chunks=inside_toks)
+        q["inside_gold"] = list(i_gold)
+        q["inside_groups"] = [list(g) for g in i_groups]
+        q["inside_eligible"] = bool(i_gold or i_groups)
+        inside_eligible_n += int(q["inside_eligible"])
         if not eligible:
             status = "ineligible"
         elif gold_sub not in doc["subdocs"]:
@@ -347,10 +401,17 @@ def map_setting(setting: Setting, retrievers: list[str], sources: dict[tuple[str
         q["status"] = status
         if outside:
             q["evidence_outside"] = outside
+            gold_set = set(gold)
+            causes = sorted({"duplicate_full_match" if o["chunk_id"] in gold_set else "partial_match_group" for o in outside})
+            q["outside_causes"] = causes
+            cause_counts["+".join(causes)] += 1
         if status.startswith("excluded") and len(excluded_examples) < 5:
             excluded_examples.append({"query_id": qid, "doc_id": doc_id, "gold_subdoc": gold_sub, "status": status, "evidence_outside": outside[:3], "question": str(e.get("question", ""))[:160]})
         status_counts[status] += 1
         queries[qid] = q
+
+    if relabel_mismatch:
+        P.append(f"the repository labeler does not reproduce the paper's evidence for {len(relabel_mismatch)} queries (first: {relabel_mismatch[:5]})")
 
     # ---- statistics
     n_chunks = len(chunk_map)
@@ -361,6 +422,9 @@ def map_setting(setting: Setting, retrievers: list[str], sources: dict[tuple[str
     kept = {qid: q for qid, q in queries.items() if q["status"] == "kept"}
     gold_pairs = {(q["doc_id"], q["gold_subdoc"]): q["n_gold_chunks"] for q in kept.values()}
     q_sizes = [q["n_gold_chunks"] for q in kept.values()]
+    rl = {qid: q for qid, q in queries.items() if q.get("inside_eligible") and q["status"] != "excluded_gold_subdoc_not_in_text"}
+    rl_pairs = {(q["doc_id"], q["gold_subdoc"]): q["n_gold_chunks"] for q in rl.values()}
+    rl_sizes = [q["n_gold_chunks"] for q in rl.values()]
     res["stats"] = {
         "documents": len(docs_out),
         "subdocs_distinct": len(distinct_subs),
@@ -385,6 +449,13 @@ def map_setting(setting: Setting, retrievers: list[str], sources: dict[tuple[str
         "chunks_per_gold_subdoc": dist(gold_pairs.values()),
         "chunks_per_gold_subdoc_over_queries": dist(q_sizes),
         "kept_with_gold_subdoc_at_most_k": {str(k): sum(1 for n in q_sizes if n <= k) for k in SMALL_K},
+        "outside_causes": dict(cause_counts),
+        "paper_labels_reproduced": len(queries) - len(relabel_mismatch),
+        "relabel_set": len(rl),
+        "relabel_gold_subdocs_distinct": len(rl_pairs),
+        "relabel_chunks_per_gold_subdoc": dist(rl_pairs.values()),
+        "relabel_chunks_per_gold_subdoc_over_queries": dist(rl_sizes),
+        "relabel_with_gold_subdoc_at_most_k": {str(k): sum(1 for n in rl_sizes if n <= k) for k in SMALL_K},
     }
     res["per_retriever"] = per_ret
     res["excluded_examples"] = excluded_examples
@@ -402,7 +473,7 @@ def map_setting(setting: Setting, retrievers: list[str], sources: dict[tuple[str
             "qa_json": rel(prep / "qa.json"),
             "index_json": rel(index_path),
         },
-        "rule": "chunk -> every sub-document whose span it overlaps with non-whitespace text (boundary chunks belong to both)",
+        "rule": "chunk -> every sub-document whose text (after its header) it overlaps; boundary chunks belong to both",
         "documents": {
             d: {k: v[k] for k in ("members", "subdocs", "leading_partial", "trimmed_end", "missing_members", "n_chunks", "chunks_per_subdoc", "boundary_chunks")}
             for d, v in docs_out.items()
@@ -480,41 +551,55 @@ def body(report: StepReport, args: argparse.Namespace) -> None:
                   "Docs starting mid-sub-doc", "Docs ending mid-sub-doc", "Chunks not found in text", "A vs B disagreements", "Header split across chunks", "Min text coverage"], rows)
     report.p("Boundary chunks belong to two sub-documents. \"Docs starting / ending mid-sub-doc\" are trimmed variants; "
              "their partial sub-document is still named from group_membership.json. Text coverage = characters of the "
-             "document text matched by its chunks (whitespace-normalised).")
+             "document text matched by its chunks (all whitespace removed).")
 
     report.h("3. Gold sub-document checks")
     rows = []
     for k, v in ok.items():
         st = v["stats"]
         sc = st["status_counts"]
-        rows.append([v["display"], st["queries_union"], sc.get("ineligible", 0), sc.get("excluded_evidence_outside", 0),
-                     sc.get("excluded_gold_subdoc_not_in_text", 0), sc.get("kept", 0), st["evidence_common_subdoc_not_gold"]])
-    report.table(["Setting", "Queries (union over retrievers)", "Ineligible (no evidence)", "Excluded: evidence outside gold sub-doc",
-                  "Excluded: gold sub-doc not in text", "Kept for C4", "Evidence shares another sub-doc, not the gold one"], rows)
-    ex_rows = [[v["display"], e["query_id"], e["doc_id"], e["gold_subdoc"], e["status"],
-                "; ".join(f"{o['chunk_id']} -> {','.join(o['subdocs'])}" for o in e["evidence_outside"])] for v in ok.values() for e in v["excluded_examples"]]
+        oc = st["outside_causes"]
+        rows.append([v["display"], st["queries_union"], f"{st['paper_labels_reproduced']}/{st['queries_union']}", sc.get("ineligible", 0),
+                     sc.get("excluded_evidence_outside", 0), oc.get("duplicate_full_match", 0), oc.get("partial_match_group", 0),
+                     oc.get("duplicate_full_match+partial_match_group", 0), sc.get("excluded_gold_subdoc_not_in_text", 0),
+                     sc.get("kept", 0), st["relabel_set"]])
+    report.table(["Setting", "Queries", "Paper labels reproduced by the repo labeler", "Ineligible",
+                  "Evidence outside gold sub-doc", "... only duplicate copies", "... only partial-match groups", "... both",
+                  "Gold sub-doc not in text", "Set S (strict: all evidence inside)", "Set R (labels re-derived inside)"], rows)
+    report.p("Why evidence lies outside the gold sub-document. The paper's labels come from `indexing/labeling.py`, run over the "
+             "whole concatenated document: (a) every chunk anywhere that contains a span counts as a sufficient chunk, so a "
+             "paragraph repeated in another source document (common in MuSiQue) adds a copy outside; (b) a span that fits in no "
+             "single chunk becomes an evidence group of every chunk that shares a boundary token run with it, anywhere in the "
+             "document, and a hit needs the whole group in the top k. Set S follows the task as written (such queries left out). "
+             "Set R keeps every query whose spans also match inside the gold sub-document, with labels from the same labeler "
+             "run on the gold sub-document's chunks only. The full-ranking measures always use the paper's labels.")
+    ex_rows = [[v["display"], e["query_id"], e["doc_id"], e["gold_subdoc"],
+                "; ".join(f"{o['chunk_id']} -> {','.join(o['subdocs'])}" for o in e["evidence_outside"])] for v in ok.values() for e in v["excluded_examples"][:2]]
     if ex_rows:
-        report.p("First excluded queries per setting (at most 5 each):")
         report.p("")
-        report.table(["Setting", "Query", "Document", "Gold sub-doc", "Status", "Evidence chunk -> its sub-doc(s)"], ex_rows[:20])
+        report.p("Examples (first 2 per setting):")
+        report.p("")
+        report.table(["Setting", "Query", "Document", "Gold sub-doc", "Evidence chunk outside -> its sub-doc(s)"], ex_rows)
 
-    report.h("4. Chunks per gold sub-document (kept queries)")
+    report.h("4. Chunks per gold sub-document")
     rows = []
     for k, v in ok.items():
         st = v["stats"]
-        g = st["chunks_per_gold_subdoc"]
-        gq = st["chunks_per_gold_subdoc_over_queries"]
         a = st["chunks_per_subdoc_all"]
-        kept_n = st["status_counts"].get("kept", 0) or 1
-        small = st["kept_with_gold_subdoc_at_most_k"]
-        rows.append([v["display"], st["gold_subdocs_distinct"], f"{fnum(g['min'],0)} / {fnum(g['median'],1)} / {fnum(g['max'],0)}",
-                     f"{fnum(gq['min'],0)} / {fnum(gq['median'],1)} / {fnum(gq['max'],0)}",
-                     f"{fnum(a['min'],0)} / {fnum(a['median'],1)} / {fnum(a['max'],0)}"]
-                    + [f"{small[str(kk)]} ({100 * small[str(kk)] / kept_n:.0f}%)" for kk in SMALL_K])
-    report.table(["Setting", "Gold sub-docs (distinct)", "Chunks per gold sub-doc min/med/max", "Same, over queries", "All sub-docs min/med/max"]
+        for label, n_key, g_key, gq_key, small_key in (
+            ("S", "kept", "chunks_per_gold_subdoc", "chunks_per_gold_subdoc_over_queries", "kept_with_gold_subdoc_at_most_k"),
+            ("R", None, "relabel_chunks_per_gold_subdoc", "relabel_chunks_per_gold_subdoc_over_queries", "relabel_with_gold_subdoc_at_most_k"),
+        ):
+            n = (st["status_counts"].get("kept", 0) if n_key else st["relabel_set"]) or 1
+            g, gq, small = st[g_key], st[gq_key], st[small_key]
+            rows.append([v["display"], label, g["n"], f"{fnum(g['min'],0)} / {fnum(g['median'],1)} / {fnum(g['max'],0)}",
+                         f"{fnum(gq['min'],0)} / {fnum(gq['median'],1)} / {fnum(gq['max'],0)}",
+                         f"{fnum(a['min'],0)} / {fnum(a['median'],1)} / {fnum(a['max'],0)}"]
+                        + [f"{small[str(kk)]} ({100 * small[str(kk)] / n:.0f}%)" for kk in SMALL_K])
+    report.table(["Setting", "Set", "Gold sub-docs (distinct)", "Chunks per gold sub-doc min/med/max", "Same, over queries", "All sub-docs min/med/max"]
                  + [f"Queries with <= {kk} chunks" for kk in SMALL_K], rows)
     report.p("HR@k inside the sub-document is trivially 100% for queries whose gold sub-document has k chunks or fewer; "
-             "later steps report each HR@k on all kept queries and on those with more than k chunks.")
+             "later steps report each HR@k on all queries of a set and on those with more than k chunks.")
 
     dis = [(v["display"], x) for v in ok.values() for x in v.get("disagreement_examples", [])]
     if dis:
