@@ -1,0 +1,3 @@
+# Large intermediates (channel scores, per-query hit ranks) and run logs stay out of git.
+work/
+logs/
