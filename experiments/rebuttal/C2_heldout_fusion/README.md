@@ -23,6 +23,12 @@ nothing is lost when the terminal closes:
 
 Options: `--dry-run` (CPU test: BM25, 2 documents per dataset, small grid; writes to `dry_run/` folders),
 `--analysis-only` (rerun the CPU analysis once all 20 jobs are DONE; report `reports/group_X_analysis_only.md`).
+`--analysis-only --retrievers bm25,contriever,bge_m3` analyses only those retrievers (their jobs on all four
+datasets must be DONE); the reports name the retrievers left out, and the Table 1 ranking counts only their cells.
+
+```bash
+bash -c 'source experiments/rebuttal/C2_heldout_fusion/env.sh && python scripts/rebuttal/c2_heldout_fusion.py --group A --analysis-only --retrievers bm25,contriever,bge_m3'
+```
 
 ## What happens
 

@@ -1254,16 +1254,26 @@ def _pct(x: np.ndarray) -> float:
     return 100.0 * float(np.mean(x)) if len(x) else float("nan")
 
 
-def run_analysis(paths: C2Paths, *, workers: int = 4, log=print) -> dict[str, Any]:
-    """Parts A-G over all finished jobs; writes tables, figures, REPORT.md, REPORT_FOR_GDOC.md."""
+def analysis_jobs(retrievers: tuple[str, ...] | None = None, *, dry_run: bool = False) -> list[tuple[str, str]]:
+    """The (dataset, retriever) jobs an analysis covers: all 20, or every dataset for the chosen retrievers."""
+
+    chosen = tuple(retrievers) if retrievers else RETRIEVERS
+    unknown = [r for r in chosen if r not in RETRIEVERS]
+    if unknown:
+        raise ValueError(f"unknown retrievers {unknown}; choose from {list(RETRIEVERS)}")
+    return [(d, r) for d, r in ALL_JOBS if r in chosen and (r == "bm25" or not dry_run)]
+
+
+def run_analysis(paths: C2Paths, *, workers: int = 4, log=print, retrievers: tuple[str, ...] | None = None) -> dict[str, Any]:
+    """Parts A-G over the finished jobs of the chosen retrievers (default: all five); writes tables, figures, reports."""
 
     from concurrent.futures import ProcessPoolExecutor
 
     t_start = time.perf_counter()
     grid = make_grid(dry_run=paths.dry_run)
-    jobs = [(d, r) for d, r in ALL_JOBS if paths.done_marker(job_name(d, r)).exists()]
-    if paths.dry_run:
-        jobs = [(d, r) for d, r in jobs if r == "bm25"]
+    jobs = [(d, r) for d, r in analysis_jobs(retrievers, dry_run=paths.dry_run) if paths.done_marker(job_name(d, r)).exists()]
+    covered = [r for r in RETRIEVERS if any(k[1] == r for k in jobs)]
+    left_out = [r for r in RETRIEVERS if r not in covered]
     log(f"analysis: {len(jobs)} jobs, grid {len(grid)} points, {workers} workers")
     worker_out: dict[str, dict[str, Any]] = {}
     with ProcessPoolExecutor(max_workers=max(1, int(workers))) as pool:
@@ -1409,7 +1419,7 @@ def run_analysis(paths: C2Paths, *, workers: int = 4, log=print) -> dict[str, An
         }
 
     # E: ranking in the main comparison table.
-    ranking = ranking_stability(paths.repo_root, {(r["dataset"], r["retriever"]): r for r in rows_d})
+    ranking = ranking_stability(paths.repo_root, {(r["dataset"], r["retriever"]): r for r in rows_d}, retrievers=tuple(covered))
 
     # C: Table 9 reconstruction test.
     table9 = table9_test(paths.repo_root, grids, grid)
@@ -1420,6 +1430,8 @@ def run_analysis(paths: C2Paths, *, workers: int = 4, log=print) -> dict[str, An
         "grid_points": len(grid),
         "grid": {"lambda": list(DRY_LAMBDA_GRID if paths.dry_run else LAMBDA_GRID), "mu": list(DRY_MU_GRID if paths.dry_run else MU_GRID)},
         "jobs": [job_name(d, r) for d, r in jobs],
+        "retrievers": covered,
+        "retrievers_left_out": left_out,
         "workers": worker_out,
         "per_job": rows_d,
         "counts": summary_counts,
@@ -1438,15 +1450,17 @@ def run_analysis(paths: C2Paths, *, workers: int = 4, log=print) -> dict[str, An
     return analysis
 
 
-def ranking_stability(repo_root: Path, rows: dict[tuple[str, str], dict[str, Any]]) -> dict[str, Any]:
-    """SAADI's rank in the 40 cells of Table 1, published vs A1 held-out (others unchanged)."""
+def ranking_stability(
+    repo_root: Path, rows: dict[tuple[str, str], dict[str, Any]], *, retrievers: tuple[str, ...] = RETRIEVERS
+) -> dict[str, Any]:
+    """SAADI's rank in the Table 1 cells of the analysed retrievers (40 for all five), published vs A1 held-out."""
 
     path = repo_root / "results" / "tables" / "main" / "retrieval_comparison" / "table.csv"
     with path.open("r", encoding="utf-8") as handle:
         table = list(csv.DictReader(handle))
     disp_to_ret = {v: k for k, v in RETRIEVER_DISPLAY.items()}
     cells = []
-    for rdisp in [RETRIEVER_DISPLAY[r] for r in RETRIEVERS]:
+    for rdisp in [RETRIEVER_DISPLAY[r] for r in RETRIEVERS if r in retrievers]:
         methods = [t for t in table if t["Retriever"] == rdisp]
         saadi = next(t for t in methods if t["Method"] == "Saadi")
         for d in DATASET_KEYS:
@@ -1530,7 +1544,7 @@ def table9_test(repo_root: Path, grids: dict[tuple[str, str], JobGrid], grid: Gr
                     entry["values"].append({"cell": list(key), "ours": ours, "reported": rep, "match": ok})
                     entry["compared"] += 1
                     entry["matches"] += int(ok)
-    expected_cells = len(TABLE9_JOBS) * len(TABLE9_SETTINGS) * 2
+    expected_cells = len(available) * len(TABLE9_SETTINGS) * 2
     reconstructed = [
         n
         for n, c in candidates.items()
@@ -1559,6 +1573,8 @@ def table9_test(repo_root: Path, grids: dict[tuple[str, str], JobGrid], grid: Gr
         "sampling_code": "load_*_qa_entries(..., selection_method='random') calls random.sample(idxs, n) on the global RNG; no seed is set anywhere in src/",
         "candidates": candidates,
         "expected_cells": expected_cells,
+        "jobs_compared": [job_name(d, r) for d, r in available],
+        "jobs_in_table9": [job_name(d, r) for d, r in TABLE9_JOBS],
         "reconstructed": reconstructed,
     }
 
@@ -1799,6 +1815,17 @@ def write_report(paths: C2Paths, a: dict[str, Any], grid: Grid) -> None:
     t9 = a["table9"]
     n = len(rows)
     dry = a["dry_run"]
+    covered = [RETRIEVER_DISPLAY[r] for r in a.get("retrievers", RETRIEVERS)]
+    left_out = [RETRIEVER_DISPLAY[r] for r in a.get("retrievers_left_out", [])]
+    coverage = f"Retrievers: {', '.join(covered)}" + (f"; not included in this analysis: {', '.join(left_out)}" if left_out else "")
+    t9_pairs = [tuple(j.split("__")) for j in t9.get("jobs_compared", [job_name(*k) for k in TABLE9_JOBS])]
+    t9_scope = (
+        " and ".join(DATASET_DISPLAY[d] for d in DATASET_KEYS if any(k[0] == d for k in t9_pairs))
+        + " x "
+        + ", ".join(RETRIEVER_DISPLAY[r] for r in RETRIEVERS if any(k[1] == r for k in t9_pairs))
+        if t9_pairs
+        else "none available"
+    )
 
     def med(key: str) -> float:
         vals = [r[key] for r in rows if r.get(key) is not None]
@@ -1822,6 +1849,8 @@ def write_report(paths: C2Paths, a: dict[str, Any], grid: Grid) -> None:
     )
     L.append("")
     L.append("## Summary")
+    L.append("")
+    L.append(f"{coverage}.")
     L.append("")
     L.append(
         f"1. mokb Q1. With all four weights chosen without the evaluated query ({kfold} CV grouped by document, {len(grid)}-point grid; A1), held-out SAADI is above the text-only Vanilla in {c1['beats_vanilla']}/{c1['pairs']} (dataset, retriever) pairs at HR@10 and {c1_5['beats_vanilla']}/{c1_5['pairs']} at HR@5; the 95% paired interval is above zero in {c1['ci_above_zero']}/{c1['pairs']} (HR@10) and {c1_5['ci_above_zero']}/{c1_5['pairs']} (HR@5). With the published weights the interval is above zero in {pc['hr10']['ci_above_zero']}/{pc['hr10']['pairs']} (HR@10) and {pc['hr5']['ci_above_zero']}/{pc['hr5']['pairs']} (HR@5)."
@@ -1907,7 +1936,7 @@ def write_report(paths: C2Paths, a: dict[str, Any], grid: Grid) -> None:
     L.append("")
     L.append(f"- How the sample was drawn: {t9['sampling_code']}. The query ids of the sample are not saved, so they cannot be read back.")
     L.append(
-        f"- Test: recompute the Table 9 cells ({t9['expected_cells']}: LooGLE and NovelHopQA x BM25, Contriever, Jina x 5 channel settings x HR@5/HR@10, mu = (1, 1, 1)) on candidate query sets and compare with the reported integer percentages ({t9['source']})."
+        f"- Test: recompute the Table 9 cells ({t9['expected_cells']}: {t9_scope} x 5 channel settings x HR@5/HR@10, mu = (1, 1, 1)) on candidate query sets and compare with the reported integer percentages ({t9['source']})."
     )
     L.append("")
     L.append("| Candidate query set | Cells compared | Cells matching |")
@@ -2020,7 +2049,7 @@ def write_report(paths: C2Paths, a: dict[str, Any], grid: Grid) -> None:
     G.append("# C2 held-out fusion weights: key numbers" + (" (DRY RUN)" if dry else ""))
     G.append("")
     G.append(
-        f"- Setup: {n} (dataset, retriever) pairs; all weights re-chosen on a {len(grid)}-point grid without the evaluated queries ({kfold} CV grouped by document, seed 42)."
+        f"- Setup: {n} (dataset, retriever) pairs ({coverage}); all weights re-chosen on a {len(grid)}-point grid without the evaluated queries ({kfold} CV grouped by document, seed 42)."
     )
     G.append(
         f"- Mean HR@10 over pairs: Vanilla {mean('vanilla_hr10'):.1f}, SAADI published {mean('published_hr10'):.1f}, SAADI held-out (A1) {mean('a1_hr10'):.1f}, channels-only held-out (A2) {mean('a2_hr10'):.1f}."

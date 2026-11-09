@@ -6,6 +6,7 @@ and run_gpus_4567.sh (--group B, GPUs 4-7). From the repository root:
 
     python scripts/rebuttal/c2_heldout_fusion.py --group A            # this group's jobs, then the analysis gate
     python scripts/rebuttal/c2_heldout_fusion.py --group B --analysis-only
+    python scripts/rebuttal/c2_heldout_fusion.py --group A --analysis-only --retrievers bm25,contriever,bge_m3
     python scripts/rebuttal/c2_heldout_fusion.py --group A --dry-run  # CPU: BM25, 2 documents per dataset, small grid
 
 Steps per group: preflight -> plan (first group writes plan.json under a file lock, the other
@@ -668,10 +669,20 @@ def write_group_report(group: str, report: dict[str, Any], paths: hf.C2Paths) ->
     (paths.reports_dir / f"{report_stem(group, report)}.md").write_text("\n".join(L) + "\n", encoding="utf-8")
 
 
-def analysis_gate(group: str, paths: hf.C2Paths, *, dry_run: bool, force: bool, workers: int, report: dict[str, Any], log) -> bool:
-    """Run the analysis once all jobs are DONE. Returns False if the analysis failed."""
+def analysis_gate(
+    group: str,
+    paths: hf.C2Paths,
+    *,
+    dry_run: bool,
+    force: bool,
+    workers: int,
+    report: dict[str, Any],
+    log,
+    retrievers: tuple[str, ...] | None = None,
+) -> bool:
+    """Run the analysis once all jobs (of the chosen retrievers) are DONE. Returns False if the analysis failed."""
 
-    expected = [hf.job_name(d, r) for d, r in hf.ALL_JOBS if (r == "bm25" or not dry_run)]
+    expected = [hf.job_name(d, r) for d, r in hf.analysis_jobs(retrievers, dry_run=dry_run)]
     with file_lock(paths.out_dir / "analysis.lock"):
         done = [j for j in expected if paths.done_marker(j).exists()]
         if len(done) < len(expected):
@@ -695,10 +706,11 @@ def analysis_gate(group: str, paths: hf.C2Paths, *, dry_run: bool, force: bool, 
                 report["analysis"] = f"already run ({json.loads(marker.read_text())['finished_at']}); use --analysis-only to rerun"
                 log(report["analysis"])
                 return True
-        log(f"all {len(expected)} jobs DONE; running the analysis on CPU ({workers} workers)")
+        scope = f" for {', '.join(retrievers)}" if retrievers else ""
+        log(f"all {len(expected)} jobs{scope} DONE; running the analysis on CPU ({workers} workers)")
         t0 = time.time()
         try:
-            a = hf.run_analysis(paths, workers=workers, log=log)
+            a = hf.run_analysis(paths, workers=workers, log=log, retrievers=retrievers)
         except Exception:
             tb = traceback.format_exc()
             log(tb)
@@ -716,6 +728,10 @@ def main() -> int:
     ap.add_argument("--group", choices=["A", "B"], required=True)
     ap.add_argument("--analysis-only", action="store_true", help="rerun the CPU analysis only (all 20 jobs must be DONE)")
     ap.add_argument(
+        "--retrievers",
+        help="with --analysis-only: comma-separated retrievers to analyse (e.g. bm25,contriever,bge_m3); their jobs on all four datasets must be DONE",
+    )
+    ap.add_argument(
         "--dry-run", action="store_true", help="CPU test: BM25 only, 2 documents per dataset, reduced grid; separate dry_run/ folders"
     )
     ap.add_argument("--workers", type=int, default=int(os.environ.get("C2_ANALYSIS_WORKERS", "8")), help="CPU processes for the analysis")
@@ -724,6 +740,14 @@ def main() -> int:
 
     if args.run_job:
         return run_worker(args.run_job, dry_run=args.dry_run)
+    retrievers = tuple(x.strip() for x in args.retrievers.split(",") if x.strip()) if args.retrievers else None
+    if retrievers and not args.analysis_only:
+        ap.error("--retrievers only works with --analysis-only")
+    if retrievers:
+        try:
+            hf.analysis_jobs(retrievers)
+        except ValueError as exc:
+            ap.error(str(exc))
 
     paths = hf.C2Paths(REPO_ROOT, dry_run=args.dry_run)
     paths.ensure()
@@ -735,6 +759,7 @@ def main() -> int:
         "host": platform.node(),
         "argv": [Path(sys.executable).name, *sys.argv],
         "analysis_only": bool(args.analysis_only),
+        "retrievers": list(retrievers) if retrievers else list(hf.RETRIEVERS),
         "unexpected": [],
         "files": [],
     }
@@ -746,7 +771,9 @@ def main() -> int:
     try:
         if args.analysis_only:
             report["preflight"] = preflight_base(group, dry_run=True, need_dense=False) | {"gpus": "not needed (--analysis-only)"}
-            ok = analysis_gate(group, paths, dry_run=args.dry_run, force=True, workers=args.workers, report=report, log=log)
+            ok = analysis_gate(
+                group, paths, dry_run=args.dry_run, force=True, workers=args.workers, report=report, log=log, retrievers=retrievers
+            )
             exit_code = 0 if ok and not report["analysis"].startswith(tuple("0123456789")) else 1
         else:
             pf = preflight_base(group, dry_run=args.dry_run, need_dense=not args.dry_run)
