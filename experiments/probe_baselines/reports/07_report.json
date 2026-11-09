@@ -4,7 +4,7 @@
  "commands": [
   "python3 /home/iataghav/data/SAADI/experiments/probe_baselines/common/final_report.py"
  ],
- "seconds": 0,
+ "seconds": 3,
  "numbers": {
   "report": {
    "final": "/home/iataghav/data/SAADI/experiments/probe_baselines/reports/FINAL.md",
@@ -14,5 +14,5 @@
  },
  "unexpected": [],
  "files_written": [],
- "git_commit": "aba11eead6837a7fae635e18972a849822a81381"
+ "git_commit": "f1a54482c68d91eb797d75b11362f1973bc202a5"
 }

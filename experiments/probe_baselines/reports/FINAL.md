@@ -1,6 +1,6 @@
 # Probe baselines: final report
 
-Written 2026-11-09 10:24 by 07_report. Commit `aba11eead6837a7fae635e18972a849822a81381`. Stage status: {'00_check': 'done', '01_b0_vanilla': 'done', '02_b1_oracle': 'done', '03_b2_contextual': 'done', '04_b3_hipporag': 'failed', '05_b4_lqca': 'done', '06_score': 'done', '07_report': 'done'}.
+Written 2026-11-09 11:12 by 07_report. Commit `f1a54482c68d91eb797d75b11362f1973bc202a5`. Stage status: {'00_check': 'done', '01_b0_vanilla': 'done', '02_b1_oracle': 'done', '03_b2_contextual': 'done', '04_b3_hipporag': 'failed', '05_b4_lqca': 'done', '06_score': 'done', '07_report': 'done'}.
 Persona probe: 10 modified NovelHopQA books, frozen spec `11c4c1696c67171f78821d3ba8311ccd28c851315ca1c2a404a9a422593897bb`, 240 personas, 8 cells of 30. HR in % over personas; a hit when the gold chunk's rank is at most k; median of the gold ranks; 95% bootstrap intervals (10,000 resamples, seed 42); exact McNemar. Nothing was tuned on the probe.
 
 ## Expected against observed (expectations written before the run)
@@ -107,7 +107,7 @@ Every cell-5 persona B2 put in the top 10 (cell 5 has no reveal, so no context c
 | B0 Vanilla BM25 | done | 0 | 0 | 0 | 0 | 0.00 h | 0.9 MB |
 | B1 Oracle (form 2 in the gold chunk) | done | 0 | 0 | 0 | 0 | 0.00 h | 0.9 MB |
 | B2 Contextual Retrieval | done | 318 | 68,919,897 | 42,894 | 0 | 1.77 h | 1.1 MB |
-| B3 HippoRAG v2 | failed | 0 | 0 | 0 | 0 | n/a | n/a |
+| B3 HippoRAG v2 | failed | 0 | 0 | 0 | 0 | 0.00 h | n/a |
 | B4 LQCA | done | 0 | 0 | 0 | 0 | 0.88 h | 0.9 MB |
 | SAADI run 1 (p1_ledger), for reference | done | 318 | 1,589,265 | 359,175 | 0 | 3.69 h | n/a |
 
