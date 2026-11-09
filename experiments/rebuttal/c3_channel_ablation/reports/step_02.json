@@ -1,14 +1,612 @@
 {
   "step": 2,
   "title": "new variants for BM25",
-  "status": "FAILED",
+  "status": "PASSED",
   "command": "bash experiments/rebuttal/c3_channel_ablation/sh/02_bm25.sh",
   "git": {
-    "commit": "1e7b1fb6b31cad9941271a8223f16145656968e8",
+    "commit": "98f4f789a04e2212265e12ef2b585ebc24f49d2d",
     "branch": "fix/notebook-key-and-install",
-    "dirty_files": 6
+    "dirty_files": 7
   },
+  "pairs": [
+    {
+      "dataset": "loogle",
+      "retriever": "bm25",
+      "n_queries": 1832,
+      "n_eligible": 1832,
+      "hr": {
+        "text_only": {
+          "5": 91.86681222707423,
+          "10": 95.74235807860262
+        },
+        "text_summary": {
+          "5": 92.08515283842794,
+          "10": 96.06986899563319
+        },
+        "text_memory": {
+          "5": 92.13973799126637,
+          "10": 96.2882096069869
+        },
+        "all_three": {
+          "5": 92.30349344978166,
+          "10": 96.45196506550218
+        },
+        "summary_only": {
+          "5": 38.53711790393013,
+          "10": 58.29694323144105
+        },
+        "memory_only": {
+          "5": 53.76637554585153,
+          "10": 67.24890829694323
+        }
+      },
+      "median_rank": {
+        "text_only": "1",
+        "text_summary": "1",
+        "text_memory": "1",
+        "all_three": "1",
+        "summary_only": "6",
+        "memory_only": "5"
+      },
+      "hr_agrees_with_repo": {
+        "text_only@5": true,
+        "text_only@10": true,
+        "text_summary@5": true,
+        "text_summary@10": true,
+        "text_memory@5": true,
+        "text_memory@10": true,
+        "all_three@5": true,
+        "all_three@10": true,
+        "summary_only@5": true,
+        "summary_only@10": true,
+        "memory_only@5": true,
+        "memory_only@10": true
+      },
+      "quick": {
+        "all_three-text_summary@5": {
+          "mean": 0.2183406113537118,
+          "lo": -0.5458515283842795,
+          "hi": 0.982532751091703,
+          "a_only": 27,
+          "b_only": 23,
+          "p": 0.6718110337653656
+        },
+        "all_three-text_summary@10": {
+          "mean": 0.38209606986899564,
+          "lo": -0.2183406113537118,
+          "hi": 1.037117903930131,
+          "a_only": 20,
+          "b_only": 13,
+          "p": 0.296206368599087
+        },
+        "all_three-text_memory@5": {
+          "mean": 0.16375545851528384,
+          "lo": -0.38209606986899564,
+          "hi": 0.7641921397379913,
+          "a_only": 16,
+          "b_only": 13,
+          "p": 0.711071103811264
+        },
+        "all_three-text_memory@10": {
+          "mean": 0.16375545851528384,
+          "lo": -0.27292576419213976,
+          "hi": 0.6550218340611353,
+          "a_only": 11,
+          "b_only": 8,
+          "p": 0.6476058959960938
+        },
+        "text_summary-text_only@5": {
+          "mean": 0.2183406113537118,
+          "lo": -0.4366812227074236,
+          "hi": 0.8733624454148472,
+          "a_only": 20,
+          "b_only": 16,
+          "p": 0.617719317029696
+        },
+        "text_summary-text_only@10": {
+          "mean": 0.32751091703056767,
+          "lo": -0.2183406113537118,
+          "hi": 0.8733624454148472,
+          "a_only": 15,
+          "b_only": 9,
+          "p": 0.30745625495910645
+        },
+        "text_memory-text_only@5": {
+          "mean": 0.27292576419213976,
+          "lo": -0.4912663755458515,
+          "hi": 1.037117903930131,
+          "a_only": 29,
+          "b_only": 24,
+          "p": 0.5831321542611763
+        },
+        "text_memory-text_only@10": {
+          "mean": 0.5458515283842795,
+          "lo": -0.1091703056768559,
+          "hi": 1.2008733624454149,
+          "a_only": 25,
+          "b_only": 15,
+          "p": 0.1538599441628321
+        },
+        "all_three-text_only@5": {
+          "mean": 0.4366812227074236,
+          "lo": -0.4366812227074236,
+          "hi": 1.3100436681222707,
+          "a_only": 36,
+          "b_only": 28,
+          "p": 0.38173279479333766
+        },
+        "all_three-text_only@10": {
+          "mean": 0.7096069868995634,
+          "lo": 0.0,
+          "hi": 1.4192139737991267,
+          "a_only": 27,
+          "b_only": 14,
+          "p": 0.05958388801809633
+        }
+      },
+      "paper": {
+        "vanilla": {
+          "5": 91.5,
+          "10": 95.4
+        },
+        "saadi": {
+          "5": 92.30349344978166,
+          "10": 96.4519650655022
+        }
+      },
+      "per_query_file": "results/rebuttal/c3_channel_ablation/per_query/loogle__bm25.csv.gz",
+      "seconds": 5.355667168973014
+    },
+    {
+      "dataset": "musique_32k",
+      "retriever": "bm25",
+      "n_queries": 900,
+      "n_eligible": 900,
+      "hr": {
+        "text_only": {
+          "5": 57.55555555555556,
+          "10": 74.0
+        },
+        "text_summary": {
+          "5": 59.55555555555556,
+          "10": 76.55555555555556
+        },
+        "text_memory": {
+          "5": 61.22222222222222,
+          "10": 75.44444444444444
+        },
+        "all_three": {
+          "5": 62.77777777777778,
+          "10": 77.66666666666667
+        },
+        "summary_only": {
+          "5": 52.44444444444444,
+          "10": 73.44444444444444
+        },
+        "memory_only": {
+          "5": 51.111111111111114,
+          "10": 61.55555555555556
+        }
+      },
+      "median_rank": {
+        "text_only": "4",
+        "text_summary": "4",
+        "text_memory": "4",
+        "all_three": "4",
+        "summary_only": "5",
+        "memory_only": "5"
+      },
+      "hr_agrees_with_repo": {
+        "text_only@5": true,
+        "text_only@10": true,
+        "text_summary@5": true,
+        "text_summary@10": true,
+        "text_memory@5": true,
+        "text_memory@10": true,
+        "all_three@5": true,
+        "all_three@10": true,
+        "summary_only@5": true,
+        "summary_only@10": true,
+        "memory_only@5": true,
+        "memory_only@10": true
+      },
+      "quick": {
+        "all_three-text_summary@5": {
+          "mean": 3.2222222222222223,
+          "lo": 1.5555555555555556,
+          "hi": 4.888888888888889,
+          "a_only": 44,
+          "b_only": 15,
+          "p": 0.00020372185740785698
+        },
+        "all_three-text_summary@10": {
+          "mean": 1.1111111111111112,
+          "lo": -0.3333333333333333,
+          "hi": 2.5555555555555554,
+          "a_only": 27,
+          "b_only": 17,
+          "p": 0.17417114727072658
+        },
+        "all_three-text_memory@5": {
+          "mean": 1.5555555555555556,
+          "lo": 0.1111111111111111,
+          "hi": 3.0,
+          "a_only": 29,
+          "b_only": 15,
+          "p": 0.048766765904474596
+        },
+        "all_three-text_memory@10": {
+          "mean": 2.2222222222222223,
+          "lo": 0.7777777777777778,
+          "hi": 3.6666666666666665,
+          "a_only": 32,
+          "b_only": 12,
+          "p": 0.003657766827927844
+        },
+        "text_summary-text_only@5": {
+          "mean": 2.0,
+          "lo": 0.3333333333333333,
+          "hi": 3.6666666666666665,
+          "a_only": 40,
+          "b_only": 22,
+          "p": 0.030015864349067292
+        },
+        "text_summary-text_only@10": {
+          "mean": 2.5555555555555554,
+          "lo": 0.7777777777777778,
+          "hi": 4.333333333333333,
+          "a_only": 45,
+          "b_only": 22,
+          "p": 0.006741447363103126
+        },
+        "text_memory-text_only@5": {
+          "mean": 3.6666666666666665,
+          "lo": 1.8888888888888888,
+          "hi": 5.555555555555555,
+          "a_only": 52,
+          "b_only": 19,
+          "p": 0.00011226864689498799
+        },
+        "text_memory-text_only@10": {
+          "mean": 1.4444444444444444,
+          "lo": -0.3333333333333333,
+          "hi": 3.2222222222222223,
+          "a_only": 42,
+          "b_only": 29,
+          "p": 0.1539127693264563
+        },
+        "all_three-text_only@5": {
+          "mean": 5.222222222222222,
+          "lo": 3.2222222222222223,
+          "hi": 7.111111111111111,
+          "a_only": 64,
+          "b_only": 17,
+          "p": 1.4266367729635828e-07
+        },
+        "all_three-text_only@10": {
+          "mean": 3.6666666666666665,
+          "lo": 1.6666666666666667,
+          "hi": 5.666666666666667,
+          "a_only": 59,
+          "b_only": 26,
+          "p": 0.0004471991792769285
+        }
+      },
+      "paper": {
+        "vanilla": {
+          "5": 57.6,
+          "10": 74.0
+        },
+        "saadi": {
+          "5": 62.77777777777778,
+          "10": 77.66666666666666
+        }
+      },
+      "per_query_file": "results/rebuttal/c3_channel_ablation/per_query/musique_32k__bm25.csv.gz",
+      "seconds": 20.547490786993876
+    },
+    {
+      "dataset": "qasper_64k",
+      "retriever": "bm25",
+      "n_queries": 1333,
+      "n_eligible": 1333,
+      "hr": {
+        "text_only": {
+          "5": 14.403600900225056,
+          "10": 22.05551387846962
+        },
+        "text_summary": {
+          "5": 16.054013503375845,
+          "10": 24.381095273818456
+        },
+        "text_memory": {
+          "5": 15.978994748687171,
+          "10": 24.456114028507127
+        },
+        "all_three": {
+          "5": 16.95423855963991,
+          "10": 26.106526631657914
+        },
+        "summary_only": {
+          "5": 10.877719429857464,
+          "10": 19.05476369092273
+        },
+        "memory_only": {
+          "5": 11.102775693923482,
+          "10": 16.804201050262566
+        }
+      },
+      "median_rank": {
+        "text_only": ">10",
+        "text_summary": ">10",
+        "text_memory": ">10",
+        "all_three": ">10",
+        "summary_only": ">10",
+        "memory_only": ">10"
+      },
+      "hr_agrees_with_repo": {
+        "text_only@5": true,
+        "text_only@10": true,
+        "text_summary@5": true,
+        "text_summary@10": true,
+        "text_memory@5": true,
+        "text_memory@10": true,
+        "all_three@5": true,
+        "all_three@10": true,
+        "summary_only@5": true,
+        "summary_only@10": true,
+        "memory_only@5": true,
+        "memory_only@10": true
+      },
+      "quick": {
+        "all_three-text_summary@5": {
+          "mean": 0.900225056264066,
+          "lo": -0.30007501875468867,
+          "hi": 2.100525131282821,
+          "a_only": 40,
+          "b_only": 28,
+          "p": 0.18181005453559343
+        },
+        "all_three-text_summary@10": {
+          "mean": 1.7254313578394598,
+          "lo": 0.450112528132033,
+          "hi": 3.000750187546887,
+          "a_only": 50,
+          "b_only": 27,
+          "p": 0.01167272102438307
+        },
+        "all_three-text_memory@5": {
+          "mean": 0.9752438109527382,
+          "lo": 0.0,
+          "hi": 2.0255063765941483,
+          "a_only": 30,
+          "b_only": 17,
+          "p": 0.07894069368148848
+        },
+        "all_three-text_memory@10": {
+          "mean": 1.6504126031507877,
+          "lo": 0.5251312828207052,
+          "hi": 2.7756939234808704,
+          "a_only": 40,
+          "b_only": 18,
+          "p": 0.005354859650800292
+        },
+        "text_summary-text_only@5": {
+          "mean": 1.6504126031507877,
+          "lo": 0.6001500375093773,
+          "hi": 2.700675168792198,
+          "a_only": 37,
+          "b_only": 15,
+          "p": 0.003185253447776759
+        },
+        "text_summary-text_only@10": {
+          "mean": 2.3255813953488373,
+          "lo": 1.1252813203300824,
+          "hi": 3.525881470367592,
+          "a_only": 50,
+          "b_only": 19,
+          "p": 0.00024439701657757496
+        },
+        "text_memory-text_only@5": {
+          "mean": 1.5753938484621155,
+          "lo": 0.37509377344336087,
+          "hi": 2.7756939234808704,
+          "a_only": 44,
+          "b_only": 23,
+          "p": 0.013933875024287792
+        },
+        "text_memory-text_only@10": {
+          "mean": 2.4006001500375094,
+          "lo": 1.0483870967741953,
+          "hi": 3.7509377344336086,
+          "a_only": 60,
+          "b_only": 28,
+          "p": 0.0008464960856166748
+        },
+        "all_three-text_only@5": {
+          "mean": 2.550637659414854,
+          "lo": 1.2003000750187547,
+          "hi": 3.9009752438109526,
+          "a_only": 58,
+          "b_only": 24,
+          "p": 0.0002219640349933781
+        },
+        "all_three-text_only@10": {
+          "mean": 4.051012753188297,
+          "lo": 2.550637659414854,
+          "hi": 5.476369092273068,
+          "a_only": 77,
+          "b_only": 23,
+          "p": 5.5135807758500534e-08
+        }
+      },
+      "paper": {
+        "vanilla": {
+          "5": 14.4,
+          "10": 22.1
+        },
+        "saadi": {
+          "5": 16.954238559639908,
+          "10": 26.106526631657918
+        }
+      },
+      "per_query_file": "results/rebuttal/c3_channel_ablation/per_query/qasper_64k__bm25.csv.gz",
+      "seconds": 61.686934794997796
+    },
+    {
+      "dataset": "novelhopqa",
+      "retriever": "bm25",
+      "n_queries": 908,
+      "n_eligible": 908,
+      "hr": {
+        "text_only": {
+          "5": 17.51101321585903,
+          "10": 20.704845814977972
+        },
+        "text_summary": {
+          "5": 17.621145374449338,
+          "10": 21.80616740088106
+        },
+        "text_memory": {
+          "5": 17.400881057268723,
+          "10": 20.92511013215859
+        },
+        "all_three": {
+          "5": 18.061674008810574,
+          "10": 22.026431718061673
+        },
+        "summary_only": {
+          "5": 4.185022026431718,
+          "10": 7.488986784140969
+        },
+        "memory_only": {
+          "5": 7.378854625550661,
+          "10": 11.013215859030836
+        }
+      },
+      "median_rank": {
+        "text_only": ">10",
+        "text_summary": ">10",
+        "text_memory": ">10",
+        "all_three": ">10",
+        "summary_only": ">10",
+        "memory_only": ">10"
+      },
+      "hr_agrees_with_repo": {
+        "text_only@5": true,
+        "text_only@10": true,
+        "text_summary@5": true,
+        "text_summary@10": true,
+        "text_memory@5": true,
+        "text_memory@10": true,
+        "all_three@5": true,
+        "all_three@10": true,
+        "summary_only@5": true,
+        "summary_only@10": true,
+        "memory_only@5": true,
+        "memory_only@10": true
+      },
+      "quick": {
+        "all_three-text_summary@5": {
+          "mean": 0.44052863436123346,
+          "lo": -0.3303964757709251,
+          "hi": 1.2114537444933922,
+          "a_only": 9,
+          "b_only": 5,
+          "p": 0.4239501953125
+        },
+        "all_three-text_summary@10": {
+          "mean": 0.22026431718061673,
+          "lo": -0.5506607929515418,
+          "hi": 1.1013215859030836,
+          "a_only": 8,
+          "b_only": 6,
+          "p": 0.79052734375
+        },
+        "all_three-text_memory@5": {
+          "mean": 0.6607929515418502,
+          "lo": -0.44052863436123346,
+          "hi": 1.7621145374449338,
+          "a_only": 16,
+          "b_only": 10,
+          "p": 0.32693958282470703
+        },
+        "all_three-text_memory@10": {
+          "mean": 1.1013215859030836,
+          "lo": 0.3303964757709251,
+          "hi": 1.9823788546255507,
+          "a_only": 13,
+          "b_only": 3,
+          "p": 0.021270751953125
+        },
+        "text_summary-text_only@5": {
+          "mean": 0.11013215859030837,
+          "lo": -0.9911894273127754,
+          "hi": 1.2114537444933922,
+          "a_only": 14,
+          "b_only": 13,
+          "p": 1.0
+        },
+        "text_summary-text_only@10": {
+          "mean": 1.1013215859030836,
+          "lo": 0.11013215859030837,
+          "hi": 2.092511013215859,
+          "a_only": 16,
+          "b_only": 6,
+          "p": 0.052478790283203125
+        },
+        "text_memory-text_only@5": {
+          "mean": -0.11013215859030837,
+          "lo": -0.9911894273127754,
+          "hi": 0.7709251101321586,
+          "a_only": 8,
+          "b_only": 9,
+          "p": 1.0
+        },
+        "text_memory-text_only@10": {
+          "mean": 0.22026431718061673,
+          "lo": -0.5506607929515418,
+          "hi": 0.9911894273127754,
+          "a_only": 8,
+          "b_only": 6,
+          "p": 0.79052734375
+        },
+        "all_three-text_only@5": {
+          "mean": 0.5506607929515418,
+          "lo": -0.44052863436123346,
+          "hi": 1.6519823788546255,
+          "a_only": 15,
+          "b_only": 10,
+          "p": 0.42435622215270996
+        },
+        "all_three-text_only@10": {
+          "mean": 1.3215859030837005,
+          "lo": 0.22026431718061673,
+          "hi": 2.4229074889867843,
+          "a_only": 19,
+          "b_only": 7,
+          "p": 0.028959274291992188
+        }
+      },
+      "paper": {
+        "vanilla": {
+          "5": 16.9,
+          "10": 20.0
+        },
+        "saadi": {
+          "5": 18.06167400881057,
+          "10": 22.026431718061673
+        }
+      },
+      "per_query_file": "results/rebuttal/c3_channel_ablation/per_query/novelhopqa__bm25.csv.gz",
+      "seconds": 25.052072457037866
+    }
+  ],
   "files": [
+    "results/rebuttal/c3_channel_ablation/per_query/loogle__bm25.csv.gz",
+    "results/rebuttal/c3_channel_ablation/per_query/musique_32k__bm25.csv.gz",
+    "results/rebuttal/c3_channel_ablation/per_query/qasper_64k__bm25.csv.gz",
+    "results/rebuttal/c3_channel_ablation/per_query/novelhopqa__bm25.csv.gz",
     "experiments/rebuttal/c3_channel_ablation/reports/step_02.md",
     "experiments/rebuttal/c3_channel_ablation/reports/step_02.json"
   ]
