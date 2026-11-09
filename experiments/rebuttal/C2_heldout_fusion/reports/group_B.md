@@ -1,6 +1,6 @@
 # C2 group B report
 
-- Started 2026-11-09 14:01:34, finished —; host eee-s132-infsys-gpu03; exit code None.
+- Started 2026-11-09 14:01:34, finished 2026-11-09 15:52:17; host eee-s132-infsys-gpu03; exit code 0.
 - Command: `python3 scripts/rebuttal/c2_heldout_fusion.py --group B`
 
 ## Preflight
@@ -30,9 +30,59 @@
 | musique_32k__bm25 | cpu x1 | 221446 | 900 | 51s |
 | loogle__bm25 | cpu x1 | 55069 | 1832 | 9s |
 
+## Jobs and reproduction checks
+
+| Job | Status | Time | Identical top-10 | HR@5 / HR@10 ours vs saved | text-only vs Table 1 Vanilla | Problems |
+| --- | --- | --- | --- | --- | --- | --- |
+| loogle__bge_m3 | DONE (skipped, already finished) | 9 min | 1832/1832 | 81.06 / 90.12 vs 81.06 / 90.12 | 82.48 / 90.72 vs 80.6 / 89.8 (differs) | none |
+| qasper_64k__contriever | DONE (skipped, already finished) | 8 min | 1333/1333 | 16.20 / 25.81 vs 16.20 / 25.81 | 15.15 / 23.33 vs 15.2 / 23.3 | none |
+| novelhopqa__contriever | DONE (skipped, already finished) | 5 min | 908/908 | 13.55 / 18.17 vs 13.55 / 18.17 | 12.44 / 17.84 vs 11.8 / 11.8 (differs) | none |
+| loogle__contriever | DONE (skipped, already finished) | 4 min | 1832/1832 | 75.44 / 85.70 vs 75.44 / 85.70 | 75.16 / 86.03 vs 72.4 / 73.3 (differs) | none |
+| musique_32k__bm25 | DONE (skipped, already finished) | 2 min | 900/900 | 62.78 / 77.67 vs 62.78 / 77.67 | 57.56 / 74.00 vs 57.6 / 74.0 | none |
+| loogle__bm25 | DONE (skipped, already finished) | 16s | 1832/1832 | 92.30 / 96.45 vs 92.30 / 96.45 | 91.87 / 95.74 vs 91.5 / 95.4 (differs) | none |
+| novelhopqa__qwen | DONE | 79 min | 908/908 | 15.20 / 20.59 vs 15.20 / 20.59 | 16.74 / 20.48 vs 14.6 / 19.8 (differs) | none |
+| novelhopqa__jina | DONE | 10s | 624/908 | 14.76 / 20.93 vs 14.76 / 21.15 | 15.97 / 20.15 vs 14.8 / 19.1 (differs) | drift accepted: identical top-10 for 624/908 queries (< 99%); HR@10 20.93 vs saved 21.15 (tolerance 0.1 points); HR@10 20.93 vs expected 21.15 |
+| musique_32k__qwen | DONE | 1.8 h | 899/900 | 76.44 / 90.00 vs 76.44 / 90.00 | 75.33 / 89.00 vs 75.3 / 89.0 | none |
+
+- loogle__bge_m3 text-only note: text-only HR@5 82.48 vs Table 1 Vanilla 80.6 (tolerance 0.15); text-only HR@10 90.72 vs Table 1 Vanilla 89.8 (tolerance 0.15)
+- novelhopqa__contriever text-only note: text-only HR@5 12.44 vs Table 1 Vanilla 11.8 (tolerance 0.15); text-only HR@10 17.84 vs Table 1 Vanilla 11.8 (tolerance 0.15)
+- loogle__contriever text-only note: text-only HR@5 75.16 vs Table 1 Vanilla 72.4 (tolerance 0.15); text-only HR@10 86.03 vs Table 1 Vanilla 73.3 (tolerance 0.15)
+- loogle__bm25 text-only note: text-only HR@5 91.87 vs Table 1 Vanilla 91.5 (tolerance 0.05); text-only HR@10 95.74 vs Table 1 Vanilla 95.4 (tolerance 0.05)
+- novelhopqa__qwen text-only note: text-only HR@5 16.74 vs Table 1 Vanilla 14.6 (tolerance 0.15); text-only HR@10 20.48 vs Table 1 Vanilla 19.8 (tolerance 0.15)
+- novelhopqa__jina text-only note: text-only HR@5 15.97 vs Table 1 Vanilla 14.8 (tolerance 0.15); text-only HR@10 20.15 vs Table 1 Vanilla 19.1 (tolerance 0.15)
+
 ## Analysis
 
-- not reached
+- 19/20 jobs DONE; waiting for group A
 
 ## Files written
 
+- `outputs/rebuttal/C2_heldout_fusion/streams/loogle__bge_m3.parquet`
+- `outputs/rebuttal/C2_heldout_fusion/streams/loogle__bge_m3.queries.json`
+- `outputs/rebuttal/C2_heldout_fusion/streams/loogle__bge_m3.check.json`
+- `outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__contriever.parquet`
+- `outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__contriever.queries.json`
+- `outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__contriever.check.json`
+- `outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__contriever.parquet`
+- `outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__contriever.queries.json`
+- `outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__contriever.check.json`
+- `outputs/rebuttal/C2_heldout_fusion/streams/loogle__contriever.parquet`
+- `outputs/rebuttal/C2_heldout_fusion/streams/loogle__contriever.queries.json`
+- `outputs/rebuttal/C2_heldout_fusion/streams/loogle__contriever.check.json`
+- `outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bm25.parquet`
+- `outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bm25.queries.json`
+- `outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bm25.check.json`
+- `outputs/rebuttal/C2_heldout_fusion/streams/loogle__bm25.parquet`
+- `outputs/rebuttal/C2_heldout_fusion/streams/loogle__bm25.queries.json`
+- `outputs/rebuttal/C2_heldout_fusion/streams/loogle__bm25.check.json`
+- `outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__qwen.parquet`
+- `outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__qwen.queries.json`
+- `outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__qwen.check.json`
+- `outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__jina.parquet`
+- `outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__jina.queries.json`
+- `outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__jina.check.json`
+- `outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__qwen.parquet`
+- `outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__qwen.queries.json`
+- `outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__qwen.check.json`
+- `experiments/rebuttal/C2_heldout_fusion/reports/group_B.md`
+- `experiments/rebuttal/C2_heldout_fusion/reports/group_B.json`
