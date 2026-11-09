@@ -1,11 +1,11 @@
 # probe_baselines - stage 04_b3_hipporag
 
-Status: **FAILED** - 2026-11-09 00:40:32; wall clock 0.0 min
+Status: **FAILED** - 2026-11-09 09:32:05; wall clock 0.0 min
 
 ## What was done
 
 - `/home/iataghav/data/SAADI/experiments/probe_baselines/third_party/venv_hipporag/bin/python /home/iataghav/data/SAADI/experiments/probe_baselines/systems/b3_hipporag/build.py`
-- git commit `28eed3a1ee31487f3bf23dcb3470aa0e164e8cfd`; python 3.12.3 on Linux-6.17.0-23-generic-x86_64-with-glibc2.39
+- git commit `aba11eead6837a7fae635e18972a849822a81381`; python 3.12.3 on Linux-6.17.0-23-generic-x86_64-with-glibc2.39
 
 ## Numbers
 

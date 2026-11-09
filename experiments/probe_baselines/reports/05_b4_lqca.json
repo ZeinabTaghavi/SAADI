@@ -1,15 +1,153 @@
 {
  "stage": "05_b4_lqca",
- "status": "FAILED",
+ "status": "ok",
  "commands": [
-  "/home/iataghav/data/SAADI/experiments/probe_baselines/third_party/venv_lqca/bin/python /home/iataghav/data/SAADI/experiments/probe_baselines/systems/b4_lqca/build.py"
+  "/home/iataghav/data/SAADI/experiments/probe_baselines/third_party/venv_lqca/bin/python /home/iataghav/data/SAADI/experiments/probe_baselines/systems/b4_lqca/build.py",
+  "python3 /home/iataghav/data/SAADI/experiments/probe_baselines/systems/b4_lqca/retrieve.py"
  ],
- "seconds": 0,
- "numbers": {},
+ "seconds": 3157,
+ "numbers": {
+  "build": {
+   "lqca_dir": "/home/iataghav/data/SAADI/experiments/probe_baselines/third_party/LQCA",
+   "segment_chunks": 8,
+   "maverick": "sapienzanlp/maverick-mes-ontonotes",
+   "threshold": 0.85,
+   "per_book": {
+    "B31": {
+     "book_id": "B31",
+     "segments": 31,
+     "segments_done": 31,
+     "ok": 20,
+     "split_failed": 11,
+     "pipeline_error": 0,
+     "chunks_changed": 156,
+     "seconds_this_invocation": 1812.4,
+     "segment_seconds_total": 1760.4,
+     "index_chars": 595549
+    },
+    "B43": {
+     "book_id": "B43",
+     "segments": 31,
+     "segments_done": 31,
+     "ok": 22,
+     "split_failed": 9,
+     "pipeline_error": 0,
+     "chunks_changed": 172,
+     "seconds_this_invocation": 2498.9,
+     "segment_seconds_total": 2446.8,
+     "index_chars": 672102
+    },
+    "B37": {
+     "book_id": "B37",
+     "segments": 33,
+     "segments_done": 33,
+     "ok": 17,
+     "split_failed": 16,
+     "pipeline_error": 0,
+     "chunks_changed": 136,
+     "seconds_this_invocation": 1718.1,
+     "segment_seconds_total": 1664.7,
+     "index_chars": 720808
+    },
+    "B18": {
+     "book_id": "B18",
+     "segments": 39,
+     "segments_done": 39,
+     "ok": 26,
+     "split_failed": 13,
+     "pipeline_error": 0,
+     "chunks_changed": 208,
+     "seconds_this_invocation": 2188.0,
+     "segment_seconds_total": 2136.2,
+     "index_chars": 847836
+    },
+    "B04": {
+     "book_id": "B04",
+     "segments": 41,
+     "segments_done": 41,
+     "ok": 24,
+     "split_failed": 17,
+     "pipeline_error": 0,
+     "chunks_changed": 185,
+     "seconds_this_invocation": 2437.0,
+     "segment_seconds_total": 2383.7,
+     "index_chars": 880213
+    },
+    "B34": {
+     "book_id": "B34",
+     "segments": 42,
+     "segments_done": 42,
+     "ok": 24,
+     "split_failed": 18,
+     "pipeline_error": 0,
+     "chunks_changed": 189,
+     "seconds_this_invocation": 2838.5,
+     "segment_seconds_total": 2785.3,
+     "index_chars": 906890
+    },
+    "B27": {
+     "book_id": "B27",
+     "segments": 43,
+     "segments_done": 43,
+     "ok": 25,
+     "split_failed": 17,
+     "pipeline_error": 1,
+     "chunks_changed": 193,
+     "seconds_this_invocation": 2219.0,
+     "segment_seconds_total": 2167.6,
+     "index_chars": 909988
+    },
+    "B61": {
+     "book_id": "B61",
+     "segments": 45,
+     "segments_done": 45,
+     "ok": 22,
+     "split_failed": 22,
+     "pipeline_error": 1,
+     "chunks_changed": 172,
+     "seconds_this_invocation": 2314.0,
+     "segment_seconds_total": 2262.1,
+     "index_chars": 962541
+    },
+    "B26": {
+     "book_id": "B26",
+     "segments": 48,
+     "segments_done": 48,
+     "ok": 34,
+     "split_failed": 14,
+     "pipeline_error": 0,
+     "chunks_changed": 271,
+     "seconds_this_invocation": 3146.9,
+     "segment_seconds_total": 3093.2,
+     "index_chars": 1031850
+    },
+    "B44": {
+     "book_id": "B44",
+     "segments": 49,
+     "segments_done": 49,
+     "ok": 28,
+     "split_failed": 19,
+     "pipeline_error": 2,
+     "chunks_changed": 224,
+     "seconds_this_invocation": 2990.0,
+     "segment_seconds_total": 2936.2,
+     "index_chars": 1037096
+    }
+   },
+   "unexpected": [
+    "160 segments kept their original text (pipeline error or split failure); see segments.jsonl"
+   ]
+  },
+  "retrieve": {
+   "personas": 240
+  }
+ },
  "unexpected": [
-  "`/home/iataghav/data/SAADI/experiments/probe_baselines/third_party/venv_lqca/bin/python /home/iataghav/data/SAADI/experiments/probe_baselines/systems/b4_lqca/build.py` exited with code 1. Its traceback is in the log lines below.",
-  "Last 50 log lines:\n\n```\nmultiprocessing.pool.RemoteTraceback: \n\"\"\"\nTraceback (most recent call last):\n  File \"/usr/lib/python3.12/multiprocessing/pool.py\", line 125, in worker\n    result = (True, func(*args, **kwds))\n                    ^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/multiprocessing/pool.py\", line 48, in mapstar\n    return list(map(*args))\n           ^^^^^^^^^^^^^^^^\n  File \"/home/iataghav/data/SAADI/experiments/probe_baselines/systems/b4_lqca/build.py\", line 77, in work\n    import torch\nModuleNotFoundError: No module named 'torch'\n\"\"\"\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/home/iataghav/data/SAADI/experiments/probe_baselines/systems/b4_lqca/build.py\", line 172, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/home/iataghav/data/SAADI/experiments/probe_baselines/systems/b4_lqca/build.py\", line 139, in main\n    results = pool.map(work, jobs, chunksize=1)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/multiprocessing/pool.py\", line 367, in map\n    return self._map_async(func, iterable, mapstar, chunksize).get()\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/multiprocessing/pool.py\", line 774, in get\n    raise self._value\nModuleNotFoundError: No module named 'torch'\n```"
+  "(build) 160 segments kept their original text (pipeline error or split failure); see segments.jsonl"
  ],
- "files_written": [],
- "git_commit": "28eed3a1ee31487f3bf23dcb3470aa0e164e8cfd"
+ "files_written": [
+  "/home/iataghav/data/SAADI/outputs/probe_baselines/b4_lqca/<book>/segments.jsonl",
+  "/home/iataghav/data/SAADI/outputs/probe_baselines/rankings/b4_lqca/<book>.jsonl"
+ ],
+ "git_commit": "aba11eead6837a7fae635e18972a849822a81381"
 }

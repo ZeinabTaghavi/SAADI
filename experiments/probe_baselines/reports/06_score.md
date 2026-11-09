@@ -1,11 +1,11 @@
 # probe_baselines - stage 06_score
 
-Status: **ok** - 2026-11-09 00:40:36; wall clock 0.0 min
+Status: **ok** - 2026-11-09 10:24:47; wall clock 0.0 min
 
 ## What was done
 
 - `python3 /home/iataghav/data/SAADI/experiments/probe_baselines/common/scorer.py score`
-- git commit `28eed3a1ee31487f3bf23dcb3470aa0e164e8cfd`; python 3.12.3 on Linux-6.17.0-23-generic-x86_64-with-glibc2.39
+- git commit `aba11eead6837a7fae635e18972a849822a81381`; python 3.12.3 on Linux-6.17.0-23-generic-x86_64-with-glibc2.39
 
 ## Numbers
 

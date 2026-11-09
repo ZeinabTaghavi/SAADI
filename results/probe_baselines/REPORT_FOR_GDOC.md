@@ -11,8 +11,10 @@
 - B1 Oracle (form 2 in the gold chunk): 100%
 - B0 Vanilla BM25: 3%
 - B2 Contextual Retrieval: 2%
+- B4 LQCA: 2%
 - SAADI run 0 (published), live: 3%
 - SAADI run 1 (p1_ledger), live: 6%
+- SAADI run 1b (p1b_ledger), live: 6%
 - Cell 5 (no reveal): above zero for B2 Contextual Retrieval.
 - B2 reveal visible / not visible: 2% / n/a%.
 
@@ -21,10 +23,10 @@
 
 ## Open problems
 - B3 HippoRAG v2: no rankings (stage failed or did not run)
-- B4 LQCA: no rankings (stage failed or did not run)
 - Cell-5 leak: B2 Contextual Retrieval
 - 00_check: (check) hipporag import failed (/home/iataghav/data/SAADI/experiments/probe_baselines/third_party/venv_hipporag/bin/python):
 - 00_check: (check) NV-Embed-v2 download failed:
 - 00_check: (check) LQCA venv check failed (/home/iataghav/data/SAADI/experiments/probe_baselines/third_party/venv_lqca/bin/python):
 - 04_b3_hipporag: `/home/iataghav/data/SAADI/experiments/probe_baselines/third_party/venv_hipporag/bin/python /home/iataghav/data/SAADI/experiments/probe_baselines/systems/b3_hipporag/build.py` exited with code 1. Its traceback is in the log lines below.
-- 05_b4_lqca: `/home/iataghav/data/SAADI/experiments/probe_baselines/third_party/venv_lqca/bin/python /home/iataghav/data/SAADI/experiments/probe_baselines/systems/b4_lqca/build.py` exited with code 1. Its traceback is in the log lines below.
+- 05_b4_lqca: (build) 160 segments kept their original text (pipeline error or split failure); see segments.jsonl
+- SAADI run 0 (published), live: per persona from outputs/probe_bridge/per_persona.jsonl

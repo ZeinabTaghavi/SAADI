@@ -1,0 +1,78 @@
+{
+ "spec_sha256": "11c4c1696c67171f78821d3ba8311ccd28c851315ca1c2a404a9a422593897bb",
+ "books": {
+  "B31": {
+   "chunks": 244,
+   "saadi_chunks": 244,
+   "original_book_chunks": 244,
+   "personas": 24
+  },
+  "B43": {
+   "chunks": 246,
+   "saadi_chunks": 246,
+   "original_book_chunks": 245,
+   "personas": 24
+  },
+  "B37": {
+   "chunks": 262,
+   "saadi_chunks": 262,
+   "original_book_chunks": 261,
+   "personas": 24
+  },
+  "B18": {
+   "chunks": 312,
+   "saadi_chunks": 312,
+   "original_book_chunks": 311,
+   "personas": 24
+  },
+  "B04": {
+   "chunks": 321,
+   "saadi_chunks": 321,
+   "original_book_chunks": 320,
+   "personas": 24
+  },
+  "B34": {
+   "chunks": 335,
+   "saadi_chunks": 335,
+   "original_book_chunks": 334,
+   "personas": 24
+  },
+  "B27": {
+   "chunks": 338,
+   "saadi_chunks": 338,
+   "original_book_chunks": 337,
+   "personas": 24
+  },
+  "B61": {
+   "chunks": 357,
+   "saadi_chunks": 357,
+   "original_book_chunks": 355,
+   "personas": 24
+  },
+  "B26": {
+   "chunks": 384,
+   "saadi_chunks": 384,
+   "original_book_chunks": 383,
+   "personas": 24
+  },
+  "B44": {
+   "chunks": 385,
+   "saadi_chunks": 385,
+   "original_book_chunks": 384,
+   "personas": 24
+  }
+ },
+ "problems": [],
+ "chunk_count_reference": "SAADI run 0/1 construction records (p1_ledger reports/step_02.json)",
+ "personas": 240,
+ "cells": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8
+ ]
+}
