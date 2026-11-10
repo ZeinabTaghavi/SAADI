@@ -60,6 +60,7 @@ DENSE_RETRIEVERS = hf.DENSE_RETRIEVERS
 DATASET_DISPLAY = hf.DATASET_DISPLAY
 RETRIEVER_DISPLAY = hf.RETRIEVER_DISPLAY
 EXPECTED_QUERIES = {"loogle": 1832, "musique_32k": 900, "qasper_64k": 1333, "novelhopqa": 908}
+EXPECTED_CHUNKS = {"loogle": 3346, "musique_32k": 17102, "qasper_64k": 17159, "novelhopqa": 7011}  # full census, 2026-11-09
 
 # Construction LLM and decoding (SAADI's saved vLLM runtime, window raised to the model's native maximum).
 LLM_MODEL_ID = "Qwen/Qwen3-30B-A3B-Instruct-2507"
@@ -99,7 +100,12 @@ SYSTEM_DISPLAY = {
 # Correctness gates (C2's rules).
 DENSE_HR_TOLERANCE_POINTS = hf.DENSE_HR_TOLERANCE_POINTS
 DENSE_MIN_IDENTICAL_TOP10 = hf.DENSE_MIN_IDENTICAL_TOP10
-DRIFT_ACCEPTED_RETRIEVERS = hf.DRIFT_ACCEPTED_RETRIEVERS
+# C2 accepts Jina's embedding drift. C1 also accepts Qwen's (decided with the user, 2026-11-10): on LooGLE the
+# recomputed Qwen3-Embedding-8B scores (two GPUs, device_map=auto) reorder near-ties against the paper's run, in
+# C2 and in C1 alike (733/1832 identical top-10, HR@10 86.41 vs 86.68). Same rule as C2: allowed only while
+# HR@5/HR@10 stay within DRIFT_MAX_HR_POINTS of the saved values; every system of the pair (Vanilla, CR, SAADI)
+# uses the same recomputed scores, so the comparisons stay paired.
+DRIFT_ACCEPTED_RETRIEVERS = tuple(dict.fromkeys((*hf.DRIFT_ACCEPTED_RETRIEVERS, "qwen")))
 DRIFT_MAX_HR_POINTS = hf.DRIFT_MAX_HR_POINTS
 # Datasets on which Table 1's Vanilla is the text channel of these chunks (C2's server run, 2026-11-09:
 # equal to the rounding on MuSiQue-32K and QASPER-64K; on LooGLE and NovelHopQA Table 1 Vanilla comes
@@ -1091,7 +1097,13 @@ def empty_context_gate(
         }
         for d in docs
     ]
-    repro = hf.reproduction_check(dataset, retriever, docs_like, used_rows, repo_root=repo_root, full_dataset=full_dataset)
+    # C2's check, run with C1's drift list (C2's module constant is restored right after; C2 itself is unchanged).
+    saved_list = hf.DRIFT_ACCEPTED_RETRIEVERS
+    hf.DRIFT_ACCEPTED_RETRIEVERS = DRIFT_ACCEPTED_RETRIEVERS
+    try:
+        repro = hf.reproduction_check(dataset, retriever, docs_like, used_rows, repo_root=repo_root, full_dataset=full_dataset)
+    finally:
+        hf.DRIFT_ACCEPTED_RETRIEVERS = saved_list
     problems = list(repro.get("problems", []))
     notes: list[str] = []
 

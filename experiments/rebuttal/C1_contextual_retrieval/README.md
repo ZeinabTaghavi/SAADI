@@ -16,6 +16,17 @@ nohup bash experiments/rebuttal/C1_contextual_retrieval/run_gpus_0123.sh > /dev/
 nohup bash experiments/rebuttal/C1_contextual_retrieval/run_gpus_4567.sh > /dev/null 2>&1 &   # group B: MuSiQue-32K, then QASPER-64K
 ```
 
+To finish whatever is missing on all four datasets (after a crash, a stop, or a failed job), and to see what
+is done:
+
+```bash
+bash experiments/rebuttal/C1_contextual_retrieval/finish.sh    # starts only the groups that are incomplete and not running
+bash experiments/rebuttal/C1_contextual_retrieval/status.sh    # per dataset: contexts n/expected, each retriever, report; running processes
+```
+
+A group never runs twice at once (lock file `outputs/rebuttal/C1_contextual_retrieval/group_<A|B>.lock`; a
+second start exits with code 3), and its preflight refuses GPUs that another job already uses.
+
 Each script tees its log to `logs/group_<A|B>_<timestamp>.log`; per-step logs (`<dataset>__generation.log`,
 `<dataset>__<retriever>.log`, `memory_check_*.log`) are next to it. Rerunning the same command resumes.
 `python scripts/rebuttal/c1_contextual_retrieval.py --report-only` rebuilds every report from what exists.
@@ -82,7 +93,10 @@ another job is there: C1 never shares GPUs).
 - **Correctness gate** per (dataset, retriever), before real contexts are used: SAADI's saved rankings
   reproduced with the published weights (the pool and queries are the paper's); CR with empty contexts
   equal to Vanilla (BM25: identical top-150 rankings; dense: identical top 10 for at least 99% of queries
-  and HR within 0.1 points, with C2's Jina drift rule); equal to the saved per-query text-only files where
+  and HR within 0.1 points, with C2's drift rule for Jina, extended to Qwen with the user on 2026-11-10: the
+  recomputed Qwen3-Embedding-8B scores on LooGLE reorder near-ties against the paper's run in C2 and C1 alike,
+  733/1832 identical top-10, HR@10 86.41 vs 86.68; accepted while HR stays within 0.5 points, and every system
+  of the pair uses the same recomputed scores); equal to the saved per-query text-only files where
   they exist; equal to Table 1 Vanilla on MuSiQue-32K and QASPER-64K. A failing gate stops that retriever.
 - **Complementarity check** (not a proposed method): SAADI's published fusion with the text channel on
   the contextualized chunks, memory and summary channels unchanged.

@@ -538,6 +538,17 @@ def verdict(c: dict[str, Any] | None) -> str:
     return "above" if lo > 0 else ("below" if hi < 0 else "n.s.")
 
 
+def truncation_of(job: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any], float | None]:
+    """(contextualized stats, plain stats, extra chunk tokens cut per chunk by CR) from a job summary."""
+
+    t = ((job.get("summary") or {}).get("truncation") or {})
+    c_, p_ = t.get("contextualized") or {}, t.get("plain") or {}
+    extra = None
+    if c_.get("texts"):
+        extra = (c_.get("tokens_cut_total", 0) - p_.get("tokens_cut_total", 0)) / c_["texts"]
+    return c_, p_, extra
+
+
 def hybrid_label(d: str) -> str:
     if d == "bm25":
         return "BM25 + BM25 (dry-run stand-in for a dense retriever)"
@@ -781,13 +792,19 @@ def dataset_report(dataset: str, paths: cr.C1Paths, args, *, census, gen, memory
 
     L += ["## 9. Dense truncation of the contextualized chunks", ""]
     rows = []
+    heavy = []
     for r, j in jobs.items():
-        t = ((j.get("summary") or {}).get("truncation") or {})
-        c_, p_ = t.get("contextualized") or {}, t.get("plain") or {}
+        c_, p_, extra = truncation_of(j)
         if c_:
-            rows.append([cr.RETRIEVER_DISPLAY[r], c_.get("max_length"), f"{c_.get('over_max_length')}/{c_.get('texts')}", tok(c_.get("tokens_cut_total")), f"{p_.get('over_max_length')}/{p_.get('texts')}"])
+            rows.append([cr.RETRIEVER_DISPLAY[r], c_.get("max_length"), f"{c_.get('over_max_length')}/{c_.get('texts')}", tok(c_.get("tokens_cut_total")),
+                         f"{p_.get('over_max_length')}/{p_.get('texts')}", f1(extra, 0)])
+            if c_.get("texts") and c_.get("over_max_length", 0) / c_["texts"] > 0.10:
+                heavy.append(f"{cr.RETRIEVER_DISPLAY[r]} ({100 * c_['over_max_length'] / c_['texts']:.0f}% of contextualized chunks over {c_['max_length']} tokens, {f1(extra, 0)} more chunk tokens cut per chunk than plain)")
     if rows:
-        L += md_table(["Retriever", "Max input", "CR chunks over max", "CR tokens cut (end of chunk)", "Plain chunks over max"], rows)
+        L += md_table(["Retriever", "Max input", "CR chunks over max", "CR tokens cut (end of chunk)", "Plain chunks over max", "Extra chunk tokens cut per chunk (CR vs plain)"], rows)
+        if heavy:
+            L.append(f"- Read the CR rows of these retrievers with care: {'; '.join(heavy)}. The context comes first, so it pushes the end of the chunk out of the retriever's input; "
+                     "Vanilla loses less. Retrievers without truncation here (BGE-M3, 8192 tokens; BM25) are the comparison without this effect.")
     else:
         L.append("- No dense retriever in this run.")
     L.append("")
@@ -955,7 +972,14 @@ def final_report(paths: cr.C1Paths, args, log) -> bool:
     L += ["## Limits", ""]
     seg = [(cr.DATASET_DISPLAY[d], rep["census"]["docs_exceeding_window"], rep["census"]["chunks_in_segmented_docs"], rep["census"]["k_values"]) for d, rep in reports.items()]
     L.append("- Long documents: " + "; ".join(f"{d}: {n} documents ({c} chunks) over the window, segments {k}" for d, n, c, k in seg) + ". In those documents a chunk sees its own segment, not the whole book.")
-    L.append("- Dense truncation: the context comes first, so a contextualized chunk longer than a retriever's input limit loses the end of the chunk (counts per retriever in the per-dataset reports).")
+    trunc = []
+    for d, rep in reports.items():
+        for r, j in rep["jobs"].items():
+            c_, _p, extra = truncation_of(j)
+            if c_ and c_.get("texts") and c_.get("over_max_length", 0) / c_["texts"] > 0.10:
+                trunc.append(f"{cr.DATASET_DISPLAY[d]}/{cr.RETRIEVER_DISPLAY[r]} {100 * c_['over_max_length'] / c_['texts']:.0f}% of chunks, {f1(extra, 0)} extra tokens cut per chunk")
+    L.append("- Dense truncation: the context comes first, so a contextualized chunk longer than a retriever's input limit loses the end of the chunk. "
+             + (("Affected: " + "; ".join(trunc) + ". On these pairs BGE-M3 (8192 tokens) and BM25 are the comparisons without the effect.") if trunc else "No pair is affected by more than 10% of its chunks."))
     L.append("- One construction LLM and one prompt; no reranker; results on these four benchmarks only.")
     L.append("")
     L += ["## Files", ""]
@@ -1028,11 +1052,130 @@ def write_group_report(group: str, report: dict[str, Any], paths: cr.C1Paths) ->
     (paths.reports_dir / f"group_{group}.md").write_text("\n".join(L) + "\n", encoding="utf-8")
 
 
+_GROUP_LOCK_HANDLE = None
+
+
+def acquire_group_lock(paths: cr.C1Paths, group: str) -> bool:
+    """One process per group: a second start of the same group exits instead of sharing GPUs and files."""
+
+    import fcntl
+
+    global _GROUP_LOCK_HANDLE
+    path = paths.out_dir / f"group_{group}.lock"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    handle = path.open("a+")
+    try:
+        fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except BlockingIOError:
+        handle.close()
+        return False
+    handle.seek(0)
+    handle.truncate()
+    handle.write(f"{os.getpid()} {platform.node()} {now()}\n")
+    handle.flush()
+    _GROUP_LOCK_HANDLE = handle  # held until the process exits
+    return True
+
+
+def group_lock_held(paths: cr.C1Paths, group: str) -> bool:
+    import fcntl
+
+    path = paths.out_dir / f"group_{group}.lock"
+    if not path.exists():
+        return False
+    with path.open("a+") as handle:
+        try:
+            fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError:
+            return True
+        fcntl.flock(handle, fcntl.LOCK_UN)
+    return False
+
+
+def c1_processes() -> list[str]:
+    """Running C1 processes (main runs and their children), other than this one."""
+
+    try:
+        out = subprocess.run(["ps", "-eo", "pid,etime,args"], capture_output=True, text=True, timeout=30).stdout
+    except Exception:
+        return []
+    me = str(os.getpid())
+    rows = []
+    for line in out.splitlines()[1:]:
+        parts = line.split(None, 2)
+        if len(parts) == 3 and "c1_contextual_retrieval.py" in parts[2] and parts[0] != me and "--status" not in parts[2]:
+            rows.append(line.strip())
+    return rows
+
+
+def group_running(paths: cr.C1Paths, group: str, procs: list[str]) -> bool:
+    return group_lock_held(paths, group) or any(f"--group {group}" in p for p in procs)
+
+
+def status(args) -> int:
+    """What is done per dataset and retriever. Exit 0 = everything done; 1 = something missing, nothing running
+    for the asked group(s); 4 = something missing and a run of that group is still going."""
+
+    paths = paths_for(args)
+    groups = [args.group] if args.group else ["A", "B"]
+    procs = c1_processes()
+    retrievers = retrievers_for(args)
+    missing_by_group: dict[str, list[str]] = {}
+    lines = [f"C1 status {now()} ({paths.tag or 'real run'}); outputs in {cr.rel(paths.out_dir)}", ""]
+    for g in groups:
+        running = group_running(paths, g, procs)
+        lines.append(f"Group {g} (GPUs {cr.GROUP_GPUS[g]}): {'RUNNING' if running else 'not running'}")
+        missing: list[str] = []
+        for d in cr.GROUP_DATASETS[g]:
+            census = cr.read_json(paths.census_path(d)) if paths.census_path(d).exists() else None
+            expected = census["n_chunks"] if census else cr.EXPECTED_CHUNKS[d]
+            n_ctx = len(cr.load_contexts(paths.contexts_path(d)))
+            gen_done = paths.marker(d, "generation.DONE").exists()
+            cells = []
+            for r in retrievers:
+                if paths.job_done(d, r).exists():
+                    cells.append(f"{r} DONE")
+                elif any(f"--run-job {d}__{r}" in p for p in procs):
+                    cells.append(f"{r} running")
+                    missing.append(f"{d}/{r}")
+                elif paths.job_failed(d, r).exists():
+                    st = cr.read_json(paths.job_failed(d, r)).get("status", "FAILED")
+                    cells.append(f"{r} {st} (reruns on the next start)")
+                    missing.append(f"{d}/{r}")
+                else:
+                    cells.append(f"{r} not started")
+                    missing.append(f"{d}/{r}")
+            ds_done = paths.marker(d, "dataset.DONE").exists()
+            if not gen_done:
+                missing.insert(0, f"{d}/contexts")
+            if not ds_done:
+                missing.append(f"{d}/report")
+            gen_txt = "contexts done" if gen_done else ("contexts running" if any(f"--generate {d}" in p for p in procs) else "contexts NOT done")
+            lines.append(f"  {cr.DATASET_DISPLAY[d]:<12} {gen_txt}: {n_ctx}/{expected}; " + ", ".join(cells) + f"; dataset {'DONE' if ds_done else 'not done'}")
+        missing_by_group[g] = missing
+        if missing:
+            lines.append(f"  missing: {', '.join(missing)}")
+    rep = paths.results_dir / "REPORT.md"
+    final_ok = rep.exists() and "INCOMPLETE" not in rep.read_text(encoding="utf-8")
+    lines.append("")
+    lines.append(f"Final report {cr.rel(rep)}: {'complete' if final_ok else ('incomplete' if rep.exists() else 'not written yet')}")
+    if procs:
+        lines.append("Running C1 processes:")
+        lines += [f"  {p[:200]}" for p in procs]
+    print("\n".join(lines), flush=True)
+    if all(not m for m in missing_by_group.values()) and (final_ok or args.group):
+        return 0
+    return 4 if any(missing_by_group[g] and group_running(paths, g, procs) for g in groups) else 1
+
+
 def run_group(group: str, args) -> int:
     paths = paths_for(args)
     datasets = cr.GROUP_DATASETS[group]
     paths.ensure(datasets)
     log = make_log(None)
+    if not acquire_group_lock(paths, group):
+        log(f"group {group} is already running (lock {cr.rel(paths.out_dir / f'group_{group}.lock')}); not starting a second copy")
+        return 3
     max_docs = max_docs_for(args)
     retrievers = retrievers_for(args)
     report: dict[str, Any] = {"group": group, "started_at": now(), "argv": [Path(sys.argv[0]).name, *sys.argv[1:]], "datasets": {}, "problems": []}
@@ -1132,6 +1275,7 @@ def main() -> int:
     ap.add_argument("--dry-run", action="store_true", help="CPU: 2 documents per dataset, BM25 only, stub contexts")
     ap.add_argument("--dry-run-full", action="store_true", help="CPU: all documents, BM25 only, stub contexts")
     ap.add_argument("--report-only", action="store_true")
+    ap.add_argument("--status", action="store_true", help="what is done and what is missing (with --group: that group only)")
     ap.add_argument("--max-docs", type=int, default=None, help="documents per dataset (0 = all)")
     ap.add_argument("--no-c2", action="store_true", help="recompute memory/summary channels instead of reusing C2's streams")
     ap.add_argument("--run-job", help=argparse.SUPPRESS)
@@ -1148,6 +1292,8 @@ def main() -> int:
         return job_worker(args.run_job, args)
     if args.generate:
         return generation_worker(args.generate, args)
+    if args.status:
+        return status(args)
     if args.report_only:
         return report_only(args)
     if not args.group:
