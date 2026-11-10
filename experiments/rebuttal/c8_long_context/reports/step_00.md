@@ -80,3 +80,9 @@ nohup bash experiments/rebuttal/c8_long_context/sh/run_gpus_4567.sh > /dev/null 
 
 - `experiments/rebuttal/c8_long_context/reports/step_00.md`
 - `experiments/rebuttal/c8_long_context/reports/step_00.json`
+
+## Push
+
+```
+pushed 5516b53 to origin/fix/notebook-key-and-install: C8 all 00_prepare: FAILED: OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.
+```
