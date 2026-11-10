@@ -36,3 +36,9 @@ Reader `Qwen/Qwen3-30B-A3B-Instruct-2507` (vLLM, tensor parallel 4), temperature
 - `results/rebuttal/c5_end_to_end/answers/novelhopqa/saadi_at_arag_len.jsonl`
 - `results/rebuttal/c5_end_to_end/answers/novelhopqa/arag_own.jsonl`
 - `experiments/rebuttal/c5_end_to_end/reports/step_02_novelhopqa_reader.md`
+
+## Push
+
+```
+pushed cfe1d4f to origin/fix/notebook-key-and-install: C5 novelhopqa 02_reader: reader answered 11804 queries over 13 conditions
+```
