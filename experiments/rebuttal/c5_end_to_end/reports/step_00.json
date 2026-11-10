@@ -1,0 +1,54 @@
+{
+ "step": "00",
+ "argv": [],
+ "commit": "2db993ff6678",
+ "host": "eee-s132-infsys-gpu03",
+ "datasets": [
+  "musique_32k",
+  "novelhopqa"
+ ],
+ "per_dataset": {
+  "musique_32k": {
+   "queries": 900,
+   "documents": 45,
+   "chunks": 17102,
+   "musique_aliases": {
+    "used": false,
+    "reason": "RuntimeError: datasets package is required for MuSiQue loading. Install with `pip install .[datasets]`."
+   },
+   "gold": {
+    "source": "outputs/musique_ablation/32K_expansion/prepared/qa.json",
+    "found": 900,
+    "missing": [],
+    "question_mismatch": []
+   }
+  }
+ },
+ "files": [
+  "experiments/rebuttal/c5_end_to_end/reports/step_00.md",
+  "experiments/rebuttal/c5_end_to_end/reports/step_00.json"
+ ],
+ "warnings": [],
+ "summary": [
+  "Unexpected error: ModuleNotFoundError: No module named 'pandas'"
+ ],
+ "missing_rows": [],
+ "reader_model": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+ "max_output_tokens": 64,
+ "max_model_len": 32768,
+ "config": "/home/iataghav/data/SAADI/configs/methods/sadi.yaml",
+ "published_point": [
+  0.5,
+  0.3,
+  1.0,
+  1.0
+ ],
+ "config_sha256": "18846ef24b6075586cc4ed53e1e8b6f7a916f0253e5932aa203b0ec741bbfdf0",
+ "preserved": {
+  "checked": 93,
+  "changed": [],
+  "missing": []
+ },
+ "one_line": "FAILED: ModuleNotFoundError: No module named 'pandas'",
+ "traceback": "Traceback (most recent call last):\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c5_end_to_end/scripts/step00_prepare.py\", line 995, in main\n    reproduce(ds, paths, env, point, d)\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c5_end_to_end/scripts/step00_prepare.py\", line 316, in reproduce\n    qs = {q.query_id: q for q in load_query_arrays(stream, queries, \"bm25\")}\n                                 ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/iataghav/data/SAADI/src/saadi/rebuttal/heldout_fusion.py\", line 767, in load_query_arrays\n    import pandas as pd\nModuleNotFoundError: No module named 'pandas'\n"
+}

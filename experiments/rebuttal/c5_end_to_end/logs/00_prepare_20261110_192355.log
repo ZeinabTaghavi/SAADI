@@ -1,0 +1,10 @@
+[c5] host eee-s132-infsys-gpu03; repo /home/iataghav/data/SAADI; python 3.13.13
+[c5] RAPTOR /mnt/data/zeinab/SAADI_Raptor
+[c5] A-RAG  /mnt/data/zeinab/SAADI_A_RAG
+[c5] C1     /home/iataghav/data/SAADI/outputs/rebuttal/C1_contextual_retrieval
+[c5] HF_HOME /mnt/cache/taghavi
+[c5] 2026-11-10 19:23:55 start 00: python3 /home/iataghav/data/SAADI/experiments/rebuttal/c5_end_to_end/scripts/step00_prepare.py
+[c5-00] 2026-11-10 19:23:56 musique_32k: loading saved queries, labels and chunk text
+[c5-00] 2026-11-10 19:24:36 musique_32k: streams /home/iataghav/data/SAADI/outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bm25.parquet
+[c5-00] 2026-11-10 19:24:36 done: FAILED (unexpected error)
+[c5] 2026-11-10 19:24:36 end 00: exit 1

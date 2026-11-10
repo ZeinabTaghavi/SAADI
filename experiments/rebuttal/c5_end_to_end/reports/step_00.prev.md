@@ -1,0 +1,35 @@
+# C5 end-to-end QA - step 00 (prepare): FAILED before writing its report
+
+Command: `python3 /home/iataghav/data/SAADI/experiments/rebuttal/c5_end_to_end/scripts/step00_prepare.py`
+
+Exit code: 1. Last 80 log lines (experiments/rebuttal/c5_end_to_end/logs/00_prepare_20261110_192221.log):
+
+```
+[c5] host eee-s132-infsys-gpu03; repo /home/iataghav/data/SAADI; python 3.13.13
+[c5] RAPTOR /mnt/data/zeinab/SAADI_Raptor
+[c5] A-RAG  /mnt/data/zeinab/SAADI_A_RAG
+[c5] C1     /home/iataghav/data/SAADI/outputs/rebuttal/C1_contextual_retrieval
+[c5] HF_HOME /mnt/cache/taghavi
+[c5] 2026-11-10 19:22:21 start 00: python3 /home/iataghav/data/SAADI/experiments/rebuttal/c5_end_to_end/scripts/step00_prepare.py
+Traceback (most recent call last):
+  File "/home/iataghav/data/SAADI/experiments/rebuttal/c5_end_to_end/scripts/step00_prepare.py", line 35, in <module>
+    import c5_common as cc
+  File "/mnt/data/zeinab/SAADI/experiments/rebuttal/c5_end_to_end/scripts/c5_common.py", line 22, in <module>
+    from saadi.core.types import RetrievalResult
+  File "/home/iataghav/data/SAADI/src/saadi/__init__.py", line 4, in <module>
+    from .document import Answer, HistoryItem, IndexReport, MemoryEntity, RetrievedChunk, Saadi
+  File "/home/iataghav/data/SAADI/src/saadi/document.py", line 59, in <module>
+    from .retrievers import resolve_retriever
+  File "/home/iataghav/data/SAADI/src/saadi/retrievers/__init__.py", line 21, in <module>
+    from .base import BaseRetriever, EmbeddingRetriever, Retriever, make_embedding_retriever, make_scorer_retriever
+  File "/home/iataghav/data/SAADI/src/saadi/retrievers/base.py", line 18, in <module>
+    import numpy as np
+ModuleNotFoundError: No module named 'numpy'
+```
+
+## Push
+
+```
+NOT PUSHED: git commit failed:
+error: pathspec 'results/rebuttal/c5_end_to_end' did not match any file(s) known to git
+```
