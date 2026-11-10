@@ -9,37 +9,23 @@ Results are reported as they come out, also where CR is better.
 
 ## Start
 
-From the repository root on the GPU server, one script per GPU group (they can run at the same time):
+Two scripts, one per GPU group; run each from the repository root on the GPU server (in any order, together or apart):
 
 ```bash
-nohup bash experiments/rebuttal/C1_contextual_retrieval/run_gpus_0123.sh > /dev/null 2>&1 &   # group A: LooGLE, then NovelHopQA
-nohup bash experiments/rebuttal/C1_contextual_retrieval/run_gpus_4567.sh > /dev/null 2>&1 &   # group B: MuSiQue-32K, then QASPER-64K
+bash experiments/rebuttal/C1_contextual_retrieval/run_gpus_0123.sh   # GPUs 0-3: LooGLE, then NovelHopQA
+bash experiments/rebuttal/C1_contextual_retrieval/run_gpus_4567.sh   # GPUs 4-7: MuSiQue-32K, then QASPER-64K
 ```
 
-Fastest way to finish everything that is missing: one command, safe to rerun at any time:
+Each starts its group in the background (closing the terminal is fine) and shows the log; Ctrl-C only closes
+the log view. If that group is already running, the script only shows its log. Running it again resumes and
+does only what is missing. Inside a group, the Qwen3-Embedding-8B job is split by document over the group's two
+GPU pairs and then merged (split and unsplit runs give identical rankings, checked on the CPU dry run).
+
+What is done and what is missing:
 
 ```bash
-bash experiments/rebuttal/C1_contextual_retrieval/run_all_gpus.sh
+bash experiments/rebuttal/C1_contextual_retrieval/status.sh
 ```
-
-It first stops any C1 run still going (finished contexts and jobs are kept and resumed), then starts in the
-background (closing the terminal is fine) and shows the log; Ctrl-C only closes the log view. It runs two vLLM engines at once (GPUs 0-3 and 4-7, same settings as the group runs; the remaining segments
-of all datasets are spread over both, longest first, each engine writing its own `contexts.engine<k>.jsonl`),
-then every missing retrieval job over the eight GPUs, with each Qwen3-Embedding-8B job split by document over
-two GPU pairs and then merged (the merge applies the correctness gate and writes the rankings; split and
-unsplit runs give identical rankings, checked on the CPU dry run), then all reports. Its own report is
-`reports/group_all_gpus.md`.
-
-To finish whatever is missing group by group instead (after a crash, a stop, or a failed job), and to see what
-is done:
-
-```bash
-bash experiments/rebuttal/C1_contextual_retrieval/finish.sh    # starts only the groups that are incomplete and not running
-bash experiments/rebuttal/C1_contextual_retrieval/status.sh    # per dataset: contexts n/expected, each retriever, report; running processes
-```
-
-A group never runs twice at once (lock file `outputs/rebuttal/C1_contextual_retrieval/group_<A|B>.lock`; a
-second start exits with code 3), and its preflight refuses GPUs that another job already uses.
 
 Each script tees its log to `logs/group_<A|B>_<timestamp>.log`; per-step logs (`<dataset>__generation.log`,
 `<dataset>__<retriever>.log`, `memory_check_*.log`) are next to it. Rerunning the same command resumes.

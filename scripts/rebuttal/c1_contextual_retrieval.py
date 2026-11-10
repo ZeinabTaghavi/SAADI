@@ -1238,7 +1238,17 @@ def run_group(group: str, args) -> int:
             exit_code = 1
             jobs = {}
         else:
-            jobs = run_jobs(group, d, retrievers, paths, args, memory, estimates[d]["retrieval"], log)
+            # Every missing job of this dataset on the group's four GPUs; Qwen split over the two GPU pairs.
+            tasks = retrieval_tasks(paths, args, {d: censuses[d]}, {d: estimates[d]}, {group: memory})
+            res = run_tasks(tasks, cr.GROUP_GPUS[group], paths, args, log)
+            jobs = {}
+            for r in retrievers:
+                if f"{d}__{r}" in res:
+                    jobs[r] = {"status": res[f"{d}__{r}"]["status"], "gpus": res[f"{d}__{r}"].get("gpus")}
+                elif paths.job_done(d, r).exists():
+                    jobs[r] = {"status": "DONE (already finished)"}
+                else:
+                    jobs[r] = {"status": "not run"}
         for r, j in jobs.items():
             if not str(j.get("status", "")).startswith("DONE"):
                 problems.append(f"{r}: {j.get('status')}")
