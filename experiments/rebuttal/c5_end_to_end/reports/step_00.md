@@ -182,3 +182,9 @@ Contexts (token budget of the token-matched rows = mean SAADI top-10 context = 6
 - `results/rebuttal/c5_end_to_end/prepare/context_stats_novelhopqa.csv`
 - `experiments/rebuttal/c5_end_to_end/reports/step_00.md`
 - `experiments/rebuttal/c5_end_to_end/reports/step_00.json`
+
+## Push
+
+```
+pushed b301057 to origin/fix/notebook-key-and-install: C5 all 00_prepare: gate passed on 2 datasets; contexts written; missing musique_32k:raptor
+```
