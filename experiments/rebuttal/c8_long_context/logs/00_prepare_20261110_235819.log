@@ -1,0 +1,14 @@
+[c8] host eee-s132-infsys-gpu03; repo /home/iataghav/data/SAADI; python /mnt/data/zeinab/raptor/.venv/bin/python3; vLLM python /mnt/data/zeinab/raptor/.venv/bin/python3
+[c8] model Qwen/Qwen2.5-7B-Instruct-1M; C5 contexts /home/iataghav/data/SAADI/outputs/rebuttal/c5_end_to_end/contexts
+[c8] HF_HOME /mnt/cache/taghavi
+[c8] python /mnt/data/zeinab/raptor/.venv/bin/python3 3.12.3
+[c8] 2026-11-10 23:58:22 start 00: /mnt/data/zeinab/raptor/.venv/bin/python3 /home/iataghav/data/SAADI/experiments/rebuttal/c8_long_context/scripts/step00_prepare.py
+[c8-00] 2026-11-10 23:58:23 tokenizer /mnt/cache/taghavi/hub/models--Qwen--Qwen2.5-7B-Instruct-1M/snapshots/e28526f7bb80e2a9c8af03b831a9af3812f18fba
+[c8-00] 2026-11-10 23:58:27 musique_32k: SAADI's saved queries, labels and chunks (C5's Dataset)
+[c8-00] 2026-11-11 00:00:02 musique_32k: documents and token counts
+[c8-00] 2026-11-11 00:00:12 musique_32k: prompt tokens of 900 queries x 4 conditions
+[c8-00] 2026-11-11 00:00:48 novelhopqa: SAADI's saved queries, labels and chunks (C5's Dataset)
+[c8-00] 2026-11-11 00:01:22 novelhopqa: documents and token counts
+[c8-00] 2026-11-11 00:01:47 novelhopqa: prompt tokens of 908 queries x 4 conditions
+[c8-00] 2026-11-11 00:04:17 done: OK (vLLM needs the dual chunk attention backend)
+[c8] 2026-11-11 00:04:18 end 00: exit 0

@@ -1,7 +1,7 @@
 {
  "step": "00",
  "argv": [],
- "commit": "479ce2c426bd",
+ "commit": "e93fe008b35e",
  "host": "eee-s132-infsys-gpu03",
  "datasets": [
   "musique_32k",
@@ -48,16 +48,101 @@
   "weight_files_missing": [],
   "weights_bytes": 15231271888
  },
- "tokenizer": "Qwen/Qwen2.5-7B-Instruct-1M",
+ "tokenizer": "Qwen/Qwen2.5-7B-Instruct-1M (/mnt/cache/taghavi/hub/models--Qwen--Qwen2.5-7B-Instruct-1M/snapshots/e28526f7bb80e2a9c8af03b831a9af3812f18fba)",
  "max_output_tokens": 64,
- "per_dataset": {},
+ "per_dataset": {
+  "musique_32k": {
+   "c5_inputs": {
+    "manifest": "outputs/rebuttal/c5_end_to_end/contexts/musique_32k/manifest.json",
+    "manifest_created": "2026-11-10 19:39:39",
+    "c5_commit": "2c864247f598",
+    "c5_reader_model": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+    "template_sha256": "3c93e0a016df52dbd074d46286827e2226c5a7684a46f6735bcbabccf32fee31",
+    "files": [
+     {
+      "condition": "saadi",
+      "file": "outputs/rebuttal/c5_end_to_end/contexts/musique_32k/saadi.jsonl.gz",
+      "rows": 900,
+      "sha256": "7fee9785ef0138c0129fd7d8fef9d74a9f7dd80afec5804c87e493a3ec2706a5",
+      "complete": true
+     },
+     {
+      "condition": "vanilla",
+      "file": "outputs/rebuttal/c5_end_to_end/contexts/musique_32k/vanilla.jsonl.gz",
+      "rows": 900,
+      "sha256": "daa98169c38c8a8353dd228a0be2836c19412559945a911ff1c56c121b043ccd",
+      "complete": true
+     },
+     {
+      "condition": "closed_book",
+      "file": "outputs/rebuttal/c5_end_to_end/contexts/musique_32k/closed_book.jsonl.gz",
+      "rows": 900,
+      "sha256": "262c652ce5f1e0e37c1c3598655b10979026d4ffa189c8a72ec029b3f5fc20da",
+      "complete": true
+     }
+    ]
+   },
+   "queries": 900,
+   "documents": 45,
+   "non_contiguous_documents": []
+  },
+  "novelhopqa": {
+   "c5_inputs": {
+    "manifest": "outputs/rebuttal/c5_end_to_end/contexts/novelhopqa/manifest.json",
+    "manifest_created": "2026-11-10 23:31:58",
+    "c5_commit": "53426a5e71b0",
+    "c5_reader_model": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+    "template_sha256": "3c93e0a016df52dbd074d46286827e2226c5a7684a46f6735bcbabccf32fee31",
+    "files": [
+     {
+      "condition": "saadi",
+      "file": "outputs/rebuttal/c5_end_to_end/contexts/novelhopqa/saadi.jsonl.gz",
+      "rows": 908,
+      "sha256": "72b34e7323e91fdcaf6d2894d9119dfbf35edbabe4ef17ee936d9a2fb9001cd7",
+      "complete": true
+     },
+     {
+      "condition": "vanilla",
+      "file": "outputs/rebuttal/c5_end_to_end/contexts/novelhopqa/vanilla.jsonl.gz",
+      "rows": 908,
+      "sha256": "28d3a697899c556a41e9a4e53b85555d9c41c9fa802ef8a098f8bb78436750be",
+      "complete": true
+     },
+     {
+      "condition": "closed_book",
+      "file": "outputs/rebuttal/c5_end_to_end/contexts/novelhopqa/closed_book.jsonl.gz",
+      "rows": 908,
+      "sha256": "4232955baf9d788f7a3ddd5b988b86ccc46977b8293c1ee182669452a59b36d3",
+      "complete": true
+     }
+    ]
+   },
+   "evidence_labels_file": "results/rebuttal/c5_end_to_end/prepare/labels_para_novelhopqa.jsonl.gz",
+   "queries": 908,
+   "documents": 16,
+   "non_contiguous_documents": []
+  }
+ },
  "files": [
+  "outputs/rebuttal/c8_long_context/prepared/musique_32k/documents.jsonl.gz",
+  "outputs/rebuttal/c8_long_context/prepared/musique_32k/queries.jsonl.gz",
+  "outputs/rebuttal/c8_long_context/prepared/musique_32k/manifest.json",
+  "outputs/rebuttal/c8_long_context/prepared/novelhopqa/documents.jsonl.gz",
+  "outputs/rebuttal/c8_long_context/prepared/novelhopqa/queries.jsonl.gz",
+  "outputs/rebuttal/c8_long_context/prepared/novelhopqa/manifest.json",
+  "outputs/rebuttal/c8_long_context/prepared/vllm_settings.env",
+  "results/rebuttal/c8_long_context/prepare/doc_lengths.csv",
+  "results/rebuttal/c8_long_context/prepare/prompt_tokens.csv",
+  "results/rebuttal/c8_long_context/prepare/evidence_position.csv",
   "experiments/rebuttal/c8_long_context/reports/step_00.md",
   "experiments/rebuttal/c8_long_context/reports/step_00.json"
  ],
  "warnings": [],
  "summary": [
-  "Unexpected error: OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'."
+  "MuSiQue-32K: 900 queries on 45 distinct documents; document length 42,257 / 48,851 / 51,692 tokens (min / median / max); 0 queries on 0 documents beyond the native 262,144-token window. Rough estimate 1.9 GPU h with the prefix cache (10 GPU h for the full documents without it).",
+  "NovelHopQA: 908 queries on 16 distinct documents; document length 133,420 / 232,803 / 759,549 tokens (min / median / max); 382 queries on 6 documents beyond the native 262,144-token window. Rough estimate 5.4 GPU h with the prefix cache (231 GPU h for the full documents without it).",
+  "--max-model-len 778,240 (longest prompt 759,644 + 64 output tokens + margin). Estimated KV capacity on 4 GPUs: 2,035,315 tokens, enough for the longest document; every document fits, none is cut.",
+  "The installed vLLM (0.23.0+cu129, `/mnt/data/zeinab/raptor/.venv/bin/python3`) has no dual chunk attention backend (V0 engine False); 382 queries need it. Install vLLM 0.10.1.1 in a separate environment and set C8_VLLM_PYTHON to its python before the GPU script."
  ],
  "published_point": [
   0.5,
@@ -91,9 +176,915 @@
   "dtype": "bfloat16",
   "kv_bytes_per_token": 57344
  },
- "one_line": "FAILED: OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.",
- "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/hub.py\", line 479, in cached_files\n    hf_hub_download(\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\", line 114, in _inner_fn\n    return fn(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py\", line 1014, in hf_hub_download\n    return _hf_hub_download_to_cache_dir(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py\", line 1121, in _hf_hub_download_to_cache_dir\n    _raise_on_head_call_error(head_call_error, force_download, local_files_only)\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py\", line 1653, in _raise_on_head_call_error\n    raise LocalEntryNotFoundError(\nhuggingface_hub.errors.LocalEntryNotFoundError: Cannot find the requested files in the disk cache and outgoing traffic has been disabled. To enable hf.co look-ups and downloads online, set 'local_files_only' to False.\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c8_long_context/scripts/step00_prepare.py\", line 566, in main\n    tok = s0.Tok(tok_name)\n          ^^^^^^^^^^^^^^^^\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c5_end_to_end/scripts/step00_prepare.py\", line 644, in __init__\n    self.tok = AutoTokenizer.from_pretrained(model, local_files_only=os.environ.get(\"HF_HUB_OFFLINE\", \"1\") == \"1\")\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/auto/tokenization_auto.py\", line 1109, in from_pretrained\n    config = AutoConfig.from_pretrained(\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/auto/configuration_auto.py\", line 1332, in from_pretrained\n    config_dict, unused_kwargs = PretrainedConfig.get_config_dict(pretrained_model_name_or_path, **kwargs)\n                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/configuration_utils.py\", line 662, in get_config_dict\n    config_dict, kwargs = cls._get_config_dict(pretrained_model_name_or_path, **kwargs)\n                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/configuration_utils.py\", line 721, in _get_config_dict\n    resolved_config_file = cached_file(\n                           ^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/hub.py\", line 322, in cached_file\n    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/hub.py\", line 553, in cached_files\n    raise OSError(\nOSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.\n",
- "seconds": 4,
- "status": "FAILED (unexpected error)",
- "exit_code": 1
+ "count_checks": {
+  "n": 61,
+  "max_diff": 0
+ },
+ "settings": {
+  "max_model_len": {
+   "need": 759708,
+   "margin": 15195,
+   "rounded": 778240,
+   "model_max": 1010000,
+   "capped_at_model_max": false,
+   "override": null,
+   "max_model_len": 778240
+  },
+  "memory": {
+   "tensor_parallel": 4,
+   "gpu_memory_utilization": 0.9,
+   "gpu_mib": 49140,
+   "weights_gib_per_gpu": 3.54630683735013,
+   "activations_gib_per_gpu": 12.46875,
+   "kv_kib_per_token_per_gpu": 14.0,
+   "kv_room_gib_per_gpu": 27.17439628764987,
+   "kv_capacity_tokens": 2035315,
+   "max_model_len": 778240,
+   "longest_sequence_kv_gib_per_gpu": 10.390625,
+   "fits": true,
+   "headroom_sequences": 2.615279348273026,
+   "single_gpu_kv_capacity_tokens": 309619
+  },
+  "gpus": {
+   "source": "nvidia-smi",
+   "gpus": [
+    {
+     "index": 4,
+     "name": "NVIDIA RTX A6000",
+     "total_mib": 49140,
+     "used_mib": 1
+    },
+    {
+     "index": 5,
+     "name": "NVIDIA RTX A6000",
+     "total_mib": 49140,
+     "used_mib": 1
+    },
+    {
+     "index": 6,
+     "name": "NVIDIA RTX A6000",
+     "total_mib": 49140,
+     "used_mib": 1
+    },
+    {
+     "index": 7,
+     "name": "NVIDIA RTX A6000",
+     "total_mib": 49140,
+     "used_mib": 1
+    }
+   ]
+  },
+  "vllm": {
+   "version": "0.23.0+cu129",
+   "path": "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm",
+   "dca_mentions": [],
+   "dca_backend_file": false,
+   "v0_engine": false,
+   "flash_attn_ext": true,
+   "python": "/mnt/data/zeinab/raptor/.venv/bin/python3",
+   "dca_available": false
+  },
+  "attention_backend": "DUAL_CHUNK_FLASH_ATTN",
+  "use_v1": "0",
+  "max_num_batched_tokens": 131072,
+  "enforce_eager": true,
+  "prefix_caching": true,
+  "max_num_seqs": 8,
+  "concurrency": 8,
+  "over_native": {
+   "musique_32k": {
+    "docs": [],
+    "queries": 0
+   },
+   "novelhopqa": {
+    "docs": [
+     "B42",
+     "B62",
+     "B54",
+     "B05",
+     "B15",
+     "B44"
+    ],
+    "queries": 382
+   }
+  },
+  "not_fitting": []
+ },
+ "doc_rows": [
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_001",
+   "tokens": 48333,
+   "chunks": 376,
+   "queries": 19,
+   "chunk_tokens_sum": 48339,
+   "prompt_tokens_max": 48431,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_002",
+   "tokens": 48586,
+   "chunks": 364,
+   "queries": 19,
+   "chunk_tokens_sum": 48607,
+   "prompt_tokens_max": 48676,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_003",
+   "tokens": 48518,
+   "chunks": 372,
+   "queries": 19,
+   "chunk_tokens_sum": 48549,
+   "prompt_tokens_max": 48605,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_004",
+   "tokens": 47379,
+   "chunks": 371,
+   "queries": 21,
+   "chunk_tokens_sum": 47404,
+   "prompt_tokens_max": 47474,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_005",
+   "tokens": 50785,
+   "chunks": 396,
+   "queries": 20,
+   "chunk_tokens_sum": 50794,
+   "prompt_tokens_max": 50881,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_006",
+   "tokens": 47459,
+   "chunks": 373,
+   "queries": 20,
+   "chunk_tokens_sum": 47482,
+   "prompt_tokens_max": 47551,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_007",
+   "tokens": 49358,
+   "chunks": 378,
+   "queries": 21,
+   "chunk_tokens_sum": 49373,
+   "prompt_tokens_max": 49441,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_008",
+   "tokens": 48604,
+   "chunks": 380,
+   "queries": 20,
+   "chunk_tokens_sum": 48629,
+   "prompt_tokens_max": 48709,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_009",
+   "tokens": 47983,
+   "chunks": 381,
+   "queries": 20,
+   "chunk_tokens_sum": 48001,
+   "prompt_tokens_max": 48082,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_010",
+   "tokens": 48383,
+   "chunks": 377,
+   "queries": 22,
+   "chunk_tokens_sum": 48396,
+   "prompt_tokens_max": 48492,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_011",
+   "tokens": 47764,
+   "chunks": 378,
+   "queries": 18,
+   "chunk_tokens_sum": 47778,
+   "prompt_tokens_max": 47853,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_012",
+   "tokens": 50680,
+   "chunks": 394,
+   "queries": 19,
+   "chunk_tokens_sum": 50717,
+   "prompt_tokens_max": 50770,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_013",
+   "tokens": 51117,
+   "chunks": 402,
+   "queries": 21,
+   "chunk_tokens_sum": 51147,
+   "prompt_tokens_max": 51205,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_014",
+   "tokens": 47677,
+   "chunks": 377,
+   "queries": 20,
+   "chunk_tokens_sum": 47702,
+   "prompt_tokens_max": 47784,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_015",
+   "tokens": 48201,
+   "chunks": 382,
+   "queries": 20,
+   "chunk_tokens_sum": 48229,
+   "prompt_tokens_max": 48290,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_016",
+   "tokens": 50435,
+   "chunks": 386,
+   "queries": 22,
+   "chunk_tokens_sum": 50451,
+   "prompt_tokens_max": 50545,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_017",
+   "tokens": 48958,
+   "chunks": 383,
+   "queries": 20,
+   "chunk_tokens_sum": 48996,
+   "prompt_tokens_max": 49054,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_018",
+   "tokens": 49538,
+   "chunks": 382,
+   "queries": 20,
+   "chunk_tokens_sum": 49547,
+   "prompt_tokens_max": 49630,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_019",
+   "tokens": 47765,
+   "chunks": 372,
+   "queries": 19,
+   "chunk_tokens_sum": 47786,
+   "prompt_tokens_max": 47870,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_020",
+   "tokens": 48975,
+   "chunks": 378,
+   "queries": 22,
+   "chunk_tokens_sum": 49011,
+   "prompt_tokens_max": 49066,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_021",
+   "tokens": 47009,
+   "chunks": 363,
+   "queries": 19,
+   "chunk_tokens_sum": 47036,
+   "prompt_tokens_max": 47116,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_022",
+   "tokens": 50140,
+   "chunks": 391,
+   "queries": 21,
+   "chunk_tokens_sum": 50169,
+   "prompt_tokens_max": 50240,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_023",
+   "tokens": 48363,
+   "chunks": 381,
+   "queries": 21,
+   "chunk_tokens_sum": 48390,
+   "prompt_tokens_max": 48451,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_024",
+   "tokens": 48555,
+   "chunks": 375,
+   "queries": 19,
+   "chunk_tokens_sum": 48572,
+   "prompt_tokens_max": 48643,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_025",
+   "tokens": 48271,
+   "chunks": 366,
+   "queries": 21,
+   "chunk_tokens_sum": 48300,
+   "prompt_tokens_max": 48359,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_026",
+   "tokens": 49139,
+   "chunks": 376,
+   "queries": 22,
+   "chunk_tokens_sum": 49177,
+   "prompt_tokens_max": 49238,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_027",
+   "tokens": 49601,
+   "chunks": 381,
+   "queries": 20,
+   "chunk_tokens_sum": 49621,
+   "prompt_tokens_max": 49687,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_028",
+   "tokens": 46497,
+   "chunks": 373,
+   "queries": 18,
+   "chunk_tokens_sum": 46524,
+   "prompt_tokens_max": 46594,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_029",
+   "tokens": 49548,
+   "chunks": 396,
+   "queries": 20,
+   "chunk_tokens_sum": 49574,
+   "prompt_tokens_max": 49641,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_030",
+   "tokens": 49287,
+   "chunks": 388,
+   "queries": 20,
+   "chunk_tokens_sum": 49318,
+   "prompt_tokens_max": 49384,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_031",
+   "tokens": 49578,
+   "chunks": 394,
+   "queries": 21,
+   "chunk_tokens_sum": 49615,
+   "prompt_tokens_max": 49674,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_032",
+   "tokens": 49564,
+   "chunks": 382,
+   "queries": 20,
+   "chunk_tokens_sum": 49594,
+   "prompt_tokens_max": 49666,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_033",
+   "tokens": 48851,
+   "chunks": 384,
+   "queries": 18,
+   "chunk_tokens_sum": 48862,
+   "prompt_tokens_max": 48946,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_034",
+   "tokens": 48050,
+   "chunks": 385,
+   "queries": 19,
+   "chunk_tokens_sum": 48079,
+   "prompt_tokens_max": 48137,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_035",
+   "tokens": 48527,
+   "chunks": 382,
+   "queries": 20,
+   "chunk_tokens_sum": 48558,
+   "prompt_tokens_max": 48613,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_036",
+   "tokens": 49610,
+   "chunks": 395,
+   "queries": 20,
+   "chunk_tokens_sum": 49644,
+   "prompt_tokens_max": 49698,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_037",
+   "tokens": 50260,
+   "chunks": 388,
+   "queries": 21,
+   "chunk_tokens_sum": 50300,
+   "prompt_tokens_max": 50347,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_038",
+   "tokens": 49881,
+   "chunks": 382,
+   "queries": 22,
+   "chunk_tokens_sum": 49919,
+   "prompt_tokens_max": 49968,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_039",
+   "tokens": 46991,
+   "chunks": 373,
+   "queries": 19,
+   "chunk_tokens_sum": 47003,
+   "prompt_tokens_max": 47078,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_040",
+   "tokens": 49226,
+   "chunks": 382,
+   "queries": 19,
+   "chunk_tokens_sum": 49249,
+   "prompt_tokens_max": 49329,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_041",
+   "tokens": 50450,
+   "chunks": 386,
+   "queries": 20,
+   "chunk_tokens_sum": 50472,
+   "prompt_tokens_max": 50554,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_042",
+   "tokens": 51692,
+   "chunks": 393,
+   "queries": 20,
+   "chunk_tokens_sum": 51701,
+   "prompt_tokens_max": 51793,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_043",
+   "tokens": 47764,
+   "chunks": 383,
+   "queries": 18,
+   "chunk_tokens_sum": 47792,
+   "prompt_tokens_max": 47853,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_044",
+   "tokens": 50078,
+   "chunks": 380,
+   "queries": 21,
+   "chunk_tokens_sum": 50091,
+   "prompt_tokens_max": 50172,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "musique_32k",
+   "doc_id": "group_045",
+   "tokens": 42257,
+   "chunks": 321,
+   "queries": 19,
+   "chunk_tokens_sum": 42271,
+   "prompt_tokens_max": 42352,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "novelhopqa",
+   "doc_id": "B04",
+   "tokens": 209488,
+   "chunks": 320,
+   "queries": 45,
+   "chunk_tokens_sum": 209495,
+   "prompt_tokens_max": 209581,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "novelhopqa",
+   "doc_id": "B05",
+   "tokens": 324835,
+   "chunks": 508,
+   "queries": 22,
+   "chunk_tokens_sum": 324800,
+   "prompt_tokens_max": 324925,
+   "fits": true,
+   "over_native": true
+  },
+  {
+   "dataset": "novelhopqa",
+   "doc_id": "B12",
+   "tokens": 240542,
+   "chunks": 385,
+   "queries": 61,
+   "chunk_tokens_sum": 240530,
+   "prompt_tokens_max": 240638,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "novelhopqa",
+   "doc_id": "B15",
+   "tokens": 273811,
+   "chunks": 421,
+   "queries": 75,
+   "chunk_tokens_sum": 273776,
+   "prompt_tokens_max": 273920,
+   "fits": true,
+   "over_native": true
+  },
+  {
+   "dataset": "novelhopqa",
+   "doc_id": "B18",
+   "tokens": 194220,
+   "chunks": 311,
+   "queries": 44,
+   "chunk_tokens_sum": 194221,
+   "prompt_tokens_max": 194319,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "novelhopqa",
+   "doc_id": "B24",
+   "tokens": 133420,
+   "chunks": 213,
+   "queries": 65,
+   "chunk_tokens_sum": 133421,
+   "prompt_tokens_max": 133510,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "novelhopqa",
+   "doc_id": "B26",
+   "tokens": 253466,
+   "chunks": 383,
+   "queries": 50,
+   "chunk_tokens_sum": 253464,
+   "prompt_tokens_max": 253558,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "novelhopqa",
+   "doc_id": "B27",
+   "tokens": 201836,
+   "chunks": 337,
+   "queries": 60,
+   "chunk_tokens_sum": 201863,
+   "prompt_tokens_max": 201932,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "novelhopqa",
+   "doc_id": "B34",
+   "tokens": 206833,
+   "chunks": 334,
+   "queries": 65,
+   "chunk_tokens_sum": 206829,
+   "prompt_tokens_max": 206931,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "novelhopqa",
+   "doc_id": "B37",
+   "tokens": 167704,
+   "chunks": 261,
+   "queries": 62,
+   "chunk_tokens_sum": 167731,
+   "prompt_tokens_max": 167801,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "novelhopqa",
+   "doc_id": "B42",
+   "tokens": 759549,
+   "chunks": 1165,
+   "queries": 70,
+   "chunk_tokens_sum": 759537,
+   "prompt_tokens_max": 759644,
+   "fits": true,
+   "over_native": true
+  },
+  {
+   "dataset": "novelhopqa",
+   "doc_id": "B43",
+   "tokens": 159866,
+   "chunks": 245,
+   "queries": 60,
+   "chunk_tokens_sum": 159860,
+   "prompt_tokens_max": 159965,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "novelhopqa",
+   "doc_id": "B44",
+   "tokens": 264945,
+   "chunks": 384,
+   "queries": 57,
+   "chunk_tokens_sum": 264969,
+   "prompt_tokens_max": 265056,
+   "fits": true,
+   "over_native": true
+  },
+  {
+   "dataset": "novelhopqa",
+   "doc_id": "B54",
+   "tokens": 411934,
+   "chunks": 660,
+   "queries": 74,
+   "chunk_tokens_sum": 411945,
+   "prompt_tokens_max": 412033,
+   "fits": true,
+   "over_native": true
+  },
+  {
+   "dataset": "novelhopqa",
+   "doc_id": "B61",
+   "tokens": 225064,
+   "chunks": 355,
+   "queries": 14,
+   "chunk_tokens_sum": 225049,
+   "prompt_tokens_max": 225156,
+   "fits": true,
+   "over_native": false
+  },
+  {
+   "dataset": "novelhopqa",
+   "doc_id": "B62",
+   "tokens": 461227,
+   "chunks": 729,
+   "queries": 84,
+   "chunk_tokens_sum": 461194,
+   "prompt_tokens_max": 461324,
+   "fits": true,
+   "over_native": true
+  }
+ ],
+ "prompt_rows": [
+  {
+   "dataset": "musique_32k",
+   "condition": "full_doc",
+   "n": 900,
+   "mean": 48903.51777777778,
+   "median": 49023.5,
+   "max": 51793,
+   "total": 44013166
+  },
+  {
+   "dataset": "musique_32k",
+   "condition": "saadi",
+   "n": 900,
+   "mean": 1402.63,
+   "median": 1398.0,
+   "max": 2098,
+   "total": 1262367
+  },
+  {
+   "dataset": "musique_32k",
+   "condition": "vanilla",
+   "n": 900,
+   "mean": 1403.7688888888888,
+   "median": 1398.0,
+   "max": 1847,
+   "total": 1263392
+  },
+  {
+   "dataset": "musique_32k",
+   "condition": "closed_book",
+   "n": 900,
+   "mean": 79.57444444444444,
+   "median": 79.0,
+   "max": 113,
+   "total": 71617
+  },
+  {
+   "dataset": "novelhopqa",
+   "condition": "full_doc",
+   "n": 908,
+   "mean": 295083.47907488985,
+   "median": 240621.5,
+   "max": 759644,
+   "total": 267935799
+  },
+  {
+   "dataset": "novelhopqa",
+   "condition": "saadi",
+   "n": 908,
+   "mean": 6524.833700440528,
+   "median": 6496.0,
+   "max": 7531,
+   "total": 5924549
+  },
+  {
+   "dataset": "novelhopqa",
+   "condition": "vanilla",
+   "n": 908,
+   "mean": 6519.905286343613,
+   "median": 6492.0,
+   "max": 7518,
+   "total": 5920074
+  },
+  {
+   "dataset": "novelhopqa",
+   "condition": "closed_book",
+   "n": 908,
+   "mean": 81.01431718061674,
+   "median": 81.0,
+   "max": 113,
+   "total": 73561
+  }
+ ],
+ "evidence_rows": [
+  {
+   "dataset": "musique_32k",
+   "first": 269,
+   "middle": 369,
+   "last": 262,
+   "none": 0,
+   "spread": 290,
+   "label_source": "paper labels (gold + silver chunks)"
+  },
+  {
+   "dataset": "novelhopqa",
+   "first": 236,
+   "middle": 384,
+   "last": 271,
+   "none": 17,
+   "spread": 362,
+   "label_source": "C5 paragraph labels"
+  }
+ ],
+ "doc_stats": {
+  "musique_32k": {
+   "queries": 900,
+   "documents": 45,
+   "min": 42257,
+   "median": 48851,
+   "mean": 48793.044444444444,
+   "max": 51692,
+   "q_min": 18,
+   "q_median": 20,
+   "q_max": 22,
+   "chunks_mean": 380.0444444444444
+  },
+  "novelhopqa": {
+   "queries": 908,
+   "documents": 16,
+   "min": 133420,
+   "median": 232803.0,
+   "mean": 280546.25,
+   "max": 759549,
+   "q_min": 14,
+   "q_median": 60.5,
+   "q_max": 84,
+   "chunks_mean": 438.1875
+  }
+ },
+ "rough_time": {
+  "musique_32k": {
+   "full_doc_cold_prefill_h": 0.12723644583776753,
+   "full_doc_warm_h": 0.06606379977763434,
+   "short_conditions_h": 0.032010843839993995,
+   "wall_h_with_cache": 0.47531108945539585,
+   "gpu_h_with_cache": 1.9012443578215834,
+   "full_doc_wall_h_without_cache": 2.6111923600607807,
+   "full_doc_gpu_h_without_cache": 10.444769440243123
+  },
+  "novelhopqa": {
+   "full_doc_cold_prefill_h": 0.9106172734197435,
+   "full_doc_warm_h": 0.1172275143281875,
+   "short_conditions_h": 0.07782081512719154,
+   "wall_h_with_cache": 1.3556656028751224,
+   "gpu_h_with_cache": 5.4226624115004896,
+   "full_doc_wall_h_without_cache": 57.64502336936636,
+   "full_doc_gpu_h_without_cache": 230.58009347746545
+  }
+ },
+ "one_line": "docs MuSiQue 51,692 max, NovelHopQA 759,549 max tokens; max_model_len 778,240; fits on 4 GPUs",
+ "seconds": 355,
+ "status": "OK (vLLM needs the dual chunk attention backend)",
+ "exit_code": 0
 }
