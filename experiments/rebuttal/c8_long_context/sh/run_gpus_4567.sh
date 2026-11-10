@@ -177,7 +177,9 @@ if port_busy; then
 fi
 
 # ---------------------------------------------------------------- 3. vLLM server
-HELP="$("${C8_VLLM_PY}" -m vllm.entrypoints.openai.api_server --help 2>&1)"
+# Newer vLLM lists every flag only with --help=all.
+HELP="$("${C8_VLLM_PY}" -m vllm.entrypoints.openai.api_server --help=all 2>&1)"
+grep -q -- "--max-model-len" <<< "${HELP}" || HELP="$("${C8_VLLM_PY}" -m vllm.entrypoints.openai.api_server --help 2>&1)"
 has_flag() { grep -q -- "$1" <<< "${HELP}"; }
 EXTRA=()
 [[ "${C8_ENFORCE_EAGER}" == "1" ]] && EXTRA+=(--enforce-eager)
@@ -197,6 +199,10 @@ start_server() {  # <mode: dca|native>
   local launcher=()
   command -v setsid >/dev/null 2>&1 && launcher=(setsid)
   say "starting vLLM (${mode}) on GPUs ${GPUS}, port ${PORT}, --max-model-len ${len}; log ${slog#"${C8_ROOT_DIR}/"}"
+  local mode_args=()
+  # Without the dual chunk attention backend the model's config must not ask for it: standard attention,
+  # identical to dual chunk attention inside one 262,144-token chunk.
+  [[ "${mode}" == "native" ]] && mode_args=(--hf-overrides '{"dual_chunk_attention_config": null}')
   (
     if [[ "${mode}" == "dca" ]]; then
       export VLLM_ATTENTION_BACKEND="${C8_ATTENTION_BACKEND}" VLLM_USE_V1="${C8_VLLM_USE_V1}"
@@ -209,7 +215,7 @@ start_server() {  # <mode: dca|native>
       --tensor-parallel-size "${C8_TENSOR_PARALLEL}" --dtype bfloat16 --max-model-len "${len}" \
       --gpu-memory-utilization "${C8_GPU_MEMORY_UTILIZATION}" --max-num-seqs "${C8_MAX_NUM_SEQS}" \
       --max-num-batched-tokens "${C8_MAX_NUM_BATCHED_TOKENS}" --seed "${C8_SEED}" \
-      "${EXTRA[@]}" ${C8_VLLM_EXTRA_ARGS}
+      "${EXTRA[@]}" ${mode_args[@]+"${mode_args[@]}"} ${C8_VLLM_EXTRA_ARGS}
   ) > "${slog}" 2>&1 &
   SERVER_PID=$!
   local w=0
