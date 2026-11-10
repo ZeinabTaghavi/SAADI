@@ -190,6 +190,14 @@ class C1Paths:
     def contexts_path(self, dataset: str) -> Path:
         return self.dataset_dir(dataset) / "contexts.jsonl"
 
+    def engine_contexts_path(self, dataset: str, engine: int) -> Path:
+        """Contexts written by one of several vLLM engines working on the same dataset (one file each, no shared appends)."""
+
+        return self.dataset_dir(dataset) / f"contexts.engine{int(engine)}.jsonl"
+
+    def context_files(self, dataset: str) -> list[Path]:
+        return [self.contexts_path(dataset), *sorted(self.dataset_dir(dataset).glob("contexts.engine*.jsonl"))]
+
     def census_path(self, dataset: str) -> Path:
         return self.dataset_dir(dataset) / "census.json"
 
@@ -553,6 +561,16 @@ def load_contexts(path: Path) -> dict[str, dict[str, Any]]:
     return out
 
 
+def load_all_contexts(paths: C1Paths, dataset: str) -> dict[str, dict[str, Any]]:
+    """Contexts of a dataset from contexts.jsonl and every engine file (a chunk is generated once)."""
+
+    out: dict[str, dict[str, Any]] = {}
+    for p in paths.context_files(dataset):
+        for cid, row in load_contexts(p).items():
+            out.setdefault(cid, row)
+    return out
+
+
 def _append_rows(path: Path, rows: list[dict[str, Any]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     # A crash can leave a torn last line without a newline; start on a fresh line so no new row is glued to it.
@@ -659,24 +677,30 @@ def generate_contexts(
     generator: Any,
     max_docs: int | None,
     log=print,
-    sub_batch: int = 128,
+    sub_batch: int = 512,
+    out_path: Path | None = None,
+    only: set[tuple[str, int]] | None = None,
 ) -> dict[str, Any]:
     """All chunks of a segment together, its first request alone first (fills the prefix cache).
 
     Segments are grouped into waves whose prefixes fit in half the KV cache, so each prefix is
     computed once and stays cached while its chunks run. Rows are appended as they come in;
-    a rerun skips chunks already in contexts.jsonl.
+    a rerun skips chunks already in any contexts file of the dataset. ``only`` restricts the
+    work to some (doc_id, segment) pairs and ``out_path`` names this engine's own file, so that
+    two engines can share a dataset.
     """
 
     tok = load_qwen_tokenizer()
     pt = PromptTokens(tok)
     docs = {d.doc_id: d for d in dataset_docs(dataset, max_docs=max_docs, repo_root=paths.repo_root)}
-    out_path = paths.contexts_path(dataset)
-    done = load_contexts(out_path)
+    out_path = out_path or paths.contexts_path(dataset)
+    done = load_all_contexts(paths, dataset)
     segs = []
     for r in census["docs"]:
         doc = docs[r["doc_id"]]
         for s in r["segments"]:
+            if only is not None and (r["doc_id"], int(s["segment"])) not in only:
+                continue
             todo = [i for i in range(s["start"], s["end"]) if doc.chunk_ids[i] not in done]
             if todo:
                 segs.append((doc, r, s, todo))
@@ -756,7 +780,7 @@ def generate_contexts(
 
 
 def generation_stats(dataset: str, *, paths: C1Paths, census: dict[str, Any]) -> dict[str, Any]:
-    rows = list(load_contexts(paths.contexts_path(dataset)).values())
+    rows = list(load_all_contexts(paths, dataset).values())
     expected = {cid for r in census["docs"] for cid in r["chunk_ids"]}
     missing = sorted(expected - {r["chunk_id"] for r in rows})
     gen = [int(r.get("generated_tokens", 0)) for r in rows]
@@ -785,7 +809,7 @@ def generation_stats(dataset: str, *, paths: C1Paths, census: dict[str, Any]) ->
 
 
 def sanity_sample(dataset: str, *, paths: C1Paths, n: int = 10, max_docs: int | None = None) -> list[dict[str, Any]]:
-    rows = load_contexts(paths.contexts_path(dataset))
+    rows = load_all_contexts(paths, dataset)
     docs = {d.doc_id: d for d in dataset_docs(dataset, max_docs=max_docs, repo_root=paths.repo_root)}
     keys = sorted(rows)
     rng = random.Random(SEED)
@@ -888,11 +912,17 @@ def run_retrieval_job(
     max_docs: int | None,
     use_c2: bool = True,
     log=print,
+    shard: tuple[int, int] | None = None,
 ) -> dict[str, Any]:
     """Pass 1: the empty-context check against Vanilla and the saved results. Pass 2: real contexts.
 
     Saves the top RECALL_N of every system's ranking per query (chunk positions, gzip pickle).
     Writes DONE or FAILED; a failing gate stops this retriever before real contexts are used.
+
+    ``shard=(i, n)``: compute both passes only for the documents with index % n == i and leave
+    their per-document checkpoints (several GPU pairs share a long job). A normal run afterwards
+    loads every checkpoint, applies the gate and writes the rankings; nothing of a shard is
+    reported unless that gate passes.
     """
 
     repo = paths.repo_root
@@ -901,7 +931,7 @@ def run_retrieval_job(
     saved_rows = load_saved_live_rows(spec, retriever, repo_root=repo)
     by_doc = hf.rows_by_document(saved_rows)
     doc_ids = list(by_doc)[: int(max_docs)] if max_docs else list(by_doc)
-    contexts = {cid: r.get("context", "") for cid, r in load_contexts(paths.contexts_path(dataset)).items()}
+    contexts = {cid: r.get("context", "") for cid, r in load_all_contexts(paths, dataset).items()}
     c2 = c2_streams_available(dataset, retriever, repo) if use_c2 else None
     c2_docs = _load_c2_docs(c2, retriever) if c2 else {}
     work = paths.job_dir(dataset, retriever) / "work"
@@ -914,6 +944,8 @@ def run_retrieval_job(
     cr_texts_by_doc: dict[str, list[str]] = {}
 
     for di, doc_id in enumerate(doc_ids):
+        if shard and di % shard[1] != shard[0]:
+            continue
         ck = work / f"doc_{di:04d}.pkl"
         idx = build_mbr_document_memory_index(repo / spec.index_json, doc_id=doc_id)
         chunk_ids = [str(c.chunk_id) for c in idx.chunk_pool]
@@ -929,6 +961,8 @@ def run_retrieval_job(
             with ck.open("rb") as handle:
                 doc = pickle.load(handle)
             if doc.get("doc_id") == doc_id and doc.get("chunk_ids") == chunk_ids:
+                doc.setdefault("di", di)
+                doc.setdefault("seconds", {})
                 docs_out.append(doc)
                 timings["docs_from_checkpoint"] += 1
                 channel_source[doc["channel_source"]] += 1
@@ -948,7 +982,6 @@ def run_retrieval_job(
             ]
         channel_source[source] += 1
         queries = []
-        t1 = time.perf_counter()
         for q in qrows:
             row = saved_rows[q["row_index"]]
             question = str(row.get("question", "") or "")
@@ -968,14 +1001,53 @@ def run_retrieval_job(
                     "rank": {"vanilla": r_van, "empty": r_emp, "saadi": r_saadi},
                 }
             )
-        timings["seconds_pass1"] += time.perf_counter() - t1 + (t1 - t0)
-        doc = {"doc_id": doc_id, "chunk_ids": chunk_ids, "channel_source": source, "queries": queries, "pass2": False}
+        timings["seconds_pass1"] += time.perf_counter() - t0
+        doc = {
+            "di": di,
+            "doc_id": doc_id,
+            "chunk_ids": chunk_ids,
+            "channel_source": source,
+            "queries": queries,
+            "pass2": False,
+            "seconds": {"pass1": round(time.perf_counter() - t0, 2)},
+        }
         with ck.open("wb") as handle:
             pickle.dump(doc, handle, protocol=pickle.HIGHEST_PROTOCOL)
         docs_out.append(doc)
         log(
             f"[{dataset}__{retriever}] pass 1 doc {di + 1}/{len(doc_ids)} {doc_id}: {len(queries)} queries ({source}), {time.perf_counter() - t0:.1f}s"
         )
+
+    def run_pass2() -> None:
+        for doc in docs_out:
+            if doc.get("pass2"):
+                continue
+            t0 = time.perf_counter()
+            doc_id, chunk_ids = doc["doc_id"], doc["chunk_ids"]
+            cr_texts = cr_texts_by_doc[doc_id]
+            for q in doc["queries"]:
+                cr = _score_pool(cr_texts, ids=chunk_ids, query=q["question"], retriever_name=retriever)
+                raw_cr = _with_text(q["raw"], chunk_ids, cr)
+                q["cr_text"] = raw_cr[:, 0].copy()
+                q["rank"]["cr"] = _ranking(chunk_ids, q["chunk_index"], raw_cr, doc_id, retriever, VANILLA_POINT)
+                q["rank"]["saadi_cr"] = _ranking(chunk_ids, q["chunk_index"], raw_cr, doc_id, retriever, PUBLISHED_POINT)
+            doc["pass2"] = True
+            doc.setdefault("seconds", {})["pass2"] = round(time.perf_counter() - t0, 2)
+            with (work / f"doc_{int(doc['di']):04d}.pkl").open("wb") as handle:
+                pickle.dump(doc, handle, protocol=pickle.HIGHEST_PROTOCOL)
+            timings["seconds_pass2"] += time.perf_counter() - t0
+            log(f"[{dataset}__{retriever}] pass 2 doc {int(doc['di']) + 1}/{len(doc_ids)} {doc_id}: {time.perf_counter() - t0:.1f}s")
+
+    if shard:
+        run_pass2()
+        return {
+            "dataset": dataset,
+            "retriever": retriever,
+            "status": "SHARD_DONE",
+            "shard": list(shard),
+            "docs": len(docs_out),
+            "timings": timings | {"seconds_total": round(time.perf_counter() - t_start, 1)},
+        }
 
     used_rows = [saved_rows[q["row_index"]] for d in docs_out for q in d["queries"]]
     gate = empty_context_gate(dataset, retriever, docs_out, used_rows, repo_root=repo, full_dataset=not max_docs, c2_used=bool(c2))
@@ -995,31 +1067,16 @@ def run_retrieval_job(
         return summary
 
     # Pass 2: real contexts.
-    for di, doc in enumerate(docs_out):
-        if doc.get("pass2"):
-            continue
-        t0 = time.perf_counter()
-        doc_id, chunk_ids = doc["doc_id"], doc["chunk_ids"]
-        cr_texts = cr_texts_by_doc[doc_id]
-        for q in doc["queries"]:
-            cr = _score_pool(cr_texts, ids=chunk_ids, query=q["question"], retriever_name=retriever)
-            raw_cr = _with_text(q["raw"], chunk_ids, cr)
-            q["cr_text"] = raw_cr[:, 0].copy()
-            q["rank"]["cr"] = _ranking(chunk_ids, q["chunk_index"], raw_cr, doc_id, retriever, VANILLA_POINT)
-            q["rank"]["saadi_cr"] = _ranking(chunk_ids, q["chunk_index"], raw_cr, doc_id, retriever, PUBLISHED_POINT)
-        doc["pass2"] = True
-        with (work / f"doc_{di:04d}.pkl").open("wb") as handle:
-            pickle.dump(doc, handle, protocol=pickle.HIGHEST_PROTOCOL)
-        timings["seconds_pass2"] += time.perf_counter() - t0
-        log(f"[{dataset}__{retriever}] pass 2 doc {di + 1}/{len(docs_out)} {doc_id}: {time.perf_counter() - t0:.1f}s")
-
+    run_pass2()
     save_rankings(paths.rankings_path(dataset, retriever), docs_out)
     summary["truncation"] = {
         "contextualized": _truncation_stats(retriever, cr_texts_all),
         "plain": _truncation_stats(retriever, plain_texts_all),
     }
     summary["status"] = "DONE"
-    summary["timings"] = timings | {"seconds_total": round(time.perf_counter() - t_start, 1)}
+    # compute_seconds: pass 1 + pass 2 over every document, including documents done by shards or earlier runs.
+    compute = sum(float(v) for d in docs_out for v in (d.get("seconds") or {}).values())
+    summary["timings"] = timings | {"seconds_total": round(time.perf_counter() - t_start, 1), "compute_seconds": round(compute, 1)}
     summary["device"] = {
         "cuda_visible_devices": os.environ.get("CUDA_VISIBLE_DEVICES", ""),
         "batch_size_env": {k: v for k, v in os.environ.items() if k.endswith("_BATCH_SIZE") and k.startswith("SAADI_")},

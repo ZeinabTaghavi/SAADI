@@ -55,6 +55,7 @@ def _load_c2_runner():
 C2 = _load_c2_runner()
 GPU_BUSY_MIB = C2.GPU_BUSY_MIB
 DRY_MAX_DOCS = 2
+ALL_GPUS = [0, 1, 2, 3, 4, 5, 6, 7]
 VLLM_PORT = {"A": 29610, "B": 29710}
 PLACEHOLDER_CONTEXT_TOKENS = cr.CONTEXT_MAX_TOKENS
 MEMORY_MARGIN = 0.10
@@ -185,10 +186,11 @@ def preflight(group: str | None, args, paths: cr.C1Paths, log) -> dict[str, Any]
             pf["problems"].append(err)
             pf["gpus"] = err
         else:
-            mine = [g for g in gpus if g["index"] in cr.GROUP_GPUS[group]]
+            want = cr.GROUP_GPUS[group] if group else ALL_GPUS
+            mine = [g for g in gpus if g["index"] in want]
             pf["gpus"] = mine
-            if len(mine) != 4:
-                pf["problems"].append(f"expected GPUs {cr.GROUP_GPUS[group]}, nvidia-smi shows {[g['index'] for g in gpus]}")
+            if len(mine) != len(want):
+                pf["problems"].append(f"expected GPUs {want}, nvidia-smi shows {[g['index'] for g in gpus]}")
             for g in mine:
                 if g["memory_used_mib"] > GPU_BUSY_MIB:
                     pf["problems"].append(
@@ -384,9 +386,10 @@ def generation_worker(dataset: str, args) -> int:
 
 def record_generation_run(paths: cr.C1Paths, dataset: str, run: dict[str, Any]) -> None:
     p = paths.generation_summary_path(dataset)
-    data = cr.read_json(p) if p.exists() else {"runs": []}
-    data["runs"].append(run | {"finished_at": now()})
-    cr.write_json(p, data)
+    with C2.file_lock(paths.dataset_dir(dataset) / "generation.lock"):  # two engines may finish the same dataset
+        data = cr.read_json(p) if p.exists() else {"runs": []}
+        data["runs"].append(run | {"finished_at": now()})
+        cr.write_json(p, data)
 
 
 def run_generation(group: str, dataset: str, census: dict[str, Any], paths: cr.C1Paths, args, log) -> dict[str, Any]:
@@ -441,14 +444,18 @@ def job_worker(job: str, args) -> int:
     paths = paths_for(args)
     dataset, retriever = job.split("__")
     log = make_log(None)
-    log(f"job {job} start; CUDA_VISIBLE_DEVICES={os.environ.get('CUDA_VISIBLE_DEVICES', '')!r}")
+    shard = tuple(int(x) for x in args.shard.split("/")) if args.shard else None
+    log(f"job {job}{f' shard {args.shard}' if shard else ''} start; CUDA_VISIBLE_DEVICES={os.environ.get('CUDA_VISIBLE_DEVICES', '')!r}")
     try:
-        s = cr.run_retrieval_job(dataset, retriever, paths=paths, max_docs=max_docs_for(args), use_c2=not args.no_c2, log=log)
+        s = cr.run_retrieval_job(dataset, retriever, paths=paths, max_docs=max_docs_for(args), use_c2=not args.no_c2, log=log, shard=shard)
     except Exception:
         tb = traceback.format_exc()
         log(tb)
-        cr.write_json(paths.job_failed(dataset, retriever), {"dataset": dataset, "retriever": retriever, "status": "ERROR", "traceback": tb, "finished_at": now()})
+        cr.write_json(paths.job_failed(dataset, retriever), {"dataset": dataset, "retriever": retriever, "status": "ERROR" + (f" (shard {args.shard})" if shard else ""), "traceback": tb, "finished_at": now()})
         return 1
+    if shard:
+        log(f"job {job} shard {args.shard} {s['status']}: {s['docs']} documents")
+        return 0
     log(f"job {job} {s['status']}: {json.dumps(s['gate'].get('problems'))}")
     return 0 if s["status"] == "DONE" else 1
 
@@ -619,7 +626,8 @@ def cost_rows(dataset: str, census: dict[str, Any], gen: dict[str, Any], jobs: d
     ]
     for r, j in jobs.items():
         summ = j.get("summary", {}) or {}
-        t = (summ.get("timings") or {}).get("seconds_total")
+        tm = summ.get("timings") or {}
+        t = max(float(tm.get("seconds_total") or 0), float(tm.get("compute_seconds") or 0)) if tm else None  # compute: includes shards
         g = len(j.get("gpus") or []) or len([x for x in (summ.get("device", {}) or {}).get("cuda_visible_devices", "").split(",") if x])
         if t is not None:
             rows.append([f"Indexing + scoring, {cr.RETRIEVER_DISPLAY[r]} (wall / GPU-hours)", f"{fmt_s(t)} / {t * g / 3600:.2f}", "—"])
@@ -1044,6 +1052,16 @@ def write_group_report(group: str, report: dict[str, Any], paths: cr.C1Paths) ->
     if mem:
         L += ["", "## Memory check", ""]
         L += md_table(["Model", "GPUs", "Batch", "Peak MiB", "Fits"], [[cr.RETRIEVER_DISPLAY[r], m.get("n_gpus"), m.get("batch_size"), m.get("peak_mib"), m.get("fits")] for r, m in mem.get("models", {}).items()])
+    if report.get("generation_plan") is not None:
+        L += ["", "## Contexts: remaining segments over two engines", ""]
+        rows = [[e["engine"], e["gpus"], ", ".join(cr.DATASET_DISPLAY[d] for d in e["datasets"]), e["segments"], e["chunks"], fmt_s(e["est_seconds"]),
+                 (report.get("generation_results") or {}).get(e["engine"], (report.get("generation_results") or {}).get(str(e["engine"]), {})).get("seconds")]
+                for e in report["generation_plan"]]
+        L += md_table(["Engine", "GPUs", "Datasets", "Segments", "Contexts", "Estimate", "Measured (s)"], rows) if rows else ["- Nothing left to generate."]
+    if report.get("tasks") is not None:
+        L += ["", "## Retrieval tasks (all eight GPUs)", ""]
+        rows = [[n, t.get("status"), t.get("gpus") or "CPU", fmt_s(t.get("seconds"))] for n, t in report["tasks"].items()]
+        L += md_table(["Task", "Status", "GPUs", "Time"], rows) if rows else ["- Nothing left to run."]
     L += ["", "## Datasets", ""]
     for d, st in report.get("datasets", {}).items():
         L.append(f"- {cr.DATASET_DISPLAY[d]}: {st}")
@@ -1129,7 +1147,7 @@ def status(args) -> int:
         for d in cr.GROUP_DATASETS[g]:
             census = cr.read_json(paths.census_path(d)) if paths.census_path(d).exists() else None
             expected = census["n_chunks"] if census else cr.EXPECTED_CHUNKS[d]
-            n_ctx = len(cr.load_contexts(paths.contexts_path(d)))
+            n_ctx = len(cr.load_all_contexts(paths, d))
             gen_done = paths.marker(d, "generation.DONE").exists()
             cells = []
             for r in retrievers:
@@ -1150,7 +1168,8 @@ def status(args) -> int:
                 missing.insert(0, f"{d}/contexts")
             if not ds_done:
                 missing.append(f"{d}/report")
-            gen_txt = "contexts done" if gen_done else ("contexts running" if any(f"--generate {d}" in p for p in procs) else "contexts NOT done")
+            gen_running = any(f"--generate {d}" in p or "--generate-engine" in p for p in procs)
+            gen_txt = "contexts done" if gen_done else ("contexts running" if gen_running else "contexts NOT done")
             lines.append(f"  {cr.DATASET_DISPLAY[d]:<12} {gen_txt}: {n_ctx}/{expected}; " + ", ".join(cells) + f"; dataset {'DONE' if ds_done else 'not done'}")
         missing_by_group[g] = missing
         if missing:
@@ -1248,6 +1267,279 @@ def run_group(group: str, args) -> int:
     return exit_code
 
 
+# ---------------------------------------------------------------------------
+# All eight GPUs at once (--all-gpus): what is missing on every dataset, as soon as possible
+# ---------------------------------------------------------------------------
+
+ENGINE_GPUS = [cr.GROUP_GPUS["A"], cr.GROUP_GPUS["B"]]  # two vLLM engines, TP 4 each
+ENGINE_PORTS = [VLLM_PORT["A"], VLLM_PORT["B"]]
+PREFILL_TOKENS_PER_SECOND = 8000.0  # warm-up request of a segment (estimate only)
+SHARDS = {"qwen": 2}  # long dense jobs split by document over GPU pairs
+DRY_SHARDS = {"bm25": 2}  # the CPU dry run exercises the same split on BM25
+
+
+def group_of(dataset: str) -> str:
+    return next(g for g, ds in cr.GROUP_DATASETS.items() if dataset in ds)
+
+
+def segment_seconds(prefix_tokens: int, todo: int) -> float:
+    return todo * (cr.GEN_SECONDS_PER_VISIBLE_TOKEN * prefix_tokens + cr.GEN_SECONDS_FLOOR_PER_CALL) + prefix_tokens / PREFILL_TOKENS_PER_SECOND
+
+
+def plan_generation(paths: cr.C1Paths, censuses: dict[str, Any], log) -> list[dict[str, Any]]:
+    """Remaining segments of every dataset, spread over the two engines (longest first, to the less loaded engine)."""
+
+    items = []
+    for d in cr.DATASET_KEYS:
+        if d not in censuses or paths.marker(d, "generation.DONE").exists():
+            continue
+        done = cr.load_all_contexts(paths, d)
+        for r in censuses[d]["docs"]:
+            for s in r["segments"]:
+                todo = sum(1 for cid in r["chunk_ids"][s["start"] : s["end"]] if cid not in done)
+                if todo:
+                    items.append({"dataset": d, "doc_id": r["doc_id"], "segment": int(s["segment"]), "todo": todo,
+                                  "prefix_tokens": s["prefix_tokens"], "est_seconds": segment_seconds(s["prefix_tokens"], todo)})
+    engines = [{"engine": k, "gpus": ENGINE_GPUS[k], "items": [], "est_seconds": 0.0} for k in range(len(ENGINE_GPUS))]
+    for it in sorted(items, key=lambda x: -x["est_seconds"]):
+        e = min(engines, key=lambda x: x["est_seconds"])
+        e["items"].append(it)
+        e["est_seconds"] += it["est_seconds"]
+    order = {d: i for i, d in enumerate(cr.DATASET_KEYS)}
+    for e in engines:
+        e["items"].sort(key=lambda x: (order[x["dataset"]], x["doc_id"], x["segment"]))
+        e["chunks"] = sum(x["todo"] for x in e["items"])
+        e["est_seconds"] += cr.VLLM_STARTUP_SECONDS if e["items"] else 0.0
+        log(f"engine {e['engine']} (GPUs {e['gpus']}): {e['chunks']} contexts in {len(e['items'])} segments, estimate {fmt_s(e['est_seconds'])}")
+    return [e for e in engines if e["items"]]
+
+
+def engine_worker(plan_file: str, engine: int, args) -> int:
+    """Child process: one vLLM engine (or the stub) for its share of the remaining segments, across datasets."""
+
+    paths = paths_for(args)
+    log = make_log(None)
+    plan = cr.read_json(Path(plan_file))
+    e = next(x for x in plan["engines"] if x["engine"] == engine)
+    datasets = list(dict.fromkeys(it["dataset"] for it in e["items"]))
+    t0 = time.perf_counter()
+    try:
+        if paths.dry_run:
+            gen = cr.StubGenerator(cr.load_qwen_tokenizer())
+            settings, version, name = {}, "", "stub"
+        else:
+            max_len = cr.read_json(paths.census_path(datasets[0]))["model"]["max_model_len"]
+            gen = cr.VLLMGenerator(max_len, log=log)
+            settings, version, name = gen.settings, gen.version, "vllm"
+        for d in datasets:
+            census = cr.read_json(paths.census_path(d))
+            only = {(it["doc_id"], int(it["segment"])) for it in e["items"] if it["dataset"] == d}
+            t1 = time.perf_counter()
+            info = cr.generate_contexts(d, paths=paths, census=census, generator=gen, max_docs=max_docs_for(args), log=log,
+                                        out_path=paths.engine_contexts_path(d, engine), only=only)
+            record_generation_run(paths, d, info | {"generator": name, "vllm_version": version, "vllm_settings": settings, "engine": engine,
+                                                    "wall_seconds": round(time.perf_counter() - t1, 1), "gpus": os.environ.get("CUDA_VISIBLE_DEVICES", "")})
+    except Exception:
+        log(traceback.format_exc())
+        return 1
+    log(f"engine {engine} finished {len(datasets)} dataset(s) in {fmt_s(time.perf_counter() - t0)}")
+    return 0
+
+
+def run_engines(paths: cr.C1Paths, args, censuses: dict[str, Any], log) -> dict[str, Any]:
+    engines = plan_generation(paths, censuses, log)
+    out = {"engines": engines, "results": {}}
+    if not engines:
+        return out
+    plan_file = paths.out_dir / "generation_plan_all_gpus.json"
+    cr.write_json(plan_file, {"created_at": now(), "engines": engines})
+    procs = []
+    for e in engines:
+        gpus = [] if paths.dry_run else e["gpus"]
+        env = child_env(gpus)
+        env["VLLM_PORT"] = str(ENGINE_PORTS[e["engine"]])
+        env.setdefault("VLLM_WORKER_MULTIPROC_METHOD", "spawn")
+        env.setdefault("VLLM_USE_FLASHINFER_SAMPLER", "0")
+        log_path = paths.logs_dir / f"generation_engine{e['engine']}.log"
+        cmd = [sys.executable, str(Path(__file__).resolve()), "--generate-engine", str(plan_file), "--engine", str(e["engine"])] + passthrough(args)
+        handle = log_path.open("a", encoding="utf-8")
+        procs.append((e, subprocess.Popen(cmd, cwd=REPO_ROOT, env=env, stdout=handle, stderr=subprocess.STDOUT), handle, time.time(), log_path))
+        log(f"engine {e['engine']} started on GPUs {e['gpus']}; log {cr.rel(log_path)}")
+    for e, proc, handle, t0, log_path in procs:
+        rc = proc.wait()
+        handle.close()
+        out["results"][e["engine"]] = {"exit_code": rc, "seconds": round(time.time() - t0, 1), "log": cr.rel(log_path)}
+        log(f"engine {e['engine']}: exit {rc} after {fmt_s(time.time() - t0)}")
+    for d in cr.DATASET_KEYS:
+        if d in censuses and not paths.marker(d, "generation.DONE").exists():
+            stats = cr.generation_stats(d, paths=paths, census=censuses[d])
+            if stats["missing_chunks"] == 0:
+                cr.write_json(paths.marker(d, "generation.DONE"), {"finished_at": now(), "calls": stats["calls"]})
+    return out
+
+
+def run_tasks(tasks: list[dict[str, Any]], gpus: list[int], paths: cr.C1Paths, args, log) -> dict[str, dict[str, Any]]:
+    """Run retrieval tasks over the given GPUs (BM25 on CPU, two at a time); a task waits for its dependencies."""
+
+    results: dict[str, dict[str, Any]] = {}
+    pending = sorted(tasks, key=lambda t: -t["est_seconds"])
+    free = [] if paths.dry_run else list(gpus)
+    running: dict[str, tuple] = {}
+    while pending or running:
+        started = False
+        for t in list(pending):
+            deps = [results.get(d) for d in t.get("deps", [])]
+            if any(x is not None and not x["ok"] for x in deps):
+                results[t["name"]] = {"ok": False, "status": "SKIPPED (a shard failed)"}
+                pending.remove(t)
+                continue
+            if any(x is None for x in deps):
+                continue
+            n = 0 if paths.dry_run else t["n_gpus"]
+            if n == 0 and sum(1 for r in running.values() if not r[1]) >= 2:
+                continue
+            if len(free) < n:
+                continue
+            use = [free.pop(0) for _ in range(n)]
+            env = child_env(use, t["retriever"], n_gpus=len(use), memory=t.get("memory"))
+            log_path = paths.logs_dir / f"{t['name']}.log"
+            handle = log_path.open("a", encoding="utf-8")
+            proc = subprocess.Popen(t["cmd"], cwd=REPO_ROOT, env=env, stdout=handle, stderr=subprocess.STDOUT)
+            running[t["name"]] = (proc, use, time.time(), handle, t)
+            pending.remove(t)
+            started = True
+            log(f"{t['name']}: started on {('GPU ' + ','.join(map(str, use))) if use else 'CPU'} (estimate {fmt_s(t['est_seconds'])}); log {cr.rel(log_path)}")
+        for name, (proc, use, t0, handle, t) in list(running.items()):
+            rc = proc.poll()
+            if rc is None:
+                continue
+            handle.close()
+            free = sorted(free + use)
+            del running[name]
+            ok = rc == 0 and (t.get("shard") is not None or paths.job_done(t["dataset"], t["retriever"]).exists())
+            results[name] = {"ok": ok, "exit_code": rc, "seconds": round(time.time() - t0, 1), "gpus": use,
+                             "status": "DONE" if ok else ("FAILED" if paths.job_failed(t["dataset"], t["retriever"]).exists() else f"CRASHED (exit {rc})")}
+            log(f"{name}: {results[name]['status']} after {fmt_s(time.time() - t0)}")
+        if not started:
+            time.sleep(2.0 if paths.dry_run else 10.0)
+    return results
+
+
+def retrieval_tasks(paths: cr.C1Paths, args, censuses, estimates, memories) -> list[dict[str, Any]]:
+    tasks = []
+    shards = DRY_SHARDS if paths.dry_run else SHARDS
+    script = str(Path(__file__).resolve())
+    for d in cr.DATASET_KEYS:
+        if d not in censuses or paths.marker(d, "dataset.DONE").exists() or not paths.marker(d, "generation.DONE").exists():
+            continue
+        g = group_of(d)
+        for r in retrievers_for(args):
+            if paths.job_done(d, r).exists():
+                continue
+            est = estimates[d]["retrieval"]["jobs"].get(r, {}).get("est_seconds", 0.0)
+            n_gpus = 0 if r == "bm25" else int((memories.get(g) or {}).get("models", {}).get(r, {}).get("n_gpus") or C2.MODEL_INFO[r].get("min_gpus", 1))
+            base = {"dataset": d, "retriever": r, "n_gpus": n_gpus, "memory": memories.get(g)}
+            job_cmd = [script, "--run-job", f"{d}__{r}", "--group", g] + passthrough(args)
+            n_sh = shards.get(r, 1)
+            if n_sh > 1:
+                names = []
+                for i in range(n_sh):
+                    name = f"{d}__{r}__shard{i}of{n_sh}"
+                    names.append(name)
+                    tasks.append(base | {"name": name, "cmd": [sys.executable, *job_cmd, "--shard", f"{i}/{n_sh}"], "est_seconds": est / n_sh, "shard": i})
+                tasks.append(base | {"name": f"{d}__{r}", "cmd": [sys.executable, *job_cmd], "est_seconds": 300.0, "deps": names, "shard": None})
+            else:
+                tasks.append(base | {"name": f"{d}__{r}", "cmd": [sys.executable, *job_cmd], "est_seconds": est, "shard": None})
+    return tasks
+
+
+def run_all_gpus(args) -> int:
+    paths = paths_for(args)
+    paths.ensure(cr.DATASET_KEYS)
+    log = make_log(None)
+    for g in ("A", "B"):
+        if not acquire_group_lock(paths, g):
+            log(f"group {g} is already running (lock {cr.rel(paths.out_dir / f'group_{g}.lock')}); stop it or wait before using all GPUs")
+            return 3
+    report: dict[str, Any] = {"group": "all GPUs", "started_at": now(), "argv": [Path(sys.argv[0]).name, *sys.argv[1:]], "datasets": {}, "problems": []}
+    pf = preflight(None, args, paths, log)
+    report["preflight"] = pf
+    if not pf["ok"]:
+        report["exit_code"], report["finished_at"] = 2, now()
+        write_group_report("all_gpus", report, paths)
+        for p in pf["problems"]:
+            log(f"PREFLIGHT PROBLEM: {p}")
+        return 2
+    log("preflight ok (all eight GPUs free)")
+    max_docs = max_docs_for(args)
+    retrievers = retrievers_for(args)
+    todo = [d for d in cr.DATASET_KEYS if not paths.marker(d, "dataset.DONE").exists()]
+    censuses, estimates = {}, {}
+    for d in todo:
+        censuses[d] = cr.run_census(d, paths=paths, max_docs=max_docs, log=log)
+        estimates[d] = {"generation": cr.estimate_generation_seconds(censuses[d]),
+                        "retrieval": retrieval_estimates(d, censuses[d], retrievers, use_c2=not args.no_c2, log=log)}
+    report["census"] = {d: {k: v for k, v in c.items() if k != "docs"} for d, c in censuses.items()}
+    report["estimates"] = estimates
+    memories: dict[str, Any] = {}
+    if not paths.dry_run:
+        for g in sorted({group_of(d) for d in todo}):
+            memories[g] = run_memory_checks(g, paths, max_docs=max_docs, log=log)
+        report["memory_check"] = next(iter(memories.values()), None)
+    write_group_report("all_gpus", report, paths)
+
+    # 1. Contexts: two engines over the remaining segments of every dataset.
+    gen_out = run_engines(paths, args, censuses, log)
+    report["generation_plan"] = [{"engine": e["engine"], "gpus": e["gpus"], "chunks": e["chunks"], "segments": len(e["items"]),
+                                  "datasets": sorted({i["dataset"] for i in e["items"]}), "est_seconds": round(e["est_seconds"])} for e in gen_out["engines"]]
+    report["generation_results"] = gen_out["results"]
+    write_group_report("all_gpus", report, paths)
+
+    # 2. Retrieval: every missing job over all eight GPUs, the long Qwen jobs split by document.
+    tasks = retrieval_tasks(paths, args, censuses, estimates, memories)
+    log(f"retrieval: {len(tasks)} tasks on GPUs {ALL_GPUS}")
+    task_results = run_tasks(tasks, ALL_GPUS, paths, args, log)
+    report["tasks"] = task_results
+
+    # 3. Reports.
+    exit_code = 0
+    for d in todo:
+        census = censuses[d]
+        gen_runs = cr.read_json(paths.generation_summary_path(d)) if paths.generation_summary_path(d).exists() else {"runs": []}
+        gen = {"done": paths.marker(d, "generation.DONE").exists(), "stats": cr.generation_stats(d, paths=paths, census=census), "runs": gen_runs["runs"]}
+        problems = []
+        if not gen["done"]:
+            problems.append(f"generation incomplete: {gen['stats']['missing_chunks']} chunks without a context")
+        jobs_status = {}
+        for r in retrievers:
+            res = task_results.get(f"{d}__{r}")
+            shards_used = [v for k, v in task_results.items() if k.startswith(f"{d}__{r}__shard")]
+            if res is not None:
+                jobs_status[r] = {"status": res["status"], "gpus": res.get("gpus") or (shards_used[0]["gpus"] if shards_used else [])}
+            if not paths.job_done(d, r).exists():
+                problems.append(f"{r}: {res['status'] if res else 'not run (contexts missing)'}")
+        try:
+            analysis = cr.analyze_dataset(d, paths=paths, retrievers=retrievers)
+        except Exception:
+            analysis = {"per_retriever": {}, "hybrid": {}}
+            problems.append("analysis failed: " + traceback.format_exc().splitlines()[-1])
+            log(traceback.format_exc())
+        memory = memories.get(group_of(d)) or (cr.read_json(paths.memory_check_path(group_of(d))) if paths.memory_check_path(group_of(d)).exists() else None)
+        dataset_report(d, paths, args, census=census, gen=gen, memory=memory, est=estimates[d], jobs_status=jobs_status, analysis=analysis, problems=problems)
+        if problems:
+            exit_code = 1
+        else:
+            cr.write_json(paths.marker(d, "dataset.DONE"), {"finished_at": now()})
+        report["datasets"][d] = "done" if not problems else "problems: " + "; ".join(problems)
+        log(f"{d}: {report['datasets'][d]}; report {cr.rel(paths.reports_dir / (d + '.md'))}")
+    with C2.file_lock(paths.out_dir / "final_report.lock"):
+        complete = final_report(paths, args, log)
+    log(f"final report {'complete' if complete else 'INCOMPLETE'}: {cr.rel(paths.results_dir / 'REPORT.md')}")
+    report["exit_code"], report["finished_at"] = exit_code, now()
+    write_group_report("all_gpus", report, paths)
+    return exit_code
+
+
 def report_only(args) -> int:
     paths = paths_for(args)
     log = make_log(None)
@@ -1275,10 +1567,14 @@ def main() -> int:
     ap.add_argument("--dry-run", action="store_true", help="CPU: 2 documents per dataset, BM25 only, stub contexts")
     ap.add_argument("--dry-run-full", action="store_true", help="CPU: all documents, BM25 only, stub contexts")
     ap.add_argument("--report-only", action="store_true")
+    ap.add_argument("--all-gpus", action="store_true", help="everything missing on every dataset, using all eight GPUs at once")
     ap.add_argument("--status", action="store_true", help="what is done and what is missing (with --group: that group only)")
     ap.add_argument("--max-docs", type=int, default=None, help="documents per dataset (0 = all)")
     ap.add_argument("--no-c2", action="store_true", help="recompute memory/summary channels instead of reusing C2's streams")
     ap.add_argument("--run-job", help=argparse.SUPPRESS)
+    ap.add_argument("--shard", help=argparse.SUPPRESS)
+    ap.add_argument("--generate-engine", help=argparse.SUPPRESS)
+    ap.add_argument("--engine", type=int, help=argparse.SUPPRESS)
     ap.add_argument("--generate", help=argparse.SUPPRESS)
     ap.add_argument("--memory-check", help=argparse.SUPPRESS)
     ap.add_argument("--text-file", help=argparse.SUPPRESS)
@@ -1292,6 +1588,10 @@ def main() -> int:
         return job_worker(args.run_job, args)
     if args.generate:
         return generation_worker(args.generate, args)
+    if args.generate_engine:
+        return engine_worker(args.generate_engine, args.engine, args)
+    if args.all_gpus:
+        return run_all_gpus(args)
     if args.status:
         return status(args)
     if args.report_only:
