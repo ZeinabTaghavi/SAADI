@@ -52,3 +52,4 @@
 [c5] 2026-11-10 19:59:32 start 03: /mnt/data/zeinab/raptor/.venv/bin/python3 /home/iataghav/data/SAADI/experiments/rebuttal/c5_end_to_end/scripts/step03_score.py --dataset musique_32k
 [c5-03] 2026-11-10 19:59:32 done: FAILED
 [c5] 2026-11-10 19:59:32 end 03: exit 1
+[c5-musique_32k] 2026-11-10 19:59:34 done, exit 1; reports in experiments/rebuttal/c5_end_to_end/reports
