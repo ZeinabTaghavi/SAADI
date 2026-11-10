@@ -91,7 +91,7 @@ export C5_RAPTOR_DIR="${C5_RAPTOR_DIR:-$(c5_first_dir /mnt/data/zeinab/SAADI_Rap
 # Every copy of the RAPTOR repo that may hold saved runs (searched in this order after C5_RAPTOR_DIR;
 # on the server the NovelHopQA run was made in /mnt/data/zeinab/SAADI_Raptor and the MuSiQue/QASPER
 # runner lives in /home/iataghav/SAADI_Raptor). The step 00 report names the copy it used.
-export C5_RAPTOR_SEARCH="${C5_RAPTOR_SEARCH:-/mnt/data/zeinab/SAADI_Raptor:${HOME}/SAADI_Raptor:${HOME}/data/SAADI_Raptor:${C5_ROOT_DIR}/../SAADI_Raptor:${C5_ROOT_DIR}/outputs/other_methods_method/SAADI_Raptor}"
+export C5_RAPTOR_SEARCH="${C5_RAPTOR_SEARCH:-/mnt/data/zeinab/SAADI_Raptor:/mnt/data/zeinab/raptor:${HOME}/raptor:${HOME}/data/raptor:${HOME}/SAADI_Raptor:${HOME}/data/SAADI_Raptor:/mnt/data/zeinab/SAADI_Raptor_c5:${C5_ROOT_DIR}/../SAADI_Raptor:${C5_ROOT_DIR}/outputs/other_methods_method/SAADI_Raptor}"
 # Code used for the MuSiQue-32K re-run: empty = the first copy above that has RAPTOR's
 # prepared_expanded loader and run-status script.
 export C5_RAPTOR_CODE_DIR="${C5_RAPTOR_CODE_DIR:-}"

@@ -27,8 +27,16 @@ LOG="${C5_LOG_DIR}/run_${DS}_${TS}.log"
 export VLLM_CACHE_ROOT="${C5_OUT_DIR}/cache/${DS}/vllm"
 export TRITON_CACHE_DIR="${C5_OUT_DIR}/cache/${DS}/triton"
 export TORCHINDUCTOR_CACHE_DIR="${C5_OUT_DIR}/cache/${DS}/inductor"
-export TMPDIR="${C5_OUT_DIR}/tmp/${DS}"
+# The temp folder must have a SHORT path: vLLM puts its ZeroMQ socket files there, and a Unix socket
+# path is limited to 107 characters (a folder inside the repo is too long).
+export TMPDIR="${C5_TMP_BASE:-/tmp}/c5_${USER:-user}_${DS}"
+export VLLM_RPC_BASE_PATH="${TMPDIR}"
+if [[ "${#TMPDIR}" -gt 60 ]]; then
+  echo "[c5-${DS}] temp folder path ${TMPDIR} is too long for vLLM's sockets (max 60 characters here); set C5_TMP_BASE to a short folder" >&2
+  exit 2
+fi
 mkdir -p "${VLLM_CACHE_ROOT}" "${TRITON_CACHE_DIR}" "${TORCHINDUCTOR_CACHE_DIR}" "${TMPDIR}" "${C5_OUT_DIR}/vllm_logs"
+chmod 700 "${TMPDIR}" 2>/dev/null
 
 say() { echo "[c5-${DS}] $(date '+%F %T') $*" | tee -a "${LOG}"; }
 
