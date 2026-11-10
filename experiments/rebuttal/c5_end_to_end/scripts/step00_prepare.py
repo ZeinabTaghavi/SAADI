@@ -161,6 +161,10 @@ class Dataset:
         self.n_docs = len(set(self.doc_of.values()))
         self.gold: dict[str, list[str]] = {}
         self.gold_source = ""
+        # NovelHopQA only: the dataset's own evidence text per query (for the paragraph labels).
+        self.context_text: dict[str, str] = {}
+        self.hops: dict[str, int] = {}
+        self.para: dict[str, dict[str, Any]] = {}
 
     def lab_list(self) -> list[cc.Labels]:
         return [self.labels[q] for q in self.qids]
@@ -234,11 +238,18 @@ def load_gold_answers(ds: Dataset, env: dict[str, str], info: dict[str, Any]) ->
                         if ans:
                             gold[qid] = [ans]
                             questions[qid] = cc.normalize_question(coerce_to_text(row.get("question") or row.get("query")))
+                            ds.context_text[qid] = coerce_to_text(row.get("context") or row.get("passage") or row.get("document"))
+                            try:
+                                ds.hops[qid] = int(row.get("number_of_hops") or split.split("_")[-1])
+                            except (TypeError, ValueError):
+                                pass
                 ds.gold_source = "Hugging Face abhaygupta1266/novelhopqa (repo loader, offline cache)"
             except Exception as exc:  # fall back to the RAPTOR run's copy
                 errors.append(f"hf: {type(exc).__name__}: {exc}"[:400])
                 gold.clear()
                 questions.clear()
+                ds.context_text.clear()
+                ds.hops.clear()
         if not gold and source in ("auto", "raptor"):
             path = raptor_paths(env, ds.key)["run"] / "selection/qa_entries.json"
             for e in cc.read_json(path):
@@ -684,6 +695,103 @@ def record(ds: Dataset, q: str, condition: str, passages: list[dict[str, Any]], 
     }
 
 
+def build_para_labels(ds: Dataset, paths: cc.C5Paths, info: dict[str, Any]) -> None:
+    """NovelHopQA: locate every paragraph of the dataset's evidence text in SAADI's chunks (see
+    c5_common.paragraph_in_text). Sets ds.para[q] = {"paragraphs": [[chunk ids], ...], ...}; a
+    paragraph found in no chunk is kept with an empty list and does not count."""
+
+    rec: dict[str, Any] = {"available": False}
+    info["para_labels"] = rec
+    if ds.key != "novelhopqa":
+        rec["reason"] = "only NovelHopQA (its labels are window-mode matches of the whole context)"
+        return
+    missing = [q for q in ds.qids if not ds.context_text.get(q)]
+    if missing:
+        rec["reason"] = f"the dataset's context text is missing for {len(missing)} queries (gold answers came from {ds.gold_source})"
+        info.setdefault("warnings", []).append(f"{ds.key}: no paragraph labels: {rec['reason']}")
+        return
+    log(f"{ds.key}: paragraph labels (each evidence paragraph located in SAADI's chunks)")
+    by_doc: dict[str, list[tuple[str, list[str]]]] = {}
+    for cid, c in sorted(ds.chunks.items(), key=lambda x: (x[1]["doc"], x[1]["index"], x[0])):
+        by_doc.setdefault(c["doc"], []).append((cid, cc.match_tokens(c["text"])))
+    rows = []
+    for q in ds.qids:
+        paras = cc.split_paragraphs(ds.context_text[q])
+        groups = []
+        for p in paras:
+            pt = cc.match_tokens(p)
+            groups.append([cid for cid, ct in by_doc.get(ds.doc_of[q], []) if cc.paragraph_in_text(ct, pt)])
+        lab = ds.labels[q]
+        saved = lab.evidence_chunks()
+        real = {c for g in groups for c in g}
+        ds.para[q] = {"paragraphs": groups, "paragraph_tokens": [cc.match_tokens(p) for p in paras], "hops": ds.hops.get(q)}
+        rows.append({"query_id": q, "doc_id": ds.doc_of[q], "hops": ds.hops.get(q), "n_paragraphs": len(paras),
+                     "paragraph_chunk_ids": groups, "located": sum(1 for g in groups if g),
+                     "paper_label_chunk_ids": saved, "paper_label_chunks_in_a_paragraph": [c for c in saved if c in real],
+                     "paper_labels_cover_every_paragraph": any(groups) and all(set(g) & set(saved) for g in groups if g)})
+    out = paths.para_labels_file(ds.key)
+    cc.write_jsonl(out, rows)
+    by_hops: dict[Any, list[dict[str, Any]]] = {}
+    for r in rows:
+        by_hops.setdefault(r["hops"], []).append(r)
+    table = []
+    for h in sorted(by_hops, key=lambda x: (x is None, x)):
+        rs = by_hops[h]
+        n_saved = sum(len(r["paper_label_chunk_ids"]) for r in rs)
+        table.append({"hops": h, "queries": len(rs), "paragraphs": sum(r["n_paragraphs"] for r in rs),
+                      "paragraphs_located_pct": 100.0 * sum(r["located"] for r in rs) / max(1, sum(r["n_paragraphs"] for r in rs)),
+                      "queries_without_any_located": sum(1 for r in rs if not r["located"]),
+                      "chunks_per_query_paragraph_labels": mean(len({c for g in r["paragraph_chunk_ids"] for c in g}) for r in rs),
+                      "chunks_per_query_paper_labels": mean(len(r["paper_label_chunk_ids"]) for r in rs),
+                      "paper_label_chunks_in_a_paragraph_pct": (100.0 * sum(len(r["paper_label_chunks_in_a_paragraph"]) for r in rs) / n_saved) if n_saved else None,
+                      "paper_labels_cover_every_paragraph": sum(1 for r in rs if r["paper_labels_cover_every_paragraph"])})
+    rec.update({"available": True, "file": paths.rel(out), "min_boundary_overlap_tokens": cc.PARA_MIN_OVERLAP, "by_hops": table,
+                "rule": "each 'Paragraph i:' piece of the dataset's context is located on its own in SAADI's chunks of the same book "
+                        f"(the chunk contains it, it contains the chunk, or they overlap at a boundary by >= min({cc.PARA_MIN_OVERLAP}, paragraph length) tokens; "
+                        "same token normalisation as the paper's labeler). Evidence 'all' = every located paragraph is in the context; 'any' = at least one."})
+
+
+def para_evidence_rows(ds: Dataset, ctx: dict[str, list[dict[str, Any]] | None]) -> list[dict[str, Any]]:
+    """Per condition and query: which located paragraphs are in the context. A full SAADI chunk counts
+    by its id; a RAPTOR leaf by its text (same rule as the labels); summaries and cut (partial)
+    passages never count."""
+
+    out: list[dict[str, Any]] = []
+    cache: dict[tuple[str, int, int], bool] = {}
+    tok_cache: dict[int, list[str]] = {}
+    for cond in cc.ALL_CONDITIONS:
+        for r in ctx.get(cond) or []:
+            q = r["query_id"]
+            info = ds.para.get(q)
+            if info is None:
+                continue
+            idx = [i for i, g in enumerate(info["paragraphs"]) if g]
+            found = []
+            for i in idx:
+                g = set(info["paragraphs"][i])
+                hit = False
+                for p in r["passages"]:
+                    if p.get("partial") or str(p.get("kind", "")).startswith("summary"):
+                        continue
+                    if p["id"] in ds.chunks:
+                        hit = p["id"] in g
+                    else:  # a RAPTOR leaf: its own text
+                        key = (q, i, hash(p["text"]))
+                        if key not in cache:
+                            h = hash(p["text"])
+                            if h not in tok_cache:
+                                tok_cache[h] = cc.match_tokens(p["text"])
+                            cache[key] = cc.paragraph_in_text(tok_cache[h], info["paragraph_tokens"][i])
+                        hit = cache[key]
+                    if hit:
+                        break
+                found.append(hit)
+            any_, all_ = cc.para_hit(found)
+            out.append({"condition": cond, "query_id": q, "hops": info.get("hops"), "paragraphs_located": len(idx), "paragraphs_in_context": sum(found),
+                        "evidence_para_any": any_, "evidence_para_all": all_})
+    return out
+
+
 def build_contexts(ds: Dataset, tok: Tok, cr, raptor, arag, info: dict[str, Any]) -> dict[str, list[dict[str, Any]] | None]:
     labs = ds.lab_list()
     out: dict[str, list[dict[str, Any]] | None] = {}
@@ -702,6 +810,14 @@ def build_contexts(ds: Dataset, tok: Tok, cr, raptor, arag, info: dict[str, Any]
     of = flags(oracle_ids)
     out["oracle"] = [record(ds, q, "oracle", ds.passages(ids, "evidence"), tok, evidence_in_context=f, retrieval_hit10=None)
                      for q, ids, f in zip(ds.qids, oracle_ids, of, strict=True)]
+    # Oracle from the paragraph labels: the chunks of every located paragraph, document order.
+    if ds.para:
+        pids = [sorted({c for g in ds.para[q]["paragraphs"] for c in g}, key=lambda c: (ds.chunks[c]["index"], c)) for q in ds.qids]
+        pf = flags(pids)
+        out["oracle_para"] = [record(ds, q, "oracle_para", ds.passages(ids, "evidence_para"), tok, evidence_in_context=f, retrieval_hit10=None)
+                              for q, ids, f in zip(ds.qids, pids, pf, strict=True)]
+    else:
+        out["oracle_para"] = None
     for cond, ranking in (("vanilla", ds.ranking_vanilla), ("saadi", ds.ranking_saadi), ("cr", cr)):  # type: ignore[attr-defined]
         if ranking is None:
             out[cond] = None
@@ -903,6 +1019,26 @@ def write_report(paths: cc.C5Paths, info: dict[str, Any], status: str, exit_code
                 rows.append([c, s["n"], f"{s['passages_mean']:.2f}", f"{s['context_tokens_mean']:.0f}", s["context_tokens_max"], f"{s['prompt_tokens_mean']:.0f}", s["prompt_tokens_max"],
                              fmt(s["evidence_in_context"]["hr_percent"]) + f" ({s['evidence_in_context']['eligible']})", fmt(s["hr10"]["hr_percent"]) + (f"; cut {s['cut']}" if s.get("cut") else "")])
             L.extend(cc.md_table(["Condition", "n", "Passages", "Ctx tok mean", "Ctx tok max", "Prompt tok mean", "Prompt tok max", "Evidence in context % (eligible)", "HR@10 %"], rows))
+        pl = d.get("para_labels") or {}
+        if pl.get("available"):
+            L.append("")
+            L.append(f"Paragraph labels (`{pl['file']}`): {pl['rule']}")
+            L.append("")
+            L.extend(cc.md_table(["Hops", "Queries", "Paragraphs", "Located %", "Queries with none located", "Chunks per query: paragraph labels", "Chunks per query: paper labels",
+                                  "Paper-label chunks inside a paragraph %", "Paper labels cover every paragraph"],
+                                 [[t["hops"], t["queries"], t["paragraphs"], fmt(t["paragraphs_located_pct"], 1), t["queries_without_any_located"],
+                                   fmt(t["chunks_per_query_paragraph_labels"], 2), fmt(t["chunks_per_query_paper_labels"], 2),
+                                   fmt(t["paper_label_chunks_in_a_paragraph_pct"], 1), t["paper_labels_cover_every_paragraph"]] for t in pl["by_hops"]]))
+            ev = pl.get("evidence") or {}
+            if ev:
+                L.append("")
+                L.append("Evidence in context with the paragraph labels (any / every located paragraph; for the top-10 rows this is HR@10):")
+                L.append("")
+                L.extend(cc.md_table(["Condition", "Any %", "All %", "Eligible"],
+                                     [[c, fmt(e["any"]["hr_percent"], 1), fmt(e["all"]["hr_percent"], 1), e["all"]["eligible"]] for c, e in ev.items()]))
+        elif pl:
+            L.append("")
+            L.append(f"Paragraph labels: not built ({pl.get('reason')}).")
         L.append("")
     L.append("## Comparison-method settings (defaults; nothing tuned)")
     L.append("")
@@ -1007,6 +1143,9 @@ def main(argv: list[str] | None = None) -> int:
             cr = load_cr(ds, env, d)
             raptor = load_raptor(ds, env, d)
             arag = load_arag(ds, env, d)
+            build_para_labels(ds, paths, d)
+            if (d.get("para_labels") or {}).get("available"):
+                info["files"].append(d["para_labels"]["file"])
             ctx = build_contexts(ds, tok, cr, raptor, arag, d)
             d["token_budget"] = d.get("token_budget")
             manifest = {"dataset": key, "created": cc.now(), "commit": info["commit"], "reader_model": env["C5_READER_MODEL"],
@@ -1033,6 +1172,25 @@ def main(argv: list[str] | None = None) -> int:
                 stats_rows.append({"dataset": key, "condition": cond, **{k: v for k, v in s.items() if not isinstance(v, dict)},
                                    "evidence_in_context_pct": s["evidence_in_context"]["hr_percent"], "evidence_eligible": s["evidence_in_context"]["eligible"],
                                    "hr10_pct": s["hr10"]["hr_percent"], "token_budget": d["token_budget"]})
+            # Paragraph-label evidence, in its own file: the contexts files (and so the reader's saved
+            # answers, keyed on their sha256) stay as they were.
+            pe_path = paths.para_evidence_file(key)
+            if ds.para:
+                pe = para_evidence_rows(ds, ctx)
+                cc.write_jsonl(pe_path, pe)
+                manifest["para_evidence"] = {"available": True, "file": paths.rel(pe_path), "rows": len(pe), "sha256": cc.sha256_file(pe_path),
+                                             "labels": d["para_labels"]["file"], "rule": d["para_labels"]["rule"]}
+                info["files"].append(paths.rel(pe_path))
+                pstat = {}
+                for c in cc.ALL_CONDITIONS:
+                    rs = [r for r in pe if r["condition"] == c]
+                    if rs:
+                        pstat[c] = {"any": cc.hit_rate(r["evidence_para_any"] for r in rs), "all": cc.hit_rate(r["evidence_para_all"] for r in rs)}
+                d["para_labels"]["evidence"] = pstat
+            else:
+                manifest["para_evidence"] = {"available": False}
+                if pe_path.exists():
+                    pe_path.unlink()
             cc.write_json(paths.context_manifest(key), manifest)
             info["files"].append(paths.rel(paths.context_manifest(key)))
             # Missing items and costs.
@@ -1073,7 +1231,7 @@ def main(argv: list[str] | None = None) -> int:
         for key in datasets:
             d = info["per_dataset"][key]
             avail = [c for c in cc.ALL_CONDITIONS if (d.get("stats", {}).get(c) or {}).get("n")]
-            miss = [c for c in cc.ALL_CONDITIONS if c not in avail]
+            miss = [c for c in cc.ALL_CONDITIONS if c not in avail and not (c == "oracle_para" and not (d.get("para_labels") or {}).get("available"))]
             g = d["gate"]
             info["summary"].append(f"{cc.DATASET_DISPLAY[key]}: gate passed (SAADI {g['saadi_identical']}/{d['queries']} identical to the paper, HR@10 {g['saadi_hr'][10]:.2f}; Vanilla HR@10 {g['vanilla_hr'][10]:.2f}). "
                                    f"Contexts built: {', '.join(avail)}." + (f" Missing: {', '.join(miss)}." if miss else ""))

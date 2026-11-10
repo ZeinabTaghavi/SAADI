@@ -12,6 +12,7 @@ import gzip
 import hashlib
 import json
 import os
+import re
 import subprocess
 import time
 from collections.abc import Iterable
@@ -44,6 +45,7 @@ METRICS_NAME = {"musique_32k": "musique", "novelhopqa": "novelhopqa"}
 CONDITIONS = (
     "closed_book",
     "oracle",
+    "oracle_para",
     "vanilla",
     "saadi",
     "cr",
@@ -59,6 +61,7 @@ ALL_CONDITIONS = CONDITIONS + SCORED_ONLY
 CONDITION_DISPLAY = {
     "closed_book": "Closed-book",
     "oracle": "Oracle (gold evidence chunks)",
+    "oracle_para": "Oracle (chunks of every evidence paragraph)",
     "vanilla": "Vanilla BM25 top 10",
     "saadi": "SAADI top 10",
     "cr": "Contextual Retrieval top 10",
@@ -73,7 +76,7 @@ CONDITION_DISPLAY = {
 # Paired differences reported (SAADI minus each).
 PAIRS = (("saadi", "vanilla"), ("saadi", "cr"), ("saadi", "raptor"), ("saadi", "arag"))
 PAIRS_EXTRA = (("saadi_at_raptor_len", "raptor"), ("saadi_at_arag_len", "arag"), ("saadi", "raptor_tm"), ("saadi", "arag_tm"),
-               ("saadi", "arag_own"), ("saadi", "closed_book"), ("oracle", "saadi"))
+               ("saadi", "arag_own"), ("saadi", "closed_book"), ("oracle", "saadi"), ("oracle_para", "saadi"))
 MEASURES = ("em", "f1", "contain")
 
 # ---------------------------------------------------------------------------------------------
@@ -219,6 +222,66 @@ def hit_rate(flags: Iterable[bool | None]) -> dict[str, Any]:
 
 
 # ---------------------------------------------------------------------------------------------
+# Paragraph labels (NovelHopQA). The paper's labels (indexing/labeling.py, window mode) match the
+# dataset's whole `context` as one span and accept a one-word overlap at a chunk boundary, and a
+# multi-hop context ("Paragraph 1: ... Paragraph 2: ...") joins paragraphs from different places of
+# the book. Here every paragraph is matched on its own, with the same token normalisation, and a
+# boundary overlap must be at least PARA_MIN_OVERLAP tokens (or the whole paragraph if shorter).
+# ---------------------------------------------------------------------------------------------
+PARA_MIN_OVERLAP = 8
+_PARA_SPLIT = re.compile(r"Paragraph\s+\d+\s*:\s*")
+
+
+def split_paragraphs(context: str) -> list[str]:
+    parts = [" ".join(p.split()) for p in _PARA_SPLIT.split(str(context or ""))]
+    return [p for p in parts if p]
+
+
+def match_tokens(text: str) -> list[str]:
+    from saadi.indexing.labeling import _tokenize_match_text
+
+    return _tokenize_match_text(text)
+
+
+def _suffix_is_prefix(a: list[str], b: list[str], k: int) -> bool:
+    """True when a[-j:] == b[:j] for some j >= k."""
+    n = min(len(a), len(b))
+    if not b or n < k:
+        return False
+    i, stop, first = len(a) - n, len(a) - k + 1, b[0]
+    while i < stop:
+        try:
+            i = a.index(first, i, stop)
+        except ValueError:
+            return False
+        if a[i:] == b[: len(a) - i]:
+            return True
+        i += 1
+    return False
+
+
+def paragraph_in_text(text_t: list[str], para_t: list[str]) -> bool:
+    """A passage's tokens hold this paragraph: one contains the other, or they overlap at a boundary
+    by at least min(PARA_MIN_OVERLAP, paragraph length) tokens."""
+
+    from saadi.indexing.labeling import _kmp_contains
+
+    if not text_t or not para_t:
+        return False
+    k = max(1, min(PARA_MIN_OVERLAP, len(para_t)))
+    return (_kmp_contains(text_t, para_t) or _kmp_contains(para_t, text_t)
+            or _suffix_is_prefix(text_t, para_t, k) or _suffix_is_prefix(para_t, text_t, k))
+
+
+def para_hit(found: list[bool]) -> tuple[bool | None, bool | None]:
+    """(any paragraph found, every paragraph found) over the located paragraphs; None without any."""
+
+    if not found:
+        return None, None
+    return any(found), all(found)
+
+
+# ---------------------------------------------------------------------------------------------
 # Paths
 # ---------------------------------------------------------------------------------------------
 
@@ -264,6 +327,13 @@ class C5Paths:
 
     def context_manifest(self, dataset: str) -> Path:
         return self.contexts / dataset / "manifest.json"
+
+    def para_evidence_file(self, dataset: str) -> Path:
+        """Per condition and query: are the dataset's evidence paragraphs in the context (paragraph labels)."""
+        return self.contexts / dataset / "evidence_para.jsonl.gz"
+
+    def para_labels_file(self, dataset: str) -> Path:
+        return self.results / "prepare" / f"labels_para_{dataset}.jsonl.gz"
 
     def answers_file(self, dataset: str, condition: str) -> Path:
         return self.results / "answers" / dataset / f"{condition}.jsonl"

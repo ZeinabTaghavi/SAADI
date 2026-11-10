@@ -21,7 +21,17 @@ export CUDA_VISIBLE_DEVICES=""
 
 TS="$(date +%Y%m%d_%H%M%S)"
 LOG="${C5_LOG_DIR}/00_prepare_${TS}.log"
-REPORT="${C5_REPORT_DIR}/step_00.md"
+# --tag <name> (e.g. --datasets novelhopqa --tag novelhopqa): the report is step_00_<name>.md.
+TAG=""
+args=("$@")
+for ((i = 0; i < ${#args[@]}; i++)); do
+  case "${args[i]}" in
+    --tag) TAG="${args[i + 1]:-}" ;;
+    --tag=*) TAG="${args[i]#--tag=}" ;;
+  esac
+done
+REPORT="${C5_REPORT_DIR}/step_00${TAG:+_${TAG}}.md"
+PUSH_NAME="00_prepare${TAG:+_${TAG}}"
 
 {
   echo "[c5] host $(hostname); repo ${C5_ROOT_DIR}; python ${PYTHON}"
@@ -40,7 +50,7 @@ else
   status=1
 fi
 
-c5_push all 00_prepare "${REPORT}"
+c5_push all "${PUSH_NAME}" "${REPORT}"
 
 echo "${REPORT}"
 exit "${status}"

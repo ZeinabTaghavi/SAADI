@@ -23,14 +23,42 @@ from typing import Any
 
 import c5_common as cc
 
-SUBSETS = (("all", None), ("evidence_yes", True), ("evidence_no", False), ("no_labels", "none"))
+# (name, field, value): "none" = the field is None.
+SUBSETS = (("all", None, None), ("evidence_yes", "evidence_in_context", True), ("evidence_no", "evidence_in_context", False),
+           ("no_labels", "evidence_in_context", "none"),
+           # Paragraph labels (NovelHopQA): every located evidence paragraph in the context, or not; and by hop count.
+           ("para_yes", "evidence_para_all", True), ("para_no", "evidence_para_all", False), ("hop_1", "hop_group", "1"), ("hop_2plus", "hop_group", "2+"))
+NEW_SUBSETS = ("para_yes", "para_no", "hop_1", "hop_2plus")  # left out of table.csv when empty (MuSiQue-32K)
+# Per-query yes/no measures in the paired table: name -> field.
+FLAGS = {"hr10": "retrieval_hit10", "evidence": "evidence_in_context", "evidence_para_any": "evidence_para_any", "evidence_para_all": "evidence_para_all"}
+
+
+def in_subset(r: dict[str, Any], field: str | None, value: Any) -> bool:
+    if field is None:
+        return True
+    if value == "none":
+        return r.get(field) is None
+    if isinstance(value, bool):
+        return r.get(field) is value
+    return r.get(field) == value
 
 
 def log(msg: str) -> None:
     print(f"[c5-03] {cc.now()} {msg}", flush=True)
 
 
-def load_answers(paths: cc.C5Paths, ds: str) -> dict[str, dict[str, dict[str, Any]]]:
+def load_para(paths: cc.C5Paths, ds: str, manifest: dict[str, Any]) -> dict[tuple[str, str], dict[str, Any]]:
+    meta = manifest.get("para_evidence") or {}
+    p = paths.para_evidence_file(ds)
+    if not meta.get("available") or not p.exists():
+        return {}
+    if cc.sha256_file(p) != meta.get("sha256"):
+        raise RuntimeError(f"{p} changed after step 00 wrote its manifest; rerun step 00")
+    return {(r["condition"], r["query_id"]): r for r in cc.read_jsonl(p)}
+
+
+def load_answers(paths: cc.C5Paths, ds: str, para: dict[tuple[str, str], dict[str, Any]] | None = None) -> dict[str, dict[str, dict[str, Any]]]:
+    para = para or {}
     out = {}
     for cond in cc.ALL_CONDITIONS:
         p = paths.answers_file(ds, cond)
@@ -39,6 +67,10 @@ def load_answers(paths: cc.C5Paths, ds: str) -> dict[str, dict[str, dict[str, An
         rows = {}
         for r in cc.read_jsonl(p):
             r.update(cc.score_answer(r["output"], r["gold"]))  # rescore from the saved output
+            pe = para.get((cond, r["query_id"]))
+            hops = pe.get("hops") if pe else None
+            r.update({"evidence_para_any": pe["evidence_para_any"] if pe else None, "evidence_para_all": pe["evidence_para_all"] if pe else None,
+                      "hops": hops, "hop_group": None if not hops else ("1" if int(hops) == 1 else "2+")})
             rows[r["query_id"]] = r
         out[cond] = rows
     return out
@@ -50,21 +82,22 @@ def summarise(ds: str, answers: dict[str, dict[str, dict[str, Any]]], manifest: 
         vals = list(rows.values())
         expected = (manifest["conditions"].get(cond) or {}).get("n")
         s: dict[str, Any] = {"n": len(vals), "expected": expected, "complete": expected == len(vals)}
-        for name, flag in SUBSETS:
-            if flag is None:
-                sub = vals
-            elif flag == "none":
-                sub = [r for r in vals if r.get("evidence_in_context") is None]
-            else:
-                sub = [r for r in vals if r.get("evidence_in_context") is flag]
+        for name, field, value in SUBSETS:
+            sub = [r for r in vals if in_subset(r, field, value)]
             s[name] = {"n": len(sub)}
             for m in cc.MEASURES:
                 v = 100.0 * mean(r[m] for r in sub) if sub else None
                 s[name][m] = v
-                table.append({"dataset": ds, "condition": cond, "subset": name, "measure": m, "n": len(sub), "value": v})
+                if sub or name not in NEW_SUBSETS:
+                    table.append({"dataset": ds, "condition": cond, "subset": name, "measure": m, "n": len(sub), "value": v})
         hr = cc.hit_rate(r.get("retrieval_hit10") for r in vals)
         ev = cc.hit_rate(r.get("evidence_in_context") for r in vals)
         s["hr10"], s["evidence_in_context"] = hr, ev
+        s["evidence_para_any"] = cc.hit_rate(r.get("evidence_para_any") for r in vals)
+        s["evidence_para_all"] = cc.hit_rate(r.get("evidence_para_all") for r in vals)
+        for m in ("evidence_para_any", "evidence_para_all"):
+            if s[m]["eligible"]:
+                table.append({"dataset": ds, "condition": cond, "subset": "all", "measure": m, "n": s[m]["eligible"], "value": s[m]["hr_percent"]})
         ctx = [r.get("context_tokens") or 0 for r in vals]
         s["context_tokens_mean"], s["context_tokens_max"] = (mean(ctx), max(ctx)) if ctx else (None, None)
         s["passages_mean"] = mean(r.get("n_passages") or 0 for r in vals) if vals else None
@@ -79,9 +112,9 @@ def summarise(ds: str, answers: dict[str, dict[str, dict[str, Any]]], manifest: 
             continue
         common = [q for q in answers[a] if q in answers[b]]
         res = {"n": len(common)}
-        for m in cc.MEASURES + ("hr10", "evidence"):
-            if m in ("hr10", "evidence"):
-                key = "retrieval_hit10" if m == "hr10" else "evidence_in_context"
+        for m in cc.MEASURES + tuple(FLAGS):
+            if m in FLAGS:
+                key = FLAGS[m]
                 qs = [q for q in common if answers[a][q].get(key) is not None and answers[b][q].get(key) is not None]
                 diffs = [100.0 * (float(answers[a][q][key]) - float(answers[b][q][key])) for q in qs]
             else:
@@ -120,7 +153,8 @@ def main(argv: list[str] | None = None) -> int:
     summary: dict[str, Any] = {}
     try:
         manifest = cc.read_json(paths.context_manifest(ds))
-        answers = load_answers(paths, ds)
+        para = load_para(paths, ds, manifest)
+        answers = load_answers(paths, ds, para)
         if not answers:
             raise RuntimeError(f"no answers under {paths.results / 'answers' / ds}")
         table, paired, summary = summarise(ds, answers, manifest)
@@ -164,11 +198,24 @@ def main(argv: list[str] | None = None) -> int:
         for key, res in summary["paired"].items():
             a, b = key.split("-", 1)
             cells = [f"{cc.CONDITION_DISPLAY[a]} − {cc.CONDITION_DISPLAY[b]}", res["n"]]
-            for m in ("em", "f1", "contain", "hr10", "evidence"):
+            for m in ("em", "f1", "contain", "hr10", "evidence", "evidence_para_all"):
                 r = res.get(m)
                 cells.append("—" if not r else f"{r['diff']:+.1f} [{r['ci'][0]:+.1f}, {r['ci'][1]:+.1f}]")
             rows.append(cells)
-        L += cc.md_table(["Pair", "n", "EM", "F1", "Contain", "HR@10", "Evidence in context"], rows)
+        L += cc.md_table(["Pair", "n", "EM", "F1", "Contain", "HR@10", "Evidence in context", "Evidence, paragraph labels (all)"], rows)
+        if any(s["evidence_para_all"]["eligible"] for s in summary["conditions"].values()):
+            L += ["", "Paragraph labels (each evidence paragraph of the dataset located on its own in SAADI's chunks; see step 00). "
+                  "Evidence any / all = at least one / every located paragraph is in the context (full chunks or RAPTOR leaf text; summaries and cut passages do not count); "
+                  "for the top-10 rows this is HR@10 with these labels.", ""]
+            rows = []
+            for c in cc.ALL_CONDITIONS:
+                s = summary["conditions"].get(c)
+                if not s:
+                    continue
+                rows.append([cc.CONDITION_DISPLAY[c], s["n"], f(s["evidence_para_any"]["hr_percent"]), f(s["evidence_para_all"]["hr_percent"]),
+                             f"{f(s['para_yes']['f1'])} ({s['para_yes']['n']})", f"{f(s['para_no']['f1'])} ({s['para_no']['n']})",
+                             f"{f(s['hop_1']['f1'])} ({s['hop_1']['n']})", f"{f(s['hop_2plus']['f1'])} ({s['hop_2plus']['n']})"])
+            L += cc.md_table(["Condition", "n", "Evidence any %", "Evidence all %", "F1 all paragraphs in context (n)", "F1 not all (n)", "F1 1-hop (n)", "F1 2-4 hops (n)"], rows)
     for w in info.get("warnings", []):
         L += ["", f"Warning: {w}"]
     if info.get("traceback"):
