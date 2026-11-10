@@ -130,3 +130,9 @@ Evidence in context with the paragraph labels (any / every located paragraph; fo
 - `results/rebuttal/c5_end_to_end/prepare/context_stats_novelhopqa.csv`
 - `experiments/rebuttal/c5_end_to_end/reports/step_00_novelhopqa.md`
 - `experiments/rebuttal/c5_end_to_end/reports/step_00_novelhopqa.json`
+
+## Push
+
+```
+pushed dc92342 to origin/fix/notebook-key-and-install: C5 all 00_prepare_novelhopqa: gate passed on 1 datasets; contexts written; nothing missing
+```
