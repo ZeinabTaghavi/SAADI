@@ -562,6 +562,10 @@ def main(argv: list[str] | None = None) -> int:
         if not env.get("C8_TOKENIZER") and not info["model"].get("snapshot"):
             raise GateFailed(f"{model} is not in the Hugging Face cache ({env.get('HF_HUB_CACHE')}); download it first, e.g. "
                              f"HF_HUB_OFFLINE=0 HF_HOME={env.get('HF_HOME')} huggingface-cli download {model}")
+        # The model's own tokenizer is loaded from its snapshot folder (no cache-path lookups).
+        if not env.get("C8_TOKENIZER") and info["model"].get("snapshot"):
+            tok_name = info["model"]["snapshot"]
+            info["tokenizer"] = f"{model} ({tok_name})"
         log(f"tokenizer {tok_name}")
         tok = s0.Tok(tok_name)
         counter = FullDocCounter(tok)
@@ -676,6 +680,7 @@ def main(argv: list[str] | None = None) -> int:
             info["files"] += [paths.rel(dpath), paths.rel(qpath), paths.rel(paths.manifest(key))]
         settings_lines = [
             "# Written by C8 step 00 (sourced by sh/run_gpus_4567.sh). Re-run step 00 to change.",
+            f"C8_STEP00_MODEL_PATH={info['model'].get('snapshot') or model}",
             f"C8_STEP00_MAX_MODEL_LEN={mm['max_model_len']}",
             f"C8_STEP00_LONGEST_PROMPT={need - max_out}",
             f"C8_STEP00_KV_CAPACITY_EST={mem['kv_capacity_tokens']}",

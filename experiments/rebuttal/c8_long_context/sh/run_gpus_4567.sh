@@ -205,7 +205,7 @@ start_server() {  # <mode: dca|native>
     fi
     # shellcheck disable=SC2086
     exec ${launcher[@]+"${launcher[@]}"} "${C8_VLLM_PY}" -m vllm.entrypoints.openai.api_server \
-      --model "${C8_MODEL}" --served-model-name "${C8_MODEL}" --host 127.0.0.1 --port "${PORT}" \
+      --model "${C8_STEP00_MODEL_PATH:-${C8_MODEL}}" --served-model-name "${C8_MODEL}" --host 127.0.0.1 --port "${PORT}" \
       --tensor-parallel-size "${C8_TENSOR_PARALLEL}" --dtype bfloat16 --max-model-len "${len}" \
       --gpu-memory-utilization "${C8_GPU_MEMORY_UTILIZATION}" --max-num-seqs "${C8_MAX_NUM_SEQS}" \
       --max-num-batched-tokens "${C8_MAX_NUM_BATCHED_TOKENS}" --seed "${C8_SEED}" \

@@ -18,6 +18,10 @@ export C8_ROOT_DIR
 source "${C8_ROOT_DIR}/experiments/rebuttal/c5_end_to_end/env.sh"
 set +e
 cd "${C8_ROOT_DIR}"
+# C5 sets TRANSFORMERS_CACHE=${HF_HOME}/transformers; transformers then looks for models there and not
+# in ${HF_HOME}/hub, where huggingface_hub downloads them. C8 uses the hub cache only (the model is
+# also loaded from its snapshot folder, see step 00).
+unset TRANSFORMERS_CACHE
 
 # ---------------------------------------------------------------------------------------------
 # Folders
