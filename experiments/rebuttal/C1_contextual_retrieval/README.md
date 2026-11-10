@@ -16,13 +16,14 @@ nohup bash experiments/rebuttal/C1_contextual_retrieval/run_gpus_0123.sh > /dev/
 nohup bash experiments/rebuttal/C1_contextual_retrieval/run_gpus_4567.sh > /dev/null 2>&1 &   # group B: MuSiQue-32K, then QASPER-64K
 ```
 
-Fastest way to finish everything that is missing, when all eight GPUs are free (no group script running):
+Fastest way to finish everything that is missing: one command, safe to rerun at any time:
 
 ```bash
-nohup bash experiments/rebuttal/C1_contextual_retrieval/run_all_gpus.sh > /dev/null 2>&1 &
+bash experiments/rebuttal/C1_contextual_retrieval/run_all_gpus.sh
 ```
 
-It runs two vLLM engines at once (GPUs 0-3 and 4-7, same settings as the group runs; the remaining segments
+It first stops any C1 run still going (finished contexts and jobs are kept and resumed), then starts in the
+background (closing the terminal is fine) and shows the log; Ctrl-C only closes the log view. It runs two vLLM engines at once (GPUs 0-3 and 4-7, same settings as the group runs; the remaining segments
 of all datasets are spread over both, longest first, each engine writing its own `contexts.engine<k>.jsonl`),
 then every missing retrieval job over the eight GPUs, with each Qwen3-Embedding-8B job split by document over
 two GPU pairs and then merged (the merge applies the correctness gate and writes the rankings; split and
