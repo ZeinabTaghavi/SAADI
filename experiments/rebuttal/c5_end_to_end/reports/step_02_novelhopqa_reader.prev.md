@@ -1,0 +1,62 @@
+# C5 end-to-end QA - step 02 reader, novelhopqa: FAILED
+
+Written 2026-11-10 19:59:34 on eee-s132-infsys-gpu03; GPUs 4,5,6,7; port 18532.
+
+The vLLM server did not start (log in outputs/rebuttal/c5_end_to_end/vllm_logs/novelhopqa_20261110_195908.log; tail above).
+
+Last 60 lines of experiments/rebuttal/c5_end_to_end/logs/run_novelhopqa_20261110_195908.log:
+
+```
+[c5-novelhopqa] 2026-11-10 19:59:08 host eee-s132-infsys-gpu03; dataset novelhopqa; GPUs 4,5,6,7; port 18532; reader Qwen/Qwen3-30B-A3B-Instruct-2507
+[c5] python /mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+/mnt/data/zeinab/raptor/.venv/bin/python3 3.12.3
+[c5-novelhopqa] 2026-11-10 19:59:14 starting vLLM on GPUs 4,5,6,7, port 18532; log outputs/rebuttal/c5_end_to_end/vllm_logs/novelhopqa_20261110_195908.log
+[c5-novelhopqa] 2026-11-10 19:59:34 vLLM server exited during start-up; last lines:
+(APIServer pid=230705)     await run_server_worker(listen_address, sock, args, **uvicorn_kwargs)
+(APIServer pid=230705)   File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm/entrypoints/openai/api_server.py", line 679, in run_server_worker
+(APIServer pid=230705)     async with build_async_engine_client(
+(APIServer pid=230705)   File "/usr/lib/python3.12/contextlib.py", line 210, in __aenter__
+(APIServer pid=230705)     return await anext(self.gen)
+(APIServer pid=230705)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=230705)   File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm/entrypoints/openai/api_server.py", line 99, in build_async_engine_client
+(APIServer pid=230705)     async with build_async_engine_client_from_engine_args(
+(APIServer pid=230705)   File "/usr/lib/python3.12/contextlib.py", line 210, in __aenter__
+(APIServer pid=230705)     return await anext(self.gen)
+(APIServer pid=230705)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=230705)   File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm/entrypoints/openai/api_server.py", line 135, in build_async_engine_client_from_engine_args
+(APIServer pid=230705)     async_llm = AsyncLLM.from_vllm_config(
+(APIServer pid=230705)                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=230705)   File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm/v1/engine/async_llm.py", line 217, in from_vllm_config
+(APIServer pid=230705)     return cls(
+(APIServer pid=230705)            ^^^^
+(APIServer pid=230705)   File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm/v1/engine/async_llm.py", line 146, in __init__
+(APIServer pid=230705)     self.engine_core = EngineCoreClient.make_async_mp_client(
+(APIServer pid=230705)                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=230705)   File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=230705)     return func(*args, **kwargs)
+(APIServer pid=230705)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=230705)   File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 131, in make_async_mp_client
+(APIServer pid=230705)     return AsyncMPClient(*client_args)
+(APIServer pid=230705)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=230705)   File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=230705)     return func(*args, **kwargs)
+(APIServer pid=230705)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=230705)   File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 948, in __init__
+(APIServer pid=230705)     super().__init__(
+(APIServer pid=230705)   File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 550, in __init__
+(APIServer pid=230705)     self.input_socket = self.resources.input_socket = make_zmq_socket(
+(APIServer pid=230705)                                                       ^^^^^^^^^^^^^^^^
+(APIServer pid=230705)   File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm/utils/network_utils.py", line 338, in make_zmq_socket
+(APIServer pid=230705)     socket.bind(path)
+(APIServer pid=230705)   File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/zmq/sugar/socket.py", line 320, in bind
+(APIServer pid=230705)     super().bind(addr)
+(APIServer pid=230705)   File "zmq/backend/cython/_zmq.py", line 1002, in zmq.backend.cython._zmq.Socket.bind
+(APIServer pid=230705) zmq.error.ZMQError: ipc path "/home/iataghav/data/SAADI/outputs/rebuttal/c5_end_to_end/tmp/novelhopqa/e2449dc0-4f62-4f17-97e8-af5c0003d315" is longer than 107 characters (sizeof(sockaddr_un.sun_path)). zmq.IPC_PATH_MAX_LEN constant can be used to check addr length (if it is defined). (addr='ipc:///home/iataghav/data/SAADI/outputs/rebuttal/c5_end_to_end/tmp/novelhopqa/e2449dc0-4f62-4f17-97e8-af5c0003d315')
+```
+
+## Push
+
+```
+pushed bebd864 to origin/fix/notebook-key-and-install: C5 novelhopqa 02_reader: FAILED: The vLLM server did not start (log in outputs/rebuttal/c5_end_to_end/vllm_logs/novelhopqa_20261110_195908.log; tail above).
+```

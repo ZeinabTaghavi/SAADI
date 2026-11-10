@@ -1,6 +1,6 @@
 # C5 end-to-end QA - step 01 RAPTOR re-run, MuSiQue-32K: FAILED
 
-Written 2026-11-10 19:51:46; commit 189f048f7efa; host eee-s132-infsys-gpu03; GPUs 0,1,2,3; 0 s.
+Written 2026-11-10 19:59:07; commit 3fd3c0dca1b3; host eee-s132-infsys-gpu03; GPUs 0,1,2,3; 0 s.
 
 Command: `bash experiments/rebuttal/c5_end_to_end/sh/run_gpus_0123.sh` (stage raptor)
 
@@ -36,5 +36,5 @@ RuntimeError: no RAPTOR copy with the MuSiQue runner among ['/mnt/data/zeinab/SA
 ## Push
 
 ```
-pushed 7246573 to origin/fix/notebook-key-and-install: C5 musique_32k 01_raptor: FAILED: RuntimeError: no RAPTOR copy with the MuSiQue runner among ['/mnt/data/zeinab/SAADI_Raptor', '/mnt/data/zeinab/SAADI_Raptor'
+pushed 38a4c4e to origin/fix/notebook-key-and-install: C5 musique_32k 01_raptor: FAILED: RuntimeError: no RAPTOR copy with the MuSiQue runner among ['/mnt/data/zeinab/SAADI_Raptor', '/mnt/data/zeinab/SAADI_Raptor'
 ```

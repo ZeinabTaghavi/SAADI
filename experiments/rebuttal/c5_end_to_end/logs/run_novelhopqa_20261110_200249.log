@@ -1,0 +1,33 @@
+[c5-novelhopqa] 2026-11-10 20:02:49 host eee-s132-infsys-gpu03; dataset novelhopqa; GPUs 4,5,6,7; port 18532; reader Qwen/Qwen3-30B-A3B-Instruct-2507
+[c5] python /mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+/mnt/data/zeinab/raptor/.venv/bin/python3 3.12.3
+[c5-novelhopqa] 2026-11-10 20:02:55 starting vLLM on GPUs 4,5,6,7, port 18532; log outputs/rebuttal/c5_end_to_end/vllm_logs/novelhopqa_20261110_200249.log
+[c5-novelhopqa] 2026-11-10 20:04:05 vLLM server ready after 70 s
+[c5] 2026-11-10 20:04:05 start 02: /mnt/data/zeinab/raptor/.venv/bin/python3 /home/iataghav/data/SAADI/experiments/rebuttal/c5_end_to_end/scripts/step02_reader.py --dataset novelhopqa --port 18532
+[c5-02] 2026-11-10 20:04:06 novelhopqa/closed_book: 908 queries, 0 done, 908 to ask
+[c5-02] 2026-11-10 20:04:23 novelhopqa/closed_book: 500/908
+[c5-02] 2026-11-10 20:04:34 novelhopqa/oracle: 908 queries, 0 done, 908 to ask
+[c5-02] 2026-11-10 20:08:07 novelhopqa/oracle: 500/908
+[c5-02] 2026-11-10 20:10:42 novelhopqa/vanilla: 908 queries, 0 done, 908 to ask
+[c5-02] 2026-11-10 20:22:27 novelhopqa/vanilla: 500/908
+[c5-02] 2026-11-10 20:31:42 novelhopqa/saadi: 908 queries, 0 done, 908 to ask
+[c5-02] 2026-11-10 20:43:20 novelhopqa/saadi: 500/908
+[c5-02] 2026-11-10 20:52:39 novelhopqa/cr: 908 queries, 0 done, 908 to ask
+[c5-02] 2026-11-10 21:04:21 novelhopqa/cr: 500/908
+[c5-02] 2026-11-10 21:13:36 novelhopqa/raptor: 908 queries, 0 done, 908 to ask
+[c5-02] 2026-11-10 21:16:32 novelhopqa/raptor: 500/908
+[c5-02] 2026-11-10 21:18:49 novelhopqa/raptor_tm: 908 queries, 0 done, 908 to ask
+[c5-02] 2026-11-10 21:21:48 novelhopqa/raptor_tm: 500/908
+[c5-02] 2026-11-10 21:24:05 novelhopqa/arag: 908 queries, 0 done, 908 to ask
+[c5-02] 2026-11-10 21:28:09 novelhopqa/arag: 500/908
+[c5-02] 2026-11-10 21:31:23 novelhopqa/arag_tm: 908 queries, 0 done, 908 to ask
+[c5-02] 2026-11-10 21:35:31 novelhopqa/arag_tm: 500/908
+[c5-02] 2026-11-10 21:38:47 novelhopqa/saadi_at_raptor_len: 908 queries, 0 done, 908 to ask
+[c5-02] 2026-11-10 21:41:39 novelhopqa/saadi_at_raptor_len: 500/908
+[c5-02] 2026-11-10 21:44:00 novelhopqa/saadi_at_arag_len: 908 queries, 0 done, 908 to ask
+[c5-02] 2026-11-10 21:48:14 novelhopqa/saadi_at_arag_len: 500/908
+[c5-02] 2026-11-10 21:51:53 novelhopqa/arag_own: 908 queries, 0 done, 908 to ask
+[c5-02] 2026-11-10 21:51:54 done: OK
+[c5] 2026-11-10 21:51:54 end 02: exit 0
+[c5-novelhopqa] 2026-11-10 21:51:54 stopping vLLM server (pid 239017)
