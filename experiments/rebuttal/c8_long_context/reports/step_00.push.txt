@@ -1,1 +1,1 @@
-pushed 5516b53 to origin/fix/notebook-key-and-install: C8 all 00_prepare: FAILED: OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.
+pushed 4ab2334 to origin/fix/notebook-key-and-install: C8 all 00_prepare: docs MuSiQue 51,692 max, NovelHopQA 759,549 max tokens; max_model_len 778,240; fits on 4 GPUs

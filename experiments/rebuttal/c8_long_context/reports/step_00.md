@@ -147,3 +147,9 @@ nohup bash experiments/rebuttal/c8_long_context/sh/run_gpus_4567.sh > /dev/null 
 - `results/rebuttal/c8_long_context/prepare/evidence_position.csv`
 - `experiments/rebuttal/c8_long_context/reports/step_00.md`
 - `experiments/rebuttal/c8_long_context/reports/step_00.json`
+
+## Push
+
+```
+pushed 4ab2334 to origin/fix/notebook-key-and-install: C8 all 00_prepare: docs MuSiQue 51,692 max, NovelHopQA 759,549 max tokens; max_model_len 778,240; fits on 4 GPUs
+```
