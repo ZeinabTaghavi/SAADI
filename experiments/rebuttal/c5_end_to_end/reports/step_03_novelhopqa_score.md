@@ -1,6 +1,6 @@
 # C5 end-to-end QA - step 03 scores, NovelHopQA: FAILED
 
-Written 2026-11-10 19:52:28; commit e300b0c6d976; host eee-s132-infsys-gpu03.
+Written 2026-11-10 19:59:39; commit bebd8646358e; host eee-s132-infsys-gpu03.
 
 Scores in percent. EM and token F1 after SQuAD normalisation (best over the gold answers); Contain = a gold answer inside the output. Evidence yes/no = the paper's hit rule (a gold chunk or a whole silver group) applied to the chunks in the context. HR@10 = the condition's retrieval hit (RAPTOR: its upper-bound HR@10; A-RAG: hit over the chunks it read; none for the cut SAADI rows, whose retrieval measure is the evidence in the cut context).
 
@@ -17,9 +17,3 @@ RuntimeError: no answers under /home/iataghav/data/SAADI/results/rebuttal/c5_end
 ## Files written
 
 - `experiments/rebuttal/c5_end_to_end/reports/step_03_novelhopqa_score.md`
-
-## Push
-
-```
-pushed 3fd3c0d to origin/fix/notebook-key-and-install: C5 novelhopqa 03_score: FAILED: RuntimeError: no answers under /home/iataghav/data/SAADI/results/rebuttal/c5_end_to_end/answers/novelhopqa
-```
