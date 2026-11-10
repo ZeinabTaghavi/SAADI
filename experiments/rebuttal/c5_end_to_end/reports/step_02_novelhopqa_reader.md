@@ -54,3 +54,9 @@ Last 60 lines of experiments/rebuttal/c5_end_to_end/logs/run_novelhopqa_20261110
 (APIServer pid=224828)   File "zmq/backend/cython/_zmq.py", line 1002, in zmq.backend.cython._zmq.Socket.bind
 (APIServer pid=224828) zmq.error.ZMQError: ipc path "/home/iataghav/data/SAADI/outputs/rebuttal/c5_end_to_end/tmp/novelhopqa/2ee72c5b-8cbe-486b-a791-2d583719779f" is longer than 107 characters (sizeof(sockaddr_un.sun_path)). zmq.IPC_PATH_MAX_LEN constant can be used to check addr length (if it is defined). (addr='ipc:///home/iataghav/data/SAADI/outputs/rebuttal/c5_end_to_end/tmp/novelhopqa/2ee72c5b-8cbe-486b-a791-2d583719779f')
 ```
+
+## Push
+
+```
+pushed e300b0c to origin/fix/notebook-key-and-install: C5 novelhopqa 02_reader: FAILED: The vLLM server did not start (log in outputs/rebuttal/c5_end_to_end/vllm_logs/novelhopqa_20261110_195149.log; tail above).
+```
