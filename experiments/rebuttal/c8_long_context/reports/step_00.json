@@ -1,0 +1,59 @@
+{
+ "step": "00",
+ "argv": [],
+ "commit": "efc463a0d957",
+ "host": "eee-s132-infsys-gpu03",
+ "datasets": [
+  "musique_32k",
+  "novelhopqa"
+ ],
+ "model": {
+  "model": "Qwen/Qwen2.5-7B-Instruct-1M",
+  "in_cache": false,
+  "error": "LocalEntryNotFoundError: Cannot find an appropriate cached snapshot folder for the specified revision on the local disk and outgoing traffic has been disabled. To enable repo look-ups and downloads online, pass 'local_files_o"
+ },
+ "tokenizer": "Qwen/Qwen2.5-7B-Instruct-1M",
+ "max_output_tokens": 64,
+ "per_dataset": {},
+ "files": [
+  "experiments/rebuttal/c8_long_context/reports/step_00.md",
+  "experiments/rebuttal/c8_long_context/reports/step_00.json"
+ ],
+ "warnings": [],
+ "summary": [
+  "Stopped: Qwen/Qwen2.5-7B-Instruct-1M is not in the Hugging Face cache (/mnt/cache/taghavi/hub); download it first, e.g. HF_HUB_OFFLINE=0 HF_HOME=/mnt/cache/taghavi huggingface-cli download Qwen/Qwen2.5-7B-Instruct-1M"
+ ],
+ "published_point": [
+  0.5,
+  0.3,
+  1.0,
+  1.0
+ ],
+ "preserved": {
+  "checked": 93,
+  "changed": [],
+  "missing": []
+ },
+ "shape": {
+  "assumed_from_model_card": true,
+  "layers": 28,
+  "heads": 28,
+  "kv_heads": 4,
+  "hidden": 3584,
+  "intermediate": 18944,
+  "head_dim": 128,
+  "max_position_embeddings": 1010000,
+  "native_window": 262144,
+  "dual_chunk_attention_config": {},
+  "sparse_attention_config": null,
+  "weights_bytes": 15240000000,
+  "params": 7620000000.0,
+  "dtype": "bfloat16",
+  "kv_bytes_per_token": 57344
+ },
+ "one_line": "FAILED: Qwen/Qwen2.5-7B-Instruct-1M is not in the Hugging Face cache (/mnt/cache/taghavi/hub); download it first, e.g. HF_HUB_OFFLINE=0 HF",
+ "traceback": "Traceback (most recent call last):\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c8_long_context/scripts/step00_prepare.py\", line 563, in main\n    raise GateFailed(f\"{model} is not in the Hugging Face cache ({env.get('HF_HUB_CACHE')}); download it first, e.g. \"\nGateFailed: Qwen/Qwen2.5-7B-Instruct-1M is not in the Hugging Face cache (/mnt/cache/taghavi/hub); download it first, e.g. HF_HUB_OFFLINE=0 HF_HOME=/mnt/cache/taghavi huggingface-cli download Qwen/Qwen2.5-7B-Instruct-1M\n",
+ "seconds": 0,
+ "status": "FAILED",
+ "exit_code": 1
+}
