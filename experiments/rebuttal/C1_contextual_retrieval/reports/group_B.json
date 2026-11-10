@@ -6,7 +6,9 @@
     "--group",
     "B"
   ],
-  "datasets": {},
+  "datasets": {
+    "musique_32k": "done"
+  },
   "problems": [],
   "preflight": {
     "problems": [],

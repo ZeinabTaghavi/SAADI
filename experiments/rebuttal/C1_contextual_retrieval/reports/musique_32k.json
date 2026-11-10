@@ -1,0 +1,1772 @@
+{
+  "dataset": "musique_32k",
+  "written_at": "2026-11-09 20:26:22",
+  "tag": "",
+  "census": {
+    "dataset": "musique_32k",
+    "max_docs": null,
+    "tokenizer": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+    "model": {
+      "max_model_len": 262144,
+      "rope_scaling": null,
+      "num_hidden_layers": 48,
+      "num_key_value_heads": 4,
+      "head_dim": 128
+    },
+    "template_tokens": 70,
+    "context_max_tokens": 1024,
+    "doc_separator": " ",
+    "n_docs": 45,
+    "n_chunks": 17102,
+    "doc_tokens": {
+      "n": 45,
+      "min": 42280.0,
+      "p25": 48065.0,
+      "median": 48888.0,
+      "mean": 48816.2,
+      "p75": 49623.0,
+      "p95": 50791.8,
+      "max": 51727.0,
+      "total": 2196729.0
+    },
+    "chunk_tokens": {
+      "n": 17102,
+      "min": 4.0,
+      "p25": 113.0,
+      "median": 127.0,
+      "mean": 128.5195883522395,
+      "p75": 142.0,
+      "p95": 175.0,
+      "max": 429.0,
+      "total": 2197942.0
+    },
+    "docs_exceeding_window": 0,
+    "chunks_in_segmented_docs": 0,
+    "k_values": {
+      "1": 45
+    },
+    "segmented_docs": [],
+    "nominal_input_tokens": 838975541,
+    "visible_tokens_per_call": {
+      "n": 17102,
+      "min": 42289.0,
+      "p25": 48074.0,
+      "median": 48897.0,
+      "mean": 48867.62144778389,
+      "p75": 49642.0,
+      "p95": 50823.0,
+      "max": 51736.0,
+      "total": 835734062.0
+    },
+    "joint_tokenization_equals_split": [
+      true,
+      true,
+      true
+    ],
+    "seconds": 116.9
+  },
+  "generation": {
+    "done": true,
+    "stats": {
+      "calls": 17102,
+      "calls_per_chunk": 1.0,
+      "calls_per_document": 380.0444444444444,
+      "missing_chunks": 0,
+      "missing_examples": [],
+      "empty_contexts": 0,
+      "failed_contexts": 0,
+      "cut_at_max_tokens": 0,
+      "cut_share": 0.0,
+      "generated_tokens": {
+        "n": 17102,
+        "min": 26.0,
+        "p25": 78.0,
+        "median": 93.0,
+        "mean": 94.96456554788914,
+        "p75": 110.0,
+        "p95": 140.0,
+        "max": 372.0,
+        "total": 1624084.0
+      },
+      "nominal_input_tokens": {
+        "n": 17102,
+        "min": 42390.0,
+        "p25": 48263.0,
+        "median": 49116.0,
+        "mean": 49057.159455034496,
+        "p75": 49829.0,
+        "p95": 51044.0,
+        "max": 52079.0,
+        "total": 838975541.0
+      },
+      "computed_input_tokens": {
+        "n": 17102,
+        "min": 1.0,
+        "p25": 162.0,
+        "median": 177.0,
+        "mean": 349.25160799906445,
+        "p75": 193.0,
+        "p95": 227.0,
+        "max": 51921.0,
+        "total": 5972901.0
+      },
+      "cached_tokens_source": [
+        "vllm num_cached_tokens"
+      ],
+      "generator": [
+        "vllm"
+      ],
+      "context_chars": {
+        "n": 17102,
+        "min": 100.0,
+        "p25": 378.0,
+        "median": 453.0,
+        "mean": 456.10185943164544,
+        "p75": 527.0,
+        "p95": 652.9499999999989,
+        "max": 1319.0,
+        "total": 7800254.0
+      }
+    },
+    "runs": [
+      {
+        "contexts_this_run": 17102,
+        "seconds_this_run": 7252.9,
+        "waves": 5,
+        "generator": "vllm",
+        "vllm_version": "0.23.0",
+        "vllm_settings": {
+          "tensor_parallel_size": 4,
+          "dtype": "bfloat16",
+          "gpu_memory_utilization": 0.8,
+          "max_num_seqs": 16,
+          "max_num_batched_tokens": 16384,
+          "enable_prefix_caching": true,
+          "disable_custom_all_reduce": true,
+          "seed": 42,
+          "model": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+          "max_model_len": 262144,
+          "generation_config": "vllm"
+        },
+        "wall_seconds": 7408.9,
+        "gpus": "4,5,6,7",
+        "finished_at": "2026-11-09 18:12:30"
+      }
+    ]
+  },
+  "memory_check": {
+    "text_chars": 1294,
+    "placeholder_context_tokens": 1024,
+    "margin": 0.1,
+    "models": {
+      "contriever": {
+        "retriever": "contriever",
+        "n_gpus": 1,
+        "batch_size": 128,
+        "default_batch_size": 128,
+        "peak_mib": [
+          3306
+        ],
+        "total_mib": [
+          48541
+        ],
+        "tried": [
+          {
+            "batch_size": 128,
+            "peak_mib": [
+              3306
+            ],
+            "fits": true,
+            "error": null
+          }
+        ],
+        "fits": true,
+        "gpus": [
+          4
+        ]
+      },
+      "bge_m3": {
+        "retriever": "bge_m3",
+        "n_gpus": 1,
+        "batch_size": 16,
+        "default_batch_size": 16,
+        "peak_mib": [
+          3724
+        ],
+        "total_mib": [
+          48541
+        ],
+        "tried": [
+          {
+            "batch_size": 16,
+            "peak_mib": [
+              3724
+            ],
+            "fits": true,
+            "error": null
+          }
+        ],
+        "fits": true,
+        "gpus": [
+          4
+        ]
+      },
+      "jina": {
+        "retriever": "jina",
+        "n_gpus": 1,
+        "batch_size": 64,
+        "default_batch_size": 64,
+        "peak_mib": [
+          2082
+        ],
+        "total_mib": [
+          48541
+        ],
+        "tried": [
+          {
+            "batch_size": 64,
+            "peak_mib": [
+              2082
+            ],
+            "fits": true,
+            "error": null
+          }
+        ],
+        "fits": true,
+        "gpus": [
+          4
+        ]
+      },
+      "qwen": {
+        "retriever": "qwen",
+        "n_gpus": 2,
+        "batch_size": 64,
+        "default_batch_size": 64,
+        "peak_mib": [
+          27106,
+          28446
+        ],
+        "total_mib": [
+          48541,
+          48541
+        ],
+        "tried": [
+          {
+            "batch_size": 64,
+            "peak_mib": [
+              27106,
+              28446
+            ],
+            "fits": true,
+            "error": null
+          }
+        ],
+        "fits": true,
+        "gpus": [
+          4,
+          5
+        ]
+      }
+    },
+    "ok": true
+  },
+  "estimates": {
+    "generation": {
+      "calls": 17102,
+      "seconds": 10757.626776600006,
+      "basis": "per call 9.3e-06 s x visible document tokens + 0.15 s, plus 420 s engine start (B2's measured rate on the same model and runtime)"
+    },
+    "retrieval": {
+      "jobs": {
+        "bm25": {
+          "device": "cpu",
+          "n_gpus": 0,
+          "est_seconds": 153.9792,
+          "basis": "C2's CPU rate x 3 (published streams, empty-context pass, CR pass)"
+        },
+        "contriever": {
+          "device": "gpu",
+          "n_gpus": 1,
+          "est_seconds": 184.90937,
+          "basis": "C2 streams reused: CR chunks + plain chunks (empty-context check) encoded, 2 query encodings per query"
+        },
+        "bge_m3": {
+          "device": "gpu",
+          "n_gpus": 1,
+          "est_seconds": 844.190992,
+          "basis": "C2 streams reused: CR chunks + plain chunks (empty-context check) encoded, 2 query encodings per query"
+        },
+        "jina": {
+          "device": "gpu",
+          "n_gpus": 1,
+          "est_seconds": 878.6487239999999,
+          "basis": "C2 streams reused: CR chunks + plain chunks (empty-context check) encoded, 2 query encodings per query"
+        },
+        "qwen": {
+          "device": "gpu",
+          "n_gpus": 2,
+          "est_seconds": 10705.78119,
+          "basis": "C2 streams reused: CR chunks + plain chunks (empty-context check) encoded, 2 query encodings per query"
+        }
+      },
+      "wall_seconds": 10705.78119
+    }
+  },
+  "jobs": {
+    "bm25": {
+      "status": "DONE",
+      "summary": {
+        "dataset": "musique_32k",
+        "retriever": "bm25",
+        "max_docs": null,
+        "c2_streams": {
+          "done": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/markers/musique_32k__bm25.DONE",
+          "stream": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bm25.parquet",
+          "queries": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bm25.queries.json",
+          "check": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bm25.check.json",
+          "check_passed": true,
+          "drift_accepted": false
+        },
+        "channel_source_docs": {
+          "c2_streams": 45,
+          "published_path": 0
+        },
+        "gate": {
+          "passed": true,
+          "problems": [],
+          "notes": [],
+          "saadi_reproduction": {
+            "identical_top10": 900,
+            "queries": 900,
+            "hr_ours": {
+              "eligible": 900,
+              "hits": {
+                "5": 565,
+                "10": 699
+              },
+              "hr_percent": {
+                "5": 62.77777777777778,
+                "10": 77.66666666666666
+              }
+            },
+            "hr_saved": {
+              "eligible": 900,
+              "hits": {
+                "5": 565,
+                "10": 699
+              },
+              "hr_percent": {
+                "5": 62.77777777777778,
+                "10": 77.66666666666666
+              }
+            },
+            "expected_metrics": {
+              "5": {
+                "eligible": 900,
+                "hits": 565,
+                "hr_percent": 62.77777777777778
+              },
+              "10": {
+                "eligible": 900,
+                "hits": 699,
+                "hr_percent": 77.66666666666666
+              }
+            },
+            "drift_accepted": false,
+            "drift_notes": null,
+            "text_only_vs_table1": {
+              "hr": {
+                "eligible": 900,
+                "hits": {
+                  "5": 518,
+                  "10": 666
+                },
+                "hr_percent": {
+                  "5": 57.55555555555556,
+                  "10": 74.0
+                }
+              },
+              "reported_percent": {
+                "5": 57.6,
+                "10": 74.0
+              },
+              "diff_points": {
+                "5": -0.04444444444444429,
+                "10": 0.0
+              },
+              "passed": true,
+              "notes": []
+            }
+          },
+          "empty_vs_vanilla": {
+            "identical_top150": 900,
+            "identical_top10": 900,
+            "queries": 900,
+            "hr_vanilla": {
+              "eligible": 900,
+              "hits": {
+                "5": 518,
+                "10": 666
+              },
+              "hr_percent": {
+                "5": 57.55555555555556,
+                "10": 74.0
+              }
+            },
+            "hr_empty": {
+              "eligible": 900,
+              "hits": {
+                "5": 518,
+                "10": 666
+              },
+              "hr_percent": {
+                "5": 57.55555555555556,
+                "10": 74.0
+              }
+            },
+            "max_abs_text_score_diff": 0.0,
+            "reference": "C2 saved streams (independent run)"
+          },
+          "saved_per_query_text_only": null,
+          "table1_vanilla": {
+            "5": {
+              "table1": 57.6,
+              "empty_context": 57.55555555555556
+            },
+            "10": {
+              "table1": 74.0,
+              "empty_context": 74.0
+            }
+          },
+          "mismatch_examples": []
+        },
+        "queries": 900,
+        "truncation": {
+          "contextualized": {},
+          "plain": {}
+        },
+        "status": "DONE",
+        "timings": {
+          "docs": 45,
+          "docs_from_checkpoint": 0,
+          "seconds_pass1": 24.31883732508868,
+          "seconds_pass2": 22.917130059096962,
+          "seconds_total": 156.9
+        },
+        "device": {
+          "cuda_visible_devices": "",
+          "batch_size_env": {},
+          "device_map_env": {}
+        }
+      },
+      "gpus": []
+    },
+    "contriever": {
+      "status": "DONE",
+      "summary": {
+        "dataset": "musique_32k",
+        "retriever": "contriever",
+        "max_docs": null,
+        "c2_streams": {
+          "done": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/markers/musique_32k__contriever.DONE",
+          "stream": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__contriever.parquet",
+          "queries": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__contriever.queries.json",
+          "check": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__contriever.check.json",
+          "check_passed": true,
+          "drift_accepted": false
+        },
+        "channel_source_docs": {
+          "c2_streams": 45,
+          "published_path": 0
+        },
+        "gate": {
+          "passed": true,
+          "problems": [],
+          "notes": [],
+          "saadi_reproduction": {
+            "identical_top10": 900,
+            "queries": 900,
+            "hr_ours": {
+              "eligible": 900,
+              "hits": {
+                "5": 619,
+                "10": 753
+              },
+              "hr_percent": {
+                "5": 68.77777777777779,
+                "10": 83.66666666666667
+              }
+            },
+            "hr_saved": {
+              "eligible": 900,
+              "hits": {
+                "5": 619,
+                "10": 753
+              },
+              "hr_percent": {
+                "5": 68.77777777777779,
+                "10": 83.66666666666667
+              }
+            },
+            "expected_metrics": {
+              "5": {
+                "eligible": 900,
+                "hits": 619,
+                "hr_percent": 68.77777777777779
+              },
+              "10": {
+                "eligible": 900,
+                "hits": 753,
+                "hr_percent": 83.66666666666667
+              }
+            },
+            "drift_accepted": false,
+            "drift_notes": null,
+            "text_only_vs_table1": {
+              "hr": {
+                "eligible": 900,
+                "hits": {
+                  "5": 539,
+                  "10": 685
+                },
+                "hr_percent": {
+                  "5": 59.88888888888889,
+                  "10": 76.11111111111111
+                }
+              },
+              "reported_percent": {
+                "5": 59.9,
+                "10": 76.1
+              },
+              "diff_points": {
+                "5": -0.011111111111105743,
+                "10": 0.011111111111119953
+              },
+              "passed": true,
+              "notes": []
+            }
+          },
+          "empty_vs_vanilla": {
+            "identical_top150": 900,
+            "identical_top10": 900,
+            "queries": 900,
+            "hr_vanilla": {
+              "eligible": 900,
+              "hits": {
+                "5": 539,
+                "10": 685
+              },
+              "hr_percent": {
+                "5": 59.88888888888889,
+                "10": 76.11111111111111
+              }
+            },
+            "hr_empty": {
+              "eligible": 900,
+              "hits": {
+                "5": 539,
+                "10": 685
+              },
+              "hr_percent": {
+                "5": 59.88888888888889,
+                "10": 76.11111111111111
+              }
+            },
+            "max_abs_text_score_diff": 0.0,
+            "reference": "C2 saved streams (independent run)"
+          },
+          "saved_per_query_text_only": null,
+          "table1_vanilla": {
+            "5": {
+              "table1": 59.9,
+              "empty_context": 59.88888888888889
+            },
+            "10": {
+              "table1": 76.1,
+              "empty_context": 76.11111111111111
+            }
+          },
+          "mismatch_examples": []
+        },
+        "queries": 900,
+        "truncation": {
+          "contextualized": {
+            "max_length": 512,
+            "texts": 17102,
+            "over_max_length": 1,
+            "tokens_cut_total": 38,
+            "longest_tokens": 550
+          },
+          "plain": {
+            "max_length": 512,
+            "texts": 17102,
+            "over_max_length": 0,
+            "tokens_cut_total": 0,
+            "longest_tokens": 229
+          }
+        },
+        "status": "DONE",
+        "timings": {
+          "docs": 45,
+          "docs_from_checkpoint": 0,
+          "seconds_pass1": 70.91068169102073,
+          "seconds_pass2": 94.25290771620348,
+          "seconds_total": 287.1
+        },
+        "device": {
+          "cuda_visible_devices": "6",
+          "batch_size_env": {
+            "SAADI_CONTRIEVER_BATCH_SIZE": "128"
+          },
+          "device_map_env": {}
+        }
+      },
+      "gpus": [
+        6
+      ]
+    },
+    "bge_m3": {
+      "status": "DONE",
+      "summary": {
+        "dataset": "musique_32k",
+        "retriever": "bge_m3",
+        "max_docs": null,
+        "c2_streams": {
+          "done": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/markers/musique_32k__bge_m3.DONE",
+          "stream": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bge_m3.parquet",
+          "queries": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bge_m3.queries.json",
+          "check": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bge_m3.check.json",
+          "check_passed": true,
+          "drift_accepted": false
+        },
+        "channel_source_docs": {
+          "c2_streams": 45,
+          "published_path": 0
+        },
+        "gate": {
+          "passed": true,
+          "problems": [],
+          "notes": [],
+          "saadi_reproduction": {
+            "identical_top10": 900,
+            "queries": 900,
+            "hr_ours": {
+              "eligible": 900,
+              "hits": {
+                "5": 692,
+                "10": 795
+              },
+              "hr_percent": {
+                "5": 76.88888888888889,
+                "10": 88.33333333333333
+              }
+            },
+            "hr_saved": {
+              "eligible": 900,
+              "hits": {
+                "5": 692,
+                "10": 795
+              },
+              "hr_percent": {
+                "5": 76.88888888888889,
+                "10": 88.33333333333333
+              }
+            },
+            "expected_metrics": {
+              "5": {
+                "eligible": 900,
+                "hits": 692,
+                "hr_percent": 76.88888888888889
+              },
+              "10": {
+                "eligible": 900,
+                "hits": 795,
+                "hr_percent": 88.33333333333333
+              }
+            },
+            "drift_accepted": false,
+            "drift_notes": null,
+            "text_only_vs_table1": {
+              "hr": {
+                "eligible": 900,
+                "hits": {
+                  "5": 659,
+                  "10": 787
+                },
+                "hr_percent": {
+                  "5": 73.22222222222223,
+                  "10": 87.44444444444444
+                }
+              },
+              "reported_percent": {
+                "5": 73.2,
+                "10": 87.4
+              },
+              "diff_points": {
+                "5": 0.022222222222225696,
+                "10": 0.04444444444443718
+              },
+              "passed": true,
+              "notes": []
+            }
+          },
+          "empty_vs_vanilla": {
+            "identical_top150": 900,
+            "identical_top10": 900,
+            "queries": 900,
+            "hr_vanilla": {
+              "eligible": 900,
+              "hits": {
+                "5": 659,
+                "10": 787
+              },
+              "hr_percent": {
+                "5": 73.22222222222223,
+                "10": 87.44444444444444
+              }
+            },
+            "hr_empty": {
+              "eligible": 900,
+              "hits": {
+                "5": 659,
+                "10": 787
+              },
+              "hr_percent": {
+                "5": 73.22222222222223,
+                "10": 87.44444444444444
+              }
+            },
+            "max_abs_text_score_diff": 0.0,
+            "reference": "C2 saved streams (independent run)"
+          },
+          "saved_per_query_text_only": null,
+          "table1_vanilla": {
+            "5": {
+              "table1": 73.2,
+              "empty_context": 73.22222222222223
+            },
+            "10": {
+              "table1": 87.4,
+              "empty_context": 87.44444444444444
+            }
+          },
+          "mismatch_examples": []
+        },
+        "queries": 900,
+        "truncation": {
+          "contextualized": {
+            "max_length": 8192,
+            "texts": 17102,
+            "over_max_length": 0,
+            "tokens_cut_total": 0,
+            "longest_tokens": 608
+          },
+          "plain": {
+            "max_length": 8192,
+            "texts": 17102,
+            "over_max_length": 0,
+            "tokens_cut_total": 0,
+            "longest_tokens": 243
+          }
+        },
+        "status": "DONE",
+        "timings": {
+          "docs": 45,
+          "docs_from_checkpoint": 0,
+          "seconds_pass1": 155.7074168738909,
+          "seconds_pass2": 279.5875032823533,
+          "seconds_total": 548.9
+        },
+        "device": {
+          "cuda_visible_devices": "7",
+          "batch_size_env": {
+            "SAADI_BGE_M3_BATCH_SIZE": "16"
+          },
+          "device_map_env": {}
+        }
+      },
+      "gpus": [
+        7
+      ]
+    },
+    "jina": {
+      "status": "DONE",
+      "summary": {
+        "dataset": "musique_32k",
+        "retriever": "jina",
+        "max_docs": null,
+        "c2_streams": {
+          "done": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/markers/musique_32k__jina.DONE",
+          "stream": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__jina.parquet",
+          "queries": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__jina.queries.json",
+          "check": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__jina.check.json",
+          "check_passed": true,
+          "drift_accepted": true
+        },
+        "channel_source_docs": {
+          "c2_streams": 45,
+          "published_path": 0
+        },
+        "gate": {
+          "passed": true,
+          "problems": [],
+          "notes": [],
+          "saadi_reproduction": {
+            "identical_top10": 705,
+            "queries": 900,
+            "hr_ours": {
+              "eligible": 900,
+              "hits": {
+                "5": 662,
+                "10": 793
+              },
+              "hr_percent": {
+                "5": 73.55555555555556,
+                "10": 88.1111111111111
+              }
+            },
+            "hr_saved": {
+              "eligible": 900,
+              "hits": {
+                "5": 659,
+                "10": 793
+              },
+              "hr_percent": {
+                "5": 73.22222222222223,
+                "10": 88.1111111111111
+              }
+            },
+            "expected_metrics": {
+              "5": {
+                "eligible": 900,
+                "hits": 659,
+                "hr_percent": 73.22222222222223
+              },
+              "10": {
+                "eligible": 900,
+                "hits": 793,
+                "hr_percent": 88.1111111111111
+              }
+            },
+            "drift_accepted": true,
+            "drift_notes": [
+              "identical top-10 for 705/900 queries (< 99%)",
+              "HR@5 73.56 vs saved 73.22 (tolerance 0.1 points)",
+              "HR@5 73.56 vs expected 73.22",
+              "accepted: jina is in DRIFT_ACCEPTED_RETRIEVERS and the largest HR gap is 0.33 <= 0.5 points"
+            ],
+            "text_only_vs_table1": {
+              "hr": {
+                "eligible": 900,
+                "hits": {
+                  "5": 645,
+                  "10": 772
+                },
+                "hr_percent": {
+                  "5": 71.66666666666667,
+                  "10": 85.77777777777777
+                }
+              },
+              "reported_percent": {
+                "5": 71.6,
+                "10": 85.8
+              },
+              "diff_points": {
+                "5": 0.06666666666667709,
+                "10": -0.022222222222225696
+              },
+              "passed": true,
+              "notes": []
+            }
+          },
+          "empty_vs_vanilla": {
+            "identical_top150": 900,
+            "identical_top10": 900,
+            "queries": 900,
+            "hr_vanilla": {
+              "eligible": 900,
+              "hits": {
+                "5": 645,
+                "10": 772
+              },
+              "hr_percent": {
+                "5": 71.66666666666667,
+                "10": 85.77777777777777
+              }
+            },
+            "hr_empty": {
+              "eligible": 900,
+              "hits": {
+                "5": 645,
+                "10": 772
+              },
+              "hr_percent": {
+                "5": 71.66666666666667,
+                "10": 85.77777777777777
+              }
+            },
+            "max_abs_text_score_diff": 0.0,
+            "reference": "C2 saved streams (independent run)"
+          },
+          "saved_per_query_text_only": null,
+          "table1_vanilla": {
+            "5": {
+              "table1": 71.6,
+              "empty_context": 71.66666666666667
+            },
+            "10": {
+              "table1": 85.8,
+              "empty_context": 85.77777777777777
+            }
+          },
+          "mismatch_examples": []
+        },
+        "queries": 900,
+        "truncation": {
+          "contextualized": {
+            "max_length": 512,
+            "texts": 17102,
+            "over_max_length": 1,
+            "tokens_cut_total": 96,
+            "longest_tokens": 608
+          },
+          "plain": {
+            "max_length": 512,
+            "texts": 17102,
+            "over_max_length": 0,
+            "tokens_cut_total": 0,
+            "longest_tokens": 243
+          }
+        },
+        "status": "DONE",
+        "timings": {
+          "docs": 45,
+          "docs_from_checkpoint": 0,
+          "seconds_pass1": 71.00078769074753,
+          "seconds_pass2": 79.13842787197791,
+          "seconds_total": 274.8
+        },
+        "device": {
+          "cuda_visible_devices": "6",
+          "batch_size_env": {
+            "SAADI_JINA_BATCH_SIZE": "64"
+          },
+          "device_map_env": {}
+        }
+      },
+      "gpus": [
+        6
+      ]
+    },
+    "qwen": {
+      "status": "DONE",
+      "summary": {
+        "dataset": "musique_32k",
+        "retriever": "qwen",
+        "max_docs": null,
+        "c2_streams": {
+          "done": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/markers/musique_32k__qwen.DONE",
+          "stream": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__qwen.parquet",
+          "queries": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__qwen.queries.json",
+          "check": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__qwen.check.json",
+          "check_passed": true,
+          "drift_accepted": false
+        },
+        "channel_source_docs": {
+          "c2_streams": 45,
+          "published_path": 0
+        },
+        "gate": {
+          "passed": true,
+          "problems": [],
+          "notes": [],
+          "saadi_reproduction": {
+            "identical_top10": 899,
+            "queries": 900,
+            "hr_ours": {
+              "eligible": 900,
+              "hits": {
+                "5": 688,
+                "10": 810
+              },
+              "hr_percent": {
+                "5": 76.44444444444444,
+                "10": 90.0
+              }
+            },
+            "hr_saved": {
+              "eligible": 900,
+              "hits": {
+                "5": 688,
+                "10": 810
+              },
+              "hr_percent": {
+                "5": 76.44444444444444,
+                "10": 90.0
+              }
+            },
+            "expected_metrics": {
+              "5": {
+                "eligible": 900,
+                "hits": 688,
+                "hr_percent": 76.44444444444444
+              },
+              "10": {
+                "eligible": 900,
+                "hits": 810,
+                "hr_percent": 90.0
+              }
+            },
+            "drift_accepted": false,
+            "drift_notes": null,
+            "text_only_vs_table1": {
+              "hr": {
+                "eligible": 900,
+                "hits": {
+                  "5": 678,
+                  "10": 801
+                },
+                "hr_percent": {
+                  "5": 75.33333333333333,
+                  "10": 89.0
+                }
+              },
+              "reported_percent": {
+                "5": 75.3,
+                "10": 89.0
+              },
+              "diff_points": {
+                "5": 0.03333333333333144,
+                "10": 0.0
+              },
+              "passed": true,
+              "notes": []
+            }
+          },
+          "empty_vs_vanilla": {
+            "identical_top150": 900,
+            "identical_top10": 900,
+            "queries": 900,
+            "hr_vanilla": {
+              "eligible": 900,
+              "hits": {
+                "5": 678,
+                "10": 801
+              },
+              "hr_percent": {
+                "5": 75.33333333333333,
+                "10": 89.0
+              }
+            },
+            "hr_empty": {
+              "eligible": 900,
+              "hits": {
+                "5": 678,
+                "10": 801
+              },
+              "hr_percent": {
+                "5": 75.33333333333333,
+                "10": 89.0
+              }
+            },
+            "max_abs_text_score_diff": 0.0,
+            "reference": "C2 saved streams (independent run)"
+          },
+          "saved_per_query_text_only": null,
+          "table1_vanilla": {
+            "5": {
+              "table1": 75.3,
+              "empty_context": 75.33333333333333
+            },
+            "10": {
+              "table1": 89.0,
+              "empty_context": 89.0
+            }
+          },
+          "mismatch_examples": []
+        },
+        "queries": 900,
+        "truncation": {
+          "contextualized": {
+            "max_length": 512,
+            "texts": 17102,
+            "over_max_length": 1,
+            "tokens_cut_total": 107,
+            "longest_tokens": 619
+          },
+          "plain": {
+            "max_length": 512,
+            "texts": 17102,
+            "over_max_length": 0,
+            "tokens_cut_total": 0,
+            "longest_tokens": 430
+          }
+        },
+        "status": "DONE",
+        "timings": {
+          "docs": 45,
+          "docs_from_checkpoint": 0,
+          "seconds_pass1": 2942.7916083142627,
+          "seconds_pass2": 4560.969357429072,
+          "seconds_total": 7903.5
+        },
+        "device": {
+          "cuda_visible_devices": "4,5",
+          "batch_size_env": {
+            "SAADI_QWEN_BATCH_SIZE": "64"
+          },
+          "device_map_env": {
+            "SAADI_QWEN_DEVICE_MAP": "auto"
+          }
+        }
+      },
+      "gpus": [
+        4,
+        5
+      ]
+    }
+  },
+  "analysis": {
+    "dataset": "musique_32k",
+    "per_retriever": {
+      "bm25": {
+        "queries": 900,
+        "vanilla": {
+          "hr5": 57.55555555555556,
+          "hr10": 74.0,
+          "eligible": 900
+        },
+        "empty": {
+          "hr5": 57.55555555555556,
+          "hr10": 74.0,
+          "eligible": 900
+        },
+        "cr": {
+          "hr5": 65.0,
+          "hr10": 82.22222222222223,
+          "eligible": 900
+        },
+        "saadi": {
+          "hr5": 62.77777777777778,
+          "hr10": 77.66666666666667,
+          "eligible": 900
+        },
+        "saadi_cr": {
+          "hr5": 68.33333333333333,
+          "hr10": 83.44444444444444,
+          "eligible": 900
+        },
+        "cr_minus_vanilla_hr5": {
+          "diff": 7.444444444444445,
+          "ci": [
+            5.111111111111111,
+            9.777777777777779
+          ]
+        },
+        "saadi_minus_cr_hr5": {
+          "diff": -2.2222222222222223,
+          "ci": [
+            -4.666666666666667,
+            0.1111111111111111
+          ]
+        },
+        "saadi_cr_minus_cr_hr5": {
+          "diff": 3.3333333333333335,
+          "ci": [
+            1.3333333333333333,
+            5.333333333333333
+          ]
+        },
+        "saadi_cr_minus_saadi_hr5": {
+          "diff": 5.555555555555555,
+          "ci": [
+            3.5555555555555554,
+            7.666666666666667
+          ]
+        },
+        "cr_minus_vanilla_hr10": {
+          "diff": 8.222222222222221,
+          "ci": [
+            6.0,
+            10.444444444444445
+          ]
+        },
+        "saadi_minus_cr_hr10": {
+          "diff": -4.555555555555555,
+          "ci": [
+            -6.777777777777778,
+            -2.3333333333333335
+          ]
+        },
+        "saadi_cr_minus_cr_hr10": {
+          "diff": 1.2222222222222223,
+          "ci": [
+            -0.4444444444444444,
+            2.888888888888889
+          ]
+        },
+        "saadi_cr_minus_saadi_hr10": {
+          "diff": 5.777777777777778,
+          "ci": [
+            3.888888888888889,
+            7.666666666666667
+          ]
+        }
+      },
+      "contriever": {
+        "queries": 900,
+        "vanilla": {
+          "hr5": 59.888888888888886,
+          "hr10": 76.11111111111111,
+          "eligible": 900
+        },
+        "empty": {
+          "hr5": 59.888888888888886,
+          "hr10": 76.11111111111111,
+          "eligible": 900
+        },
+        "cr": {
+          "hr5": 69.33333333333333,
+          "hr10": 86.11111111111111,
+          "eligible": 900
+        },
+        "saadi": {
+          "hr5": 68.77777777777777,
+          "hr10": 83.66666666666667,
+          "eligible": 900
+        },
+        "saadi_cr": {
+          "hr5": 73.55555555555556,
+          "hr10": 87.88888888888889,
+          "eligible": 900
+        },
+        "cr_minus_vanilla_hr5": {
+          "diff": 9.444444444444445,
+          "ci": [
+            6.777777777777778,
+            12.222222222222221
+          ]
+        },
+        "saadi_minus_cr_hr5": {
+          "diff": -0.5555555555555556,
+          "ci": [
+            -3.0,
+            2.0
+          ]
+        },
+        "saadi_cr_minus_cr_hr5": {
+          "diff": 4.222222222222222,
+          "ci": [
+            2.0,
+            6.555555555555555
+          ]
+        },
+        "saadi_cr_minus_saadi_hr5": {
+          "diff": 4.777777777777778,
+          "ci": [
+            2.6666666666666665,
+            6.888888888888889
+          ]
+        },
+        "cr_minus_vanilla_hr10": {
+          "diff": 10.0,
+          "ci": [
+            7.555555555555555,
+            12.444444444444445
+          ]
+        },
+        "saadi_minus_cr_hr10": {
+          "diff": -2.4444444444444446,
+          "ci": [
+            -4.555555555555555,
+            -0.3333333333333333
+          ]
+        },
+        "saadi_cr_minus_cr_hr10": {
+          "diff": 1.7777777777777777,
+          "ci": [
+            0.0,
+            3.4444444444444446
+          ]
+        },
+        "saadi_cr_minus_saadi_hr10": {
+          "diff": 4.222222222222222,
+          "ci": [
+            2.5555555555555554,
+            5.888888888888889
+          ]
+        }
+      },
+      "bge_m3": {
+        "queries": 900,
+        "vanilla": {
+          "hr5": 73.22222222222223,
+          "hr10": 87.44444444444444,
+          "eligible": 900
+        },
+        "empty": {
+          "hr5": 73.22222222222223,
+          "hr10": 87.44444444444444,
+          "eligible": 900
+        },
+        "cr": {
+          "hr5": 77.44444444444444,
+          "hr10": 89.66666666666667,
+          "eligible": 900
+        },
+        "saadi": {
+          "hr5": 76.88888888888889,
+          "hr10": 88.33333333333333,
+          "eligible": 900
+        },
+        "saadi_cr": {
+          "hr5": 79.44444444444444,
+          "hr10": 90.55555555555556,
+          "eligible": 900
+        },
+        "cr_minus_vanilla_hr5": {
+          "diff": 4.222222222222222,
+          "ci": [
+            1.8888888888888888,
+            6.558333333333293
+          ]
+        },
+        "saadi_minus_cr_hr5": {
+          "diff": -0.5555555555555556,
+          "ci": [
+            -3.0,
+            1.7777777777777777
+          ]
+        },
+        "saadi_cr_minus_cr_hr5": {
+          "diff": 2.0,
+          "ci": [
+            0.0,
+            4.111111111111111
+          ]
+        },
+        "saadi_cr_minus_saadi_hr5": {
+          "diff": 2.5555555555555554,
+          "ci": [
+            0.6666666666666666,
+            4.444444444444445
+          ]
+        },
+        "cr_minus_vanilla_hr10": {
+          "diff": 2.2222222222222223,
+          "ci": [
+            0.5555555555555556,
+            4.0
+          ]
+        },
+        "saadi_minus_cr_hr10": {
+          "diff": -1.3333333333333333,
+          "ci": [
+            -3.111111111111111,
+            0.4444444444444444
+          ]
+        },
+        "saadi_cr_minus_cr_hr10": {
+          "diff": 0.8888888888888888,
+          "ci": [
+            -0.5555555555555556,
+            2.3333333333333335
+          ]
+        },
+        "saadi_cr_minus_saadi_hr10": {
+          "diff": 2.2222222222222223,
+          "ci": [
+            0.8888888888888888,
+            3.5555555555555554
+          ]
+        }
+      },
+      "jina": {
+        "queries": 900,
+        "vanilla": {
+          "hr5": 71.66666666666667,
+          "hr10": 85.77777777777777,
+          "eligible": 900
+        },
+        "empty": {
+          "hr5": 71.66666666666667,
+          "hr10": 85.77777777777777,
+          "eligible": 900
+        },
+        "cr": {
+          "hr5": 77.11111111111111,
+          "hr10": 89.66666666666667,
+          "eligible": 900
+        },
+        "saadi": {
+          "hr5": 73.55555555555556,
+          "hr10": 88.11111111111111,
+          "eligible": 900
+        },
+        "saadi_cr": {
+          "hr5": 76.66666666666667,
+          "hr10": 90.0,
+          "eligible": 900
+        },
+        "cr_minus_vanilla_hr5": {
+          "diff": 5.444444444444445,
+          "ci": [
+            3.111111111111111,
+            7.777777777777778
+          ]
+        },
+        "saadi_minus_cr_hr5": {
+          "diff": -3.5555555555555554,
+          "ci": [
+            -5.888888888888889,
+            -1.2222222222222223
+          ]
+        },
+        "saadi_cr_minus_cr_hr5": {
+          "diff": -0.4444444444444444,
+          "ci": [
+            -2.3333333333333335,
+            1.3333333333333333
+          ]
+        },
+        "saadi_cr_minus_saadi_hr5": {
+          "diff": 3.111111111111111,
+          "ci": [
+            1.2222222222222223,
+            5.111111111111111
+          ]
+        },
+        "cr_minus_vanilla_hr10": {
+          "diff": 3.888888888888889,
+          "ci": [
+            2.2222222222222223,
+            5.666666666666667
+          ]
+        },
+        "saadi_minus_cr_hr10": {
+          "diff": -1.5555555555555556,
+          "ci": [
+            -3.3333333333333335,
+            0.2222222222222222
+          ]
+        },
+        "saadi_cr_minus_cr_hr10": {
+          "diff": 0.3333333333333333,
+          "ci": [
+            -1.1111111111111112,
+            1.7777777777777777
+          ]
+        },
+        "saadi_cr_minus_saadi_hr10": {
+          "diff": 1.8888888888888888,
+          "ci": [
+            0.3333333333333333,
+            3.4444444444444446
+          ]
+        }
+      },
+      "qwen": {
+        "queries": 900,
+        "vanilla": {
+          "hr5": 75.33333333333333,
+          "hr10": 89.0,
+          "eligible": 900
+        },
+        "empty": {
+          "hr5": 75.33333333333333,
+          "hr10": 89.0,
+          "eligible": 900
+        },
+        "cr": {
+          "hr5": 75.33333333333333,
+          "hr10": 88.55555555555556,
+          "eligible": 900
+        },
+        "saadi": {
+          "hr5": 76.44444444444444,
+          "hr10": 90.0,
+          "eligible": 900
+        },
+        "saadi_cr": {
+          "hr5": 75.55555555555556,
+          "hr10": 89.77777777777777,
+          "eligible": 900
+        },
+        "cr_minus_vanilla_hr5": {
+          "diff": 0.0,
+          "ci": [
+            -2.7777777777777777,
+            2.6666666666666665
+          ]
+        },
+        "saadi_minus_cr_hr5": {
+          "diff": 1.1111111111111112,
+          "ci": [
+            -1.5555555555555556,
+            3.888888888888889
+          ]
+        },
+        "saadi_cr_minus_cr_hr5": {
+          "diff": 0.2222222222222222,
+          "ci": [
+            -1.8888888888888888,
+            2.3333333333333335
+          ]
+        },
+        "saadi_cr_minus_saadi_hr5": {
+          "diff": -0.8888888888888888,
+          "ci": [
+            -3.4444444444444446,
+            1.6666666666666667
+          ]
+        },
+        "cr_minus_vanilla_hr10": {
+          "diff": -0.4444444444444444,
+          "ci": [
+            -2.4444444444444446,
+            1.5555555555555556
+          ]
+        },
+        "saadi_minus_cr_hr10": {
+          "diff": 1.4444444444444444,
+          "ci": [
+            -0.5555555555555556,
+            3.4444444444444446
+          ]
+        },
+        "saadi_cr_minus_cr_hr10": {
+          "diff": 1.2222222222222223,
+          "ci": [
+            -0.2222222222222222,
+            2.6666666666666665
+          ]
+        },
+        "saadi_cr_minus_saadi_hr10": {
+          "diff": -0.2222222222222222,
+          "ci": [
+            -2.0,
+            1.4444444444444444
+          ]
+        }
+      }
+    },
+    "hybrid": {
+      "contriever": {
+        "queries": 900,
+        "vanilla": {
+          "hr5": 61.333333333333336,
+          "hr10": 78.88888888888889,
+          "eligible": 900
+        },
+        "cr": {
+          "hr5": 72.0,
+          "hr10": 88.0,
+          "eligible": 900
+        },
+        "saadi": {
+          "hr5": 69.77777777777777,
+          "hr10": 83.88888888888889,
+          "eligible": 900
+        },
+        "cr_minus_vanilla_hr5": {
+          "diff": 10.666666666666666,
+          "ci": [
+            8.11111111111111,
+            13.333333333333334
+          ]
+        },
+        "saadi_minus_cr_hr5": {
+          "diff": -2.2222222222222223,
+          "ci": [
+            -4.777777777777778,
+            0.3333333333333333
+          ]
+        },
+        "cr_minus_vanilla_hr10": {
+          "diff": 9.11111111111111,
+          "ci": [
+            6.888888888888889,
+            11.336111111111071
+          ]
+        },
+        "saadi_minus_cr_hr10": {
+          "diff": -4.111111111111111,
+          "ci": [
+            -6.111111111111111,
+            -2.111111111111111
+          ]
+        }
+      },
+      "bge_m3": {
+        "queries": 900,
+        "vanilla": {
+          "hr5": 71.66666666666667,
+          "hr10": 87.44444444444444,
+          "eligible": 900
+        },
+        "cr": {
+          "hr5": 77.55555555555556,
+          "hr10": 90.44444444444444,
+          "eligible": 900
+        },
+        "saadi": {
+          "hr5": 75.11111111111111,
+          "hr10": 87.66666666666667,
+          "eligible": 900
+        },
+        "cr_minus_vanilla_hr5": {
+          "diff": 5.888888888888889,
+          "ci": [
+            3.6666666666666665,
+            8.222222222222221
+          ]
+        },
+        "saadi_minus_cr_hr5": {
+          "diff": -2.4444444444444446,
+          "ci": [
+            -4.888888888888889,
+            0.0
+          ]
+        },
+        "cr_minus_vanilla_hr10": {
+          "diff": 3.0,
+          "ci": [
+            1.4444444444444444,
+            4.666666666666667
+          ]
+        },
+        "saadi_minus_cr_hr10": {
+          "diff": -2.7777777777777777,
+          "ci": [
+            -4.555555555555555,
+            -1.1111111111111112
+          ]
+        }
+      },
+      "jina": {
+        "queries": 900,
+        "vanilla": {
+          "hr5": 71.88888888888889,
+          "hr10": 85.44444444444444,
+          "eligible": 900
+        },
+        "cr": {
+          "hr5": 76.66666666666667,
+          "hr10": 89.88888888888889,
+          "eligible": 900
+        },
+        "saadi": {
+          "hr5": 73.77777777777777,
+          "hr10": 87.66666666666667,
+          "eligible": 900
+        },
+        "cr_minus_vanilla_hr5": {
+          "diff": 4.777777777777778,
+          "ci": [
+            2.5555555555555554,
+            7.111111111111111
+          ]
+        },
+        "saadi_minus_cr_hr5": {
+          "diff": -2.888888888888889,
+          "ci": [
+            -5.333333333333333,
+            -0.5555555555555556
+          ]
+        },
+        "cr_minus_vanilla_hr10": {
+          "diff": 4.444444444444445,
+          "ci": [
+            2.6666666666666665,
+            6.333333333333333
+          ]
+        },
+        "saadi_minus_cr_hr10": {
+          "diff": -2.2222222222222223,
+          "ci": [
+            -4.0,
+            -0.4444444444444444
+          ]
+        }
+      },
+      "qwen": {
+        "queries": 900,
+        "vanilla": {
+          "hr5": 73.33333333333333,
+          "hr10": 88.88888888888889,
+          "eligible": 900
+        },
+        "cr": {
+          "hr5": 76.66666666666667,
+          "hr10": 89.66666666666667,
+          "eligible": 900
+        },
+        "saadi": {
+          "hr5": 75.0,
+          "hr10": 89.66666666666667,
+          "eligible": 900
+        },
+        "cr_minus_vanilla_hr5": {
+          "diff": 3.3333333333333335,
+          "ci": [
+            0.6666666666666666,
+            6.0
+          ]
+        },
+        "saadi_minus_cr_hr5": {
+          "diff": -1.6666666666666667,
+          "ci": [
+            -4.222222222222222,
+            0.8888888888888888
+          ]
+        },
+        "cr_minus_vanilla_hr10": {
+          "diff": 0.7777777777777778,
+          "ci": [
+            -1.2222222222222223,
+            2.6666666666666665
+          ]
+        },
+        "saadi_minus_cr_hr10": {
+          "diff": 0.0,
+          "ci": [
+            -2.0,
+            2.0
+          ]
+        }
+      }
+    },
+    "retrievers_done": [
+      "bge_m3",
+      "bm25",
+      "contriever",
+      "jina",
+      "qwen"
+    ]
+  },
+  "cost": {
+    "calls": 17102,
+    "calls_per_chunk": 1.0,
+    "calls_per_document": 380.0444444444444,
+    "nominal_input_total": 838975541.0,
+    "computed_input_total": 5972901.0,
+    "nominal_input_per_chunk": 49057.159455034496,
+    "computed_input_per_chunk": 349.25160799906445,
+    "generated_total": 1624084.0,
+    "generated_per_chunk_mean": 94.96456554788914,
+    "generated_per_chunk_median": 93.0,
+    "cut_share": 0.0,
+    "generation_wall_seconds": 7408.9,
+    "generation_gpu_hours": 8.232111111111111,
+    "cached_tokens_source": [
+      "vllm num_cached_tokens"
+    ],
+    "ratio_nominal_input_vs_saadi": 18.190361437841908,
+    "ratio_computed_input_vs_saadi": 0.12950225925888748,
+    "ratio_calls_vs_saadi": 0.8031370339062647,
+    "ratio_generated_vs_saadi": 0.136205030972462,
+    "saadi_chunks": 17102.0,
+    "chunks": 17102
+  },
+  "problems": []
+}
