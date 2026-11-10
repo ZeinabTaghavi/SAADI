@@ -1,7 +1,7 @@
 {
  "step": 2,
  "title": "input completeness and reproduction of the paper",
- "command": "bash experiments/rebuttal/c4_subdoc_control/sh/02_check.sh",
+ "command": "bash experiments/rebuttal/c4_subdoc_control/sh/02_check.sh --score-dense contriever",
  "seed": 42,
  "published_settings": {
   "lambda_t": 1.0,
@@ -15,75 +15,117 @@
  },
  "bm25_streams": {
   "musique_32k": {
+   "computed": false,
+   "path": "experiments/rebuttal/c4_subdoc_control/work/streams/musique_32k__bm25.parquet"
+  },
+  "musique_64k": {
+   "computed": false,
+   "path": "experiments/rebuttal/c4_subdoc_control/work/streams/musique_64k__bm25.parquet"
+  },
+  "musique_128k": {
+   "computed": false,
+   "path": "experiments/rebuttal/c4_subdoc_control/work/streams/musique_128k__bm25.parquet"
+  },
+  "musique_256k": {
+   "computed": false,
+   "path": "experiments/rebuttal/c4_subdoc_control/work/streams/musique_256k__bm25.parquet"
+  },
+  "qasper_32k": {
+   "computed": false,
+   "path": "experiments/rebuttal/c4_subdoc_control/work/streams/qasper_32k__bm25.parquet"
+  },
+  "qasper_64k": {
+   "computed": false,
+   "path": "experiments/rebuttal/c4_subdoc_control/work/streams/qasper_64k__bm25.parquet"
+  },
+  "qasper_128k": {
+   "computed": false,
+   "path": "experiments/rebuttal/c4_subdoc_control/work/streams/qasper_128k__bm25.parquet"
+  },
+  "qasper_256k": {
+   "computed": false,
+   "path": "experiments/rebuttal/c4_subdoc_control/work/streams/qasper_256k__bm25.parquet"
+  }
+ },
+ "dense_streams": {
+  "musique_32k__contriever": {
    "computed": true,
-   "path": "experiments/rebuttal/c4_subdoc_control/work/streams/musique_32k__bm25.parquet",
+   "path": "experiments/rebuttal/c4_subdoc_control/work/streams/musique_32k__contriever.parquet",
    "parquet_rows": 342176,
    "docs": 45,
    "docs_from_checkpoint": 0,
-   "seconds": 51.928579807281494,
+   "device": "mps",
+   "seconds": 986.6564757823944,
    "anomalies": []
   },
-  "musique_64k": {
+  "musique_64k__contriever": {
    "computed": true,
-   "path": "experiments/rebuttal/c4_subdoc_control/work/streams/musique_64k__bm25.parquet",
+   "path": "experiments/rebuttal/c4_subdoc_control/work/streams/musique_64k__contriever.parquet",
    "parquet_rows": 668676,
    "docs": 23,
    "docs_from_checkpoint": 0,
-   "seconds": 148.06205010414124,
+   "device": "mps",
+   "seconds": 1119.371689081192,
    "anomalies": []
   },
-  "qasper_32k": {
+  "musique_128k__contriever": {
    "computed": true,
-   "path": "experiments/rebuttal/c4_subdoc_control/work/streams/qasper_32k__bm25.parquet",
-   "parquet_rows": 507094,
-   "docs": 46,
-   "docs_from_checkpoint": 0,
-   "seconds": 112.105877161026,
-   "anomalies": []
-  },
-  "musique_128k": {
-   "computed": true,
-   "path": "experiments/rebuttal/c4_subdoc_control/work/streams/musique_128k__bm25.parquet",
+   "path": "experiments/rebuttal/c4_subdoc_control/work/streams/musique_128k__contriever.parquet",
    "parquet_rows": 1303477,
    "docs": 12,
    "docs_from_checkpoint": 0,
-   "seconds": 322.85467195510864,
+   "device": "mps",
+   "seconds": 1317.5840220451355,
    "anomalies": []
   },
-  "qasper_64k": {
+  "musique_256k__contriever": {
    "computed": true,
-   "path": "experiments/rebuttal/c4_subdoc_control/work/streams/qasper_64k__bm25.parquet",
-   "parquet_rows": 992410,
-   "docs": 23,
-   "docs_from_checkpoint": 0,
-   "seconds": 183.61273002624512,
-   "anomalies": []
-  },
-  "qasper_128k": {
-   "computed": true,
-   "path": "experiments/rebuttal/c4_subdoc_control/work/streams/qasper_128k__bm25.parquet",
-   "parquet_rows": 1913463,
-   "docs": 11,
-   "docs_from_checkpoint": 0,
-   "seconds": 265.33482909202576,
-   "anomalies": []
-  },
-  "musique_256k": {
-   "computed": true,
-   "path": "experiments/rebuttal/c4_subdoc_control/work/streams/musique_256k__bm25.parquet",
+   "path": "experiments/rebuttal/c4_subdoc_control/work/streams/musique_256k__contriever.parquet",
    "parquet_rows": 2583098,
    "docs": 6,
    "docs_from_checkpoint": 0,
-   "seconds": 512.8483469486237,
+   "device": "mps",
+   "seconds": 1363.4987080097198,
    "anomalies": []
   },
-  "qasper_256k": {
+  "qasper_32k__contriever": {
    "computed": true,
-   "path": "experiments/rebuttal/c4_subdoc_control/work/streams/qasper_256k__bm25.parquet",
+   "path": "experiments/rebuttal/c4_subdoc_control/work/streams/qasper_32k__contriever.parquet",
+   "parquet_rows": 507094,
+   "docs": 46,
+   "docs_from_checkpoint": 0,
+   "device": "mps",
+   "seconds": 1325.4743008613586,
+   "anomalies": []
+  },
+  "qasper_64k__contriever": {
+   "computed": true,
+   "path": "experiments/rebuttal/c4_subdoc_control/work/streams/qasper_64k__contriever.parquet",
+   "parquet_rows": 992410,
+   "docs": 23,
+   "docs_from_checkpoint": 0,
+   "device": "mps",
+   "seconds": 1222.5185761451721,
+   "anomalies": []
+  },
+  "qasper_128k__contriever": {
+   "computed": true,
+   "path": "experiments/rebuttal/c4_subdoc_control/work/streams/qasper_128k__contriever.parquet",
+   "parquet_rows": 1913463,
+   "docs": 11,
+   "docs_from_checkpoint": 0,
+   "device": "mps",
+   "seconds": 1212.2754590511322,
+   "anomalies": []
+  },
+  "qasper_256k__contriever": {
+   "computed": true,
+   "path": "experiments/rebuttal/c4_subdoc_control/work/streams/qasper_256k__contriever.parquet",
    "parquet_rows": 3680262,
    "docs": 6,
    "docs_from_checkpoint": 0,
-   "seconds": 279.82829689979553,
+   "device": "mps",
+   "seconds": 1358.0382099151611,
    "anomalies": []
   }
  },
@@ -177,14 +219,69 @@
    ],
    "saved_per_document_file": "outputs/musique_ablation/32K_expansion/100_tokens/llm_cache/musique/hierarchical/branching_factor_5/chunk_100/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/contriever/retrieval_reports/retrieval_results__contriever__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
    "stream_files": [
-    "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__contriever.parquet",
-    "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__contriever.queries.json"
+    "experiments/rebuttal/c4_subdoc_control/work/streams/musique_32k__contriever.parquet",
+    "experiments/rebuttal/c4_subdoc_control/work/streams/musique_32k__contriever.queries.json"
    ],
-   "status": "waiting_for_scores",
-   "missing_files": [
-    "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__contriever.parquet",
-    "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__contriever.queries.json"
-   ]
+   "stream_queries": 900,
+   "stream_extra_queries": 0,
+   "eligible": 900,
+   "hits": {
+    "pub": {
+     "5": 619,
+     "10": 753
+    },
+    "van": {
+     "5": 539,
+     "10": 685
+    }
+   },
+   "hr": {
+    "pub": {
+     "5": 68.77777777777777,
+     "10": 83.66666666666667
+    },
+    "van": {
+     "5": 59.888888888888886,
+     "10": 76.11111111111111
+    }
+   },
+   "identical_topk_per_source": {
+    "d9967926f0edf0159884": 900,
+    "afd46747a94a657d7d6e": 900
+   },
+   "label_mismatch": 0,
+   "stream_time_published_top10_mismatch": 0,
+   "vanilla_vs_stream_time_top10_mismatch": 0,
+   "mismatch_examples": [],
+   "repo_full_ranking_check": {
+    "queries": 20,
+    "mismatching_rankings": 0
+   },
+   "max_hr_gap_points": 0.0,
+   "drift_accepted": false,
+   "vanilla_vs_paper": {
+    "table26@5": {
+     "paper": 59.88888888888889,
+     "ours": 59.888888888888886,
+     "diff": -7.105427357601002e-15
+    },
+    "table26@10": {
+     "paper": 76.11111111111111,
+     "ours": 76.11111111111111,
+     "diff": 0.0
+    },
+    "table1@5": {
+     "paper": 59.9,
+     "ours": 59.888888888888886,
+     "diff": -0.011111111111112848
+    },
+    "table1@10": {
+     "paper": 76.1,
+     "ours": 76.11111111111111,
+     "diff": 0.011111111111119953
+    }
+   },
+   "status": "ready"
   },
   {
    "setting": "musique_32k",
@@ -310,16 +407,6 @@
      "paper": 69.22222222222221,
      "ours": 69.22222222222223,
      "diff": 1.4210854715202004e-14
-    },
-    "table1@5": {
-     "paper": 57.6,
-     "ours": 54.0,
-     "diff": -3.6000000000000014
-    },
-    "table1@10": {
-     "paper": 74.0,
-     "ours": 69.22222222222223,
-     "diff": -4.7777777777777715
     }
    },
    "status": "ready"
@@ -336,14 +423,58 @@
    ],
    "saved_per_document_file": "outputs/musique_ablation/64K_expansion/100_tokens/llm_cache/musique/hierarchical/branching_factor_5/chunk_100/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/contriever/retrieval_reports/retrieval_results__contriever__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
    "stream_files": [
-    "outputs/rebuttal/C2_heldout_fusion/streams/musique_64k__contriever.parquet",
-    "outputs/rebuttal/C2_heldout_fusion/streams/musique_64k__contriever.queries.json"
+    "experiments/rebuttal/c4_subdoc_control/work/streams/musique_64k__contriever.parquet",
+    "experiments/rebuttal/c4_subdoc_control/work/streams/musique_64k__contriever.queries.json"
    ],
-   "status": "waiting_for_scores",
-   "missing_files": [
-    "outputs/rebuttal/C2_heldout_fusion/streams/musique_64k__contriever.parquet",
-    "outputs/rebuttal/C2_heldout_fusion/streams/musique_64k__contriever.queries.json"
-   ]
+   "stream_queries": 900,
+   "stream_extra_queries": 0,
+   "eligible": 900,
+   "hits": {
+    "pub": {
+     "5": 548,
+     "10": 697
+    },
+    "van": {
+     "5": 486,
+     "10": 615
+    }
+   },
+   "hr": {
+    "pub": {
+     "5": 60.888888888888886,
+     "10": 77.44444444444444
+    },
+    "van": {
+     "5": 54.0,
+     "10": 68.33333333333333
+    }
+   },
+   "identical_topk_per_source": {
+    "7c71b79f5469f6874f27": 900
+   },
+   "label_mismatch": 0,
+   "stream_time_published_top10_mismatch": 0,
+   "vanilla_vs_stream_time_top10_mismatch": 0,
+   "mismatch_examples": [],
+   "repo_full_ranking_check": {
+    "queries": 20,
+    "mismatching_rankings": 0
+   },
+   "max_hr_gap_points": 0.0,
+   "drift_accepted": false,
+   "vanilla_vs_paper": {
+    "table26@5": {
+     "paper": 54.0,
+     "ours": 54.0,
+     "diff": 0.0
+    },
+    "table26@10": {
+     "paper": 68.33333333333333,
+     "ours": 68.33333333333333,
+     "diff": 0.0
+    }
+   },
+   "status": "ready"
   },
   {
    "setting": "musique_128k",
@@ -406,16 +537,6 @@
      "paper": 64.88888888888889,
      "ours": 64.88888888888889,
      "diff": 0.0
-    },
-    "table1@5": {
-     "paper": 57.6,
-     "ours": 51.55555555555556,
-     "diff": -6.044444444444444
-    },
-    "table1@10": {
-     "paper": 74.0,
-     "ours": 64.88888888888889,
-     "diff": -9.111111111111114
     }
    },
    "status": "ready"
@@ -432,14 +553,58 @@
    ],
    "saved_per_document_file": "outputs/musique_ablation/128K_expansion/100_tokens/llm_cache/musique/hierarchical/branching_factor_5/chunk_100/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/contriever/retrieval_reports/retrieval_results__contriever__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
    "stream_files": [
-    "outputs/rebuttal/C2_heldout_fusion/streams/musique_128k__contriever.parquet",
-    "outputs/rebuttal/C2_heldout_fusion/streams/musique_128k__contriever.queries.json"
+    "experiments/rebuttal/c4_subdoc_control/work/streams/musique_128k__contriever.parquet",
+    "experiments/rebuttal/c4_subdoc_control/work/streams/musique_128k__contriever.queries.json"
    ],
-   "status": "waiting_for_scores",
-   "missing_files": [
-    "outputs/rebuttal/C2_heldout_fusion/streams/musique_128k__contriever.parquet",
-    "outputs/rebuttal/C2_heldout_fusion/streams/musique_128k__contriever.queries.json"
-   ]
+   "stream_queries": 900,
+   "stream_extra_queries": 0,
+   "eligible": 900,
+   "hits": {
+    "pub": {
+     "5": 507,
+     "10": 616
+    },
+    "van": {
+     "5": 431,
+     "10": 546
+    }
+   },
+   "hr": {
+    "pub": {
+     "5": 56.333333333333336,
+     "10": 68.44444444444444
+    },
+    "van": {
+     "5": 47.888888888888886,
+     "10": 60.666666666666664
+    }
+   },
+   "identical_topk_per_source": {
+    "8513847e739b7be4acb3": 900
+   },
+   "label_mismatch": 0,
+   "stream_time_published_top10_mismatch": 0,
+   "vanilla_vs_stream_time_top10_mismatch": 0,
+   "mismatch_examples": [],
+   "repo_full_ranking_check": {
+    "queries": 20,
+    "mismatching_rankings": 0
+   },
+   "max_hr_gap_points": 0.0,
+   "drift_accepted": false,
+   "vanilla_vs_paper": {
+    "table26@5": {
+     "paper": 47.888888888888886,
+     "ours": 47.888888888888886,
+     "diff": 0.0
+    },
+    "table26@10": {
+     "paper": 60.66666666666667,
+     "ours": 60.666666666666664,
+     "diff": -7.105427357601002e-15
+    }
+   },
+   "status": "ready"
   },
   {
    "setting": "musique_256k",
@@ -502,16 +667,6 @@
      "paper": 60.55555555555555,
      "ours": 60.55555555555556,
      "diff": 7.105427357601002e-15
-    },
-    "table1@5": {
-     "paper": 57.6,
-     "ours": 48.44444444444444,
-     "diff": -9.155555555555559
-    },
-    "table1@10": {
-     "paper": 74.0,
-     "ours": 60.55555555555556,
-     "diff": -13.444444444444443
     }
    },
    "status": "ready"
@@ -528,14 +683,58 @@
    ],
    "saved_per_document_file": "outputs/musique_ablation/256K_expansion/100_tokens/llm_cache/musique/hierarchical/branching_factor_5/chunk_100/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/contriever/retrieval_reports/retrieval_results__contriever__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
    "stream_files": [
-    "outputs/rebuttal/C2_heldout_fusion/streams/musique_256k__contriever.parquet",
-    "outputs/rebuttal/C2_heldout_fusion/streams/musique_256k__contriever.queries.json"
+    "experiments/rebuttal/c4_subdoc_control/work/streams/musique_256k__contriever.parquet",
+    "experiments/rebuttal/c4_subdoc_control/work/streams/musique_256k__contriever.queries.json"
    ],
-   "status": "waiting_for_scores",
-   "missing_files": [
-    "outputs/rebuttal/C2_heldout_fusion/streams/musique_256k__contriever.parquet",
-    "outputs/rebuttal/C2_heldout_fusion/streams/musique_256k__contriever.queries.json"
-   ]
+   "stream_queries": 900,
+   "stream_extra_queries": 0,
+   "eligible": 900,
+   "hits": {
+    "pub": {
+     "5": 482,
+     "10": 576
+    },
+    "van": {
+     "5": 399,
+     "10": 486
+    }
+   },
+   "hr": {
+    "pub": {
+     "5": 53.55555555555556,
+     "10": 64.0
+    },
+    "van": {
+     "5": 44.333333333333336,
+     "10": 54.0
+    }
+   },
+   "identical_topk_per_source": {
+    "361938a1401824508a17": 900
+   },
+   "label_mismatch": 0,
+   "stream_time_published_top10_mismatch": 0,
+   "vanilla_vs_stream_time_top10_mismatch": 0,
+   "mismatch_examples": [],
+   "repo_full_ranking_check": {
+    "queries": 20,
+    "mismatching_rankings": 0
+   },
+   "max_hr_gap_points": 0.0,
+   "drift_accepted": false,
+   "vanilla_vs_paper": {
+    "table26@5": {
+     "paper": 44.333333333333336,
+     "ours": 44.333333333333336,
+     "diff": 0.0
+    },
+    "table26@10": {
+     "paper": 54.0,
+     "ours": 54.0,
+     "diff": 0.0
+    }
+   },
+   "status": "ready"
   },
   {
    "setting": "qasper_32k",
@@ -598,16 +797,6 @@
      "paper": 27.554882664647995,
      "ours": 27.554882664647995,
      "diff": 0.0
-    },
-    "table1@5": {
-     "paper": 14.4,
-     "ours": 17.865253595760787,
-     "diff": 3.465253595760787
-    },
-    "table1@10": {
-     "paper": 22.1,
-     "ours": 27.554882664647995,
-     "diff": 5.454882664647993
     }
    },
    "status": "ready"
@@ -624,14 +813,58 @@
    ],
    "saved_per_document_file": "outputs/qasper_ablation/32K_expansion/100_tokens/llm_cache/qasper/hierarchical/branching_factor_5/chunk_100/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/contriever/retrieval_reports/retrieval_results__contriever__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
    "stream_files": [
-    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_32k__contriever.parquet",
-    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_32k__contriever.queries.json"
+    "experiments/rebuttal/c4_subdoc_control/work/streams/qasper_32k__contriever.parquet",
+    "experiments/rebuttal/c4_subdoc_control/work/streams/qasper_32k__contriever.queries.json"
    ],
-   "status": "waiting_for_scores",
-   "missing_files": [
-    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_32k__contriever.parquet",
-    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_32k__contriever.queries.json"
-   ]
+   "stream_queries": 1321,
+   "stream_extra_queries": 0,
+   "eligible": 1321,
+   "hits": {
+    "pub": {
+     "5": 259,
+     "10": 420
+    },
+    "van": {
+     "5": 245,
+     "10": 390
+    }
+   },
+   "hr": {
+    "pub": {
+     "5": 19.60635881907646,
+     "10": 31.794095382286148
+    },
+    "van": {
+     "5": 18.54655563966692,
+     "10": 29.523088569265706
+    }
+   },
+   "identical_topk_per_source": {
+    "ad8333c30485e99a37db": 1321
+   },
+   "label_mismatch": 0,
+   "stream_time_published_top10_mismatch": 0,
+   "vanilla_vs_stream_time_top10_mismatch": 0,
+   "mismatch_examples": [],
+   "repo_full_ranking_check": {
+    "queries": 20,
+    "mismatching_rankings": 0
+   },
+   "max_hr_gap_points": 0.0,
+   "drift_accepted": false,
+   "vanilla_vs_paper": {
+    "table26@5": {
+     "paper": 18.54655563966692,
+     "ours": 18.54655563966692,
+     "diff": 0.0
+    },
+    "table26@10": {
+     "paper": 29.52308856926571,
+     "ours": 29.523088569265706,
+     "diff": -3.552713678800501e-15
+    }
+   },
+   "status": "ready"
   },
   {
    "setting": "qasper_64k",
@@ -722,14 +955,69 @@
    ],
    "saved_per_document_file": "outputs/qasper_ablation/64K_expansion/100_tokens/llm_cache/qasper/hierarchical/branching_factor_5/chunk_100/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/contriever/retrieval_reports/retrieval_results__contriever__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
    "stream_files": [
-    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__contriever.parquet",
-    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__contriever.queries.json"
+    "experiments/rebuttal/c4_subdoc_control/work/streams/qasper_64k__contriever.parquet",
+    "experiments/rebuttal/c4_subdoc_control/work/streams/qasper_64k__contriever.queries.json"
    ],
-   "status": "waiting_for_scores",
-   "missing_files": [
-    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__contriever.parquet",
-    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_64k__contriever.queries.json"
-   ]
+   "stream_queries": 1333,
+   "stream_extra_queries": 0,
+   "eligible": 1333,
+   "hits": {
+    "pub": {
+     "5": 216,
+     "10": 344
+    },
+    "van": {
+     "5": 202,
+     "10": 311
+    }
+   },
+   "hr": {
+    "pub": {
+     "5": 16.204051012753187,
+     "10": 25.806451612903224
+    },
+    "van": {
+     "5": 15.153788447111777,
+     "10": 23.330832708177045
+    }
+   },
+   "identical_topk_per_source": {
+    "4a14b0b08f0a23ebe198": 1333,
+    "bd7eb2fdb44a223b9655": 1333
+   },
+   "label_mismatch": 0,
+   "stream_time_published_top10_mismatch": 0,
+   "vanilla_vs_stream_time_top10_mismatch": 0,
+   "mismatch_examples": [],
+   "repo_full_ranking_check": {
+    "queries": 20,
+    "mismatching_rankings": 0
+   },
+   "max_hr_gap_points": 0.0,
+   "drift_accepted": false,
+   "vanilla_vs_paper": {
+    "table26@5": {
+     "paper": 15.153788447111777,
+     "ours": 15.153788447111777,
+     "diff": 0.0
+    },
+    "table26@10": {
+     "paper": 23.330832708177045,
+     "ours": 23.330832708177045,
+     "diff": 0.0
+    },
+    "table1@5": {
+     "paper": 15.2,
+     "ours": 15.153788447111777,
+     "diff": -0.046211552888221874
+    },
+    "table1@10": {
+     "paper": 23.3,
+     "ours": 23.330832708177045,
+     "diff": 0.03083270817704431
+    }
+   },
+   "status": "ready"
   },
   {
    "setting": "qasper_64k",
@@ -855,16 +1143,6 @@
      "paper": 18.54655563966692,
      "ours": 18.54655563966692,
      "diff": 0.0
-    },
-    "table1@5": {
-     "paper": 14.4,
-     "ours": 12.79333838001514,
-     "diff": -1.6066616199848607
-    },
-    "table1@10": {
-     "paper": 22.1,
-     "ours": 18.54655563966692,
-     "diff": -3.5534443603330814
     }
    },
    "status": "ready"
@@ -881,14 +1159,58 @@
    ],
    "saved_per_document_file": "outputs/qasper_ablation/128K_expansion/100_tokens/llm_cache/qasper/hierarchical/branching_factor_5/chunk_100/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/contriever/retrieval_reports/retrieval_results__contriever__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
    "stream_files": [
-    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_128k__contriever.parquet",
-    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_128k__contriever.queries.json"
+    "experiments/rebuttal/c4_subdoc_control/work/streams/qasper_128k__contriever.parquet",
+    "experiments/rebuttal/c4_subdoc_control/work/streams/qasper_128k__contriever.queries.json"
    ],
-   "status": "waiting_for_scores",
-   "missing_files": [
-    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_128k__contriever.parquet",
-    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_128k__contriever.queries.json"
-   ]
+   "stream_queries": 1321,
+   "stream_extra_queries": 0,
+   "eligible": 1321,
+   "hits": {
+    "pub": {
+     "5": 173,
+     "10": 284
+    },
+    "van": {
+     "5": 175,
+     "10": 254
+    }
+   },
+   "hr": {
+    "pub": {
+     "5": 13.096139288417865,
+     "10": 21.49886449659349
+    },
+    "van": {
+     "5": 13.247539742619228,
+     "10": 19.22785768357305
+    }
+   },
+   "identical_topk_per_source": {
+    "e06f9c4458f72d47781f": 1321
+   },
+   "label_mismatch": 0,
+   "stream_time_published_top10_mismatch": 0,
+   "vanilla_vs_stream_time_top10_mismatch": 0,
+   "mismatch_examples": [],
+   "repo_full_ranking_check": {
+    "queries": 20,
+    "mismatching_rankings": 0
+   },
+   "max_hr_gap_points": 0.0,
+   "drift_accepted": false,
+   "vanilla_vs_paper": {
+    "table26@5": {
+     "paper": 13.247539742619226,
+     "ours": 13.247539742619228,
+     "diff": 1.7763568394002505e-15
+    },
+    "table26@10": {
+     "paper": 19.227857683573053,
+     "ours": 19.22785768357305,
+     "diff": -3.552713678800501e-15
+    }
+   },
+   "status": "ready"
   },
   {
    "setting": "qasper_256k",
@@ -951,16 +1273,6 @@
      "paper": 15.745647236941712,
      "ours": 15.74564723694171,
      "diff": -1.7763568394002505e-15
-    },
-    "table1@5": {
-     "paper": 14.4,
-     "ours": 11.506434519303557,
-     "diff": -2.8935654806964433
-    },
-    "table1@10": {
-     "paper": 22.1,
-     "ours": 15.74564723694171,
-     "diff": -6.354352763058291
     }
    },
    "status": "ready"
@@ -977,63 +1289,99 @@
    ],
    "saved_per_document_file": "outputs/qasper_ablation/256K_expansion/100_tokens/llm_cache/qasper/hierarchical/branching_factor_5/chunk_100/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/mbrB_ablation/mbr_B_lt1.0_lm0.5_lh0.3_mn1.0_ma1.0_md1.0_norm_zscore/contriever/retrieval_reports/retrieval_results__contriever__mbr_lt1_ln0.5_lh0.3_norm_zscore_mnw1_maw1_mdw1__per_document.json",
    "stream_files": [
-    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_256k__contriever.parquet",
-    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_256k__contriever.queries.json"
+    "experiments/rebuttal/c4_subdoc_control/work/streams/qasper_256k__contriever.parquet",
+    "experiments/rebuttal/c4_subdoc_control/work/streams/qasper_256k__contriever.queries.json"
    ],
-   "status": "waiting_for_scores",
-   "missing_files": [
-    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_256k__contriever.parquet",
-    "outputs/rebuttal/C2_heldout_fusion/streams/qasper_256k__contriever.queries.json"
-   ]
+   "stream_queries": 1321,
+   "stream_extra_queries": 0,
+   "eligible": 1321,
+   "hits": {
+    "pub": {
+     "5": 150,
+     "10": 223
+    },
+    "van": {
+     "5": 133,
+     "10": 196
+    }
+   },
+   "hr": {
+    "pub": {
+     "5": 11.355034065102195,
+     "10": 16.88115064345193
+    },
+    "van": {
+     "5": 10.068130204390613,
+     "10": 14.837244511733536
+    }
+   },
+   "identical_topk_per_source": {
+    "d50f833db08333803c03": 1321
+   },
+   "label_mismatch": 0,
+   "stream_time_published_top10_mismatch": 0,
+   "vanilla_vs_stream_time_top10_mismatch": 0,
+   "mismatch_examples": [],
+   "repo_full_ranking_check": {
+    "queries": 20,
+    "mismatching_rankings": 0
+   },
+   "max_hr_gap_points": 0.0,
+   "drift_accepted": false,
+   "vanilla_vs_paper": {
+    "table26@5": {
+     "paper": 10.068130204390613,
+     "ours": 10.068130204390613,
+     "diff": 0.0
+    },
+    "table26@10": {
+     "paper": 14.837244511733536,
+     "ours": 14.837244511733536,
+     "diff": 0.0
+    }
+   },
+   "status": "ready"
   }
  ],
  "ready_pairs": [
   "musique_32k__bm25",
+  "musique_32k__contriever",
   "musique_64k__bm25",
+  "musique_64k__contriever",
   "musique_128k__bm25",
+  "musique_128k__contriever",
   "musique_256k__bm25",
+  "musique_256k__contriever",
   "qasper_32k__bm25",
+  "qasper_32k__contriever",
   "qasper_64k__bm25",
+  "qasper_64k__contriever",
   "qasper_128k__bm25",
-  "qasper_256k__bm25"
+  "qasper_128k__contriever",
+  "qasper_256k__bm25",
+  "qasper_256k__contriever"
  ],
  "waiting_pairs": [
-  "musique_32k__contriever",
   "musique_32k__bge_m3",
   "musique_32k__jina",
   "musique_32k__qwen",
-  "musique_64k__contriever",
-  "musique_128k__contriever",
-  "musique_256k__contriever",
-  "qasper_32k__contriever",
-  "qasper_64k__contriever",
   "qasper_64k__bge_m3",
   "qasper_64k__jina",
-  "qasper_64k__qwen",
-  "qasper_128k__contriever",
-  "qasper_256k__contriever"
+  "qasper_64k__qwen"
  ],
  "status": "OK",
  "problems": [],
  "warnings": [
-  "musique_32k/contriever: waiting for scores",
   "musique_32k/bge_m3: waiting for scores",
   "musique_32k/jina: waiting for scores",
   "musique_32k/qwen: waiting for scores",
-  "musique_64k/contriever: waiting for scores",
-  "musique_128k/contriever: waiting for scores",
-  "musique_256k/contriever: waiting for scores",
-  "qasper_32k/contriever: waiting for scores",
-  "qasper_64k/contriever: waiting for scores",
   "qasper_64k/bge_m3: waiting for scores",
   "qasper_64k/jina: waiting for scores",
-  "qasper_64k/qwen: waiting for scores",
-  "qasper_128k/contriever: waiting for scores",
-  "qasper_256k/contriever: waiting for scores"
+  "qasper_64k/qwen: waiting for scores"
  ],
  "files_written": [
   "experiments/rebuttal/c4_subdoc_control/reports/step_02.json",
   "experiments/rebuttal/c4_subdoc_control/reports/step_02.md"
  ],
- "seconds": 627.945837020874
+ "seconds": 9971.539816141129
 }

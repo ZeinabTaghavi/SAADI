@@ -273,6 +273,7 @@ PAIRED_MEASURES = (
     ("in_rr", "keep", "Inside MRR"),
     ("in_hr10_gt", "keep", "Inside HR@10 (> 10 chunks)"),
     ("subdoc_hit10", "", "Sub-document hit@10"),
+    ("subdoc_share10", "", "Top-10 share from the gold sub-document"),
     ("in_hr3", "renorm", "Inside HR@3"),
     ("in_hr5", "renorm", "Inside HR@5"),
     ("in_rr", "renorm", "Inside MRR"),

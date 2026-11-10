@@ -150,14 +150,17 @@ def body(report: StepReport, args: argparse.Namespace) -> None:
     summ = {f"{s}_{r}": counts(s, r) for s in SETS for r in ("keep", "renorm")}
     summ_hr5 = {s: counts(s, "keep", "in_hr5") for s in SETS}
     summ_sub = counts(MAIN_SET, "", "subdoc_hit10")
+    summ_share = counts(MAIN_SET, "", "subdoc_share10")
     summ_full = counts(MAIN_SET, "", "full_hr10")
-    report.data["summary_counts"] = {"mrr": summ, "hr5": summ_hr5, "subdoc_hit10": summ_sub, "full_hr10": summ_full}
+    report.data["summary_counts"] = {"mrr": summ, "hr5": summ_hr5, "subdoc_hit10": summ_sub, "subdoc_share10": summ_share, "full_hr10": summ_full}
 
     def verdict(p: str) -> str:
         full = P(p, MAIN_SET, "full_hr10")
         sub = P(p, MAIN_SET, "subdoc_hit10")
+        shr = P(p, MAIN_SET, "subdoc_share10")
         ins = P(p, MAIN_SET, "in_rr", "keep")
-        s_ok, i_ok = bool(sub and sub["ci_above_zero"]), bool(ins and ins["ci_above_zero"])
+        s_ok = bool(sub and sub["ci_above_zero"]) or bool(shr and shr["ci_above_zero"])
+        i_ok = bool(ins and ins["ci_above_zero"])
         lead = "full gain" if full and full["ci_above_zero"] else "no clear full gain"
         if s_ok and i_ok:
             return f"{lead}; both"
@@ -189,15 +192,18 @@ def body(report: StepReport, args: argparse.Namespace) -> None:
 
     def sub_sentence() -> str:
         n, up, ci_up = summ_sub["pairs"], summ_sub["gain"], summ_sub["ci_above"]
-        base = (f"SAADI's full-document top 10 contains a gold-sub-document chunk more often than Vanilla's in {up} of {n} pairs "
-                f"(CI above zero in {ci_up}, below zero in {summ_sub['ci_below']})")
-        if ci_up and mk["ci_above"]:
-            return base + ", so the full-document gain comes partly from choosing the right sub-document and partly from ranking inside it."
-        if mk["ci_above"]:
-            return base + ", so choosing the sub-document does not explain the full-document gain; ranking inside it does."
-        if ci_up:
-            return base + ", so the full-document gain comes mainly from choosing the right sub-document."
-        return base + "."
+        sd = summ_share["diffs"]
+        reach = ("SAADI does not reach the gold sub-document more often than Vanilla: whether at least one of its top-10 chunks "
+                 f"comes from it is higher in {up} of {n} pairs, with the CI above zero in {ci_up}"
+                 if not ci_up else
+                 f"SAADI reaches the gold sub-document more often than Vanilla (at least one top-10 chunk from it; CI above zero in {ci_up} of {n} pairs)")
+        share = (f"; but it fills more of its top 10 with that sub-document's chunks in {summ_share['gain']} of {summ_share['pairs']} pairs "
+                 f"(+{min(sd):.1f} to +{max(sd):.1f} points, CI above zero in {summ_share['ci_above']})") if sd else ""
+        both = summ_share["ci_above"] and mk["ci_above"]
+        tail = (", so the full-document gain comes both from favouring the right sub-document and from ranking better inside it."
+                if both else ".")
+        return reach + share + tail
+
     sents = [
         f"To separate SAADI's within-document ranking from sub-document selection, we re-ranked only the chunks of each query's "
         f"gold sub-document in every concatenated MuSiQue and QASPER setting (32K to 256K tokens), for {n_pairs} setting-retriever "
@@ -238,14 +244,14 @@ def body(report: StepReport, args: argparse.Namespace) -> None:
           f"- Paired differences SAADI - Vanilla, percent points, 95% CI from {N_BOOT:,} bootstrap resamples over queries, seed {SEED}. Nothing tuned."]
 
     L += ["", f"## 1. Is the full-document gain explained by sub-document selection, by the ranking inside it, or both? (set {MAIN_SET})", ""]
-    L.append("| Pair | n | Full HR@10 gain | Sub-doc hit@10 gain | Inside HR@5 gain | Inside MRR gain | Reading |")
-    L.append("| --- | --- | --- | --- | --- | --- | --- |")
+    L.append("| Pair | n | Full HR@10 gain | Sub-doc hit@10 gain | Top-10 share gain | Inside HR@5 gain | Inside MRR gain | Reading |")
+    L.append("| --- | --- | --- | --- | --- | --- | --- | --- |")
     for p in pairs:
         key, r = p.split("__")
         x = P(p, MAIN_SET, "full_hr10")
-        L.append(f"| {ALL_SETTINGS[key].display} {RETRIEVER_DISPLAY[r]} | {x['n'] if x else '-'} | {_ci(x)} | {_ci(P(p, MAIN_SET, 'subdoc_hit10'))} | "
+        L.append(f"| {ALL_SETTINGS[key].display} {RETRIEVER_DISPLAY[r]} | {x['n'] if x else '-'} | {_ci(x)} | {_ci(P(p, MAIN_SET, 'subdoc_hit10'))} | {_ci(P(p, MAIN_SET, 'subdoc_share10'))} | "
                  f"{_ci(P(p, MAIN_SET, 'in_hr5', 'keep'))} | {_ci(P(p, MAIN_SET, 'in_rr', 'keep'))} | {verdict(p)} |")
-    L += ["", "Reading: \"sub-document selection\" when the sub-document hit@10 CI is above zero, \"inside ranking\" when the "
+    L += ["", "Reading: \"sub-document selection\" when the CI of the sub-document hit@10 or of the top-10 share is above zero, \"inside ranking\" when the "
           "inside-MRR CI is above zero, \"both\" when both are. A fixed rule for reading the table, not a test of a decomposition."]
 
     L += ["", "## 2. Measures per pair", ""]
@@ -268,19 +274,19 @@ def body(report: StepReport, args: argparse.Namespace) -> None:
     L += ["## 3. Paired differences (SAADI - Vanilla, 95% CI)", ""]
     for set_name in (MAIN_SET, OTHER_SET):
         L += [f"### {SET_DISPLAY[set_name][:1].upper() + SET_DISPLAY[set_name][1:]}", ""]
-        L.append("| Pair | Full HR@10 | Sub-doc hit@10 | In HR@3 keep / renorm | In HR@5 keep / renorm | In MRR keep / renorm | In HR@10 (>10 ch.) keep / renorm |")
-        L.append("| --- | --- | --- | --- | --- | --- | --- |")
+        L.append("| Pair | Full HR@10 | Sub-doc hit@10 | Top-10 share | In HR@3 keep / renorm | In HR@5 keep / renorm | In MRR keep / renorm | In HR@10 (>10 ch.) keep / renorm |")
+        L.append("| --- | --- | --- | --- | --- | --- | --- | --- |")
         for p in pairs:
             key, r = p.split("__")
             cell = lambda m: f"{_ci(P(p, set_name, m, 'keep'))} / {_ci(P(p, set_name, m, 'renorm'))}"  # noqa: E731
             L.append(f"| {ALL_SETTINGS[key].display} {RETRIEVER_DISPLAY[r]} | {_ci(P(p, set_name, 'full_hr10'))} | "
-                     f"{_ci(P(p, set_name, 'subdoc_hit10'))} | {cell('in_hr3')} | {cell('in_hr5')} | {cell('in_rr')} | {cell('in_hr10_gt')} |")
+                     f"{_ci(P(p, set_name, 'subdoc_hit10'))} | {_ci(P(p, set_name, 'subdoc_share10'))} | {cell('in_hr3')} | {cell('in_hr5')} | {cell('in_rr')} | {cell('in_hr10_gt')} |")
         L.append("")
-    L += ["### All eligible queries (full document only)", "", "| Pair | n | Full HR@10 | Sub-doc hit@10 |", "| --- | --- | --- | --- |"]
+    L += ["### All eligible queries (full document only)", "", "| Pair | n | Full HR@10 | Sub-doc hit@10 | Top-10 share |", "| --- | --- | --- | --- | --- |"]
     for p in pairs:
         key, r = p.split("__")
         x = P(p, "all", "full_hr10")
-        L.append(f"| {ALL_SETTINGS[key].display} {RETRIEVER_DISPLAY[r]} | {x['n']} | {_ci(x)} | {_ci(P(p, 'all', 'subdoc_hit10'))} |")
+        L.append(f"| {ALL_SETTINGS[key].display} {RETRIEVER_DISPLAY[r]} | {x['n']} | {_ci(x)} | {_ci(P(p, 'all', 'subdoc_hit10'))} | {_ci(P(p, 'all', 'subdoc_share10'))} |")
 
     L += ["", "## 4. Across pairs", ""]
     L.append("| Query set | Restriction | Pairs | Inside MRR gain > 0 | CI fully above 0 | CI fully below 0 |")
@@ -295,7 +301,7 @@ def body(report: StepReport, args: argparse.Namespace) -> None:
     L.append("| --- | --- | --- | " + " | ".join("---" for _ in SIZES) + " |")
     for r in trend_retr:
         for ds in ("musique", "qasper"):
-            for measure, restr, label in (("full_hr10", "", "Full HR@10"), ("subdoc_hit10", "", "Sub-doc hit@10"), ("in_rr", "keep", "Inside MRR")):
+            for measure, restr, label in (("full_hr10", "", "Full HR@10"), ("subdoc_hit10", "", "Sub-doc hit@10"), ("subdoc_share10", "", "Top-10 share"), ("in_rr", "keep", "Inside MRR")):
                 cells = [_ci(P(f"{ds}_{sz.lower()}__{r}", MAIN_SET, measure, restr)) for sz in SIZES]
                 L.append(f"| {RETRIEVER_DISPLAY[r]} | {DATASET_DISPLAY[ds]} | {label} | " + " | ".join(cells) + " |")
     if not trend_retr:
@@ -322,10 +328,10 @@ def body(report: StepReport, args: argparse.Namespace) -> None:
     f1 = lambda x: "-" if x is None else f"{float(x):.1f}"  # noqa: E731
     tex = [r"% C4 sub-document control (generated by step05_report.py). Requires booktabs.",
            r"\begin{table}[t]", r"\centering", r"\small", r"\setlength{\tabcolsep}{4pt}",
-           r"\begin{tabular}{llrrrrrrl}", r"\toprule",
-           r" & & \multicolumn{2}{c}{Sub-doc hit@10} & \multicolumn{2}{c}{Inside HR@5} & \multicolumn{2}{c}{Inside MRR} & \\",
+           r"\begin{tabular}{llrrrrrrll}", r"\toprule",
+           r" & & \multicolumn{2}{c}{Top-10 share} & \multicolumn{2}{c}{Inside HR@5} & \multicolumn{2}{c}{Inside MRR} & & \\",
            r"\cmidrule(lr){3-4}\cmidrule(lr){5-6}\cmidrule(lr){7-8}",
-           r"Setting & Retriever & Van. & SAADI & Van. & SAADI & Van. & SAADI & $\Delta$MRR [95\% CI] \\", r"\midrule"]
+           r"Setting & Retriever & Van. & SAADI & Van. & SAADI & Van. & SAADI & $\Delta$share [95\% CI] & $\Delta$MRR [95\% CI] \\", r"\midrule"]
     prev_r = None
     for p in pairs:
         key, r = p.split("__")
@@ -336,14 +342,16 @@ def body(report: StepReport, args: argparse.Namespace) -> None:
         d = P(p, MAIN_SET, "in_rr", "keep")
         best = lambda a, b: (f"\\textbf{{{f1(b)}}}" if b is not None and a is not None and b > a else f1(b))  # noqa: E731
         ci = f"{d['diff']:+.1f} [{d['lo']:+.1f}, {d['hi']:+.1f}]" if d else "-"
-        tex.append(f"{ALL_SETTINGS[key].display} & {RETRIEVER_DISPLAY[r]} & {f1(v['subdoc_hit10'])} & {best(v['subdoc_hit10'], s_['subdoc_hit10'])} & "
+        ds_ = P(p, MAIN_SET, "subdoc_share10")
+        ci_s = f"{ds_['diff']:+.1f} [{ds_['lo']:+.1f}, {ds_['hi']:+.1f}]" if ds_ else "-"
+        tex.append(f"{ALL_SETTINGS[key].display} & {RETRIEVER_DISPLAY[r]} & {f1(v['subdoc_share10'])} & {best(v['subdoc_share10'], s_['subdoc_share10'])} & "
                    f"{f1(v['keep_in_hr5'])} & {best(v['keep_in_hr5'], s_['keep_in_hr5'])} & {f1(v['keep_in_mrr'])} & "
-                   f"{best(v['keep_in_mrr'], s_['keep_in_mrr'])} & {ci} \\\\")
+                   f"{best(v['keep_in_mrr'], s_['keep_in_mrr'])} & {ci_s} & {ci} \\\\")
     tex += [r"\bottomrule", r"\end{tabular}",
             r"\caption{Ranking inside the gold sub-document of each query on the concatenated settings "
             + ("(queries with labels re-derived inside the gold sub-document). " if MAIN_SET == "R" else "(queries whose evidence lies in the gold sub-document). ")
             + r"Vanilla is the text channel alone; SAADI uses the published weights; both use the same full-document scores, with "
-              r"chunks outside the gold sub-document removed. Sub-doc hit@10: a gold-sub-document chunk in the full-document top 10. "
+              r"chunks outside the gold sub-document removed. Top-10 share: percent of the full-document top-10 chunks that belong to the gold sub-document. "
               r"$\Delta$: SAADI $-$ Vanilla, 95\% CI from 10{,}000 bootstrap resamples over queries.}",
             r"\label{tab:subdoc-control}", r"\end{table}"]
     xpath = RESULTS_DIR / "table_paper.tex"
@@ -355,8 +363,8 @@ def body(report: StepReport, args: argparse.Namespace) -> None:
     report.h("Summary (as written at the top of REPORT.md)")
     report.p(" ".join(s for s in sents if s))
     report.h(f"Decomposition (set {MAIN_SET})")
-    report.table(["Pair", "Full HR@10 gain", "Sub-doc hit@10 gain", "Inside MRR gain", "Reading"],
-                 [[p, _ci(P(p, MAIN_SET, "full_hr10")), _ci(P(p, MAIN_SET, "subdoc_hit10")), _ci(P(p, MAIN_SET, "in_rr", "keep")), verdict(p)] for p in pairs])
+    report.table(["Pair", "Full HR@10 gain", "Sub-doc hit@10 gain", "Top-10 share gain", "Inside MRR gain", "Reading"],
+                 [[p, _ci(P(p, MAIN_SET, "full_hr10")), _ci(P(p, MAIN_SET, "subdoc_hit10")), _ci(P(p, MAIN_SET, "subdoc_share10")), _ci(P(p, MAIN_SET, "in_rr", "keep")), verdict(p)] for p in pairs])
     report.h("Across pairs")
     report.table(["Set", "Restriction", "Pairs", "MRR gain > 0", "CI above 0", "CI below 0"],
                  [[s, r, summ[f"{s}_{r}"]["pairs"], summ[f"{s}_{r}"]["gain"], summ[f"{s}_{r}"]["ci_above"], summ[f"{s}_{r}"]["ci_below"]]

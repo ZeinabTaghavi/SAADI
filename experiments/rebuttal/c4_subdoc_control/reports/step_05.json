@@ -1,0 +1,16 @@
+{
+ "step": 5,
+ "title": "paired bootstrap and final report",
+ "command": "bash experiments/rebuttal/c4_subdoc_control/sh/05_report.sh",
+ "seed": 42,
+ "status": "FAILED",
+ "problems": [
+  "unexpected error: RuntimeError: step 02 has not run (experiments/rebuttal/c4_subdoc_control/reports/step_02.json missing)"
+ ],
+ "warnings": [],
+ "files_written": [
+  "experiments/rebuttal/c4_subdoc_control/reports/step_05.json",
+  "experiments/rebuttal/c4_subdoc_control/reports/step_05.md"
+ ],
+ "seconds": 0.0011172294616699219
+}

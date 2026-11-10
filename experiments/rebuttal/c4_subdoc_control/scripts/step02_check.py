@@ -37,6 +37,7 @@ import numpy as np
 
 from c4_common import (
     DENSE_STREAMS_DIR,
+    MAIN_CONDITION,
     MAP_DIR,
     ROOT,
     SEED,
@@ -54,7 +55,7 @@ from c4_common import (
     selected_retrievers,
     selected_settings,
 )
-from c4_streams import compute_bm25_streams, job_name, labels_equal, saved_rows, stream_paths
+from c4_streams import BM25_STREAMS_DIR, compute_bm25_streams, compute_streams, job_name, labels_equal, saved_rows, stream_paths
 
 from saadi.rebuttal.heldout_fusion import (  # noqa: E402
     BIG_RANK,
@@ -238,6 +239,8 @@ def check_pair(setting: Setting, retriever: str, srcs: list[dict[str, Any]], cfg
     # Vanilla vs the paper's Vanilla (aggregate, reported only).
     van = {}
     for table, cond in (("table26", setting.condition), ("table1", "")):
+        if table == "table1" and setting.condition != MAIN_CONDITION[setting.dataset]:
+            continue  # Table 1 holds MuSiQue-32K and QASPER-64K only
         for k in (5, 10):
             ref = vanilla_ref.get((table, setting.dataset, cond, retriever, k))
             if ref is not None and out["hr"]["van"][k] is not None:
@@ -284,11 +287,34 @@ def body(report: StepReport, args: argparse.Namespace) -> None:
                     report.fail(f"{key}/bm25: scoring failed: {type(exc).__name__}: {exc}")
     report.data["bm25_streams"] = stream_info
 
+    # ---- dense streams computed here when asked (--score-dense contriever); one process, the
+    # retriever's own encoder on cuda / mps / cpu. Resumable like BM25.
+    dense_info: dict[str, Any] = {}
+    score_dense = [r.strip() for r in (args.score_dense or "").split(",") if r.strip()]
+    bad = [r for r in score_dense if r == "bm25" or r not in retrievers]
+    if bad:
+        raise RuntimeError(f"--score-dense {bad}: must be dense retrievers among the selected ones ({retrievers})")
+    for s, r in pairs:
+        if r not in score_dense:
+            continue
+        name = job_name(s, r)
+        print(f"[c4] step 02: {r} scores for {s.key}", flush=True)
+        try:
+            qids = sorted({str(row["query_id"]) for row in load_ranking_rows(sources[(s.key, r)][0])}, key=qid_sort_key)
+            dense_info[name] = compute_streams(s, r, saved_rows(s, r, qids), log=lambda m: print(m, flush=True), force=args.force)
+            print(f"[c4] step 02: {r} scores for {s.key} ready", flush=True)
+        except Exception as exc:
+            import traceback
+
+            dense_info[name] = {"error": f"{type(exc).__name__}: {exc}", "traceback": traceback.format_exc()}
+            report.fail(f"{name}: scoring failed: {type(exc).__name__}: {exc}")
+    report.data["dense_streams"] = dense_info
+
     # ---- per-pair checks
     vanilla_ref = paper_vanilla()
     results = []
     for s, r in pairs:
-        if r == "bm25" and "error" in stream_info.get(s.key, {}):
+        if (r == "bm25" and "error" in stream_info.get(s.key, {})) or "error" in dense_info.get(job_name(s, r), {}):
             results.append({"setting": s.key, "display": s.display, "retriever": r, "status": "failed", "problems": ["BM25 scoring failed"], "notes": []})
             continue
         print(f"[c4] step 02: checking {s.key}/{r}", flush=True)
@@ -314,7 +340,8 @@ def body(report: StepReport, args: argparse.Namespace) -> None:
         rows.append([x["display"], x["retriever"], "/".join(str(d) for d in x.get("paper_saved_depth", [])) or "-",
                      "yes" if x.get("saved_per_document_file") else "no",
                      {"ready": "available", "failed": "available" if x.get("stream_queries") else "-", "waiting_for_scores": "waiting for scores"}.get(x["status"], x["status"]),
-                     "re-scored here" if x["retriever"] == "bm25" else rel(DENSE_STREAMS_DIR)])
+                     "re-scored here" if Path((x.get("stream_files") or [""])[0]).parent == Path(rel(BM25_STREAMS_DIR))
+                     else rel(DENSE_STREAMS_DIR)])
     report.table(["Setting", "Retriever", "Paper top-k depth", "Saved per-document top-10 file", "Full per-chunk scores", "Source of full scores"], rows)
     waiting = [x for x in results if x["status"] == "waiting_for_scores"]
     if waiting:
@@ -335,6 +362,17 @@ def body(report: StepReport, args: argparse.Namespace) -> None:
                 parts.append(f"{k}: {v.get('docs', 0)} documents ({v.get('docs_from_checkpoint', 0)} from checkpoints), {fnum(v.get('seconds'), 0)} s")
         report.p("")
         report.p("BM25 scoring: " + "; ".join(parts) + ".")
+    if dense_info:
+        parts = []
+        for k, v in sorted(dense_info.items()):
+            if "error" in v:
+                parts.append(f"{k}: FAILED")
+            elif not v.get("computed"):
+                parts.append(f"{k}: reused from {v.get('path')}")
+            else:
+                parts.append(f"{k}: {v.get('docs', 0)} documents ({v.get('docs_from_checkpoint', 0)} from checkpoints) on {v.get('device')}, {fnum(v.get('seconds'), 0)} s")
+        report.p("")
+        report.p("Dense scoring here: " + "; ".join(parts) + ".")
 
     report.h("2. Reproduction on the full ranking")
     rows = []
@@ -368,16 +406,16 @@ def body(report: StepReport, args: argparse.Namespace) -> None:
         cell = lambda key: (f"{fnum(v[key]['paper'])} ({v[key]['diff']:+.2f})" if key in v else "-")  # noqa: E731
         rows.append([x["display"], x["retriever"], f"{fnum(x['hr']['van'][5])} / {fnum(x['hr']['van'][10])}",
                      f"{cell('table26@5')} / {cell('table26@10')}", f"{cell('table1@5')} / {cell('table1@10')}"])
-    report.table(["Setting", "Retriever", "Text channel HR@5 / HR@10 (ours)", "Table 26 Vanilla (ours - paper)", "Table 1 Vanilla (ours - paper)"], rows)
+    report.table(["Setting", "Retriever", "Text channel HR@5 / HR@10 (ours)", "Table 26 Vanilla (ours - paper)", "Table 1 Vanilla (ours - paper; MuSiQue-32K and QASPER-64K only)"], rows)
     report.p("Rebuttal Vanilla = SAADI's text channel on the same chunks (decided in C1). The paper's Vanilla rows are "
              "aggregate numbers from a separate run, so they are shown here and not used as a gate.")
     for x in results:
         if x.get("traceback"):
             report.h(f"Traceback ({x['display']}/{x['retriever']})")
             report.code(x["traceback"])
-    for k, v in stream_info.items():
+    for k, v in list(stream_info.items()) + list(dense_info.items()):
         if v.get("traceback"):
-            report.h(f"Traceback (BM25 scoring, {k})")
+            report.h(f"Traceback (scoring, {k})")
             report.code(v["traceback"])
     report.data["ready_pairs"] = [f"{x['setting']}__{x['retriever']}" for x in results if x["status"] == "ready"]
     report.data["waiting_pairs"] = [f"{x['setting']}__{x['retriever']}" for x in waiting]
@@ -388,7 +426,9 @@ def main() -> int:
     ap.add_argument("--settings", default=None)
     ap.add_argument("--retrievers", default=None)
     ap.add_argument("--workers", type=int, default=int(os.environ.get("C4_WORKERS", "4")), help="parallel BM25 settings (default 4)")
-    ap.add_argument("--force", action="store_true", help="re-score BM25 even when the scores exist")
+    ap.add_argument("--force", action="store_true", help="re-score even when the scores exist")
+    ap.add_argument("--score-dense", default=os.environ.get("C4_SCORE_DENSE", ""),
+                    help="comma list of dense retrievers to score here (e.g. contriever); needs torch + transformers")
     args = ap.parse_args()
     cmd = "bash experiments/rebuttal/c4_subdoc_control/sh/02_check.sh" + ("" if len(sys.argv) == 1 else " " + " ".join(sys.argv[1:]))
     report = StepReport(2, "input completeness and reproduction of the paper", command=cmd)

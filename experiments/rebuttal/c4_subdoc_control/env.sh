@@ -47,8 +47,14 @@ export C4_RETRIEVERS="${C4_RETRIEVERS:-bm25,contriever,bge_m3,jina,qwen}"
 # Both are always computed and reported; this only picks which one leads.
 export C4_MAIN_SET="${C4_MAIN_SET:-R}"
 
-# CPU only.
-export CUDA_VISIBLE_DEVICES=""
+# CPU only by default. Only the optional dense scoring of step 02 (--score-dense contriever)
+# uses an accelerator: Apple mps when present, or a GPU picked with C4_CUDA_VISIBLE_DEVICES
+# (e.g. C4_CUDA_VISIBLE_DEVICES=4 on the server, beside another build). C4_DENSE_DEVICE
+# forces one (cuda, mps or cpu).
+export CUDA_VISIBLE_DEVICES="${C4_CUDA_VISIBLE_DEVICES:-}"
+if [[ -n "${C4_DENSE_DEVICE:-}" ]]; then
+  export SAADI_RETRIEVER_DEVICE="${C4_DENSE_DEVICE}"
+fi
 export TOKENIZERS_PARALLELISM=false
 export PYTHONHASHSEED=0
 

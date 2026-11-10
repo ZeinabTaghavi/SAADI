@@ -6,8 +6,10 @@ query's labels and the published / text-only top-10 computed at stream time by t
 repository's own combination (combine_mbr_variant_chunk_scores).
 
 BM25 streams are computed here on CPU with C2's code (score_mbr_variant_document_pools over
-the saved construction cache; nothing is rebuilt). Dense streams are only read, from
-$C4_DENSE_STREAMS_DIR (C2's output, or a later recomputation in the same format).
+the saved construction cache; nothing is rebuilt). A dense retriever's streams are computed
+here too when asked (step 02 --score-dense contriever: same code, the retriever's own encoder
+on cuda, mps or cpu), into work/streams/; otherwise they are read from $C4_DENSE_STREAMS_DIR
+(C2's output). work/streams/ wins when both exist.
 """
 
 from __future__ import annotations
@@ -19,6 +21,7 @@ from typing import Any
 
 from c4_common import DENSE_STREAMS_DIR, WORK_DIR, Setting, evidence_from_row, read_json, rel
 
+from saadi.indexing.retriever_adapters.scoring import _ENCODED_POOL_CACHE  # noqa: E402
 from saadi.indexing.retrieval_methods.mbr import build_mbr_document_memory_index  # noqa: E402
 from saadi.rebuttal.heldout_fusion import (  # noqa: E402
     _atomic_write_bytes,
@@ -34,10 +37,32 @@ def job_name(setting: Setting, retriever: str) -> str:
     return f"{setting.key}__{retriever}"
 
 
-def stream_paths(setting: Setting, retriever: str) -> tuple[Path, Path]:
-    base = BM25_STREAMS_DIR if retriever == "bm25" else DENSE_STREAMS_DIR
+def stream_paths(setting: Setting, retriever: str, *, for_writing: bool = False) -> tuple[Path, Path]:
     job = job_name(setting, retriever)
-    return base / f"{job}.parquet", base / f"{job}.queries.json"
+    local = (BM25_STREAMS_DIR / f"{job}.parquet", BM25_STREAMS_DIR / f"{job}.queries.json")
+    if retriever == "bm25" or for_writing or (local[0].exists() and local[1].exists()):
+        return local
+    return DENSE_STREAMS_DIR / f"{job}.parquet", DENSE_STREAMS_DIR / f"{job}.queries.json"
+
+
+def dense_device() -> str:
+    """cuda if visible, else Apple mps, else cpu; $SAADI_RETRIEVER_DEVICE (C4_DENSE_DEVICE) wins."""
+
+    import os
+
+    want = os.environ.get("SAADI_RETRIEVER_DEVICE", "").strip()
+    if want:
+        return want
+    import torch
+
+    if torch.cuda.is_available():
+        dev = "cuda"
+    elif getattr(torch.backends, "mps", None) is not None and torch.backends.mps.is_available():
+        dev = "mps"
+    else:
+        dev = "cpu"
+    os.environ["SAADI_RETRIEVER_DEVICE"] = dev  # read by the retriever adapters at construction
+    return dev
 
 
 def saved_rows(setting: Setting, retriever: str, paper_qids: list[str]) -> list[dict[str, Any]]:
@@ -73,10 +98,17 @@ def labels_equal(row_a: dict[str, Any], row_b: dict[str, Any]) -> bool:
 def compute_bm25_streams(setting: Setting, rows: list[dict[str, Any]], *, log=print, force: bool = False) -> dict[str, Any]:
     """Score every query of one setting with BM25 on CPU; per-document checkpoints make it resumable."""
 
-    out_path, queries_path = stream_paths(setting, "bm25")
+    return compute_streams(setting, "bm25", rows, log=log, force=force)
+
+
+def compute_streams(setting: Setting, retriever: str, rows: list[dict[str, Any]], *, log=print, force: bool = False) -> dict[str, Any]:
+    """Score every query of one (setting, retriever); per-document checkpoints make it resumable."""
+
+    out_path, queries_path = stream_paths(setting, retriever, for_writing=True)
     if out_path.exists() and queries_path.exists() and not force:
         return {"computed": False, "path": rel(out_path)}
-    job = job_name(setting, "bm25")
+    device = "cpu" if retriever == "bm25" else dense_device()
+    job = job_name(setting, retriever)
     work = WORK_DIR / "streams_work" / job
     work.mkdir(parents=True, exist_ok=True)
     by_doc = rows_by_document(rows)
@@ -94,12 +126,14 @@ def compute_bm25_streams(setting: Setting, rows: list[dict[str, Any]], *, log=pr
                 continue
         t0 = time.time()
         index = build_mbr_document_memory_index(setting.index_json, doc_id=doc_id)
-        doc = _score_document(index, by_doc[doc_id], "bm25")
+        doc = _score_document(index, by_doc[doc_id], retriever)
+        # The encoded pools of a document are reused by its queries only; free them before the next one.
+        _ENCODED_POOL_CACHE.clear()
         _atomic_write_bytes(ck, pickle.dumps(doc, protocol=pickle.HIGHEST_PROTOCOL))
         docs.append(doc)
         log(f"[{job}] doc {di + 1}/{len(by_doc)} {doc_id}: {len(doc['queries'])} queries, {len(doc['chunk_ids'])} chunks, {time.time() - t0:.0f}s")
     used = [rows[q["row_index"]] for d in docs for q in d["queries"]]
-    n_rows = save_streams(setting.key, "bm25", docs, used, out_path=out_path, queries_path=queries_path)
+    n_rows = save_streams(setting.key, retriever, docs, used, out_path=out_path, queries_path=queries_path)
     anomalies = [a for d in docs for a in d.get("anomalies", [])]
     return {
         "computed": True,
@@ -107,6 +141,7 @@ def compute_bm25_streams(setting: Setting, rows: list[dict[str, Any]], *, log=pr
         "parquet_rows": n_rows,
         "docs": len(docs),
         "docs_from_checkpoint": from_ck,
+        "device": device,
         "seconds": time.time() - t_start,
         "anomalies": anomalies,
     }

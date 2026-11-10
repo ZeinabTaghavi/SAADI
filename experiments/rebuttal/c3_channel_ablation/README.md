@@ -45,7 +45,7 @@ bash experiments/rebuttal/c3_channel_ablation/sh/01_check.sh
 | 01 | `sh/01_check.sh` | Inputs; BM25 channel scores; check 1 (all three = saved rankings, every query); check 2 (text only vs Vanilla) |
 | 02 | `sh/02_bm25.sh` | All six variants for BM25: per-query ranks, HR@5/HR@10, median rank, first paired differences |
 | 03 | `sh/03_dense.sh` | The same for the dense pairs that passed check 1 (only from saved channel scores) |
-| 04 | `sh/04_report.sh` | Tables, paired comparisons, `REPORT.md`, `table_paper.tex` (not written yet) |
+| 04 | `sh/04_report.sh` | From `per_query/` only: `table.csv`, `paired.csv`, summary counts, `REPORT.md`, `table_paper.tex` (laptop or server, seconds) |
 
 Vanilla and SAADI are not re-scored. All three (SAADI) is the paper's saved rankings; text only (Vanilla) is the
 text-only top-10 saved with the channel scores (C2's stream step), checked against Table 1 in step 01. C3 scores only

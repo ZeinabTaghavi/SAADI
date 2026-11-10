@@ -4,7 +4,9 @@
 # checkpoints under work/streams_work/); run it with nohup:
 #   nohup bash experiments/rebuttal/c4_subdoc_control/sh/02_check.sh > /dev/null 2>&1 &
 # Optional flags: --workers N (parallel settings, default 4)  --settings ...  --retrievers ...  --force
-# Dense full scores are read from $C4_DENSE_STREAMS_DIR (default: C2's streams).
+#   --score-dense contriever : compute Contriever's full scores here too (needs torch + transformers;
+#                              Apple mps / a GPU when present, else CPU; resumable). Written to work/streams/.
+# Other dense full scores are read from $C4_DENSE_STREAMS_DIR (default: C2's streams).
 # The LAST line printed is the report path; the exit code is non-zero when the step failed.
 set -uo pipefail
 
