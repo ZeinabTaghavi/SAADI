@@ -6,7 +6,7 @@
  "eval_dir": "/home/iataghav/data/SAADI/outputs/rebuttal/c5_end_to_end/raptor_rerun/raptor_10_evaluations/musique_32k/musique_32k_retrieval_ablation_raptor/retrieval_upper_bound",
  "python": "/mnt/data/zeinab/raptor/.venv/bin/python3",
  "gpus": "0,1,2,3",
- "commit": "189f048f7efa",
+ "commit": "3fd3c0dca1b3",
  "host": "eee-s132-infsys-gpu03",
  "traceback": "Traceback (most recent call last):\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c5_end_to_end/scripts/step01_raptor_rerun.py\", line 134, in main\n    raise RuntimeError(f\"no RAPTOR copy with the MuSiQue runner among {[str(c) for c in cands]} (missing {missing}); set C5_RAPTOR_CODE_DIR\")\nRuntimeError: no RAPTOR copy with the MuSiQue runner among ['/mnt/data/zeinab/SAADI_Raptor', '/mnt/data/zeinab/SAADI_Raptor', '/home/iataghav/SAADI_Raptor', '/home/iataghav/data/SAADI_Raptor', '/home/iataghav/data/SAADI/../SAADI_Raptor', '/home/iataghav/data/SAADI/outputs/other_methods_method/SAADI_Raptor'] (missing ['raptor/dataset_loaders/prepared_expanded.py', 'scripts/check_raptor_run_status.py', 'configs/raptor/musique_32k_retrieval_ablation.yaml']); set C5_RAPTOR_CODE_DIR\n",
  "one_line": "FAILED: RuntimeError: no RAPTOR copy with the MuSiQue runner among ['/mnt/data/zeinab/SAADI_Raptor', '/mnt/data/zeinab/SAADI_Raptor'",
