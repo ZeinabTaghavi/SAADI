@@ -1,0 +1,69 @@
+{
+ "step": 3,
+ "title": "BM25 ranks inside the gold sub-document",
+ "command": "bash experiments/rebuttal/c4_subdoc_control/sh/03_bm25.sh",
+ "seed": 42,
+ "main_set": "R",
+ "skipped": [],
+ "pairs": {
+  "musique_32k__bm25": {
+   "setting": "musique_32k",
+   "retriever": "bm25",
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/zeinab/SAADI/experiments/rebuttal/c4_subdoc_control/work/streams/musique_32k__bm25.parquet'"
+  },
+  "musique_64k__bm25": {
+   "setting": "musique_64k",
+   "retriever": "bm25",
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/zeinab/SAADI/experiments/rebuttal/c4_subdoc_control/work/streams/musique_64k__bm25.parquet'"
+  },
+  "musique_128k__bm25": {
+   "setting": "musique_128k",
+   "retriever": "bm25",
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/zeinab/SAADI/experiments/rebuttal/c4_subdoc_control/work/streams/musique_128k__bm25.parquet'"
+  },
+  "musique_256k__bm25": {
+   "setting": "musique_256k",
+   "retriever": "bm25",
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/zeinab/SAADI/experiments/rebuttal/c4_subdoc_control/work/streams/musique_256k__bm25.parquet'"
+  },
+  "qasper_32k__bm25": {
+   "setting": "qasper_32k",
+   "retriever": "bm25",
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/zeinab/SAADI/experiments/rebuttal/c4_subdoc_control/work/streams/qasper_32k__bm25.parquet'"
+  },
+  "qasper_64k__bm25": {
+   "setting": "qasper_64k",
+   "retriever": "bm25",
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/zeinab/SAADI/experiments/rebuttal/c4_subdoc_control/work/streams/qasper_64k__bm25.parquet'"
+  },
+  "qasper_128k__bm25": {
+   "setting": "qasper_128k",
+   "retriever": "bm25",
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/zeinab/SAADI/experiments/rebuttal/c4_subdoc_control/work/streams/qasper_128k__bm25.parquet'"
+  },
+  "qasper_256k__bm25": {
+   "setting": "qasper_256k",
+   "retriever": "bm25",
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/zeinab/SAADI/experiments/rebuttal/c4_subdoc_control/work/streams/qasper_256k__bm25.parquet'"
+  }
+ },
+ "summary": [],
+ "measured_pairs": [],
+ "status": "FAILED",
+ "problems": [
+  "musique_32k__bm25: FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/zeinab/SAADI/experiments/rebuttal/c4_subdoc_control/work/streams/musique_32k__bm25.parquet'",
+  "musique_64k__bm25: FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/zeinab/SAADI/experiments/rebuttal/c4_subdoc_control/work/streams/musique_64k__bm25.parquet'",
+  "musique_128k__bm25: FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/zeinab/SAADI/experiments/rebuttal/c4_subdoc_control/work/streams/musique_128k__bm25.parquet'",
+  "musique_256k__bm25: FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/zeinab/SAADI/experiments/rebuttal/c4_subdoc_control/work/streams/musique_256k__bm25.parquet'",
+  "qasper_32k__bm25: FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/zeinab/SAADI/experiments/rebuttal/c4_subdoc_control/work/streams/qasper_32k__bm25.parquet'",
+  "qasper_64k__bm25: FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/zeinab/SAADI/experiments/rebuttal/c4_subdoc_control/work/streams/qasper_64k__bm25.parquet'",
+  "qasper_128k__bm25: FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/zeinab/SAADI/experiments/rebuttal/c4_subdoc_control/work/streams/qasper_128k__bm25.parquet'",
+  "qasper_256k__bm25: FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/zeinab/SAADI/experiments/rebuttal/c4_subdoc_control/work/streams/qasper_256k__bm25.parquet'"
+ ],
+ "warnings": [],
+ "files_written": [
+  "experiments/rebuttal/c4_subdoc_control/reports/step_03.json",
+  "experiments/rebuttal/c4_subdoc_control/reports/step_03.md"
+ ],
+ "seconds": 0.3496227264404297
+}
