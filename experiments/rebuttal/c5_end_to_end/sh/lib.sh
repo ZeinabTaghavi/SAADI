@@ -118,12 +118,17 @@ c5_push() {
       exit 0
     fi
     git add -f -- "${add[@]}" >/dev/null 2>&1
-    # Commit only the C5 paths, whatever else is staged in this checkout.
-    if git diff --cached --quiet -- "${C5_GIT_PATHS[@]}"; then
+    # Commit only the C5 paths, whatever else is staged in this checkout. A pathspec that matches no
+    # file known to git makes "git commit -- <paths>" fail, so only folders git knows are passed.
+    local known=() d
+    for d in "${C5_GIT_PATHS[@]}"; do
+      [[ -n "$(git ls-files -- "${d}" | head -n 1)" ]] && known+=("${d}")
+    done
+    if [[ "${#known[@]}" -eq 0 ]] || git diff --cached --quiet -- "${known[@]}"; then
       echo "no changes in the C5 folders since the last commit" > "${note}"
       exit 0
     fi
-    if ! git commit -q -m "${msg}" -- "${C5_GIT_PATHS[@]}" >/dev/null 2>"${note}.err"; then
+    if ! git commit -q -m "${msg}" -- "${known[@]}" >/dev/null 2>"${note}.err"; then
       { echo "NOT PUSHED: git commit failed:"; cat "${note}.err"; } > "${note}"
       rm -f "${note}.err"
       exit 0
@@ -172,4 +177,38 @@ c5_push() {
     } >> "${report}"
   fi
   return 0
+}
+
+# c5_check_python <report.md> <title> [vllm]
+#   Before a step: the chosen Python must import the CPU set (and vLLM for the GPU steps). On
+#   failure it writes the step's report with what is missing and how to point C5 at the right
+#   environment, and returns 1.
+c5_check_python() {
+  local report="$1" title="$2" mods="numpy, pandas, pyarrow, transformers, yaml"
+  [[ "${3:-}" == "vllm" ]] && mods="${mods}, vllm"
+  local out
+  if out="$("${PYTHON}" -c "import sys, ${mods}; print(sys.executable, sys.version.split()[0])" 2>&1)"; then
+    echo "[c5] python ${out}"
+    "${PYTHON}" -c "import datasets" >/dev/null 2>&1 || echo "[c5] note: this Python has no 'datasets' package; MuSiQue aliases are skipped and NovelHopQA gold answers come from RAPTOR's copy"
+    return 0
+  fi
+  {
+    echo "# C5 end-to-end QA - ${title}: FAILED (Python environment)"
+    echo
+    echo "Written $(date '+%F %T') on $(hostname). Nothing was run."
+    echo
+    echo "The Python C5 picked, \`${PYTHON}\`, cannot import: ${mods}."
+    echo
+    echo '```'
+    echo "${out}" | tail -n 5
+    echo '```'
+    echo
+    echo "Point C5 at the study environment (on gpu03 C1 and C2 used /mnt/data/zeinab/raptor/.venv/bin/python3), e.g."
+    echo
+    echo '```bash'
+    echo "C5_PYTHON=/mnt/data/zeinab/raptor/.venv/bin/python3 bash experiments/rebuttal/c5_end_to_end/sh/00_prepare.sh"
+    echo '```'
+  } > "${report}"
+  echo "FAILED: Python ${PYTHON} lacks one of: ${mods}" > "${report%.md}.summary.txt"
+  return 1
 }

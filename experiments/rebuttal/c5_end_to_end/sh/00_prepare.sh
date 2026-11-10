@@ -24,16 +24,21 @@ LOG="${C5_LOG_DIR}/00_prepare_${TS}.log"
 REPORT="${C5_REPORT_DIR}/step_00.md"
 
 {
-  echo "[c5] host $(hostname); repo ${C5_ROOT_DIR}; python $(${PYTHON} -c 'import sys; print(sys.version.split()[0])')"
+  echo "[c5] host $(hostname); repo ${C5_ROOT_DIR}; python ${PYTHON}"
   echo "[c5] RAPTOR ${C5_RAPTOR_DIR}"
   echo "[c5] A-RAG  ${C5_ARAG_DIR}"
   echo "[c5] C1     ${C5_C1_DIR}"
   echo "[c5] HF_HOME ${HF_HOME}"
 } | tee -a "${LOG}"
 
-c5_run_step 00 "step 00 (prepare)" "${REPORT}" "${LOG}" \
-  "${PYTHON}" "${C5_EXP_DIR}/scripts/step00_prepare.py" "$@"
-status=$?
+c5_check_python "${REPORT}" "step 00 (prepare)" 2>&1 | tee -a "${LOG}"
+if [[ "${PIPESTATUS[0]}" -eq 0 ]]; then
+  c5_run_step 00 "step 00 (prepare)" "${REPORT}" "${LOG}" \
+    "${PYTHON}" "${C5_EXP_DIR}/scripts/step00_prepare.py" "$@"
+  status=$?
+else
+  status=1
+fi
 
 c5_push all 00_prepare "${REPORT}"
 

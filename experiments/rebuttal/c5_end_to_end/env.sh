@@ -176,12 +176,33 @@ export C5_GIT_MAX_FILE_MB=5
 
 export TOKENIZERS_PARALLELISM=false
 export PYTHONHASHSEED=0
-# The study venv, when present (python 3.12, torch + vLLM + transformers).
-if [[ -f .venv/bin/activate ]]; then
-  # shellcheck disable=SC1091
-  source .venv/bin/activate
+# Python. C5 needs numpy, pandas, pyarrow, transformers and PyYAML on every step, and vLLM on the
+# GPU steps. C5_PYTHON is used as given; otherwise the first of these that imports the CPU set:
+# the repo's .venv, the study venv C1 and C2 ran with on the server (/mnt/data/zeinab/raptor/.venv,
+# python 3.12), the active virtualenv, then the system python3. Its bin/ goes first on PATH.
+c5_py_ok() { "$1" -c "import numpy, pandas, pyarrow, transformers, yaml" >/dev/null 2>&1; }
+C5_PY_CHOSEN=""
+if [[ -n "${C5_PYTHON:-}" ]]; then
+  C5_PY_CHOSEN="${C5_PYTHON}"
+else
+  for c5_c in "${C5_ROOT_DIR}/.venv/bin/python" /mnt/data/zeinab/raptor/.venv/bin/python3 \
+              "${VIRTUAL_ENV:-/nonexistent}/bin/python" "$(command -v python3 2>/dev/null)"; do
+    if [[ -n "${c5_c}" && -x "${c5_c}" ]] && c5_py_ok "${c5_c}"; then
+      C5_PY_CHOSEN="${c5_c}"
+      break
+    fi
+  done
 fi
-export PYTHON="${PYTHON:-python3}"
+if [[ -z "${C5_PY_CHOSEN}" ]]; then
+  # Nothing works: keep python3 so the step fails with the import error in its report.
+  C5_PY_CHOSEN="$(command -v python3 2>/dev/null || echo python3)"
+fi
+export PYTHON="${C5_PY_CHOSEN}"
+if [[ -f "$(dirname "${PYTHON}")/activate" ]]; then
+  # shellcheck disable=SC1091
+  source "$(dirname "${PYTHON}")/activate"
+fi
+export PATH="$(dirname "${PYTHON}"):${PATH}"
 export PYTHONPATH="${C5_EXP_DIR}/scripts:${PYTHONPATH}"
 
 mkdir -p "${C5_REPORT_DIR}" "${C5_LOG_DIR}" "${C5_RESULTS_DIR}" "${C5_OUT_DIR}" "${C5_CONTEXTS_DIR}"

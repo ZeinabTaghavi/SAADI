@@ -145,6 +145,11 @@ say "host $(hostname); dataset ${DS}; GPUs ${GPUS}; port ${PORT}; reader ${C5_RE
 # ---------------------------------------------------------------- preflight
 MANIFEST="${C5_CONTEXTS_DIR}/${DS}/manifest.json"
 PRE_REPORT="${C5_REPORT_DIR}/step_02_${DS}_reader.md"
+c5_check_python "${PRE_REPORT}" "step 02 reader, ${DS}" vllm 2>&1 | tee -a "${LOG}"
+if [[ "${PIPESTATUS[0]}" -ne 0 ]]; then
+  c5_push "${DS}" 02_reader "${PRE_REPORT}"
+  exit 1
+fi
 if [[ ! -f "${MANIFEST}" ]]; then
   fail_report "${PRE_REPORT}" "step 02 reader, ${DS}" "No contexts for ${DS} (${MANIFEST#"${C5_ROOT_DIR}/"} missing): run sh/00_prepare.sh first and check its report."
   c5_push "${DS}" 02_reader "${PRE_REPORT}"
