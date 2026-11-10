@@ -32,3 +32,9 @@ RuntimeError: no RAPTOR copy with the MuSiQue runner among ['/mnt/data/zeinab/SA
 - `/home/iataghav/data/SAADI/outputs/rebuttal/c5_end_to_end/raptor_rerun/raptor_10_runs/musique_32k/musique_32k_retrieval_ablation_raptor` (raw RAPTOR run, not pushed)
 - `/home/iataghav/data/SAADI/outputs/rebuttal/c5_end_to_end/raptor_rerun/raptor_10_evaluations/musique_32k/musique_32k_retrieval_ablation_raptor/retrieval_upper_bound` (not pushed)
 - `experiments/rebuttal/c5_end_to_end/reports/step_01_musique_32k_raptor.md`, `experiments/rebuttal/c5_end_to_end/reports/step_01_musique_32k_raptor.json`
+
+## Push
+
+```
+pushed 38a4c4e to origin/fix/notebook-key-and-install: C5 musique_32k 01_raptor: FAILED: RuntimeError: no RAPTOR copy with the MuSiQue runner among ['/mnt/data/zeinab/SAADI_Raptor', '/mnt/data/zeinab/SAADI_Raptor'
+```

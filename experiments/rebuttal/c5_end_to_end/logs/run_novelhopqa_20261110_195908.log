@@ -1,0 +1,5 @@
+[c5-novelhopqa] 2026-11-10 19:59:08 host eee-s132-infsys-gpu03; dataset novelhopqa; GPUs 4,5,6,7; port 18532; reader Qwen/Qwen3-30B-A3B-Instruct-2507
+[c5] python /mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+/mnt/data/zeinab/raptor/.venv/bin/python3 3.12.3
+[c5-novelhopqa] 2026-11-10 19:59:14 starting vLLM on GPUs 4,5,6,7, port 18532; log outputs/rebuttal/c5_end_to_end/vllm_logs/novelhopqa_20261110_195908.log
