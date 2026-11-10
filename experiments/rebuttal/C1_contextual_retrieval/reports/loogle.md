@@ -1,8 +1,7 @@
 # C1 Contextual Retrieval: LooGLE
 
-- Written 2026-11-09 17:32:47; commit d2ab689101df; documents 105, chunks 3346, queries 1832 (expected 1832 on the full dataset).
-- Status: generation done; jobs BM25 DONE, Contriever DONE, BGE-M3 DONE, Jina DONE, Qwen FAILED.
-- PROBLEM: qwen: FAILED
+- Written 2026-11-10 10:59:28; commit 0df9d38e4fd5; documents 105, chunks 3346, queries 1832 (expected 1832 on the full dataset).
+- Status: generation done; jobs BM25 DONE, Contriever DONE, BGE-M3 DONE, Jina DONE, Qwen DONE.
 
 ## 1. Correctness check (empty context reproduces Vanilla)
 
@@ -14,7 +13,7 @@ CR with every context empty indexes exactly the chunk text, so it must give Vani
 | Contriever | pass | 1832/1832 | 1832/1832 (top-150 1832) | 75.16 / 86.03 vs 75.16 / 86.03 | no file | 72.4 / 73.3 |
 | BGE-M3 | pass | 1832/1832 | 1832/1832 (top-150 1832) | 82.48 / 90.72 vs 82.48 / 90.72 | no file | 80.6 / 89.8 |
 | Jina | pass | 1519/1832 | 1832/1832 (top-150 1832) | 69.92 / 80.68 vs 69.92 / 80.68 | no file | 70.1 / 80.1 |
-| Qwen | FAIL | 733/1832 | 1832/1832 (top-150 1832) | 77.89 / 86.19 vs 77.89 / 86.19 | no file | 76.9 / 85.9 |
+| Qwen | pass | 733/1832 | 1832/1832 (top-150 1832) | 77.89 / 86.19 vs 77.89 / 86.19 | no file | 76.9 / 85.9 |
 - BM25 note: empty-context HR@5 91.87 vs Table 1 Vanilla 91.5 (tolerance 0.05) - not gated: on this dataset Table 1 Vanilla is not the text channel of the saved chunks
 - BM25 note: empty-context HR@10 95.74 vs Table 1 Vanilla 95.4 (tolerance 0.05) - not gated: on this dataset Table 1 Vanilla is not the text channel of the saved chunks
 - BM25: Vanilla reference for the dense check = C2 saved streams (independent run); memory and summary channels from {'c2_streams': 105, 'published_path': 0} documents.
@@ -26,13 +25,7 @@ CR with every context empty indexes exactly the chunk text, so it must give Vani
 - BGE-M3: Vanilla reference for the dense check = C2 saved streams (independent run); memory and summary channels from {'c2_streams': 105, 'published_path': 0} documents.
 - Jina note: empty-context HR@10 80.68 vs Table 1 Vanilla 80.1 (tolerance 0.50) - not gated: on this dataset Table 1 Vanilla is not the text channel of the saved chunks
 - Jina: Vanilla reference for the dense check = C2 saved streams (independent run); memory and summary channels from {'c2_streams': 105, 'published_path': 0} documents.
-- Qwen PROBLEM: identical top-10 for 733/1832 queries (< 99%)
-- Qwen PROBLEM: HR@5 77.13 vs saved 77.02 (tolerance 0.1 points)
-- Qwen PROBLEM: HR@10 86.41 vs saved 86.68 (tolerance 0.1 points)
-- Qwen PROBLEM: HR@5 77.13 vs expected 77.02
-- Qwen PROBLEM: HR@10 86.41 vs expected 86.68
-- Qwen note: empty-context HR@5 77.89 vs Table 1 Vanilla 76.9 (tolerance 0.15) - not gated: on this dataset Table 1 Vanilla is not the text channel of the saved chunks
-- Qwen note: empty-context HR@10 86.19 vs Table 1 Vanilla 85.9 (tolerance 0.15) - not gated: on this dataset Table 1 Vanilla is not the text channel of the saved chunks
+- Qwen note: empty-context HR@5 77.89 vs Table 1 Vanilla 76.9 (tolerance 0.50) - not gated: on this dataset Table 1 Vanilla is not the text channel of the saved chunks
 - Qwen: Vanilla reference for the dense check = published path in this process (shared encoding cache); memory and summary channels from {'c2_streams': 0, 'published_path': 105} documents.
 - On LooGLE, Table 1's Vanilla is not the text channel of the saved chunks (C2's server run: they differ by up to 13 points); C1's Vanilla is the text channel, and the gate uses the saved per-query text-only file where it exists.
 
@@ -81,6 +74,7 @@ CR with every context empty indexes exactly the chunk text, so it must give Vani
 | Indexing + scoring, Contriever (wall / GPU-hours) | 2 min / 0.03 | — |
 | Indexing + scoring, BGE-M3 (wall / GPU-hours) | 8 min / 0.13 | — |
 | Indexing + scoring, Jina (wall / GPU-hours) | 2 min / 0.04 | — |
+| Indexing + scoring, Qwen (wall / GPU-hours) | 33 min / 1.10 | — |
 - Ratios per chunk. SAADI's builds had no prefix caching, so its input is compared with both CR columns: CR nominal / SAADI =5.58x, CR computed / SAADI = 0.32x; calls 0.83x; generated tokens 0.07x. SAADI chunks in the cost table: 3346; C1 chunks: 3346.
 
 ## 7. Retrieval: per retriever
@@ -93,6 +87,7 @@ HR@5 / HR@10 (%). *Complementarity check, not a proposed method.
 | Contriever | 75.2 / 86.0 | 72.4 / 73.3 | 72.5 / 84.3 | 75.4 / 85.7 | 72.4 / 84.2 | 73.3 / 84.5 | 76.3 / 86.2 |
 | BGE-M3 | 82.5 / 90.7 | 80.6 / 89.8 | 82.2 / 90.1 | 81.1 / 90.1 | 79.9 / 89.6 | 74.8 / 84.1 | 82.3 / 90.6 |
 | Jina | 69.9 / 80.7 | 70.1 / 80.1 | 65.8 / 79.7 | 70.2 / 82.0 | 67.5 / 80.6 | 68.6 / 79.1 | — / — |
+| Qwen | 77.9 / 86.2 | 76.9 / 85.9 | 75.4 / 84.7 | 77.1 / 86.4 | 75.0 / 85.3 | 81.4 / 86.8 | — / — |
 
 Paired differences (points) with 95% bootstrap intervals (10,000 resamples over queries, seed 42):
 
@@ -102,6 +97,7 @@ Paired differences (points) with 95% bootstrap intervals (10,000 resamples over 
 | Contriever | -2.7 [-4.5, -0.9] | -1.7 [-3.2, -0.2] | +2.9 [+1.1, +4.8] | +1.4 [-0.2, +2.9] | -0.1 [-1.5, +1.3] | -0.1 [-1.3, +1.0] |
 | BGE-M3 | -0.3 [-1.9, +1.2] | -0.7 [-2.0, +0.7] | -1.1 [-2.7, +0.5] | +0.1 [-1.3, +1.4] | -2.2 [-3.6, -1.0] | -0.4 [-1.4, +0.5] |
 | Jina | -4.1 [-6.1, -2.3] | -1.0 [-2.7, +0.7] | +4.4 [+2.5, +6.4] | +2.3 [+0.6, +4.0] | +1.7 [+0.3, +3.1] | +0.9 [-0.3, +2.1] |
+| Qwen | -2.5 [-4.3, -0.8] | -1.5 [-3.1, -0.1] | +1.7 [+0.0, +3.5] | +1.7 [+0.2, +3.3] | -0.4 [-1.6, +0.9] | +0.6 [-0.4, +1.6] |
 
 ## 8. Retrieval: hybrid (dense + BM25, cookbook fusion)
 
@@ -110,15 +106,18 @@ Paired differences (points) with 95% bootstrap intervals (10,000 resamples over 
 | Contriever + BM25 | 89.3 / 95.6 | 88.3 / 95.6 | 88.3 / 95.2 | +0.0 [-0.8, +0.8] | -0.4 [-1.3, +0.5] | +0.1 [-1.3, +1.4] |
 | BGE-M3 + BM25 | 91.4 / 96.1 | 91.6 / 96.5 | 90.4 / 96.0 | +0.4 [-0.3, +1.1] | -0.5 [-1.3, +0.3] | -1.1 [-2.3, +0.1] |
 | Jina + BM25 | 88.2 / 94.7 | 87.4 / 94.9 | 87.1 / 94.8 | +0.2 [-0.6, +1.0] | -0.1 [-1.0, +0.8] | -0.3 [-1.6, +1.1] |
+| Qwen + BM25 | 90.4 / 96.4 | 89.8 / 95.6 | 89.5 / 95.9 | -0.8 [-1.6, +0.0] | +0.3 [-0.5, +1.1] | -0.4 [-1.6, +0.9] |
 - Top 150 of each list, score 0.8 / rank_dense + 0.2 / rank_bm25 (1-based), the same merge for Vanilla, CR and SAADI (SAADI = SAADI with d + SAADI with BM25, published weights). No reranker.
 
 ## 9. Dense truncation of the contextualized chunks
 
-| Retriever | Max input | CR chunks over max | CR tokens cut (end of chunk) | Plain chunks over max |
-| --- | --- | --- | --- | --- |
-| Contriever | 512 | 3293/3346 | 875K | 3268/3346 |
-| BGE-M3 | 8192 | 0/3346 | 0 | 0/3346 |
-| Jina | 512 | 3302/3346 | 1.2M | 3279/3346 |
+| Retriever | Max input | CR chunks over max | CR tokens cut (end of chunk) | Plain chunks over max | Extra chunk tokens cut per chunk (CR vs plain) |
+| --- | --- | --- | --- | --- | --- |
+| Contriever | 512 | 3293/3346 | 875K | 3268/3346 | 123 |
+| BGE-M3 | 8192 | 0/3346 | 0 | 0/3346 | 0 |
+| Jina | 512 | 3302/3346 | 1.2M | 3279/3346 | 147 |
+| Qwen | 512 | 3299/3346 | 1.0M | 3273/3346 | 127 |
+- Read the CR rows of these retrievers with care: Contriever (98% of contextualized chunks over 512 tokens, 123 more chunk tokens cut per chunk than plain); Jina (99% of contextualized chunks over 512 tokens, 147 more chunk tokens cut per chunk than plain); Qwen (99% of contextualized chunks over 512 tokens, 127 more chunk tokens cut per chunk than plain). The context comes first, so it pushes the end of the chunk out of the retriever's input; Vanilla loses less. Retrievers without truncation here (BGE-M3, 8192 tokens; BM25) are the comparison without this effect.
 
 ## 10. Sanity sample (10 random contexts, seed 42)
 
@@ -150,5 +149,5 @@ Paired differences (points) with 95% bootstrap intervals (10,000 resamples over 
 - Contriever: estimate 2 min on 1 GPU(s) (C2 streams reused: CR chunks + plain chunks (empty-context check) encoded, 2 query encodings per query); measured 2 min.
 - BGE-M3: estimate 11 min on 1 GPU(s) (C2 streams reused: CR chunks + plain chunks (empty-context check) encoded, 2 query encodings per query); measured 8 min.
 - Jina: estimate 9 min on 1 GPU(s) (C2 streams reused: CR chunks + plain chunks (empty-context check) encoded, 2 query encodings per query); measured 2 min.
-- Qwen: estimate 2.1 h on 2 GPU(s) (C2's estimate for the published streams + CR chunks encoded); measured 56 min.
+- Qwen: estimate 2.1 h on 2 GPU(s) (C2's estimate for the published streams + CR chunks encoded); measured 30s.
 

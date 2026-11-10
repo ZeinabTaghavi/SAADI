@@ -1,13 +1,14 @@
 {
   "group": "B",
-  "started_at": "2026-11-09 15:55:43",
+  "started_at": "2026-11-10 10:45:00",
   "argv": [
     "c1_contextual_retrieval.py",
     "--group",
     "B"
   ],
   "datasets": {
-    "musique_32k": "done"
+    "musique_32k": "already done",
+    "qasper_64k": "done"
   },
   "problems": [],
   "preflight": {
@@ -27,7 +28,7 @@
       "accelerate": "1.13.0"
     },
     "git": {
-      "commit": "270da36f7ad219cdbc6dd90df76ef2d4763f9275",
+      "commit": "0df9d38e4fd5c9a008e8b98072e2cf9580f7b1f2",
       "branch": "fix/notebook-key-and-install",
       "code_changes_vs_commit": []
     },
@@ -47,7 +48,7 @@
     "inputs_missing": [],
     "disk": {
       "path": "/mnt/data/zeinab/SAADI/outputs/rebuttal/C1_contextual_retrieval",
-      "free_gb": 4285.4,
+      "free_gb": 4285.1,
       "needed_gb_estimate": 20
     },
     "gpus": [
@@ -419,5 +420,7 @@
       }
     },
     "ok": true
-  }
+  },
+  "exit_code": 0,
+  "finished_at": "2026-11-10 15:02:01"
 }

@@ -1,15 +1,15 @@
 # C1 group A
 
-- Started 2026-11-09 15:55:30, finished —; host eee-s132-infsys-gpu03; exit code None.
+- Started 2026-11-10 10:40:07, finished 2026-11-10 12:46:23; host eee-s132-infsys-gpu03; exit code 0.
 - Command: `c1_contextual_retrieval.py --group A`
 
 ## Preflight
 
 - OK: True. Python 3.12.3 (/mnt/data/zeinab/raptor/.venv/bin/python3).
 - Modules: numpy 2.3.5, pandas 3.0.1, pyarrow 23.0.1, transformers 4.57.6, torch 2.11.0+cu129, vllm 0.23.0, accelerate 1.13.0.
-- Commit 270da36f7ad219cdbc6dd90df76ef2d4763f9275 on fix/notebook-key-and-install; uncommitted code changes: none.
+- Commit 0df9d38e4fd5c9a008e8b98072e2cf9580f7b1f2 on fix/notebook-key-and-install; uncommitted code changes: none.
 - GPUs: 0 NVIDIA RTX A6000 1/49140 MiB used; 1 NVIDIA RTX A6000 1/49140 MiB used; 2 NVIDIA RTX A6000 1/49140 MiB used; 3 NVIDIA RTX A6000 1/49140 MiB used.
-- Disk: 4285.4 GB free at /mnt/data/zeinab/SAADI/outputs/rebuttal/C1_contextual_retrieval.
+- Disk: 4285.1 GB free at /mnt/data/zeinab/SAADI/outputs/rebuttal/C1_contextual_retrieval.
 - Models: Qwen/Qwen3-30B-A3B-Instruct-2507: in cache (weights present), facebook/contriever: in cache (weights present), BAAI/bge-m3: in cache (weights present), jinaai/jina-embeddings-v3: in cache (weights present), Qwen/Qwen3-Embedding-8B: in cache (weights present).
 - C2 streams (memory and summary channels): {'loogle__bm25': 'reused', 'loogle__contriever': 'reused', 'loogle__bge_m3': 'reused', 'loogle__jina': 'reused', 'loogle__qwen': 'recomputed (published path)', 'novelhopqa__bm25': 'reused', 'novelhopqa__contriever': 'reused', 'novelhopqa__bge_m3': 'reused', 'novelhopqa__jina': 'reused', 'novelhopqa__qwen': 'reused'}.
 
@@ -32,4 +32,5 @@
 
 ## Datasets
 
-- LooGLE: problems: qwen: FAILED
+- LooGLE: done
+- NovelHopQA: done

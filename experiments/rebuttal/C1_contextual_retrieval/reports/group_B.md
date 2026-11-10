@@ -1,15 +1,15 @@
 # C1 group B
 
-- Started 2026-11-09 15:55:43, finished —; host eee-s132-infsys-gpu03; exit code None.
+- Started 2026-11-10 10:45:00, finished 2026-11-10 15:02:01; host eee-s132-infsys-gpu03; exit code 0.
 - Command: `c1_contextual_retrieval.py --group B`
 
 ## Preflight
 
 - OK: True. Python 3.12.3 (/mnt/data/zeinab/raptor/.venv/bin/python3).
 - Modules: numpy 2.3.5, pandas 3.0.1, pyarrow 23.0.1, transformers 4.57.6, torch 2.11.0+cu129, vllm 0.23.0, accelerate 1.13.0.
-- Commit 270da36f7ad219cdbc6dd90df76ef2d4763f9275 on fix/notebook-key-and-install; uncommitted code changes: none.
+- Commit 0df9d38e4fd5c9a008e8b98072e2cf9580f7b1f2 on fix/notebook-key-and-install; uncommitted code changes: none.
 - GPUs: 4 NVIDIA RTX A6000 1/49140 MiB used; 5 NVIDIA RTX A6000 1/49140 MiB used; 6 NVIDIA RTX A6000 1/49140 MiB used; 7 NVIDIA RTX A6000 1/49140 MiB used.
-- Disk: 4285.4 GB free at /mnt/data/zeinab/SAADI/outputs/rebuttal/C1_contextual_retrieval.
+- Disk: 4285.1 GB free at /mnt/data/zeinab/SAADI/outputs/rebuttal/C1_contextual_retrieval.
 - Models: Qwen/Qwen3-30B-A3B-Instruct-2507: in cache (weights present), facebook/contriever: in cache (weights present), BAAI/bge-m3: in cache (weights present), jinaai/jina-embeddings-v3: in cache (weights present), Qwen/Qwen3-Embedding-8B: in cache (weights present).
 - C2 streams (memory and summary channels): {'musique_32k__bm25': 'reused', 'musique_32k__contriever': 'reused', 'musique_32k__bge_m3': 'reused', 'musique_32k__jina': 'reused', 'musique_32k__qwen': 'reused', 'qasper_64k__bm25': 'reused', 'qasper_64k__contriever': 'reused', 'qasper_64k__bge_m3': 'reused', 'qasper_64k__jina': 'reused', 'qasper_64k__qwen': 'reused'}.
 
@@ -32,4 +32,5 @@
 
 ## Datasets
 
-- MuSiQue-32K: done
+- MuSiQue-32K: already done
+- QASPER-64K: done
