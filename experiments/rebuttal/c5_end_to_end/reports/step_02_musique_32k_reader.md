@@ -59,3 +59,9 @@ Last 60 lines of experiments/rebuttal/c5_end_to_end/logs/run_musique_32k_2026111
 (APIServer pid=224378)   File "zmq/backend/cython/_zmq.py", line 1002, in zmq.backend.cython._zmq.Socket.bind
 (APIServer pid=224378) zmq.error.ZMQError: ipc path "/home/iataghav/data/SAADI/outputs/rebuttal/c5_end_to_end/tmp/musique_32k/6e2482f3-6c4c-477d-8afe-dd0d0c066d78" is longer than 107 characters (sizeof(sockaddr_un.sun_path)). zmq.IPC_PATH_MAX_LEN constant can be used to check addr length (if it is defined). (addr='ipc:///home/iataghav/data/SAADI/outputs/rebuttal/c5_end_to_end/tmp/musique_32k/6e2482f3-6c4c-477d-8afe-dd0d0c066d78')
 ```
+
+## Push
+
+```
+pushed 33e3101 to origin/fix/notebook-key-and-install: C5 musique_32k 02_reader: FAILED: The vLLM server did not start (log in outputs/rebuttal/c5_end_to_end/vllm_logs/musique_32k_20261110_195140.log; tail above).
+```

@@ -1,0 +1,11 @@
+{
+ "step": "03",
+ "dataset": "musique_32k",
+ "commit": "33e31019ffe9",
+ "host": "eee-s132-infsys-gpu03",
+ "files": [],
+ "traceback": "Traceback (most recent call last):\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c5_end_to_end/scripts/step03_score.py\", line 125, in main\n    raise RuntimeError(f\"no answers under {paths.results / 'answers' / ds}\")\nRuntimeError: no answers under /home/iataghav/data/SAADI/results/rebuttal/c5_end_to_end/answers/musique_32k\n",
+ "one_line": "FAILED: RuntimeError: no answers under /home/iataghav/data/SAADI/results/rebuttal/c5_end_to_end/answers/musique_32k",
+ "seconds": 0.0,
+ "summary": {}
+}
