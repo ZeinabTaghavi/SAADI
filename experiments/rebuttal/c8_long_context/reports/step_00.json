@@ -1,7 +1,7 @@
 {
  "step": "00",
  "argv": [],
- "commit": "efc463a0d957",
+ "commit": "479ce2c426bd",
  "host": "eee-s132-infsys-gpu03",
  "datasets": [
   "musique_32k",
@@ -9,8 +9,44 @@
  ],
  "model": {
   "model": "Qwen/Qwen2.5-7B-Instruct-1M",
-  "in_cache": false,
-  "error": "LocalEntryNotFoundError: Cannot find an appropriate cached snapshot folder for the specified revision on the local disk and outgoing traffic has been disabled. To enable repo look-ups and downloads online, pass 'local_files_o"
+  "in_cache": true,
+  "snapshot": "/mnt/cache/taghavi/hub/models--Qwen--Qwen2.5-7B-Instruct-1M/snapshots/e28526f7bb80e2a9c8af03b831a9af3812f18fba",
+  "config": {
+   "architectures": [
+    "Qwen2ForCausalLM"
+   ],
+   "attention_dropout": 0.0,
+   "bos_token_id": 151643,
+   "eos_token_id": 151645,
+   "hidden_act": "silu",
+   "hidden_size": 3584,
+   "initializer_range": 0.02,
+   "intermediate_size": 18944,
+   "max_position_embeddings": 1010000,
+   "max_window_layers": 28,
+   "model_type": "qwen2",
+   "num_attention_heads": 28,
+   "num_hidden_layers": 28,
+   "num_key_value_heads": 4,
+   "rms_norm_eps": 1e-05,
+   "rope_scaling": null,
+   "rope_theta": 10000000.0,
+   "sliding_window": 32768,
+   "tie_word_embeddings": false,
+   "torch_dtype": "bfloat16",
+   "transformers_version": "4.47.1",
+   "use_cache": true,
+   "use_sliding_window": false,
+   "vocab_size": 152064,
+   "dual_chunk_attention_config": {
+    "chunk_size": 262144,
+    "local_size": 8192,
+    "original_max_position_embeddings": 262144
+   }
+  },
+  "weight_files": 4,
+  "weight_files_missing": [],
+  "weights_bytes": 15231271888
  },
  "tokenizer": "Qwen/Qwen2.5-7B-Instruct-1M",
  "max_output_tokens": 64,
@@ -21,7 +57,7 @@
  ],
  "warnings": [],
  "summary": [
-  "Stopped: Qwen/Qwen2.5-7B-Instruct-1M is not in the Hugging Face cache (/mnt/cache/taghavi/hub); download it first, e.g. HF_HUB_OFFLINE=0 HF_HOME=/mnt/cache/taghavi huggingface-cli download Qwen/Qwen2.5-7B-Instruct-1M"
+  "Unexpected error: OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'."
  ],
  "published_point": [
   0.5,
@@ -35,7 +71,7 @@
   "missing": []
  },
  "shape": {
-  "assumed_from_model_card": true,
+  "assumed_from_model_card": false,
   "layers": 28,
   "heads": 28,
   "kv_heads": 4,
@@ -44,16 +80,20 @@
   "head_dim": 128,
   "max_position_embeddings": 1010000,
   "native_window": 262144,
-  "dual_chunk_attention_config": {},
+  "dual_chunk_attention_config": {
+   "chunk_size": 262144,
+   "local_size": 8192,
+   "original_max_position_embeddings": 262144
+  },
   "sparse_attention_config": null,
-  "weights_bytes": 15240000000,
-  "params": 7620000000.0,
+  "weights_bytes": 15231271888,
+  "params": 7615635944.0,
   "dtype": "bfloat16",
   "kv_bytes_per_token": 57344
  },
- "one_line": "FAILED: Qwen/Qwen2.5-7B-Instruct-1M is not in the Hugging Face cache (/mnt/cache/taghavi/hub); download it first, e.g. HF_HUB_OFFLINE=0 HF",
- "traceback": "Traceback (most recent call last):\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c8_long_context/scripts/step00_prepare.py\", line 563, in main\n    raise GateFailed(f\"{model} is not in the Hugging Face cache ({env.get('HF_HUB_CACHE')}); download it first, e.g. \"\nGateFailed: Qwen/Qwen2.5-7B-Instruct-1M is not in the Hugging Face cache (/mnt/cache/taghavi/hub); download it first, e.g. HF_HUB_OFFLINE=0 HF_HOME=/mnt/cache/taghavi huggingface-cli download Qwen/Qwen2.5-7B-Instruct-1M\n",
- "seconds": 0,
- "status": "FAILED",
+ "one_line": "FAILED: OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.",
+ "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/hub.py\", line 479, in cached_files\n    hf_hub_download(\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\", line 114, in _inner_fn\n    return fn(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py\", line 1014, in hf_hub_download\n    return _hf_hub_download_to_cache_dir(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py\", line 1121, in _hf_hub_download_to_cache_dir\n    _raise_on_head_call_error(head_call_error, force_download, local_files_only)\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py\", line 1653, in _raise_on_head_call_error\n    raise LocalEntryNotFoundError(\nhuggingface_hub.errors.LocalEntryNotFoundError: Cannot find the requested files in the disk cache and outgoing traffic has been disabled. To enable hf.co look-ups and downloads online, set 'local_files_only' to False.\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c8_long_context/scripts/step00_prepare.py\", line 566, in main\n    tok = s0.Tok(tok_name)\n          ^^^^^^^^^^^^^^^^\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c5_end_to_end/scripts/step00_prepare.py\", line 644, in __init__\n    self.tok = AutoTokenizer.from_pretrained(model, local_files_only=os.environ.get(\"HF_HUB_OFFLINE\", \"1\") == \"1\")\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/auto/tokenization_auto.py\", line 1109, in from_pretrained\n    config = AutoConfig.from_pretrained(\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/models/auto/configuration_auto.py\", line 1332, in from_pretrained\n    config_dict, unused_kwargs = PretrainedConfig.get_config_dict(pretrained_model_name_or_path, **kwargs)\n                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/configuration_utils.py\", line 662, in get_config_dict\n    config_dict, kwargs = cls._get_config_dict(pretrained_model_name_or_path, **kwargs)\n                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/configuration_utils.py\", line 721, in _get_config_dict\n    resolved_config_file = cached_file(\n                           ^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/hub.py\", line 322, in cached_file\n    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/hub.py\", line 553, in cached_files\n    raise OSError(\nOSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.\n",
+ "seconds": 4,
+ "status": "FAILED (unexpected error)",
  "exit_code": 1
 }

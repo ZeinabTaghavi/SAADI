@@ -1,0 +1,12 @@
+[c8] host eee-s132-infsys-gpu03; repo /home/iataghav/data/SAADI; python /mnt/data/zeinab/raptor/.venv/bin/python3; vLLM python /mnt/data/zeinab/raptor/.venv/bin/python3
+[c8] model Qwen/Qwen2.5-7B-Instruct-1M; C5 contexts /home/iataghav/data/SAADI/outputs/rebuttal/c5_end_to_end/contexts
+[c8] HF_HOME /mnt/cache/taghavi
+[c8] python /mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+/mnt/data/zeinab/raptor/.venv/bin/python3 3.12.3
+[c8] 2026-11-10 23:54:27 start 00: /mnt/data/zeinab/raptor/.venv/bin/python3 /home/iataghav/data/SAADI/experiments/rebuttal/c8_long_context/scripts/step00_prepare.py
+[c8-00] 2026-11-10 23:54:28 tokenizer Qwen/Qwen2.5-7B-Instruct-1M
+/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+[c8-00] 2026-11-10 23:54:32 done: FAILED (unexpected error)
+[c8] 2026-11-10 23:54:33 end 00: exit 1
