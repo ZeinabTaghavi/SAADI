@@ -63,3 +63,9 @@ Paragraph labels (each evidence paragraph of the dataset located on its own in S
 - `results/rebuttal/c5_end_to_end/per_dataset/novelhopqa/paired.csv`
 - `results/rebuttal/c5_end_to_end/per_dataset/novelhopqa/summary.json`
 - `experiments/rebuttal/c5_end_to_end/reports/step_03_novelhopqa_score.md`
+
+## Push
+
+```
+pushed dcc0f9b to origin/fix/notebook-key-and-install: C5 novelhopqa 03_score: F1 SAADI 31.5, SAADI-Vanilla +0.7 [-0.5, +1.8]
+```
