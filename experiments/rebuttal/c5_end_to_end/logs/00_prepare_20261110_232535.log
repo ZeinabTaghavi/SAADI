@@ -1,0 +1,29 @@
+[c5] host eee-s132-infsys-gpu03; repo /home/iataghav/data/SAADI; python /mnt/data/zeinab/raptor/.venv/bin/python3
+[c5] RAPTOR /mnt/data/zeinab/SAADI_Raptor
+[c5] A-RAG  /mnt/data/zeinab/SAADI_A_RAG
+[c5] C1     /home/iataghav/data/SAADI/outputs/rebuttal/C1_contextual_retrieval
+[c5] HF_HOME /mnt/cache/taghavi
+[c5] python /mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+/mnt/data/zeinab/raptor/.venv/bin/python3 3.12.3
+[c5] 2026-11-10 23:25:39 start 00: /mnt/data/zeinab/raptor/.venv/bin/python3 /home/iataghav/data/SAADI/experiments/rebuttal/c5_end_to_end/scripts/step00_prepare.py --datasets novelhopqa --tag novelhopqa
+[c5-00] 2026-11-10 23:25:40 novelhopqa: loading saved queries, labels and chunk text
+Using the latest cached version of the dataset since abhaygupta1266/novelhopqa couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /mnt/cache/taghavi/datasets/abhaygupta1266___novelhopqa/default/0.0.0/c642bf8ab04edcc23441b179799a0984a8a49eee (last modified on Fri Apr 10 23:07:41 2026).
+Using the latest cached version of the dataset since abhaygupta1266/novelhopqa couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /mnt/cache/taghavi/datasets/abhaygupta1266___novelhopqa/default/0.0.0/c642bf8ab04edcc23441b179799a0984a8a49eee (last modified on Fri Apr 10 23:07:41 2026).
+Using the latest cached version of the dataset since abhaygupta1266/novelhopqa couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /mnt/cache/taghavi/datasets/abhaygupta1266___novelhopqa/default/0.0.0/c642bf8ab04edcc23441b179799a0984a8a49eee (last modified on Fri Apr 10 23:07:41 2026).
+Using the latest cached version of the dataset since abhaygupta1266/novelhopqa couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /mnt/cache/taghavi/datasets/abhaygupta1266___novelhopqa/default/0.0.0/c642bf8ab04edcc23441b179799a0984a8a49eee (last modified on Fri Apr 10 23:07:41 2026).
+[c5-00] 2026-11-10 23:26:08 novelhopqa: streams /home/iataghav/data/SAADI/outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bm25.parquet
+/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+[c5-00] 2026-11-10 23:26:32 novelhopqa: paragraph labels (each evidence paragraph located in SAADI's chunks)
+[c5-00] 2026-11-10 23:27:29 novelhopqa: closed-book, oracle, Vanilla, SAADI
+[c5-00] 2026-11-10 23:29:15 novelhopqa: RAPTOR (+ token-matched to 6447 tokens)
+[c5-00] 2026-11-10 23:29:34 novelhopqa: A-RAG (+ token-matched to 6447 tokens) and its own answers
+[c5-00] 2026-11-10 23:30:12 novelhopqa: saadi_at_raptor_len (SAADI cut per query to the other method's context length)
+[c5-00] 2026-11-10 23:31:01 novelhopqa: saadi_at_arag_len (SAADI cut per query to the other method's context length)
+[c5-00] 2026-11-10 23:32:12 done: OK
+[c5] 2026-11-10 23:32:13 end 00: exit 0

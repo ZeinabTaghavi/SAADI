@@ -1,0 +1,700 @@
+{
+ "step": "00",
+ "argv": [
+  "--datasets",
+  "novelhopqa",
+  "--tag",
+  "novelhopqa"
+ ],
+ "commit": "53426a5e71b0",
+ "host": "eee-s132-infsys-gpu03",
+ "datasets": [
+  "novelhopqa"
+ ],
+ "per_dataset": {
+  "novelhopqa": {
+   "queries": 908,
+   "documents": 16,
+   "chunks": 7011,
+   "gold_errors": [],
+   "gold": {
+    "source": "Hugging Face abhaygupta1266/novelhopqa (repo loader, offline cache)",
+    "found": 908,
+    "missing": [],
+    "question_mismatch": []
+   },
+   "gate": {
+    "streams": "outputs/rebuttal/C2_heldout_fusion/streams/novelhopqa__bm25.parquet",
+    "reference_source": "c5e3be18d129243ec2b2",
+    "reference_path": "rankings/c5e3be18d129243ec2b2.jsonl.gz",
+    "saadi_identical": 908,
+    "saadi_mismatches": [],
+    "saadi_hits": {
+     "5": 164,
+     "10": 200
+    },
+    "paper_hits": {
+     "5": 164,
+     "10": 200
+    },
+    "saadi_hr": {
+     "5": 18.061674008810574,
+     "10": 22.026431718061673
+    },
+    "vanilla_hr": {
+     "5": 17.51101321585903,
+     "10": 20.704845814977972
+    },
+    "table1_vanilla_hr": {
+     "5": 16.9,
+     "10": 20.0
+    },
+    "vanilla_reference": "saved per-query text-only rankings (outputs/novelhopqa_ablation/500_tokens/llm_cache/novelhopqa/hierarchical/branching_factor_5/chunk_500/AE_5_2_3/Qwen3-30B-A3B-Instruct-2507/AEWord/retrieval_reports/retrieval_results__bm25__mbr_lt1_ln0_lh0_norm_none__per_document.json)",
+    "vanilla_identical": 908,
+    "vanilla_mismatches": [],
+    "passed": true
+   },
+   "cr": {
+    "path": "/home/iataghav/data/SAADI/outputs/rebuttal/C1_contextual_retrieval/novelhopqa/retrieval/bm25/rankings.pkl.gz",
+    "done_marker": true,
+    "records": 908,
+    "covered": 908,
+    "vanilla_identical_to_ours": 908,
+    "saadi_identical_to_ours": 908,
+    "cr_hr10": 21.696035242290748,
+    "c1_report_cr_hr10": 21.696035242290748,
+    "settings": {
+     "construction LLM": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+     "context max tokens": 1024,
+     "sampling": {
+      "temperature": 0.0,
+      "top_p": 1.0,
+      "top_k": -1,
+      "repetition_penalty": 1.0,
+      "seed": 42
+     },
+     "prompt": "Anthropic's published contextualizer prompt (C1 ANTHROPIC_PROMPT)",
+     "index": "SAADI's BM25 on context + '\\n\\n' + chunk; no reranker",
+     "reader input": "the ORIGINAL chunk text of the CR top 10 (CR changes what is indexed, not the chunk)"
+    },
+    "problems": [],
+    "status": "ok"
+   },
+   "raptor": {
+    "run": "/mnt/data/zeinab/SAADI_Raptor/raptor_10_runs/novelhopqa/novelhopqa_retrieval_ablation_raptor",
+    "evaluation": "/mnt/data/zeinab/SAADI_Raptor/raptor_10_evaluations/novelhopqa/novelhopqa_retrieval_ablation_raptor/retrieval_upper_bound",
+    "source": "saved run",
+    "settings": {
+     "tree_builder.max_tokens (leaf size)": 500,
+     "tree_builder.num_layers": 5,
+     "tree_builder.threshold": 0.5,
+     "tree_builder.top_k": 5,
+     "tree_builder.selection_mode": "top_k",
+     "tree_builder.summarization_length": 150,
+     "retrieve.top_k": 10,
+     "retrieve.max_tokens": 3500,
+     "retrieve.collapse_tree": true,
+     "embedding model": "facebook/contriever",
+     "summarization model": "Qwen/Qwen3-30B-A3B-Instruct-2507"
+    },
+    "settings_differ_from_official": {
+     "tree_builder.max_tokens (leaf size)": [
+      500,
+      100
+     ],
+     "tree_builder.summarization_length": [
+      150,
+      100
+     ],
+     "embedding model": [
+      "facebook/contriever",
+      "OpenAI text-embedding-ada-002"
+     ],
+     "summarization model": [
+      "Qwen/Qwen3-30B-A3B-Instruct-2507",
+      "gpt-3.5-turbo"
+     ]
+    },
+    "records": 1841,
+    "profiling_build_seconds": {
+     "documents": 18,
+     "total": 7943.193609,
+     "per_document": 441.2885338333333
+    },
+    "own_queries_hr10": 10.13215859030837,
+    "own_queries_eligible": 1135,
+    "paper_hr10": 10.1,
+    "document_text_check": "ids only (whole books, loaded by the same NovelHopQA loader)",
+    "same_question": 908,
+    "other_document": 0,
+    "other_document_examples": [],
+    "question_mismatch": [],
+    "covered": 908,
+    "allow_other_corpus": false,
+    "status": "ok"
+   },
+   "arag": {
+    "run": "/mnt/data/zeinab/SAADI_A_RAG/outputs/novelhopqa/arag/novelhopqa_a_rag_raw_479355014fce5066",
+    "completed_marker": true,
+    "records": 985,
+    "unreadable_checkpoints": 0,
+    "settings": {
+     "model": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+     "max_loops": 15,
+     "max_context_tokens": 32768,
+     "message_token_guard": 30720,
+     "max_completion_tokens": 2048,
+     "embedding_model": "Qwen/Qwen3-Embedding-0.6B",
+     "workers": 4,
+     "upstream": "https://github.com/Ayanami0730/arag",
+     "chunks": 7736
+    },
+    "covered": 908,
+    "missing": [],
+    "n_missing": 0,
+    "question_mismatch": [],
+    "document_mismatch": [],
+    "unknown_chunk_ids": 0,
+    "errors": 0,
+    "termination": {
+     "model_final_answer": 908
+    },
+    "hr": 9.030837004405287,
+    "mean_read": 3.8854625550660793,
+    "paper_hr": 9.030837004405287,
+    "paper_mean_chunks": 3.8854625550660793,
+    "problems": [],
+    "status": "ok",
+    "gold_answer_disagreements": {
+     "n": 0,
+     "examples": []
+    }
+   },
+   "para_labels": {
+    "available": true,
+    "file": "results/rebuttal/c5_end_to_end/prepare/labels_para_novelhopqa.jsonl.gz",
+    "min_boundary_overlap_tokens": 8,
+    "by_hops": [
+     {
+      "hops": 1,
+      "queries": 377,
+      "paragraphs": 377,
+      "paragraphs_located_pct": 97.08222811671088,
+      "queries_without_any_located": 11,
+      "chunks_per_query_paragraph_labels": 1.1352785145888593,
+      "chunks_per_query_paper_labels": 3.9416445623342176,
+      "paper_label_chunks_in_a_paragraph_pct": 28.802153432032302,
+      "paper_labels_cover_every_paragraph": 366
+     },
+     {
+      "hops": 2,
+      "queries": 171,
+      "paragraphs": 342,
+      "paragraphs_located_pct": 97.953216374269,
+      "queries_without_any_located": 2,
+      "chunks_per_query_paragraph_labels": 2.818713450292398,
+      "chunks_per_query_paper_labels": 2.7485380116959064,
+      "paper_label_chunks_in_a_paragraph_pct": 28.51063829787234,
+      "paper_labels_cover_every_paragraph": 7
+     },
+     {
+      "hops": 3,
+      "queries": 169,
+      "paragraphs": 507,
+      "paragraphs_located_pct": 98.61932938856016,
+      "queries_without_any_located": 2,
+      "chunks_per_query_paragraph_labels": 3.923076923076923,
+      "chunks_per_query_paper_labels": 3.7514792899408285,
+      "paper_label_chunks_in_a_paragraph_pct": 20.820189274447948,
+      "paper_labels_cover_every_paragraph": 0
+     },
+     {
+      "hops": 4,
+      "queries": 191,
+      "paragraphs": 764,
+      "paragraphs_located_pct": 97.5130890052356,
+      "queries_without_any_located": 2,
+      "chunks_per_query_paragraph_labels": 5.0942408376963355,
+      "chunks_per_query_paper_labels": 3.492146596858639,
+      "paper_label_chunks_in_a_paragraph_pct": 24.28785607196402,
+      "paper_labels_cover_every_paragraph": 0
+     }
+    ],
+    "rule": "each 'Paragraph i:' piece of the dataset's context is located on its own in SAADI's chunks of the same book (the chunk contains it, it contains the chunk, or they overlap at a boundary by >= min(8, paragraph length) tokens; same token normalisation as the paper's labeler). Evidence 'all' = every located paragraph is in the context; 'any' = at least one.",
+    "evidence": {
+     "closed_book": {
+      "any": {
+       "eligible": 891,
+       "hits": 0,
+       "hr_percent": 0.0
+      },
+      "all": {
+       "eligible": 891,
+       "hits": 0,
+       "hr_percent": 0.0
+      }
+     },
+     "oracle": {
+      "any": {
+       "eligible": 891,
+       "hits": 731,
+       "hr_percent": 82.04264870931537
+      },
+      "all": {
+       "eligible": 891,
+       "hits": 373,
+       "hr_percent": 41.86307519640853
+      }
+     },
+     "oracle_para": {
+      "any": {
+       "eligible": 891,
+       "hits": 891,
+       "hr_percent": 100.0
+      },
+      "all": {
+       "eligible": 891,
+       "hits": 891,
+       "hr_percent": 100.0
+      }
+     },
+     "vanilla": {
+      "any": {
+       "eligible": 891,
+       "hits": 716,
+       "hr_percent": 80.3591470258137
+      },
+      "all": {
+       "eligible": 891,
+       "hits": 343,
+       "hr_percent": 38.49607182940516
+      }
+     },
+     "saadi": {
+      "any": {
+       "eligible": 891,
+       "hits": 738,
+       "hr_percent": 82.82828282828282
+      },
+      "all": {
+       "eligible": 891,
+       "hits": 362,
+       "hr_percent": 40.62850729517396
+      }
+     },
+     "cr": {
+      "any": {
+       "eligible": 891,
+       "hits": 716,
+       "hr_percent": 80.3591470258137
+      },
+      "all": {
+       "eligible": 891,
+       "hits": 346,
+       "hr_percent": 38.8327721661055
+      }
+     },
+     "raptor": {
+      "any": {
+       "eligible": 891,
+       "hits": 88,
+       "hr_percent": 9.876543209876543
+      },
+      "all": {
+       "eligible": 891,
+       "hits": 50,
+       "hr_percent": 5.611672278338945
+      }
+     },
+     "raptor_tm": {
+      "any": {
+       "eligible": 891,
+       "hits": 88,
+       "hr_percent": 9.876543209876543
+      },
+      "all": {
+       "eligible": 891,
+       "hits": 50,
+       "hr_percent": 5.611672278338945
+      }
+     },
+     "arag": {
+      "any": {
+       "eligible": 891,
+       "hits": 350,
+       "hr_percent": 39.28170594837262
+      },
+      "all": {
+       "eligible": 891,
+       "hits": 163,
+       "hr_percent": 18.29405162738496
+      }
+     },
+     "arag_tm": {
+      "any": {
+       "eligible": 891,
+       "hits": 350,
+       "hr_percent": 39.28170594837262
+      },
+      "all": {
+       "eligible": 891,
+       "hits": 163,
+       "hr_percent": 18.29405162738496
+      }
+     },
+     "saadi_at_raptor_len": {
+      "any": {
+       "eligible": 891,
+       "hits": 549,
+       "hr_percent": 61.61616161616162
+      },
+      "all": {
+       "eligible": 891,
+       "hits": 219,
+       "hr_percent": 24.579124579124578
+      }
+     },
+     "saadi_at_arag_len": {
+      "any": {
+       "eligible": 891,
+       "hits": 596,
+       "hr_percent": 66.89113355780023
+      },
+      "all": {
+       "eligible": 891,
+       "hits": 255,
+       "hr_percent": 28.61952861952862
+      }
+     },
+     "arag_own": {
+      "any": {
+       "eligible": 891,
+       "hits": 350,
+       "hr_percent": 39.28170594837262
+      },
+      "all": {
+       "eligible": 891,
+       "hits": 163,
+       "hr_percent": 18.29405162738496
+      }
+     }
+    }
+   },
+   "token_budget": 6447,
+   "stats": {
+    "closed_book": {
+     "n": 908,
+     "passages_mean": 0,
+     "context_tokens_mean": 0,
+     "context_tokens_max": 0,
+     "prompt_tokens_mean": 70.01431718061674,
+     "prompt_tokens_max": 102,
+     "prompt_tokens_total": 63573,
+     "evidence_in_context": {
+      "eligible": 908,
+      "hits": 0,
+      "hr_percent": 0.0
+     },
+     "hr10": {
+      "eligible": 0,
+      "hits": 0,
+      "hr_percent": null
+     },
+     "cut": 0
+    },
+    "oracle": {
+     "n": 908,
+     "passages_mean": 3.5870044052863435,
+     "context_tokens_mean": 2302.159691629956,
+     "context_tokens_max": 30097,
+     "prompt_tokens_mean": 2369.185022026432,
+     "prompt_tokens_max": 30187,
+     "prompt_tokens_total": 2151220,
+     "evidence_in_context": {
+      "eligible": 908,
+      "hits": 908,
+      "hr_percent": 100.0
+     },
+     "hr10": {
+      "eligible": 0,
+      "hits": 0,
+      "hr_percent": null
+     },
+     "cut": 0
+    },
+    "oracle_para": {
+     "n": 908,
+     "passages_mean": 2.803964757709251,
+     "context_tokens_mean": 1793.4636563876652,
+     "context_tokens_max": 7600,
+     "prompt_tokens_mean": 1860.5407488986784,
+     "prompt_tokens_max": 7664,
+     "prompt_tokens_total": 1689371,
+     "evidence_in_context": {
+      "eligible": 908,
+      "hits": 439,
+      "hr_percent": 48.348017621145374
+     },
+     "hr10": {
+      "eligible": 0,
+      "hits": 0,
+      "hr_percent": null
+     },
+     "cut": 0
+    },
+    "vanilla": {
+     "n": 908,
+     "passages_mean": 10,
+     "context_tokens_mean": 6441.88436123348,
+     "context_tokens_max": 7445,
+     "prompt_tokens_mean": 6508.905286343613,
+     "prompt_tokens_max": 7507,
+     "prompt_tokens_total": 5910086,
+     "evidence_in_context": {
+      "eligible": 908,
+      "hits": 188,
+      "hr_percent": 20.704845814977972
+     },
+     "hr10": {
+      "eligible": 908,
+      "hits": 188,
+      "hr_percent": 20.704845814977972
+     },
+     "cut": 0
+    },
+    "saadi": {
+     "n": 908,
+     "passages_mean": 10,
+     "context_tokens_mean": 6446.812775330396,
+     "context_tokens_max": 7452,
+     "prompt_tokens_mean": 6513.833700440528,
+     "prompt_tokens_max": 7520,
+     "prompt_tokens_total": 5914561,
+     "evidence_in_context": {
+      "eligible": 908,
+      "hits": 200,
+      "hr_percent": 22.026431718061673
+     },
+     "hr10": {
+      "eligible": 908,
+      "hits": 200,
+      "hr_percent": 22.026431718061673
+     },
+     "cut": 0
+    },
+    "cr": {
+     "n": 908,
+     "passages_mean": 10,
+     "context_tokens_mean": 6425.8535242290745,
+     "context_tokens_max": 7441,
+     "prompt_tokens_mean": 6492.875550660793,
+     "prompt_tokens_max": 7501,
+     "prompt_tokens_total": 5895531,
+     "evidence_in_context": {
+      "eligible": 908,
+      "hits": 197,
+      "hr_percent": 21.696035242290748
+     },
+     "hr10": {
+      "eligible": 908,
+      "hits": 197,
+      "hr_percent": 21.696035242290748
+     },
+     "cut": 0
+    },
+    "raptor": {
+     "n": 908,
+     "passages_mean": 9.944933920704846,
+     "context_tokens_mean": 1701.1938325991189,
+     "context_tokens_max": 3399,
+     "prompt_tokens_mean": 1769.0726872246696,
+     "prompt_tokens_max": 3460,
+     "prompt_tokens_total": 1606318,
+     "evidence_in_context": {
+      "eligible": 785,
+      "hits": 138,
+      "hr_percent": 17.579617834394906
+     },
+     "hr10": {
+      "eligible": 785,
+      "hits": 68,
+      "hr_percent": 8.662420382165605
+     },
+     "cut": 0
+    },
+    "raptor_tm": {
+     "n": 908,
+     "passages_mean": 9.944933920704846,
+     "context_tokens_mean": 1701.1938325991189,
+     "context_tokens_max": 3399,
+     "prompt_tokens_mean": 1769.0726872246696,
+     "prompt_tokens_max": 3460,
+     "prompt_tokens_total": 1606318,
+     "evidence_in_context": {
+      "eligible": 785,
+      "hits": 138,
+      "hr_percent": 17.579617834394906
+     },
+     "hr10": {
+      "eligible": 785,
+      "hits": 68,
+      "hr_percent": 8.662420382165605
+     },
+     "cut": 0
+    },
+    "arag": {
+     "n": 908,
+     "passages_mean": 3.8854625550660793,
+     "context_tokens_mean": 2547.5737885462554,
+     "context_tokens_max": 9130,
+     "prompt_tokens_mean": 2614.5947136563877,
+     "prompt_tokens_max": 9213,
+     "prompt_tokens_total": 2374052,
+     "evidence_in_context": {
+      "eligible": 908,
+      "hits": 82,
+      "hr_percent": 9.030837004405287
+     },
+     "hr10": {
+      "eligible": 908,
+      "hits": 82,
+      "hr_percent": 9.030837004405287
+     },
+     "cut": 0
+    },
+    "arag_tm": {
+     "n": 908,
+     "passages_mean": 3.881057268722467,
+     "context_tokens_mean": 2544.0991189427314,
+     "context_tokens_max": 6446,
+     "prompt_tokens_mean": 2611.1222466960353,
+     "prompt_tokens_max": 6530,
+     "prompt_tokens_total": 2370899,
+     "evidence_in_context": {
+      "eligible": 908,
+      "hits": 82,
+      "hr_percent": 9.030837004405287
+     },
+     "hr10": {
+      "eligible": 908,
+      "hits": 82,
+      "hr_percent": 9.030837004405287
+     },
+     "cut": 2
+    },
+    "saadi_at_raptor_len": {
+     "n": 908,
+     "passages_mean": 3.2059471365638768,
+     "context_tokens_mean": 1700.171806167401,
+     "context_tokens_max": 3398,
+     "prompt_tokens_mean": 1768.0506607929515,
+     "prompt_tokens_max": 3460,
+     "prompt_tokens_total": 1605390,
+     "evidence_in_context": {
+      "eligible": 908,
+      "hits": 122,
+      "hr_percent": 13.43612334801762
+     },
+     "hr10": {
+      "eligible": 0,
+      "hits": 0,
+      "hr_percent": null
+     },
+     "cut": 908
+    },
+    "saadi_at_arag_len": {
+     "n": 908,
+     "passages_mean": 4.4823788546255505,
+     "context_tokens_mean": 2543.6211453744495,
+     "context_tokens_max": 6916,
+     "prompt_tokens_mean": 2611.4229074889868,
+     "prompt_tokens_max": 6994,
+     "prompt_tokens_total": 2371172,
+     "evidence_in_context": {
+      "eligible": 908,
+      "hits": 146,
+      "hr_percent": 16.079295154185022
+     },
+     "hr10": {
+      "eligible": 0,
+      "hits": 0,
+      "hr_percent": null
+     },
+     "cut": 907
+    },
+    "arag_own": {
+     "n": 908,
+     "passages_mean": 3.8854625550660793,
+     "context_tokens_mean": 2547.5737885462554,
+     "context_tokens_max": 9130,
+     "prompt_tokens_mean": 2614.5947136563877,
+     "prompt_tokens_max": 9213,
+     "prompt_tokens_total": 2374052,
+     "evidence_in_context": {
+      "eligible": 908,
+      "hits": 82,
+      "hr_percent": 9.030837004405287
+     },
+     "hr10": {
+      "eligible": 908,
+      "hits": 82,
+      "hr_percent": 9.030837004405287
+     },
+     "cut": 0
+    }
+   }
+  }
+ },
+ "files": [
+  "results/rebuttal/c5_end_to_end/prepare/labels_para_novelhopqa.jsonl.gz",
+  "outputs/rebuttal/c5_end_to_end/contexts/novelhopqa/closed_book.jsonl.gz",
+  "outputs/rebuttal/c5_end_to_end/contexts/novelhopqa/oracle.jsonl.gz",
+  "outputs/rebuttal/c5_end_to_end/contexts/novelhopqa/oracle_para.jsonl.gz",
+  "outputs/rebuttal/c5_end_to_end/contexts/novelhopqa/vanilla.jsonl.gz",
+  "outputs/rebuttal/c5_end_to_end/contexts/novelhopqa/saadi.jsonl.gz",
+  "outputs/rebuttal/c5_end_to_end/contexts/novelhopqa/cr.jsonl.gz",
+  "outputs/rebuttal/c5_end_to_end/contexts/novelhopqa/raptor.jsonl.gz",
+  "outputs/rebuttal/c5_end_to_end/contexts/novelhopqa/raptor_tm.jsonl.gz",
+  "outputs/rebuttal/c5_end_to_end/contexts/novelhopqa/arag.jsonl.gz",
+  "outputs/rebuttal/c5_end_to_end/contexts/novelhopqa/arag_tm.jsonl.gz",
+  "outputs/rebuttal/c5_end_to_end/contexts/novelhopqa/saadi_at_raptor_len.jsonl.gz",
+  "outputs/rebuttal/c5_end_to_end/contexts/novelhopqa/saadi_at_arag_len.jsonl.gz",
+  "outputs/rebuttal/c5_end_to_end/contexts/novelhopqa/arag_own.jsonl.gz",
+  "outputs/rebuttal/c5_end_to_end/contexts/novelhopqa/evidence_para.jsonl.gz",
+  "outputs/rebuttal/c5_end_to_end/contexts/novelhopqa/manifest.json",
+  "results/rebuttal/c5_end_to_end/prepare/context_stats_novelhopqa.csv",
+  "experiments/rebuttal/c5_end_to_end/reports/step_00_novelhopqa.md",
+  "experiments/rebuttal/c5_end_to_end/reports/step_00_novelhopqa.json"
+ ],
+ "warnings": [],
+ "summary": [
+  "NovelHopQA: gate passed (SAADI 908/908 identical to the paper, HR@10 22.03; Vanilla HR@10 20.70). Contexts built: closed_book, oracle, oracle_para, vanilla, saadi, cr, raptor, raptor_tm, arag, arag_tm, saadi_at_raptor_len, saadi_at_arag_len, arag_own."
+ ],
+ "missing_rows": [
+  [
+   "novelhopqa",
+   "Reader, 10896 prompts (33.6M prompt tokens) over the available conditions",
+   "to run in the GPU script",
+   "1.4",
+   "5.8",
+   "rough: 8000 prompt tok/s, 1500 output tok/s, 0.15 h start"
+  ]
+ ],
+ "reader_model": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+ "max_output_tokens": 64,
+ "max_model_len": 32768,
+ "config": "/home/iataghav/data/SAADI/configs/methods/sadi.yaml",
+ "published_point": [
+  0.5,
+  0.3,
+  1.0,
+  1.0
+ ],
+ "config_sha256": "18846ef24b6075586cc4ed53e1e8b6f7a916f0253e5932aa203b0ec741bbfdf0",
+ "preserved": {
+  "checked": 93,
+  "changed": [],
+  "missing": []
+ },
+ "one_line": "gate passed on 1 datasets; contexts written; nothing missing"
+}

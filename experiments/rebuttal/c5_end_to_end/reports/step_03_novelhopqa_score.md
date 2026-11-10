@@ -43,3 +43,9 @@ Paired differences (points; 95% bootstrap interval, 10,000 resamples over querie
 - `results/rebuttal/c5_end_to_end/per_dataset/novelhopqa/paired.csv`
 - `results/rebuttal/c5_end_to_end/per_dataset/novelhopqa/summary.json`
 - `experiments/rebuttal/c5_end_to_end/reports/step_03_novelhopqa_score.md`
+
+## Push
+
+```
+pushed 2df601d to origin/fix/notebook-key-and-install: C5 novelhopqa 03_score: F1 SAADI 31.5, SAADI-Vanilla +0.7 [-0.5, +1.8]
+```

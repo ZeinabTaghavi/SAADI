@@ -34,3 +34,4 @@
 [c5] 2026-11-10 21:51:59 start 03: /mnt/data/zeinab/raptor/.venv/bin/python3 /home/iataghav/data/SAADI/experiments/rebuttal/c5_end_to_end/scripts/step03_score.py --dataset novelhopqa
 [c5-03] 2026-11-10 21:52:03 done: OK
 [c5] 2026-11-10 21:52:03 end 03: exit 0
+[c5-novelhopqa] 2026-11-10 21:52:05 done, exit 0; reports in experiments/rebuttal/c5_end_to_end/reports
