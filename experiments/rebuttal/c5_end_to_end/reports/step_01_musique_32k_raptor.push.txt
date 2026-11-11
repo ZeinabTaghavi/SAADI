@@ -1,1 +1,1 @@
-pushed 38a4c4e to origin/fix/notebook-key-and-install: C5 musique_32k 01_raptor: FAILED: RuntimeError: no RAPTOR copy with the MuSiQue runner among ['/mnt/data/zeinab/SAADI_Raptor', '/mnt/data/zeinab/SAADI_Raptor'
+pushed cbd3d5b to origin/fix/notebook-key-and-install: C5 musique_32k 01_raptor: RAPTOR re-run on 45 groups complete (900 queries)

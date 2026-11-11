@@ -1,0 +1,484 @@
+{
+ "step": "00",
+ "argv": [
+  "--datasets",
+  "musique_32k",
+  "--tag",
+  "musique_32k"
+ ],
+ "commit": "cbd3d5b15bf8",
+ "host": "eee-s132-infsys-gpu03",
+ "datasets": [
+  "musique_32k"
+ ],
+ "per_dataset": {
+  "musique_32k": {
+   "queries": 900,
+   "documents": 45,
+   "chunks": 17102,
+   "musique_aliases": {
+    "used": true,
+    "source": "Hugging Face dgslibisey/MuSiQue validation (offline cache)",
+    "matched_questions": 900,
+    "answer_mismatch": 0,
+    "questions_with_aliases_added": 198
+   },
+   "gold": {
+    "source": "outputs/musique_ablation/32K_expansion/prepared/qa.json + answer aliases from dgslibisey/MuSiQue",
+    "found": 900,
+    "missing": [],
+    "question_mismatch": []
+   },
+   "gate": {
+    "streams": "outputs/rebuttal/C2_heldout_fusion/streams/musique_32k__bm25.parquet",
+    "reference_source": "9c6fadcc25362ac17d44",
+    "reference_path": "rankings/9c6fadcc25362ac17d44.jsonl.gz",
+    "saadi_identical": 900,
+    "saadi_mismatches": [],
+    "saadi_hits": {
+     "5": 565,
+     "10": 699
+    },
+    "paper_hits": {
+     "5": 565,
+     "10": 699
+    },
+    "saadi_hr": {
+     "5": 62.77777777777778,
+     "10": 77.66666666666667
+    },
+    "vanilla_hr": {
+     "5": 57.55555555555556,
+     "10": 74.0
+    },
+    "table1_vanilla_hr": {
+     "5": 57.6,
+     "10": 74.0
+    },
+    "vanilla_reference": "Table 1 Vanilla HR@5/HR@10 (outputs/other_methods/vanilla/retrieval.csv; no per-query file exists)",
+    "vanilla_hr_diff_vs_table1": {
+     "5": 0.0,
+     "10": 0.0
+    },
+    "vanilla_mismatches": [],
+    "passed": true
+   },
+   "cr": {
+    "path": "/home/iataghav/data/SAADI/outputs/rebuttal/C1_contextual_retrieval/musique_32k/retrieval/bm25/rankings.pkl.gz",
+    "done_marker": true,
+    "records": 900,
+    "covered": 900,
+    "vanilla_identical_to_ours": 900,
+    "saadi_identical_to_ours": 900,
+    "cr_hr10": 82.22222222222223,
+    "c1_report_cr_hr10": 82.22222222222223,
+    "settings": {
+     "construction LLM": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+     "context max tokens": 1024,
+     "sampling": {
+      "temperature": 0.0,
+      "top_p": 1.0,
+      "top_k": -1,
+      "repetition_penalty": 1.0,
+      "seed": 42
+     },
+     "prompt": "Anthropic's published contextualizer prompt (C1 ANTHROPIC_PROMPT)",
+     "index": "SAADI's BM25 on context + '\\n\\n' + chunk; no reranker",
+     "reader input": "the ORIGINAL chunk text of the CR top 10 (CR changes what is indexed, not the chunk)"
+    },
+    "problems": [],
+    "status": "ok"
+   },
+   "raptor": {
+    "run": "/home/iataghav/data/SAADI/outputs/rebuttal/c5_end_to_end/raptor_rerun/raptor_10_runs/musique_32k/musique_32k_retrieval_ablation_raptor",
+    "evaluation": "/home/iataghav/data/SAADI/outputs/rebuttal/c5_end_to_end/raptor_rerun/raptor_10_evaluations/musique_32k/musique_32k_retrieval_ablation_raptor/retrieval_upper_bound",
+    "source": "C5 re-run on SAADI's documents (paper number is on RAPTOR's own corpus)",
+    "settings": {
+     "tree_builder.max_tokens (leaf size)": 100,
+     "tree_builder.num_layers": 5,
+     "tree_builder.threshold": 0.5,
+     "tree_builder.top_k": 5,
+     "tree_builder.selection_mode": "top_k",
+     "tree_builder.summarization_length": 150,
+     "retrieve.top_k": 10,
+     "retrieve.max_tokens": 3500,
+     "retrieve.collapse_tree": true,
+     "embedding model": "facebook/contriever",
+     "summarization model": "Qwen/Qwen3-30B-A3B-Instruct-2507"
+    },
+    "settings_differ_from_official": {
+     "tree_builder.summarization_length": [
+      150,
+      100
+     ],
+     "embedding model": [
+      "facebook/contriever",
+      "OpenAI text-embedding-ada-002"
+     ],
+     "summarization model": [
+      "Qwen/Qwen3-30B-A3B-Instruct-2507",
+      "gpt-3.5-turbo"
+     ]
+    },
+    "records": 900,
+    "profiling_build_seconds": {
+     "documents": 45,
+     "total": 19537.749827,
+     "per_document": 434.17221837777777
+    },
+    "own_queries_hr10": 65.55555555555556,
+    "own_queries_eligible": 900,
+    "paper_hr10": 68.0,
+    "document_text_check": {
+     "raptor_documents": 45,
+     "identical_to_saadi": 45
+    },
+    "same_question": 900,
+    "other_document": 0,
+    "other_document_examples": [],
+    "question_mismatch": [],
+    "covered": 900,
+    "allow_other_corpus": false,
+    "status": "ok"
+   },
+   "arag": {
+    "run": "/mnt/data/zeinab/SAADI_A_RAG/outputs/musique_32k/arag/musique_32k_a_rag_raw_f06714eda6267987",
+    "completed_marker": true,
+    "records": 900,
+    "unreadable_checkpoints": 0,
+    "settings": {
+     "model": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+     "max_loops": 15,
+     "max_context_tokens": 32768,
+     "message_token_guard": 30720,
+     "max_completion_tokens": 2048,
+     "embedding_model": "Qwen/Qwen3-Embedding-0.6B",
+     "workers": 4,
+     "upstream": "https://github.com/Ayanami0730/arag",
+     "chunks": 17102
+    },
+    "covered": 900,
+    "missing": [],
+    "n_missing": 0,
+    "question_mismatch": [],
+    "document_mismatch": [],
+    "unknown_chunk_ids": 0,
+    "errors": 0,
+    "termination": {
+     "model_final_answer": 899,
+     "max_loops": 1
+    },
+    "hr": 45.111111111111114,
+    "mean_read": 2.6622222222222223,
+    "paper_hr": 45.111111111111114,
+    "paper_mean_chunks": 2.6622222222222223,
+    "problems": [],
+    "status": "ok",
+    "gold_answer_disagreements": {
+     "n": 0,
+     "examples": []
+    }
+   },
+   "para_labels": {
+    "available": false,
+    "reason": "only NovelHopQA (its labels are window-mode matches of the whole context)"
+   },
+   "token_budget": 1326,
+   "stats": {
+    "closed_book": {
+     "n": 900,
+     "passages_mean": 0,
+     "context_tokens_mean": 0,
+     "context_tokens_max": 0,
+     "prompt_tokens_mean": 68.57444444444444,
+     "prompt_tokens_max": 102,
+     "prompt_tokens_total": 61717,
+     "evidence_in_context": {
+      "eligible": 900,
+      "hits": 0,
+      "hr_percent": 0.0
+     },
+     "hr10": {
+      "eligible": 0,
+      "hits": 0,
+      "hr_percent": null
+     },
+     "cut": 0
+    },
+    "oracle": {
+     "n": 900,
+     "passages_mean": 6.184444444444445,
+     "context_tokens_mean": 834.32,
+     "context_tokens_max": 4434,
+     "prompt_tokens_mean": 899.9322222222222,
+     "prompt_tokens_max": 4505,
+     "prompt_tokens_total": 809939,
+     "evidence_in_context": {
+      "eligible": 900,
+      "hits": 900,
+      "hr_percent": 100.0
+     },
+     "hr10": {
+      "eligible": 0,
+      "hits": 0,
+      "hr_percent": null
+     },
+     "cut": 0
+    },
+    "oracle_para": {
+     "n": 0
+    },
+    "vanilla": {
+     "n": 900,
+     "passages_mean": 10,
+     "context_tokens_mean": 1327.1855555555555,
+     "context_tokens_max": 1765,
+     "prompt_tokens_mean": 1392.7688888888888,
+     "prompt_tokens_max": 1836,
+     "prompt_tokens_total": 1253492,
+     "evidence_in_context": {
+      "eligible": 900,
+      "hits": 666,
+      "hr_percent": 74.0
+     },
+     "hr10": {
+      "eligible": 900,
+      "hits": 666,
+      "hr_percent": 74.0
+     },
+     "cut": 0
+    },
+    "saadi": {
+     "n": 900,
+     "passages_mean": 10,
+     "context_tokens_mean": 1326.0455555555557,
+     "context_tokens_max": 2016,
+     "prompt_tokens_mean": 1391.63,
+     "prompt_tokens_max": 2087,
+     "prompt_tokens_total": 1252467,
+     "evidence_in_context": {
+      "eligible": 900,
+      "hits": 699,
+      "hr_percent": 77.66666666666667
+     },
+     "hr10": {
+      "eligible": 900,
+      "hits": 699,
+      "hr_percent": 77.66666666666667
+     },
+     "cut": 0
+    },
+    "cr": {
+     "n": 900,
+     "passages_mean": 10,
+     "context_tokens_mean": 1331.658888888889,
+     "context_tokens_max": 2041,
+     "prompt_tokens_mean": 1397.2488888888888,
+     "prompt_tokens_max": 2113,
+     "prompt_tokens_total": 1257524,
+     "evidence_in_context": {
+      "eligible": 900,
+      "hits": 740,
+      "hr_percent": 82.22222222222223
+     },
+     "hr10": {
+      "eligible": 900,
+      "hits": 740,
+      "hr_percent": 82.22222222222223
+     },
+     "cut": 0
+    },
+    "raptor": {
+     "n": 900,
+     "passages_mean": 10,
+     "context_tokens_mean": 922.8144444444445,
+     "context_tokens_max": 1218,
+     "prompt_tokens_mean": 989.3077777777778,
+     "prompt_tokens_max": 1290,
+     "prompt_tokens_total": 890377,
+     "evidence_in_context": {
+      "eligible": 900,
+      "hits": 643,
+      "hr_percent": 71.44444444444444
+     },
+     "hr10": {
+      "eligible": 900,
+      "hits": 590,
+      "hr_percent": 65.55555555555556
+     },
+     "cut": 0
+    },
+    "raptor_tm": {
+     "n": 900,
+     "passages_mean": 10,
+     "context_tokens_mean": 922.8144444444445,
+     "context_tokens_max": 1218,
+     "prompt_tokens_mean": 989.3077777777778,
+     "prompt_tokens_max": 1290,
+     "prompt_tokens_total": 890377,
+     "evidence_in_context": {
+      "eligible": 900,
+      "hits": 643,
+      "hr_percent": 71.44444444444444
+     },
+     "hr10": {
+      "eligible": 900,
+      "hits": 590,
+      "hr_percent": 65.55555555555556
+     },
+     "cut": 0
+    },
+    "arag": {
+     "n": 900,
+     "passages_mean": 2.6622222222222223,
+     "context_tokens_mean": 360.37555555555554,
+     "context_tokens_max": 1676,
+     "prompt_tokens_mean": 426.05444444444447,
+     "prompt_tokens_max": 1747,
+     "prompt_tokens_total": 383449,
+     "evidence_in_context": {
+      "eligible": 900,
+      "hits": 406,
+      "hr_percent": 45.111111111111114
+     },
+     "hr10": {
+      "eligible": 900,
+      "hits": 406,
+      "hr_percent": 45.111111111111114
+     },
+     "cut": 0
+    },
+    "arag_tm": {
+     "n": 900,
+     "passages_mean": 2.6566666666666667,
+     "context_tokens_mean": 359.32666666666665,
+     "context_tokens_max": 1325,
+     "prompt_tokens_mean": 425.00888888888886,
+     "prompt_tokens_max": 1405,
+     "prompt_tokens_total": 382508,
+     "evidence_in_context": {
+      "eligible": 900,
+      "hits": 406,
+      "hr_percent": 45.111111111111114
+     },
+     "hr10": {
+      "eligible": 900,
+      "hits": 406,
+      "hr_percent": 45.111111111111114
+     },
+     "cut": 4
+    },
+    "saadi_at_raptor_len": {
+     "n": 900,
+     "passages_mean": 7.4511111111111115,
+     "context_tokens_mean": 921.5877777777778,
+     "context_tokens_max": 1215,
+     "prompt_tokens_mean": 988.0077777777777,
+     "prompt_tokens_max": 1289,
+     "prompt_tokens_total": 889207,
+     "evidence_in_context": {
+      "eligible": 900,
+      "hits": 604,
+      "hr_percent": 67.11111111111111
+     },
+     "hr10": {
+      "eligible": 0,
+      "hits": 0,
+      "hr_percent": null
+     },
+     "cut": 898
+    },
+    "saadi_at_arag_len": {
+     "n": 900,
+     "passages_mean": 3.0755555555555554,
+     "context_tokens_mean": 358.06666666666666,
+     "context_tokens_max": 1389,
+     "prompt_tokens_mean": 424.3911111111111,
+     "prompt_tokens_max": 1463,
+     "prompt_tokens_total": 381952,
+     "evidence_in_context": {
+      "eligible": 900,
+      "hits": 368,
+      "hr_percent": 40.888888888888886
+     },
+     "hr10": {
+      "eligible": 0,
+      "hits": 0,
+      "hr_percent": null
+     },
+     "cut": 892
+    },
+    "arag_own": {
+     "n": 900,
+     "passages_mean": 2.6622222222222223,
+     "context_tokens_mean": 360.37555555555554,
+     "context_tokens_max": 1676,
+     "prompt_tokens_mean": 426.05444444444447,
+     "prompt_tokens_max": 1747,
+     "prompt_tokens_total": 383449,
+     "evidence_in_context": {
+      "eligible": 900,
+      "hits": 406,
+      "hr_percent": 45.111111111111114
+     },
+     "hr10": {
+      "eligible": 900,
+      "hits": 406,
+      "hr_percent": 45.111111111111114
+     },
+     "cut": 0
+    }
+   }
+  }
+ },
+ "files": [
+  "outputs/rebuttal/c5_end_to_end/contexts/musique_32k/closed_book.jsonl.gz",
+  "outputs/rebuttal/c5_end_to_end/contexts/musique_32k/oracle.jsonl.gz",
+  "outputs/rebuttal/c5_end_to_end/contexts/musique_32k/vanilla.jsonl.gz",
+  "outputs/rebuttal/c5_end_to_end/contexts/musique_32k/saadi.jsonl.gz",
+  "outputs/rebuttal/c5_end_to_end/contexts/musique_32k/cr.jsonl.gz",
+  "outputs/rebuttal/c5_end_to_end/contexts/musique_32k/raptor.jsonl.gz",
+  "outputs/rebuttal/c5_end_to_end/contexts/musique_32k/raptor_tm.jsonl.gz",
+  "outputs/rebuttal/c5_end_to_end/contexts/musique_32k/arag.jsonl.gz",
+  "outputs/rebuttal/c5_end_to_end/contexts/musique_32k/arag_tm.jsonl.gz",
+  "outputs/rebuttal/c5_end_to_end/contexts/musique_32k/saadi_at_raptor_len.jsonl.gz",
+  "outputs/rebuttal/c5_end_to_end/contexts/musique_32k/saadi_at_arag_len.jsonl.gz",
+  "outputs/rebuttal/c5_end_to_end/contexts/musique_32k/arag_own.jsonl.gz",
+  "outputs/rebuttal/c5_end_to_end/contexts/musique_32k/manifest.json",
+  "results/rebuttal/c5_end_to_end/prepare/context_stats_musique_32k.csv",
+  "experiments/rebuttal/c5_end_to_end/reports/step_00_musique_32k.md",
+  "experiments/rebuttal/c5_end_to_end/reports/step_00_musique_32k.json"
+ ],
+ "warnings": [],
+ "summary": [
+  "MuSiQue-32K: gate passed (SAADI 900/900 identical to the paper, HR@10 77.67; Vanilla HR@10 74.00). Contexts built: closed_book, oracle, vanilla, saadi, cr, raptor, raptor_tm, arag, arag_tm, saadi_at_raptor_len, saadi_at_arag_len, arag_own."
+ ],
+ "missing_rows": [
+  [
+   "musique_32k",
+   "Reader, 9900 prompts (8.5M prompt tokens) over the available conditions",
+   "to run in the GPU script",
+   "0.6",
+   "2.2",
+   "rough: 8000 prompt tok/s, 1500 output tok/s, 0.15 h start"
+  ]
+ ],
+ "reader_model": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+ "max_output_tokens": 64,
+ "max_model_len": 32768,
+ "config": "/home/iataghav/data/SAADI/configs/methods/sadi.yaml",
+ "published_point": [
+  0.5,
+  0.3,
+  1.0,
+  1.0
+ ],
+ "config_sha256": "18846ef24b6075586cc4ed53e1e8b6f7a916f0253e5932aa203b0ec741bbfdf0",
+ "preserved": {
+  "checked": 93,
+  "changed": [],
+  "missing": []
+ },
+ "example_prompt": "Answer the question using the context passages below. If the passages do not contain the answer, answer from your own knowledge.\n\nContext:\n[1] [Document 5/20 | doc_id=2hop__460946_294723] Grant's First Stand is the debut album by American jazz guitarist Grant Gre...\n\n[2] State Upper House Seats 0 / 1,972 State Lower House Seats 2 / 5,411 Territorial Governorships 0 / 6 Territorial Upper Ch...\n\n[3] The Latin Bit is an album by American jazz guitarist Grant Green featuring performances recorded in 1962 and released on...\n\n[4] 17 years ago (2001 - 04) Split from Greens / Green Party USA Preceded by Citizens Party Association of State Green Parti...\n\n[5] Tombs also often contained small green amulets in the shape of scarab beetles made of malachite, which would protect and...\n\n[6] The Main Attraction is an album by American jazz guitarist Grant Green featuring performances recorded in 1976 and relea...\n\n[7] The series' release led to record subscriptions for All Access, and positive reviews from critics who highlighted Martin...\n\n[8] Animals typically use the color green as camouflage, blending in with the chlorophyll green of the surrounding environme...\n\n[9] Written in spring 1977 at the same time as his previous album, the funk-inflected \"Motivation Radio\" (1977), \"Green\" was...\n\n[10] Phylicia and Ahmad Rashād are the parents of actress Condola Rashād. For the ancient Egyptians, green had very positive ...\n\nQuestion: Who is the spouse of the Green performer?\nAnswer with a short phrase.",
+ "one_line": "gate passed on 1 datasets; contexts written; nothing missing"
+}
