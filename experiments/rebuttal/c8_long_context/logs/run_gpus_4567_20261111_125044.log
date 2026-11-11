@@ -118,3 +118,6 @@
 [c8-02] 2026-11-11 13:25:37 musique_32k/full_doc 45/45 group_009 (47,983 tokens): uncached 11.5 s, 19 more in 3.0 s
 [c8-02] 2026-11-11 13:25:37 done: OK
 [c8] 2026-11-11 13:25:37 end 02: exit 0
+[c8] 2026-11-11 13:25:39 start 03: /mnt/data/zeinab/raptor/.venv/bin/python3 /home/iataghav/data/SAADI/experiments/rebuttal/c8_long_context/scripts/step03_score.py --dataset musique_32k
+[c8-03] 2026-11-11 13:25:43 done: OK
+[c8] 2026-11-11 13:25:43 end 03: exit 0

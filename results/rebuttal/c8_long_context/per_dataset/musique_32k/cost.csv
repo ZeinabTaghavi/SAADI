@@ -1,0 +1,6 @@
+dataset,condition,condition_display,n,input_tokens_mean,input_tokens_median,output_tokens_mean,request_latency_s_mean,single_request_s_uncached_timing,single_request_s_cached_timing,seconds_per_query_without_cache,seconds_per_query_with_cache_amortised,single_request_s_timing,seconds_per_query_amortised,note
+musique_32k,full_doc,Full document,900,48903.51777777778,49023.5,10.23,1.7319713333333333,11.360463880178834,0.4100413413019851,11.389352222222222,0.73743,,,
+musique_32k,saadi,SAADI top 10,900,1402.63,1398.0,11.342222222222222,1.9702494444444445,,,,,0.44375797539978523,0.248,
+musique_32k,vanilla,Vanilla BM25 top 10,900,1403.7688888888888,1398.0,11.75,2.3090047777777776,,,,,0.4787743278000562,0.2908888888888889,
+musique_32k,closed_book,Closed-book,900,79.57444444444444,79.0,15.687777777777777,0.32705155555555554,,,,,0.33521493450025447,0.04133333333333333,
+musique_32k,saadi_c5_reader,"SAADI top 10, C5 reader (Qwen3-30B-A3B)",900,1391.63,1387.0,23.54222222222222,,,,,,,,C5's reader on C5's server (Qwen3 tokenizer counts); seconds not comparable

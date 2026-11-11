@@ -69,3 +69,9 @@ Full document, per document (this run):
 - `results/rebuttal/c8_long_context/answers/musique_32k/full_doc_documents.jsonl`
 - `results/rebuttal/c8_long_context/answers/musique_32k/full_doc.jsonl`
 - `experiments/rebuttal/c8_long_context/reports/step_02_musique_32k_reader.md`
+
+## Push
+
+```
+pushed f66bb89 to origin/fix/notebook-key-and-install: C8 musique_32k 02_reader: answered closed_book 900, vanilla 900, saadi 900, full_doc 900
+```

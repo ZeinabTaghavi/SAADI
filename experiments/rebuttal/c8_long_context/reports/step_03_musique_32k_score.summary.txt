@@ -1,0 +1,1 @@
+F1 full doc 28.6, SAADI 26.3 (7B, n=900); full-SAADI +2.3 [-0.4, +5.1]
