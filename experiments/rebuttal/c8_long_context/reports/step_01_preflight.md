@@ -52,3 +52,9 @@ Last 60 lines of experiments/rebuttal/c8_long_context/logs/run_gpus_4567_2026111
 (APIServer pid=528140)     self.hf_config.dual_chunk_attention_config[
 (APIServer pid=528140) TypeError: 'NoneType' object does not support item assignment
 ```
+
+## Push
+
+```
+pushed dd6090e to origin/fix/notebook-key-and-install: C8 all 01_preflight: FAILED: The vLLM server did not start (logs in outputs/rebuttal/c8_long_context/vllm_logs/).
+```

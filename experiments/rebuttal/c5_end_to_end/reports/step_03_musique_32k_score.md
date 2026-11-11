@@ -43,3 +43,9 @@ Paired differences (points; 95% bootstrap interval, 10,000 resamples over querie
 - `results/rebuttal/c5_end_to_end/per_dataset/musique_32k/paired.csv`
 - `results/rebuttal/c5_end_to_end/per_dataset/musique_32k/summary.json`
 - `experiments/rebuttal/c5_end_to_end/reports/step_03_musique_32k_score.md`
+
+## Push
+
+```
+pushed 64775a9 to origin/fix/notebook-key-and-install: C5 musique_32k 03_score: F1 SAADI 22.8, SAADI-Vanilla +1.0 [-0.4, +2.3]
+```
