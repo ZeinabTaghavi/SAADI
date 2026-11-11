@@ -144,3 +144,4 @@
 [c8] 2026-11-11 14:23:37 start 03: /mnt/data/zeinab/raptor/.venv/bin/python3 /home/iataghav/data/SAADI/experiments/rebuttal/c8_long_context/scripts/step03_score.py --dataset novelhopqa
 [c8-03] 2026-11-11 14:23:40 done: OK
 [c8] 2026-11-11 14:23:40 end 03: exit 0
+[c8] 2026-11-11 14:23:42 stopping vLLM server (pid 756028)

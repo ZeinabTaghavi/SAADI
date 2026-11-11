@@ -72,3 +72,9 @@ Left out: skipped (prompt longer than the served window) {'full_doc': 382, 'saad
 - `results/rebuttal/c8_long_context/per_dataset/novelhopqa/position.csv`
 - `results/rebuttal/c8_long_context/per_dataset/novelhopqa/summary.json`
 - `experiments/rebuttal/c8_long_context/reports/step_03_novelhopqa_score.md`
+
+## Push
+
+```
+pushed b14e673 to origin/fix/notebook-key-and-install: C8 novelhopqa 03_score: F1 full doc 23.3, SAADI 30.2 (7B, n=526); full-SAADI -6.9 [-9.6, -4.3]
+```
