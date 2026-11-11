@@ -29,3 +29,9 @@ Caveats: MuSiQue-32K: the server ran WITHOUT dual chunk attention (window capped
 - `results/rebuttal/c8_long_context/REPORT.md`
 - `results/rebuttal/c8_long_context/table_paper.tex`
 - `experiments/rebuttal/c8_long_context/reports/step_99_report.md`
+
+## Push
+
+```
+pushed 56c4193 to origin/fix/notebook-key-and-install: C8 all 99_report: MuSiQue-32K F1 full 28.6 vs SAADI 26.3 | NovelHopQA F1 full 23.3 vs SAADI 30.2
+```
