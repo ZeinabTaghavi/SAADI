@@ -1,0 +1,53 @@
+{
+ "step": "01",
+ "dataset": "musique_32k",
+ "raptor_dir": "/mnt/data/zeinab/SAADI_Raptor_c5",
+ "run_dir": "/home/iataghav/data/SAADI/outputs/rebuttal/c5_end_to_end/raptor_rerun/raptor_10_runs/musique_32k/musique_32k_retrieval_ablation_raptor",
+ "eval_dir": "/home/iataghav/data/SAADI/outputs/rebuttal/c5_end_to_end/raptor_rerun/raptor_10_evaluations/musique_32k/musique_32k_retrieval_ablation_raptor/retrieval_upper_bound",
+ "python": "/mnt/data/zeinab/raptor/.venv/bin/python3",
+ "gpus": "0,1,2,3",
+ "commit": "c492f48ab0c5",
+ "host": "eee-s132-infsys-gpu03",
+ "python_check": "4",
+ "bundle": {
+  "path": "/home/iataghav/data/SAADI/outputs/rebuttal/c5_end_to_end/raptor_rerun/data/musique_32k_c5",
+  "manifest_sha256": "2998cd97bbb0c8bd6f8333bb8fa54b96d77cba6ce2e9c3aac1e311b824ea5166",
+  "documents": 45,
+  "qa_entries": 900
+ },
+ "config": "/home/iataghav/data/SAADI/outputs/rebuttal/c5_end_to_end/raptor_rerun/configs/musique_32k_c5_retrieval.yaml",
+ "config_changes": [
+  "loader.data_dir: 'data/musique_32k' -> '/home/iataghav/data/SAADI/outputs/rebuttal/c5_end_to_end/raptor_rerun/data/musique_32k_c5'",
+  "loader.expected_qa_entries: 300 -> 900",
+  "loader.expected_prepared_documents: 15 -> 45",
+  "loader.expected_manifest_sha256: '57bc46b1fdec9ff104f5df4b0f58745a5b620d8c783e93a8025effb8a502b8f4' -> '2998cd97bbb0c8bd6f8333bb8fa54b96d77cba6ce2e9c3aac1e311b824ea5166'"
+ ],
+ "status_before": "partial",
+ "runner_exit": 0,
+ "status_after": "complete",
+ "evaluation": {
+  "num_queries": 900,
+  "num_queries_without_labels": 0,
+  "num_queries_unmatched": 0,
+  "hits": {
+   "gold": {
+    "hr5": 0.5424954792043399,
+    "hr10": 0.650994575045208
+   },
+   "silver_strict": {
+    "hr5": 0.23892773892773891,
+    "hr10": 0.40326340326340326
+   },
+   "union_strict": {
+    "hr5": 0.5055555555555555,
+    "hr10": 0.6555555555555556
+   }
+  }
+ },
+ "build_seconds": {
+  "documents": 45,
+  "total": 19537.749827
+ },
+ "one_line": "RAPTOR re-run on 45 groups complete (900 queries)",
+ "seconds": 19814
+}

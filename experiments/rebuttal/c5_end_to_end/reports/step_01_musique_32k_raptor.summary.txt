@@ -1,1 +1,1 @@
-FAILED: RuntimeError: no RAPTOR copy with the MuSiQue runner among ['/mnt/data/zeinab/SAADI_Raptor', '/mnt/data/zeinab/SAADI_Raptor'
+RAPTOR re-run on 45 groups complete (900 queries)
