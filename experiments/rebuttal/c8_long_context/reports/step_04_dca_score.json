@@ -1,0 +1,20 @@
+{
+ "step": "04",
+ "dataset": "novelhopqa",
+ "commit": "b0842282f51d",
+ "host": "eee-s132-infsys-gpu03",
+ "files": [],
+ "answered": {
+  "saadi": 908,
+  "vanilla": 908,
+  "closed_book": 908,
+  "full_native": 526,
+  "full_dca": 0,
+  "saadi_c5": 908
+ },
+ "servers": [],
+ "traceback": "Traceback (most recent call last):\n  File \"/home/iataghav/data/SAADI/experiments/rebuttal/c8_long_context/scripts/step04_dca.py\", line 184, in do_score\n    raise RuntimeError(\"no full-document answers with dual chunk attention yet (dca/shard_*/answers/novelhopqa/full_doc.jsonl)\")\nRuntimeError: no full-document answers with dual chunk attention yet (dca/shard_*/answers/novelhopqa/full_doc.jsonl)\n",
+ "one_line": "FAILED: RuntimeError: no full-document answers with dual chunk attention yet (dca/shard_*/answers/novelhopqa/full_doc.jsonl)",
+ "seconds": 0,
+ "status": "FAILED"
+}

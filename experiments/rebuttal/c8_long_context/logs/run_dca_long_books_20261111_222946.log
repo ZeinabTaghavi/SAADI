@@ -136,3 +136,8 @@ Traceback (most recent call last):
   File "/home/iataghav/data/SAADI/outputs/rebuttal/c8_long_context/venv_vllm_0_10_1_1/lib/python3.12/site-packages/transformers/tokenization_utils_base.py", line 1335, in __getattr__
     raise AttributeError(f"{self.__class__.__name__} has no attribute {key}")
 AttributeError: Qwen2Tokenizer has no attribute all_special_tokens_extended. Did you mean: 'num_special_tokens_to_add'?
+[c8-dca] 2026-11-11 22:37:58 unit 0: missing
+[c8-dca] 2026-11-11 22:37:59 unit 1: missing
+[c8] 2026-11-11 22:37:59 start 04: /mnt/data/zeinab/raptor/.venv/bin/python3 /home/iataghav/data/SAADI/experiments/rebuttal/c8_long_context/scripts/step04_dca.py score
+[c8-04] 2026-11-11 22:37:59 done: FAILED
+[c8] 2026-11-11 22:37:59 end 04: exit 1
