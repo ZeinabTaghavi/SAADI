@@ -76,3 +76,9 @@ NovelHopQA: 10 sampled queries skipped for the full document: document beyond th
 
 - `results/rebuttal/c8_long_context/timing/timing.jsonl`
 - `experiments/rebuttal/c8_long_context/reports/step_01_timing.md`
+
+## Push
+
+```
+pushed dea82d8 to origin/fix/notebook-key-and-install: C8 all 01_timing: MuSiQue-32K est. 2.2 GPU h (upper bound); NovelHopQA est. 4.4 GPU h (upper bound)
+```

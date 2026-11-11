@@ -63,3 +63,58 @@
 [c8-01] 2026-11-11 13:05:47 novelhopqa/full_doc B26 (253,466 tokens) cached_repeat: 1.3 s
 [c8-01] 2026-11-11 13:05:47 done: OK
 [c8] 2026-11-11 13:05:47 end 01: exit 0
+[c8] 2026-11-11 13:05:49 start 02: /mnt/data/zeinab/raptor/.venv/bin/python3 /home/iataghav/data/SAADI/experiments/rebuttal/c8_long_context/scripts/step02_reader.py --dataset musique_32k --port 18541
+[c8-02] 2026-11-11 13:05:50 musique_32k/closed_book: 900 selected, 0 done, 900 to ask, 0 skipped
+[c8-02] 2026-11-11 13:06:10 musique_32k/closed_book: 500/900
+[c8-02] 2026-11-11 13:06:27 musique_32k/vanilla: 900 selected, 0 done, 900 to ask, 0 skipped
+[c8-02] 2026-11-11 13:08:54 musique_32k/vanilla: 500/900
+[c8-02] 2026-11-11 13:10:49 musique_32k/saadi: 900 selected, 0 done, 900 to ask, 0 skipped
+[c8-02] 2026-11-11 13:12:53 musique_32k/saadi: 500/900
+[c8-02] 2026-11-11 13:14:32 musique_32k/full_doc: 900 selected, 0 done, 900 to ask, 0 skipped
+[c8-02] 2026-11-11 13:14:48 musique_32k/full_doc 1/45 group_030 (49,287 tokens): uncached 11.4 s, 19 more in 4.2 s
+[c8-02] 2026-11-11 13:15:03 musique_32k/full_doc 2/45 group_035 (48,527 tokens): uncached 11.4 s, 19 more in 3.8 s
+[c8-02] 2026-11-11 13:15:15 musique_32k/full_doc 3/45 group_045 (42,257 tokens): uncached 9.7 s, 18 more in 2.6 s
+[c8-02] 2026-11-11 13:15:29 musique_32k/full_doc 4/45 group_024 (48,555 tokens): uncached 11.2 s, 18 more in 2.9 s
+[c8-02] 2026-11-11 13:15:44 musique_32k/full_doc 5/45 group_027 (49,601 tokens): uncached 11.6 s, 19 more in 3.4 s
+[c8-02] 2026-11-11 13:16:00 musique_32k/full_doc 6/45 group_022 (50,140 tokens): uncached 11.6 s, 20 more in 3.8 s
+[c8-02] 2026-11-11 13:16:14 musique_32k/full_doc 7/45 group_043 (47,764 tokens): uncached 11.1 s, 17 more in 3.3 s
+[c8-02] 2026-11-11 13:16:29 musique_32k/full_doc 8/45 group_033 (48,851 tokens): uncached 11.7 s, 17 more in 3.1 s
+[c8-02] 2026-11-11 13:16:44 musique_32k/full_doc 9/45 group_005 (50,785 tokens): uncached 11.8 s, 19 more in 3.4 s
+[c8-02] 2026-11-11 13:16:59 musique_32k/full_doc 10/45 group_025 (48,271 tokens): uncached 11.2 s, 20 more in 3.2 s
+[c8-02] 2026-11-11 13:17:13 musique_32k/full_doc 11/45 group_036 (49,610 tokens): uncached 11.6 s, 19 more in 3.3 s
+[c8-02] 2026-11-11 13:17:28 musique_32k/full_doc 12/45 group_008 (48,604 tokens): uncached 11.3 s, 19 more in 3.3 s
+[c8-02] 2026-11-11 13:17:43 musique_32k/full_doc 13/45 group_029 (49,548 tokens): uncached 11.5 s, 19 more in 3.7 s
+[c8-02] 2026-11-11 13:17:58 musique_32k/full_doc 14/45 group_010 (48,383 tokens): uncached 11.3 s, 21 more in 3.3 s
+[c8-02] 2026-11-11 13:18:12 musique_32k/full_doc 15/45 group_021 (47,009 tokens): uncached 10.8 s, 18 more in 3.3 s
+[c8-02] 2026-11-11 13:18:26 musique_32k/full_doc 16/45 group_006 (47,459 tokens): uncached 11.0 s, 19 more in 3.5 s
+[c8-02] 2026-11-11 13:18:41 musique_32k/full_doc 17/45 group_019 (47,765 tokens): uncached 11.0 s, 18 more in 3.3 s
+[c8-02] 2026-11-11 13:18:56 musique_32k/full_doc 18/45 group_041 (50,450 tokens): uncached 11.9 s, 19 more in 3.5 s
+[c8-02] 2026-11-11 13:19:11 musique_32k/full_doc 19/45 group_017 (48,958 tokens): uncached 11.5 s, 19 more in 3.5 s
+[c8-02] 2026-11-11 13:19:26 musique_32k/full_doc 20/45 group_038 (49,881 tokens): uncached 11.5 s, 21 more in 3.7 s
+[c8-02] 2026-11-11 13:19:40 musique_32k/full_doc 21/45 group_028 (46,497 tokens): uncached 10.8 s, 17 more in 2.8 s
+[c8-02] 2026-11-11 13:19:55 musique_32k/full_doc 22/45 group_032 (49,564 tokens): uncached 11.7 s, 19 more in 3.2 s
+[c8-02] 2026-11-11 13:20:10 musique_32k/full_doc 23/45 group_026 (49,139 tokens): uncached 11.4 s, 21 more in 3.5 s
+[c8-02] 2026-11-11 13:20:25 musique_32k/full_doc 24/45 group_040 (49,226 tokens): uncached 11.4 s, 18 more in 3.6 s
+[c8-02] 2026-11-11 13:20:39 musique_32k/full_doc 25/45 group_011 (47,764 tokens): uncached 11.5 s, 17 more in 2.8 s
+[c8-02] 2026-11-11 13:20:53 musique_32k/full_doc 26/45 group_004 (47,379 tokens): uncached 10.9 s, 20 more in 3.4 s
+[c8-02] 2026-11-11 13:21:08 musique_32k/full_doc 27/45 group_039 (46,991 tokens): uncached 10.8 s, 18 more in 3.6 s
+[c8-02] 2026-11-11 13:21:23 musique_32k/full_doc 28/45 group_042 (51,692 tokens): uncached 12.1 s, 19 more in 3.5 s
+[c8-02] 2026-11-11 13:21:38 musique_32k/full_doc 29/45 group_018 (49,538 tokens): uncached 11.5 s, 19 more in 3.1 s
+[c8-02] 2026-11-11 13:21:54 musique_32k/full_doc 30/45 group_031 (49,578 tokens): uncached 12.1 s, 20 more in 3.6 s
+[c8-02] 2026-11-11 13:22:09 musique_32k/full_doc 31/45 group_007 (49,358 tokens): uncached 11.6 s, 20 more in 3.3 s
+[c8-02] 2026-11-11 13:22:24 musique_32k/full_doc 32/45 group_016 (50,435 tokens): uncached 11.9 s, 21 more in 3.7 s
+[c8-02] 2026-11-11 13:22:39 musique_32k/full_doc 33/45 group_012 (50,680 tokens): uncached 11.8 s, 18 more in 3.0 s
+[c8-02] 2026-11-11 13:22:54 musique_32k/full_doc 34/45 group_023 (48,363 tokens): uncached 11.2 s, 20 more in 3.7 s
+[c8-02] 2026-11-11 13:23:09 musique_32k/full_doc 35/45 group_020 (48,975 tokens): uncached 11.3 s, 21 more in 3.7 s
+[c8-02] 2026-11-11 13:23:24 musique_32k/full_doc 36/45 group_001 (48,333 tokens): uncached 11.4 s, 18 more in 3.2 s
+[c8-02] 2026-11-11 13:23:39 musique_32k/full_doc 37/45 group_013 (51,117 tokens): uncached 11.9 s, 20 more in 3.7 s
+[c8-02] 2026-11-11 13:23:54 musique_32k/full_doc 38/45 group_015 (48,201 tokens): uncached 11.2 s, 19 more in 3.2 s
+[c8-02] 2026-11-11 13:24:09 musique_32k/full_doc 39/45 group_044 (50,078 tokens): uncached 11.7 s, 20 more in 3.3 s
+[c8-02] 2026-11-11 13:24:24 musique_32k/full_doc 40/45 group_003 (48,518 tokens): uncached 11.4 s, 18 more in 3.5 s
+[c8-02] 2026-11-11 13:24:39 musique_32k/full_doc 41/45 group_037 (50,260 tokens): uncached 11.7 s, 20 more in 3.6 s
+[c8-02] 2026-11-11 13:24:53 musique_32k/full_doc 42/45 group_034 (48,050 tokens): uncached 11.1 s, 18 more in 3.1 s
+[c8-02] 2026-11-11 13:25:08 musique_32k/full_doc 43/45 group_002 (48,586 tokens): uncached 11.5 s, 18 more in 3.3 s
+[c8-02] 2026-11-11 13:25:22 musique_32k/full_doc 44/45 group_014 (47,677 tokens): uncached 11.0 s, 19 more in 3.2 s
+[c8-02] 2026-11-11 13:25:37 musique_32k/full_doc 45/45 group_009 (47,983 tokens): uncached 11.5 s, 19 more in 3.0 s
+[c8-02] 2026-11-11 13:25:37 done: OK
+[c8] 2026-11-11 13:25:37 end 02: exit 0
