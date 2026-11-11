@@ -1,0 +1,65 @@
+[c8] 2026-11-11 12:50:44 host eee-s132-infsys-gpu03; GPUs 4,5,6,7; port 18541; model Qwen/Qwen2.5-7B-Instruct-1M; vLLM python /mnt/data/zeinab/raptor/.venv/bin/python3
+[c8] 2026-11-11 12:50:48 vLLM 0.23.0; step 00: max_model_len 778240, dual chunk attention available 0, 382 queries beyond the native window
+[c8] 2026-11-11 12:50:59 starting vLLM (native) on GPUs 4,5,6,7, port 18541, --max-model-len 262144; log outputs/rebuttal/c8_long_context/vllm_logs/server_native_20261111_125044.log
+[c8] 2026-11-11 12:50:59 native model folder outputs/rebuttal/c8_long_context/model_native (config.json without dual_chunk_attention_config)
+[c8] 2026-11-11 12:52:20 vLLM (native) ready after 80 s
+[c8] 2026-11-11 12:52:20 deadline for starting new full documents: 2026-11-12 02:52:20
+[c8] 2026-11-11 12:52:20 start 01: /mnt/data/zeinab/raptor/.venv/bin/python3 /home/iataghav/data/SAADI/experiments/rebuttal/c8_long_context/scripts/step01_timing.py --port 18541
+[c8-01] 2026-11-11 12:52:27 musique_32k/closed_book: 20 timed
+[c8-01] 2026-11-11 12:52:36 musique_32k/vanilla: 20 timed
+[c8-01] 2026-11-11 12:52:45 musique_32k/saadi: 20 timed
+[c8-01] 2026-11-11 12:52:56 musique_32k/full_doc group_004 (47,379 tokens) uncached: 10.8 s
+[c8-01] 2026-11-11 12:52:57 musique_32k/full_doc group_004 (47,379 tokens) cached_repeat: 0.3 s
+[c8-01] 2026-11-11 12:53:08 musique_32k/full_doc group_006 (47,459 tokens) uncached: 10.9 s
+[c8-01] 2026-11-11 12:53:08 musique_32k/full_doc group_006 (47,459 tokens) cached_repeat: 0.6 s
+[c8-01] 2026-11-11 12:53:19 musique_32k/full_doc group_019 (47,765 tokens) uncached: 11.0 s
+[c8-01] 2026-11-11 12:53:19 musique_32k/full_doc group_019 (47,765 tokens) cached_repeat: 0.3 s
+[c8-01] 2026-11-11 12:53:31 musique_32k/full_doc group_009 (47,983 tokens) uncached: 11.3 s
+[c8-01] 2026-11-11 12:53:31 musique_32k/full_doc group_009 (47,983 tokens) cached_repeat: 0.5 s
+[c8-01] 2026-11-11 12:53:43 musique_32k/full_doc group_034 (48,050 tokens) uncached: 11.0 s
+[c8-01] 2026-11-11 12:53:43 musique_32k/full_doc group_034 (48,050 tokens) cached_repeat: 0.3 s
+[c8-01] 2026-11-11 12:53:55 musique_32k/full_doc group_025 (48,271 tokens) uncached: 11.2 s
+[c8-01] 2026-11-11 12:53:55 musique_32k/full_doc group_025 (48,271 tokens) cached_repeat: 0.4 s
+[c8-01] 2026-11-11 12:54:06 musique_32k/full_doc group_001 (48,333 tokens) uncached: 11.4 s
+[c8-01] 2026-11-11 12:54:07 musique_32k/full_doc group_001 (48,333 tokens) cached_repeat: 0.5 s
+[c8-01] 2026-11-11 12:54:19 musique_32k/full_doc group_010 (48,383 tokens) uncached: 11.3 s
+[c8-01] 2026-11-11 12:54:19 musique_32k/full_doc group_010 (48,383 tokens) cached_repeat: 0.4 s
+[c8-01] 2026-11-11 12:54:30 musique_32k/full_doc group_024 (48,555 tokens) uncached: 11.2 s
+[c8-01] 2026-11-11 12:54:31 musique_32k/full_doc group_024 (48,555 tokens) cached_repeat: 0.3 s
+[c8-01] 2026-11-11 12:54:42 musique_32k/full_doc group_008 (48,604 tokens) uncached: 11.2 s
+[c8-01] 2026-11-11 12:54:42 musique_32k/full_doc group_008 (48,604 tokens) cached_repeat: 0.3 s
+[c8-01] 2026-11-11 12:54:53 musique_32k/full_doc group_020 (48,975 tokens) uncached: 11.3 s
+[c8-01] 2026-11-11 12:54:54 musique_32k/full_doc group_020 (48,975 tokens) cached_repeat: 0.3 s
+[c8-01] 2026-11-11 12:55:05 musique_32k/full_doc group_026 (49,139 tokens) uncached: 11.5 s
+[c8-01] 2026-11-11 12:55:06 musique_32k/full_doc group_026 (49,139 tokens) cached_repeat: 0.5 s
+[c8-01] 2026-11-11 12:55:18 musique_32k/full_doc group_031 (49,578 tokens) uncached: 12.2 s
+[c8-01] 2026-11-11 12:55:19 musique_32k/full_doc group_031 (49,578 tokens) cached_repeat: 0.9 s
+[c8-01] 2026-11-11 12:55:31 musique_32k/full_doc group_038 (49,881 tokens) uncached: 11.5 s
+[c8-01] 2026-11-11 12:55:31 musique_32k/full_doc group_038 (49,881 tokens) cached_repeat: 0.3 s
+[c8-01] 2026-11-11 12:55:43 musique_32k/full_doc group_044 (50,078 tokens) uncached: 11.6 s
+[c8-01] 2026-11-11 12:55:43 musique_32k/full_doc group_044 (50,078 tokens) cached_repeat: 0.3 s
+[c8-01] 2026-11-11 12:55:55 musique_32k/full_doc group_016 (50,435 tokens) uncached: 11.9 s
+[c8-01] 2026-11-11 12:55:55 musique_32k/full_doc group_016 (50,435 tokens) cached_repeat: 0.5 s
+[c8-01] 2026-11-11 12:56:07 musique_32k/full_doc group_005 (50,785 tokens) uncached: 11.8 s
+[c8-01] 2026-11-11 12:56:07 musique_32k/full_doc group_005 (50,785 tokens) cached_repeat: 0.3 s
+[c8-01] 2026-11-11 12:56:11 novelhopqa/closed_book: 20 timed
+[c8-01] 2026-11-11 12:56:43 novelhopqa/vanilla: 20 timed
+[c8-01] 2026-11-11 12:57:10 novelhopqa/saadi: 20 timed
+[c8-01] 2026-11-11 12:57:48 novelhopqa/full_doc B24 (133,420 tokens) uncached: 37.7 s
+[c8-01] 2026-11-11 12:57:49 novelhopqa/full_doc B24 (133,420 tokens) cached_repeat: 0.9 s
+[c8-01] 2026-11-11 12:58:37 novelhopqa/full_doc B43 (159,866 tokens) uncached: 47.3 s
+[c8-01] 2026-11-11 12:58:38 novelhopqa/full_doc B43 (159,866 tokens) cached_repeat: 0.8 s
+[c8-01] 2026-11-11 12:59:29 novelhopqa/full_doc B37 (167,704 tokens) uncached: 50.5 s
+[c8-01] 2026-11-11 12:59:30 novelhopqa/full_doc B37 (167,704 tokens) cached_repeat: 0.8 s
+[c8-01] 2026-11-11 13:00:35 novelhopqa/full_doc B27 (201,836 tokens) uncached: 65.0 s
+[c8-01] 2026-11-11 13:00:36 novelhopqa/full_doc B27 (201,836 tokens) cached_repeat: 1.5 s
+[c8-01] 2026-11-11 13:01:43 novelhopqa/full_doc B34 (206,833 tokens) uncached: 66.9 s
+[c8-01] 2026-11-11 13:01:44 novelhopqa/full_doc B34 (206,833 tokens) cached_repeat: 1.2 s
+[c8-01] 2026-11-11 13:02:52 novelhopqa/full_doc B04 (209,488 tokens) uncached: 68.0 s
+[c8-01] 2026-11-11 13:02:54 novelhopqa/full_doc B04 (209,488 tokens) cached_repeat: 1.1 s
+[c8-01] 2026-11-11 13:04:16 novelhopqa/full_doc B12 (240,542 tokens) uncached: 82.1 s
+[c8-01] 2026-11-11 13:04:17 novelhopqa/full_doc B12 (240,542 tokens) cached_repeat: 1.1 s
+[c8-01] 2026-11-11 13:05:45 novelhopqa/full_doc B26 (253,466 tokens) uncached: 88.4 s
+[c8-01] 2026-11-11 13:05:47 novelhopqa/full_doc B26 (253,466 tokens) cached_repeat: 1.3 s
+[c8-01] 2026-11-11 13:05:47 done: OK
+[c8] 2026-11-11 13:05:47 end 01: exit 0

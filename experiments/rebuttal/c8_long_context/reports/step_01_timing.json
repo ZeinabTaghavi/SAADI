@@ -1,0 +1,177 @@
+{
+ "step": "01",
+ "commit": "5729ed463eeb",
+ "host": "eee-s132-infsys-gpu03",
+ "server": {
+  "mode": "native",
+  "max_model_len": 262144,
+  "server_log": "/home/iataghav/data/SAADI/outputs/rebuttal/c8_long_context/vllm_logs/server_native_20261111_125044.log",
+  "model": "Qwen/Qwen2.5-7B-Instruct-1M",
+  "max_out": 64,
+  "timeout": 5400.0,
+  "concurrency": 8,
+  "deadline": 1794448340.0
+ },
+ "gpus": "4,5,6,7",
+ "policy": "run",
+ "max_gpu_hours": 6.0,
+ "per_dataset": {
+  "musique_32k": {
+   "sample": 20,
+   "skipped": [],
+   "selected": 900,
+   "full_doc_runnable": 900,
+   "documents": 45,
+   "fit_uncached": {
+    "a": 0.0001707441945055672,
+    "b": 1.2612438236998574e-09,
+    "n": 17
+   },
+   "fit_cached": {
+    "c": 0.4100413413019851,
+    "d": 0.0,
+    "n": 20
+   },
+   "short_mean_seconds": {
+    "closed_book": 0.33521493450025447,
+    "vanilla": 0.4787743278000562,
+    "saadi": 0.44375797539978523
+   },
+   "est_cold_h": 0.1420567903589032,
+   "est_warm_h": 0.09738481855922146,
+   "est_short_h": 0.31443680942502394,
+   "est_wall_h": 0.5538784183431487,
+   "est_gpu_h": 2.2155136733725946,
+   "est_full_doc_nocache_gpu_h": 11.779198392037253,
+   "cached_over_uncached_median": 0.027532421530716458,
+   "cached_tokens_on_repeat": [
+    47440,
+    47536,
+    47840,
+    48048,
+    48112,
+    48336,
+    48400,
+    48448,
+    48608,
+    48672,
+    49040,
+    49200,
+    49664,
+    49936,
+    50144,
+    50512,
+    50864
+   ],
+   "prefix_cache_effective": true,
+   "over_budget": false
+  },
+  "novelhopqa": {
+   "sample": 20,
+   "skipped": [
+    {
+     "query_id": "hop_1:1030",
+     "doc_id": "B62",
+     "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+    },
+    {
+     "query_id": "hop_4:994",
+     "doc_id": "B62",
+     "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+    },
+    {
+     "query_id": "hop_1:670",
+     "doc_id": "B42",
+     "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+    },
+    {
+     "query_id": "hop_3:52",
+     "doc_id": "B42",
+     "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+    },
+    {
+     "query_id": "hop_4:1039",
+     "doc_id": "B42",
+     "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+    },
+    {
+     "query_id": "hop_4:1053",
+     "doc_id": "B54",
+     "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+    },
+    {
+     "query_id": "hop_1:94",
+     "doc_id": "B15",
+     "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+    },
+    {
+     "query_id": "hop_4:800",
+     "doc_id": "B15",
+     "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+    },
+    {
+     "query_id": "hop_1:569",
+     "doc_id": "B05",
+     "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+    },
+    {
+     "query_id": "hop_2:739",
+     "doc_id": "B05",
+     "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+    }
+   ],
+   "selected": 908,
+   "full_doc_runnable": 526,
+   "documents": 10,
+   "fit_uncached": {
+    "a": 0.00020835148446961385,
+    "b": 5.541618324691629e-10,
+    "n": 8
+   },
+   "fit_cached": {
+    "c": 0.18875004182447144,
+    "d": 4.504618367842602e-06,
+    "n": 10
+   },
+   "short_mean_seconds": {
+    "closed_book": 0.18760861339906115,
+    "vanilla": 1.5792506619509368,
+    "saadi": 1.3211646084506357
+   },
+   "est_cold_h": 0.1784420204389172,
+   "est_warm_h": 0.15310011273152607,
+   "est_short_h": 0.7788682462474932,
+   "est_wall_h": 1.1104103794179363,
+   "est_gpu_h": 4.441641517671745,
+   "est_full_doc_nocache_gpu_h": 36.67460390660989,
+   "cached_over_uncached_median": 0.01674474862534345,
+   "cached_tokens_on_repeat": [
+    133472,
+    159920,
+    167776,
+    201904,
+    206896,
+    209552,
+    240624,
+    253520
+   ],
+   "prefix_cache_effective": true,
+   "over_budget": false
+  }
+ },
+ "files": [
+  "results/rebuttal/c8_long_context/timing/timing.jsonl"
+ ],
+ "stop_datasets": [],
+ "warnings": [],
+ "server_log": {
+  "kv_capacity_tokens": 2314064,
+  "max_concurrency": {
+   "tokens_per_request": 262144,
+   "x": 8.83
+  }
+ },
+ "one_line": "MuSiQue-32K est. 2.2 GPU h (upper bound); NovelHopQA est. 4.4 GPU h (upper bound)",
+ "seconds": 807,
+ "status": "OK"
+}
