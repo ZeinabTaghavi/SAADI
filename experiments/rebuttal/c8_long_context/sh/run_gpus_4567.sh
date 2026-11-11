@@ -188,6 +188,24 @@ has_flag "--enable-chunked-prefill" && EXTRA+=(--enable-chunked-prefill)
 has_flag "--enable-prompt-tokens-details" && EXTRA+=(--enable-prompt-tokens-details)
 has_flag "--disable-custom-all-reduce" && EXTRA+=(--disable-custom-all-reduce)
 
+native_model_dir() {  # <snapshot folder> -> prints outputs/.../model_native (links + edited config.json)
+  "${PYTHON}" - "$1" "${C8_OUT_DIR}/model_native" <<'PY'
+import json, os, shutil, sys
+src, dst = os.path.realpath(sys.argv[1]), sys.argv[2]
+if not os.path.isfile(os.path.join(src, "config.json")):
+    sys.exit(f"no config.json in {src}")
+shutil.rmtree(dst, ignore_errors=True)
+os.makedirs(dst)
+for name in os.listdir(src):
+    if name != "config.json":
+        os.symlink(os.path.realpath(os.path.join(src, name)), os.path.join(dst, name))
+cfg = json.load(open(os.path.join(src, "config.json"), encoding="utf-8"))
+cfg.pop("dual_chunk_attention_config", None)
+json.dump(cfg, open(os.path.join(dst, "config.json"), "w", encoding="utf-8"), indent=2)
+print(dst)
+PY
+}
+
 start_server() {  # <mode: dca|native>
   local mode="$1" len slog
   if [[ "${mode}" == "dca" ]]; then
@@ -199,10 +217,15 @@ start_server() {  # <mode: dca|native>
   local launcher=()
   command -v setsid >/dev/null 2>&1 && launcher=(setsid)
   say "starting vLLM (${mode}) on GPUs ${GPUS}, port ${PORT}, --max-model-len ${len}; log ${slog#"${C8_ROOT_DIR}/"}"
-  local mode_args=()
-  # Without the dual chunk attention backend the model's config must not ask for it: standard attention,
-  # identical to dual chunk attention inside one 262,144-token chunk.
-  [[ "${mode}" == "native" ]] && mode_args=(--hf-overrides '{"dual_chunk_attention_config": null}')
+  local model_dir="${C8_STEP00_MODEL_PATH:-${C8_MODEL}}"
+  if [[ "${mode}" == "native" ]]; then
+    # vLLM without the dual chunk attention backend (e.g. 0.23) still builds the dual-chunk rotary
+    # embedding whenever config.json has dual_chunk_attention_config (and crashes when it is null). So
+    # the native server reads a copy of the snapshot folder: every file linked, config.json without
+    # that key. Same weights; inside one 262,144-token chunk dual chunk attention = standard attention.
+    model_dir="$(native_model_dir "${model_dir}")" || { say "could not build the native model folder"; return 1; }
+    say "native model folder ${model_dir#"${C8_ROOT_DIR}/"} (config.json without dual_chunk_attention_config)"
+  fi
   (
     if [[ "${mode}" == "dca" ]]; then
       export VLLM_ATTENTION_BACKEND="${C8_ATTENTION_BACKEND}" VLLM_USE_V1="${C8_VLLM_USE_V1}"
@@ -211,11 +234,11 @@ start_server() {  # <mode: dca|native>
     fi
     # shellcheck disable=SC2086
     exec ${launcher[@]+"${launcher[@]}"} "${C8_VLLM_PY}" -m vllm.entrypoints.openai.api_server \
-      --model "${C8_STEP00_MODEL_PATH:-${C8_MODEL}}" --served-model-name "${C8_MODEL}" --host 127.0.0.1 --port "${PORT}" \
+      --model "${model_dir}" --served-model-name "${C8_MODEL}" --host 127.0.0.1 --port "${PORT}" \
       --tensor-parallel-size "${C8_TENSOR_PARALLEL}" --dtype bfloat16 --max-model-len "${len}" \
       --gpu-memory-utilization "${C8_GPU_MEMORY_UTILIZATION}" --max-num-seqs "${C8_MAX_NUM_SEQS}" \
       --max-num-batched-tokens "${C8_MAX_NUM_BATCHED_TOKENS}" --seed "${C8_SEED}" \
-      "${EXTRA[@]}" ${mode_args[@]+"${mode_args[@]}"} ${C8_VLLM_EXTRA_ARGS}
+      "${EXTRA[@]}" ${C8_VLLM_EXTRA_ARGS}
   ) > "${slog}" 2>&1 &
   SERVER_PID=$!
   local w=0
