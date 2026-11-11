@@ -68,3 +68,9 @@ Traceback (most recent call last):
     raise AttributeError(f"{self.__class__.__name__} has no attribute {key}")
 AttributeError: Qwen2Tokenizer has no attribute all_special_tokens_extended. Did you mean: 'num_special_tokens_to_add'?
 ```
+
+## Push
+
+```
+pushed caa5eaa to origin/fix/notebook-key-and-install: C8 novelhopqa 04_dca_unit1: FAILED: The vLLM 0.10.1.1 server with dual chunk attention did not start on GPUs 4,5,6,7 (log outputs/rebuttal/c8_long_context/vllm_logs/server_dca_g1
+```

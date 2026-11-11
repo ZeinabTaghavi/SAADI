@@ -1,26 +1,32 @@
 # C8 step 04 (dual chunk attention) - unit 0, vLLM start: FAILED
 
-Written 2026-11-11 22:36:49 on eee-s132-infsys-gpu03. The main C8 results are unchanged.
+Written 2026-11-11 22:37:55 on eee-s132-infsys-gpu03. The main C8 results are unchanged.
 
-The vLLM 0.10.1.1 server with dual chunk attention did not start on GPUs 0,1,2,3 (log outputs/rebuttal/c8_long_context/vllm_logs/server_dca_g0_20261111_222946_223618.log).
+The vLLM 0.10.1.1 server with dual chunk attention did not start on GPUs 0,1,2,3 (log outputs/rebuttal/c8_long_context/vllm_logs/server_dca_g0_20261111_222946_223725.log).
 
 Last 60 lines of experiments/rebuttal/c8_long_context/logs/run_dca_long_books_20261111_222946.log:
 
 ```
-[c8-dca] 2026-11-11 22:29:46 host eee-s132-infsys-gpu03; GPU groups 0,1,2,3;4,5,6,7; vLLM 0.10.1.1 in outputs/rebuttal/c8_long_context/venv_vllm_0_10_1_1
-[c8-dca] 2026-11-11 22:29:46 model /mnt/cache/taghavi/hub/models--Qwen--Qwen2.5-7B-Instruct-1M/snapshots/e28526f7bb80e2a9c8af03b831a9af3812f18fba; --max-model-len 778240
-[c8-dca] 2026-11-11 22:29:46 installing vLLM 0.10.1.1 into /home/iataghav/data/SAADI/outputs/rebuttal/c8_long_context/venv_vllm_0_10_1_1 (5-15 min; log outputs/rebuttal/c8_long_context/vllm_logs/install_vllm_0.10.1.1_20261111_222946.log)
-[c8-dca] 2026-11-11 22:29:48 environment made with uv (Python 3.12)
-[c8-dca] 2026-11-11 22:36:10 vLLM 0.10.1.1 ready: torch 2.7.1+cu128 cuda 12.8
-[c8-dca] 2026-11-11 22:36:10 free GPU groups: 0,1,2,3 4,5,6,7
-[c8-04] 2026-11-11 22:36:11 plan written: /home/iataghav/data/SAADI/results/rebuttal/c8_long_context/dca/plan.json
-0	B05,B42,B37,B04,B61,B12,B26
-1	B44,B15,B54,B62,B24,B43,B18,B27,B34
-[c8-dca] 2026-11-11 22:36:18 group 0 (GPUs 0,1,2,3, port 18551): units 0
-[c8-dca] 2026-11-11 22:36:18 [group 0] starting vLLM 0.10.1.1 with dual chunk attention on GPUs 0,1,2,3, port 18551; log outputs/rebuttal/c8_long_context/vllm_logs/server_dca_g0_20261111_222946_223618.log
-[c8-dca] 2026-11-11 22:36:48 group 1 (GPUs 4,5,6,7, port 18552): units 1
-[c8-dca] 2026-11-11 22:36:48 [group 1] starting vLLM 0.10.1.1 with dual chunk attention on GPUs 4,5,6,7, port 18552; log outputs/rebuttal/c8_long_context/vllm_logs/server_dca_g1_20261111_222946_223648.log
-[c8-dca] 2026-11-11 22:36:49 [group 0] vLLM exited during start-up; last lines:
+    return init_tokenizer_from_configs(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iataghav/data/SAADI/outputs/rebuttal/c8_long_context/venv_vllm_0_10_1_1/lib/python3.12/site-packages/vllm/transformers_utils/tokenizer_group.py", line 121, in init_tokenizer_from_configs
+    return TokenizerGroup(
+           ^^^^^^^^^^^^^^^
+  File "/home/iataghav/data/SAADI/outputs/rebuttal/c8_long_context/venv_vllm_0_10_1_1/lib/python3.12/site-packages/vllm/transformers_utils/tokenizer_group.py", line 26, in __init__
+    self.tokenizer = get_tokenizer(self.tokenizer_id, **tokenizer_config)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iataghav/data/SAADI/outputs/rebuttal/c8_long_context/venv_vllm_0_10_1_1/lib/python3.12/site-packages/vllm/transformers_utils/tokenizer.py", line 284, in get_tokenizer
+    tokenizer = get_cached_tokenizer(tokenizer)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iataghav/data/SAADI/outputs/rebuttal/c8_long_context/venv_vllm_0_10_1_1/lib/python3.12/site-packages/vllm/transformers_utils/tokenizer.py", line 101, in get_cached_tokenizer
+    tokenizer.all_special_tokens_extended)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iataghav/data/SAADI/outputs/rebuttal/c8_long_context/venv_vllm_0_10_1_1/lib/python3.12/site-packages/transformers/tokenization_utils_base.py", line 1335, in __getattr__
+    raise AttributeError(f"{self.__class__.__name__} has no attribute {key}")
+AttributeError: Qwen2Tokenizer has no attribute all_special_tokens_extended. Did you mean: 'num_special_tokens_to_add'?
+[c8-dca] 2026-11-11 22:37:25 retrying units 0 1 on GPUs 0,1,2,3
+[c8-dca] 2026-11-11 22:37:25 [group 0] starting vLLM 0.10.1.1 with dual chunk attention on GPUs 0,1,2,3, port 18551; log outputs/rebuttal/c8_long_context/vllm_logs/server_dca_g0_20261111_222946_223725.log
+[c8-dca] 2026-11-11 22:37:55 [group 0] vLLM exited during start-up; last lines:
 Traceback (most recent call last):
   File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
     self.run()
@@ -61,10 +67,4 @@ Traceback (most recent call last):
   File "/home/iataghav/data/SAADI/outputs/rebuttal/c8_long_context/venv_vllm_0_10_1_1/lib/python3.12/site-packages/transformers/tokenization_utils_base.py", line 1335, in __getattr__
     raise AttributeError(f"{self.__class__.__name__} has no attribute {key}")
 AttributeError: Qwen2Tokenizer has no attribute all_special_tokens_extended. Did you mean: 'num_special_tokens_to_add'?
-```
-
-## Push
-
-```
-pushed 00d002a to origin/fix/notebook-key-and-install: C8 novelhopqa 04_dca_unit0: FAILED: The vLLM 0.10.1.1 server with dual chunk attention did not start on GPUs 0,1,2,3 (log outputs/rebuttal/c8_long_context/vllm_logs/server_dca_g0
 ```
