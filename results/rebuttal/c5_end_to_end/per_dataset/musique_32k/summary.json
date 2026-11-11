@@ -1,0 +1,1361 @@
+{
+ "dataset": "musique_32k",
+ "conditions": {
+  "closed_book": {
+   "n": 900,
+   "expected": 900,
+   "complete": true,
+   "all": {
+    "n": 900,
+    "em": 2.4444444444444446,
+    "f1": 9.336073302495265,
+    "contain": 9.222222222222221
+   },
+   "evidence_yes": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "evidence_no": {
+    "n": 900,
+    "em": 2.4444444444444446,
+    "f1": 9.336073302495265,
+    "contain": 9.222222222222221
+   },
+   "no_labels": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "para_yes": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "para_no": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hop_1": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hop_2plus": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hr10": {
+    "eligible": 0,
+    "hits": 0,
+    "hr_percent": null
+   },
+   "evidence_in_context": {
+    "eligible": 900,
+    "hits": 0,
+    "hr_percent": 0.0
+   },
+   "evidence_para_any": {
+    "eligible": 0,
+    "hits": 0,
+    "hr_percent": null
+   },
+   "evidence_para_all": {
+    "eligible": 0,
+    "hits": 0,
+    "hr_percent": null
+   },
+   "context_tokens_mean": 0,
+   "context_tokens_max": 0,
+   "passages_mean": 0
+  },
+  "oracle": {
+   "n": 900,
+   "expected": 900,
+   "complete": true,
+   "all": {
+    "n": 900,
+    "em": 24.333333333333336,
+    "f1": 39.733678352357686,
+    "contain": 50.22222222222222
+   },
+   "evidence_yes": {
+    "n": 900,
+    "em": 24.333333333333336,
+    "f1": 39.733678352357686,
+    "contain": 50.22222222222222
+   },
+   "evidence_no": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "no_labels": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "para_yes": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "para_no": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hop_1": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hop_2plus": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hr10": {
+    "eligible": 0,
+    "hits": 0,
+    "hr_percent": null
+   },
+   "evidence_in_context": {
+    "eligible": 900,
+    "hits": 900,
+    "hr_percent": 100.0
+   },
+   "evidence_para_any": {
+    "eligible": 0,
+    "hits": 0,
+    "hr_percent": null
+   },
+   "evidence_para_all": {
+    "eligible": 0,
+    "hits": 0,
+    "hr_percent": null
+   },
+   "context_tokens_mean": 834.32,
+   "context_tokens_max": 4434,
+   "passages_mean": 6.184444444444445
+  },
+  "vanilla": {
+   "n": 900,
+   "expected": 900,
+   "complete": true,
+   "all": {
+    "n": 900,
+    "em": 10.333333333333334,
+    "f1": 21.855181741309767,
+    "contain": 29.666666666666668
+   },
+   "evidence_yes": {
+    "n": 666,
+    "em": 11.711711711711711,
+    "f1": 24.083947615338932,
+    "contain": 33.633633633633636
+   },
+   "evidence_no": {
+    "n": 234,
+    "em": 6.41025641025641,
+    "f1": 15.511771176765219,
+    "contain": 18.37606837606838
+   },
+   "no_labels": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "para_yes": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "para_no": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hop_1": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hop_2plus": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hr10": {
+    "eligible": 900,
+    "hits": 666,
+    "hr_percent": 74.0
+   },
+   "evidence_in_context": {
+    "eligible": 900,
+    "hits": 666,
+    "hr_percent": 74.0
+   },
+   "evidence_para_any": {
+    "eligible": 0,
+    "hits": 0,
+    "hr_percent": null
+   },
+   "evidence_para_all": {
+    "eligible": 0,
+    "hits": 0,
+    "hr_percent": null
+   },
+   "context_tokens_mean": 1327.1855555555555,
+   "context_tokens_max": 1765,
+   "passages_mean": 10
+  },
+  "saadi": {
+   "n": 900,
+   "expected": 900,
+   "complete": true,
+   "all": {
+    "n": 900,
+    "em": 11.444444444444445,
+    "f1": 22.829064716958626,
+    "contain": 30.333333333333336
+   },
+   "evidence_yes": {
+    "n": 699,
+    "em": 12.875536480686694,
+    "f1": 24.533486788320875,
+    "contain": 32.761087267525035
+   },
+   "evidence_no": {
+    "n": 201,
+    "em": 6.467661691542288,
+    "f1": 16.901746170280962,
+    "contain": 21.890547263681594
+   },
+   "no_labels": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "para_yes": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "para_no": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hop_1": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hop_2plus": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hr10": {
+    "eligible": 900,
+    "hits": 699,
+    "hr_percent": 77.66666666666667
+   },
+   "evidence_in_context": {
+    "eligible": 900,
+    "hits": 699,
+    "hr_percent": 77.66666666666667
+   },
+   "evidence_para_any": {
+    "eligible": 0,
+    "hits": 0,
+    "hr_percent": null
+   },
+   "evidence_para_all": {
+    "eligible": 0,
+    "hits": 0,
+    "hr_percent": null
+   },
+   "context_tokens_mean": 1326.0455555555557,
+   "context_tokens_max": 2016,
+   "passages_mean": 10
+  },
+  "cr": {
+   "n": 900,
+   "expected": 900,
+   "complete": true,
+   "all": {
+    "n": 900,
+    "em": 10.777777777777779,
+    "f1": 22.84543634121991,
+    "contain": 30.777777777777775
+   },
+   "evidence_yes": {
+    "n": 740,
+    "em": 12.027027027027028,
+    "f1": 24.3616795492623,
+    "contain": 33.108108108108105
+   },
+   "evidence_no": {
+    "n": 160,
+    "em": 5.0,
+    "f1": 15.832811504023859,
+    "contain": 20.0
+   },
+   "no_labels": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "para_yes": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "para_no": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hop_1": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hop_2plus": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hr10": {
+    "eligible": 900,
+    "hits": 740,
+    "hr_percent": 82.22222222222223
+   },
+   "evidence_in_context": {
+    "eligible": 900,
+    "hits": 740,
+    "hr_percent": 82.22222222222223
+   },
+   "evidence_para_any": {
+    "eligible": 0,
+    "hits": 0,
+    "hr_percent": null
+   },
+   "evidence_para_all": {
+    "eligible": 0,
+    "hits": 0,
+    "hr_percent": null
+   },
+   "context_tokens_mean": 1331.658888888889,
+   "context_tokens_max": 2041,
+   "passages_mean": 10
+  },
+  "raptor": {
+   "n": 900,
+   "expected": 900,
+   "complete": true,
+   "all": {
+    "n": 900,
+    "em": 9.11111111111111,
+    "f1": 21.689368268604873,
+    "contain": 27.77777777777778
+   },
+   "evidence_yes": {
+    "n": 643,
+    "em": 11.35303265940902,
+    "f1": 24.69067939982783,
+    "contain": 31.104199066874028
+   },
+   "evidence_no": {
+    "n": 257,
+    "em": 3.501945525291829,
+    "f1": 14.180251313833036,
+    "contain": 19.45525291828794
+   },
+   "no_labels": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "para_yes": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "para_no": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hop_1": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hop_2plus": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hr10": {
+    "eligible": 900,
+    "hits": 590,
+    "hr_percent": 65.55555555555556
+   },
+   "evidence_in_context": {
+    "eligible": 900,
+    "hits": 643,
+    "hr_percent": 71.44444444444444
+   },
+   "evidence_para_any": {
+    "eligible": 0,
+    "hits": 0,
+    "hr_percent": null
+   },
+   "evidence_para_all": {
+    "eligible": 0,
+    "hits": 0,
+    "hr_percent": null
+   },
+   "context_tokens_mean": 922.8144444444445,
+   "context_tokens_max": 1218,
+   "passages_mean": 10
+  },
+  "raptor_tm": {
+   "n": 900,
+   "expected": 900,
+   "complete": true,
+   "all": {
+    "n": 900,
+    "em": 9.222222222222221,
+    "f1": 21.625367221226067,
+    "contain": 27.22222222222222
+   },
+   "evidence_yes": {
+    "n": 643,
+    "em": 11.35303265940902,
+    "f1": 24.39759180967448,
+    "contain": 30.326594090202175
+   },
+   "evidence_no": {
+    "n": 257,
+    "em": 3.8910505836575875,
+    "f1": 14.689412317053591,
+    "contain": 19.45525291828794
+   },
+   "no_labels": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "para_yes": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "para_no": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hop_1": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hop_2plus": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hr10": {
+    "eligible": 900,
+    "hits": 590,
+    "hr_percent": 65.55555555555556
+   },
+   "evidence_in_context": {
+    "eligible": 900,
+    "hits": 643,
+    "hr_percent": 71.44444444444444
+   },
+   "evidence_para_any": {
+    "eligible": 0,
+    "hits": 0,
+    "hr_percent": null
+   },
+   "evidence_para_all": {
+    "eligible": 0,
+    "hits": 0,
+    "hr_percent": null
+   },
+   "context_tokens_mean": 922.8144444444445,
+   "context_tokens_max": 1218,
+   "passages_mean": 10
+  },
+  "arag": {
+   "n": 900,
+   "expected": 900,
+   "complete": true,
+   "all": {
+    "n": 900,
+    "em": 11.555555555555555,
+    "f1": 22.17619540451238,
+    "contain": 24.22222222222222
+   },
+   "evidence_yes": {
+    "n": 406,
+    "em": 16.995073891625616,
+    "f1": 30.41619183867219,
+    "contain": 30.541871921182267
+   },
+   "evidence_no": {
+    "n": 494,
+    "em": 7.08502024291498,
+    "f1": 15.404052586154318,
+    "contain": 19.02834008097166
+   },
+   "no_labels": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "para_yes": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "para_no": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hop_1": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hop_2plus": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hr10": {
+    "eligible": 900,
+    "hits": 406,
+    "hr_percent": 45.111111111111114
+   },
+   "evidence_in_context": {
+    "eligible": 900,
+    "hits": 406,
+    "hr_percent": 45.111111111111114
+   },
+   "evidence_para_any": {
+    "eligible": 0,
+    "hits": 0,
+    "hr_percent": null
+   },
+   "evidence_para_all": {
+    "eligible": 0,
+    "hits": 0,
+    "hr_percent": null
+   },
+   "context_tokens_mean": 360.37555555555554,
+   "context_tokens_max": 1676,
+   "passages_mean": 2.6622222222222223
+  },
+  "arag_tm": {
+   "n": 900,
+   "expected": 900,
+   "complete": true,
+   "all": {
+    "n": 900,
+    "em": 11.555555555555555,
+    "f1": 21.99554491174623,
+    "contain": 24.22222222222222
+   },
+   "evidence_yes": {
+    "n": 406,
+    "em": 17.24137931034483,
+    "f1": 30.409587893608624,
+    "contain": 30.78817733990148
+   },
+   "evidence_no": {
+    "n": 494,
+    "em": 6.882591093117409,
+    "f1": 15.080359789001022,
+    "contain": 18.82591093117409
+   },
+   "no_labels": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "para_yes": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "para_no": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hop_1": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hop_2plus": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hr10": {
+    "eligible": 900,
+    "hits": 406,
+    "hr_percent": 45.111111111111114
+   },
+   "evidence_in_context": {
+    "eligible": 900,
+    "hits": 406,
+    "hr_percent": 45.111111111111114
+   },
+   "evidence_para_any": {
+    "eligible": 0,
+    "hits": 0,
+    "hr_percent": null
+   },
+   "evidence_para_all": {
+    "eligible": 0,
+    "hits": 0,
+    "hr_percent": null
+   },
+   "context_tokens_mean": 359.32666666666665,
+   "context_tokens_max": 1325,
+   "passages_mean": 2.6566666666666667
+  },
+  "saadi_at_raptor_len": {
+   "n": 900,
+   "expected": 900,
+   "complete": true,
+   "all": {
+    "n": 900,
+    "em": 9.444444444444445,
+    "f1": 21.022387905849765,
+    "contain": 27.0
+   },
+   "evidence_yes": {
+    "n": 604,
+    "em": 10.76158940397351,
+    "f1": 23.501883646962696,
+    "contain": 29.96688741721854
+   },
+   "evidence_no": {
+    "n": 296,
+    "em": 6.756756756756757,
+    "f1": 15.962876326011216,
+    "contain": 20.945945945945947
+   },
+   "no_labels": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "para_yes": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "para_no": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hop_1": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hop_2plus": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hr10": {
+    "eligible": 0,
+    "hits": 0,
+    "hr_percent": null
+   },
+   "evidence_in_context": {
+    "eligible": 900,
+    "hits": 604,
+    "hr_percent": 67.11111111111111
+   },
+   "evidence_para_any": {
+    "eligible": 0,
+    "hits": 0,
+    "hr_percent": null
+   },
+   "evidence_para_all": {
+    "eligible": 0,
+    "hits": 0,
+    "hr_percent": null
+   },
+   "context_tokens_mean": 921.5877777777778,
+   "context_tokens_max": 1215,
+   "passages_mean": 7.4511111111111115
+  },
+  "saadi_at_arag_len": {
+   "n": 900,
+   "expected": 900,
+   "complete": true,
+   "all": {
+    "n": 900,
+    "em": 5.777777777777778,
+    "f1": 15.58903714230833,
+    "contain": 17.666666666666668
+   },
+   "evidence_yes": {
+    "n": 368,
+    "em": 7.880434782608696,
+    "f1": 19.609971724543858,
+    "contain": 23.369565217391305
+   },
+   "evidence_no": {
+    "n": 532,
+    "em": 4.323308270676692,
+    "f1": 12.80763878467172,
+    "contain": 13.721804511278195
+   },
+   "no_labels": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "para_yes": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "para_no": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hop_1": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hop_2plus": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hr10": {
+    "eligible": 0,
+    "hits": 0,
+    "hr_percent": null
+   },
+   "evidence_in_context": {
+    "eligible": 900,
+    "hits": 368,
+    "hr_percent": 40.888888888888886
+   },
+   "evidence_para_any": {
+    "eligible": 0,
+    "hits": 0,
+    "hr_percent": null
+   },
+   "evidence_para_all": {
+    "eligible": 0,
+    "hits": 0,
+    "hr_percent": null
+   },
+   "context_tokens_mean": 358.06666666666666,
+   "context_tokens_max": 1389,
+   "passages_mean": 3.0755555555555554
+  },
+  "arag_own": {
+   "n": 900,
+   "expected": 900,
+   "complete": true,
+   "all": {
+    "n": 900,
+    "em": 2.888888888888889,
+    "f1": 12.664814187973624,
+    "contain": 32.77777777777778
+   },
+   "evidence_yes": {
+    "n": 406,
+    "em": 4.1871921182266005,
+    "f1": 16.020365057044657,
+    "contain": 40.88669950738916
+   },
+   "evidence_no": {
+    "n": 494,
+    "em": 1.8218623481781375,
+    "f1": 9.907013271287713,
+    "contain": 26.113360323886642
+   },
+   "no_labels": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "para_yes": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "para_no": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hop_1": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hop_2plus": {
+    "n": 0,
+    "em": null,
+    "f1": null,
+    "contain": null
+   },
+   "hr10": {
+    "eligible": 900,
+    "hits": 406,
+    "hr_percent": 45.111111111111114
+   },
+   "evidence_in_context": {
+    "eligible": 900,
+    "hits": 406,
+    "hr_percent": 45.111111111111114
+   },
+   "evidence_para_any": {
+    "eligible": 0,
+    "hits": 0,
+    "hr_percent": null
+   },
+   "evidence_para_all": {
+    "eligible": 0,
+    "hits": 0,
+    "hr_percent": null
+   },
+   "context_tokens_mean": 360.37555555555554,
+   "context_tokens_max": 1676,
+   "passages_mean": 2.6622222222222223
+  }
+ },
+ "paired": {
+  "saadi-vanilla": {
+   "n": 900,
+   "em": {
+    "n": 900,
+    "diff": 1.1111111111111112,
+    "ci": [
+     -0.4444444444444444,
+     2.7777777777777777
+    ]
+   },
+   "f1": {
+    "n": 900,
+    "diff": 0.9738829756488596,
+    "ci": [
+     -0.3798080288106079,
+     2.3275790159183685
+    ]
+   },
+   "contain": {
+    "n": 900,
+    "diff": 0.6666666666666666,
+    "ci": [
+     -1.3333333333333333,
+     2.7777777777777777
+    ]
+   },
+   "hr10": {
+    "n": 900,
+    "diff": 3.6666666666666665,
+    "ci": [
+     1.6666666666666667,
+     5.666666666666667
+    ]
+   },
+   "evidence": {
+    "n": 900,
+    "diff": 3.6666666666666665,
+    "ci": [
+     1.6666666666666667,
+     5.666666666666667
+    ]
+   }
+  },
+  "saadi-cr": {
+   "n": 900,
+   "em": {
+    "n": 900,
+    "diff": 0.6666666666666666,
+    "ci": [
+     -1.0,
+     2.3333333333333335
+    ]
+   },
+   "f1": {
+    "n": 900,
+    "diff": -0.016371624261279548,
+    "ci": [
+     -1.5066162452732283,
+     1.4726314597594103
+    ]
+   },
+   "contain": {
+    "n": 900,
+    "diff": -0.4444444444444444,
+    "ci": [
+     -2.7777777777777777,
+     1.8888888888888888
+    ]
+   },
+   "hr10": {
+    "n": 900,
+    "diff": -4.555555555555555,
+    "ci": [
+     -6.777777777777778,
+     -2.4444444444444446
+    ]
+   },
+   "evidence": {
+    "n": 900,
+    "diff": -4.555555555555555,
+    "ci": [
+     -6.777777777777778,
+     -2.4444444444444446
+    ]
+   }
+  },
+  "saadi-raptor": {
+   "n": 900,
+   "em": {
+    "n": 900,
+    "diff": 2.3333333333333335,
+    "ci": [
+     0.33055555555555804,
+     4.444444444444445
+    ]
+   },
+   "f1": {
+    "n": 900,
+    "diff": 1.1396964483537548,
+    "ci": [
+     -0.8725628798351379,
+     3.1684961989497933
+    ]
+   },
+   "contain": {
+    "n": 900,
+    "diff": 2.5555555555555554,
+    "ci": [
+     -0.4444444444444444,
+     5.666666666666667
+    ]
+   },
+   "hr10": {
+    "n": 900,
+    "diff": 12.11111111111111,
+    "ci": [
+     8.444444444444445,
+     15.666666666666666
+    ]
+   },
+   "evidence": {
+    "n": 900,
+    "diff": 6.222222222222222,
+    "ci": [
+     2.6666666666666665,
+     9.777777777777779
+    ]
+   }
+  },
+  "saadi-arag": {
+   "n": 900,
+   "em": {
+    "n": 900,
+    "diff": -0.1111111111111111,
+    "ci": [
+     -2.4444444444444446,
+     2.111111111111111
+    ]
+   },
+   "f1": {
+    "n": 900,
+    "diff": 0.6528693124462468,
+    "ci": [
+     -1.598513515247885,
+     2.8929525474128663
+    ]
+   },
+   "contain": {
+    "n": 900,
+    "diff": 6.111111111111111,
+    "ci": [
+     2.7777777777777777,
+     9.333333333333334
+    ]
+   },
+   "hr10": {
+    "n": 900,
+    "diff": 32.55555555555556,
+    "ci": [
+     29.0,
+     36.0
+    ]
+   },
+   "evidence": {
+    "n": 900,
+    "diff": 32.55555555555556,
+    "ci": [
+     29.0,
+     36.0
+    ]
+   }
+  },
+  "saadi_at_raptor_len-raptor": {
+   "n": 900,
+   "em": {
+    "n": 900,
+    "diff": 0.3333333333333333,
+    "ci": [
+     -1.5555555555555556,
+     2.2222222222222223
+    ]
+   },
+   "f1": {
+    "n": 900,
+    "diff": -0.6669803627551084,
+    "ci": [
+     -2.639545616355647,
+     1.2936198840591582
+    ]
+   },
+   "contain": {
+    "n": 900,
+    "diff": -0.7777777777777778,
+    "ci": [
+     -3.6666666666666665,
+     2.2222222222222223
+    ]
+   },
+   "evidence": {
+    "n": 900,
+    "diff": -4.333333333333333,
+    "ci": [
+     -7.888888888888889,
+     -0.6666666666666666
+    ]
+   }
+  },
+  "saadi_at_arag_len-arag": {
+   "n": 900,
+   "em": {
+    "n": 900,
+    "diff": -5.777777777777778,
+    "ci": [
+     -7.666666666666667,
+     -3.888888888888889
+    ]
+   },
+   "f1": {
+    "n": 900,
+    "diff": -6.587158262204052,
+    "ci": [
+     -8.557398712439598,
+     -4.67908021156082
+    ]
+   },
+   "contain": {
+    "n": 900,
+    "diff": -6.555555555555555,
+    "ci": [
+     -9.333333333333334,
+     -3.7777777777777777
+    ]
+   },
+   "evidence": {
+    "n": 900,
+    "diff": -4.222222222222222,
+    "ci": [
+     -7.444444444444445,
+     -1.1111111111111112
+    ]
+   }
+  },
+  "saadi-raptor_tm": {
+   "n": 900,
+   "em": {
+    "n": 900,
+    "diff": 2.2222222222222223,
+    "ci": [
+     0.1111111111111111,
+     4.333333333333333
+    ]
+   },
+   "f1": {
+    "n": 900,
+    "diff": 1.203697495732558,
+    "ci": [
+     -0.8055350484110209,
+     3.281352755192189
+    ]
+   },
+   "contain": {
+    "n": 900,
+    "diff": 3.111111111111111,
+    "ci": [
+     0.1111111111111111,
+     6.111111111111111
+    ]
+   },
+   "hr10": {
+    "n": 900,
+    "diff": 12.11111111111111,
+    "ci": [
+     8.444444444444445,
+     15.666666666666666
+    ]
+   },
+   "evidence": {
+    "n": 900,
+    "diff": 6.222222222222222,
+    "ci": [
+     2.6666666666666665,
+     9.777777777777779
+    ]
+   }
+  },
+  "saadi-arag_tm": {
+   "n": 900,
+   "em": {
+    "n": 900,
+    "diff": -0.1111111111111111,
+    "ci": [
+     -2.3333333333333335,
+     2.111111111111111
+    ]
+   },
+   "f1": {
+    "n": 900,
+    "diff": 0.8335198052123984,
+    "ci": [
+     -1.3966414756094307,
+     3.0875341033484065
+    ]
+   },
+   "contain": {
+    "n": 900,
+    "diff": 6.111111111111111,
+    "ci": [
+     2.7777777777777777,
+     9.333333333333334
+    ]
+   },
+   "hr10": {
+    "n": 900,
+    "diff": 32.55555555555556,
+    "ci": [
+     29.0,
+     36.0
+    ]
+   },
+   "evidence": {
+    "n": 900,
+    "diff": 32.55555555555556,
+    "ci": [
+     29.0,
+     36.0
+    ]
+   }
+  },
+  "saadi-arag_own": {
+   "n": 900,
+   "em": {
+    "n": 900,
+    "diff": 8.555555555555555,
+    "ci": [
+     6.333333333333333,
+     10.777777777777779
+    ]
+   },
+   "f1": {
+    "n": 900,
+    "diff": 10.164250528985002,
+    "ci": [
+     8.058868003451407,
+     12.300063406903357
+    ]
+   },
+   "contain": {
+    "n": 900,
+    "diff": -2.4444444444444446,
+    "ci": [
+     -6.0,
+     1.1111111111111112
+    ]
+   },
+   "hr10": {
+    "n": 900,
+    "diff": 32.55555555555556,
+    "ci": [
+     29.0,
+     36.0
+    ]
+   },
+   "evidence": {
+    "n": 900,
+    "diff": 32.55555555555556,
+    "ci": [
+     29.0,
+     36.0
+    ]
+   }
+  },
+  "saadi-closed_book": {
+   "n": 900,
+   "em": {
+    "n": 900,
+    "diff": 9.0,
+    "ci": [
+     6.888888888888889,
+     11.113888888888848
+    ]
+   },
+   "f1": {
+    "n": 900,
+    "diff": 13.492991414463363,
+    "ci": [
+     11.37286673554385,
+     15.60725117613003
+    ]
+   },
+   "contain": {
+    "n": 900,
+    "diff": 21.11111111111111,
+    "ci": [
+     18.108333333333334,
+     24.22222222222222
+    ]
+   },
+   "evidence": {
+    "n": 900,
+    "diff": 77.66666666666667,
+    "ci": [
+     74.77777777777777,
+     80.33333333333333
+    ]
+   }
+  },
+  "oracle-saadi": {
+   "n": 900,
+   "em": {
+    "n": 900,
+    "diff": 12.88888888888889,
+    "ci": [
+     10.333333333333334,
+     15.447222222222182
+    ]
+   },
+   "f1": {
+    "n": 900,
+    "diff": 16.904613635399063,
+    "ci": [
+     14.578103744503366,
+     19.23805463231568
+    ]
+   },
+   "contain": {
+    "n": 900,
+    "diff": 19.88888888888889,
+    "ci": [
+     16.666666666666668,
+     23.11111111111111
+    ]
+   },
+   "evidence": {
+    "n": 900,
+    "diff": 22.333333333333332,
+    "ci": [
+     19.666666666666668,
+     25.11111111111111
+    ]
+   }
+  }
+ },
+ "token_budget": 1326
+}

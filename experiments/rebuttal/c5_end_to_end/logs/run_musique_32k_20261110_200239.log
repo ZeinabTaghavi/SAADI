@@ -9882,3 +9882,6 @@ Found the latest cached dataset configuration 'default' at /mnt/cache/taghavi/da
 [c5-02] 2026-11-11 02:01:07 done: OK
 [c5] 2026-11-11 02:01:07 end 02: exit 0
 [c5-musique_32k] 2026-11-11 02:01:07 stopping vLLM server (pid 607002)
+[c5] 2026-11-11 02:01:12 start 03: /mnt/data/zeinab/raptor/.venv/bin/python3 /home/iataghav/data/SAADI/experiments/rebuttal/c5_end_to_end/scripts/step03_score.py --dataset musique_32k
+[c5-03] 2026-11-11 02:01:16 done: OK
+[c5] 2026-11-11 02:01:16 end 03: exit 0

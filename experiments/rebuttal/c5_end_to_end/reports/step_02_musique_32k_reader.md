@@ -35,3 +35,9 @@ Reader `Qwen/Qwen3-30B-A3B-Instruct-2507` (vLLM, tensor parallel 4), temperature
 - `results/rebuttal/c5_end_to_end/answers/musique_32k/saadi_at_arag_len.jsonl`
 - `results/rebuttal/c5_end_to_end/answers/musique_32k/arag_own.jsonl`
 - `experiments/rebuttal/c5_end_to_end/reports/step_02_musique_32k_reader.md`
+
+## Push
+
+```
+pushed 619580c to origin/fix/notebook-key-and-install: C5 musique_32k 02_reader: reader answered 10800 queries over 12 conditions
+```
