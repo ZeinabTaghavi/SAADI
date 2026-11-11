@@ -57,7 +57,7 @@ def sentences(key: str, s: dict[str, Any], doc_stats: dict[str, Any]) -> list[st
     d = pick(p, a="full_doc", b="saadi")
     sv = pick(p, a="saadi", b="vanilla")
     cf, cs = pick(c, condition="full_doc"), pick(c, condition="saadi")
-    ds = doc_stats.get(key, {})
+    ds = doc_stats.get(key, {})  # the documents actually read with the full document (see used_documents)
     out = []
     if fd and sa and d:
         rel = "higher than" if d["f1_lo"] > 0 else ("lower than" if d["f1_hi"] < 0 else "not distinguishable from")
@@ -87,19 +87,39 @@ def sentences(key: str, s: dict[str, Any], doc_stats: dict[str, Any]) -> list[st
     return out
 
 
-def caveats(sums: dict[str, dict[str, Any]], s01: dict[str, Any]) -> list[str]:
+def used_documents(paths: c8.C8Paths, s00: dict[str, Any], key: str) -> dict[str, Any]:
+    """Length range of the documents read in the full-document condition, and of those skipped
+    (from step 00's per-document lengths and step 02's skipped documents)."""
+
+    rows = [r for r in (s00.get("doc_rows") or []) if r["dataset"] == key and r.get("queries")]
+    p2 = paths.reports / f"step_02_{key}_reader.json"
+    r2 = cc.read_json(p2) if p2.exists() else {}
+    skipped = set(((r2.get("conditions") or {}).get("full_doc") or {}).get("skipped_docs") or [])
+    used = [r for r in rows if r["doc_id"] not in skipped]
+    sk = [r for r in rows if r["doc_id"] in skipped]
+    out: dict[str, Any] = {"documents": len(used), "min": min((r["tokens"] for r in used), default=None), "max": max((r["tokens"] for r in used), default=None),
+                           "skipped_docs": sorted(skipped), "skipped_queries": sum(r["queries"] for r in sk)}
+    if sk:
+        out.update({"skipped_min": min(r["tokens"] for r in sk), "skipped_max": max(r["tokens"] for r in sk)})
+    return out
+
+
+def caveats(sums: dict[str, dict[str, Any]], s01: dict[str, Any], used: dict[str, dict[str, Any]]) -> list[str]:
     out = []
     for key, s in sums.items():
         name = c8.DATASET_DISPLAY[key]
         sk = (s.get("skipped") or {}).get("full_doc")
+        u = used.get(key, {})
         if sk:
-            out.append(f"{name}: {sk} queries were not run with the full document because it does not fit the served window ({s['mode']} mode); they are left out of every condition.")
+            why = ("the server's vLLM has no dual chunk attention, so the window is the model's native 262,144 tokens"
+                   if s.get("mode") == "native" else "they do not fit the served window")
+            out.append(f"{name}: {why}; the {len(u.get('skipped_docs', []))} longer books ({num(u.get('skipped_min'))} to {num(u.get('skipped_max'))} tokens, {sk} queries) "
+                       f"were not read in full and their queries are left out of every condition, so the full-document comparison covers the {u.get('documents')} "
+                       f"shorter books ({s['common']} queries).")
         if s.get("not_started_deadline"):
             out.append(f"{name}: {s['not_started_deadline']} full-document queries were not started before the deadline; the comparison uses the {s['common']} queries answered in all conditions.")
         if s.get("subset"):
             out.append(f"{name}: a subset of {s['subset']} queries (first of a seed-42 permutation), the same for all conditions.")
-        if s.get("mode") == "native":
-            out.append(f"{name}: the server ran WITHOUT dual chunk attention (window capped at 262,144 tokens).")
         if not pick(s["table"], condition="saadi_c5_reader"):
             out.append(f"{name}: C5's reader answers were not available, so the C5-reader row is missing.")
     if "novelhopqa" in sums:
@@ -124,7 +144,8 @@ def main() -> int:
             raise RuntimeError("no per-dataset scores (step 03) found")
         s00 = cc.read_json(paths.reports / "step_00.json") if (paths.reports / "step_00.json").exists() else {}
         s01 = cc.read_json(paths.reports / "step_01_timing.json") if (paths.reports / "step_01_timing.json").exists() else {}
-        doc_stats = s00.get("doc_stats") or {}
+        used = {k: used_documents(paths, s00, k) for k in sums}
+        doc_stats = used
         table = [r for s in sums.values() for r in s["table"]]
         paired = [r for s in sums.values() for r in s["paired"]]
         cost = [r for s in sums.values() for r in s["cost"]]
@@ -134,7 +155,7 @@ def main() -> int:
             write_csv(res / f"{name}.csv", rows)
             info["files"].append(paths.rel(res / f"{name}.csv"))
         opening = [x for k, s in sums.items() for x in sentences(k, s, doc_stats)]
-        cav = caveats(sums, s01)
+        cav = caveats(sums, s01, used)
         if cav:
             opening.append("Caveats: " + " ".join(cav))
         # Side-by-side table.
@@ -169,10 +190,14 @@ def main() -> int:
                            (f"{num(r.get('single_request_s_uncached_timing'), 1)} / {num(r.get('single_request_s_cached_timing'), 2)}" if r["condition"] == "full_doc" else num(r.get("single_request_s_timing"), 2)),
                            num(r.get("seconds_per_query_with_cache_amortised") if r["condition"] == "full_doc" else r.get("seconds_per_query_amortised"), 2),
                            num(r.get("seconds_per_query_without_cache"), 1)] for r in cost]) + [""]
-        if doc_stats:
+        all_docs = s00.get("doc_stats") or {}
+        if all_docs:
             L += ["## Documents", ""]
-            L += cc.md_table(["Dataset", "Distinct documents", "Tokens min", "median", "max"],
-                             [[c8.DATASET_DISPLAY[k], v["documents"], num(v["min"]), num(v["median"]), num(v["max"])] for k, v in doc_stats.items()]) + [""]
+            L += cc.md_table(["Dataset", "Distinct documents", "Tokens min", "median", "max", "Read in full (documents, tokens)", "Not read in full"],
+                             [[c8.DATASET_DISPLAY[k], v["documents"], num(v["min"]), num(v["median"]), num(v["max"]),
+                               f"{used.get(k, {}).get('documents')} ({num(used.get(k, {}).get('min'))} to {num(used.get(k, {}).get('max'))})",
+                               (", ".join(used[k]["skipped_docs"]) + f" ({used[k]['skipped_queries']} queries)") if used.get(k, {}).get("skipped_docs") else "—"]
+                              for k, v in all_docs.items()]) + [""]
         L += ["## Files", "", "- `results/rebuttal/c8_long_context/{table,paired,cost,position}.csv`, `answers/<dataset>/<condition>.jsonl`, `table_paper.tex`",
               "- step reports: `experiments/rebuttal/c8_long_context/reports/`", ""]
         (res / "REPORT.md").write_text("\n".join(L) + "\n", encoding="utf-8")
