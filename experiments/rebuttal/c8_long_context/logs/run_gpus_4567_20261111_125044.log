@@ -121,3 +121,23 @@
 [c8] 2026-11-11 13:25:39 start 03: /mnt/data/zeinab/raptor/.venv/bin/python3 /home/iataghav/data/SAADI/experiments/rebuttal/c8_long_context/scripts/step03_score.py --dataset musique_32k
 [c8-03] 2026-11-11 13:25:43 done: OK
 [c8] 2026-11-11 13:25:43 end 03: exit 0
+[c8] 2026-11-11 13:25:45 start 02: /mnt/data/zeinab/raptor/.venv/bin/python3 /home/iataghav/data/SAADI/experiments/rebuttal/c8_long_context/scripts/step02_reader.py --dataset novelhopqa --port 18541
+[c8-02] 2026-11-11 13:25:46 novelhopqa/closed_book: 908 selected, 0 done, 908 to ask, 0 skipped
+[c8-02] 2026-11-11 13:26:01 novelhopqa/closed_book: 500/908
+[c8-02] 2026-11-11 13:26:14 novelhopqa/vanilla: 908 selected, 0 done, 908 to ask, 0 skipped
+[c8-02] 2026-11-11 13:37:26 novelhopqa/vanilla: 500/908
+[c8-02] 2026-11-11 13:46:18 novelhopqa/saadi: 908 selected, 0 done, 908 to ask, 0 skipped
+[c8-02] 2026-11-11 13:57:22 novelhopqa/saadi: 500/908
+[c8-02] 2026-11-11 14:06:18 novelhopqa/full_doc: 908 selected, 0 done, 526 to ask, 382 skipped
+[c8-02] 2026-11-11 14:08:09 novelhopqa/full_doc 1/10 B27 (201,836 tokens): uncached 64.8 s, 59 more in 47.1 s
+[c8-02] 2026-11-11 14:10:08 novelhopqa/full_doc 2/10 B34 (206,833 tokens): uncached 66.7 s, 64 more in 51.4 s
+[c8-02] 2026-11-11 14:11:52 novelhopqa/full_doc 3/10 B04 (209,488 tokens): uncached 67.7 s, 44 more in 36.2 s
+[c8-02] 2026-11-11 14:13:21 novelhopqa/full_doc 4/10 B37 (167,704 tokens): uncached 50.4 s, 61 more in 38.6 s
+[c8-02] 2026-11-11 14:14:32 novelhopqa/full_doc 5/10 B24 (133,420 tokens): uncached 37.6 s, 64 more in 34.0 s
+[c8-02] 2026-11-11 14:16:07 novelhopqa/full_doc 6/10 B18 (194,220 tokens): uncached 61.2 s, 43 more in 33.5 s
+[c8-02] 2026-11-11 14:18:25 novelhopqa/full_doc 7/10 B26 (253,466 tokens): uncached 88.2 s, 49 more in 50.3 s
+[c8-02] 2026-11-11 14:19:52 novelhopqa/full_doc 8/10 B61 (225,064 tokens): uncached 74.9 s, 13 more in 12.0 s
+[c8-02] 2026-11-11 14:22:09 novelhopqa/full_doc 9/10 B12 (240,542 tokens): uncached 82.1 s, 60 more in 55.0 s
+[c8-02] 2026-11-11 14:23:34 novelhopqa/full_doc 10/10 B43 (159,866 tokens): uncached 47.3 s, 59 more in 37.3 s
+[c8-02] 2026-11-11 14:23:34 done: OK
+[c8] 2026-11-11 14:23:34 end 02: exit 0

@@ -1,0 +1,1912 @@
+[
+ {
+  "query_id": "hop_4:1053",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:994",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:1039",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:1030",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:52",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:800",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:739",
+  "doc_id": "B05",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:569",
+  "doc_id": "B05",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:94",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:670",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:384",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:2",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:272",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:996",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:93",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:988",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:204",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:713",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:397",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:782",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:208",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:887",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:655",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:527",
+  "doc_id": "B05",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:479",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:64",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:749",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:48",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:68",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:258",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:420",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:270",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:271",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:63",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:1",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:837",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:654",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:929",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:832",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:1025",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:421",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:89",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:825",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:264",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:920",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:465",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:2",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:681",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:916",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:253",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:256",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:158",
+  "doc_id": "B05",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:276",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:207",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:63",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:413",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:942",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:686",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:1034",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:210",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:298",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:259",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:434",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:633",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:431",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:457",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:809",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:640",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:422",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:683",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:1078",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:1",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:482",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:201",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:785",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:594",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:643",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:65",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:848",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:471",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:875",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:243",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:1033",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:1065",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:682",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:478",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:67",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:474",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:432",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:505",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:146",
+  "doc_id": "B05",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:460",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:371",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:504",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:722",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:808",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:71",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:0",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:681",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:260",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:609",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:154",
+  "doc_id": "B05",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:987",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:295",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:51",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:877",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:889",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:784",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:273",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:267",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:414",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:569",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:253",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:710",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:263",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:931",
+  "doc_id": "B05",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:1036",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:977",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:507",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:416",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:266",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:463",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:61",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:209",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:748",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:53",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:824",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:777",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:91",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:747",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:274",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:489",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:893",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:659",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:931",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:1059",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:400",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:302",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:845",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:460",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:975",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:767",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:197",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:445",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:88",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:481",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:506",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:1079",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:617",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:443",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:65",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:835",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:69",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:918",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:612",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:965",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:446",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:253",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:1039",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:91",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:3",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:70",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:95",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:884",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:1012",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:876",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:846",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:750",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:301",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:1",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:273",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:373",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:476",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:668",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:188",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:615",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:634",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:281",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:483",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:943",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:4",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:802",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:888",
+  "doc_id": "B05",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:783",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:572",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:597",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:269",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:779",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:526",
+  "doc_id": "B05",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:436",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:796",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:834",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:1031",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:874",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:93",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:331",
+  "doc_id": "B05",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:642",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:680",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:775",
+  "doc_id": "B05",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:941",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:883",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:795",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:976",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:234",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:256",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:375",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:458",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:982",
+  "doc_id": "B05",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:1068",
+  "doc_id": "B05",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:653",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:667",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:382",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:708",
+  "doc_id": "B05",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:810",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:827",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:813",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:1054",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:1057",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:254",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:849",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:299",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:891",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:888",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:255",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:629",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:2",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:597",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:620",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:828",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:644",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:236",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:940",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:622",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:619",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:981",
+  "doc_id": "B05",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:658",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:52",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:374",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:551",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:781",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:363",
+  "doc_id": "B05",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:611",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:657",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:67",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:487",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:803",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:1032",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:480",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:570",
+  "doc_id": "B05",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:826",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:689",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:4",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:466",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:851",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:945",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:279",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:917",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:1021",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:894",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:886",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:96",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:477",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:1040",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:990",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:272",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:636",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:275",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:157",
+  "doc_id": "B05",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:190",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:396",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:847",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:49",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:249",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:892",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:671",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:684",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:712",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:814",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:724",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:233",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:262",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:415",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:70",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:62",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:919",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:993",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:621",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:464",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:778",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:1058",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:49",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:250",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:680",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:4",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:685",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:1040",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:50",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:930",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:268",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:3",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:766",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:241",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:249",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:444",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:274",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:1015",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:434",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:456",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:890",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:247",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:885",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:616",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:64",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:3",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:873",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:66",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:598",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:48",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:399",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:669",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:475",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:687",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:206",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:508",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:446",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:764",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:461",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:1023",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:300",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:636",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:364",
+  "doc_id": "B05",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:49",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:488",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:714",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:65",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:711",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:964",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:277",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:688",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:257",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:250",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:0",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:149",
+  "doc_id": "B05",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:94",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:92",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:189",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:683",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:90",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:848",
+  "doc_id": "B05",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:95",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:619",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:412",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:656",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:929",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:66",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:1",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:595",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:87",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:553",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:448",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:895",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:275",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:490",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:776",
+  "doc_id": "B05",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:570",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:618",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:1037",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:449",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:875",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:245",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:1063",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:200",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_1:462",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:0",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:944",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:801",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:594",
+  "doc_id": "B62",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:430",
+  "doc_id": "B42",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_3:255",
+  "doc_id": "B54",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:69",
+  "doc_id": "B44",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_2:92",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ },
+ {
+  "query_id": "hop_4:635",
+  "doc_id": "B15",
+  "reason": "document beyond the native 262,144-token window and the server runs without dual chunk attention"
+ }
+]

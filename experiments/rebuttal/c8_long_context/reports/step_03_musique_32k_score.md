@@ -70,3 +70,9 @@ F1 by the position of the gold evidence in the document (all common queries, and
 - `results/rebuttal/c8_long_context/per_dataset/musique_32k/position.csv`
 - `results/rebuttal/c8_long_context/per_dataset/musique_32k/summary.json`
 - `experiments/rebuttal/c8_long_context/reports/step_03_musique_32k_score.md`
+
+## Push
+
+```
+pushed ddcda65 to origin/fix/notebook-key-and-install: C8 musique_32k 03_score: F1 full doc 28.6, SAADI 26.3 (7B, n=900); full-SAADI +2.3 [-0.4, +5.1]
+```
