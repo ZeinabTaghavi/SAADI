@@ -39,7 +39,11 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--dataset", required=True, choices=c8.DATASETS)
     ap.add_argument("--port", type=int, required=True)
     ap.add_argument("--conditions", default=",".join(ORDER))
+    # Only these documents, read in this order (the dual chunk attention run splits the books over
+    # two servers, longest first); empty = all documents in the seed-42 order.
+    ap.add_argument("--docs", default="")
     args = ap.parse_args(argv)
+    docs_only = [d for d in args.docs.split(",") if d]
     paths = c8.C8Paths.from_env()
     sv = rd.server_env()
     ds = args.dataset
@@ -51,6 +55,12 @@ def main(argv: list[str] | None = None) -> int:
     try:
         inp = rd.Inputs(paths, ds)
         sel = inp.selected()
+        if docs_only:
+            unknown = sorted(set(docs_only) - set(inp.docs))
+            if unknown:
+                raise RuntimeError(f"--docs names documents that are not in {ds}: {unknown}")
+            sel = [q for q in sel if q["doc_id"] in set(docs_only)]
+            info["docs_only"] = docs_only
         info["selected"] = len(sel)
         for cond in [c for c in args.conditions.split(",") if c]:
             key = inp.key(cond, sv["mode"])
@@ -112,7 +122,7 @@ def main(argv: list[str] | None = None) -> int:
                     by_doc: dict[str, list[dict[str, Any]]] = defaultdict(list)
                     for q in todo:
                         by_doc[q["doc_id"]].append(q)
-                    order = [d for d in rd.doc_order(list(by_doc)) if d in by_doc]
+                    order = [d for d in (docs_only or rd.doc_order(list(by_doc))) if d in by_doc]
                     docs_path = paths.answers_file(ds, "full_doc").with_name("full_doc_documents.jsonl")
                     with docs_path.open("a", encoding="utf-8") as dfh:
                         for i, doc_id in enumerate(order, start=1):
