@@ -37,3 +37,9 @@ Full document, per document (this run):
 - `results/rebuttal/c8_long_context/answers/novelhopqa/full_doc.jsonl`
 - `results/rebuttal/c8_long_context/answers/novelhopqa/full_doc.skipped.json`
 - `experiments/rebuttal/c8_long_context/reports/step_02_novelhopqa_reader.md`
+
+## Push
+
+```
+pushed 368135a to origin/fix/notebook-key-and-install: C8 novelhopqa 02_reader: answered closed_book 908, vanilla 908, saadi 908, full_doc 526 (+382 skipped)
+```
