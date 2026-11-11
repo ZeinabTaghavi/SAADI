@@ -1,0 +1,183 @@
+{
+ "step": "02",
+ "dataset": "musique_32k",
+ "port": 18531,
+ "model": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+ "max_output_tokens": 64,
+ "concurrency": 48,
+ "sampling": {
+  "temperature": 0.0,
+  "top_p": 1.0,
+  "top_k": -1,
+  "repetition_penalty": 1.0,
+  "seed": 42,
+  "max_tokens": 64
+ },
+ "commit": "c5e4bf426667",
+ "host": "eee-s132-infsys-gpu03",
+ "conditions": {
+  "closed_book": {
+   "queries": 900,
+   "already_done": 0,
+   "dropped_stale_rows": 0,
+   "asked": 900,
+   "errors": 0,
+   "finish_length": 124,
+   "prompt_token_mismatch": 0,
+   "seconds": 25.7,
+   "answered": 900,
+   "complete": true
+  },
+  "oracle": {
+   "queries": 900,
+   "already_done": 0,
+   "dropped_stale_rows": 0,
+   "asked": 900,
+   "errors": 0,
+   "finish_length": 58,
+   "prompt_token_mismatch": 0,
+   "seconds": 158.4,
+   "answered": 900,
+   "complete": true
+  },
+  "oracle_para": {
+   "status": "no contexts (missing in step 00)"
+  },
+  "vanilla": {
+   "queries": 900,
+   "already_done": 0,
+   "dropped_stale_rows": 0,
+   "asked": 900,
+   "errors": 0,
+   "finish_length": 98,
+   "prompt_token_mismatch": 0,
+   "seconds": 248.8,
+   "answered": 900,
+   "complete": true
+  },
+  "saadi": {
+   "queries": 900,
+   "already_done": 0,
+   "dropped_stale_rows": 0,
+   "asked": 900,
+   "errors": 0,
+   "finish_length": 98,
+   "prompt_token_mismatch": 0,
+   "seconds": 251.7,
+   "answered": 900,
+   "complete": true
+  },
+  "cr": {
+   "queries": 900,
+   "already_done": 0,
+   "dropped_stale_rows": 0,
+   "asked": 900,
+   "errors": 0,
+   "finish_length": 109,
+   "prompt_token_mismatch": 0,
+   "seconds": 253.2,
+   "answered": 900,
+   "complete": true
+  },
+  "raptor": {
+   "queries": 900,
+   "already_done": 0,
+   "dropped_stale_rows": 0,
+   "asked": 900,
+   "errors": 0,
+   "finish_length": 106,
+   "prompt_token_mismatch": 0,
+   "seconds": 177.7,
+   "answered": 900,
+   "complete": true
+  },
+  "raptor_tm": {
+   "queries": 900,
+   "already_done": 0,
+   "dropped_stale_rows": 0,
+   "asked": 900,
+   "errors": 0,
+   "finish_length": 101,
+   "prompt_token_mismatch": 0,
+   "seconds": 20.5,
+   "answered": 900,
+   "complete": true
+  },
+  "arag": {
+   "queries": 900,
+   "already_done": 0,
+   "dropped_stale_rows": 0,
+   "asked": 900,
+   "errors": 0,
+   "finish_length": 93,
+   "prompt_token_mismatch": 0,
+   "seconds": 79.9,
+   "answered": 900,
+   "complete": true
+  },
+  "arag_tm": {
+   "queries": 900,
+   "already_done": 0,
+   "dropped_stale_rows": 0,
+   "asked": 900,
+   "errors": 0,
+   "finish_length": 97,
+   "prompt_token_mismatch": 0,
+   "seconds": 18.7,
+   "answered": 900,
+   "complete": true
+  },
+  "saadi_at_raptor_len": {
+   "queries": 900,
+   "already_done": 0,
+   "dropped_stale_rows": 0,
+   "asked": 900,
+   "errors": 0,
+   "finish_length": 91,
+   "prompt_token_mismatch": 0,
+   "seconds": 169.7,
+   "answered": 900,
+   "complete": true
+  },
+  "saadi_at_arag_len": {
+   "queries": 900,
+   "already_done": 0,
+   "dropped_stale_rows": 0,
+   "asked": 900,
+   "errors": 0,
+   "finish_length": 112,
+   "prompt_token_mismatch": 0,
+   "seconds": 26.2,
+   "answered": 900,
+   "complete": true
+  },
+  "arag_own": {
+   "queries": 900,
+   "already_done": 0,
+   "dropped_stale_rows": 0,
+   "asked": 900,
+   "errors": 0,
+   "finish_length": 0,
+   "prompt_token_mismatch": 0,
+   "seconds": 0.1,
+   "answered": 900,
+   "complete": true
+  }
+ },
+ "files": [
+  "results/rebuttal/c5_end_to_end/answers/musique_32k/closed_book.jsonl",
+  "results/rebuttal/c5_end_to_end/answers/musique_32k/oracle.jsonl",
+  "results/rebuttal/c5_end_to_end/answers/musique_32k/vanilla.jsonl",
+  "results/rebuttal/c5_end_to_end/answers/musique_32k/saadi.jsonl",
+  "results/rebuttal/c5_end_to_end/answers/musique_32k/cr.jsonl",
+  "results/rebuttal/c5_end_to_end/answers/musique_32k/raptor.jsonl",
+  "results/rebuttal/c5_end_to_end/answers/musique_32k/raptor_tm.jsonl",
+  "results/rebuttal/c5_end_to_end/answers/musique_32k/arag.jsonl",
+  "results/rebuttal/c5_end_to_end/answers/musique_32k/arag_tm.jsonl",
+  "results/rebuttal/c5_end_to_end/answers/musique_32k/saadi_at_raptor_len.jsonl",
+  "results/rebuttal/c5_end_to_end/answers/musique_32k/saadi_at_arag_len.jsonl",
+  "results/rebuttal/c5_end_to_end/answers/musique_32k/arag_own.jsonl"
+ ],
+ "one_line": "reader answered 10800 queries over 12 conditions",
+ "seconds": 1432
+}

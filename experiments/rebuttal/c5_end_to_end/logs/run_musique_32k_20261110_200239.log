@@ -9853,3 +9853,32 @@ Found the latest cached dataset configuration 'default' at /mnt/cache/taghavi/da
 [c5-00] 2026-11-11 01:35:30 musique_32k: saadi_at_arag_len (SAADI cut per query to the other method's context length)
 [c5-00] 2026-11-11 01:35:41 done: OK
 [c5] 2026-11-11 01:35:42 end 00: exit 0
+[c5-musique_32k] 2026-11-11 01:35:44 starting vLLM on GPUs 0,1,2,3, port 18531; log outputs/rebuttal/c5_end_to_end/vllm_logs/musique_32k_20261110_200239.log
+[c5-musique_32k] 2026-11-11 01:37:15 vLLM server ready after 90 s
+[c5] 2026-11-11 01:37:15 start 02: /mnt/data/zeinab/raptor/.venv/bin/python3 /home/iataghav/data/SAADI/experiments/rebuttal/c5_end_to_end/scripts/step02_reader.py --dataset musique_32k --port 18531
+[c5-02] 2026-11-11 01:37:15 musique_32k/closed_book: 900 queries, 0 done, 900 to ask
+[c5-02] 2026-11-11 01:37:30 musique_32k/closed_book: 500/900
+[c5-02] 2026-11-11 01:37:41 musique_32k/oracle: 900 queries, 0 done, 900 to ask
+[c5-02] 2026-11-11 01:39:11 musique_32k/oracle: 500/900
+[c5-02] 2026-11-11 01:40:20 musique_32k/vanilla: 900 queries, 0 done, 900 to ask
+[c5-02] 2026-11-11 01:42:48 musique_32k/vanilla: 500/900
+[c5-02] 2026-11-11 01:44:28 musique_32k/saadi: 900 queries, 0 done, 900 to ask
+[c5-02] 2026-11-11 01:46:59 musique_32k/saadi: 500/900
+[c5-02] 2026-11-11 01:48:40 musique_32k/cr: 900 queries, 0 done, 900 to ask
+[c5-02] 2026-11-11 01:51:11 musique_32k/cr: 500/900
+[c5-02] 2026-11-11 01:52:54 musique_32k/raptor: 900 queries, 0 done, 900 to ask
+[c5-02] 2026-11-11 01:54:40 musique_32k/raptor: 500/900
+[c5-02] 2026-11-11 01:55:51 musique_32k/raptor_tm: 900 queries, 0 done, 900 to ask
+[c5-02] 2026-11-11 01:56:03 musique_32k/raptor_tm: 500/900
+[c5-02] 2026-11-11 01:56:12 musique_32k/arag: 900 queries, 0 done, 900 to ask
+[c5-02] 2026-11-11 01:57:00 musique_32k/arag: 500/900
+[c5-02] 2026-11-11 01:57:32 musique_32k/arag_tm: 900 queries, 0 done, 900 to ask
+[c5-02] 2026-11-11 01:57:42 musique_32k/arag_tm: 500/900
+[c5-02] 2026-11-11 01:57:51 musique_32k/saadi_at_raptor_len: 900 queries, 0 done, 900 to ask
+[c5-02] 2026-11-11 01:59:31 musique_32k/saadi_at_raptor_len: 500/900
+[c5-02] 2026-11-11 02:00:40 musique_32k/saadi_at_arag_len: 900 queries, 0 done, 900 to ask
+[c5-02] 2026-11-11 02:00:55 musique_32k/saadi_at_arag_len: 500/900
+[c5-02] 2026-11-11 02:01:07 musique_32k/arag_own: 900 queries, 0 done, 900 to ask
+[c5-02] 2026-11-11 02:01:07 done: OK
+[c5] 2026-11-11 02:01:07 end 02: exit 0
+[c5-musique_32k] 2026-11-11 02:01:07 stopping vLLM server (pid 607002)

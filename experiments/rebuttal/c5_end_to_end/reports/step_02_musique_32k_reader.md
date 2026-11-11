@@ -1,67 +1,37 @@
-# C5 end-to-end QA - step 02 reader, musique_32k: FAILED
+# C5 end-to-end QA - step 02 reader, MuSiQue-32K: OK
 
-Written 2026-11-10 19:59:30 on eee-s132-infsys-gpu03; GPUs 0,1,2,3; port 18531.
+Written 2026-11-11 02:01:07; commit c5e4bf426667; host eee-s132-infsys-gpu03; GPUs 0,1,2,3; port 18531; 1432 s.
 
-The vLLM server did not start (log in outputs/rebuttal/c5_end_to_end/vllm_logs/musique_32k_20261110_195900.log; tail above).
+Reader `Qwen/Qwen3-30B-A3B-Instruct-2507` (vLLM, tensor parallel 4), temperature 0, top_p 1, seed 42, max output tokens 64, 48 requests in flight. Prompt template: the one in step 00's report (c5_common.READER_TEMPLATE).
 
-Last 60 lines of experiments/rebuttal/c5_end_to_end/logs/run_musique_32k_20261110_195900.log:
+| Condition | Queries | Done before | Asked | Answered | Errors | Cut at max tokens | Prompt tokens != step 00 | Seconds | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| closed_book | 900 | 0 | 900 | 900 | 0 | 124 | 0 | 25.70 | complete |
+| oracle | 900 | 0 | 900 | 900 | 0 | 58 | 0 | 158.40 | complete |
+| oracle_para | — | — | — | — | — | — | — | — | no contexts (missing in step 00) |
+| vanilla | 900 | 0 | 900 | 900 | 0 | 98 | 0 | 248.80 | complete |
+| saadi | 900 | 0 | 900 | 900 | 0 | 98 | 0 | 251.70 | complete |
+| cr | 900 | 0 | 900 | 900 | 0 | 109 | 0 | 253.20 | complete |
+| raptor | 900 | 0 | 900 | 900 | 0 | 106 | 0 | 177.70 | complete |
+| raptor_tm | 900 | 0 | 900 | 900 | 0 | 101 | 0 | 20.50 | complete |
+| arag | 900 | 0 | 900 | 900 | 0 | 93 | 0 | 79.90 | complete |
+| arag_tm | 900 | 0 | 900 | 900 | 0 | 97 | 0 | 18.70 | complete |
+| saadi_at_raptor_len | 900 | 0 | 900 | 900 | 0 | 91 | 0 | 169.70 | complete |
+| saadi_at_arag_len | 900 | 0 | 900 | 900 | 0 | 112 | 0 | 26.20 | complete |
+| arag_own | 900 | 0 | 900 | 900 | 0 | 0 | 0 | 0.10 | complete |
 
-```
-[c5-musique_32k] 2026-11-10 19:59:00 host eee-s132-infsys-gpu03; dataset musique_32k; GPUs 0,1,2,3; port 18531; reader Qwen/Qwen3-30B-A3B-Instruct-2507
-[c5] python /mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
-  warnings.warn(
-/mnt/data/zeinab/raptor/.venv/bin/python3 3.12.3
-[c5-musique_32k] 2026-11-10 19:59:07 stage 01: RAPTOR re-run on SAADI's documents (RAPTOR's own vLLM engine on GPUs 0,1,2,3)
-[c5] 2026-11-10 19:59:07 start 01: /mnt/data/zeinab/raptor/.venv/bin/python3 /home/iataghav/data/SAADI/experiments/rebuttal/c5_end_to_end/scripts/step01_raptor_rerun.py
-[c5-01] 2026-11-10 19:59:07 done: FAILED
-[c5] 2026-11-10 19:59:07 end 01: exit 1
-[c5-musique_32k] 2026-11-10 19:59:09 RAPTOR re-run failed; the reader goes on without RAPTOR (start the script again to resume RAPTOR)
-[c5-musique_32k] 2026-11-10 19:59:09 starting vLLM on GPUs 0,1,2,3, port 18531; log outputs/rebuttal/c5_end_to_end/vllm_logs/musique_32k_20261110_195900.log
-[c5-musique_32k] 2026-11-10 19:59:30 vLLM server exited during start-up; last lines:
-(APIServer pid=230453)     await run_server_worker(listen_address, sock, args, **uvicorn_kwargs)
-(APIServer pid=230453)   File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm/entrypoints/openai/api_server.py", line 679, in run_server_worker
-(APIServer pid=230453)     async with build_async_engine_client(
-(APIServer pid=230453)   File "/usr/lib/python3.12/contextlib.py", line 210, in __aenter__
-(APIServer pid=230453)     return await anext(self.gen)
-(APIServer pid=230453)            ^^^^^^^^^^^^^^^^^^^^^
-(APIServer pid=230453)   File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm/entrypoints/openai/api_server.py", line 99, in build_async_engine_client
-(APIServer pid=230453)     async with build_async_engine_client_from_engine_args(
-(APIServer pid=230453)   File "/usr/lib/python3.12/contextlib.py", line 210, in __aenter__
-(APIServer pid=230453)     return await anext(self.gen)
-(APIServer pid=230453)            ^^^^^^^^^^^^^^^^^^^^^
-(APIServer pid=230453)   File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm/entrypoints/openai/api_server.py", line 135, in build_async_engine_client_from_engine_args
-(APIServer pid=230453)     async_llm = AsyncLLM.from_vllm_config(
-(APIServer pid=230453)                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
-(APIServer pid=230453)   File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm/v1/engine/async_llm.py", line 217, in from_vllm_config
-(APIServer pid=230453)     return cls(
-(APIServer pid=230453)            ^^^^
-(APIServer pid=230453)   File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm/v1/engine/async_llm.py", line 146, in __init__
-(APIServer pid=230453)     self.engine_core = EngineCoreClient.make_async_mp_client(
-(APIServer pid=230453)                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-(APIServer pid=230453)   File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
-(APIServer pid=230453)     return func(*args, **kwargs)
-(APIServer pid=230453)            ^^^^^^^^^^^^^^^^^^^^^
-(APIServer pid=230453)   File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 131, in make_async_mp_client
-(APIServer pid=230453)     return AsyncMPClient(*client_args)
-(APIServer pid=230453)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-(APIServer pid=230453)   File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
-(APIServer pid=230453)     return func(*args, **kwargs)
-(APIServer pid=230453)            ^^^^^^^^^^^^^^^^^^^^^
-(APIServer pid=230453)   File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 948, in __init__
-(APIServer pid=230453)     super().__init__(
-(APIServer pid=230453)   File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 550, in __init__
-(APIServer pid=230453)     self.input_socket = self.resources.input_socket = make_zmq_socket(
-(APIServer pid=230453)                                                       ^^^^^^^^^^^^^^^^
-(APIServer pid=230453)   File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/vllm/utils/network_utils.py", line 338, in make_zmq_socket
-(APIServer pid=230453)     socket.bind(path)
-(APIServer pid=230453)   File "/mnt/data/zeinab/raptor/.venv/lib/python3.12/site-packages/zmq/sugar/socket.py", line 320, in bind
-(APIServer pid=230453)     super().bind(addr)
-(APIServer pid=230453)   File "zmq/backend/cython/_zmq.py", line 1002, in zmq.backend.cython._zmq.Socket.bind
-(APIServer pid=230453) zmq.error.ZMQError: ipc path "/home/iataghav/data/SAADI/outputs/rebuttal/c5_end_to_end/tmp/musique_32k/9dc20417-cceb-4275-b1a6-4cbcd08f9c42" is longer than 107 characters (sizeof(sockaddr_un.sun_path)). zmq.IPC_PATH_MAX_LEN constant can be used to check addr length (if it is defined). (addr='ipc:///home/iataghav/data/SAADI/outputs/rebuttal/c5_end_to_end/tmp/musique_32k/9dc20417-cceb-4275-b1a6-4cbcd08f9c42')
-```
+## Files written
 
-## Push
-
-```
-pushed dcaf0df to origin/fix/notebook-key-and-install: C5 musique_32k 02_reader: FAILED: The vLLM server did not start (log in outputs/rebuttal/c5_end_to_end/vllm_logs/musique_32k_20261110_195900.log; tail above).
-```
+- `results/rebuttal/c5_end_to_end/answers/musique_32k/closed_book.jsonl`
+- `results/rebuttal/c5_end_to_end/answers/musique_32k/oracle.jsonl`
+- `results/rebuttal/c5_end_to_end/answers/musique_32k/vanilla.jsonl`
+- `results/rebuttal/c5_end_to_end/answers/musique_32k/saadi.jsonl`
+- `results/rebuttal/c5_end_to_end/answers/musique_32k/cr.jsonl`
+- `results/rebuttal/c5_end_to_end/answers/musique_32k/raptor.jsonl`
+- `results/rebuttal/c5_end_to_end/answers/musique_32k/raptor_tm.jsonl`
+- `results/rebuttal/c5_end_to_end/answers/musique_32k/arag.jsonl`
+- `results/rebuttal/c5_end_to_end/answers/musique_32k/arag_tm.jsonl`
+- `results/rebuttal/c5_end_to_end/answers/musique_32k/saadi_at_raptor_len.jsonl`
+- `results/rebuttal/c5_end_to_end/answers/musique_32k/saadi_at_arag_len.jsonl`
+- `results/rebuttal/c5_end_to_end/answers/musique_32k/arag_own.jsonl`
+- `experiments/rebuttal/c5_end_to_end/reports/step_02_musique_32k_reader.md`

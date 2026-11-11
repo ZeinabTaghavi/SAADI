@@ -133,3 +133,9 @@ Paragraph labels: not built (only NovelHopQA (its labels are window-mode matches
 - `results/rebuttal/c5_end_to_end/prepare/context_stats_musique_32k.csv`
 - `experiments/rebuttal/c5_end_to_end/reports/step_00_musique_32k.md`
 - `experiments/rebuttal/c5_end_to_end/reports/step_00_musique_32k.json`
+
+## Push
+
+```
+pushed c5e4bf4 to origin/fix/notebook-key-and-install: C5 musique_32k 00_prepare_after_raptor: gate passed on 1 datasets; contexts written; nothing missing
+```
