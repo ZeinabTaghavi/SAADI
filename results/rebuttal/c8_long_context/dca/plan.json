@@ -1,0 +1,166 @@
+{
+ "created": "2026-11-11 22:36:11",
+ "dataset": "novelhopqa",
+ "shards": [
+  {
+   "shard": 0,
+   "docs": [
+    "B05",
+    "B42",
+    "B37",
+    "B04",
+    "B61",
+    "B12",
+    "B26"
+   ],
+   "est_s": 1377,
+   "queries": 324
+  },
+  {
+   "shard": 1,
+   "docs": [
+    "B44",
+    "B15",
+    "B54",
+    "B62",
+    "B24",
+    "B43",
+    "B18",
+    "B27",
+    "B34"
+   ],
+   "est_s": 1447,
+   "queries": 584
+  }
+ ],
+ "docs": [
+  {
+   "doc_id": "B42",
+   "tokens": 759549,
+   "queries": 70,
+   "over_native": true,
+   "prompt_tokens_max": 759644,
+   "est_s": 673.53155687055
+  },
+  {
+   "doc_id": "B62",
+   "tokens": 461227,
+   "queries": 84,
+   "over_native": true,
+   "prompt_tokens_max": 461324,
+   "est_s": 357.20871164095
+  },
+  {
+   "doc_id": "B54",
+   "tokens": 411934,
+   "queries": 74,
+   "over_native": true,
+   "prompt_tokens_max": 412033,
+   "est_s": 292.6229603958
+  },
+  {
+   "doc_id": "B05",
+   "tokens": 324835,
+   "queries": 22,
+   "over_native": true,
+   "prompt_tokens_max": 324925,
+   "est_s": 152.69169647374997
+  },
+  {
+   "doc_id": "B15",
+   "tokens": 273811,
+   "queries": 75,
+   "over_native": true,
+   "prompt_tokens_max": 273920,
+   "est_s": 174.71771754654998
+  },
+  {
+   "doc_id": "B44",
+   "tokens": 264945,
+   "queries": 57,
+   "over_native": true,
+   "prompt_tokens_max": 265056,
+   "est_s": 150.12306966375
+  },
+  {
+   "doc_id": "B26",
+   "tokens": 253466,
+   "queries": 50,
+   "over_native": false,
+   "prompt_tokens_max": 253558,
+   "est_s": 135.45382723580002
+  },
+  {
+   "doc_id": "B12",
+   "tokens": 240542,
+   "queries": 61,
+   "over_native": false,
+   "prompt_tokens_max": 240638,
+   "est_s": 136.6273989702
+  },
+  {
+   "doc_id": "B61",
+   "tokens": 225064,
+   "queries": 14,
+   "over_native": false,
+   "prompt_tokens_max": 225156,
+   "est_s": 86.78134745279999
+  },
+  {
+   "doc_id": "B04",
+   "tokens": 209488,
+   "queries": 45,
+   "over_native": false,
+   "prompt_tokens_max": 209581,
+   "est_s": 103.0091041792
+  },
+  {
+   "doc_id": "B34",
+   "tokens": 206833,
+   "queries": 65,
+   "over_native": false,
+   "prompt_tokens_max": 206931,
+   "est_s": 116.70720593895001
+  },
+  {
+   "doc_id": "B27",
+   "tokens": 201836,
+   "queries": 60,
+   "over_native": false,
+   "prompt_tokens_max": 201932,
+   "est_s": 109.59892599280002
+  },
+  {
+   "doc_id": "B18",
+   "tokens": 194220,
+   "queries": 44,
+   "over_native": false,
+   "prompt_tokens_max": 194319,
+   "est_s": 93.15199062
+  },
+  {
+   "doc_id": "B37",
+   "tokens": 167704,
+   "queries": 62,
+   "over_native": false,
+   "prompt_tokens_max": 167801,
+   "est_s": 89.15768498880001
+  },
+  {
+   "doc_id": "B43",
+   "tokens": 159866,
+   "queries": 60,
+   "over_native": false,
+   "prompt_tokens_max": 159965,
+   "est_s": 83.1185378758
+  },
+  {
+   "doc_id": "B24",
+   "tokens": 133420,
+   "queries": 65,
+   "over_native": false,
+   "prompt_tokens_max": 133510,
+   "est_s": 69.89620302
+  }
+ ]
+}
