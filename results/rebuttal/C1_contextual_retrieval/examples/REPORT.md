@@ -1,0 +1,108 @@
+# C1 qualitative examples: CR's context vs SAADI's memory (NovelHopQA)
+
+Questions with located evidence: 891 of 908. An evidence chunk is in SAADI's top 10 but not CR's in 153 questions; the reverse in 120.
+Group A (SAADI finds it, CR does not, and SAADI's answer is better): 70 questions. Group B (the reverse): 50.
+In group A, SAADI's memory adds question words the chunk itself lacks in 65 of 70; CR's context does so in 25; memory adds them and CR's context does not in 42.
+Examples are drawn in a seeded random order (seed 42) from each group; selection rule in examples.json.
+
+## Group A: SAADI finds the evidence, CR does not
+
+### A1. B15 hop_2:93
+- Question: What is Raskolnikov's main concern about Svidrigaïlov's intentions towards Dounia?
+- Gold: ["That Svidrigaïlov might use Raskolnikov's secret as a weapon against her."]
+- SAADI's answer: Raskolnikov is concerned that Svidrigaïlov may use his knowledge of Raskolnikov's secret to manipulate or harm Dounia. (F1 37); CR's answer: Svidrigaïlov's dangerous obsession with Dounia (F1 0)
+- Evidence chunk B15:354: rank 6 with SAADI, 23 with CR, 8 with Vanilla BM25
+- Chunk text: The man always had some design, some project. There was another thought which had been continually hovering of late about Raskolnikov's mind, and causing him great uneasiness. It was so painful that he made distinct efforts to get rid of it. He sometimes thought that Svidrigaïlov was dogging his footsteps. Svidrigaïlov had found out his secret and had had designs on Dounia. What if he had them still? Wasn't it practically certain that he had? And what if, having learnt his secret and so having gained power over him, he were to use it as a weapon against Dounia? This idea sometimes even tormented his dreams, but it had never presented itself so vividly to him as on his way to Svidrigaïlov. Th…
+- CR's context for this chunk: Raskolnikov, consumed by paranoia and fear, suspects Svidrigaïlov of knowing his secret and plotting against his sister Dounia. As he heads to confront Svidrigaïlov, the thought of his sister's safety overwhelms him, leading to a moment of intense dread and resolve. He decides to kill Svidrigaïlov if necessary. While walking through X. Prospect, he suddenly spots Svidrigaïlov in a tavern window, watching him intently, heightening his anxiety and sense of impending danger.
+- SAADI's memory for this chunk:
+  - Dounia (also: Dounia, your sister, Avdotya Romanovna, she, her, sister): Raskolnikov's sister | has been living with the mother for the last six weeks [shares with the question: dounia, intentions, lov's, raskolnikov's, svidriga]
+  - Raskolnikov (also: Raskolnikov, my precious Rodya, Rodion Romanovitch, I, he, Rodya): student | visited the old woman's flat a month ago [shares with the question: dounia, intentions, lov's, svidriga]
+  - Svidrigaïlov (also: Mr. Svidrigaïlov, Svidrigaïlov, Arkady Ivanovitch Svidrigaïlov, the stranger, he, Arkady Ivanovitch): Mr. Svidrigaïlov, a wealthy, pragmatic counselor | a man who holds two government posts [shares with the question: dounia, raskolnikov's, svidriga]
+  - X. Prospect (also: X. Prospect, the street): was where Raskolnikov found himself after walking from the Hay Market | was the street where Raskolnikov saw Svidrigaïlov at a tavern window [shares with the question: svidriga]
+- Question words added by SAADI's memory (not in the chunk): intentions, lov's; by CR's context: none
+
+### A2. B62 hop_1:210
+- Question: What prompted Dolly to change the direction of her question to Anna?
+- Gold: ["A sudden frown on Anna's face"]
+- SAADI's answer: Anna's frown indicated she understood the underlying intent. (F1 33); CR's answer: Anna's sudden change in demeanor and the arrival of Vronsky prompted Dolly to change the direction of her question to Anna. (F1 17)
+- Evidence chunk B62:553: rank 4 with SAADI, 17 with CR, 8 with Vanilla BM25
+- Chunk text: Dolly saw that she had now completely recovered from the impression her arrival had made on her, and had assumed that superficial, careless tone which, as it were, closed the door on that compartment in which her deeper feelings and ideas were kept. “Well, Anna, and how is your little girl? ” asked Dolly. “Annie? ” (This was what she called her little daughter Anna.) “Very well. She has got on wonderfully. Would you like to see her? Come, I’ll show her to you. We had a terrible bother,” she began telling her, “over nurses. We had an Italian wet-nurse. A good creature, but so stupid! We wanted to get rid of her, but the baby is so used to her that we’ve gone on keeping her still. ” “But how h…
+- CR's context for this chunk: Dolly visits Anna at her country estate, where she observes Anna's luxurious lifestyle and the elaborate arrangements for her daughter Annie. Anna, while appearing composed and gracious, reveals her inner turmoil through subtle cues, such as her evasiveness about her daughter's surname and her strained relationship with the English nurse. Dolly is struck by the contrast between Anna's outward elegance and the emotional distance and discomfort beneath the surface, particularly in Anna's interactions with her child and the household staff.
+- SAADI's memory for this chunk:
+  - Darya Alexandrovna (also: Darya Alexandrovna, Dolly): Wife of Prince Stepan Arkadyevitch Oblonsky; referred to as 'Dolly' by her husband; currently refusing to see him | Wife of Prince Stepan Arkadyevitch Oblonsky; referred to as 'Dolly' by her husband; currently refusing to see him; observed Anna's emotional state during her departure preparations [shares with the question: anna, dolly, question]
+  - Anna Karenina (also: Anna Karenina, Anna, Madame Karenina, Anna Arkadyevna, the woman, she): Novel by Leo Tolstoy, translated by Constance Garnett | Sister of Prince Stepan Arkadyevitch Oblonsky; arriving today; central to the family's emotional dynamics [shares with the question: anna, dolly]
+  - Annie (also: Annie, the baby girl, the little girl, the child): Is Anna Karenina’s daughter, born from her marriage to Alexey Alexandrovitch | Is referred to by Anna as 'Annie' and is the only child she feels close to after her separation from her husband [shares with the question: anna]
+  - English nurse (also: English nurse, the nurse): Is a smart, tall nurse with a disagreeable face and a dissolute expression | Speaks only French with the Russian nursery maid
+- Question words added by SAADI's memory (not in the chunk): none; by CR's context: none
+
+### A3. B12 hop_1:216
+- Question: What action does Miss Havisham take to indicate to Pip where he should sit?
+- Gold: ['Striking her stick upon a chair']
+- SAADI's answer: Striking her stick upon a chair (F1 100); CR's answer: She motions to him to sit. (F1 0)
+- Evidence chunk B12:184: rank 10 with SAADI, 25 with CR, 11 with Vanilla BM25
+- Chunk text: I ascended it now, in lighter boots than of yore, and tapped in my old way at the door of Miss Havisham’s room. “Pip’s rap,” I heard her say, immediately; “come in, Pip. ” She was in her chair near the old table, in the old dress, with her two hands crossed on her stick, her chin resting on them, and her eyes on the fire. Sitting near her, with the white shoe, that had never been worn, in her hand, and her head bent as she looked at it, was an elegant lady whom I had never seen. “Come in, Pip,” Miss Havisham continued to mutter, without looking round or up; “come in, Pip, how do you do, Pip? so you kiss my hand as if I were a queen, eh? —Well? ” She looked up at me suddenly, only moving her …
+- CR's context for this chunk: Pip returns to Satis House after a long absence, having recently learned the truth about his benefactor. He is greeted by Miss Havisham, who is as she always was—dressed in her faded bridal gown, seated in her chair, and fixated on the fire. Estella, now a beautiful and refined woman, is present, having returned from France. Pip is struck by her transformation and the emotional distance between them, as she treats him with a mixture of condescension and coldness. Miss Havisham, still obsessed with her revenge and control, questions Pip about Estella’s changes, revealing her continued manipulation of both of them. This encounter marks a pivotal moment in Pip’s realization that his romantic hopes for Estella were built on a foundation of illusion and cruelty.
+- SAADI's memory for this chunk:
+  - Miss Havisham (also: Miss Havisham, the lady at the table, she, the woman in the decaying mansion, the fairy godmother, Miss A.): an immensely rich and grim lady who lives in a large and dismal house barricaded against robbers | leads a life of seclusion [shares with the question: havisham, miss, pip, take]
+  - Pip (also: Philip Pirrip, Pip, I, Handel, Philip Pip, my Lord): the narrator and protagonist of the story | an orphaned child who is the son of Philip Pirrip and Georgiana Pirrip [shares with the question: havisham, miss, pip, take]
+  - Estella (also: Estella, the girl, young lady, she, the niece, the beautiful young lady): a scornful young lady who answers Miss Havisham's call | a young woman with fair young bosom and pretty brown hair [shares with the question: havisham, miss, pip]
+- Question words added by SAADI's memory (not in the chunk): take; by CR's context: none
+
+### A4. B42 hop_3:430
+- Question: What internal struggle does Jean Valjean experience while observing Marius and Cosette's relationship at the Luxembourg?
+- Gold: ['He feels savage and ferocious urges.']
+- SAADI's answer: Jealousy and protective fear (F1 20); CR's answer: Fear of losing Cosette's love and happiness (F1 15)
+- Evidence chunk B42:1115: rank 7 with SAADI, 16 with CR, 11 with Vanilla BM25
+- Chunk text: This sincerity, visible, palpable, irrefragable, evident from the very grief that it caused him, rendered inquiries useless, and conferred authority on all that that man had said. Here, for Marius, there was a strange reversal of situations. What breathed from M. Fauchelevent? distrust. What did Jean Valjean inspire? confidence. In the mysterious balance of this Jean Valjean which the pensive Marius struck, he admitted the active principle, he admitted the passive principle, and he tried to reach a balance. But all this went on as in a storm. Marius, while endeavoring to form a clear idea of this man, and while pursuing Jean Valjean, so to speak, in the depths of his thought, lost him and fo…
+- CR's context for this chunk: Marius grapples with the moral complexity of Jean Valjean after learning his true identity as a convict. While Jean Valjean's honesty and sacrifice—returning Cosette's fortune and confessing his past—earn Marius's reluctant respect, Marius is haunted by unresolved questions about Jean Valjean's actions during the barricade, particularly his confrontation with Javert. This moment of introspection reveals Marius's internal conflict: he is torn between recognizing Jean Valjean's profound virtue and being unable to reconcile it with the man's violent past, especially the mysterious circumstances surrounding Javert's death. This tension underscores the novel's central theme of redemption and the difficulty of judging a man whose past is as complex as his present.
+- SAADI's memory for this chunk:
+  - Marius (also: Marius, he, Marius Pontmercy, the young man, him, you): is the son of the colonel | had a strained relationship with his father [shares with the question: cosette's, jean, luxembourg, marius, observing, relationship, struggle, valjean]
+  - Cosette (also: Cosette, the newcomer, the little one, my darling, the little girl, she): the child's real name is Euphrasie, but the mother renamed her Cosette | is going on three years old [shares with the question: jean, luxembourg, marius, relationship, valjean, while]
+  - Jean Valjean (also: the man, Jean Valjean, he, the wayfarer, the traveller, the convict): the man who was formerly condemned to death and redeemed by the Bishop | a former convict who has been walking for twelve leagues since sunrise [shares with the question: cosette's, internal, jean, marius, valjean, while]
+  - Javert (also: Javert, the man, Police Officer Javert, the inspector, the police, he): is an inspector in the police | has a lofty stature [shares with the question: cosette's, jean, marius, valjean]
+- Question words added by SAADI's memory (not in the chunk): cosette's, internal, luxembourg, observing, relationship, struggle; by CR's context: cosette's, internal
+
+### A5. B12 hop_1:835
+- Question: What imagery or scene in the paragraph consistently reminds the narrator of Miss Havisham and Estella?
+- Gold: ['Vessels with white sails']
+- SAADI's answer: Sails on the river (F1 29); CR's answer: Faded bridal relics and ghostly candlelight (F1 0)
+- Evidence chunk B12:85: rank 7 with SAADI, 27 with CR, 9 with Vanilla BM25
+- Chunk text: It was pleasant and quiet, out there with the sails on the river passing beyond the earthwork, and sometimes, when the tide was low, looking as if they belonged to sunken ships that were still sailing on at the bottom of the water. Whenever I watched the vessels standing out to sea with their white sails spread, I somehow thought of Miss Havisham and Estella; and whenever the light struck aslant, afar off, upon a cloud or sail or green hillside or water-line, it was just the same. —Miss Havisham and Estella and the strange house and the strange life appeared to have something to do with everything that was picturesque. One Sunday when Joe, greatly enjoying his pipe, had so plumed himself on …
+- CR's context for this chunk: After Pip's apprenticeship begins and he starts to feel conflicted about his new life, he reflects on his past and his growing distance from Joe. While spending time with Joe at the old Battery on the marshes, Pip contemplates visiting Miss Havisham, but Joe warns him that she might suspect he has ulterior motives, recalling her earlier instruction to "make an end on it" and keep their lives separate. This moment captures Pip's internal struggle between gratitude and the fear of being seen as insincere, highlighting his growing awareness of the social and emotional chasm between his humble origins and his new aspirations.
+- SAADI's memory for this chunk:
+  - Pip (also: Philip Pirrip, Pip, I, Handel, Philip Pip, my Lord): the narrator and protagonist of the story | an orphaned child who is the son of Philip Pirrip and Georgiana Pirrip [shares with the question: estella, havisham, miss, narrator, scene]
+  - Miss Havisham (also: Miss Havisham, the lady at the table, she, the woman in the decaying mansion, the fairy godmother, Miss A.): an immensely rich and grim lady who lives in a large and dismal house barricaded against robbers | leads a life of seclusion [shares with the question: estella, havisham, miss, scene]
+  - Estella (also: Estella, the girl, young lady, she, the niece, the beautiful young lady): a scornful young lady who answers Miss Havisham's call | a young woman with fair young bosom and pretty brown hair [shares with the question: estella, havisham, miss]
+  - Joe Gargery (also: Joe Gargery, Joe): the blacksmith and husband of Mrs. Joe Gargery | Pip's guardian and foster father
+- Question words added by SAADI's memory (not in the chunk): narrator, scene; by CR's context: none
+
+
+## Group B: CR finds the evidence, SAADI does not
+
+### B1. B12 hop_4:730
+- Question: What is the connection between Pip's uncertainty about Orlick's suitability for a position at Miss Havisham's and Mr. Jaggers' hypothetical scenario involving a concealed child and an eccentric rich lady's adoption plans?
+- Gold: ['Trust and suitability in filling important roles']
+- SAADI's answer: Pip's uncertainty about Orlick mirrors the moral ambiguity in Mr. Jaggers' hypothetical case of a concealed child adopted by an eccentric lady. (F1 8); CR's answer: Pip's concern about Orlick mirrors Jaggers' hypothetical case of a concealed child and adoption, as both involve trust, hidden identities, and the potential for danger in positions of responsibility. (F1 18)
+- Evidence chunk B12:191: rank 29 with SAADI, 5 with CR, 48 with Vanilla BM25
+- Chunk text: [Illustration] Of the manner and extent to which he took our trumps into custody, and came out with mean little cards at the ends of hands, before which the glory of our Kings and Queens was utterly abased, I say nothing; nor, of the feeling that I had, respecting his looking upon us personally in the light of three very obvious and poor riddles that he had found out long ago. What I suffered from, was the incompatibility between his cold presence and my feelings towards Estella. It was not that I knew I could never bear to speak to him about her, that I knew I could never bear to hear him creak his boots at her, that I knew I could never bear to see him wash his hands of her; it was, that m…
+- CR's context for this chunk: Pip, now a gentleman in London, reflects on his growing emotional conflict between his love for Estella and his discomfort with his guardian, Mr. Jaggers, who embodies the cold, calculating world of the law. After a tense dinner at Jaggers’s home where Estella is present, Pip is tormented by the incompatibility of his feelings for her and Jaggers’s icy presence. The chapter ends with Pip’s internal struggle as he resolves to confront Jaggers about Orlick’s unsuitability for a position at Miss Havisham’s, unaware that this decision will soon lead to a dramatic revelation about his true benefactor.
+- SAADI's memory for this chunk:
+  - Mr. Jaggers (also: Mr. Jaggers, the lawyer, the gentleman, Jaggers, he, my guardian): a London lawyer who delivers the news of Pip's great expectations | a man with a large head, dark complexion, deep-set eyes, bushy black eyebrows, and a large watch-chain [shares with the question: between, child, connection, havisham's, hypothetical, miss, pip's, plans, rich]
+  - Pip (also: Philip Pirrip, Pip, I, Handel, Philip Pip, my Lord): the narrator and protagonist of the story | an orphaned child who is the son of Philip Pirrip and Georgiana Pirrip [shares with the question: between, child, connection, havisham's, miss, orlick's, pip's, uncertainty]
+  - Orlick (also: Orlick, Old Orlick, he, him, the assailant, this man): Joe Gargery's journeyman at weekly wages | a worker in Joe's blacksmith shop [shares with the question: havisham's, miss, pip's, plans, position]
+  - Estella (also: Estella, the girl, young lady, she, the niece, the beautiful young lady): a scornful young lady who answers Miss Havisham's call | a young woman with fair young bosom and pretty brown hair [shares with the question: child, havisham's, miss, pip's]
+- Question words added by SAADI's memory (not in the chunk): child, connection, havisham's, hypothetical, orlick's, pip's, plans, position, rich, uncertainty; by CR's context: position
+
+### B2. B15 hop_4:460
+- Question: What is the main reason behind Luzhin's accusation against Sonia and how does Raskolnikov's confrontation with Luzhin highlight the underlying motive?
+- Gold: ['Luzhin accuses Sonia of theft due to her social position and supposed ingratitude, while Raskolnikov confronts Luzhin, revealing his motive to create dissension using slander.']
+- SAADI's answer: Revenge and self-justification. (F1 7); CR's answer: Luzhin's motive: To discredit Raskolnikov and protect his reputation. (F1 29)
+- Evidence chunk B15:299: rank 11 with SAADI, 9 with CR, 3 with Vanilla BM25
+- Chunk text: "Excuse me for possibly interrupting you, but it's a matter of some importance," Pyotr Petrovitch observed, addressing the company generally. "I am glad indeed to find other persons present. Amalia Ivanovna, I humbly beg you as mistress of the house to pay careful attention to what I have to say to Sofya Ivanovna. Sofya Ivanovna," he went on, addressing Sonia, who was very much surprised and already alarmed, "immediately after your visit I found that a hundred‐rouble note was missing from my table, in the room of my friend Mr. Lebeziatnikov. If in any way whatever you know and will tell us where it is now, I assure you on my word of honour and call all present to witness that the matter shal…
+- CR's context for this chunk: In the aftermath of Katerina Ivanovna's funeral dinner, Pyotr Petrovitch Luzhin accuses Sonia of stealing a hundred-rouble note from his table, claiming he had just counted his money and noticed the loss after her visit. He demands she confess, threatening serious consequences if she does not, while the room falls into stunned silence. Sonia, pale and terrified, denies any knowledge of the missing money, but Luzhin insists on her guilt, citing her nervous behavior and the timing of her visit. The scene unfolds with escalating tension, as Luzhin's accusation is met with disbelief and horror, particularly from Katerina Ivanovna, who rushes to Sonia's defense, and from Lebeziatnikov, who later exposes Luzhin's deceit by revealing he had secretly slipped the note into Sonia's pocket.
+- SAADI's memory for this chunk:
+  - Pyotr Petrovitch (also: Pyotr Petrovitch, the blackguard, Luzhin, he): suitor of Avdotya Romanovna | had visited Raskolnikov earlier [shares with the question: accusation, luzhin, raskolnikov's, sonia]
+  - Mr. Lebeziatnikov (also: Mr. Lebeziatnikov, he): beat Marmeladov's wife | a person mentioned by Marmeladov in conversation [shares with the question: luzhin, sonia]
+  - Sofya Ivanovna (also: Sonia, Sofya Ivanovna): is the stepdaughter of Katerina Ivanovna | was invited by Pyotr Petrovitch to discuss a subscription for Katerina Ivanovna [shares with the question: sonia]
+- Question words added by SAADI's memory (not in the chunk): raskolnikov's; by CR's context: luzhin's
+
