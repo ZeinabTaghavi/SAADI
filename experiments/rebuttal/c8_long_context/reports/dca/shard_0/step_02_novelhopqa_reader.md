@@ -1,76 +1,27 @@
-# C8 step 04 (dual chunk attention) - unit 0, vLLM start: FAILED
+# C8 long-context reader - step 02 reader, NovelHopQA: OK
 
-Written 2026-11-11 22:37:55 on eee-s132-infsys-gpu03. The main C8 results are unchanged.
+Written 2026-11-12 16:35:54; commit 9732e142077c; host eee-s132-infsys-gpu03; GPUs 0,1,2,3; 1237 s.
 
-The vLLM 0.10.1.1 server with dual chunk attention did not start on GPUs 0,1,2,3 (log outputs/rebuttal/c8_long_context/vllm_logs/server_dca_g0_20261111_222946_223725.log).
+Reader `Qwen/Qwen2.5-7B-Instruct-1M` (vLLM, tensor parallel 4, mode dca, --max-model-len 778,240), temperature 0, top_p 1, seed 42, max output tokens 64, 8 requests in flight (full document: the first question of each document alone). Queries: 324 (all).
 
-Last 60 lines of experiments/rebuttal/c8_long_context/logs/run_dca_long_books_20261111_222946.log:
+| Condition | Selected | Done before | Asked | Answered | Skipped (too long) | Errors | Not started (deadline) | Cut at max tokens | Prompt tokens != step 00 | Wall s | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Full document | 324 | 0 | 324 | 324 | 0 | 0 | 0 | 0 | 0 | 1236.60 | complete |
 
-```
-    return init_tokenizer_from_configs(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/iataghav/data/SAADI/outputs/rebuttal/c8_long_context/venv_vllm_0_10_1_1/lib/python3.12/site-packages/vllm/transformers_utils/tokenizer_group.py", line 121, in init_tokenizer_from_configs
-    return TokenizerGroup(
-           ^^^^^^^^^^^^^^^
-  File "/home/iataghav/data/SAADI/outputs/rebuttal/c8_long_context/venv_vllm_0_10_1_1/lib/python3.12/site-packages/vllm/transformers_utils/tokenizer_group.py", line 26, in __init__
-    self.tokenizer = get_tokenizer(self.tokenizer_id, **tokenizer_config)
-                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/iataghav/data/SAADI/outputs/rebuttal/c8_long_context/venv_vllm_0_10_1_1/lib/python3.12/site-packages/vllm/transformers_utils/tokenizer.py", line 284, in get_tokenizer
-    tokenizer = get_cached_tokenizer(tokenizer)
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/iataghav/data/SAADI/outputs/rebuttal/c8_long_context/venv_vllm_0_10_1_1/lib/python3.12/site-packages/vllm/transformers_utils/tokenizer.py", line 101, in get_cached_tokenizer
-    tokenizer.all_special_tokens_extended)
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/iataghav/data/SAADI/outputs/rebuttal/c8_long_context/venv_vllm_0_10_1_1/lib/python3.12/site-packages/transformers/tokenization_utils_base.py", line 1335, in __getattr__
-    raise AttributeError(f"{self.__class__.__name__} has no attribute {key}")
-AttributeError: Qwen2Tokenizer has no attribute all_special_tokens_extended. Did you mean: 'num_special_tokens_to_add'?
-[c8-dca] 2026-11-11 22:37:25 retrying units 0 1 on GPUs 0,1,2,3
-[c8-dca] 2026-11-11 22:37:25 [group 0] starting vLLM 0.10.1.1 with dual chunk attention on GPUs 0,1,2,3, port 18551; log outputs/rebuttal/c8_long_context/vllm_logs/server_dca_g0_20261111_222946_223725.log
-[c8-dca] 2026-11-11 22:37:55 [group 0] vLLM exited during start-up; last lines:
-Traceback (most recent call last):
-  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
-    self.run()
-  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/home/iataghav/data/SAADI/outputs/rebuttal/c8_long_context/venv_vllm_0_10_1_1/lib/python3.12/site-packages/vllm/engine/multiprocessing/engine.py", line 469, in run_mp_engine
-    raise e from None
-  File "/home/iataghav/data/SAADI/outputs/rebuttal/c8_long_context/venv_vllm_0_10_1_1/lib/python3.12/site-packages/vllm/engine/multiprocessing/engine.py", line 455, in run_mp_engine
-    engine = MQLLMEngine.from_vllm_config(
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/iataghav/data/SAADI/outputs/rebuttal/c8_long_context/venv_vllm_0_10_1_1/lib/python3.12/site-packages/vllm/utils/__init__.py", line 1557, in inner
-    return fn(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^
-  File "/home/iataghav/data/SAADI/outputs/rebuttal/c8_long_context/venv_vllm_0_10_1_1/lib/python3.12/site-packages/vllm/engine/multiprocessing/engine.py", line 144, in from_vllm_config
-    return cls(
-           ^^^^
-  File "/home/iataghav/data/SAADI/outputs/rebuttal/c8_long_context/venv_vllm_0_10_1_1/lib/python3.12/site-packages/vllm/engine/multiprocessing/engine.py", line 88, in __init__
-    self.engine = LLMEngine(*args, **kwargs)
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/iataghav/data/SAADI/outputs/rebuttal/c8_long_context/venv_vllm_0_10_1_1/lib/python3.12/site-packages/vllm/engine/llm_engine.py", line 238, in __init__
-    self.tokenizer = self._init_tokenizer()
-                     ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/iataghav/data/SAADI/outputs/rebuttal/c8_long_context/venv_vllm_0_10_1_1/lib/python3.12/site-packages/vllm/engine/llm_engine.py", line 522, in _init_tokenizer
-    return init_tokenizer_from_configs(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/iataghav/data/SAADI/outputs/rebuttal/c8_long_context/venv_vllm_0_10_1_1/lib/python3.12/site-packages/vllm/transformers_utils/tokenizer_group.py", line 121, in init_tokenizer_from_configs
-    return TokenizerGroup(
-           ^^^^^^^^^^^^^^^
-  File "/home/iataghav/data/SAADI/outputs/rebuttal/c8_long_context/venv_vllm_0_10_1_1/lib/python3.12/site-packages/vllm/transformers_utils/tokenizer_group.py", line 26, in __init__
-    self.tokenizer = get_tokenizer(self.tokenizer_id, **tokenizer_config)
-                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/iataghav/data/SAADI/outputs/rebuttal/c8_long_context/venv_vllm_0_10_1_1/lib/python3.12/site-packages/vllm/transformers_utils/tokenizer.py", line 284, in get_tokenizer
-    tokenizer = get_cached_tokenizer(tokenizer)
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/iataghav/data/SAADI/outputs/rebuttal/c8_long_context/venv_vllm_0_10_1_1/lib/python3.12/site-packages/vllm/transformers_utils/tokenizer.py", line 101, in get_cached_tokenizer
-    tokenizer.all_special_tokens_extended)
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/iataghav/data/SAADI/outputs/rebuttal/c8_long_context/venv_vllm_0_10_1_1/lib/python3.12/site-packages/transformers/tokenization_utils_base.py", line 1335, in __getattr__
-    raise AttributeError(f"{self.__class__.__name__} has no attribute {key}")
-AttributeError: Qwen2Tokenizer has no attribute all_special_tokens_extended. Did you mean: 'num_special_tokens_to_add'?
-```
+Full document, per document (this run):
 
-## Push
+| Document | Tokens | Uncached first question (s) | Cache reset | Other questions | Their mean latency (s) | Document wall (s) |
+| --- | --- | --- | --- | --- | --- | --- |
+| B05 | 324,835 | 93.3 | True | 21 | 12.59 | 127.1 |
+| B42 | 759,549 | 245.9 | True | 69 | 32.99 | 543.0 |
+| B37 | 167,704 | 45.3 | True | 61 | 6.97 | 99.5 |
+| B04 | 209,488 | 56.7 | True | 44 | 8.52 | 106.8 |
+| B61 | 225,064 | 61.2 | True | 13 | 8.59 | 78.8 |
+| B12 | 240,542 | 67.3 | True | 60 | 9.95 | 145.3 |
+| B26 | 253,466 | 69.5 | True | 49 | 10.56 | 136.0 |
 
-```
-pushed b084228 to origin/fix/notebook-key-and-install: C8 novelhopqa 04_dca_unit0: FAILED: The vLLM 0.10.1.1 server with dual chunk attention did not start on GPUs 0,1,2,3 (log outputs/rebuttal/c8_long_context/vllm_logs/server_dca_g0
-```
+## Files written
+
+- `results/rebuttal/c8_long_context/dca/shard_0/answers/novelhopqa/full_doc_documents.jsonl`
+- `results/rebuttal/c8_long_context/dca/shard_0/answers/novelhopqa/full_doc.jsonl`
+- `experiments/rebuttal/c8_long_context/reports/dca/shard_0/step_02_novelhopqa_reader.md`

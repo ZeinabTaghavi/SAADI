@@ -1,0 +1,38 @@
+[c8-dca] 2026-11-12 16:09:05 host eee-s132-infsys-gpu03; GPU groups 0,1,2,3;4,5,6,7; vLLM 0.10.1.1 in outputs/rebuttal/c8_long_context/venv_vllm_0_10_1_1
+[c8-dca] 2026-11-12 16:09:05 model /mnt/cache/taghavi/hub/models--Qwen--Qwen2.5-7B-Instruct-1M/snapshots/e28526f7bb80e2a9c8af03b831a9af3812f18fba; --max-model-len 778240
+[c8-dca] 2026-11-12 16:09:46 fixing transformers in outputs/rebuttal/c8_long_context/venv_vllm_0_10_1_1: 5.22.2 -> transformers==4.55.4
+[c8-dca] 2026-11-12 16:10:13 vLLM 0.10.1.1 ready: torch 2.7.1+cu128 cuda 12.8 transformers 4.55.4
+[c8-dca] 2026-11-12 16:11:08 smoke OK: tokenizer CachedQwen2TokenizerFast 151665 chat prompt 24 tokens; DCA backend and sparse kernels import
+[c8-dca] 2026-11-12 16:11:08 free GPU groups: 0,1,2,3 4,5,6,7
+[c8-04] 2026-11-12 16:11:08 plan kept: /home/iataghav/data/SAADI/results/rebuttal/c8_long_context/dca/plan.json
+0	B05,B42,B37,B04,B61,B12,B26
+1	B44,B15,B54,B62,B24,B43,B18,B27,B34
+[c8-dca] 2026-11-12 16:11:25 group 0 (GPUs 0,1,2,3, port 18551): units 0
+[c8-dca] 2026-11-12 16:11:25 [group 0] starting vLLM 0.10.1.1 with dual chunk attention on GPUs 0,1,2,3, port 18551, --max-num-batched-tokens 131072; log outputs/rebuttal/c8_long_context/vllm_logs/server_dca_g0_20261112_160905_161125.log
+[c8-dca] 2026-11-12 16:11:55 group 1 (GPUs 4,5,6,7, port 18552): units 1
+[c8-dca] 2026-11-12 16:11:55 [group 1] starting vLLM 0.10.1.1 with dual chunk attention on GPUs 4,5,6,7, port 18552, --max-num-batched-tokens 131072; log outputs/rebuttal/c8_long_context/vllm_logs/server_dca_g1_20261112_160905_161155.log
+[c8-dca] 2026-11-12 16:15:16 [group 1] vLLM ready after 200 s
+[c8-dca] 2026-11-12 16:15:16 [group 1] unit 1: books B44,B15,B54,B62,B24,B43,B18,B27,B34
+[c8] 2026-11-12 16:15:16 start 02: /mnt/data/zeinab/raptor/.venv/bin/python3 /home/iataghav/data/SAADI/experiments/rebuttal/c8_long_context/scripts/step02_reader.py --dataset novelhopqa --port 18552 --conditions full_doc --docs B44,B15,B54,B62,B24,B43,B18,B27,B34
+[c8-dca] 2026-11-12 16:15:17 [group 0] vLLM ready after 230 s
+[c8-dca] 2026-11-12 16:15:17 [group 0] unit 0: books B05,B42,B37,B04,B61,B12,B26
+[c8] 2026-11-12 16:15:17 start 02: /mnt/data/zeinab/raptor/.venv/bin/python3 /home/iataghav/data/SAADI/experiments/rebuttal/c8_long_context/scripts/step02_reader.py --dataset novelhopqa --port 18551 --conditions full_doc --docs B05,B42,B37,B04,B61,B12,B26
+[c8-02] 2026-11-12 16:15:17 novelhopqa/full_doc: 584 selected, 0 done, 584 to ask, 0 skipped
+[c8-02] 2026-11-12 16:15:17 novelhopqa/full_doc: 324 selected, 0 done, 324 to ask, 0 skipped
+[c8-02] 2026-11-12 16:17:24 novelhopqa/full_doc 1/7 B05 (324,835 tokens): uncached 93.3 s, 21 more in 33.9 s
+[c8-02] 2026-11-12 16:17:51 novelhopqa/full_doc 1/9 B44 (264,945 tokens): uncached 75.1 s, 56 more in 78.8 s
+[c8-02] 2026-11-12 16:20:57 novelhopqa/full_doc 2/9 B15 (273,811 tokens): uncached 76.6 s, 74 more in 109.0 s
+[c8-02] 2026-11-12 16:25:37 novelhopqa/full_doc 3/9 B54 (411,934 tokens): uncached 122.8 s, 73 more in 158.0 s
+[c8-02] 2026-11-12 16:26:27 novelhopqa/full_doc 2/7 B42 (759,549 tokens): uncached 245.9 s, 69 more in 297.1 s
+[c8-02] 2026-11-12 16:28:07 novelhopqa/full_doc 3/7 B37 (167,704 tokens): uncached 45.3 s, 61 more in 54.2 s
+[c8-02] 2026-11-12 16:29:54 novelhopqa/full_doc 4/7 B04 (209,488 tokens): uncached 56.7 s, 44 more in 50.1 s
+[c8-02] 2026-11-12 16:31:10 novelhopqa/full_doc 4/9 B62 (461,227 tokens): uncached 139.5 s, 83 more in 193.6 s
+[c8-02] 2026-11-12 16:31:12 novelhopqa/full_doc 5/7 B61 (225,064 tokens): uncached 61.2 s, 13 more in 17.6 s
+[c8-02] 2026-11-12 16:32:35 novelhopqa/full_doc 5/9 B24 (133,420 tokens): uncached 34.4 s, 64 more in 49.9 s
+[c8-02] 2026-11-12 16:33:38 novelhopqa/full_doc 6/7 B12 (240,542 tokens): uncached 67.3 s, 60 more in 78.0 s
+[c8-02] 2026-11-12 16:34:08 novelhopqa/full_doc 6/9 B43 (159,866 tokens): uncached 41.9 s, 59 more in 51.6 s
+[c8-02] 2026-11-12 16:35:50 novelhopqa/full_doc 7/9 B18 (194,220 tokens): uncached 52.5 s, 43 more in 49.4 s
+[c8-02] 2026-11-12 16:35:54 novelhopqa/full_doc 7/7 B26 (253,466 tokens): uncached 69.5 s, 49 more in 66.4 s
+[c8-02] 2026-11-12 16:35:54 done: OK
+[c8] 2026-11-12 16:35:54 end 02: exit 0
+[c8-dca] 2026-11-12 16:35:54 [group 0] unit 0 finished (exit 0): answered full_doc 324
