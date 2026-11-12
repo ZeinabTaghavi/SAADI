@@ -31,9 +31,9 @@ bash experiments/rebuttal/c2_table1/run.sh
    differences are listed and the run continues; both Table 1 versions then use the recomputed values.
 2. **Table 1 twice**: SAADI with the published and with the held-out weights; every other method keeps its
    Table 1 value.
-3. **Rank** of SAADI among the methods of its retriever in every cell: 1 + number of methods with a strictly
-   higher printed value (ties give SAADI the better rank). Mean rank, first, first or second; overall, per
-   dataset, per retriever and per cutoff.
+3. **Rank** of SAADI among the methods of its retriever in every cell: 1 + number of methods whose Table 1
+   value is strictly higher than SAADI's unrounded value, the rule behind the paper's "first or second in 34 of
+   40 cells". Mean rank (three decimals), first, first or second; overall, per dataset, per retriever and per cutoff.
 4. **Held-out SAADI minus Vanilla** per pair at HR@5 and HR@10, 95% paired bootstrap over queries (10,000
    resamples, seed 42). Vanilla is the text channel alone (lambda_M = lambda_S = 0) on the same chunks and
    queries; on LooGLE and NovelHopQA it differs from the Table 1 Vanilla row, which came from another run and is

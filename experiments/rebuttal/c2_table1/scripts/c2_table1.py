@@ -17,9 +17,9 @@ Steps
      are expected to differ by up to 0.5 points; their differences are listed and the run continues.
   2. Table 1 twice: SAADI with the published weights and SAADI with the held-out weights (both recomputed from
      the same C2 arrays); every other method keeps its Table 1 value.
-  3. SAADI's rank among the methods of its retriever in every cell (1 + number of methods with a strictly
-     higher printed value, so a tie gives SAADI the better rank), mean rank, first, first or second; overall,
-     per dataset and per retriever.
+  3. SAADI's rank among the methods of its retriever in every cell: 1 + number of methods whose Table 1 value is
+     strictly higher than SAADI's unrounded value (the rule behind the paper's 'first or second in 34 of 40 cells');
+     mean rank, first, first or second; overall, per dataset and per retriever.
   4. Held-out SAADI minus Vanilla per pair at HR@5 and HR@10 with a 95% paired bootstrap interval. Vanilla is
      the text channel alone (lambda_M = lambda_S = 0) on the same chunks and queries.
 
@@ -207,7 +207,8 @@ def build_tables(
                 for d in hf.DATASET_KEYS:
                     for c in CUTOFFS:
                         col = table1_col(d, c)
-                        row[col] = round1(pairs[(d, r)][f"{version}_hr{c}"]) if t["Method"] == SAADI_METHOD else float(t[col])
+                        # SAADI unrounded, as the paper's count compares it; the report prints one decimal.
+                        row[col] = pairs[(d, r)][f"{version}_hr{c}"] if t["Method"] == SAADI_METHOD else float(t[col])
                 versions[version].append(row)
     return versions
 
@@ -354,8 +355,9 @@ def setup_lines(res: dict[str, Any]) -> list[str]:
         "by document (seed 42); in each fold the weights with the highest HR@10 on the other four folds score the held-out fold."
     )
     L.append(
-        "- Rank: 1 + number of Table 1 methods of the same retriever with a strictly higher printed value (one decimal); SAADI's "
-        "recomputed value is rounded to one decimal first, and a tie gives SAADI the better rank."
+        "- Rank: 1 + number of Table 1 methods of the same retriever whose value is strictly higher than SAADI's unrounded "
+        "recomputed value (the rule behind the paper's count of 34 of 40 cells first or second). Values are printed with one "
+        "decimal, so a printed tie (e.g. 14.8 against 14.76) can still rank SAADI below."
     )
     L.append(
         "- Vanilla in part 4: the text channel alone (lambda_M = lambda_S = 0) on the same chunks and queries, so the comparison is "
@@ -377,7 +379,7 @@ def report_lines(res: dict[str, Any]) -> list[str]:
     L.append("## Summary")
     L.append("")
     L.append(
-        f"Mean rank: published {_f(rs['published']['mean_rank'], 2)}, held-out {_f(rs['heldout']['mean_rank'], 2)}. "
+        f"Mean rank: published {_f(rs['published']['mean_rank'], 3)}, held-out {_f(rs['heldout']['mean_rank'], 3)}. "
         f"First or second in {rs['published']['first_or_second']} of {n} cells (published) and {rs['heldout']['first_or_second']} of {n} cells (held-out). "
         f"With held-out weights SAADI improves over Vanilla in {vs['hr10']['positive']} of {m} pairs at HR@10, significantly in {vs['hr10']['ci_above_zero']}; "
         f"at HR@5 in {vs['hr5']['positive']} of {m}, significantly in {vs['hr5']['ci_above_zero']}."
@@ -473,7 +475,7 @@ def report_lines(res: dict[str, Any]) -> list[str]:
         if not b["n_cells"]:
             return f"| {label} | 0 | - | - | - | - |"
         return (
-            f"| {label} | {b['n_cells']} | {_f(p['mean_rank'], 2)} / {_f(h['mean_rank'], 2)} | {p['first']} / {h['first']} | "
+            f"| {label} | {b['n_cells']} | {_f(p['mean_rank'], 3)} / {_f(h['mean_rank'], 3)} | {p['first']} / {h['first']} | "
             f"{p['first_or_second']} / {h['first_or_second']} | {b['cells_rank_changed']} |"
         )
 
