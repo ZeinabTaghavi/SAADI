@@ -8,6 +8,7 @@ and run_gpus_4567.sh (--group B, GPUs 4-7). From the repository root:
     python scripts/rebuttal/c2_heldout_fusion.py --group B --analysis-only
     python scripts/rebuttal/c2_heldout_fusion.py --group A --analysis-only --retrievers bm25,contriever,bge_m3
     python scripts/rebuttal/c2_heldout_fusion.py --group A --dry-run  # CPU: BM25, 2 documents per dataset, small grid
+    python scripts/rebuttal/c2_heldout_fusion.py --report-only        # rebuild REPORT*.md from analysis.json and tables/
 
 Steps per group: preflight -> plan (first group writes plan.json under a file lock, the other
 reads it) -> jobs (up to four at a time, one GPU each; BM25 on CPU next to them) -> group report
@@ -725,7 +726,12 @@ def analysis_gate(
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--group", choices=["A", "B"], required=True)
+    ap.add_argument("--group", choices=["A", "B"], help="GPU group to run (required unless --report-only)")
+    ap.add_argument(
+        "--report-only",
+        action="store_true",
+        help="rebuild REPORT.md and REPORT_FOR_GDOC.md from the saved analysis.json and tables/ (CPU, no streams needed)",
+    )
     ap.add_argument("--analysis-only", action="store_true", help="rerun the CPU analysis only (all 20 jobs must be DONE)")
     ap.add_argument(
         "--retrievers",
@@ -740,6 +746,14 @@ def main() -> int:
 
     if args.run_job:
         return run_worker(args.run_job, dry_run=args.dry_run)
+    if args.report_only:
+        paths = hf.C2Paths(REPO_ROOT, dry_run=args.dry_run)
+        mode = hf.rewrite_reports(paths)
+        for name in ("REPORT.md", "REPORT_FOR_GDOC.md"):
+            print(f"[{now()}] rewrote {hf.rel(paths.results_dir / name, REPO_ROOT)} ({mode})", flush=True)
+        return 0
+    if not args.group:
+        ap.error("--group is required (A or B) unless --report-only is given")
     retrievers = tuple(x.strip() for x in args.retrievers.split(",") if x.strip()) if args.retrievers else None
     if retrievers and not args.analysis_only:
         ap.error("--retrievers only works with --analysis-only")

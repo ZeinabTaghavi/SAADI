@@ -186,6 +186,32 @@ Pairwise logistic regression in the same outer folds: each evidence chunk agains
 | NovelHopQA / Contriever | 13.2 / 18.1 | 13.4 / 19.1 | +1.0 |
 | NovelHopQA / BGE-M3 | 17.1 / 22.7 | 16.4 / 22.8 | +0.1 |
 
+## H. Full grid: rank of the published setting and the selected weights (1296 points)
+
+Mean HR@10 over the 12 analysed pairs for every grid point (`tables/f_grid_hr.csv`); rank = 1 + number of points with a strictly higher mean. The best single point is chosen with all evaluated queries in hand, so it is an upper bound for any one fixed setting, not a held-out result.
+
+- Published point (0.5, 0.3 | 1, 1): mean HR@10 55.59, rank 26 of 1296 (top 2.0%).
+- Best single point (0.5, 0.5 | 0.3, 1): mean HR@10 55.83, 0.24 points above the published point.
+
+A1-selected weights over all outer folds (`tables/a_chosen_per_fold.csv`):
+
+| Weight | Published | Median selected | Folds with a non-zero weight |
+| --- | --- | --- | --- |
+| lambda_M | 0.5 | 0.3 | 55/60 (91.7%) |
+| lambda_S | 0.3 | 0.3 | 50/60 (83.3%) |
+| mu_A | 1 | 0.3 | 40/60 (66.7%) |
+| mu_D | 1 | 1 | 55/60 (91.7%) |
+
+Mean HR@10 per dataset over the analysed retrievers (`tables/d_per_pair.csv`):
+
+| Dataset | Retrievers | Published | A1 held-out | A1 minus published |
+| --- | --- | --- | --- | --- |
+| LooGLE | 3 | 90.76 | 91.01 | +0.25 |
+| MuSiQue-32K | 3 | 83.22 | 85.19 | +1.96 |
+| QASPER-64K | 3 | 27.61 | 28.13 | +0.53 |
+| NovelHopQA | 3 | 20.78 | 20.63 | -0.15 |
+| All | | 55.59 | 56.24 | +0.65 |
+
 ## Not part of C2 (index-time settings; need new LLM builds)
 
 - folding factor f (branching): `results/tables/ablations/hierarchy_branching/`

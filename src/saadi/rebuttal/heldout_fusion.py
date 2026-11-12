@@ -1744,6 +1744,142 @@ def write_tables(paths: C2Paths, analysis: dict[str, Any], grids: dict[tuple[str
     )
 
 
+WEIGHT_NAMES = ("lambda_M", "lambda_S", "mu_A", "mu_D")
+
+
+def grid_overview(tables_dir: Path) -> dict[str, Any] | None:
+    """Full-grid numbers read back from the written tables (f_grid_hr.csv, a_chosen_per_fold.csv, d_per_pair.csv).
+
+    - rank of the published point among all grid points by mean HR@10 over the analysed pairs
+      (1 + number of points with a strictly higher mean), the best single point and its gap;
+    - median and non-zero share of each A1-selected weight over all outer folds;
+    - mean published and A1 HR@10 per dataset over the analysed retrievers.
+    """
+    grid_csv, folds_csv, pairs_csv = (tables_dir / n for n in ("f_grid_hr.csv", "a_chosen_per_fold.csv", "d_per_pair.csv"))
+    if not (grid_csv.exists() and folds_csv.exists() and pairs_csv.exists()):
+        return None
+    per_point: dict[tuple[float, ...], list[float]] = {}
+    with grid_csv.open("r", encoding="utf-8") as handle:
+        for row in csv.DictReader(handle):
+            per_point.setdefault(tuple(float(row[k]) for k in WEIGHT_NAMES), []).append(float(row["hr10"]))
+    if not per_point:
+        return None
+    n_pairs = {len(v) for v in per_point.values()}
+    means = {pt: float(np.mean(v)) for pt, v in per_point.items()}
+    pub = tuple(float(x) for x in PUBLISHED_POINT)
+    rank = 1 + sum(1 for v in means.values() if v > means[pub])
+    best = max(means, key=lambda pt: (means[pt], -sum(abs(a - b) for a, b in zip(pt, pub, strict=True))))
+    with folds_csv.open("r", encoding="utf-8") as handle:
+        chosen = [json.loads(row["a1_point"]) for row in csv.DictReader(handle)]
+    weights = {}
+    for i, name in enumerate(WEIGHT_NAMES):
+        xs = [float(c[i]) for c in chosen]
+        weights[name] = {
+            "published": pub[i],
+            "median": float(np.median(xs)),
+            "nonzero_folds": sum(1 for x in xs if x != 0.0),
+            "folds": len(xs),
+        }
+    with pairs_csv.open("r", encoding="utf-8") as handle:
+        pair_rows = list(csv.DictReader(handle))
+    per_dataset = []
+    for d in DATASET_KEYS:
+        sel = [r for r in pair_rows if r["dataset"] == d]
+        if sel:
+            p_m = float(np.mean([float(r["published_hr10"]) for r in sel]))
+            a_m = float(np.mean([float(r["a1_hr10"]) for r in sel]))
+            per_dataset.append({"dataset": d, "retrievers": len(sel), "published_hr10": p_m, "a1_hr10": a_m, "diff": a_m - p_m})
+    return {
+        "points": len(means),
+        "pairs": max(n_pairs) if len(n_pairs) == 1 else sorted(n_pairs),
+        "published_point": list(pub),
+        "published_mean_hr10": means[pub],
+        "published_rank": rank,
+        "published_top_share": rank / len(means),
+        "best_point": list(best),
+        "best_mean_hr10": means[best],
+        "best_minus_published": means[best] - means[pub],
+        "weights": weights,
+        "per_dataset": per_dataset,
+        "mean_published_hr10": float(np.mean([float(r["published_hr10"]) for r in pair_rows])),
+        "mean_a1_hr10": float(np.mean([float(r["a1_hr10"]) for r in pair_rows])),
+    }
+
+
+GRID_SECTION_TITLE = "## H. Full grid: rank of the published setting and the selected weights"
+GRID_GDOC_PREFIXES = ("- Full grid (", "- A1-selected weights over all outer folds", "- Mean HR@10 per dataset, published -> A1")
+
+
+def grid_overview_report_lines(gv: dict[str, Any] | None) -> list[str]:
+    """Part H of REPORT.md (empty when the tables are missing)."""
+    if gv is None:
+        return []
+    L: list[str] = []
+    L.append(f"{GRID_SECTION_TITLE} ({gv['points']} points)")
+    L.append("")
+    L.append(
+        f"Mean HR@10 over the {gv['pairs']} analysed pairs for every grid point (`tables/f_grid_hr.csv`); rank = 1 + number of points with a strictly higher mean. "
+        "The best single point is chosen with all evaluated queries in hand, so it is an upper bound for any one fixed setting, not a held-out result."
+    )
+    L.append("")
+    L.append(
+        f"- Published point {_pt(gv['published_point'])}: mean HR@10 {gv['published_mean_hr10']:.2f}, rank {gv['published_rank']} of {gv['points']} (top {100 * gv['published_top_share']:.1f}%)."
+    )
+    L.append(
+        f"- Best single point {_pt(gv['best_point'])}: mean HR@10 {gv['best_mean_hr10']:.2f}, {gv['best_minus_published']:.2f} points above the published point."
+    )
+    L.append("")
+    L.append("A1-selected weights over all outer folds (`tables/a_chosen_per_fold.csv`):")
+    L.append("")
+    L.append("| Weight | Published | Median selected | Folds with a non-zero weight |")
+    L.append("| --- | --- | --- | --- |")
+    for name, w in gv["weights"].items():
+        L.append(
+            f"| {name} | {w['published']:g} | {w['median']:g} | {w['nonzero_folds']}/{w['folds']} ({100 * w['nonzero_folds'] / w['folds']:.1f}%) |"
+        )
+    L.append("")
+    L.append("Mean HR@10 per dataset over the analysed retrievers (`tables/d_per_pair.csv`):")
+    L.append("")
+    L.append("| Dataset | Retrievers | Published | A1 held-out | A1 minus published |")
+    L.append("| --- | --- | --- | --- | --- |")
+    for row in gv["per_dataset"]:
+        L.append(
+            f"| {DATASET_DISPLAY[row['dataset']]} | {row['retrievers']} | {row['published_hr10']:.2f} | {row['a1_hr10']:.2f} | {_s(row['diff'], 2)} |"
+        )
+    L.append(
+        f"| All | | {gv['mean_published_hr10']:.2f} | {gv['mean_a1_hr10']:.2f} | {_s(gv['mean_a1_hr10'] - gv['mean_published_hr10'], 2)} |"
+    )
+    L.append("")
+    return L
+
+
+def grid_overview_gdoc_lines(gv: dict[str, Any] | None) -> list[str]:
+    """Full-grid lines of REPORT_FOR_GDOC.md (empty when the tables are missing)."""
+    if gv is None:
+        return []
+    G: list[str] = []
+    G.append(
+        f"- Full grid ({gv['points']} points, mean HR@10 over the {gv['pairs']} pairs): published point rank {gv['published_rank']} (top {100 * gv['published_top_share']:.1f}%), {gv['published_mean_hr10']:.2f}; best single point {_pt(gv['best_point'])} {gv['best_mean_hr10']:.2f} ({_s(gv['best_minus_published'], 2)}), chosen with all queries in hand (upper bound, not held-out)."
+    )
+    G.append(
+        "- A1-selected weights over all outer folds, median (non-zero folds): "
+        + "; ".join(
+            f"{name} {w['median']:g} ({w['nonzero_folds']}/{w['folds']}, {100 * w['nonzero_folds'] / w['folds']:.0f}%)"
+            for name, w in gv["weights"].items()
+        )
+        + "."
+    )
+    G.append(
+        "- Mean HR@10 per dataset, published -> A1: "
+        + "; ".join(
+            f"{DATASET_DISPLAY[row['dataset']]} {row['published_hr10']:.2f} -> {row['a1_hr10']:.2f} ({_s(row['diff'], 2)})"
+            for row in gv["per_dataset"]
+        )
+        + "."
+    )
+    return G
+
+
 def write_heatmaps(paths: C2Paths, grids: dict[tuple[str, str], JobGrid], grid: Grid) -> dict[str, Any]:
     """HR@10 over (lambda_M, lambda_S) with field weights (1, 1, 1): BM25 per dataset, and the mean over retrievers."""
 
@@ -2028,6 +2164,8 @@ def write_report(paths: C2Paths, a: dict[str, Any], grid: Grid) -> None:
             f"| {DATASET_DISPLAY[r['dataset']]} / {RETRIEVER_DISPLAY[r['retriever']]} | {_f(r['a1_hr5'])} / {_f(r['a1_hr10'])} | {_f(r['learned_hr5'])} / {_f(r['learned_hr10'])} | {_s(r['learned_hr10'] - r['a1_hr10'])} |"
         )
     L.append("")
+    gv = grid_overview(paths.results_dir / "tables")
+    L += grid_overview_report_lines(gv)
     L.append("## Not part of C2 (index-time settings; need new LLM builds)")
     L.append("")
     for name, p in SAVED_INDEX_TIME_ABLATIONS:
@@ -2078,6 +2216,7 @@ def write_report(paths: C2Paths, a: dict[str, Any], grid: Grid) -> None:
     G.append(
         f"- Sensitivity: median share of the {len(grid.channel_only)} channel settings within 1 HR@10 point of the best: {med('f_share_within_1pt'):.2f}; median HR@10 gap best minus published {float(np.median([r['f_hr10_best'] - r['f_hr10_published'] for r in rows])):.2f} points."
     )
+    G += grid_overview_gdoc_lines(gv)
     G.append(f"- Learned pairwise logistic fusion (demonstration): mean HR@10 {mean('learned_hr10'):.1f} vs A1 {mean('a1_hr10'):.1f}.")
     if drifted:
         G.append(
@@ -2093,3 +2232,46 @@ def write_report(paths: C2Paths, a: dict[str, Any], grid: Grid) -> None:
     )
     G.append("- Full tables, intervals and definitions: results/rebuttal/C2_heldout_fusion/REPORT.md.")
     (paths.results_dir / "REPORT_FOR_GDOC.md").write_text("\n".join(G) + "\n", encoding="utf-8")
+
+
+def _splice_grid_overview(paths: C2Paths, gv: dict[str, Any]) -> None:
+    """Insert (or replace) part H in REPORT.md and the full-grid lines in REPORT_FOR_GDOC.md, leaving the rest as written."""
+    report = paths.results_dir / "REPORT.md"
+    lines = report.read_text(encoding="utf-8").rstrip("\n").split("\n")
+    if any(ln.startswith(GRID_SECTION_TITLE) for ln in lines):
+        i = next(k for k, ln in enumerate(lines) if ln.startswith(GRID_SECTION_TITLE))
+        j = next((k for k in range(i + 1, len(lines)) if lines[k].startswith("## ")), len(lines))
+        del lines[i:j]
+    else:
+        i = next((k for k, ln in enumerate(lines) if ln.startswith("## Not part of C2")), None)
+        if i is None:
+            i = next(k for k, ln in enumerate(lines) if ln.startswith("## Files"))
+    lines[i:i] = grid_overview_report_lines(gv)
+    report.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+    gdoc = paths.results_dir / "REPORT_FOR_GDOC.md"
+    glines = [ln for ln in gdoc.read_text(encoding="utf-8").rstrip("\n").split("\n") if not ln.startswith(GRID_GDOC_PREFIXES)]
+    k = next((n for n, ln in enumerate(glines) if ln.startswith("- Learned pairwise logistic fusion")), len(glines))
+    glines[k:k] = grid_overview_gdoc_lines(gv)
+    gdoc.write_text("\n".join(glines) + "\n", encoding="utf-8")
+
+
+def rewrite_reports(paths: C2Paths) -> str:
+    """Rebuild REPORT.md and REPORT_FOR_GDOC.md from the saved analysis.json and tables/.
+
+    With every job's streams/<job>.check.json present (the GPU server), both reports are rewritten in full.
+    Without them (a laptop checkout), only the full-grid part H and its REPORT_FOR_GDOC lines are inserted or
+    replaced from tables/, and the rest of the reports stays as the analysis wrote it. Returns "full" or "grid part only".
+    """
+    analysis_path = paths.results_dir / "analysis.json"
+    if not analysis_path.exists():
+        raise FileNotFoundError(f"{analysis_path} not found; run the analysis first")
+    analysis = json.loads(analysis_path.read_text(encoding="utf-8"))
+    if all(paths.check_path(j).exists() for j in analysis["jobs"]):
+        write_report(paths, analysis, make_grid(dry_run=paths.dry_run))
+        return "full"
+    gv = grid_overview(paths.results_dir / "tables")
+    if gv is None:
+        raise FileNotFoundError(f"{paths.results_dir / 'tables'} lacks f_grid_hr.csv, a_chosen_per_fold.csv or d_per_pair.csv")
+    _splice_grid_overview(paths, gv)
+    return "grid part only"

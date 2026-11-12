@@ -10,6 +10,9 @@
 - Transfer from the other three datasets: above Vanilla at HR@10 in 9/12 pairs per retriever, 8/12 with one global setting.
 - Stability: mean number of distinct points chosen across the outer folds 3.1; folds choosing exactly the published point: 0/60; mean L1 distance to the published point 1.50.
 - Sensitivity: median share of the 81 channel settings within 1 HR@10 point of the best: 0.19; median HR@10 gap best minus published 1.10 points.
+- Full grid (1296 points, mean HR@10 over the 12 pairs): published point rank 26 (top 2.0%), 55.59; best single point (0.5, 0.5 | 0.3, 1) 55.83 (+0.24), chosen with all queries in hand (upper bound, not held-out).
+- A1-selected weights over all outer folds, median (non-zero folds): lambda_M 0.3 (55/60, 92%); lambda_S 0.3 (50/60, 83%); mu_A 0.3 (40/60, 67%); mu_D 1 (55/60, 92%).
+- Mean HR@10 per dataset, published -> A1: LooGLE 90.76 -> 91.01 (+0.25); MuSiQue-32K 83.22 -> 85.19 (+1.96); QASPER-64K 27.61 -> 28.13 (+0.53); NovelHopQA 20.78 -> 20.63 (-0.15).
 - Learned pairwise logistic fusion (demonstration): mean HR@10 56.5 vs A1 56.2.
 - Original 100-query tuning sample: drawn with an unseeded random.sample; not reconstructable from the code or saved outputs, so it is not excluded separately (A and B do not depend on it).
 - Full tables, intervals and definitions: results/rebuttal/C2_heldout_fusion/REPORT.md.

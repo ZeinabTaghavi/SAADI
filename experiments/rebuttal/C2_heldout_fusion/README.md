@@ -25,6 +25,9 @@ Options: `--dry-run` (CPU test: BM25, 2 documents per dataset, small grid; write
 `--analysis-only` (rerun the CPU analysis once all 20 jobs are DONE; report `reports/group_X_analysis_only.md`).
 `--analysis-only --retrievers bm25,contriever,bge_m3` analyses only those retrievers (their jobs on all four
 datasets must be DONE); the reports name the retrievers left out, and the Table 1 ranking counts only their cells.
+`--report-only` rebuilds `REPORT.md` and `REPORT_FOR_GDOC.md` from the saved `analysis.json` and `tables/`
+(CPU, seconds, no streams needed); part H gives the full-grid rank of the published setting, the best single
+setting, the selected-weight medians and non-zero shares, and the per-dataset means.
 
 ```bash
 bash -c 'source experiments/rebuttal/C2_heldout_fusion/env.sh && python scripts/rebuttal/c2_heldout_fusion.py --group A --analysis-only --retrievers bm25,contriever,bge_m3'
