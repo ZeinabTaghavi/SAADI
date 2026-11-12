@@ -60,7 +60,8 @@ def _order(pair: str) -> tuple[int, int, int]:
 
 def body(report: StepReport, args: argparse.Namespace) -> None:
     require_step_ok(1)
-    require_step_ok(2)
+    s02 = require_step_ok(2)
+    gate = {f"{x['setting']}__{x['retriever']}": x for x in s02.get("pairs", [])}
     s03 = require_step_ok(3)
     pairs = list(s03.get("measured_pairs", []))
     s04_path = REPORT_DIR / "step_04.json"
@@ -180,15 +181,33 @@ def body(report: StepReport, args: argparse.Namespace) -> None:
     md = mk["diffs"]
     bm = [p for p in pairs if p.endswith("__bm25")]
 
-    def trend_text(ds: str) -> str | None:
+    def exact(p: str) -> bool:
+        g = gate.get(p) or {}
+        n = g.get("n_queries")
+        ident = list((g.get("identical_topk_per_source") or {}).values())
+        return bool(n) and bool(ident) and all(int(v) == int(n) for v in ident) and float(g.get("max_hr_gap_points") or 0) == 0.0
+
+    def repro_text() -> str:
+        ex = [p for p in pairs if exact(p)]
+        if len(ex) == len(pairs):
+            return "exactly (identical top-k lists for every query and identical hit rates)"
+        drift = sorted({RETRIEVER_DISPLAY[p.split("__")[1]] for p in pairs if p not in ex})
+        return (f"exactly for {len(ex)} of {len(pairs)} pairs and within the C2 tolerance for the rest "
+                f"({', '.join(drift)})")
+
+    def trend_text(ds: str, r: str) -> str | None:
         vals = []
         for size in SIZES:
-            x = P(f"{ds}_{size.lower()}__bm25", MAIN_SET, "in_rr", "keep")
+            x = P(f"{ds}_{size.lower()}__{r}", MAIN_SET, "in_rr", "keep")
             if x:
                 vals.append(f"{x['diff']:+.1f} at {size}")
-        return f"{DATASET_DISPLAY[ds]} " + ", ".join(vals) if vals else None
+        return f"{DATASET_DISPLAY[ds]} " + ", ".join(vals) if len(vals) > 2 else None
 
-    trends = [t for t in (trend_text("musique"), trend_text("qasper")) if t]
+    trends = []
+    for r in retr_used:
+        parts = [t for t in (trend_text("musique", r), trend_text("qasper", r)) if t]
+        if parts:
+            trends.append(f"{RETRIEVER_DISPLAY[r]}: {'; '.join(parts)}")
 
     def sub_sentence() -> str:
         n, up, ci_up = summ_sub["pairs"], summ_sub["gain"], summ_sub["ci_above"]
@@ -209,7 +228,7 @@ def body(report: StepReport, args: argparse.Namespace) -> None:
         f"gold sub-document in every concatenated MuSiQue and QASPER setting (32K to 256K tokens), for {n_pairs} setting-retriever "
         f"pairs ({', '.join(RETRIEVER_DISPLAY[r] for r in retr_used)}), comparing SAADI with Vanilla (the text channel alone) on identical chunk scores.",
         "On the whole document both methods first reproduce the paper's saved rankings and hit rates "
-        + ("exactly." if all(p.endswith("__bm25") for p in pairs) else "(exactly for BM25, within the C2 tolerance for the dense retrievers)."),
+        + (repro_text() + "."),
         ("On all queries, with the evidence labels re-derived inside the gold sub-document by the paper's own labeler, "
          if MAIN_SET == "R" else "On the queries whose original evidence lies entirely inside the gold sub-document, ")
         + f"SAADI's MRR inside the gold sub-document is higher than Vanilla's in {mk['gain']} of {mk['pairs']} pairs, and the 95% "
@@ -218,7 +237,7 @@ def body(report: StepReport, args: argparse.Namespace) -> None:
         (f"The in-sub-document MRR gain ranges from {min(md):+.1f} to {max(md):+.1f} points (median {float(np.median(md)):+.1f}); "
          f"inside HR@5 rises in {summ_hr5[MAIN_SET]['gain']} of {summ_hr5[MAIN_SET]['pairs']} pairs.") if md else "",
         sub_sentence(),
-        (f"For BM25 the in-sub-document MRR gain is {'; '.join(trends)}.") if trends else "",
+        (f"From 32K to 256K the in-sub-document MRR gain is, for {' / for '.join(trends)}.") if trends else "",
         ("Restricting to the queries whose original evidence lies entirely inside the gold sub-document (no relabeling) "
          if MAIN_SET == "R" else "Using all queries, with the labels re-derived inside the gold sub-document by the same labeler, ")
         + f"{'gives the same picture' if ((ok_['ci_above'] > 0) == (mk['ci_above'] > 0) and (2 * ok_['gain'] > ok_['pairs']) == (2 * mk['gain'] > mk['pairs'])) else 'gives'}: an MRR gain in "
@@ -229,7 +248,7 @@ def body(report: StepReport, args: argparse.Namespace) -> None:
     L += ["# C4: SAADI vs Vanilla inside the gold sub-document (reviewer iVU8, Q2)", "", "## Summary for the rebuttal", ""]
     L.append(" ".join(s for s in sents if s))
     if waiting and any(not w.startswith("(") for w in waiting):
-        L += ["", f"Not included (scores not available on CPU, waiting for a recomputation): {', '.join(waiting)}."]
+        L += ["", f"Not included (full per-chunk scores not available here; C2 computed them on the server for MuSiQue-32K and QASPER-64K only, not copied): {', '.join(waiting)}."]
     elif waiting:
         L += ["", f"Not included: {waiting[0]}."]
 
@@ -253,6 +272,25 @@ def body(report: StepReport, args: argparse.Namespace) -> None:
                  f"{_ci(P(p, MAIN_SET, 'in_hr5', 'keep'))} | {_ci(P(p, MAIN_SET, 'in_rr', 'keep'))} | {verdict(p)} |")
     L += ["", "Reading: \"sub-document selection\" when the CI of the sub-document hit@10 or of the top-10 share is above zero, \"inside ranking\" when the "
           "inside-MRR CI is above zero, \"both\" when both are. A fixed rule for reading the table, not a test of a decomposition."]
+
+    # Means over the four lengths (the values quoted in the rebuttal's Table 2 and text).
+    L += ["", f"### Means over the four lengths (%, Vanilla \u2192 SAADI; full-document HR@10 on all eligible queries, the rest on set {MAIN_SET})", "",
+          "| Dataset, retriever | Full-document HR@10 | At least one top-10 chunk from the gold document | Share of top 10 from the gold document | MRR inside the gold document |",
+          "| --- | --- | --- | --- | --- |"]
+    for r in retr_used:
+        for ds in ("musique", "qasper"):
+            keys = [f"{ds}_{sz.lower()}" for sz in SIZES if f"{ds}_{sz.lower()}__{r}" in frames]
+            if not keys:
+                continue
+
+            def mean_of(set_name, meth, col):
+                vals = [T(f"{k}__{r}", set_name, meth)[col] for k in keys]
+                return sum(vals) / len(vals)
+
+            cells = []
+            for set_name, col in (("all", "full_hr10"), (MAIN_SET, "subdoc_hit10"), (MAIN_SET, "subdoc_share10"), (MAIN_SET, "keep_in_mrr")):
+                cells.append(f"{mean_of(set_name, 'vanilla', col):.1f} \u2192 {mean_of(set_name, 'saadi', col):.1f}")
+            L.append(f"| {DATASET_DISPLAY[ds]}, {RETRIEVER_DISPLAY[r]} ({len(keys)} lengths) | " + " | ".join(cells) + " |")
 
     L += ["", "## 2. Measures per pair", ""]
     for set_name in (MAIN_SET, OTHER_SET):

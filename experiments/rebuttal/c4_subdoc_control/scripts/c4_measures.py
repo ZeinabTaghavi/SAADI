@@ -52,13 +52,17 @@ INSIDE_K = (1, 3, 5, 10)
 FULL_K = (5, 10)
 PERQUERY_DIR = WORK_DIR / "perquery"
 
-PERQUERY_COLUMNS = (
-    ["query_id", "doc_id", "gold_subdoc", "n_gold_chunks", "in_S", "in_R"]
-    + [f"full_rank_{m}" for m in METHODS]
-    + [f"subdoc_hit10_{m}" for m in METHODS]
-    + [f"subdoc_share10_{m}" for m in METHODS]
-    + [f"in{s}_{r}_rank_{m}" for s in SETS for r in RESTRICTIONS for m in METHODS]
-)
+def perquery_columns(methods) -> list[str]:
+    return (
+        ["query_id", "doc_id", "gold_subdoc", "n_gold_chunks", "in_S", "in_R"]
+        + [f"full_rank_{m}" for m in methods]
+        + [f"subdoc_hit10_{m}" for m in methods]
+        + [f"subdoc_share10_{m}" for m in methods]
+        + [f"in{s}_{r}_rank_{m}" for s in SETS for r in RESTRICTIONS for m in methods]
+    )
+
+
+PERQUERY_COLUMNS = perquery_columns(METHODS)
 
 
 def perquery_path(setting: Setting, retriever: str) -> Path:
@@ -102,12 +106,16 @@ def _rank1(r: int) -> float:
     return math.inf if int(r) >= BIG_RANK else float(int(r) + 1)
 
 
-def compute_pair(setting: Setting, retriever: str, cfg: dict[str, Any], *, log=print) -> dict[str, Any]:
-    """Per-query ranks of one pair; writes work/perquery/<setting>__<retriever>.csv.gz."""
+def compute_pair(setting: Setting, retriever: str, cfg: dict[str, Any], *, log=print, points=None, out_path: Path | None = None) -> dict[str, Any]:
+    """Per-query ranks of one pair; writes work/perquery/<setting>__<retriever>.csv.gz.
+
+    points / out_path (step 06): other channel weightings, written elsewhere; steps 03-04 use the defaults.
+    """
 
     import pandas as pd
 
-    points = method_points(cfg)
+    points = points or method_points(cfg)
+    methods = list(points)
     mp = read_json(MAP_DIR / f"{setting.key}.json")
     if not mp.get("ok"):
         raise RuntimeError(f"{setting.key}: step 01 map is not ok")
@@ -166,7 +174,7 @@ def compute_pair(setting: Setting, retriever: str, cfg: dict[str, Any], *, log=p
         ):
             for restr in RESTRICTIONS:
                 if not member:
-                    for meth in METHODS:
+                    for meth in methods:
                         row[f"in{set_name}_{restr}_rank_{meth}"] = math.nan
                     continue
                 sub = _restrict(q, idx, gold_ids, group_ids, renorm=restr == "renorm", retriever=retriever)
@@ -178,8 +186,8 @@ def compute_pair(setting: Setting, retriever: str, cfg: dict[str, Any], *, log=p
         rows.append(row)
     if diag["n_gold_chunks_mismatch"]:
         problems.append(f"{diag['n_gold_chunks_mismatch']} queries: gold sub-document chunk count in the stream != step 01 map")
-    frame = pd.DataFrame(rows, columns=PERQUERY_COLUMNS)
-    out = perquery_path(setting, retriever)
+    frame = pd.DataFrame(rows, columns=perquery_columns(methods))
+    out = out_path or perquery_path(setting, retriever)
     out.parent.mkdir(parents=True, exist_ok=True)
     tmp = out.with_name(out.name + ".tmp")
     with gzip.open(tmp, "wt", encoding="utf-8", newline="") as handle:

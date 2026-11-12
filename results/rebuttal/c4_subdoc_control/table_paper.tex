@@ -17,6 +17,15 @@ QASPER-32K & BM25 & 40.0 & \textbf{46.7} & 36.4 & \textbf{36.7} & 22.5 & \textbf
 QASPER-64K & BM25 & 34.0 & \textbf{39.2} & 35.4 & \textbf{36.4} & 22.7 & \textbf{24.0} & +5.2 [+4.6, +5.9] & +1.3 [+0.6, +2.0] \\
 QASPER-128K & BM25 & 29.3 & \textbf{34.4} & 35.9 & \textbf{37.6} & 23.0 & \textbf{23.7} & +5.2 [+4.5, +5.8] & +0.6 [-0.1, +1.3] \\
 QASPER-256K & BM25 & 25.3 & \textbf{29.7} & 35.9 & \textbf{37.3} & 23.1 & \textbf{24.2} & +4.4 [+3.8, +5.0] & +1.1 [+0.4, +1.8] \\
+\midrule
+MuSiQue-32K & Contriever & 66.5 & \textbf{75.2} & 71.3 & \textbf{77.8} & 45.6 & \textbf{50.1} & +8.7 [+8.0, +9.5] & +4.5 [+3.3, +5.7] \\
+MuSiQue-64K & Contriever & 56.2 & \textbf{64.6} & 71.2 & \textbf{77.7} & 45.4 & \textbf{50.2} & +8.3 [+7.6, +9.1] & +4.8 [+3.6, +5.9] \\
+MuSiQue-128K & Contriever & 44.7 & \textbf{53.0} & 71.4 & \textbf{76.4} & 45.6 & \textbf{49.5} & +8.3 [+7.5, +9.1] & +3.9 [+2.8, +5.1] \\
+MuSiQue-256K & Contriever & 34.6 & \textbf{42.4} & 71.2 & \textbf{76.6} & 45.4 & \textbf{50.2} & +7.7 [+6.9, +8.6] & +4.8 [+3.5, +6.1] \\
+QASPER-32K & Contriever & 44.2 & \textbf{47.8} & 37.7 & 37.5 & 23.7 & 23.5 & +3.7 [+3.1, +4.3] & -0.2 [-0.9, +0.6] \\
+QASPER-64K & Contriever & 36.5 & \textbf{39.9} & 38.8 & 38.1 & 23.8 & \textbf{24.5} & +3.4 [+2.8, +4.0] & +0.6 [-0.2, +1.4] \\
+QASPER-128K & Contriever & 30.6 & \textbf{34.0} & 38.5 & 37.9 & 23.8 & \textbf{24.0} & +3.3 [+2.8, +3.9] & +0.2 [-0.6, +1.0] \\
+QASPER-256K & Contriever & 25.2 & \textbf{28.6} & 38.1 & \textbf{39.4} & 23.7 & \textbf{24.7} & +3.5 [+2.8, +4.1] & +1.0 [+0.2, +1.8] \\
 \bottomrule
 \end{tabular}
 \caption{Ranking inside the gold sub-document of each query on the concatenated settings (queries with labels re-derived inside the gold sub-document). Vanilla is the text channel alone; SAADI uses the published weights; both use the same full-document scores, with chunks outside the gold sub-document removed. Top-10 share: percent of the full-document top-10 chunks that belong to the gold sub-document. $\Delta$: SAADI $-$ Vanilla, 95\% CI from 10{,}000 bootstrap resamples over queries.}
