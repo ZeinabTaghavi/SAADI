@@ -39,3 +39,15 @@
 [c8-dca] 2026-11-12 16:35:57 [group 0] stopping vLLM (pid 82346)
 [c8] 2026-11-12 16:40:00 end 02: exit 1
 [c8-dca] 2026-11-12 16:40:00 [group 1] unit 1 finished (exit 1): FAILED: RuntimeError: unanswered queries remain in ['full_doc'] (errors in the report); start the GPU script again to resume
+[c8-dca] 2026-11-12 16:40:03 [group 1] stopping vLLM (pid 83033)
+[c8-dca] 2026-11-12 16:40:09 retrying units 1 on GPUs 0,1,2,3
+[c8-dca] 2026-11-12 16:40:09 [group 0] starting vLLM 0.10.1.1 with dual chunk attention on GPUs 0,1,2,3, port 18551, --max-num-batched-tokens 131072; log outputs/rebuttal/c8_long_context/vllm_logs/server_dca_g0_20261112_160905_164009.log
+[c8-dca] 2026-11-12 16:41:20 [group 0] vLLM ready after 70 s
+[c8-dca] 2026-11-12 16:41:20 [group 0] unit 1: books B44,B15,B54,B62,B24,B43,B18,B27,B34
+[c8] 2026-11-12 16:41:20 start 02: /mnt/data/zeinab/raptor/.venv/bin/python3 /home/iataghav/data/SAADI/experiments/rebuttal/c8_long_context/scripts/step02_reader.py --dataset novelhopqa --port 18551 --conditions full_doc --docs B44,B15,B54,B62,B24,B43,B18,B27,B34
+[c8-02] 2026-11-12 16:41:20 novelhopqa/full_doc: 584 selected, 459 done, 125 to ask, 0 skipped
+[c8-02] 2026-11-12 16:43:17 novelhopqa/full_doc 1/2 B27 (201,836 tokens): uncached 54.1 s, 59 more in 62.4 s
+[c8-02] 2026-11-12 16:45:20 novelhopqa/full_doc 2/2 B34 (206,833 tokens): uncached 55.6 s, 64 more in 67.3 s
+[c8-02] 2026-11-12 16:45:20 done: OK
+[c8] 2026-11-12 16:45:20 end 02: exit 0
+[c8-dca] 2026-11-12 16:45:20 [group 0] unit 1 finished (exit 0): answered full_doc 584
