@@ -5,12 +5,17 @@
 # It
 #   1. checks step 00 passed (documents, model folder) and that the main run's answers exist;
 #   2. makes (once) a separate Python environment with vLLM 0.10.1.1, the last vLLM with the dual
-#      chunk attention backend (V0 engine); the main run's environment is not touched;
+#      chunk attention backend (V0 engine), with transformers 4.55.4; the main run's environment is
+#      not touched; a CPU smoke test (vLLM's tokenizer call, the DCA backend and its sparse kernels)
+#      must pass before any GPU is used;
 #   3. uses every free 4-GPU group among 0-3 and 4-7 (TP must divide the model's 28 heads, so 8 GPUs
 #      = two servers of 4); waits up to C8_WAIT_MAX_HOURS (default 2) when none is free;
 #   4. splits the 16 books into 2 work units (step04_dca.py plan; the 6 long books first in each);
 #      each GPU group starts its own vLLM server and runs step 02 on its unit(s), full document only;
 #      no new book is started after C8_DCA_DEADLINE_HOURS (default 10);
+#      if the server dies on a book, that book is asked again once with 1 request in flight and
+#      --max-num-batched-tokens 65536; if it dies again, the book is left out (reports/dca/shard_<k>/
+#      restarts.txt) and the unit goes on with its other books;
 #   5. scores everything (step04_dca.py score) and pushes after every unit and at the end.
 # The main run's answers and reports are never written: this step writes under
 #   results/rebuttal/c8_long_context/dca/ and experiments/rebuttal/c8_long_context/reports/dca/.
@@ -112,8 +117,10 @@ say "model ${MODEL_DIR}; --max-model-len ${MAX_LEN}"
 # ---------------------------------------------------------------- 2. vLLM 0.10.1.1 environment
 vllm_ok() { "${DCA_PY}" -c "import sys, vllm; sys.exit(0 if vllm.__version__ == sys.argv[1] else 1)" "${VLLM_WANT}" >/dev/null 2>&1; }
 # vLLM 0.10.1.1 asks for transformers>=4.55 with no upper bound; transformers 5 dropped
-# all_special_tokens_extended, which its tokenizer code calls. Pinned to the 4.55 series.
-TF_PIN="${C8_DCA_TRANSFORMERS:-transformers>=4.55,<4.56}"
+# all_special_tokens_extended, which its tokenizer code calls (the run of 2026-11-11 failed there).
+# Pinned to 4.55.4; with vLLM 0.10.1.1 on Linux x86_64 / Python 3.12 this resolves to
+# tokenizers 0.21.4 and huggingface-hub 0.36.2 (checked with uv pip compile).
+TF_PIN="${C8_DCA_TRANSFORMERS:-transformers==4.55.4}"
 tf_ok() { "${DCA_PY}" -c "import sys, transformers as t; v = tuple(int(x) for x in t.__version__.split('.')[:2]); sys.exit(0 if v == (4, 55) else 1)" >/dev/null 2>&1; }
 if vllm_ok && ! tf_ok; then
   say "fixing transformers in ${DCA_VENV#"${C8_ROOT_DIR}/"}: $("${DCA_PY}" -c 'import transformers; print(transformers.__version__)' 2>&1 | tail -n 1) -> ${TF_PIN}"
@@ -157,6 +164,28 @@ if ! vllm_ok; then
   fi
 fi
 say "vLLM ${VLLM_WANT} ready: $("${DCA_PY}" -c 'import torch, vllm; import transformers; print("torch", torch.__version__, "cuda", torch.version.cuda, "transformers", transformers.__version__)' 2>&1 | tail -n 1)"
+# The server's own tokenizer call (where the last run died), the dual chunk attention backend and its
+# sparse-attention kernels, imported in the new environment before any GPU is taken.
+SMOKE_LOG="${C8_OUT_DIR}/vllm_logs/smoke_${TS}.log"
+if ! "${DCA_PY}" - "${MODEL_DIR}" > "${SMOKE_LOG}" 2>&1 <<'SMOKE'
+import sys
+from vllm.transformers_utils.tokenizer import get_tokenizer
+tok = get_tokenizer(sys.argv[1])
+msgs = [{"role": "user", "content": "Who wrote the book?"}]
+ids = tok.apply_chat_template(msgs, add_generation_prompt=True, tokenize=True)
+assert len(ids) > 5, ids
+assert len(tok.encode("The quick brown fox.")) > 0
+import vllm._custom_ops as ops
+assert hasattr(ops, "convert_vertical_slash_indexes_mergehead"), "no vertical-slash index op"
+from vllm.vllm_flash_attn import flash_attn_varlen_func, flash_attn_with_kvcache, sparse_attn_func  # noqa: F401
+import vllm.attention.backends.dual_chunk_flash_attn as dca  # noqa: F401
+print("smoke OK: tokenizer", type(tok).__name__, len(tok), "chat prompt", len(ids), "tokens; DCA backend and sparse kernels import")
+SMOKE
+then
+  fail_report "${PRE_REPORT}" "vLLM environment" "The vLLM ${VLLM_WANT} environment fails its smoke test (tokenizer / dual chunk attention imports): $(tail -n 4 "${SMOKE_LOG}" | tr '\n' ' ' | cut -c1-400)"
+  c8_push "${DS}" 04_dca_preflight "${PRE_REPORT}"; exit 1
+fi
+say "$(tail -n 1 "${SMOKE_LOG}")"
 
 # ---------------------------------------------------------------- 3. free GPU groups
 group_busy() {  # <gpus> -> prints busy GPUs of the group
@@ -205,7 +234,7 @@ run_group() {  # <group index> <gpus> <port> <shard ids...>: one server, its uni
   local gi="$1" gpus="$2" port="$3"
   shift 3
   # Not local: the EXIT/TERM traps of this subshell need them after the function returns.
-  SERVER_PID="" slog="" tmp=""
+  SERVER_PID="" slog="" tmp="" SAFE=0 MNBT=""
   tmp="${C8_TMP_BASE:-/tmp}/c8dca_${USER:-user}_${gi}"
   mkdir -p "${tmp}" && chmod 700 "${tmp}" 2>/dev/null
   export TMPDIR="${tmp}" VLLM_RPC_BASE_PATH="${tmp}" CUDA_VISIBLE_DEVICES="${gpus}"
@@ -230,7 +259,9 @@ except Exception: sys.exit(1)" "${port}" "${C8_MODEL}"; }
     slog="${C8_OUT_DIR}/vllm_logs/server_dca_g${gi}_${TS}_$(date +%H%M%S).log"
     export C8_SERVER_LOG="${slog}"
     local launcher=(); command -v setsid >/dev/null 2>&1 && launcher=(setsid)
-    say "[group ${gi}] starting vLLM ${VLLM_WANT} with dual chunk attention on GPUs ${gpus}, port ${port}; log ${slog#"${C8_ROOT_DIR}/"}"
+    MNBT="${C8_MAX_NUM_BATCHED_TOKENS}"
+    [[ "${SAFE}" -eq 1 ]] && MNBT="${C8_DCA_SAFE_BATCHED_TOKENS:-65536}"
+    say "[group ${gi}] starting vLLM ${VLLM_WANT} with dual chunk attention on GPUs ${gpus}, port ${port}, --max-num-batched-tokens ${MNBT}; log ${slog#"${C8_ROOT_DIR}/"}"
     (
       export VLLM_ATTENTION_BACKEND=DUAL_CHUNK_FLASH_ATTN VLLM_USE_V1=0
       # shellcheck disable=SC2086
@@ -238,7 +269,7 @@ except Exception: sys.exit(1)" "${port}" "${C8_MODEL}"; }
         --model "${MODEL_DIR}" --served-model-name "${C8_MODEL}" --host 127.0.0.1 --port "${port}" \
         --tensor-parallel-size 4 --dtype bfloat16 --max-model-len "${MAX_LEN}" \
         --gpu-memory-utilization "${C8_GPU_MEMORY_UTILIZATION}" --max-num-seqs "${C8_MAX_NUM_SEQS}" \
-        --max-num-batched-tokens "${C8_MAX_NUM_BATCHED_TOKENS}" --seed "${C8_SEED}" "${EXTRA[@]}" ${C8_VLLM_EXTRA_ARGS}
+        --max-num-batched-tokens "${MNBT}" --seed "${C8_SEED}" "${EXTRA[@]}" ${C8_VLLM_EXTRA_ARGS}
     ) > "${slog}" 2>&1 &
     SERVER_PID=$!
     local w=0
@@ -269,16 +300,45 @@ except Exception: sys.exit(1)" "${port}" "${C8_MODEL}"; }
     grep -a -i -m 3 -E "dual.?chunk|DUAL_CHUNK|attention backend" "${slog}" | cut -c1-240 > "${rd}/server_check.txt"
     [[ -s "${rd}/server_check.txt" ]] || echo "no attention-backend line found in the vLLM log" > "${rd}/server_check.txt"
     say "[group ${gi}] unit ${sid}: books ${docs}"
-    rc=0
-    C8_RESULTS_DIR="${res}" C8_REPORT_DIR="${rd}" c8_run_step 02 "unit ${sid} reader" "${r2}" "${LOG}" \
-      "${PYTHON}" "${C8_EXP_DIR}/scripts/step02_reader.py" --dataset "${DS}" --port "${port}" --conditions full_doc --docs "${docs}" || rc=$?
-    if [[ "${rc}" -ne 0 ]] && ! ready; then
-      say "[group ${gi}] server down during unit ${sid}; restarting it once"
-      stop
-      if start; then
-        C8_RESULTS_DIR="${res}" C8_REPORT_DIR="${rd}" c8_run_step 02 "unit ${sid} reader" "${r2}" "${LOG}" \
-          "${PYTHON}" "${C8_EXP_DIR}/scripts/step02_reader.py" --dataset "${DS}" --port "${port}" --conditions full_doc --docs "${docs}" || rc=$?
+    # A server crash costs at most one book: the book it died on is asked again once with one
+    # request in flight and smaller prefill chunks; if the server dies on it again, that book is
+    # left out (listed in restarts.txt and the score report) and the unit goes on with the others.
+    local todo="${docs}" left_out="" last_crash="" crash oom restarts=0 conc="${C8_READER_CONCURRENCY}"
+    local notes="${rd}/restarts.txt"
+    while true; do
+      rc=0
+      C8_READER_CONCURRENCY="${conc}" C8_RESULTS_DIR="${res}" C8_REPORT_DIR="${rd}" c8_run_step 02 "unit ${sid} reader" "${r2}" "${LOG}" \
+        "${PYTHON}" "${C8_EXP_DIR}/scripts/step02_reader.py" --dataset "${DS}" --port "${port}" --conditions full_doc --docs "${todo}" || rc=$?
+      [[ "${rc}" -eq 0 ]] && break
+      ready && break  # failed with the server up: not a crash; the unit report says why
+      restarts=$((restarts + 1))
+      crash="$("${PYTHON}" -c "import json,sys; print(json.load(open(sys.argv[1])).get('crashed_doc') or '')" "${r2%.md}.json" 2>/dev/null)"
+      oom="$(grep -a -c -iE 'out of memory|OutOfMemoryError' "${slog}" 2>/dev/null)"
+      say "[group ${gi}] server down during unit ${sid}, book ${crash:-unknown} (out-of-memory lines in its log: ${oom:-0}); restart ${restarts}"
+      echo "$(date '+%F %T') server down on book ${crash:-unknown}; out-of-memory lines ${oom:-0}; log ${slog#"${C8_ROOT_DIR}/"}" >> "${notes}"
+      if [[ "${restarts}" -gt "${C8_DCA_MAX_RESTARTS:-4}" ]]; then
+        say "[group ${gi}] unit ${sid}: ${restarts} crashes, giving up on this unit"; echo "gave up after ${restarts} crashes" >> "${notes}"; break
       fi
+      if [[ -n "${crash}" && "${crash}" == "${last_crash}" ]]; then
+        left_out+="${left_out:+,}${crash}"
+        todo="$(echo "${todo}" | tr ',' '\n' | grep -vx "${crash}" | paste -sd, -)"
+        echo "book ${crash} left out after crashing the server twice" >> "${notes}"
+        say "[group ${gi}] book ${crash} left out after two crashes; remaining: ${todo:-none}"
+        [[ -z "${todo}" ]] && { stop; break; }
+      elif [[ -n "${crash}" ]]; then
+        conc=1; SAFE=1
+        echo "asking ${crash} again with 1 request in flight and --max-num-batched-tokens ${C8_DCA_SAFE_BATCHED_TOKENS:-65536}" >> "${notes}"
+      fi
+      last_crash="${crash}"
+      stop
+      if ! start; then
+        fail_report "${r2}" "unit ${sid}, vLLM restart" "The vLLM server did not start again after a crash on book ${crash:-unknown} (log ${slog#"${C8_ROOT_DIR}/"})."
+        break
+      fi
+    done
+    if [[ -n "${left_out}" && -f "${r2}" ]]; then
+      printf '\nBooks left out after crashing the server twice: %s (see restarts.txt).\n' "${left_out}" >> "${r2}"
+      echo "$(head -n 1 "${r2%.md}.summary.txt" 2>/dev/null); left out: ${left_out}" > "${r2%.md}.summary.txt.new" && mv -f "${r2%.md}.summary.txt.new" "${r2%.md}.summary.txt"
     fi
     say "[group ${gi}] unit ${sid} finished (exit ${rc}): $(head -n 1 "${r2%.md}.summary.txt" 2>/dev/null)"
     c8_push "${DS}" "04_dca_unit${sid}" "${r2}"

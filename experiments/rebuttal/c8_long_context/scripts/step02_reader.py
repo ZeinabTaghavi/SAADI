@@ -140,6 +140,7 @@ def main(argv: list[str] | None = None) -> int:
                                 error(exc)
                                 log(f"{ds}/full_doc {doc_id}: first request failed: {str(exc)[:200]}")
                                 if not client.alive():
+                                    info["crashed_doc"] = doc_id
                                     raise RuntimeError(f"the vLLM server stopped answering during {doc_id}: {exc}") from exc
                                 continue
                             ci["asked"] += 1
@@ -157,6 +158,11 @@ def main(argv: list[str] | None = None) -> int:
                                     ci["asked"] += 1
                                     rest_secs.append(s2)
                                     save(fh, x, r2, s2, batch="concurrent", cache_state="cached_document")
+                            if len(rest_secs) < len(qs) - 1 and not client.alive():
+                                # The server died while answering this document's other questions.
+                                info["crashed_doc"] = doc_id
+                                raise RuntimeError(f"the vLLM server stopped answering during {doc_id} "
+                                                   f"({len(rest_secs)} of {len(qs) - 1} other questions answered)")
                             drow = {"doc_id": doc_id, "doc_tokens": qs[0]["doc_tokens"], "prompt_tokens_first": qs[0]["prompt_tokens"]["full_doc"],
                                     "first_query": qs[0]["query_id"], "uncached_seconds": round(sec, 3), "cache_reset": reset,
                                     "first_cached_tokens": first_u["cached_tokens"], "other_queries": len(qs) - 1, "other_answered": len(rest_secs),

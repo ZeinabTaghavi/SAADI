@@ -13,7 +13,9 @@ standard attention, so their answers from the main run are reused unchanged.
                (shortest first), then the others. The plan is written once and reused on a restart.
   score (CPU)  merges the units' answers and scores them against the main run's SAADI / Vanilla /
                closed-book answers and C5's 30B reader, on all books, on the 6 long books and on the
-               10 books within the native window (there also against the native full-document answers).
+               10 books within the native window (there also against the native full-document answers),
+               and on every book read whole in the mode its length needs ("all_mixed": the main run's
+               native read inside 262,144 tokens, dual chunk attention beyond).
 
 Answers: results/rebuttal/c8_long_context/dca/shard_<k>/answers/novelhopqa/full_doc.jsonl (step 02
 writes them; the main run's answer files are never touched). Results: results/rebuttal/
@@ -43,6 +45,7 @@ NATIVE = 262144
 COND_DISPLAY = {
     "full_dca": "Full book, dual chunk attention (7B)",
     "full_native": "Full book, native window (7B, main run)",
+    "full_mixed": "Full book: native read up to 262K, dual chunk attention beyond (7B)",
     "saadi": "SAADI top 10 (7B)",
     "vanilla": "Vanilla BM25 top 10 (7B)",
     "closed_book": "Closed-book (7B)",
@@ -50,6 +53,7 @@ COND_DISPLAY = {
 }
 PAIRS = [("full_dca", "saadi"), ("full_dca", "saadi_c5"), ("saadi", "vanilla"), ("full_dca", "vanilla"), ("full_dca", "closed_book")]
 PAIRS_WITHIN = [("full_dca", "full_native"), ("full_native", "saadi")]
+PAIRS_MIXED = [("full_mixed", "saadi"), ("full_mixed", "saadi_c5"), ("saadi", "vanilla"), ("full_mixed", "closed_book")]
 
 
 def log(msg: str) -> None:
@@ -176,6 +180,13 @@ def do_score(paths: c8.C8Paths) -> int:
             if sp.exists():
                 servers.append({"shard": sd.name, "check": sp.read_text(encoding="utf-8").strip()})
         ans["full_dca"] = scored(dca_rows, inp.key("full_doc", "dca"))
+        # Every book read whole, each in the mode its length needs: the main run's native read for the
+        # books inside 262,144 tokens, dual chunk attention for the books beyond.
+        ans["full_mixed"] = {}
+        for q in sel:
+            src = ans["full_dca"] if sel[q].get("over_native") else ans["full_native"]
+            if q in src:
+                ans["full_mixed"][q] = src[q]
         c5p = paths.c5_answers_file(DS, "saadi")
         ans["saadi_c5"] = {str(r["query_id"]): {**r, **cc.score_answer(r["output"], r["gold"])} for r in cc.read_jsonl(c5p)} if c5p.exists() else {}
         info["answered"] = {c: len(set(v) & set(sel)) for c, v in ans.items()}
@@ -188,7 +199,10 @@ def do_score(paths: c8.C8Paths) -> int:
         missing = sorted(set(sel) - set(ans["full_dca"]))
         info["selected"], info["common"] = len(sel), len(base)
         info["missing_by_doc"] = {d: sum(1 for q in missing if sel[q]["doc_id"] == d) for d in sorted({sel[q]["doc_id"] for q in missing})}
+        base_mixed = sorted(set(ans["full_mixed"]) & set(ans["saadi"]) & set(ans["vanilla"]) & set(ans["closed_book"]) & set(sel), key=lambda q: sel[q]["subset_rank"])
+        info["common_mixed"] = len(base_mixed)
         groups = {
+            "all_mixed": base_mixed,
             "all": base,
             "beyond_native": [q for q in base if sel[q].get("over_native")],
             "within_native": [q for q in base if not sel[q].get("over_native")],
@@ -200,7 +214,8 @@ def do_score(paths: c8.C8Paths) -> int:
         for g, qs in groups.items():
             if not qs:
                 continue
-            conds = ["full_dca"] + (["full_native"] if g == "within_native" else []) + ["saadi", "vanilla", "closed_book"] + (["saadi_c5"] if ans["saadi_c5"] else [])
+            full = ["full_mixed"] if g == "all_mixed" else ["full_dca"] + (["full_native"] if g == "within_native" else [])
+            conds = full + ["saadi", "vanilla", "closed_book"] + (["saadi_c5"] if ans["saadi_c5"] else [])
             for c in conds:
                 qq = [q for q in qs if q in ans[c]]
                 row = {"group": g, "condition": c, "condition_display": COND_DISPLAY[c], "n": len(qq)}
@@ -208,7 +223,7 @@ def do_score(paths: c8.C8Paths) -> int:
                     s = ci([ans[c][q][m] for q in qq], n_boot)
                     row.update({m: s["mean"], f"{m}_lo": s["lo"], f"{m}_hi": s["hi"]})
                 table.append(row)
-            for a, b in PAIRS + (PAIRS_WITHIN if g == "within_native" else []):
+            for a, b in (PAIRS_MIXED if g == "all_mixed" else PAIRS + (PAIRS_WITHIN if g == "within_native" else [])):
                 qq = [q for q in qs if q in ans[a] and q in ans[b]]
                 row = {"group": g, "a": a, "b": b, "pair": f"{COND_DISPLAY[a]} - {COND_DISPLAY[b]}", "n": len(qq)}
                 for m in c8.MEASURES:
@@ -239,7 +254,7 @@ def do_score(paths: c8.C8Paths) -> int:
         saadi_amort = (sa_c["wall_seconds"] / sa_c["asked"]) if sa_c.get("asked") and sa_c.get("wall_seconds") else None
         cost = []
         for g, qs in groups.items():
-            if not qs:
+            if not qs or g == "all_mixed":
                 continue
             fd = [ans["full_dca"][q] for q in qs]
             used = [doc_rows[d] for d in {sel[q]["doc_id"] for q in qs} if d in doc_rows]
@@ -254,12 +269,15 @@ def do_score(paths: c8.C8Paths) -> int:
             write_csv(out / f"{name}.csv", rows)
             info["files"].append(paths.rel(out / f"{name}.csv"))
         info.update({"table": table, "paired": paired, "per_book": per_book, "cost": cost})
-        cc.write_json(out / "summary.json", {k: info[k] for k in ("answered", "selected", "common", "missing_by_doc", "groups", "table", "paired", "per_book", "cost", "cache_hits", "servers")})
+        cc.write_json(out / "summary.json", {k: info[k] for k in ("answered", "selected", "common", "common_mixed", "missing_by_doc", "groups", "table", "paired", "per_book", "cost", "cache_hits", "servers")})
         info["files"].append(paths.rel(out / "summary.json"))
         g_all = {r["condition"]: r for r in table if r["group"] == "all"}
         p_all = next(r for r in paired if r["group"] == "all" and (r["a"], r["b"]) == ("full_dca", "saadi"))
         info["one_line"] = (f"all books read whole: F1 full book {g_all['full_dca']['f1']:.1f}, SAADI {g_all['saadi']['f1']:.1f} (7B, n={len(base)} of {len(sel)}); "
                             f"full-SAADI {p_all['f1']:+.1f} [{p_all['f1_lo']:+.1f}, {p_all['f1_hi']:+.1f}]")
+        p_mix = next((r for r in paired if r["group"] == "all_mixed" and (r["a"], r["b"]) == ("full_mixed", "saadi")), None)
+        if p_mix and p_mix.get("f1") is not None:
+            info["one_line"] += f"; mixed full read - SAADI {p_mix['f1']:+.1f} [{p_mix['f1_lo']:+.1f}, {p_mix['f1_hi']:+.1f}] (n={p_mix['n']})"
         if missing:
             status = "PARTIAL"
             info["one_line"] += f"; {len(missing)} questions not answered yet"
@@ -299,6 +317,11 @@ def render(paths: c8.C8Paths, info: dict[str, Any], status: str) -> str:
         cost = {r["group"]: r for r in info["cost"]}
         s = []
         ga = G["all"]
+        if ("all_mixed", "full_mixed") in T and ("all_mixed", "full_mixed", "saadi") in P:
+            gm = G["all_mixed"]
+            s.append(f"Every NovelHopQA book read whole, each in the mode its length needs (the main run's native read for the books inside 262,144 tokens, dual chunk attention beyond; "
+                     f"{gm['books']} books, {gm['n']} questions): F1 {val(T[('all_mixed', 'full_mixed')])} against {val(T[('all_mixed', 'saadi')])} for SAADI's top 10 with the same 7B reader; "
+                     f"paired difference {pm(P[('all_mixed', 'full_mixed', 'saadi')])} (EM {pm(P[('all_mixed', 'full_mixed', 'saadi')], 'em')}, containment {pm(P[('all_mixed', 'full_mixed', 'saadi')], 'contain')}).")
         s.append(f"The 7B 1M-context reader (Qwen2.5-7B-Instruct-1M) read every NovelHopQA book whole with Qwen's dual chunk attention (vLLM 0.10.1.1, V0 engine, as on the model card): "
                  f"{ga['books']} books of {f(ga['tokens_min'])}-{f(ga['tokens_max'])} tokens, {ga['n']} of {info['selected']} questions answered.")
         s.append(f"Reading the whole book gives F1 {val(T[('all', 'full_dca')])}; the same reader with SAADI's top 10 gives {val(T[('all', 'saadi')])}; "
