@@ -36,3 +36,6 @@
 [c8-02] 2026-11-12 16:35:54 done: OK
 [c8] 2026-11-12 16:35:54 end 02: exit 0
 [c8-dca] 2026-11-12 16:35:54 [group 0] unit 0 finished (exit 0): answered full_doc 324
+[c8-dca] 2026-11-12 16:35:57 [group 0] stopping vLLM (pid 82346)
+[c8] 2026-11-12 16:40:00 end 02: exit 1
+[c8-dca] 2026-11-12 16:40:00 [group 1] unit 1 finished (exit 1): FAILED: RuntimeError: unanswered queries remain in ['full_doc'] (errors in the report); start the GPU script again to resume

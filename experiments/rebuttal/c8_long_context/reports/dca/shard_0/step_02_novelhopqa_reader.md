@@ -25,3 +25,9 @@ Full document, per document (this run):
 - `results/rebuttal/c8_long_context/dca/shard_0/answers/novelhopqa/full_doc_documents.jsonl`
 - `results/rebuttal/c8_long_context/dca/shard_0/answers/novelhopqa/full_doc.jsonl`
 - `experiments/rebuttal/c8_long_context/reports/dca/shard_0/step_02_novelhopqa_reader.md`
+
+## Push
+
+```
+pushed d5629c0 to origin/fix/notebook-key-and-install: C8 novelhopqa 04_dca_unit0: answered full_doc 324
+```
