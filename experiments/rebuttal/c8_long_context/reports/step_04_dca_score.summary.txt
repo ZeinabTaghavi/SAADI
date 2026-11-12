@@ -1,1 +1,1 @@
-FAILED: RuntimeError: no full-document answers with dual chunk attention yet (dca/shard_*/answers/novelhopqa/full_doc.jsonl)
+all books read whole: F1 full book 21.2, SAADI 30.5 (7B, n=908 of 908); full-SAADI -9.3 [-11.4, -7.4]; mixed full read - SAADI -8.8 [-10.8, -6.8] (n=908)
