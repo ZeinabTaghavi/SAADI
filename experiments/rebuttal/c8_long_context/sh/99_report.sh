@@ -27,5 +27,9 @@ fi
 REPORT="${C8_REPORT_DIR}/step_99_report.md"
 c8_run_step 99 "step 99 (final report)" "${REPORT}" "${LOG}" "${PYTHON}" "${C8_EXP_DIR}/scripts/step99_report.py" || status=1
 c8_push all 99_report "${REPORT}"
+# NovelHopQA split by the native window (adds its section to REPORT.md, so it runs after step 99).
+R5="${C8_REPORT_DIR}/step_05_window_split.md"
+c8_run_step 05 "step 05 window split" "${R5}" "${LOG}" "${PYTHON}" "${C8_EXP_DIR}/scripts/step05_window_split.py" || status=1
+c8_push novelhopqa 05_window_split "${R5}"
 echo "${REPORT}"
 exit "${status}"
