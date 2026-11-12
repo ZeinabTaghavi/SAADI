@@ -111,6 +111,18 @@ say "model ${MODEL_DIR}; --max-model-len ${MAX_LEN}"
 
 # ---------------------------------------------------------------- 2. vLLM 0.10.1.1 environment
 vllm_ok() { "${DCA_PY}" -c "import sys, vllm; sys.exit(0 if vllm.__version__ == sys.argv[1] else 1)" "${VLLM_WANT}" >/dev/null 2>&1; }
+# vLLM 0.10.1.1 asks for transformers>=4.55 with no upper bound; transformers 5 dropped
+# all_special_tokens_extended, which its tokenizer code calls. Pinned to the 4.55 series.
+TF_PIN="${C8_DCA_TRANSFORMERS:-transformers>=4.55,<4.56}"
+tf_ok() { "${DCA_PY}" -c "import sys, transformers as t; v = tuple(int(x) for x in t.__version__.split('.')[:2]); sys.exit(0 if v == (4, 55) else 1)" >/dev/null 2>&1; }
+if vllm_ok && ! tf_ok; then
+  say "fixing transformers in ${DCA_VENV#"${C8_ROOT_DIR}/"}: $("${DCA_PY}" -c 'import transformers; print(transformers.__version__)' 2>&1 | tail -n 1) -> ${TF_PIN}"
+  "${DCA_PY}" -m pip install -q "${TF_PIN}" >> "${C8_OUT_DIR}/vllm_logs/install_transformers_${TS}.log" 2>&1
+  if ! tf_ok; then
+    fail_report "${PRE_REPORT}" "vLLM environment" "Could not install ${TF_PIN} into ${DCA_VENV}; see outputs/rebuttal/c8_long_context/vllm_logs/install_transformers_${TS}.log."
+    c8_push "${DS}" 04_dca_preflight "${PRE_REPORT}"; exit 1
+  fi
+fi
 if ! vllm_ok; then
   if [[ -n "${C8_DCA_PYTHON:-}" ]]; then
     fail_report "${PRE_REPORT}" "vLLM environment" "C8_DCA_PYTHON=${C8_DCA_PYTHON} does not have vLLM ${VLLM_WANT}."
@@ -139,12 +151,12 @@ if ! vllm_ok; then
   fi
   # torch 2.7.1 built for CUDA 12.8, the CUDA vLLM 0.10.1.1 is compiled with.
   if ! { "${DCA_VENV}/bin/python" -m pip install -q --upgrade pip >> "${ILOG}" 2>&1 \
-         && "${DCA_VENV}/bin/python" -m pip install "vllm==${VLLM_WANT}" --extra-index-url https://download.pytorch.org/whl/cu128 >> "${ILOG}" 2>&1; } || ! vllm_ok; then
+         && "${DCA_VENV}/bin/python" -m pip install "vllm==${VLLM_WANT}" "${TF_PIN}" --extra-index-url https://download.pytorch.org/whl/cu128 >> "${ILOG}" 2>&1; } || ! vllm_ok || ! tf_ok; then
     fail_report "${PRE_REPORT}" "vLLM environment" "pip install vllm==${VLLM_WANT} failed; see ${ILOG#"${C8_ROOT_DIR}/"}: $(tail -n 3 "${ILOG}" | tr '\n' ' ' | cut -c1-300)"
     c8_push "${DS}" 04_dca_preflight "${PRE_REPORT}"; exit 1
   fi
 fi
-say "vLLM ${VLLM_WANT} ready: $("${DCA_PY}" -c 'import torch, vllm; print("torch", torch.__version__, "cuda", torch.version.cuda)' 2>&1 | tail -n 1)"
+say "vLLM ${VLLM_WANT} ready: $("${DCA_PY}" -c 'import torch, vllm; import transformers; print("torch", torch.__version__, "cuda", torch.version.cuda, "transformers", transformers.__version__)' 2>&1 | tail -n 1)"
 
 # ---------------------------------------------------------------- 3. free GPU groups
 group_busy() {  # <gpus> -> prints busy GPUs of the group
