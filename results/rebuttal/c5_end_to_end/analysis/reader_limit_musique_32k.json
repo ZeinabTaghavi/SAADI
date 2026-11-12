@@ -1,0 +1,43 @@
+{
+ "dataset": "musique_32k",
+ "queries_file": "/Users/uem-stag-lap-ic/Desktop/SAADI/experiments/rebuttal/c4_subdoc_control/work/streams/musique_32k__bm25.queries.json",
+ "queries_sha256": "34c916348a0a8f600d871a2bae7dbdcdc1d04f149172b999168d37987ae36608",
+ "answers": [
+  "results/rebuttal/c5_end_to_end/answers/musique_32k/saadi.jsonl",
+  "results/rebuttal/c5_end_to_end/answers/musique_32k/oracle.jsonl"
+ ],
+ "self_check": "any-gold flags equal the answer files' evidence_in_context for all 900 questions",
+ "subsets": [
+  {
+   "subset": "all questions",
+   "n": 900,
+   "saadi_f1": 22.829064716958626,
+   "oracle_f1": 39.733678352357686
+  },
+  {
+   "subset": "any gold in SAADI's top 10 (paper hit rule)",
+   "n": 699,
+   "saadi_f1": 24.533486788320875,
+   "oracle_f1": 40.55598961144002
+  },
+  {
+   "subset": "all gold chunks in SAADI's top 10",
+   "n": 359,
+   "saadi_f1": 30.04996977389639,
+   "oracle_f1": 45.54880791209953
+  },
+  {
+   "subset": "gold chunks, but not all in SAADI's top 10",
+   "n": 329,
+   "saadi_f1": 16.241004145454458,
+   "oracle_f1": 38.44346552702213
+  },
+  {
+   "subset": "no gold in SAADI's top 10 (paper hit rule fails)",
+   "n": 201,
+   "saadi_f1": 16.901746170280962,
+   "oracle_f1": 36.87399889913108
+  }
+ ],
+ "questions_without_gold_chunks": 212
+}
