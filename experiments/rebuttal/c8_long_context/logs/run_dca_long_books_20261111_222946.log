@@ -141,3 +141,4 @@ AttributeError: Qwen2Tokenizer has no attribute all_special_tokens_extended. Did
 [c8] 2026-11-11 22:37:59 start 04: /mnt/data/zeinab/raptor/.venv/bin/python3 /home/iataghav/data/SAADI/experiments/rebuttal/c8_long_context/scripts/step04_dca.py score
 [c8-04] 2026-11-11 22:37:59 done: FAILED
 [c8] 2026-11-11 22:37:59 end 04: exit 1
+[c8-dca] 2026-11-11 22:38:05 done (exit 1): FAILED: RuntimeError: no full-document answers with dual chunk attention yet (dca/shard_*/answers/novelhopqa/full_doc.jsonl)

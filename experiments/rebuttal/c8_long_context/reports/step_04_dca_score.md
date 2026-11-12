@@ -14,3 +14,9 @@ RuntimeError: no full-document answers with dual chunk attention yet (dca/shard_
 ## Files written
 
 - `experiments/rebuttal/c8_long_context/reports/step_04_dca_score.md`
+
+## Push
+
+```
+pushed 1842cbd to origin/fix/notebook-key-and-install: C8 novelhopqa 04_dca_score: FAILED: RuntimeError: no full-document answers with dual chunk attention yet (dca/shard_*/answers/novelhopqa/full_doc.jsonl)
+```
