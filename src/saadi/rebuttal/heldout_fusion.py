@@ -83,7 +83,9 @@ DENSE_MIN_IDENTICAL_TOP10 = 0.99
 # paper's run by about 1e-3 in score (68-83% identical top-10; HR within 0.33 points). For these retrievers the
 # ranking-identity and 0.1-point gates become drift notes, provided HR@5/HR@10 stay within DRIFT_MAX_HR_POINTS of
 # the saved values. Every system of such a pair (Vanilla, published, held-out) uses the same recomputed streams.
-DRIFT_ACCEPTED_RETRIEVERS = ("jina",)
+# Qwen3-Embedding added on 2026-11-12 (decided with the user): loogle__qwen has 733/1832 identical top-10 and HR@10
+# 86.41 vs saved 86.68 (gap 0.27 points); its other three pairs passed the strict gate.
+DRIFT_ACCEPTED_RETRIEVERS = ("jina", "qwen")
 DRIFT_MAX_HR_POINTS = 0.5
 
 
