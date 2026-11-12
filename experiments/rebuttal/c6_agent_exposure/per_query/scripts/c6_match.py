@@ -165,8 +165,9 @@ def compare(ref, recs, key, ranks, *, agent_key=None):
             "agent_hit": int(is_hit(agent_list, r["relevant_chunk_ids"], r["evidence_groups"])),
             "saadi_hit": int(is_hit(saadi_top, r["relevant_chunk_ids"], r["evidence_groups"])),
             "saadi_hit_saved20": int(is_hit(r["retrieved_chunk_ids"][: min(k, SAVED_DEPTH)], r["relevant_chunk_ids"], r["evidence_groups"])),
-            # Not part of the matched comparison: SAADI's top 1 / top 3, used only to describe queries with k_q = 0.
+            # Not part of the matched comparison: SAADI's top 1 / 2 / 3, used only to describe queries with k_q = 0.
             "saadi_hit_top1": int(is_hit(ranking[:1], r["relevant_chunk_ids"], r["evidence_groups"])),
+            "saadi_hit_top2": int(is_hit(ranking[:2], r["relevant_chunk_ids"], r["evidence_groups"])),
             "saadi_hit_top3": int(is_hit(ranking[:3], r["relevant_chunk_ids"], r["evidence_groups"])),
         })
     n = len(rows)
@@ -184,6 +185,7 @@ def compare(ref, recs, key, ranks, *, agent_key=None):
         "k_zero_no_agent_record": sum(x["k"] == 0 and not x["has_agent_record"] for x in rows),
         "k_zero_agent_hits": sum(x["k"] == 0 and x["agent_hit"] for x in rows),
         "k_zero_saadi_top1_hits": sum(x["k"] == 0 and x["saadi_hit_top1"] for x in rows),
+        "k_zero_saadi_top2_hits": sum(x["k"] == 0 and x["saadi_hit_top2"] for x in rows),
         "k_zero_saadi_top3_hits": sum(x["k"] == 0 and x["saadi_hit_top3"] for x in rows),
         "saadi_hr_if_k_zero_given_1": 100 * (s + sum(x["k"] == 0 and x["saadi_hit_top1"] for x in rows)) / n,
         "agent_hr": 100 * a / n, "saadi_hr": 100 * s / n, "diff": 100 * (s - a) / n, "ci95": [lo, hi],
@@ -236,7 +238,10 @@ def main(argv=None) -> int:
             recs = dict(next(r for s, r in candidates(exp_dir, method, setting) if s == chosen["source"]))
             variants = [("exposure", chosen["key"], None)]
             if method == "a_rag" and any("preview_union" in r["lists"] for r in recs.values()):
+                # budget only: previews raise SAADI's budget, A-RAG is still scored on its full reads
                 variants.append(("exposure + previews", "preview_union", chosen["key"]))
+                # both sides: previews raise SAADI's budget and also count as chunks A-RAG has seen
+                variants.append(("exposure + previews, both sides", "preview_union", "preview_union"))
             for label, key, agent_key in variants:
                 rows, summ = compare(ref, recs, key, ranks, agent_key=agent_key)
                 lower, upper = (math.floor(paper["mean_chunks"]), math.ceil(paper["mean_chunks"])) if paper else (None, None)
@@ -286,15 +291,33 @@ def main(argv=None) -> int:
              "from the agent's and are not part of the comparison above; they only show what the zero budget costs SAADI. "
              "Budget = exposure (chunks the agent fully read); for A-RAG, search previews are not counted here.")
     L.append("")
-    L.append("| Dataset | Method | Queries | k_q = 0 (%) | of which no agent record | agent hits there | SAADI top 1 hits there | SAADI top 3 hits there | SAADI HR at k_q | SAADI HR if k_q = 0 got 1 chunk |")
-    L.append("|---|---|---|---|---|---|---|---|---|---|")
+    L.append("| Dataset | Method | Queries | k_q = 0 (%) | of which no agent record | agent hits there | SAADI top 1 hits there | SAADI top 2 hits there | SAADI top 3 hits there | SAADI HR at k_q | SAADI HR if k_q = 0 got 1 chunk |")
+    L.append("|---|---|---|---|---|---|---|---|---|---|---|")
     for r in table:
         if r["budget"] != "exposure":
             continue
         z = r["queries_k_zero"]
         L.append(f"| {r['dataset']} | {r['method']} | {r['queries']} | {z} ({100 * z / r['queries']:.1f}%) | "
                  f"{r['k_zero_no_agent_record']} | {r['k_zero_agent_hits']} | {r['k_zero_saadi_top1_hits']} | "
-                 f"{r['k_zero_saadi_top3_hits']} | {f1(r['saadi_hr'])} | {f1(r['saadi_hr_if_k_zero_given_1'])} |")
+                 f"{r['k_zero_saadi_top2_hits']} | {r['k_zero_saadi_top3_hits']} | {f1(r['saadi_hr'])} | {f1(r['saadi_hr_if_k_zero_given_1'])} |")
+    L.append("")
+    L.append("## A-RAG search previews")
+    L.append("")
+    L.append("A-RAG's search tool first returns previews (a few matched sentences per chunk); the agent then reads some "
+             "chunks in full. The main budget counts only full reads. *Budget only*: previewed chunks are added to SAADI's "
+             "budget, A-RAG is still scored on its full reads. *Both sides*: previewed chunks are added to SAADI's budget "
+             "and also count as chunks A-RAG has seen. Diff = SAADI HR minus A-RAG HR (95% CI).")
+    L.append("")
+    L.append("| Dataset | Read in full per query | Previewed only per query | Diff, full reads | Diff, previews budget only | Diff, previews both sides |")
+    L.append("|---|---|---|---|---|---|")
+    arag = {(r["dataset"], r["budget"]): r for r in table if r["method"] == "A-RAG"}
+    def dci(r):
+        return f"{r['diff']:+.1f} ({r['ci95_low']:+.1f}, {r['ci95_high']:+.1f})"
+    for ds in DISPLAY.values():
+        e, b, t = (arag.get((ds, x)) for x in ("exposure", "exposure + previews", "exposure + previews, both sides"))
+        if not (e and b and t):
+            continue
+        L.append(f"| {ds} | {e['mean_k']:.2f} | {t['mean_k'] - e['mean_k']:.2f} | {dci(e)} | {dci(b)} | {dci(t)} |")
     L.append("")
     L.append("## Checks")
     L.append("")
@@ -319,7 +342,8 @@ def main(argv=None) -> int:
     L.append("Columns: *Diff* = SAADI HR minus agent HR, points, paired bootstrap over queries (10,000 resamples, seed 42). "
              "*SAADI only / agent only* = queries only one of the two hits. *k_q > 20* = queries that needed SAADI's ranking "
              "past the saved depth 20. *exposure + previews* (A-RAG) = the budget also counts chunks A-RAG only saw as search "
-             "previews; A-RAG's hit is still from the chunks it read, as in the paper.")
+             "previews; A-RAG's hit is still from the chunks it read, as in the paper. *exposure + previews, both sides* "
+             "(A-RAG) = the same budget, and A-RAG's hit also counts the previewed chunks.")
     (res / "REPORT.md").write_text("\n".join(L) + "\n", encoding="utf-8")
     print("\n".join(L))
     return 0
