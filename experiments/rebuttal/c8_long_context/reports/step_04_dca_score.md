@@ -104,3 +104,9 @@ Servers (attention backend lines from the vLLM logs):
 - `results/rebuttal/c8_long_context/dca/cost.csv`
 - `results/rebuttal/c8_long_context/dca/summary.json`
 - `experiments/rebuttal/c8_long_context/reports/step_04_dca_score.md`
+
+## Push
+
+```
+pushed 25457ba to origin/fix/notebook-key-and-install: C8 novelhopqa 04_dca_score: all books read whole: F1 full book 21.2, SAADI 30.5 (7B, n=908 of 908); full-SAADI -9.3 [-11.4, -7.4]; mixed full read - SAADI -8.8 [-10.8, -6.8] (n=9
+```
